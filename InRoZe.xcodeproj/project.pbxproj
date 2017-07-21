@@ -1,0 +1,326 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A72B792E1F2231AF009FB389 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72B792D1F2231AF009FB389 /* AppDelegate.swift */; };
+		A72B79301F2231AF009FB389 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72B792F1F2231AF009FB389 /* ViewController.swift */; };
+		A72B79331F2231AF009FB389 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72B79311F2231AF009FB389 /* Main.storyboard */; };
+		A72B79361F2231AF009FB389 /* InRoZe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A72B79341F2231AF009FB389 /* InRoZe.xcdatamodeld */; };
+		A72B79381F2231AF009FB389 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A72B79371F2231AF009FB389 /* Assets.xcassets */; };
+		A72B793B1F2231AF009FB389 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72B79391F2231AF009FB389 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A72B792A1F2231AF009FB389 /* InRoZe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InRoZe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A72B792D1F2231AF009FB389 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A72B792F1F2231AF009FB389 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A72B79321F2231AF009FB389 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A72B79351F2231AF009FB389 /* InRoZe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = InRoZe.xcdatamodel; sourceTree = "<group>"; };
+		A72B79371F2231AF009FB389 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A72B793A1F2231AF009FB389 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A72B793C1F2231AF009FB389 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A72B79271F2231AF009FB389 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A72B79211F2231AF009FB389 = {
+			isa = PBXGroup;
+			children = (
+				A72B792C1F2231AF009FB389 /* InRoZe */,
+				A72B792B1F2231AF009FB389 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A72B792B1F2231AF009FB389 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A72B792A1F2231AF009FB389 /* InRoZe.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A72B792C1F2231AF009FB389 /* InRoZe */ = {
+			isa = PBXGroup;
+			children = (
+				A72B792D1F2231AF009FB389 /* AppDelegate.swift */,
+				A72B792F1F2231AF009FB389 /* ViewController.swift */,
+				A72B79311F2231AF009FB389 /* Main.storyboard */,
+				A72B79371F2231AF009FB389 /* Assets.xcassets */,
+				A72B79391F2231AF009FB389 /* LaunchScreen.storyboard */,
+				A72B793C1F2231AF009FB389 /* Info.plist */,
+				A72B79341F2231AF009FB389 /* InRoZe.xcdatamodeld */,
+			);
+			path = InRoZe;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A72B79291F2231AF009FB389 /* InRoZe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A72B793F1F2231AF009FB389 /* Build configuration list for PBXNativeTarget "InRoZe" */;
+			buildPhases = (
+				A72B79261F2231AF009FB389 /* Sources */,
+				A72B79271F2231AF009FB389 /* Frameworks */,
+				A72B79281F2231AF009FB389 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InRoZe;
+			productName = InRoZe;
+			productReference = A72B792A1F2231AF009FB389 /* InRoZe.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A72B79221F2231AF009FB389 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Erick Olibo";
+				TargetAttributes = {
+					A72B79291F2231AF009FB389 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = BLQ9SH2EFS;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = A72B79251F2231AF009FB389 /* Build configuration list for PBXProject "InRoZe" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A72B79211F2231AF009FB389;
+			productRefGroup = A72B792B1F2231AF009FB389 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A72B79291F2231AF009FB389 /* InRoZe */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A72B79281F2231AF009FB389 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A72B793B1F2231AF009FB389 /* LaunchScreen.storyboard in Resources */,
+				A72B79381F2231AF009FB389 /* Assets.xcassets in Resources */,
+				A72B79331F2231AF009FB389 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A72B79261F2231AF009FB389 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A72B79301F2231AF009FB389 /* ViewController.swift in Sources */,
+				A72B79361F2231AF009FB389 /* InRoZe.xcdatamodeld in Sources */,
+				A72B792E1F2231AF009FB389 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A72B79311F2231AF009FB389 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A72B79321F2231AF009FB389 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A72B79391F2231AF009FB389 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A72B793A1F2231AF009FB389 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A72B793D1F2231AF009FB389 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A72B793E1F2231AF009FB389 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A72B79401F2231AF009FB389 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = BLQ9SH2EFS;
+				INFOPLIST_FILE = InRoZe/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.defkut.InRoZe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		A72B79411F2231AF009FB389 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = BLQ9SH2EFS;
+				INFOPLIST_FILE = InRoZe/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.defkut.InRoZe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A72B79251F2231AF009FB389 /* Build configuration list for PBXProject "InRoZe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A72B793D1F2231AF009FB389 /* Debug */,
+				A72B793E1F2231AF009FB389 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A72B793F1F2231AF009FB389 /* Build configuration list for PBXNativeTarget "InRoZe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A72B79401F2231AF009FB389 /* Debug */,
+				A72B79411F2231AF009FB389 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A72B79341F2231AF009FB389 /* InRoZe.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A72B79351F2231AF009FB389 /* InRoZe.xcdatamodel */,
+			);
+			currentVersion = A72B79351F2231AF009FB389 /* InRoZe.xcdatamodel */;
+			path = InRoZe.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = A72B79221F2231AF009FB389 /* Project object */;
+}
