@@ -21,22 +21,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dh7-JQ-dAB">
-                                <rect key="frame" x="112" y="258" width="150" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="tyL-Vv-5im"/>
-                                    <constraint firstAttribute="width" constant="150" id="uoN-93-Gxo"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dh7-JQ-dAB">
+                                <rect key="frame" x="120" y="296" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E3N-1b-xwg">
+                                <rect key="frame" x="180" y="296" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Btf-FC-4wN">
+                                <rect key="frame" x="150" y="296" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="dh7-JQ-dAB" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Cvz-hc-ahB"/>
-                            <constraint firstItem="dh7-JQ-dAB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gUl-mC-UJW"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="imageView" destination="dh7-JQ-dAB" id="Cvd-1U-49s"/>
+                        <outlet property="blackWhiteImageView" destination="E3N-1b-xwg" id="PRQ-KX-zYq"/>
+                        <outlet property="colorImageView" destination="dh7-JQ-dAB" id="F4B-DY-M2H"/>
+                        <outlet property="maskImageView" destination="Btf-FC-4wN" id="be5-Pa-VMh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
