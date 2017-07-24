@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Nj7-xt-p6X">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,41 +9,138 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Favorite-->
+        <scene sceneID="zQD-04-gUi">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="WGQ-mm-pbP" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="cMR-Ho-9So"/>
+                        <viewControllerLayoutGuide type="bottom" id="2CK-VN-pqe"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="qYD-br-crd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dh7-JQ-dAB">
-                                <rect key="frame" x="120" y="296" width="75" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E3N-1b-xwg">
-                                <rect key="frame" x="180" y="296" width="75" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Btf-FC-4wN">
-                                <rect key="frame" x="150" y="296" width="75" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <outlet property="blackWhiteImageView" destination="E3N-1b-xwg" id="PRQ-KX-zYq"/>
-                        <outlet property="colorImageView" destination="dh7-JQ-dAB" id="F4B-DY-M2H"/>
-                        <outlet property="maskImageView" destination="Btf-FC-4wN" id="be5-Pa-VMh"/>
-                    </connections>
+                    <tabBarItem key="tabBarItem" title="Favorite" image="favorite_low" selectedImage="favorite_high" id="MPp-hd-7Vn"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rnq-M6-D2U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="708" y="-1169"/>
+        </scene>
+        <!--Events-->
+        <scene sceneID="qP8-N1-48b">
+            <objects>
+                <viewController id="fri-Sc-NVw" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="791-QD-1nI"/>
+                        <viewControllerLayoutGuide type="bottom" id="z2P-3c-htw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Qor-oC-J7N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Events" image="event_low" selectedImage="event_high" id="Tin-wH-z75"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JJG-Nx-LVV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="708" y="-479"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="o2A-WI-quu">
+            <objects>
+                <viewController id="TUo-e2-SLn" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Wet-Et-3eq"/>
+                        <viewControllerLayoutGuide type="bottom" id="VDk-Q5-lcq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GlF-nY-L3T">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Search" image="search_low" selectedImage="search_high" id="2uI-A2-fWm"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dr0-RP-eZq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="708" y="221"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="f3q-GW-gO6">
+            <objects>
+                <viewController id="0QJ-u6-4K9" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="s30-lN-JZ9"/>
+                        <viewControllerLayoutGuide type="bottom" id="8sK-mI-j5d"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oCU-My-glw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile_low" selectedImage="profile_high" id="TRD-p5-wDO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ahe-dn-72S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="708" y="950"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="Ppm-Hn-nqG">
+            <objects>
+                <viewController id="wjD-Jv-kdo" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dDm-ph-9Ni"/>
+                        <viewControllerLayoutGuide type="bottom" id="fd9-0d-QmQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cz1-gK-9e4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings_low" selectedImage="settings_high" id="7gy-pl-eXx"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tjO-CL-uIt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="708" y="1688"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="zRq-Sf-aJZ">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Nj7-xt-p6X" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Nki-8j-gjm">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="WGQ-mm-pbP" kind="relationship" relationship="viewControllers" id="GII-pI-2SJ"/>
+                        <segue destination="fri-Sc-NVw" kind="relationship" relationship="viewControllers" id="Z7A-DV-C2n"/>
+                        <segue destination="TUo-e2-SLn" kind="relationship" relationship="viewControllers" id="EBu-Np-agl"/>
+                        <segue destination="0QJ-u6-4K9" kind="relationship" relationship="viewControllers" id="wdr-ey-ZSy"/>
+                        <segue destination="wjD-Jv-kdo" kind="relationship" relationship="viewControllers" id="69g-eK-CRx"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UPY-ws-NQp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-226.40000000000001" y="220.83958020989508"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="event_high" width="25" height="25"/>
+        <image name="event_low" width="25" height="25"/>
+        <image name="favorite_high" width="25" height="25"/>
+        <image name="favorite_low" width="25" height="25"/>
+        <image name="profile_high" width="25" height="25"/>
+        <image name="profile_low" width="25" height="25"/>
+        <image name="search_high" width="25" height="25"/>
+        <image name="search_low" width="25" height="25"/>
+        <image name="settings_high" width="25" height="25"/>
+        <image name="settings_low" width="25" height="25"/>
+    </resources>
 </document>

@@ -61,6 +61,7 @@
 				A72B792F1F2231AF009FB389 /* ViewController.swift */,
 				A72B79311F2231AF009FB389 /* Main.storyboard */,
 				A72B79431F22D946009FB389 /* GlassView.swift */,
+				A72B79371F2231AF009FB389 /* Assets.xcassets */,
 				A72B79421F2231F8009FB389 /* Supporting Files */,
 			);
 			path = InRoZe;
@@ -70,7 +71,6 @@
 			isa = PBXGroup;
 			children = (
 				A72B792D1F2231AF009FB389 /* AppDelegate.swift */,
-				A72B79371F2231AF009FB389 /* Assets.xcassets */,
 				A72B79391F2231AF009FB389 /* LaunchScreen.storyboard */,
 				A72B793C1F2231AF009FB389 /* Info.plist */,
 				A72B79341F2231AF009FB389 /* InRoZe.xcdatamodeld */,
@@ -318,6 +318,7 @@
 				A72B79411F2231AF009FB389 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
