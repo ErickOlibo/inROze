@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  FavoriteViewController.swift
 //  InRoZe
 //
 //  Created by Erick Olibo on 21/07/2017.
@@ -8,16 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class FavoriteViewController: UIViewController {
 
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //animateLogo()
+        view.backgroundColor = .red
         
-        //animateLogoWithViews()
     }
     
  
