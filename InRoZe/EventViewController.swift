@@ -63,19 +63,33 @@ class EventViewController: UIViewController {
 extension EventViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return eventNameArray.count
+        return 40
+        //return eventNameArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: eventCell, for: indexPath) as! EventCollectionViewCell
-        let name = eventNameArray[indexPath.row]
-        let fee = eventFeeArray[indexPath.row]
-        let image = eventCoverArray[indexPath.row]
+        //var rdm = arc4random_uniform(10)
+        var indexRow = indexPath.row
+        indexRow = Int(arc4random_uniform(10))
+        let name = eventNameArray[indexRow]
+        indexRow = Int(arc4random_uniform(10))
+        let fee = eventFeeArray[indexRow]
+        indexRow = Int(arc4random_uniform(10))
+        let image = eventCoverArray[indexRow]
+        
+//        let name = eventNameArray[indexPath.row]
+//        let fee = eventFeeArray[indexPath.row]
+//        let image = eventCoverArray[indexPath.row]
         
         cell.nameEvent = name
         cell.eventFee = fee
         cell.imageName = image
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("the Selected Cell nr is: \(indexPath.row)")
     }
     
     
