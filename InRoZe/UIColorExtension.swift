@@ -24,7 +24,7 @@ extension UIColor {
     
     
     public class func changeHexStringToColor(_ hex: String) -> UIColor {
-        var color = hex
+        var color = hex.uppercased()
         
         // Remove the hashtag if any
         if (color.hasPrefix("#")) {
