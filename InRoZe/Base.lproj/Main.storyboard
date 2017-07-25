@@ -45,14 +45,14 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sSD-6z-fwK">
                                 <rect key="frame" x="0.0" y="54" width="375" height="564"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewLayout key="collectionViewLayout" id="YUg-c5-uri" customClass="StickyCollectionViewFlowLayout" customModule="InRoZe" customModuleProvider="target"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="eventCell" id="gyf-EU-F8D" customClass="EventCollectionViewCell" customModule="InRoZe" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="358"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="332"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="358"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Facebook1" translatesAutoresizingMaskIntoConstraints="NO" id="vVg-tA-X7N">
@@ -86,6 +86,7 @@
                                                 </button>
                                             </subviews>
                                         </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="vVg-tA-X7N" firstAttribute="leading" secondItem="gyf-EU-F8D" secondAttribute="leadingMargin" constant="-8" id="37G-Sg-vkD"/>
                                             <constraint firstItem="v6G-dY-dXs" firstAttribute="leading" secondItem="gyf-EU-F8D" secondAttribute="leadingMargin" constant="20" id="Hat-JK-Pun"/>
@@ -102,7 +103,7 @@
                                             <constraint firstItem="vVg-tA-X7N" firstAttribute="top" secondItem="gyf-EU-F8D" secondAttribute="topMargin" constant="-8" id="mIY-Ce-SmK"/>
                                             <constraint firstItem="bAg-r2-dCs" firstAttribute="trailing" secondItem="vVg-tA-X7N" secondAttribute="trailing" constant="-20" id="qnu-bV-9HT"/>
                                         </constraints>
-                                        <size key="customSize" width="375" height="358"/>
+                                        <size key="customSize" width="375" height="332"/>
                                         <connections>
                                             <outlet property="eventCover" destination="vVg-tA-X7N" id="V60-Ys-9oj"/>
                                             <outlet property="eventName" destination="v6G-dY-dXs" id="V7B-LP-77J"/>
@@ -110,15 +111,18 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="fri-Sc-NVw" id="C6H-ru-ht7"/>
+                                    <outlet property="delegate" destination="fri-Sc-NVw" id="u4r-Rs-R2C"/>
+                                </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CURRENT DATE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3K-cH-nGo">
-                                <rect key="frame" x="137" y="30" width="100" height="16"/>
+                                <rect key="frame" x="137.5" y="30" width="100" height="16"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="z2P-3c-htw" firstAttribute="top" secondItem="sSD-6z-fwK" secondAttribute="bottom" id="4OD-yc-UGw"/>
                             <constraint firstItem="k3K-cH-nGo" firstAttribute="centerX" secondItem="Qor-oC-J7N" secondAttribute="centerX" id="PEf-Xh-P6u"/>

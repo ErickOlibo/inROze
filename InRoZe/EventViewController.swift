@@ -46,7 +46,7 @@ class EventViewController: UIViewController {
         
         // Testing the UIColorExtensions Helpers
         // from UIColor to Hex String format back to UIColor
-        let testColor: UIColor = .blue
+        let testColor: UIColor = .black
         let hexString = UIColor.changeColorToHexString(testColor)
         let color = UIColor.changeHexStringToColor(hexString)
         view.backgroundColor = color
