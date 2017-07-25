@@ -14,7 +14,13 @@ class EventViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        view.backgroundColor = .blue
+        
+        // Testing the UIColorExtensions Helpers
+        // from UIColor to Hex String format back to UIColor
+        let testColor: UIColor = .blue
+        let hexString = UIColor.changeColorToHexString(testColor)
+        let color = UIColor.changeHexStringToColor(hexString)
+        view.backgroundColor = color
         
         
     }
