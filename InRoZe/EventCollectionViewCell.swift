@@ -20,6 +20,8 @@ class EventCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var footer: UIView!
     
+    @IBOutlet weak var eventLocation: UILabel!
+    
     @IBOutlet weak var dateDisplay: UIView! {
         didSet {
             dateDisplay.layer.cornerRadius = 10

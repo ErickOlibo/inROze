@@ -24,6 +24,8 @@ public struct FacebookEvents {
                                      "I'm supposed to really write 2 or 3 of them just for fun"]
     
     static let eventCoverArray = ["fb1", "fb2", "fb3", "fb4", "fb5", "fb6", "fb7", "fb8", "fb9", "fb10"]
+    static let eventLocationArray = ["CatHouse", "Club Hollywood", "Studio", "Pada", "Studio",
+                                     "Sunset", "Privé", "Privé", "Sunset", "CatHouse"]
     
     static let eventFeeArray = ["FREE to 20€", "0€/17€/100€", "Free for All", "123€", "12€/18€/29€",
                          "FREE to 20€", "0€/17€/100€", "Free for All", "123€", "12€/18€/29€"]

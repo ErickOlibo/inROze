@@ -66,8 +66,20 @@
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vIo-8S-eeW" userLabel="FooterView">
                                                     <rect key="frame" x="-2" y="397" width="418" height="25"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Location" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVX-kU-dhZ">
+                                                            <rect key="frame" x="0.0" y="5.3333333333333144" width="408" height="15.666666666666686"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
                                                     <color key="backgroundColor" red="0.92946392300000003" green="0.60142088069999999" blue="0.044391806460000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
+                                                        <constraint firstItem="CVX-kU-dhZ" firstAttribute="leading" secondItem="vIo-8S-eeW" secondAttribute="leading" id="0ul-jl-bbg"/>
+                                                        <constraint firstAttribute="trailing" secondItem="CVX-kU-dhZ" secondAttribute="trailing" constant="10" id="HSN-8z-MlU"/>
+                                                        <constraint firstItem="CVX-kU-dhZ" firstAttribute="centerY" secondItem="vIo-8S-eeW" secondAttribute="centerY" id="LIX-yy-Ovm"/>
+                                                        <constraint firstItem="CVX-kU-dhZ" firstAttribute="top" secondItem="vIo-8S-eeW" secondAttribute="top" constant="5.3333333333333144" id="R9U-Vt-QMt"/>
                                                         <constraint firstAttribute="height" constant="25" id="uVL-um-kJw"/>
                                                     </constraints>
                                                 </view>
@@ -119,6 +131,7 @@
                                             <outlet property="coverImage" destination="l8W-0g-zBO" id="tp6-42-Elj"/>
                                             <outlet property="date" destination="0Qa-Xc-wf7" id="0Vs-yW-R6d"/>
                                             <outlet property="dateDisplay" destination="1OJ-Bj-nQG" id="XtU-7H-TUN"/>
+                                            <outlet property="eventLocation" destination="CVX-kU-dhZ" id="vDZ-bH-6o1"/>
                                             <outlet property="eventName" destination="eCT-kA-p1q" id="Xtx-ii-I5h"/>
                                             <outlet property="footer" destination="vIo-8S-eeW" id="NTz-4l-3h6"/>
                                         </connections>

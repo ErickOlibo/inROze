@@ -17,13 +17,14 @@ class EventViewController: UIViewController {
     
     // Setting Cell Layout
     let eventCell = "Event Cell"
-    let cellHeightOffset: CGFloat = 180.0 // distance between bottom picture and bottom cell
+    let cellHeightOffset: CGFloat = 140.0 // distance between bottom picture and bottom cell
     let zoomOutFirstItemTransform: CGFloat = 0.1
     
     // DATA SOURCE for try
     let eventNameArray = FacebookEvents.eventNameArray
     let eventCoverArray = FacebookEvents.eventCoverArray
     let eventFeeArray = FacebookEvents.eventFeeArray
+    let eventLocationArray = FacebookEvents.eventLocationArray
     
     
     
@@ -67,6 +68,8 @@ extension EventViewController: UICollectionViewDataSource {
         
         var indexPathRow = Int(arc4random_uniform(10))
         cell.coverImage.image = UIImage(named: eventCoverArray[indexPathRow])
+        cell.eventLocation.text = eventLocationArray[indexPathRow]
+        
         indexPathRow = Int(arc4random_uniform(10))
         cell.eventName.text = eventNameArray[indexPathRow]
         
