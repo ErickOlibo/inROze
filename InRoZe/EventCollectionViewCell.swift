@@ -12,7 +12,22 @@ class EventCollectionViewCell: UICollectionViewCell {
     
     // Creates outlets and an action for the bookmark icon
 
+    @IBOutlet weak var coverImage: UIImageView!
 
+    @IBOutlet weak var eventName: UILabel!
     
+    
+    // Set Outlets
+    var eventImage: String? {
+        didSet{
+            coverImage.image = UIImage(named: eventImage!)
+        }
+    }
+    
+    var eventTitle: String? {
+        didSet{
+            eventName.text = eventTitle!
+        }
+    }
     
 }

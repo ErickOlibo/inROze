@@ -36,7 +36,10 @@ class EventViewController: UIViewController {
     let eventFeeArray = ["FREE to 20€", "0€/17€/100€", "Free for All", "123€", "12€/18€/29€",
                         "FREE to 20€", "0€/17€/100€", "Free for All", "123€", "12€/18€/29€"]
     
-    
+    // change status bar color
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +53,7 @@ class EventViewController: UIViewController {
         let hexString = UIColor.changeColorToHexString(testColor)
         let color = UIColor.changeHexStringToColor(hexString)
         view.backgroundColor = color
+        collectionView.backgroundColor = color
         
         let stickyLayout = collectionView.collectionViewLayout as! StickyCollectionViewFlowLayout
         stickyLayout.firstItemTransform = kFirstItemTransform
@@ -63,13 +67,21 @@ class EventViewController: UIViewController {
 extension EventViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 40
+        return 20
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: eventCell, for: indexPath) as! EventCollectionViewCell
-
+        
+        var indexPathRow = Int(arc4random_uniform(10))
+        cell.coverImage.image = UIImage(named: eventCoverArray[indexPathRow])
+        indexPathRow = Int(arc4random_uniform(10))
+        cell.eventName.text = eventNameArray[indexPathRow]
+        
+        //the current date title
+        indexPathRow = Int(arc4random_uniform(10))
+        currentDate.text = eventFeeArray[indexPathRow]
         return cell
     }
     
