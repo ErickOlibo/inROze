@@ -20,6 +20,7 @@
 		A776760D1F26BE8200F1FA52 /* StickyCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776760C1F26BE8200F1FA52 /* StickyCollectionViewFlowLayout.swift */; };
 		A77676141F26D49E00F1FA52 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676131F26D49E00F1FA52 /* UIColorExtension.swift */; };
 		A77676161F27C52F00F1FA52 /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676151F27C52F00F1FA52 /* EventCollectionViewCell.swift */; };
+		A77676181F28CCE400F1FA52 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676171F28CCE400F1FA52 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		A776760C1F26BE8200F1FA52 /* StickyCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		A77676131F26D49E00F1FA52 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		A77676151F27C52F00F1FA52 /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
+		A77676171F28CCE400F1FA52 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 		A77676121F26BF3100F1FA52 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A77676171F28CCE400F1FA52 /* Constants.swift */,
 				A77676131F26D49E00F1FA52 /* UIColorExtension.swift */,
 			);
 			name = Helpers;
@@ -194,6 +197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A77676071F26B9DB00F1FA52 /* SearchViewController.swift in Sources */,
+				A77676181F28CCE400F1FA52 /* Constants.swift in Sources */,
 				A77676161F27C52F00F1FA52 /* EventCollectionViewCell.swift in Sources */,
 				A77676051F26B9B200F1FA52 /* EventViewController.swift in Sources */,
 				A72B79301F2231AF009FB389 /* FavoriteViewController.swift in Sources */,
