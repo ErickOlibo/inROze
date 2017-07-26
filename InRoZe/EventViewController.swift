@@ -12,11 +12,11 @@ class EventViewController: UIViewController {
     
     
     @IBOutlet weak var currentDate: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
 
+    @IBOutlet weak var collectionView: UICollectionView!
     
     // To try to sticky stuff
-    let eventCell = "eventCell"
+    let eventCell = "Event Cell"
     let kCellSizeCoef: CGFloat = 0.8
     let kFirstItemTransform: CGFloat = 0.05
     
@@ -64,27 +64,12 @@ extension EventViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 40
-        //return eventNameArray.count
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: eventCell, for: indexPath) as! EventCollectionViewCell
-        //var rdm = arc4random_uniform(10)
-        var indexRow = indexPath.row
-        indexRow = Int(arc4random_uniform(10))
-        let name = eventNameArray[indexRow]
-        indexRow = Int(arc4random_uniform(10))
-        let fee = eventFeeArray[indexRow]
-        indexRow = Int(arc4random_uniform(10))
-        let image = eventCoverArray[indexRow]
-        
-//        let name = eventNameArray[indexPath.row]
-//        let fee = eventFeeArray[indexPath.row]
-//        let image = eventCoverArray[indexPath.row]
-        
-        cell.nameEvent = name
-        cell.eventFee = fee
-        cell.imageName = image
+
         return cell
     }
     
