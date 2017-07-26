@@ -16,18 +16,18 @@ class EventCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var eventName: UILabel!
     
+    @IBOutlet weak var date: UILabel!
     
-    // Set Outlets
-    var eventImage: String? {
-        didSet{
-            coverImage.image = UIImage(named: eventImage!)
+    @IBOutlet weak var footer: UIView!
+    
+    @IBOutlet weak var dateDisplay: UIView! {
+        didSet {
+            dateDisplay.layer.cornerRadius = 10
+            //dateDisplay.layer.masksToBounds = true
+            dateDisplay.backgroundColor = Constants.InrozeColor.petal
         }
     }
     
-    var eventTitle: String? {
-        didSet{
-            eventName.text = eventTitle!
-        }
-    }
+
     
 }

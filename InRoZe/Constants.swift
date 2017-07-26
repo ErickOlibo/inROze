@@ -51,5 +51,30 @@ public struct Constants {
         
     }
     
+    static func colorOf(day: String) -> UIColor {
+        switch day.uppercased() {
+            
+            case "MON":
+            return InrozeColor.one
+            case "TUE":
+            return InrozeColor.two
+            case "WED":
+            return InrozeColor.six
+            case "THU":
+            return InrozeColor.three
+            case "FRI":
+            return InrozeColor.five
+            case "SAT":
+            return InrozeColor.eight
+            case "SUN":
+            return InrozeColor.nine
+            
+        default:
+            return UIColor.black
+            
+            
+        }
+    }
+    
     
 }

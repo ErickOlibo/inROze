@@ -20,21 +20,12 @@ class EventViewController: UIViewController {
     let kCellSizeCoef: CGFloat = 0.8
     let kFirstItemTransform: CGFloat = 0.05
     
-    let eventNameArray = ["Create a Hight Quality, High Ranking Search Ad",
-                          "Evolve Your Ad Campaigns with Programmatic Buying",
-                          "How Remarketing Keeps Customers Coming Back",
-                          "Surviving and Thriving on Social Media",
-                          "Keep Mobile Users Engaged In and Out of Your App",
-                          "Appeal to Searchers and Search Engines with Seo",
-                          "Build Your Business Fast with Growth Hacking",
-                          "Track Your Acquisitions with Digital Metricks",
-                          "This is fuckaries and I'm not sure I'm liking it",
-                          "I'm supposed to really write 2 or 3 of them just for fun"]
+    // DATA SOURCE for try
+    let eventNameArray = FacebookEvents.eventNameArray
+    let eventCoverArray = FacebookEvents.eventCoverArray
+    let eventFeeArray = FacebookEvents.eventFeeArray
     
-    let eventCoverArray = ["fb1", "fb2", "fb3", "fb4", "fb5", "fb6", "fb7", "fb8", "fb9", "fb10"]
     
-    let eventFeeArray = ["FREE to 20€", "0€/17€/100€", "Free for All", "123€", "12€/18€/29€",
-                        "FREE to 20€", "0€/17€/100€", "Free for All", "123€", "12€/18€/29€"]
     
     // change status bar color
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -79,9 +70,19 @@ extension EventViewController: UICollectionViewDataSource {
         indexPathRow = Int(arc4random_uniform(10))
         cell.eventName.text = eventNameArray[indexPathRow]
         
-        //the current date title
+        // Title navBar calls current date but displaying Fee/price
         indexPathRow = Int(arc4random_uniform(10))
         currentDate.text = eventFeeArray[indexPathRow]
+        
+        // date (label) and dateDisplay bgcolor and footer bgcolor
+        let date = FacebookEvents.getEventDate()
+        
+        cell.date.text = "\(date.day.uppercased())\n" + "\(date.num)\n" + "\(date.month.uppercased())"
+        cell.dateDisplay.backgroundColor = Constants.colorOf(day: date.day)
+        cell.footer.backgroundColor = Constants.colorOf(day: date.day)
+        
+        
+        
         return cell
     }
     

@@ -29,7 +29,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rnq-M6-D2U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="708" y="-1169"/>
+            <point key="canvasLocation" x="461" y="-658"/>
         </scene>
         <!--Events-->
         <scene sceneID="qP8-N1-48b">
@@ -55,47 +55,72 @@
                                 <collectionViewLayout key="collectionViewLayout" id="TXd-SA-xgy" customClass="StickyCollectionViewFlowLayout" customModule="InRoZe" customModuleProvider="target"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Event Cell" id="Na9-3u-Rq6" customClass="EventCollectionViewCell" customModule="InRoZe" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="585"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="430"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="585"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="430"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l8W-0g-zBO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="233"/>
+                                                    <rect key="frame" x="0.0" y="-2" width="414" height="233"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vIo-8S-eeW" userLabel="FooterView">
-                                                    <rect key="frame" x="0.0" y="545" width="414" height="40"/>
+                                                    <rect key="frame" x="-2" y="392" width="418" height="40"/>
                                                     <color key="backgroundColor" red="0.92946392300000003" green="0.60142088069999999" blue="0.044391806460000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="oTM-0Z-2NA"/>
+                                                        <constraint firstAttribute="height" constant="40" id="uVL-um-kJw"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EVENT NAME" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCT-kA-p1q">
-                                                    <rect key="frame" x="18" y="253" width="378" height="21"/>
+                                                    <rect key="frame" x="68" y="251" width="328" height="21"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1OJ-Bj-nQG">
+                                                    <rect key="frame" x="10" y="251" width="50" height="50"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Qa-Xc-wf7">
+                                                            <rect key="frame" x="5" y="5" width="40" height="40"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.92946392300000003" green="0.60142088069999999" blue="0.044391806460000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="1OJ-Bj-nQG" secondAttribute="height" multiplier="1:1" id="4Lu-TS-wZ5"/>
+                                                        <constraint firstItem="0Qa-Xc-wf7" firstAttribute="top" secondItem="1OJ-Bj-nQG" secondAttribute="top" constant="5" id="JAG-7U-VTm"/>
+                                                        <constraint firstAttribute="bottom" secondItem="0Qa-Xc-wf7" secondAttribute="bottom" constant="5" id="TkU-X4-NYR"/>
+                                                        <constraint firstAttribute="trailing" secondItem="0Qa-Xc-wf7" secondAttribute="trailing" constant="5" id="YrD-JE-ivP"/>
+                                                        <constraint firstAttribute="width" constant="50" id="o1C-Dc-zqs"/>
+                                                        <constraint firstItem="0Qa-Xc-wf7" firstAttribute="leading" secondItem="1OJ-Bj-nQG" secondAttribute="leading" constant="5" id="oH0-hR-DiP"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="vIo-8S-eeW" firstAttribute="leading" secondItem="Na9-3u-Rq6" secondAttribute="leadingMargin" constant="-8" id="2Ci-wR-S5C"/>
                                             <constraint firstItem="l8W-0g-zBO" firstAttribute="centerX" secondItem="Na9-3u-Rq6" secondAttribute="centerX" id="2wa-NW-Vh5"/>
-                                            <constraint firstItem="eCT-kA-p1q" firstAttribute="leading" secondItem="Na9-3u-Rq6" secondAttribute="leadingMargin" constant="10" id="4Cf-qb-W1n"/>
-                                            <constraint firstItem="l8W-0g-zBO" firstAttribute="top" secondItem="Na9-3u-Rq6" secondAttribute="topMargin" constant="-8" id="7uE-x7-QkA"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="vIo-8S-eeW" secondAttribute="trailing" constant="-10" id="7hH-rE-dr9"/>
+                                            <constraint firstItem="l8W-0g-zBO" firstAttribute="top" secondItem="Na9-3u-Rq6" secondAttribute="topMargin" constant="-10" id="7uE-x7-QkA"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="eCT-kA-p1q" secondAttribute="trailing" constant="10" id="Dcu-MD-3Uv"/>
+                                            <constraint firstItem="eCT-kA-p1q" firstAttribute="leading" secondItem="Na9-3u-Rq6" secondAttribute="leadingMargin" constant="60" id="JlK-2K-40d"/>
                                             <constraint firstItem="l8W-0g-zBO" firstAttribute="width" secondItem="Na9-3u-Rq6" secondAttribute="width" id="Np2-Ai-aWl"/>
                                             <constraint firstItem="eCT-kA-p1q" firstAttribute="top" secondItem="l8W-0g-zBO" secondAttribute="bottom" constant="20" id="QDE-nr-MNp"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="vIo-8S-eeW" secondAttribute="bottom" constant="-8" id="QLZ-Ff-gKW"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="vIo-8S-eeW" secondAttribute="trailing" constant="-8" id="UQm-gE-cLI"/>
+                                            <constraint firstItem="1OJ-Bj-nQG" firstAttribute="top" secondItem="l8W-0g-zBO" secondAttribute="bottom" constant="20" id="cOx-uC-yTF"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="vIo-8S-eeW" secondAttribute="bottom" constant="-10" id="hbe-p4-JnO"/>
                                             <constraint firstItem="l8W-0g-zBO" firstAttribute="height" secondItem="Na9-3u-Rq6" secondAttribute="width" multiplier="56.25%" id="mh2-de-1Zu"/>
+                                            <constraint firstItem="1OJ-Bj-nQG" firstAttribute="leading" secondItem="Na9-3u-Rq6" secondAttribute="leadingMargin" constant="2" id="rY7-Q1-Xrs"/>
+                                            <constraint firstItem="vIo-8S-eeW" firstAttribute="leading" secondItem="Na9-3u-Rq6" secondAttribute="leadingMargin" constant="-10" id="uG0-f6-Maw"/>
                                         </constraints>
-                                        <size key="customSize" width="414" height="585"/>
+                                        <size key="customSize" width="414" height="430"/>
                                         <connections>
                                             <outlet property="coverImage" destination="l8W-0g-zBO" id="tp6-42-Elj"/>
+                                            <outlet property="date" destination="0Qa-Xc-wf7" id="0Vs-yW-R6d"/>
+                                            <outlet property="dateDisplay" destination="1OJ-Bj-nQG" id="XtU-7H-TUN"/>
                                             <outlet property="eventName" destination="eCT-kA-p1q" id="Xtx-ii-I5h"/>
+                                            <outlet property="footer" destination="vIo-8S-eeW" id="NTz-4l-3h6"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -122,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JJG-Nx-LVV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="707.24637681159425" y="-479.34782608695656"/>
+            <point key="canvasLocation" x="1233" y="-230"/>
         </scene>
         <!--Search-->
         <scene sceneID="o2A-WI-quu">
@@ -141,7 +166,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dr0-RP-eZq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="708" y="221"/>
+            <point key="canvasLocation" x="461" y="220"/>
         </scene>
         <!--Profile-->
         <scene sceneID="f3q-GW-gO6">
@@ -161,7 +186,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ahe-dn-72S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="708" y="950"/>
+            <point key="canvasLocation" x="1233" y="671"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Ppm-Hn-nqG">
@@ -181,7 +206,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tjO-CL-uIt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="708" y="1688"/>
+            <point key="canvasLocation" x="461" y="1117"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="zRq-Sf-aJZ">
