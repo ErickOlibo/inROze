@@ -65,10 +65,10 @@
                                                     <rect key="frame" x="0.0" y="-2" width="414" height="233"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vIo-8S-eeW" userLabel="FooterView">
-                                                    <rect key="frame" x="-2" y="392" width="418" height="40"/>
+                                                    <rect key="frame" x="-2" y="397" width="418" height="25"/>
                                                     <color key="backgroundColor" red="0.92946392300000003" green="0.60142088069999999" blue="0.044391806460000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="uVL-um-kJw"/>
+                                                        <constraint firstAttribute="height" constant="25" id="uVL-um-kJw"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EVENT NAME" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCT-kA-p1q">
@@ -109,7 +109,7 @@
                                             <constraint firstItem="l8W-0g-zBO" firstAttribute="width" secondItem="Na9-3u-Rq6" secondAttribute="width" id="Np2-Ai-aWl"/>
                                             <constraint firstItem="eCT-kA-p1q" firstAttribute="top" secondItem="l8W-0g-zBO" secondAttribute="bottom" constant="20" id="QDE-nr-MNp"/>
                                             <constraint firstItem="1OJ-Bj-nQG" firstAttribute="top" secondItem="l8W-0g-zBO" secondAttribute="bottom" constant="20" id="cOx-uC-yTF"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="vIo-8S-eeW" secondAttribute="bottom" constant="-10" id="hbe-p4-JnO"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="vIo-8S-eeW" secondAttribute="bottom" id="hbe-p4-JnO"/>
                                             <constraint firstItem="l8W-0g-zBO" firstAttribute="height" secondItem="Na9-3u-Rq6" secondAttribute="width" multiplier="56.25%" id="mh2-de-1Zu"/>
                                             <constraint firstItem="1OJ-Bj-nQG" firstAttribute="leading" secondItem="Na9-3u-Rq6" secondAttribute="leadingMargin" constant="2" id="rY7-Q1-Xrs"/>
                                             <constraint firstItem="vIo-8S-eeW" firstAttribute="leading" secondItem="Na9-3u-Rq6" secondAttribute="leadingMargin" constant="-10" id="uG0-f6-Maw"/>

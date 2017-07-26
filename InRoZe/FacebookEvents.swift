@@ -37,7 +37,7 @@ public struct FacebookEvents {
                           "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
         let rdDay = dayArray[Int(arc4random_uniform(UInt32(dayArray.count)))]
         let rdMonth = monthArray[Int(arc4random_uniform(UInt32(monthArray.count)))]
-        let rdNum = Int(arc4random_uniform(28))
+        let rdNum = Int(arc4random_uniform(28)) + 1 // from 1 to 28 included
         
         return (rdDay, rdNum, rdMonth)
     }

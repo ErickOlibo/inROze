@@ -15,10 +15,10 @@ class EventViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    // To try to sticky stuff
+    // Setting Cell Layout
     let eventCell = "Event Cell"
-    let kCellSizeCoef: CGFloat = 0.8
-    let kFirstItemTransform: CGFloat = 0.05
+    let cellHeightOffset: CGFloat = 180.0 // distance between bottom picture and bottom cell
+    let zoomOutFirstItemTransform: CGFloat = 0.1
     
     // DATA SOURCE for try
     let eventNameArray = FacebookEvents.eventNameArray
@@ -47,7 +47,7 @@ class EventViewController: UIViewController {
         collectionView.backgroundColor = color
         
         let stickyLayout = collectionView.collectionViewLayout as! StickyCollectionViewFlowLayout
-        stickyLayout.firstItemTransform = kFirstItemTransform
+        stickyLayout.firstItemTransform = zoomOutFirstItemTransform
     }
     
 }
@@ -96,10 +96,19 @@ extension EventViewController: UICollectionViewDataSource {
 extension EventViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.width, height: collectionView.bounds.height * kCellSizeCoef)
+        return CGSize(width: view.bounds.width, height: collectionView.bounds.width * (9 / 16) + cellHeightOffset)
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: NSInteger) -> CGFloat {
         return 0
     }
 }
+
+
+
+
+
+
+
+
