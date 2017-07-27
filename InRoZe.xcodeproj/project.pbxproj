@@ -74,11 +74,11 @@
 		A72B792C1F2231AF009FB389 /* InRoZe */ = {
 			isa = PBXGroup;
 			children = (
+				A72B79311F2231AF009FB389 /* Main.storyboard */,
 				A72B792F1F2231AF009FB389 /* FavoriteViewController.swift */,
 				A77676061F26B9DB00F1FA52 /* SearchViewController.swift */,
 				A77676081F26B9E800F1FA52 /* ProfileViewController.swift */,
 				A776760A1F26B9F600F1FA52 /* SettingsViewController.swift */,
-				A72B79311F2231AF009FB389 /* Main.storyboard */,
 				A77676041F26B9B200F1FA52 /* EventViewController.swift */,
 				A77676151F27C52F00F1FA52 /* EventCollectionViewCell.swift */,
 				A77676121F26BF3100F1FA52 /* Helpers */,

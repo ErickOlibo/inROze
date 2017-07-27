@@ -68,7 +68,8 @@ extension EventViewController: UICollectionViewDataSource {
         
         var indexPathRow = Int(arc4random_uniform(10))
         cell.coverImage.image = UIImage(named: eventCoverArray[indexPathRow])
-        cell.eventLocation.text = eventLocationArray[indexPathRow]
+        
+
         
         indexPathRow = Int(arc4random_uniform(10))
         cell.eventName.text = eventNameArray[indexPathRow]
@@ -79,12 +80,18 @@ extension EventViewController: UICollectionViewDataSource {
         
         // date (label) and dateDisplay bgcolor and footer bgcolor
         let date = FacebookEvents.getEventDate()
+        let colorOfDay = Constants.colorOf(day: date.day)
         
         cell.date.text = "\(date.day.uppercased())\n" + "\(date.num)\n" + "\(date.month.uppercased())"
-        cell.dateDisplay.backgroundColor = Constants.colorOf(day: date.day)
-        cell.footer.backgroundColor = Constants.colorOf(day: date.day)
+        cell.dateDisplay.backgroundColor = colorOfDay
+        cell.footer.backgroundColor = colorOfDay
         
-        
+        // Do the attributed for the text
+        let place = eventLocationArray[indexPathRow]        
+        let attributedPlace = NSMutableAttributedString(string: place)
+        let textRange = NSRange(location: 0, length: attributedPlace.length)
+        attributedPlace.addAttribute(NSForegroundColorAttributeName, value: colorOfDay, range: textRange)
+        cell.eventLocation.attributedText = attributedPlace
         
         return cell
     }

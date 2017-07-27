@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // Select the initial landing Tab Bar item -> view controller
-        let tabBar: UITabBarController = self.window?.rootViewController as! UITabBarController
-        tabBar.selectedIndex = 1
+        //let tabBar: UITabBarController = self.window?.rootViewController as! UITabBarController
+        //tabBar.selectedIndex = 1
         
         
         
