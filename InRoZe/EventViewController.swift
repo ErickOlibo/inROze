@@ -15,6 +15,9 @@ class EventViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    //instantiate 
+    
+    
     // Setting Cell Layout
     let eventCell = "Event Cell"
     let cellHeightOffset: CGFloat = 140.0 // distance between bottom picture and bottom cell
@@ -25,6 +28,8 @@ class EventViewController: UIViewController {
     let eventCoverArray = FacebookEvents.eventCoverArray
     let eventFeeArray = FacebookEvents.eventFeeArray
     let eventLocationArray = FacebookEvents.eventLocationArray
+    
+    var eventDateArray = [FacebookEvents.getEventDate()]
     
     
     
@@ -38,10 +43,14 @@ class EventViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
+        for _ in 1...(eventCoverArray.count) {
+            let date = FacebookEvents.getEventDate()
+           eventDateArray.append(date)
+        }
         
         // Testing the UIColorExtensions Helpers
         // from UIColor to Hex String format back to UIColor
-        let testColor: UIColor = .black
+        let testColor: UIColor = .purple
         let hexString = UIColor.changeColorToHexString(testColor)
         let color = UIColor.changeHexStringToColor(hexString)
         view.backgroundColor = color
@@ -49,6 +58,14 @@ class EventViewController: UIViewController {
         
         let stickyLayout = collectionView.collectionViewLayout as! StickyCollectionViewFlowLayout
         stickyLayout.firstItemTransform = zoomOutFirstItemTransform
+        
+    }
+    
+    fileprivate func coloredString(_ string: String, color: UIColor) -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString(string: string)
+        let stringRange = NSRange(location: 0, length: attributedString.length)
+        attributedString.addAttribute(NSForegroundColorAttributeName, value: color, range: stringRange)
+        return attributedString
     }
     
 }
@@ -59,39 +76,66 @@ class EventViewController: UIViewController {
 extension EventViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return eventCoverArray.count
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: eventCell, for: indexPath) as! EventCollectionViewCell
         
-        var indexPathRow = Int(arc4random_uniform(10))
-        cell.coverImage.image = UIImage(named: eventCoverArray[indexPathRow])
+        let eName = eventNameArray[indexPath.row]
+        let date = eventDateArray[indexPath.row]
+        let eDate = "\(date.day.uppercased())\n" + "\(date.num)\n" + "\(date.month.uppercased())"
+        let place = eventLocationArray[indexPath.row]
         
+        cell.eventName.text = eventNameArray[indexPath.row]
+        currentDate.text = eventFeeArray[indexPath.row]
+        
+        
+        let cellImage = UIImage(named: eventCoverArray[indexPath.row])
+        cell.coverImage.image = cellImage // BLOCK THE MAIN THREAD
+        
+        // Image part on a bacground queue --> (scaleDownSize: CGSize(width: 100, height: 100))
+        cellImage?.getColors { colors in
+            cell.eventName.attributedText = self.coloredString(eName, color: colors.primary)
+            if colors.secondary.isDarkColor {
+                
+                cell.date.attributedText = self.coloredString(eDate, color: .white)
+            } else {
+                cell.date.attributedText = self.coloredString(eDate, color: .black)
+            }
+            //cell.date.attributedText = self.coloredString(eDate, color: colors.detail)
+            cell.eventLocation.attributedText = self.coloredString(place, color: colors.detail)
+            
+            cell.dateDisplay.backgroundColor = colors.secondary
+            cell.footer.backgroundColor = colors.secondary
+            
+            cell.cellBackground.backgroundColor = colors.background
+            
+            // Small squares
+            cell.background.backgroundColor = colors.detail
+            cell.primary.backgroundColor = colors.primary
+            cell.secondary.backgroundColor = colors.secondary
+            cell.detail.backgroundColor = colors.detail
+            
+        }
 
         
-        indexPathRow = Int(arc4random_uniform(10))
-        cell.eventName.text = eventNameArray[indexPathRow]
         
-        // Title navBar calls current date but displaying Fee/price
-        indexPathRow = Int(arc4random_uniform(10))
-        currentDate.text = eventFeeArray[indexPathRow]
-        
-        // date (label) and dateDisplay bgcolor and footer bgcolor
-        let date = FacebookEvents.getEventDate()
-        let colorOfDay = Constants.colorOf(day: date.day)
-        
-        cell.date.text = "\(date.day.uppercased())\n" + "\(date.num)\n" + "\(date.month.uppercased())"
-        cell.dateDisplay.backgroundColor = colorOfDay
-        cell.footer.backgroundColor = colorOfDay
-        
-        // Do the attributed for the text
-        let place = eventLocationArray[indexPathRow]        
-        let attributedPlace = NSMutableAttributedString(string: place)
-        let textRange = NSRange(location: 0, length: attributedPlace.length)
-        attributedPlace.addAttribute(NSForegroundColorAttributeName, value: colorOfDay, range: textRange)
-        cell.eventLocation.attributedText = attributedPlace
+//        
+//        
+//        let colorOfDay = Constants.colorOf(day: date.day)
+//        
+//        cell.date.text = "\(date.day.uppercased())\n" + "\(date.num)\n" + "\(date.month.uppercased())"
+//        cell.dateDisplay.backgroundColor = colorOfDay
+//        cell.footer.backgroundColor = colorOfDay
+//        
+//        // Do the attributed for the text
+//        
+//        let attributedPlace = NSMutableAttributedString(string: place)
+//        let textRange = NSRange(location: 0, length: attributedPlace.length)
+//        attributedPlace.addAttribute(NSForegroundColorAttributeName, value: colorOfDay, range: textRange)
+//        cell.eventLocation.attributedText = attributedPlace
         
         return cell
     }

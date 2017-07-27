@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C7C811F2A55C400A0D5A8 /* UIImageColors.swift */; };
 		A72B792E1F2231AF009FB389 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72B792D1F2231AF009FB389 /* AppDelegate.swift */; };
 		A72B79301F2231AF009FB389 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72B792F1F2231AF009FB389 /* FavoriteViewController.swift */; };
 		A72B79331F2231AF009FB389 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72B79311F2231AF009FB389 /* Main.storyboard */; };
@@ -22,10 +23,10 @@
 		A77676161F27C52F00F1FA52 /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676151F27C52F00F1FA52 /* EventCollectionViewCell.swift */; };
 		A77676181F28CCE400F1FA52 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676171F28CCE400F1FA52 /* Constants.swift */; };
 		A776761A1F28E1E000F1FA52 /* FacebookEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676191F28E1E000F1FA52 /* FacebookEvents.swift */; };
-		A7D273791F2A4738003614EA /* UIImageColors in Resources */ = {isa = PBXBuildFile; fileRef = A7D273781F2A4738003614EA /* UIImageColors */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A71C7C811F2A55C400A0D5A8 /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
 		A72B792A1F2231AF009FB389 /* InRoZe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InRoZe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72B792D1F2231AF009FB389 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A72B792F1F2231AF009FB389 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
@@ -43,7 +44,6 @@
 		A77676151F27C52F00F1FA52 /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
 		A77676171F28CCE400F1FA52 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A77676191F28E1E000F1FA52 /* FacebookEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookEvents.swift; sourceTree = "<group>"; };
-		A7D273781F2A4738003614EA /* UIImageColors */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UIImageColors; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +57,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A71C7C801F2A559800A0D5A8 /* UIImageColors */ = {
+			isa = PBXGroup;
+			children = (
+				A71C7C811F2A55C400A0D5A8 /* UIImageColors.swift */,
+			);
+			name = UIImageColors;
+			sourceTree = "<group>";
+		};
 		A72B79211F2231AF009FB389 = {
 			isa = PBXGroup;
 			children = (
@@ -105,7 +113,7 @@
 		A776760E1F26BE8A00F1FA52 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				A7D273781F2A4738003614EA /* UIImageColors */,
+				A71C7C801F2A559800A0D5A8 /* UIImageColors */,
 				A776760F1F26BEA600F1FA52 /* StickyCollection */,
 			);
 			name = Source;
@@ -189,7 +197,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7D273791F2A4738003614EA /* UIImageColors in Resources */,
 				A72B793B1F2231AF009FB389 /* LaunchScreen.storyboard in Resources */,
 				A72B79381F2231AF009FB389 /* Assets.xcassets in Resources */,
 				A72B79331F2231AF009FB389 /* Main.storyboard in Resources */,
@@ -206,6 +213,7 @@
 				A77676071F26B9DB00F1FA52 /* SearchViewController.swift in Sources */,
 				A77676181F28CCE400F1FA52 /* Constants.swift in Sources */,
 				A77676161F27C52F00F1FA52 /* EventCollectionViewCell.swift in Sources */,
+				A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */,
 				A77676051F26B9B200F1FA52 /* EventViewController.swift in Sources */,
 				A72B79301F2231AF009FB389 /* FavoriteViewController.swift in Sources */,
 				A72B79361F2231AF009FB389 /* InRoZe.xcdatamodeld in Sources */,

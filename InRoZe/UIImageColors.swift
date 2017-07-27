@@ -165,7 +165,7 @@ extension UIImage {
                 return ComparisonResult.orderedAscending
             }
         }
-
+        
         guard let data = CFDataGetBytePtr(cgImage.dataProvider!.data) else {
             fatalError("UIImageColors.getColors failed: could not get cgImage data")
         }
@@ -276,4 +276,5 @@ extension UIImage {
         return result
     }
 }
+
 

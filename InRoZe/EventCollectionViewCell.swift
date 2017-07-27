@@ -11,6 +11,7 @@ import UIKit
 class EventCollectionViewCell: UICollectionViewCell {
     
     // Creates outlets and an action for the bookmark icon
+    @IBOutlet weak var cellBackground: UIView!
 
     @IBOutlet weak var coverImage: UIImageView!
 

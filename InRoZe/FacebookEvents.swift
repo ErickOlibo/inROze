@@ -12,7 +12,7 @@ public struct FacebookEvents {
     
     // these are temporary data source for offline testing and 
     // UI & UX testing
-    static let eventNameArray = ["Create a Hight Quality, High Ranking Search Ad",
+    static let eventNameArrayOld = ["Create a Hight Quality, High Ranking Search Ad",
                                      "Evolve Your Ad Campaigns with Programmatic Buying",
                                      "How Remarketing Keeps Customers Coming Back",
                                      "Surviving and Thriving on Social Media",
@@ -22,6 +22,18 @@ public struct FacebookEvents {
                                      "Track Your Acquisitions with Digital Metricks",
                                      "This is fuckaries and I'm not sure I'm liking it",
                                      "I'm supposed to really write 2 or 3 of them just for fun"]
+    
+    static let eventNameArray = ["Monatik in Tallinn",
+                                 "OU SNAP! YouTüübid ft. Martins Lapins & Kapabeibe",
+                                 "Studio Boat Party 26.07",
+                                 "SUME suvefestival: Youngr [UK] / NOËP",
+                                 "Studio Base 29.07",
+                                 "Sunset Live pres. 2Quick Start - Speedest Afterparty!",
+                                 "Good Vibes I 28.07 I Privé",
+                                 "Saturday I 29.07 I KRIIM goes Live: PK albumi esitlus!",
+                                 "30+ vol 5 ehk suve-eri Pärnus!",
+                                 "NELLY / 26.10.2017 / Cathouse Kontserthall (Tallinn)"]
+    
     
     static let eventCoverArray = ["fb1", "fb2", "fb3", "fb4", "fb5", "fb6", "fb7", "fb8", "fb9", "fb10"]
     static let eventLocationArray = ["CatHouse", "Club Hollywood", "Studio", "Pada", "Studio",
