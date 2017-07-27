@@ -30,6 +30,13 @@ class EventCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    
+    // OUTLETS to test he UIImageColor class
+    @IBOutlet weak var background: UIView!
+    @IBOutlet weak var primary: UIView!
+    @IBOutlet weak var secondary: UIView!
+    @IBOutlet weak var detail: UIView!
+    
 
     
 }

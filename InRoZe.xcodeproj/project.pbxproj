@@ -22,6 +22,7 @@
 		A77676161F27C52F00F1FA52 /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676151F27C52F00F1FA52 /* EventCollectionViewCell.swift */; };
 		A77676181F28CCE400F1FA52 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676171F28CCE400F1FA52 /* Constants.swift */; };
 		A776761A1F28E1E000F1FA52 /* FacebookEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676191F28E1E000F1FA52 /* FacebookEvents.swift */; };
+		A7D273791F2A4738003614EA /* UIImageColors in Resources */ = {isa = PBXBuildFile; fileRef = A7D273781F2A4738003614EA /* UIImageColors */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		A77676151F27C52F00F1FA52 /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
 		A77676171F28CCE400F1FA52 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A77676191F28E1E000F1FA52 /* FacebookEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookEvents.swift; sourceTree = "<group>"; };
+		A7D273781F2A4738003614EA /* UIImageColors */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UIImageColors; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		A776760E1F26BE8A00F1FA52 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				A7D273781F2A4738003614EA /* UIImageColors */,
 				A776760F1F26BEA600F1FA52 /* StickyCollection */,
 			);
 			name = Source;
@@ -186,6 +189,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7D273791F2A4738003614EA /* UIImageColors in Resources */,
 				A72B793B1F2231AF009FB389 /* LaunchScreen.storyboard in Resources */,
 				A72B79381F2231AF009FB389 /* Assets.xcassets in Resources */,
 				A72B79331F2231AF009FB389 /* Main.storyboard in Resources */,

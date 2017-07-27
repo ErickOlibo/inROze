@@ -31,7 +31,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rnq-M6-D2U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="461" y="-658"/>
+            <point key="canvasLocation" x="1216" y="-285"/>
         </scene>
         <!--Event View Controller-->
         <scene sceneID="qP8-N1-48b">
@@ -105,34 +105,78 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cHu-vH-cmw">
+                                                    <rect key="frame" x="8" y="366" width="30" height="30"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="bMG-M5-HIY"/>
+                                                        <constraint firstAttribute="width" constant="30" id="yIZ-sF-hqt"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTP-Sk-xyb">
+                                                    <rect key="frame" x="58" y="366" width="30" height="30"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="0pP-Ig-pPy"/>
+                                                        <constraint firstAttribute="height" constant="30" id="56U-95-afd"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ESj-es-IV2">
+                                                    <rect key="frame" x="158" y="366" width="30" height="30"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="OGv-ev-5aF"/>
+                                                        <constraint firstAttribute="width" constant="30" id="sYo-ld-nAx"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fHF-r2-Okt">
+                                                    <rect key="frame" x="108" y="366" width="30" height="30"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="R4x-3g-VL5"/>
+                                                        <constraint firstAttribute="width" constant="30" id="XGl-CJ-n9a"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="fHF-r2-Okt" firstAttribute="leading" secondItem="mTP-Sk-xyb" secondAttribute="trailing" constant="20" id="08Y-5Q-bdX"/>
                                             <constraint firstItem="l8W-0g-zBO" firstAttribute="centerX" secondItem="Na9-3u-Rq6" secondAttribute="centerX" id="2wa-NW-Vh5"/>
+                                            <constraint firstItem="ESj-es-IV2" firstAttribute="leading" secondItem="fHF-r2-Okt" secondAttribute="trailing" constant="20" id="4wj-Hm-Ze5"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="vIo-8S-eeW" secondAttribute="trailing" constant="-10" id="7hH-rE-dr9"/>
                                             <constraint firstItem="l8W-0g-zBO" firstAttribute="top" secondItem="Na9-3u-Rq6" secondAttribute="topMargin" constant="-10" id="7uE-x7-QkA"/>
                                             <constraint firstItem="vIo-8S-eeW" firstAttribute="top" secondItem="CVX-kU-dhZ" secondAttribute="bottom" constant="5" id="DQH-hI-xyz"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="eCT-kA-p1q" secondAttribute="trailing" constant="10" id="Dcu-MD-3Uv"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="CVX-kU-dhZ" secondAttribute="trailing" id="H5e-zV-lal"/>
                                             <constraint firstItem="eCT-kA-p1q" firstAttribute="leading" secondItem="Na9-3u-Rq6" secondAttribute="leadingMargin" constant="60" id="JlK-2K-40d"/>
+                                            <constraint firstItem="fHF-r2-Okt" firstAttribute="centerY" secondItem="mTP-Sk-xyb" secondAttribute="centerY" id="Jxw-MI-D0G"/>
                                             <constraint firstItem="l8W-0g-zBO" firstAttribute="width" secondItem="Na9-3u-Rq6" secondAttribute="width" id="Np2-Ai-aWl"/>
                                             <constraint firstItem="eCT-kA-p1q" firstAttribute="top" secondItem="l8W-0g-zBO" secondAttribute="bottom" constant="20" id="QDE-nr-MNp"/>
+                                            <constraint firstItem="ESj-es-IV2" firstAttribute="centerY" secondItem="fHF-r2-Okt" secondAttribute="centerY" id="T9C-vo-XM4"/>
                                             <constraint firstItem="1OJ-Bj-nQG" firstAttribute="top" secondItem="l8W-0g-zBO" secondAttribute="bottom" constant="20" id="cOx-uC-yTF"/>
+                                            <constraint firstItem="mTP-Sk-xyb" firstAttribute="leading" secondItem="cHu-vH-cmw" secondAttribute="trailing" constant="20" id="faZ-Ay-2U9"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="vIo-8S-eeW" secondAttribute="bottom" constant="-4" id="hbe-p4-JnO"/>
+                                            <constraint firstItem="vIo-8S-eeW" firstAttribute="top" secondItem="cHu-vH-cmw" secondAttribute="bottom" constant="20" id="iqM-nF-myQ"/>
                                             <constraint firstItem="l8W-0g-zBO" firstAttribute="height" secondItem="Na9-3u-Rq6" secondAttribute="width" multiplier="56.25%" id="mh2-de-1Zu"/>
                                             <constraint firstItem="1OJ-Bj-nQG" firstAttribute="leading" secondItem="Na9-3u-Rq6" secondAttribute="leadingMargin" constant="2" id="rY7-Q1-Xrs"/>
                                             <constraint firstItem="vIo-8S-eeW" firstAttribute="leading" secondItem="Na9-3u-Rq6" secondAttribute="leadingMargin" constant="-10" id="uG0-f6-Maw"/>
+                                            <constraint firstItem="mTP-Sk-xyb" firstAttribute="centerY" secondItem="cHu-vH-cmw" secondAttribute="centerY" id="wPf-mG-Ada"/>
                                             <constraint firstItem="CVX-kU-dhZ" firstAttribute="leading" secondItem="Na9-3u-Rq6" secondAttribute="leadingMargin" id="z28-Mp-gZl"/>
+                                            <constraint firstItem="cHu-vH-cmw" firstAttribute="leading" secondItem="Na9-3u-Rq6" secondAttribute="leadingMargin" id="zFz-fE-Q5m"/>
                                         </constraints>
                                         <size key="customSize" width="414" height="430"/>
                                         <connections>
+                                            <outlet property="background" destination="cHu-vH-cmw" id="lBc-Tu-fwe"/>
                                             <outlet property="coverImage" destination="l8W-0g-zBO" id="tp6-42-Elj"/>
                                             <outlet property="date" destination="0Qa-Xc-wf7" id="0Vs-yW-R6d"/>
                                             <outlet property="dateDisplay" destination="1OJ-Bj-nQG" id="XtU-7H-TUN"/>
+                                            <outlet property="detail" destination="ESj-es-IV2" id="ExD-ko-SaO"/>
                                             <outlet property="eventLocation" destination="CVX-kU-dhZ" id="vDZ-bH-6o1"/>
                                             <outlet property="eventName" destination="eCT-kA-p1q" id="Xtx-ii-I5h"/>
                                             <outlet property="footer" destination="vIo-8S-eeW" id="NTz-4l-3h6"/>
+                                            <outlet property="primary" destination="mTP-Sk-xyb" id="81I-h5-ArC"/>
+                                            <outlet property="secondary" destination="fHF-r2-Okt" id="9u2-az-o9I"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -161,7 +205,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JJG-Nx-LVV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1233" y="-230"/>
+            <point key="canvasLocation" x="461" y="-682"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="o2A-WI-quu">
