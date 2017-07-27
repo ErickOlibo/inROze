@@ -96,7 +96,7 @@ extension EventViewController: UICollectionViewDataSource {
         cell.coverImage.image = cellImage // BLOCK THE MAIN THREAD
         
         // Image part on a bacground queue --> (scaleDownSize: CGSize(width: 100, height: 100))
-        cellImage?.getColors { colors in
+        cellImage?.getColors(scaleDownSize: CGSize(width: 100, height: 100)) { colors in
             cell.eventName.attributedText = self.coloredString(eName, color: colors.primary)
             if colors.secondary.isDarkColor {
                 
