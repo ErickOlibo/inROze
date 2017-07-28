@@ -15,6 +15,8 @@ class EventViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var gradientLayer: CAGradientLayer!
+    
     //instantiate 
     
     
@@ -68,6 +70,12 @@ class EventViewController: UIViewController {
         return attributedString
     }
     
+    
+    // # MARK - Create gradient layered view
+    fileprivate func createGradientLayer() {
+        
+    }
+    
 }
 
 
@@ -111,7 +119,7 @@ extension EventViewController: UICollectionViewDataSource {
             cell.footer.backgroundColor = colors.primary
             
             cell.cellBackground.backgroundColor = colors.background
-            
+            cell.gradientColor = colors.background
             // Small squares
             cell.background.backgroundColor = colors.detail
             cell.primary.backgroundColor = colors.primary
