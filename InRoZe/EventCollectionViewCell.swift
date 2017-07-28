@@ -10,13 +10,7 @@ import UIKit
 
 class EventCollectionViewCell: UICollectionViewCell {
     
-    var gradientColor: UIColor! {
-        didSet {
-            print("GradientColor SET")
-            createGradientLayer()
-        }
-    }
-    var gradientLayer: CAGradientLayer!
+
     
     // Creates outlets and an action for the bookmark icon
     @IBOutlet weak var cellBackground: UIView!
@@ -30,9 +24,6 @@ class EventCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var footer: UIView!
     
     @IBOutlet weak var eventLocation: UILabel!
-    
-    @IBOutlet weak var gradientView: UIView!
-    
     
     @IBOutlet weak var dateDisplay: UIView! {
         didSet {
@@ -50,12 +41,6 @@ class EventCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var detail: UIView!
     
 
-    fileprivate func createGradientLayer() {
-        gradientLayer = CAGradientLayer()
-        gradientLayer.frame = gradientView.bounds
-        gradientLayer.colors = [UIColor.clear.cgColor, gradientColor.cgColor]
-        gradientLayer.locations = [0.20, 1.0]
-        gradientView.layer.addSublayer(gradientLayer)
-    }
+
     
 }

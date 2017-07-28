@@ -128,17 +128,12 @@
                                                             <rect key="frame" x="82" y="165" width="16" height="16"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pAb-hp-dRo">
-                                                            <rect key="frame" x="0.0" y="-60" width="414" height="62"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="CVX-kU-dhZ" firstAttribute="leading" secondItem="Pnx-pl-yLn" secondAttribute="leading" constant="10" id="27k-GY-jAO"/>
                                                         <constraint firstItem="1OJ-Bj-nQG" firstAttribute="leading" secondItem="Pnx-pl-yLn" secondAttribute="leading" constant="10" id="4cK-7N-lmb"/>
                                                         <constraint firstItem="mTP-Sk-xyb" firstAttribute="leading" secondItem="cHu-vH-cmw" secondAttribute="trailing" constant="8" id="4ce-gZ-kOO"/>
-                                                        <constraint firstAttribute="trailing" secondItem="pAb-hp-dRo" secondAttribute="trailing" id="5mt-SC-CVs"/>
                                                         <constraint firstItem="fHF-r2-Okt" firstAttribute="height" secondItem="mTP-Sk-xyb" secondAttribute="height" id="6zG-v5-q96"/>
                                                         <constraint firstAttribute="trailing" secondItem="vIo-8S-eeW" secondAttribute="trailing" constant="10" id="7w3-ak-Llc"/>
                                                         <constraint firstItem="mTP-Sk-xyb" firstAttribute="width" secondItem="cHu-vH-cmw" secondAttribute="width" id="Awt-Sf-nO9"/>
@@ -150,7 +145,6 @@
                                                         <constraint firstItem="vIo-8S-eeW" firstAttribute="top" secondItem="cHu-vH-cmw" secondAttribute="bottom" constant="5" id="PQA-Jx-1zu"/>
                                                         <constraint firstAttribute="trailing" secondItem="CVX-kU-dhZ" secondAttribute="trailing" constant="10" id="RbP-8P-cJs"/>
                                                         <constraint firstItem="ESj-es-IV2" firstAttribute="leading" secondItem="fHF-r2-Okt" secondAttribute="trailing" constant="8" id="Sfg-B1-PwP"/>
-                                                        <constraint firstItem="pAb-hp-dRo" firstAttribute="leading" secondItem="Pnx-pl-yLn" secondAttribute="leading" id="V0y-LL-MwZ"/>
                                                         <constraint firstItem="fHF-r2-Okt" firstAttribute="centerY" secondItem="mTP-Sk-xyb" secondAttribute="centerY" id="cYL-VP-XDX"/>
                                                         <constraint firstAttribute="bottom" secondItem="vIo-8S-eeW" secondAttribute="bottom" constant="10" id="kse-Od-mzk"/>
                                                         <constraint firstAttribute="trailing" secondItem="eCT-kA-p1q" secondAttribute="trailing" constant="10" id="lmF-Da-wYJ"/>
@@ -164,7 +158,7 @@
                                                 </view>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="l8W-0g-zBO" firstAttribute="centerX" secondItem="Na9-3u-Rq6" secondAttribute="centerX" id="2wa-NW-Vh5"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="Pnx-pl-yLn" secondAttribute="bottom" constant="-10" id="6UH-1j-GZL"/>
@@ -173,10 +167,8 @@
                                             <constraint firstItem="l8W-0g-zBO" firstAttribute="width" secondItem="Na9-3u-Rq6" secondAttribute="width" id="Np2-Ai-aWl"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="Pnx-pl-yLn" secondAttribute="trailing" constant="-8" id="V8F-r2-0es"/>
                                             <constraint firstItem="eCT-kA-p1q" firstAttribute="top" secondItem="l8W-0g-zBO" secondAttribute="bottom" constant="26" id="aCk-jf-sU3"/>
-                                            <constraint firstItem="pAb-hp-dRo" firstAttribute="height" secondItem="Na9-3u-Rq6" secondAttribute="width" multiplier="15%" id="axB-NL-Ile"/>
                                             <constraint firstItem="Pnx-pl-yLn" firstAttribute="top" secondItem="l8W-0g-zBO" secondAttribute="bottom" id="bde-aQ-61B"/>
                                             <constraint firstItem="Pnx-pl-yLn" firstAttribute="leading" secondItem="Na9-3u-Rq6" secondAttribute="leadingMargin" constant="-8" id="f2N-lB-8YJ"/>
-                                            <constraint firstItem="pAb-hp-dRo" firstAttribute="bottom" secondItem="l8W-0g-zBO" secondAttribute="bottom" constant="2" id="jpx-2Q-1Y1"/>
                                             <constraint firstItem="l8W-0g-zBO" firstAttribute="height" secondItem="Na9-3u-Rq6" secondAttribute="width" multiplier="56.25%" id="mh2-de-1Zu"/>
                                         </constraints>
                                         <size key="customSize" width="414" height="430"/>
@@ -190,7 +182,6 @@
                                             <outlet property="eventLocation" destination="CVX-kU-dhZ" id="vDZ-bH-6o1"/>
                                             <outlet property="eventName" destination="eCT-kA-p1q" id="Xtx-ii-I5h"/>
                                             <outlet property="footer" destination="vIo-8S-eeW" id="NTz-4l-3h6"/>
-                                            <outlet property="gradientView" destination="pAb-hp-dRo" id="w8s-yu-6i6"/>
                                             <outlet property="primary" destination="mTP-Sk-xyb" id="81I-h5-ArC"/>
                                             <outlet property="secondary" destination="fHF-r2-Okt" id="9u2-az-o9I"/>
                                         </connections>

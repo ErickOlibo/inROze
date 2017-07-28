@@ -15,7 +15,6 @@ class EventViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var gradientLayer: CAGradientLayer!
     
     //instantiate 
     
@@ -119,7 +118,7 @@ extension EventViewController: UICollectionViewDataSource {
             cell.footer.backgroundColor = colors.primary
             
             cell.cellBackground.backgroundColor = colors.background
-            cell.gradientColor = colors.background
+
             // Small squares
             cell.background.backgroundColor = colors.detail
             cell.primary.backgroundColor = colors.primary
@@ -129,21 +128,7 @@ extension EventViewController: UICollectionViewDataSource {
         }
 
         
-        
-//        
-//        
-//        let colorOfDay = Constants.colorOf(day: date.day)
-//        
-//        cell.date.text = "\(date.day.uppercased())\n" + "\(date.num)\n" + "\(date.month.uppercased())"
-//        cell.dateDisplay.backgroundColor = colorOfDay
-//        cell.footer.backgroundColor = colorOfDay
-//        
-//        // Do the attributed for the text
-//        
-//        let attributedPlace = NSMutableAttributedString(string: place)
-//        let textRange = NSRange(location: 0, length: attributedPlace.length)
-//        attributedPlace.addAttribute(NSForegroundColorAttributeName, value: colorOfDay, range: textRange)
-//        cell.eventLocation.attributedText = attributedPlace
+
         
         return cell
     }
