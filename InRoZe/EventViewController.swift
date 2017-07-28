@@ -107,8 +107,8 @@ extension EventViewController: UICollectionViewDataSource {
             //cell.date.attributedText = self.coloredString(eDate, color: colors.detail)
             cell.eventLocation.attributedText = self.coloredString(place, color: colors.detail)
             
-            cell.dateDisplay.backgroundColor = colors.secondary
-            cell.footer.backgroundColor = colors.secondary
+            cell.dateDisplay.backgroundColor = colors.primary
+            cell.footer.backgroundColor = colors.primary
             
             cell.cellBackground.backgroundColor = colors.background
             
