@@ -19,7 +19,15 @@ public struct FBEvent: CustomStringConvertible {
     public let date = FacebookEvents.getEventDate()
     public var colors: UIImageColors?
     
-    public var description: String {return "name: \(name) and location: \(location)"}
+    public var description: String {
+        let bgColor = colors?.background
+        if  bgColor != nil {
+            return "name: \(name) | location: \(location) | color back: \(bgColor!)"
+        } else {
+        return "name: \(name) | location: \(location) | color back: NO Color"
+        }
+    }
+    
     init() {
         let rdm = Int(arc4random_uniform(10))
         self.name = FacebookEvents.eventNameArray[rdm]

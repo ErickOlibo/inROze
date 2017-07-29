@@ -13,7 +13,11 @@ public struct FBEventS: CustomStringConvertible {
     public var description: String {return "size: \(events.count) and location: \(events[0])"}
     
     init(size: Int) {
-        events = makeArray(repeating: FBEvent(), numberOfTimes: size)
+        events = [FBEvent]()
+        for _ in 0..<size {
+            let event = FBEvent()
+            events.append(event)
+        }
         
     }
 }
