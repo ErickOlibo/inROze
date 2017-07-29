@@ -14,13 +14,24 @@ class EventCollectionViewCell: UICollectionViewCell {
     // The FacebookEvent struct
     var eventCell: FBEvent! {
         didSet {
+            clear()
+            placeHolder(isTrue: true)
+            spinner.startAnimating()
+            
             if eventCell.colors != nil {
+//                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) { [weak self] in
+//                    self?.update()
+//                }
                 update()
             }
         }
     }
     
     // Creates outlets and an action for the bookmark icon
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
+    @IBOutlet weak var placeHolderPicture: UIImageView!
+    
     @IBOutlet weak var cellBackground: UIView!
 
     @IBOutlet weak var coverImage: UIImageView!
@@ -66,9 +77,34 @@ class EventCollectionViewCell: UICollectionViewCell {
         primary.backgroundColor = eventCell.colors!.primary
         secondary.backgroundColor = eventCell.colors!.secondary
         detail.backgroundColor = eventCell.colors!.detail
-        
+        placeHolder(isTrue: false)
+        spinner.stopAnimating()
         
     }
+    
+    private func clear () {
+        cellBackground.backgroundColor = .clear
+        coverImage.image = nil
+        eventName.text = nil
+        date.text = nil
+        footer.backgroundColor = .clear
+        eventLocation.text = nil
+        dateDisplay.backgroundColor = .clear
+        background.backgroundColor = .clear
+        primary.backgroundColor = .clear
+        secondary.backgroundColor = .clear
+        detail.backgroundColor = .clear
+    }
 
+    private func placeHolder (isTrue: Bool) {
+        if isTrue {
+            placeHolderPicture.image = UIImage(named: "placeHolderCell")
+            backgroundColor = .lightGray
+        } else {
+            placeHolderPicture.image = nil
+            backgroundColor = .clear
+        }
+        
+    }
     
 }
