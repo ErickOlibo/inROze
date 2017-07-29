@@ -57,4 +57,14 @@ extension UIColor {
         
         
     }
+    
+    
+}
+
+
+func coloredString(_ string: String, color: UIColor) -> NSMutableAttributedString {
+    let attributedString = NSMutableAttributedString(string: string)
+    let stringRange = NSRange(location: 0, length: attributedString.length)
+    attributedString.addAttribute(NSForegroundColorAttributeName, value: color, range: stringRange)
+    return attributedString
 }

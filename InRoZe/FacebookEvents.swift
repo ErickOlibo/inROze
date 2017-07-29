@@ -8,21 +8,12 @@
 
 import Foundation
 
+
 public struct FacebookEvents {
     
     // these are temporary data source for offline testing and 
     // UI & UX testing
-    static let eventNameArrayOld = ["Create a Hight Quality, High Ranking Search Ad",
-                                     "Evolve Your Ad Campaigns with Programmatic Buying",
-                                     "How Remarketing Keeps Customers Coming Back",
-                                     "Surviving and Thriving on Social Media",
-                                     "Keep Mobile Users Engaged In and Out of Your App",
-                                     "Appeal to Searchers and Search Engines with Seo",
-                                     "Build Your Business Fast with Growth Hacking",
-                                     "Track Your Acquisitions with Digital Metricks",
-                                     "This is fuckaries and I'm not sure I'm liking it",
-                                     "I'm supposed to really write 2 or 3 of them just for fun"]
-    
+
     static let eventNameArray = ["Monatik in Tallinn",
                                  "OU SNAP! YouTüübid ft. Martins Lapins & Kapabeibe",
                                  "Studio Boat Party 26.07",
@@ -57,4 +48,17 @@ public struct FacebookEvents {
     }
     
     
+    
+    
+    
+}
+
+// Make array of event dates
+
+func makeArray<Item>(repeating item: Item, numberOfTimes: Int) -> [Item] {
+    var result = [Item]()
+    for _ in 0..<numberOfTimes {
+        result.append(item)
+    }
+    return result
 }

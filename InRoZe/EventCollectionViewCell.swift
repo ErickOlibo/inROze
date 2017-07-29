@@ -11,6 +11,8 @@ import UIKit
 class EventCollectionViewCell: UICollectionViewCell {
     
 
+    // The FacebookEvent struct
+    
     
     // Creates outlets and an action for the bookmark icon
     @IBOutlet weak var cellBackground: UIView!
@@ -28,8 +30,7 @@ class EventCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var dateDisplay: UIView! {
         didSet {
             dateDisplay.layer.cornerRadius = 10
-            //dateDisplay.layer.masksToBounds = true
-            dateDisplay.backgroundColor = Constants.InrozeColor.petal
+
         }
     }
     

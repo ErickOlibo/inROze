@@ -32,7 +32,8 @@ class EventViewController: UIViewController {
     
     var eventDateArray = [FacebookEvents.getEventDate()]
     
-    
+    // Get Events
+    var fbEvents = FBEventS(size: 10)
     
     // change status bar color
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -43,38 +44,20 @@ class EventViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
         for _ in 1...(eventCoverArray.count) {
             let date = FacebookEvents.getEventDate()
-           eventDateArray.append(date)
+            eventDateArray.append(date)
         }
-        
-        // Testing the UIColorExtensions Helpers
-        // from UIColor to Hex String format back to UIColor
-        let testColor: UIColor = .purple
-        let hexString = UIColor.changeColorToHexString(testColor)
-        let color = UIColor.changeHexStringToColor(hexString)
-        view.backgroundColor = color
-        collectionView.backgroundColor = color
+
+        collectionView.backgroundColor = .black
         
         let stickyLayout = collectionView.collectionViewLayout as! StickyCollectionViewFlowLayout
         stickyLayout.firstItemTransform = zoomOutFirstItemTransform
         
     }
+   
     
-    fileprivate func coloredString(_ string: String, color: UIColor) -> NSMutableAttributedString {
-        let attributedString = NSMutableAttributedString(string: string)
-        let stringRange = NSRange(location: 0, length: attributedString.length)
-        attributedString.addAttribute(NSForegroundColorAttributeName, value: color, range: stringRange)
-        return attributedString
-    }
-    
-    
-    // # MARK - Create gradient layered view
-    fileprivate func createGradientLayer() {
-        
-    }
-    
+
 }
 
 
@@ -83,9 +66,10 @@ class EventViewController: UIViewController {
 extension EventViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return eventCoverArray.count
+        return eventNameArray.count
         
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: eventCell, for: indexPath) as! EventCollectionViewCell
@@ -104,15 +88,14 @@ extension EventViewController: UICollectionViewDataSource {
         
         // Image part on a bacground queue --> (scaleDownSize: CGSize(width: 100, height: 100))
         cellImage?.getColors(scaleDownSize: CGSize(width: 100, height: 100)) { colors in
-            cell.eventName.attributedText = self.coloredString(eName, color: colors.primary)
+            cell.eventName.attributedText = coloredString(eName, color: colors.primary)
             if colors.secondary.isDarkColor {
-                
-                cell.date.attributedText = self.coloredString(eDate, color: .white)
+                cell.date.attributedText = coloredString(eDate, color: .white)
             } else {
-                cell.date.attributedText = self.coloredString(eDate, color: .black)
+                cell.date.attributedText = coloredString(eDate, color: .black)
             }
             //cell.date.attributedText = self.coloredString(eDate, color: colors.detail)
-            cell.eventLocation.attributedText = self.coloredString(place, color: colors.detail)
+            cell.eventLocation.attributedText = coloredString(place, color: colors.detail)
             
             cell.dateDisplay.backgroundColor = colors.primary
             cell.footer.backgroundColor = colors.primary
@@ -126,9 +109,6 @@ extension EventViewController: UICollectionViewDataSource {
             cell.detail.backgroundColor = colors.detail
             
         }
-
-        
-
         
         return cell
     }
