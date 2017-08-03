@@ -30,10 +30,10 @@ public struct Place: CustomStringConvertible
     
     init?(data: NSDictionary?) {
         guard
-            let placeID = data?.string(forKeyPath: FBplaceKey.placeID),
-            let name = data?.string(forKeyPath: FBplaceKey.name),
-            let city = data?.string(forKeyPath: FBplaceKey.city),
-            let country = data?.string(forKeyPath: FBplaceKey.country)
+            let placeID = data?.string(forKeyPath: PlaceKey.placeID),
+            let name = data?.string(forKeyPath: PlaceKey.name),
+            let city = data?.string(forKeyPath: PlaceKey.city),
+            let country = data?.string(forKeyPath: PlaceKey.country)
             else {
                 return nil
         }
@@ -42,29 +42,30 @@ public struct Place: CustomStringConvertible
         self.name = name
         self.city = city
         self.country = country
-        self.countryCode = data?.string(forKeyPath: FBplaceKey.countryCode) ?? ""
-        self.street = data?.string(forKeyPath: FBplaceKey.street) ?? ""
-        self.latitude = data?.double(forKeyPath: FBplaceKey.latitude) ?? 0.0
-        self.longitude = data?.double(forKeyPath: FBplaceKey.longitude) ?? 0.0
+        self.countryCode = data?.string(forKeyPath: PlaceKey.countryCode) ?? ""
+        self.street = data?.string(forKeyPath: PlaceKey.street) ?? ""
+        self.latitude = data?.double(forKeyPath: PlaceKey.latitude) ?? 0.0
+        self.longitude = data?.double(forKeyPath: PlaceKey.longitude) ?? 0.0
         
         
     }
     
     var asPropertyList: [String:String] {
         return [
-            FBplaceKey.placeID : placeID,
-            FBplaceKey.name : name,
-            FBplaceKey.city : city,
-            FBplaceKey.country : country,
-            FBplaceKey.countryCode : countryCode,
-            FBplaceKey.street : street,
-            FBplaceKey.latitude : String(latitude),
-            FBplaceKey.longitude : String(longitude)
+            PlaceKey.placeID : placeID,
+            PlaceKey.name : name,
+            PlaceKey.city : city,
+            PlaceKey.country : country,
+            PlaceKey.countryCode : countryCode,
+            PlaceKey.street : street,
+            PlaceKey.latitude : String(latitude),
+            PlaceKey.longitude : String(longitude)
         ]
     }
     
-    struct FBplaceKey {
-        static let placeID = "id"
+    // places from InRoze Dataase so Key must be columns
+    struct PlaceKey {
+        static let placeID = "place_id"
         static let name = "name"
         static let city = "city"
         static let country = "country"
