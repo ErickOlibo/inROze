@@ -20,7 +20,7 @@ class EventViewController: UIViewController {
     let zoomOutFirstItemTransform: CGFloat = 0.1
 
     // Get Events
-    var fbEvents = FBEventS(size: 10)
+    var fbEvents = FBEventS(size: 100)
     
     // change status bar color
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -45,6 +45,15 @@ extension EventViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: eventCell, for: indexPath) as! EventCollectionViewCell
+        // Here I should reset the cell
+        if ((cell.coverImage) != nil) {
+            cell.clear()
+            cell.placeHolder(isTrue: true)
+            print("Reuseable cell (\(indexPath.row)) is NOT NIL")
+        } else {
+            print("cell is NIL")
+        }
+        
         var event = fbEvents.events[indexPath.row]
         let cover = UIImage(named: event.cover)
         

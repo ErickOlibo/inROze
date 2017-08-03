@@ -14,12 +14,12 @@ class EventCollectionViewCell: UICollectionViewCell {
     // The FacebookEvent struct
     var eventCell: FBEvent! {
         didSet {
-            clear()
+            //clear()
             placeHolder(isTrue: true)
             spinner.startAnimating()
             
             if eventCell.colors != nil {
-//                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) { [weak self] in
+//                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
 //                    self?.update()
 //                }
                 update()
@@ -82,7 +82,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         
     }
     
-    private func clear () {
+    public func clear () {
         cellBackground.backgroundColor = .clear
         coverImage.image = nil
         eventName.text = nil
@@ -96,7 +96,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         detail.backgroundColor = .clear
     }
 
-    private func placeHolder (isTrue: Bool) {
+    public func placeHolder (isTrue: Bool) {
         if isTrue {
             placeHolderPicture.image = UIImage(named: "placeHolderCell")
             backgroundColor = .lightGray
@@ -106,5 +106,11 @@ class EventCollectionViewCell: UICollectionViewCell {
         }
         
     }
+    
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//        clear()
+//        placeHolder(isTrue: true)
+//    }
     
 }
