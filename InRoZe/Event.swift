@@ -21,7 +21,7 @@ public struct Event: CustomStringConvertible
     public let endTime: String // DateTime format as string
     public let updatedTime: String // DateTime format as string
     public let eventText: String
-    public let eventImageURL: URL?
+    public let coverURL: URL?
     
     public var description: String {
         return "\(name) | \(place) | ID: \(eventID)"
@@ -48,7 +48,7 @@ public struct Event: CustomStringConvertible
         self.endTime = data?.string(forKeyPath: EventKey.endTime) ?? "" //not real String (ATTENTION)
         self.updatedTime = data?.string(forKeyPath: EventKey.updatedTime) ?? "" // not real String (ATTENTION)
         self.eventText = data?.string(forKeyPath: EventKey.eventText) ?? ""
-        self.eventImageURL = data?.url(forKeyPath: EventKey.eventImageURL)
+        self.coverURL = data?.url(forKeyPath: EventKey.coverURL)
 
         
     }
@@ -66,7 +66,7 @@ public struct Event: CustomStringConvertible
         static let endTime = "end_time"
         static let updatedTime = "updated_time"
         static let eventText = "description"
-        static let eventImageURL = "source" //cover.source from FB what's on the server??
+        static let coverURL = "cover_url" //cover.source from FB what's on the server??
     }
     
     
