@@ -263,7 +263,21 @@
                     <view key="view" contentMode="scaleToFill" id="oCU-My-glw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pmI-Vd-mHq">
+                                <rect key="frame" x="177" y="353" width="60" height="30"/>
+                                <state key="normal" title="Sign Out"/>
+                                <connections>
+                                    <action selector="signOutButton:" destination="0QJ-u6-4K9" eventType="touchUpInside" id="glx-1u-4eF"/>
+                                    <segue destination="bAg-N4-UsF" kind="show" id="qaQ-ZH-pj3"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pmI-Vd-mHq" firstAttribute="centerY" secondItem="oCU-My-glw" secondAttribute="centerY" id="6aL-cG-84s"/>
+                            <constraint firstItem="pmI-Vd-mHq" firstAttribute="centerX" secondItem="oCU-My-glw" secondAttribute="centerX" id="lE6-Qc-gS0"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="profile_Low32px" selectedImage="profile_High32px" id="TRD-p5-wDO">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
@@ -318,6 +332,9 @@
                                 <state key="normal" title="Login with Facebook">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginTapped:" destination="bAg-N4-UsF" eventType="touchUpInside" id="JlE-6w-IpW"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

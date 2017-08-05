@@ -9,6 +9,13 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    
+    @IBAction func signOutButton(_ sender: UIButton) {
+        handleSignOut()
+        
+    }
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +30,15 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
+    fileprivate func handleSignOut() {
+        UserDefaults.standard.set(false, forKey: "isLoggedIn")
+        UserDefaults.standard.synchronize()
+    }
 
+    
+    
     /*
     // MARK: - Navigation
 

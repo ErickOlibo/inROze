@@ -9,6 +9,16 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    
+    @IBAction func loginTapped(_ sender: UIButton) {
+        
+        UserDefaults.standard.set(true, forKey: "isLoggedIn")
+        UserDefaults.standard.synchronize()
+        
+        //Perform Segue programmatically
+        performSegue(withIdentifier: "login view", sender: self)
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
