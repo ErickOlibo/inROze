@@ -20,7 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Added FACEBOOK Stuff
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
-
+      
+        let isLoggedIn = true
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if isLoggedIn, let initViewController = storyboard.instantiateViewController(withIdentifier: "TabBarIdentifier") as? TabBarViewController {
+            window?.rootViewController = initViewController
+        }
+        
+        
+        
         return true
     }
     

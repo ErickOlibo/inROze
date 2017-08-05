@@ -29,6 +29,8 @@
 		A7EC36601F3387C200548C11 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC365F1F3387C200548C11 /* Event.swift */; };
 		A7EC36621F3387DA00548C11 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36611F3387DA00548C11 /* Place.swift */; };
 		A7EC36651F33954600548C11 /* NSDictionary+KeyPathConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */; };
+		A7EC36851F36553B00548C11 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36841F36553B00548C11 /* LoginViewController.swift */; };
+		A7EC36871F365AA900548C11 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36861F365AA900548C11 /* TabBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,8 @@
 		A7EC365F1F3387C200548C11 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A7EC36611F3387DA00548C11 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+KeyPathConvenience.swift"; sourceTree = "<group>"; };
+		A7EC36841F36553B00548C11 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A7EC36861F365AA900548C11 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		AB83D2E3F35B2A53E9FA9FFF /* Pods-InRoZe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InRoZe.release.xcconfig"; path = "Pods/Target Support Files/Pods-InRoZe/Pods-InRoZe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				A72B79311F2231AF009FB389 /* Main.storyboard */,
+				A7EC36861F365AA900548C11 /* TabBarViewController.swift */,
+				A7EC36841F36553B00548C11 /* LoginViewController.swift */,
 				A72B792F1F2231AF009FB389 /* FavoriteViewController.swift */,
 				A77676061F26B9DB00F1FA52 /* SearchViewController.swift */,
 				A77676081F26B9E800F1FA52 /* ProfileViewController.swift */,
@@ -330,9 +336,11 @@
 				A77676181F28CCE400F1FA52 /* Constants.swift in Sources */,
 				A77676161F27C52F00F1FA52 /* EventCollectionViewCell.swift in Sources */,
 				A70F25DD1F2C8B2F0048D060 /* FBEventS.swift in Sources */,
+				A7EC36851F36553B00548C11 /* LoginViewController.swift in Sources */,
 				A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */,
 				A77676051F26B9B200F1FA52 /* EventViewController.swift in Sources */,
 				A72B79301F2231AF009FB389 /* FavoriteViewController.swift in Sources */,
+				A7EC36871F365AA900548C11 /* TabBarViewController.swift in Sources */,
 				A72B79361F2231AF009FB389 /* InRoZe.xcdatamodeld in Sources */,
 				A7EC36601F3387C200548C11 /* Event.swift in Sources */,
 				A7EC36621F3387DA00548C11 /* Place.swift in Sources */,

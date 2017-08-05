@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Nj7-xt-p6X">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bAg-N4-UsF">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -296,10 +296,49 @@
             </objects>
             <point key="canvasLocation" x="461" y="1117"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Login View Controller-->
+        <scene sceneID="ueb-7Y-CSx">
+            <objects>
+                <viewController storyboardIdentifier="LoginIdentifier" id="bAg-N4-UsF" customClass="LoginViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gxc-bl-xIN"/>
+                        <viewControllerLayoutGuide type="bottom" id="uUX-v3-71G"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RRo-TU-H8E">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rG3-h1-OYi">
+                                <rect key="frame" x="0.0" y="676" width="414" height="60"/>
+                                <color key="backgroundColor" red="0.23529411759999999" green="0.34509803919999998" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="nxb-ds-3g2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                <state key="normal" title="Login with Facebook">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uUX-v3-71G" firstAttribute="top" secondItem="rG3-h1-OYi" secondAttribute="bottom" id="RdP-ey-Rwb"/>
+                            <constraint firstItem="rG3-h1-OYi" firstAttribute="leading" secondItem="RRo-TU-H8E" secondAttribute="leading" id="dXh-z2-UUC"/>
+                            <constraint firstAttribute="trailing" secondItem="rG3-h1-OYi" secondAttribute="trailing" id="eaw-E6-4IP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="Nj7-xt-p6X" kind="show" identifier="login view" id="p0M-Yn-h6e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ogv-cU-AkN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1243" y="219"/>
+        </scene>
+        <!--Tab Bar View Controller-->
         <scene sceneID="zRq-Sf-aJZ">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Nj7-xt-p6X" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarIdentifier" automaticallyAdjustsScrollViewInsets="NO" id="Nj7-xt-p6X" customClass="TabBarViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Nki-8j-gjm">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -321,7 +360,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UPY-ws-NQp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-226.40000000000001" y="220.83958020989508"/>
+            <point key="canvasLocation" x="-414" y="219"/>
         </scene>
     </scenes>
     <resources>

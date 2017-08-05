@@ -27,11 +27,14 @@ class EventViewController: UIViewController {
         return .lightContent
     }
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .black
         let stickyLayout = collectionView.collectionViewLayout as! StickyCollectionViewFlowLayout
         stickyLayout.firstItemTransform = zoomOutFirstItemTransform
+        
+        
     }
 }
 
@@ -82,8 +85,6 @@ extension EventViewController: UICollectionViewDelegateFlowLayout {
         return 0
     }
 }
-
-
 
 
 
