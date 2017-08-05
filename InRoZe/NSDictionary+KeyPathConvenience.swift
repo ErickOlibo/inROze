@@ -34,6 +34,10 @@ extension NSDictionary {
         }
     }
     
+    func colors(forKeyPath keyPath: String) -> UIImageColors? {
+        return value(forKeyPath: keyPath) as? UIImageColors
+    }
+    
     func dictionary(forKeyPath keyPath: String) -> NSDictionary? {
         return value(forKeyPath: keyPath) as? NSDictionary
     }

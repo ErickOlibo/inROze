@@ -22,6 +22,7 @@ public struct Event: CustomStringConvertible
     public let updatedTime: String // DateTime format as string
     public let eventText: String
     public let coverURL: URL?
+    public let eventColors: UIImageColors?
     
     public var description: String {
         return "\(name) | \(place) | ID: \(eventID)"
@@ -49,6 +50,7 @@ public struct Event: CustomStringConvertible
         self.updatedTime = data?.string(forKeyPath: EventKey.updatedTime) ?? "" // not real String (ATTENTION)
         self.eventText = data?.string(forKeyPath: EventKey.eventText) ?? ""
         self.coverURL = data?.url(forKeyPath: EventKey.coverURL)
+        self.eventColors = data?.colors(forKeyPath: EventKey.eventColors)
 
         
     }
@@ -67,6 +69,7 @@ public struct Event: CustomStringConvertible
         static let updatedTime = "updated_time"
         static let eventText = "description"
         static let coverURL = "cover_url" //cover.source from FB what's on the server??
+        static let eventColors = "eventColors"
     }
     
     
