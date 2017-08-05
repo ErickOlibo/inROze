@@ -7,29 +7,57 @@
 //
 
 import UIKit
+import FacebookLogin
+import FacebookCore
 
 class LoginViewController: UIViewController {
     
     @IBAction func loginTapped(_ sender: UIButton) {
         
-        UserDefaults.standard.set(true, forKey: "isLoggedIn")
-        UserDefaults.standard.synchronize()
-        
-        //Perform Segue programmatically
-        performSegue(withIdentifier: "login view", sender: self)
+        // Facebook login
+        let loginManager = LoginManager()
+        loginManager.logIn([.publicProfile, .email], viewController: self) { loginResult in
+            switch loginResult {
+            case .failed(let error):
+                print(error.localizedDescription)
+            case .cancelled:
+                print("cancelled")
+            case .success(let grantedPermissions, let declinedPermissions, let userInfo):
+                
+                let granted = grantedPermissions.map { "\($0)" }.joined(separator: " ")
+                print("\(granted)")
+                
+                let declined = declinedPermissions.map { "\($0)" }.joined(separator: " ")
+                print("\(declined)")
+                
+                let userOne = userInfo.appId
+                //let userTwo = userInfo.authenticationToken
+                let userThree = userInfo.expirationDate
+                let userFour = userInfo.refreshDate
+                let userFive = userInfo.userId
+                print("appID: [\(userOne)]")
+               // print("authToken: [\(userTwo)]")
+                print("expiration: [\(userThree)]")
+                print("refresh: [\(userFour)]")
+                print("userID: [\(userFive ?? "")]")
+                
+                //Perform Segue programmatically
+                self.performSegue(withIdentifier: "login view", sender: self)
+            }
+        }
+    }
+    
+    // change status bar color
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     
 
     /*

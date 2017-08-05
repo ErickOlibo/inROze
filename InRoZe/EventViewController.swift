@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FacebookCore
 
 class EventViewController: UIViewController {
     
@@ -33,6 +34,9 @@ class EventViewController: UIViewController {
         collectionView.backgroundColor = .black
         let stickyLayout = collectionView.collectionViewLayout as! StickyCollectionViewFlowLayout
         stickyLayout.firstItemTransform = zoomOutFirstItemTransform
+        
+        
+        
         
         
     }

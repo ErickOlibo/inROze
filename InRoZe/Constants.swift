@@ -78,3 +78,34 @@ public struct Constants {
     
     
 }
+
+// HELPERS Functions and Extensions
+
+extension UserDefaults {
+    
+    enum Keys: String {
+        case isLoggedIn
+    }
+    
+    func setIsLoggedIn(value: Bool) {
+        set(value, forKey: Keys.isLoggedIn.rawValue)
+        synchronize()
+    }
+    
+    func isLoggedIn() -> Bool {
+        return bool(forKey: Keys.isLoggedIn.rawValue)
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+

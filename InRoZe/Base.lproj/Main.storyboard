@@ -323,7 +323,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rG3-h1-OYi">
-                                <rect key="frame" x="0.0" y="676" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="627" width="414" height="60"/>
                                 <color key="backgroundColor" red="0.23529411759999999" green="0.34509803919999998" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="nxb-ds-3g2"/>
@@ -337,7 +337,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="uUX-v3-71G" firstAttribute="top" secondItem="rG3-h1-OYi" secondAttribute="bottom" id="RdP-ey-Rwb"/>
                             <constraint firstItem="rG3-h1-OYi" firstAttribute="leading" secondItem="RRo-TU-H8E" secondAttribute="leading" id="dXh-z2-UUC"/>
