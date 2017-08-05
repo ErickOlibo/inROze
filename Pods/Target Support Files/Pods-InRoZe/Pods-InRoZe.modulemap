@@ -1,0 +1,6 @@
+framework module Pods_InRoZe {
+  umbrella header "Pods-InRoZe-umbrella.h"
+
+  export *
+  module * { export * }
+}

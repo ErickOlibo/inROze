@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		297B48270458BA2567535BBB /* Pods_InRoZe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 025DA5AD4652E67328D77902 /* Pods_InRoZe.framework */; };
 		A70F25DB1F2C87A40048D060 /* FBEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70F25DA1F2C87A40048D060 /* FBEvent.swift */; };
 		A70F25DD1F2C8B2F0048D060 /* FBEventS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70F25DC1F2C8B2F0048D060 /* FBEventS.swift */; };
 		A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C7C811F2A55C400A0D5A8 /* UIImageColors.swift */; };
@@ -31,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		025DA5AD4652E67328D77902 /* Pods_InRoZe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InRoZe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		434049AE2BF497F26E4FEE54 /* Pods-InRoZe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InRoZe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InRoZe/Pods-InRoZe.debug.xcconfig"; sourceTree = "<group>"; };
 		A70F25DA1F2C87A40048D060 /* FBEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBEvent.swift; sourceTree = "<group>"; };
 		A70F25DC1F2C8B2F0048D060 /* FBEventS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBEventS.swift; sourceTree = "<group>"; };
 		A71C7C811F2A55C400A0D5A8 /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
@@ -54,6 +57,7 @@
 		A7EC365F1F3387C200548C11 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A7EC36611F3387DA00548C11 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+KeyPathConvenience.swift"; sourceTree = "<group>"; };
+		AB83D2E3F35B2A53E9FA9FFF /* Pods-InRoZe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InRoZe.release.xcconfig"; path = "Pods/Target Support Files/Pods-InRoZe/Pods-InRoZe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,12 +65,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				297B48270458BA2567535BBB /* Pods_InRoZe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E73017E964B5423D0EC3497 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				434049AE2BF497F26E4FEE54 /* Pods-InRoZe.debug.xcconfig */,
+				AB83D2E3F35B2A53E9FA9FFF /* Pods-InRoZe.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		937A662A2ECE75214D33432F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				025DA5AD4652E67328D77902 /* Pods_InRoZe.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A71C7C801F2A559800A0D5A8 /* UIImageColors */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +102,8 @@
 			children = (
 				A72B792C1F2231AF009FB389 /* InRoZe */,
 				A72B792B1F2231AF009FB389 /* Products */,
+				4E73017E964B5423D0EC3497 /* Pods */,
+				937A662A2ECE75214D33432F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -167,9 +191,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A72B793F1F2231AF009FB389 /* Build configuration list for PBXNativeTarget "InRoZe" */;
 			buildPhases = (
+				2E021295AF3964D01C1FD1A0 /* [CP] Check Pods Manifest.lock */,
 				A72B79261F2231AF009FB389 /* Sources */,
 				A72B79271F2231AF009FB389 /* Frameworks */,
 				A72B79281F2231AF009FB389 /* Resources */,
+				4A98FD31EE395221222B8AC1 /* [CP] Embed Pods Frameworks */,
+				71CEE18FDE0F823AF9413D66 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -227,6 +254,72 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2E021295AF3964D01C1FD1A0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-InRoZe-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4A98FD31EE395221222B8AC1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-InRoZe/Pods-InRoZe-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InRoZe/Pods-InRoZe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		71CEE18FDE0F823AF9413D66 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InRoZe/Pods-InRoZe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A72B79261F2231AF009FB389 /* Sources */ = {
@@ -371,6 +464,7 @@
 		};
 		A72B79401F2231AF009FB389 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 434049AE2BF497F26E4FEE54 /* Pods-InRoZe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = BLQ9SH2EFS;
@@ -384,6 +478,7 @@
 		};
 		A72B79411F2231AF009FB389 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB83D2E3F35B2A53E9FA9FFF /* Pods-InRoZe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = BLQ9SH2EFS;
