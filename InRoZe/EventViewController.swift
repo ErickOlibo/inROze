@@ -8,18 +8,19 @@
 
 import UIKit
 import FacebookCore
+import FBSDKCoreKit
 
 class EventViewController: UIViewController {
     
     
     @IBOutlet weak var currentDate: UILabel!
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
-
+    
     let eventCell = "Event Cell"
     let cellHeightOffset: CGFloat = 140.0 // distance between bottom picture and bottom cell
     let zoomOutFirstItemTransform: CGFloat = 0.1
-
+    
     // Get Events
     var fbEvents = FBEventS(size: 100)
     
@@ -27,20 +28,19 @@ class EventViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .black
         let stickyLayout = collectionView.collectionViewLayout as! StickyCollectionViewFlowLayout
         stickyLayout.firstItemTransform = zoomOutFirstItemTransform
-        
-        
-        
-        
-        
     }
+    
+    
+    
 }
+
 
 
 extension EventViewController: UICollectionViewDataSource {

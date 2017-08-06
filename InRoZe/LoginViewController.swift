@@ -9,6 +9,7 @@
 import UIKit
 import FacebookLogin
 import FacebookCore
+import FBSDKCoreKit
 
 class LoginViewController: UIViewController {
     
@@ -16,7 +17,7 @@ class LoginViewController: UIViewController {
         
         // Facebook login
         let loginManager = LoginManager()
-        loginManager.logIn([.publicProfile, .email], viewController: self) { loginResult in
+        loginManager.logIn([.publicProfile, .email], viewController: self) { [weak self] loginResult in
             switch loginResult {
             case .failed(let error):
                 print(error.localizedDescription)
@@ -32,17 +33,22 @@ class LoginViewController: UIViewController {
                 
                 let userOne = userInfo.appId
                 //let userTwo = userInfo.authenticationToken
+                // print("authToken: [\(userTwo)]")
+                
                 let userThree = userInfo.expirationDate
                 let userFour = userInfo.refreshDate
                 let userFive = userInfo.userId
                 print("appID: [\(userOne)]")
-               // print("authToken: [\(userTwo)]")
                 print("expiration: [\(userThree)]")
                 print("refresh: [\(userFour)]")
                 print("userID: [\(userFive ?? "")]")
                 
+                
+                // Get info about logged user
+                self?.requestUserInfo()
+                
                 //Perform Segue programmatically
-                self.performSegue(withIdentifier: "login view", sender: self)
+                self?.performSegue(withIdentifier: "login view", sender: self)
             }
         }
     }
@@ -58,8 +64,32 @@ class LoginViewController: UIViewController {
     }
 
     
-    
+    // Call FB SDK GraphRequest and fetch user info
+    private func requestUserInfo() {
+        
+        // Getting Logged User info and save them on UserProfile.Current
+        
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields" : "email, name, id, gender, cover"])
+            .start(completionHandler:  { (connection, result, error) in
+                if let result = result as? NSDictionary, let email = result["email"] as? String,
+                    let name = result["name"] as? String,
+                    let gender = result["gender"] as? String,
+                    let cover = result["cover"] as? NSDictionary,
+                    let userID = result["id"]  as? String {
+                    
+                    print("\(email)")
+                    print("\(name)")
+                    print("\(gender)")
+                    print("\(userID)")
+                    print("\(cover["source"]!)")
+                    
+                }
+            })
+    }
 
+    
+    
+    
     /*
     // MARK: - Navigation
 
@@ -71,3 +101,21 @@ class LoginViewController: UIViewController {
     */
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
