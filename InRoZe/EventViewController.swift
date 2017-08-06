@@ -24,7 +24,6 @@ class EventViewController: UIViewController {
     // Get Events
     var fbEvents = FBEventS(size: 100)
     
-    // change status bar color
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -35,10 +34,8 @@ class EventViewController: UIViewController {
         collectionView.backgroundColor = .black
         let stickyLayout = collectionView.collectionViewLayout as! StickyCollectionViewFlowLayout
         stickyLayout.firstItemTransform = zoomOutFirstItemTransform
+ 
     }
-    
-    
-    
 }
 
 

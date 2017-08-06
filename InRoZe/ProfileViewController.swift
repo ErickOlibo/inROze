@@ -22,6 +22,8 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         // Do any additional setup after loading the view.
         view.backgroundColor = .yellow
     }
@@ -48,6 +50,7 @@ class ProfileViewController: UIViewController {
         loginManager.logOut()
         
         if let _ = AccessToken.current {
+            
             print("Token is SET")
         } else {
             print("Token is NIL")

@@ -13,6 +13,8 @@ import FBSDKCoreKit
 
 class LoginViewController: UIViewController {
     
+    var userProfile: UserProfile?
+    
     @IBAction func loginTapped(_ sender: UIButton) {
         
         // Facebook login
@@ -23,27 +25,7 @@ class LoginViewController: UIViewController {
                 print(error.localizedDescription)
             case .cancelled:
                 print("cancelled")
-            case .success(let grantedPermissions, let declinedPermissions, let userInfo):
-                
-                let granted = grantedPermissions.map { "\($0)" }.joined(separator: " ")
-                print("\(granted)")
-                
-                let declined = declinedPermissions.map { "\($0)" }.joined(separator: " ")
-                print("\(declined)")
-                
-                let userOne = userInfo.appId
-                //let userTwo = userInfo.authenticationToken
-                // print("authToken: [\(userTwo)]")
-                
-                let userThree = userInfo.expirationDate
-                let userFour = userInfo.refreshDate
-                let userFive = userInfo.userId
-                print("appID: [\(userOne)]")
-                print("expiration: [\(userThree)]")
-                print("refresh: [\(userFour)]")
-                print("userID: [\(userFive ?? "")]")
-                
-                
+            case .success( _,  _, _):
                 // Get info about logged user
                 self?.requestUserInfo()
                 
@@ -66,27 +48,44 @@ class LoginViewController: UIViewController {
     
     // Call FB SDK GraphRequest and fetch user info
     private func requestUserInfo() {
-        
-        // Getting Logged User info and save them on UserProfile.Current
-        
+        print("Inside request User")
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields" : "email, name, id, gender, cover"])
             .start(completionHandler:  { (connection, result, error) in
-                if let result = result as? NSDictionary, let email = result["email"] as? String,
-                    let name = result["name"] as? String,
-                    let gender = result["gender"] as? String,
-                    let cover = result["cover"] as? NSDictionary,
-                    let userID = result["id"]  as? String {
-                    
-                    print("\(email)")
-                    print("\(name)")
-                    print("\(gender)")
-                    print("\(userID)")
-                    print("\(cover["source"]!)")
-                    
+                if let result = result as? NSDictionary{
+                    print("HERE WITH INFO")
+                    self.saveCurrentUserProfile(result)
                 }
             })
     }
 
+    
+    // Save user info onto the dedicated database
+    private func saveCurrentUserProfile(_ result: NSDictionary) {
+        print("HERE WITH RESULTS")
+        if let email = result["email"] as? String,
+            let name = result["name"] as? String,
+            let gender = result["gender"] as? String,
+            let cover = result["cover"] as? NSDictionary,
+            let userID = result["id"]  as? String,
+            let profile = cover["source"] as? String {
+            
+            if let _ = AccessToken.current {
+                
+                print("[ \(email) | \(name) | \(gender) | \(userID) ]")
+                print("\(profile)")
+                
+                if let currentUser = UserProfile.current {
+                    print("current user got: \(currentUser)")
+                } else {
+                    print("Current user is NIL")
+                    UserProfile.loadCurrent{ profile in
+                        print("\(profile)")
+                    }
+                }
+            }
+        }
+        
+    }
     
     
     
