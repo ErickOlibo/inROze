@@ -27,6 +27,7 @@ class LoginViewController: UIViewController {
                 print("cancelled")
             case .success( _,  _, _):
                 // Get info about logged user
+                
                 self?.requestUserInfo()
                 
                 //Perform Segue programmatically
@@ -54,6 +55,7 @@ class LoginViewController: UIViewController {
                 if let result = result as? NSDictionary{
                     print("HERE WITH INFO")
                     self.saveCurrentUserProfile(result)
+                    
                 }
             })
     }
@@ -70,6 +72,7 @@ class LoginViewController: UIViewController {
             let profile = cover["source"] as? String {
             
             if let _ = AccessToken.current {
+                let _ = RozeLink.setUserLogIn(true, id: userID, name: name, email: email, gender: gender)
                 
                 print("[ \(email) | \(name) | \(gender) | \(userID) ]")
                 print("\(profile)")

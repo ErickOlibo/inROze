@@ -44,6 +44,16 @@ class ProfileViewController: UIViewController {
     
     
     fileprivate func handleSignOut() {
+
+        //Some user info
+        let profile = UserProfile.current
+
+        if (profile != nil) {
+            let userID = profile?.userId
+            let userName = profile?.fullName
+            let _ = RozeLink.setUserLogIn(false, id: userID!, name: userName!, email: nil, gender: nil)
+        }
+        
         
         //Facebook LogOut
         let loginManager = LoginManager()
@@ -55,6 +65,7 @@ class ProfileViewController: UIViewController {
         } else {
             print("Token is NIL")
         }
+        
     }
     
     

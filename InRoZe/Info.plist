@@ -32,25 +32,25 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-    <key>CFBundleURLTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>fb175453732655440</string>
-            </array>
-        </dict>
-    </array>
-    <key>FacebookAppID</key>
-    <string>175453732655440</string>
-    <key>FacebookDisplayName</key>
-    <string>InRoZe</string>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>fbapi</string>
-        <string>fb-messenger-api</string>
-        <string>fbauth2</string>
-        <string>fbshareextension</string>
-    </array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb175453732655440</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>175453732655440</string>
+	<key>FacebookDisplayName</key>
+	<string>InRoZe</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 </dict>
 </plist>
