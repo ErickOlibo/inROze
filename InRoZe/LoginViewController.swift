@@ -69,7 +69,10 @@ class LoginViewController: UIViewController {
                 
                 // Going to the network -> MOVE FROM MAIN QUEUE
                 let parameters = "id=\(id)&name=\(name)&email=\(email!)&gender=\(gender!)"
-                let _ = RozeLink.setUserLoggedIn(to: true, parameters: parameters, urlToServer: RozeLink.url.logInOut)
+                //let _ = RozeLink.setUserLoggedIn(to: true, parameters: parameters, urlToServer: RozeLink.url.logInOut)
+                let serverRequest = ServerRequest()
+                serverRequest.setUserLoggedIn(to: true, parameters: parameters, urlToServer: UrlFor.logInOut)
+                
                 
                 if let currentUser = UserProfile.current {
                     print("current user got: \(currentUser)")

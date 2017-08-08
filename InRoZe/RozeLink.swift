@@ -11,14 +11,13 @@ import Foundation
 
 // Struct To handle all connection to the InRoze Server
 public struct RozeLink {
+    
     // Logs IN or OUT the current User in the Server
     static func setUserLoggedIn(to isLogged: Bool, parameters: String, urlToServer: String) -> Bool {
         
         let postParams = "\(parameters)&isLogged=\(isLogged)"
         let result = taskForURLSession(postParams: postParams, url: urlToServer)
         return result.count == 0 ? false : true
-        
-      
     }
     
     // Gets the latest Events IDs from the Server (userID is necessary)
@@ -31,8 +30,8 @@ public struct RozeLink {
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
         request.httpBody = postParams.data(using: .utf8)
+        let result = [String: Any]()
         
-        var result = [String: Any]()
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard error == nil else {
                 return
@@ -41,9 +40,9 @@ public struct RozeLink {
                 return
             }
             do {
-                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                    print(json)
-                    result = json
+                if let _ = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    print("JSON Result")
+                    
                 }
             } catch let error {
                 print("Error in URL Session: ")
@@ -57,10 +56,12 @@ public struct RozeLink {
 
 extension RozeLink {
     
-    struct url {
+    struct Url {
         static let logInOut = "https://www.defkut.com/inroze/ServerRoze/users.php";
         static let currentEventsID = "https://www.defkut.com/inroze/ServerRoze/currentEvents.php";
     }
+    
+
     
     
     

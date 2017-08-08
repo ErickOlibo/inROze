@@ -44,7 +44,8 @@ class ProfileViewController: UIViewController {
             
             // Going to the network -> MOVE FROM MAIN QUEUE
             let parameter = "id=\(id!)"
-            let _ = RozeLink.setUserLoggedIn(to: false, parameters: parameter, urlToServer: RozeLink.url.logInOut)
+            let requestServer = ServerRequest()
+            requestServer.setUserLoggedIn(to: false, parameters: parameter, urlToServer: UrlFor.logInOut)
         }
         
         //Facebook LogOut

@@ -79,6 +79,14 @@ public struct Constants {
     
 }
 
+// URLs to connect to the Server
+public struct UrlFor {
+    static let logInOut = "https://www.defkut.com/inroze/ServerRoze/users.php";
+    static let currentEventsID = "https://www.defkut.com/inroze/ServerRoze/currentEvents.php";
+}
+
+
+
 
 // HELPERS Functions and Extensions
 

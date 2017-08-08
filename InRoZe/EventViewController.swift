@@ -17,6 +17,9 @@ class EventViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var myResult = [String : Any]()
+    
+    
     let eventCell = "Event Cell"
     let cellHeightOffset: CGFloat = 140.0 // distance between bottom picture and bottom cell
     let zoomOutFirstItemTransform: CGFloat = 0.1
@@ -35,18 +38,49 @@ class EventViewController: UIViewController {
         let stickyLayout = collectionView.collectionViewLayout as! StickyCollectionViewFlowLayout
         stickyLayout.firstItemTransform = zoomOutFirstItemTransform
         
-        // MUST BE SOMEWHERE ELSE NOT THE MAIN QUEUE
-        var resultEvents = [String : Any]()
-        if let userID = AccessToken.current?.userId {
-            let params = "id=\(userID)"
-            
-            let resultEventIDs = RozeLink.getEventsIDsCurrentList(parameter: params, urlToServer: RozeLink.url.currentEventsID)
-            resultEvents = resultEventIDs
-        }
-        print(resultEvents)
+        // Notification center
+        NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NSNotification.Name(rawValue: dataModelDidUpdateNotification), object: nil)
         
- 
+        
+        
+        // MUST BE SOMEWHERE ELSE NOT THE MAIN QUEUE
+        if let userID = AccessToken.current?.userId {
+            // Load eventIDs from Server
+            let params = "id=\(userID)"
+            let request = ServerRequest()
+            request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
+            print(params)
+
+        }
+        
     }
+    
+   @objc private func updateData() {
+    print("In UpdateData ??")
+
+    if let dataUp = ServerRequest.shared.result {
+        print("Update shit")
+        print(dataUp)
+    }
+    
+        
+    }
+
+    // Start Notification listener when view on screen
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Notification center
+        NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NSNotification.Name(rawValue: dataModelDidUpdateNotification), object: nil)
+    }
+    
+    // Stop Notification listener when view leaves the screen
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: dataModelDidUpdateNotification), object: nil)
+    }
+    
+    
+    
 }
 
 

@@ -27,6 +27,7 @@
 		A77676181F28CCE400F1FA52 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676171F28CCE400F1FA52 /* Constants.swift */; };
 		A776761A1F28E1E000F1FA52 /* FacebookEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676191F28E1E000F1FA52 /* FacebookEvents.swift */; };
 		A7A24D4A1F390B6600EFB82E /* RozeLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A24D491F390B6600EFB82E /* RozeLink.swift */; };
+		A7A24D4C1F3A4F0000EFB82E /* ServerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */; };
 		A7EC36601F3387C200548C11 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC365F1F3387C200548C11 /* Event.swift */; };
 		A7EC36621F3387DA00548C11 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36611F3387DA00548C11 /* Place.swift */; };
 		A7EC36651F33954600548C11 /* NSDictionary+KeyPathConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */; };
@@ -58,6 +59,7 @@
 		A77676171F28CCE400F1FA52 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A77676191F28E1E000F1FA52 /* FacebookEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookEvents.swift; sourceTree = "<group>"; };
 		A7A24D491F390B6600EFB82E /* RozeLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RozeLink.swift; sourceTree = "<group>"; };
+		A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRequest.swift; sourceTree = "<group>"; };
 		A7EC365F1F3387C200548C11 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A7EC36611F3387DA00548C11 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+KeyPathConvenience.swift"; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 		A77676121F26BF3100F1FA52 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */,
 				A7A24D491F390B6600EFB82E /* RozeLink.swift */,
 				A77676191F28E1E000F1FA52 /* FacebookEvents.swift */,
 				A77676171F28CCE400F1FA52 /* Constants.swift */,
@@ -355,6 +358,7 @@
 				A72B792E1F2231AF009FB389 /* AppDelegate.swift in Sources */,
 				A7EC36651F33954600548C11 /* NSDictionary+KeyPathConvenience.swift in Sources */,
 				A77676141F26D49E00F1FA52 /* UIColorExtension.swift in Sources */,
+				A7A24D4C1F3A4F0000EFB82E /* ServerRequest.swift in Sources */,
 				A776760B1F26B9F600F1FA52 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
