@@ -12,10 +12,12 @@ import Foundation
 // Struct To handle all connection to the InRoze Server
 public struct RozeLink {
     // Logs IN or OUT the current User in the Server
-    static func setUserLoggedIn(to isLogged: Bool, parameters: String, urlToServer: String) {
+    static func setUserLoggedIn(to isLogged: Bool, parameters: String, urlToServer: String) -> Bool {
         
         let postParams = "\(parameters)&isLogged=\(isLogged)"
-        let _ = taskForURLSession(postParams: postParams, url: urlToServer)
+        let result = taskForURLSession(postParams: postParams, url: urlToServer)
+        return result.count == 0 ? false : true
+        
       
     }
     

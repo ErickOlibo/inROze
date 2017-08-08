@@ -34,6 +34,17 @@ class EventViewController: UIViewController {
         collectionView.backgroundColor = .black
         let stickyLayout = collectionView.collectionViewLayout as! StickyCollectionViewFlowLayout
         stickyLayout.firstItemTransform = zoomOutFirstItemTransform
+        
+        // MUST BE SOMEWHERE ELSE NOT THE MAIN QUEUE
+        var resultEvents = [String : Any]()
+        if let userID = AccessToken.current?.userId {
+            let params = "id=\(userID)"
+            
+            let resultEventIDs = RozeLink.getEventsIDsCurrentList(parameter: params, urlToServer: RozeLink.url.currentEventsID)
+            resultEvents = resultEventIDs
+        }
+        print(resultEvents)
+        
  
     }
 }
