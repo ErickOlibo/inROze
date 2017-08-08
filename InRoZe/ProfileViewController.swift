@@ -17,17 +17,11 @@ class ProfileViewController: UIViewController {
         
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
         // Do any additional setup after loading the view.
         view.backgroundColor = .yellow
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -39,21 +33,19 @@ class ProfileViewController: UIViewController {
             print("\(profile!.firstName!)")
             print("\(profile!.profileURL!)")
         }
-        
     }
     
-    
     fileprivate func handleSignOut() {
-
         //Some user info
         let profile = UserProfile.current
 
         if (profile != nil) {
-            let userID = profile?.userId
-            let userName = profile?.fullName
-            let _ = RozeLink.setUserLogIn(false, id: userID!, name: userName!, email: nil, gender: nil)
+            let id = profile?.userId
+            
+            // Going to the network -> MOVE FROM MAIN QUEUE
+            let parameter = "id=\(id!)"
+            let _ = RozeLink.setUserLoggedIn(to: false, parameters: parameter, urlToServer: RozeLink.url.logInOut)
         }
-        
         
         //Facebook LogOut
         let loginManager = LoginManager()

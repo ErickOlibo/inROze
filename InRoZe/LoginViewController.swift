@@ -41,7 +41,6 @@ class LoginViewController: UIViewController {
         return .lightContent
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -53,29 +52,24 @@ class LoginViewController: UIViewController {
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields" : "email, name, id, gender, cover"])
             .start(completionHandler:  { (connection, result, error) in
                 if let result = result as? NSDictionary{
-                    print("HERE WITH INFO")
                     self.saveCurrentUserProfile(result)
-                    
                 }
             })
     }
-
     
-    // Save user info onto the dedicated database
+    // Save user info into the Server
     private func saveCurrentUserProfile(_ result: NSDictionary) {
-        print("HERE WITH RESULTS")
-        if let email = result["email"] as? String,
-            let name = result["name"] as? String,
-            let gender = result["gender"] as? String,
-            let cover = result["cover"] as? NSDictionary,
-            let userID = result["id"]  as? String,
-            let profile = cover["source"] as? String {
+        if let id = result["id"]  as? String,
+            let name = result["name"] as? String {
             
             if let _ = AccessToken.current {
-                let _ = RozeLink.setUserLogIn(true, id: userID, name: name, email: email, gender: gender)
+                // Get some info about User
+                let email = result["email"] as? String? ?? ""
+                let gender = result["gender"] as? String? ?? "Neutral"
                 
-                print("[ \(email) | \(name) | \(gender) | \(userID) ]")
-                print("\(profile)")
+                // Going to the network -> MOVE FROM MAIN QUEUE
+                let parameters = "id=\(id)&name=\(name)&email=\(email!)&gender=\(gender!)"
+                let _ = RozeLink.setUserLoggedIn(to: true, parameters: parameters, urlToServer: RozeLink.url.logInOut)
                 
                 if let currentUser = UserProfile.current {
                     print("current user got: \(currentUser)")
@@ -87,7 +81,6 @@ class LoginViewController: UIViewController {
                 }
             }
         }
-        
     }
     
     
