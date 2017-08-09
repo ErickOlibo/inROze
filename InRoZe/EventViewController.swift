@@ -55,14 +55,11 @@ class EventViewController: UIViewController {
         
     }
     
-   @objc private func updateData() {
-    print("In UpdateData ??")
-
-    if let dataUp = ServerRequest.shared.result {
+    @objc private func updateData() {
+        print("In UpdateData ??")
+        print(resultServer)
         print("Update shit")
-        print(dataUp)
-    }
-    
+        
         
     }
 

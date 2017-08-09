@@ -10,10 +10,15 @@ import Foundation
 
 let dataModelDidUpdateNotification = "dataModelDidUpdateNotification"
 
+// GLOBAL var are a bad idea I think (to verify)
+// should just let this for the moment
+var resultServer = [String : Any]()
+
 public class ServerRequest
 {
+   
     
-    static var shared = ServerRequest()
+    
     public func setUserLoggedIn(to isLogged: Bool, parameters: String, urlToServer: String) {
         
         let postParams = "\(parameters)&isLogged=\(isLogged)"
@@ -56,9 +61,9 @@ public class ServerRequest
     
     var result: [String : Any]? {
         didSet {
-            
+            resultServer = result!
             print("Notification?")
-            print(result!)
+            //print(result!)
             print("end of printing Result")
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: dataModelDidUpdateNotification), object: nil)
         }

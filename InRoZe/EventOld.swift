@@ -11,11 +11,11 @@ import Foundation
 // container to hold data about a Facebook event
 // Set the Colors pattern at the cell level
 
-public struct Event: CustomStringConvertible
+public struct EventOld: CustomStringConvertible
 {
     public let eventID: String
     public let placeID: String
-    public let place: Place
+    public let place: PlaceOld
     public let name: String
     public let startTime: String // DateTime format as string
     public let endTime: String // DateTime format as string
@@ -34,7 +34,7 @@ public struct Event: CustomStringConvertible
         guard
             let eventID = data?.string(forKeyPath: EventKey.eventID),
             let placeID = data?.string(forKeyPath: EventKey.placeID),
-            let place = Place(data: data?.dictionary(forKeyPath: EventKey.place)),
+            let place = PlaceOld(data: data?.dictionary(forKeyPath: EventKey.place)),
             let name = data?.string(forKeyPath: EventKey.name),
             let startTime = data?.string(forKeyPath: EventKey.startTime)
             else {

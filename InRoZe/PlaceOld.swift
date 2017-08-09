@@ -10,7 +10,7 @@ import Foundation
 
 // Container to hold data about a Facebook place
 
-public struct Place: CustomStringConvertible
+public struct PlaceOld: CustomStringConvertible
 {
     public let placeID: String
     public let name: String

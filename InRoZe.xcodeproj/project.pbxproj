@@ -28,8 +28,8 @@
 		A776761A1F28E1E000F1FA52 /* FacebookEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676191F28E1E000F1FA52 /* FacebookEvents.swift */; };
 		A7A24D4A1F390B6600EFB82E /* RozeLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A24D491F390B6600EFB82E /* RozeLink.swift */; };
 		A7A24D4C1F3A4F0000EFB82E /* ServerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */; };
-		A7EC36601F3387C200548C11 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC365F1F3387C200548C11 /* Event.swift */; };
-		A7EC36621F3387DA00548C11 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36611F3387DA00548C11 /* Place.swift */; };
+		A7EC36601F3387C200548C11 /* EventOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC365F1F3387C200548C11 /* EventOld.swift */; };
+		A7EC36621F3387DA00548C11 /* PlaceOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36611F3387DA00548C11 /* PlaceOld.swift */; };
 		A7EC36651F33954600548C11 /* NSDictionary+KeyPathConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */; };
 		A7EC36851F36553B00548C11 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36841F36553B00548C11 /* LoginViewController.swift */; };
 		A7EC36871F365AA900548C11 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36861F365AA900548C11 /* TabBarViewController.swift */; };
@@ -60,8 +60,8 @@
 		A77676191F28E1E000F1FA52 /* FacebookEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookEvents.swift; sourceTree = "<group>"; };
 		A7A24D491F390B6600EFB82E /* RozeLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RozeLink.swift; sourceTree = "<group>"; };
 		A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRequest.swift; sourceTree = "<group>"; };
-		A7EC365F1F3387C200548C11 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		A7EC36611F3387DA00548C11 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		A7EC365F1F3387C200548C11 /* EventOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventOld.swift; sourceTree = "<group>"; };
+		A7EC36611F3387DA00548C11 /* PlaceOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceOld.swift; sourceTree = "<group>"; };
 		A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+KeyPathConvenience.swift"; sourceTree = "<group>"; };
 		A7EC36841F36553B00548C11 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A7EC36861F365AA900548C11 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -190,8 +190,8 @@
 			isa = PBXGroup;
 			children = (
 				A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */,
-				A7EC365F1F3387C200548C11 /* Event.swift */,
-				A7EC36611F3387DA00548C11 /* Place.swift */,
+				A7EC365F1F3387C200548C11 /* EventOld.swift */,
+				A7EC36611F3387DA00548C11 /* PlaceOld.swift */,
 			);
 			name = Facebook;
 			sourceTree = "<group>";
@@ -348,8 +348,8 @@
 				A72B79301F2231AF009FB389 /* FavoriteViewController.swift in Sources */,
 				A7EC36871F365AA900548C11 /* TabBarViewController.swift in Sources */,
 				A72B79361F2231AF009FB389 /* InRoZe.xcdatamodeld in Sources */,
-				A7EC36601F3387C200548C11 /* Event.swift in Sources */,
-				A7EC36621F3387DA00548C11 /* Place.swift in Sources */,
+				A7EC36601F3387C200548C11 /* EventOld.swift in Sources */,
+				A7EC36621F3387DA00548C11 /* PlaceOld.swift in Sources */,
 				A776761A1F28E1E000F1FA52 /* FacebookEvents.swift in Sources */,
 				A70F25DB1F2C87A40048D060 /* FBEvent.swift in Sources */,
 				A77676091F26B9E800F1FA52 /* ProfileViewController.swift in Sources */,
