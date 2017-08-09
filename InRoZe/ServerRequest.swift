@@ -16,7 +16,7 @@ var resultServer = [String : Any]()
 
 public class ServerRequest
 {
-
+    
     // Core Data model container and context
     let context = AppDelegate.viewContext
     let container = AppDelegate.persistentContainer
@@ -49,7 +49,7 @@ public class ServerRequest
                     
                     if (isEventFetch) {
                         print("EventID Fetch JSON Result")
-                       self.result = json
+                        self.result = json
                     } else {
                         print("Log IN OUT JSON Result")
                         print(json)
@@ -72,53 +72,105 @@ public class ServerRequest
             
             // Insert and Update CoreData with result
         }
-
+        
     }
     
     private func updateDatabase(with eventIDs: [String : Any]) {
-        print("Size of EventIDS: \(eventIDs.count)")
         container.performBackgroundTask { context in
-            // New way of writting
+            print("updateDatabase")
             for (key, value) in eventIDs {
-                if (key == "eventPlaceIDs"),
-                let events = value as? [Any],
+                if (key == DBLabels.responseKey),
+                    let events = value as? [Any],
                     let _ = events.first as? [String : String] {
-                    print("Am I Here")
-                    var rank = 1
                     for event in events {
-                        if let eventNr = event as? [String : String] {
-                            print("\(rank)) EventID: \(eventNr["event_id"]!)")
-                            print("\(rank)) PlaceID: \(eventNr["place_id"]!)")
+                        if let eventDict = event as? [String : String] {
+                            print("eventDict")
+                            
+                            
+                            // find or insert eventID
+                            do {
+                                print("try find or insert")
+                                _ = try self.findOrInsertEventID(matching: eventDict, in: context)
+                            } catch {
+                                print(error)
+                            }
+                            
+                            // Save in CoreDatabase
+                            do {
+                                try context.save()
+                            } catch {
+                                print("Error trying to save in CareData: \(error)")
+                            }
                         }
-                        rank += 1
                     }
+                   self.printDatabaseStatistics()
                 }
             }
         }
+        
     }
+    
+    
+    private func printDatabaseStatistics() {
+        print("printdata Stats")
+        // Check if main thread
+        if Thread.isMainThread {
+            print("on main thread")
+        } else {
+            print("off main thread")
+        }
+        let request: NSFetchRequest<Event> = Event.fetchRequest()
+        if let eventsCount = (try? context.fetch(request))?.count {
+            print("\(eventsCount) events IDs")
+        }
+        // Better wat to count number of element in entity
+        if let placesCount = try? context.count(for: Place.fetchRequest()) {
+            print("\(placesCount) Places IDs")
+        }
+        
+    }
+    
     
     // Find or insert an eventID and return true if eventID already
     // in database
-    private func findOrInsertEventID(matching eventID: String, in context: NSManagedObjectContext) throws -> Bool {
-        
+    private func findOrInsertEventID(matching eventDict: [String : String], in context: NSManagedObjectContext) throws -> Bool {
+        print("find or insert")
         let request: NSFetchRequest<Event> = Event.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %@", eventID)
+        request.predicate = NSPredicate(format: "id = %@", eventDict[DBLabels.eventID]!)
+        let event = Event(context: context)
         
         do {
+            
             let match = try context.fetch(request)
             if match.count > 0 {
+                // Event already in Database then update location ID
+                print("ALREADY IN DATABASE")
                 assert(match.count == 1, "findOrInsertEventID -- database inconsistency")
+                event.location!.id = eventDict[DBLabels.placeID]
                 return true
             }
         } catch {
             throw error
         }
         
-        
+        // New event then insert Event ID and Location ID
+        print("NOT IN DATABASE")
+        event.id = eventDict[DBLabels.eventID]
+        event.location?.id = eventDict[DBLabels.placeID]
         return false
     }
     
+    // Find insert
     
+    
+    
+    
+    // Fields name from the Server Database Columns
+    private struct DBLabels {
+        static let eventID = "event_id"
+        static let placeID = "place_id"
+        static let responseKey = "eventPlaceIDs"
+    }
 }
 
 
