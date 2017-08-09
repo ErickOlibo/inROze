@@ -37,12 +37,7 @@ class EventViewController: UIViewController {
         collectionView.backgroundColor = .black
         let stickyLayout = collectionView.collectionViewLayout as! StickyCollectionViewFlowLayout
         stickyLayout.firstItemTransform = zoomOutFirstItemTransform
-        
-        // Notification center
-        NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NSNotification.Name(rawValue: dataModelDidUpdateNotification), object: nil)
-        
-        
-        
+
         // MUST BE SOMEWHERE ELSE NOT THE MAIN QUEUE
         if let userID = AccessToken.current?.userId {
             // Load eventIDs from Server
@@ -56,9 +51,9 @@ class EventViewController: UIViewController {
     }
     
     @objc private func updateData() {
-        print("In UpdateData ??")
-        print(resultServer)
-        print("Update shit")
+        //print("In UpdateData ??")
+        //print(resultServer)
+        //print("Update shit")
         
         
     }
@@ -66,14 +61,15 @@ class EventViewController: UIViewController {
     // Start Notification listener when view on screen
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         // Notification center
-        NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NSNotification.Name(rawValue: dataModelDidUpdateNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NSNotification.Name(rawValue: NotificationFor.eventIDsDidUpdate), object: nil)
     }
     
     // Stop Notification listener when view leaves the screen
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: dataModelDidUpdateNotification), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationFor.eventIDsDidUpdate), object: nil)
     }
     
     

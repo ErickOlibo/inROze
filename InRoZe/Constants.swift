@@ -85,7 +85,10 @@ public struct UrlFor {
     static let currentEventsID = "https://www.defkut.com/inroze/ServerRoze/currentEvents.php";
 }
 
-
+// Notification center channel names
+public struct NotificationFor {
+    static let eventIDsDidUpdate = "eventIDsDidUpdate"
+}
 
 
 // HELPERS Functions and Extensions
