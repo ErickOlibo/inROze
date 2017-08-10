@@ -90,6 +90,14 @@ public struct NotificationFor {
     static let eventIDsDidUpdate = "eventIDsDidUpdate"
 }
 
+// Fields name from the Server Database Columns
+public struct DBLabels {
+    static let eventID = "event_id"
+    static let placeID = "place_id"
+    static let responseKey = "eventPlaceIDs"
+}
+
+
 
 // HELPERS Functions and Extensions
 

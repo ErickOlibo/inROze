@@ -69,108 +69,67 @@ public class ServerRequest
             updateDatabase(with: result!)
             resultServer = result!
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.eventIDsDidUpdate), object: nil)
-            
-            // Insert and Update CoreData with result
         }
-        
     }
     
     private func updateDatabase(with eventIDs: [String : Any]) {
+        print("Starting update Database")
         container.performBackgroundTask { context in
-            print("updateDatabase")
             for (key, value) in eventIDs {
                 if (key == DBLabels.responseKey),
                     let events = value as? [Any],
                     let _ = events.first as? [String : String] {
                     for event in events {
                         if let eventDict = event as? [String : String] {
-                            print("eventDict")
-                            
-                            
-                            // find or insert eventID
+                            print("eventDict EXIST")
                             do {
-                                print("try find or insert")
-                                _ = try self.findOrInsertEventID(matching: eventDict, in: context)
+                                _ = try Event.findOrInsertEventID(matching: eventDict, in: context)
                             } catch {
                                 print(error)
                             }
-                            
-                            // Save in CoreDatabase
-                            do {
-                                try context.save()
-                            } catch {
-                                print("Error trying to save in CareData: \(error)")
-                            }
                         }
                     }
-                   self.printDatabaseStatistics()
+                    // Save in CoreDatabase
+                    do {
+                        print("TRYING to SAVE")
+                        try context.save()
+                    } catch {
+                        print("Error trying to save in CoreData: \(error)")
+                    }
+                    print("ABOVE STATS")
+                    self.printDatabaseStatistics()
                 }
             }
         }
-        
     }
     
     
     private func printDatabaseStatistics() {
         print("printdata Stats")
-        // Check if main thread
-        if Thread.isMainThread {
-            print("on main thread")
-        } else {
-            print("off main thread")
-        }
-        let request: NSFetchRequest<Event> = Event.fetchRequest()
-        if let eventsCount = (try? context.fetch(request))?.count {
-            print("\(eventsCount) events IDs")
-        }
-        // Better wat to count number of element in entity
-        if let placesCount = try? context.count(for: Place.fetchRequest()) {
-            print("\(placesCount) Places IDs")
-        }
         
-    }
-    
-    
-    // Find or insert an eventID and return true if eventID already
-    // in database
-    private func findOrInsertEventID(matching eventDict: [String : String], in context: NSManagedObjectContext) throws -> Bool {
-        print("find or insert")
-        let request: NSFetchRequest<Event> = Event.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %@", eventDict[DBLabels.eventID]!)
-        let event = Event(context: context)
-        
-        do {
-            
-            let match = try context.fetch(request)
-            if match.count > 0 {
-                // Event already in Database then update location ID
-                print("ALREADY IN DATABASE")
-                assert(match.count == 1, "findOrInsertEventID -- database inconsistency")
-                event.location!.id = eventDict[DBLabels.placeID]
-                return true
+        let context = container.viewContext
+        // THREAD SAFETY
+        // makes sure the block is executed on the right thread for the context
+        context.perform {
+            // Check if main thread
+            if Thread.isMainThread {
+                print("on main thread")
+            } else {
+                print("off main thread")
             }
-        } catch {
-            throw error
+            let request: NSFetchRequest<Event> = Event.fetchRequest()
+            if let eventsCount = (try? context.fetch(request))?.count {
+                print("\(eventsCount) events IDs")
+            }
+            // Better wat to count number of element in entity
+            if let placesCount = try? context.count(for: Place.fetchRequest()) {
+                print("\(placesCount) Places IDs")
+            }
         }
         
-        // New event then insert Event ID and Location ID
-        print("NOT IN DATABASE")
-        event.id = eventDict[DBLabels.eventID]
-        event.location?.id = eventDict[DBLabels.placeID]
-        return false
+        
     }
-    
-    // Find insert
-    
-    
-    
-    
-    // Fields name from the Server Database Columns
-    private struct DBLabels {
-        static let eventID = "event_id"
-        static let placeID = "place_id"
-        static let responseKey = "eventPlaceIDs"
-    }
+
 }
 
 
