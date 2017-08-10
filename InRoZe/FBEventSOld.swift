@@ -1,5 +1,5 @@
 //
-//  FBEventS.swift
+//  FBEventSOld.swift
 //  InRoZe
 //
 //  Created by Erick Olibo on 29/07/2017.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-public struct FBEventS: CustomStringConvertible {
-    public var events: [FBEvent]
+public struct FBEventSOld: CustomStringConvertible {
+    public var events: [FBEventOld]
     public var description: String {return "size: \(events.count) and location: \(events[0])"}
     
     init(size: Int) {
-        events = [FBEvent]()
+        events = [FBEventOld]()
         for _ in 0..<size {
-            let event = FBEvent()
+            let event = FBEventOld()
             events.append(event)
         }
         

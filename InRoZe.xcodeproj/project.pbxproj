@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		297B48270458BA2567535BBB /* Pods_InRoZe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 025DA5AD4652E67328D77902 /* Pods_InRoZe.framework */; };
-		A70F25DB1F2C87A40048D060 /* FBEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70F25DA1F2C87A40048D060 /* FBEvent.swift */; };
-		A70F25DD1F2C8B2F0048D060 /* FBEventS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70F25DC1F2C8B2F0048D060 /* FBEventS.swift */; };
+		A70F25DB1F2C87A40048D060 /* FBEventOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70F25DA1F2C87A40048D060 /* FBEventOld.swift */; };
+		A70F25DD1F2C8B2F0048D060 /* FBEventSOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70F25DC1F2C8B2F0048D060 /* FBEventSOld.swift */; };
 		A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C7C811F2A55C400A0D5A8 /* UIImageColors.swift */; };
 		A72B792E1F2231AF009FB389 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72B792D1F2231AF009FB389 /* AppDelegate.swift */; };
 		A72B79301F2231AF009FB389 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72B792F1F2231AF009FB389 /* FavoriteViewController.swift */; };
@@ -41,8 +41,8 @@
 /* Begin PBXFileReference section */
 		025DA5AD4652E67328D77902 /* Pods_InRoZe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InRoZe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		434049AE2BF497F26E4FEE54 /* Pods-InRoZe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InRoZe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InRoZe/Pods-InRoZe.debug.xcconfig"; sourceTree = "<group>"; };
-		A70F25DA1F2C87A40048D060 /* FBEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBEvent.swift; sourceTree = "<group>"; };
-		A70F25DC1F2C8B2F0048D060 /* FBEventS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBEventS.swift; sourceTree = "<group>"; };
+		A70F25DA1F2C87A40048D060 /* FBEventOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBEventOld.swift; sourceTree = "<group>"; };
+		A70F25DC1F2C8B2F0048D060 /* FBEventSOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBEventSOld.swift; sourceTree = "<group>"; };
 		A71C7C811F2A55C400A0D5A8 /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
 		A72B792A1F2231AF009FB389 /* InRoZe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InRoZe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72B792D1F2231AF009FB389 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -141,8 +141,6 @@
 				A776760A1F26B9F600F1FA52 /* SettingsViewController.swift */,
 				A77676041F26B9B200F1FA52 /* EventViewController.swift */,
 				A77676151F27C52F00F1FA52 /* EventCollectionViewCell.swift */,
-				A70F25DC1F2C8B2F0048D060 /* FBEventS.swift */,
-				A70F25DA1F2C87A40048D060 /* FBEvent.swift */,
 				A7A24D511F3C405C00EFB82E /* Core Data */,
 				A7EC36631F3387FD00548C11 /* Facebook */,
 				A77676121F26BF3100F1FA52 /* Helpers */,
@@ -161,6 +159,17 @@
 				A72B793C1F2231AF009FB389 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A775C3B01F3C710D00A3449F /* FilesToDelete */ = {
+			isa = PBXGroup;
+			children = (
+				A70F25DC1F2C8B2F0048D060 /* FBEventSOld.swift */,
+				A70F25DA1F2C87A40048D060 /* FBEventOld.swift */,
+				A7EC365F1F3387C200548C11 /* EventOld.swift */,
+				A7EC36611F3387DA00548C11 /* PlaceOld.swift */,
+			);
+			name = FilesToDelete;
 			sourceTree = "<group>";
 		};
 		A776760E1F26BE8A00F1FA52 /* Source */ = {
@@ -207,8 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */,
-				A7EC365F1F3387C200548C11 /* EventOld.swift */,
-				A7EC36611F3387DA00548C11 /* PlaceOld.swift */,
+				A775C3B01F3C710D00A3449F /* FilesToDelete */,
 			);
 			name = Facebook;
 			sourceTree = "<group>";
@@ -359,7 +367,7 @@
 				A77676181F28CCE400F1FA52 /* Constants.swift in Sources */,
 				A77676161F27C52F00F1FA52 /* EventCollectionViewCell.swift in Sources */,
 				A7A24D501F3B655E00EFB82E /* Place.swift in Sources */,
-				A70F25DD1F2C8B2F0048D060 /* FBEventS.swift in Sources */,
+				A70F25DD1F2C8B2F0048D060 /* FBEventSOld.swift in Sources */,
 				A7EC36851F36553B00548C11 /* LoginViewController.swift in Sources */,
 				A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */,
 				A77676051F26B9B200F1FA52 /* EventViewController.swift in Sources */,
@@ -370,7 +378,7 @@
 				A7EC36601F3387C200548C11 /* EventOld.swift in Sources */,
 				A7EC36621F3387DA00548C11 /* PlaceOld.swift in Sources */,
 				A776761A1F28E1E000F1FA52 /* FacebookEvents.swift in Sources */,
-				A70F25DB1F2C87A40048D060 /* FBEvent.swift in Sources */,
+				A70F25DB1F2C87A40048D060 /* FBEventOld.swift in Sources */,
 				A77676091F26B9E800F1FA52 /* ProfileViewController.swift in Sources */,
 				A7A24D4A1F390B6600EFB82E /* RozeLink.swift in Sources */,
 				A776760D1F26BE8200F1FA52 /* StickyCollectionViewFlowLayout.swift in Sources */,

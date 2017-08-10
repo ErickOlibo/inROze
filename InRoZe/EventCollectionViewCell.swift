@@ -12,7 +12,7 @@ class EventCollectionViewCell: UICollectionViewCell {
     
 
     // The FacebookEvent struct
-    var eventCell: FBEvent! {
+    var eventCell: FBEventOld! {
         didSet {
             //clear()
             placeHolder(isTrue: true)

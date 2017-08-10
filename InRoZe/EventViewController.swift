@@ -26,7 +26,7 @@ class EventViewController: UIViewController
     let zoomOutFirstItemTransform: CGFloat = 0.1
     
     // Get Events
-    var fbEvents = FBEventS(size: 100)
+    var fbEvents = FBEventSOld(size: 100)
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent

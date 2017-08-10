@@ -1,5 +1,5 @@
 //
-//  FBEvent.swift
+//  FBEventOld.swift
 //  InRoZe
 //
 //  Created by Erick Olibo on 29/07/2017.
@@ -10,7 +10,7 @@ import Foundation
 
 // container to hold data about a Facebook Event
 
-public struct FBEvent: CustomStringConvertible {
+public struct FBEventOld: CustomStringConvertible {
     
     public let name: String
     public let cover: String
