@@ -11,7 +11,6 @@ import CoreData
 
 class Place: NSManagedObject
 {
-
     // Find or insert eventID to the Database
     // update placeID if eventID already present
     class func findOrInsertPlaceID(matching eventDict: [String : String], in context: NSManagedObjectContext) throws -> Place
@@ -36,7 +35,5 @@ class Place: NSManagedObject
         place.id = eventDict[DBLabels.placeID]
         return place
     }
-    
-    
-    
 }
+

@@ -9,10 +9,12 @@
 import Foundation
 import CoreData
 
-
-// GLOBAL var are a bad idea I think (to verify)
-// should just let this for the moment
-var resultServer = [String : Any]()
+/* This class sync the log in status (true/false) of the user
+ * and fetch the latest list of (EventIDs - PlaceIds)
+ * from the Server. 
+ * The contry specific fecth STILL TO IMPLEMENT
+ *
+ */
 
 public class ServerRequest
 {
@@ -48,26 +50,21 @@ public class ServerRequest
                 if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                     
                     if (isEventFetch) {
-                        print("EventID Fetch JSON Result")
                         self.result = json
                     } else {
-                        print("Log IN OUT JSON Result")
                         print(json)
                     }
                 }
             } catch let error {
-                print("Error in URL Session: ")
-                print(error.localizedDescription)
+                print("Error in URL Seesion: \(error.localizedDescription)")
             }
         }
         task.resume()
-        //return result
     }
     
     var result: [String : Any]? {
         didSet {
             updateDatabase(with: result!)
-            resultServer = result!
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.eventIDsDidUpdate), object: nil)
         }
     }
@@ -121,7 +118,7 @@ public class ServerRequest
             if let eventsCount = (try? context.fetch(request))?.count {
                 print("\(eventsCount) events IDs")
             }
-            // Better wat to count number of element in entity
+            // Better way to count number of element in entity (CoreData)
             if let placesCount = try? context.count(for: Place.fetchRequest()) {
                 print("\(placesCount) Places IDs")
             }

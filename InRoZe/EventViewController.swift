@@ -10,7 +10,8 @@ import UIKit
 import FacebookCore
 import FBSDKCoreKit
 
-class EventViewController: UIViewController {
+class EventViewController: UIViewController
+{
     
     
     @IBOutlet weak var currentDate: UILabel!
@@ -45,17 +46,12 @@ class EventViewController: UIViewController {
             let request = ServerRequest()
             request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
             print(params)
-
         }
-        
     }
     
     @objc private func updateData() {
-        //print("In UpdateData ??")
-        //print(resultServer)
-        //print("Update shit")
-        
-        
+        // Getting notified when CoreData changes
+        // right now sets on load from server changes
     }
 
     // Start Notification listener when view on screen
@@ -71,14 +67,10 @@ class EventViewController: UIViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationFor.eventIDsDidUpdate), object: nil)
     }
-    
-    
-    
 }
 
-
-
-extension EventViewController: UICollectionViewDataSource {
+extension EventViewController: UICollectionViewDataSource
+{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return fbEvents.events.count
@@ -114,7 +106,8 @@ extension EventViewController: UICollectionViewDataSource {
 }
 
 
-extension EventViewController: UICollectionViewDelegateFlowLayout {
+extension EventViewController: UICollectionViewDelegateFlowLayout
+{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.bounds.width, height: collectionView.bounds.width * (9 / 16) + cellHeightOffset)
