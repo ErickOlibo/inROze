@@ -54,23 +54,3 @@ public struct RozeLink {
     }
 }
 
-extension RozeLink {
-    
-    struct Url {
-        static let logInOut = "https://www.defkut.com/inroze/ServerRoze/users.php";
-        static let currentEventsID = "https://www.defkut.com/inroze/ServerRoze/currentEvents.php";
-    }
-    
-
-    
-    
-    
-}
-
-
-
-
-
-
-
-

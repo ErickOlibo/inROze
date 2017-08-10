@@ -13,7 +13,7 @@ import Foundation
  */
 
 // Event convenience struct keys for string label from Facebook fetch
-public struct FBevent {
+public struct FBEvent {
     static let id = "id"                    // (Type: numeric string)
     static let cover = "cover"              // (Type: CoverPhoto)
     static let descript = "description"     // (Type: string)
@@ -26,7 +26,7 @@ public struct FBevent {
 
 
 // Place convenience struct label for string label from Fecebook fetch
-public struct FBplace {
+public struct FBPlace {
     static let id = "id"
     static let name = "name"
     static let city = "city"
@@ -38,7 +38,7 @@ public struct FBplace {
 }
 
 
-public struct FBcoverPhoto {
+public struct FBCoverPhoto {
     static let id = "id" // (Type: numeric string)
     static let source = "source" // (Type: string - direct URL)
 }

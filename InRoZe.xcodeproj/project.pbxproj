@@ -164,6 +164,8 @@
 		A775C3B01F3C710D00A3449F /* FilesToDelete */ = {
 			isa = PBXGroup;
 			children = (
+				A7A24D491F390B6600EFB82E /* RozeLink.swift */,
+				A77676191F28E1E000F1FA52 /* FacebookEvents.swift */,
 				A70F25DC1F2C8B2F0048D060 /* FBEventSOld.swift */,
 				A70F25DA1F2C87A40048D060 /* FBEventOld.swift */,
 				A7EC365F1F3387C200548C11 /* EventOld.swift */,
@@ -193,8 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				A78979F31F3C687C00467AA6 /* FacebookKeyStringConvenience.swift */,
-				A7A24D491F390B6600EFB82E /* RozeLink.swift */,
-				A77676191F28E1E000F1FA52 /* FacebookEvents.swift */,
 				A77676171F28CCE400F1FA52 /* Constants.swift */,
 				A77676131F26D49E00F1FA52 /* UIColorExtensions.swift */,
 			);

@@ -78,7 +78,6 @@ public class ServerRequest
                     let _ = events.first as? [String : String] {
                     for event in events {
                         if let eventDict = event as? [String : String] {
-                            print("eventDict EXIST")
                             do {
                                 _ = try Event.findOrInsertEventID(matching: eventDict, in: context)
                             } catch {
