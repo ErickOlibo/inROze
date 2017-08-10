@@ -49,7 +49,8 @@ class LoginViewController: UIViewController {
     // Call FB SDK GraphRequest and fetch user info
     private func requestUserInfo() {
         print("Inside request User")
-        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields" : "email, name, id, gender, cover"])
+        let params = [FBUser.email, FBUser.name, FBUser.id, FBUser.gender, FBUser.cover].joined(separator: ", ")
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields" : params])
             .start(completionHandler:  { (connection, result, error) in
                 if let result = result as? NSDictionary{
                     self.saveCurrentUserProfile(result)
@@ -59,13 +60,13 @@ class LoginViewController: UIViewController {
     
     // Save user info into the Server
     private func saveCurrentUserProfile(_ result: NSDictionary) {
-        if let id = result["id"]  as? String,
-            let name = result["name"] as? String {
+        if let id = result[FBUser.id]  as? String,
+            let name = result[FBUser.name] as? String {
             
             if let _ = AccessToken.current {
                 // Get some info about User
-                let email = result["email"] as? String? ?? ""
-                let gender = result["gender"] as? String? ?? "Neutral"
+                let email = result[FBUser.email] as? String? ?? ""
+                let gender = result[FBUser.gender] as? String? ?? "Neutral"
                 
                 // Going to the network -> MOVE FROM MAIN QUEUE
                 let parameters = "id=\(id)&name=\(name)&email=\(email!)&gender=\(gender!)"

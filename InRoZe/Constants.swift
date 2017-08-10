@@ -79,25 +79,7 @@ public struct Constants {
     
 }
 
-// URLs to connect to the Server
-public struct UrlFor {
-    static let logInOut = "https://www.defkut.com/inroze/ServerRoze/users.php";
-    static let currentEventsID = "https://www.defkut.com/inroze/ServerRoze/currentEvents.php";
-}
 
-// Notification center channel names
-public struct NotificationFor {
-    static let eventIDsDidUpdate = "eventIDsDidUpdate"
-}
-
-// Fields name from the Server Database Columns
-public struct DBLabels {
-    static let eventID = "event_id"
-    static let placeID = "place_id"
-    static let responseKey = "eventPlaceIDs"
-}
-
-// 
 
 
 

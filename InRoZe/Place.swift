@@ -22,7 +22,6 @@ class Place: NSManagedObject
             
             let match = try context.fetch(request)
             if match.count > 0 {
-                print("MATCH Place) --> findOrInsertPlaceID")
                 assert(match.count == 1, "findOrInsertEventID -- database inconsistency")
                 return match[0]
             }
@@ -30,7 +29,6 @@ class Place: NSManagedObject
             throw error
         }
         
-        print("NEW Place) --> findOrInsertPlaceID")
         let place = Place(context: context)
         place.id = eventDict[DBLabels.placeID]
         return place

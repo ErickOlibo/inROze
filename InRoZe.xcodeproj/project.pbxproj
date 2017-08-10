@@ -17,6 +17,8 @@
 		A72B79361F2231AF009FB389 /* InRoZe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A72B79341F2231AF009FB389 /* InRoZe.xcdatamodeld */; };
 		A72B79381F2231AF009FB389 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A72B79371F2231AF009FB389 /* Assets.xcassets */; };
 		A72B793B1F2231AF009FB389 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72B79391F2231AF009FB389 /* LaunchScreen.storyboard */; };
+		A775C3B21F3C7F8B00A3449F /* ServerKeyStringConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B11F3C7F8B00A3449F /* ServerKeyStringConvenience.swift */; };
+		A775C3B41F3C7FA100A3449F /* NotificationKeyStringConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B31F3C7FA100A3449F /* NotificationKeyStringConvenience.swift */; };
 		A77676051F26B9B200F1FA52 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676041F26B9B200F1FA52 /* EventViewController.swift */; };
 		A77676071F26B9DB00F1FA52 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676061F26B9DB00F1FA52 /* SearchViewController.swift */; };
 		A77676091F26B9E800F1FA52 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676081F26B9E800F1FA52 /* ProfileViewController.swift */; };
@@ -52,6 +54,8 @@
 		A72B79371F2231AF009FB389 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A72B793A1F2231AF009FB389 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A72B793C1F2231AF009FB389 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A775C3B11F3C7F8B00A3449F /* ServerKeyStringConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerKeyStringConvenience.swift; sourceTree = "<group>"; };
+		A775C3B31F3C7FA100A3449F /* NotificationKeyStringConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKeyStringConvenience.swift; sourceTree = "<group>"; };
 		A77676041F26B9B200F1FA52 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		A77676061F26B9DB00F1FA52 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A77676081F26B9E800F1FA52 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 			isa = PBXGroup;
 			children = (
 				A78979F31F3C687C00467AA6 /* FacebookKeyStringConvenience.swift */,
+				A775C3B11F3C7F8B00A3449F /* ServerKeyStringConvenience.swift */,
+				A775C3B31F3C7FA100A3449F /* NotificationKeyStringConvenience.swift */,
 				A77676171F28CCE400F1FA52 /* Constants.swift */,
 				A77676131F26D49E00F1FA52 /* UIColorExtensions.swift */,
 			);
@@ -374,9 +380,11 @@
 				A72B79301F2231AF009FB389 /* FavoriteViewController.swift in Sources */,
 				A7A24D4E1F3B653C00EFB82E /* Event.swift in Sources */,
 				A7EC36871F365AA900548C11 /* TabBarViewController.swift in Sources */,
+				A775C3B41F3C7FA100A3449F /* NotificationKeyStringConvenience.swift in Sources */,
 				A72B79361F2231AF009FB389 /* InRoZe.xcdatamodeld in Sources */,
 				A7EC36601F3387C200548C11 /* EventOld.swift in Sources */,
 				A7EC36621F3387DA00548C11 /* PlaceOld.swift in Sources */,
+				A775C3B21F3C7F8B00A3449F /* ServerKeyStringConvenience.swift in Sources */,
 				A776761A1F28E1E000F1FA52 /* FacebookEvents.swift in Sources */,
 				A70F25DB1F2C87A40048D060 /* FBEventOld.swift in Sources */,
 				A77676091F26B9E800F1FA52 /* ProfileViewController.swift in Sources */,

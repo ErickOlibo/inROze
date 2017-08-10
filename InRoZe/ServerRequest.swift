@@ -87,12 +87,10 @@ public class ServerRequest
                     }
                     // Save in CoreDatabase
                     do {
-                        print("TRYING to SAVE")
                         try context.save()
                     } catch {
                         print("Error trying to save in CoreData: \(error)")
                     }
-                    print("ABOVE STATS")
                     self.printDatabaseStatistics()
                 }
             }
@@ -101,11 +99,11 @@ public class ServerRequest
     
     
     private func printDatabaseStatistics() {
-        print("printdata Stats")
+        print("print data Stats")
         
         let context = container.viewContext
         // THREAD SAFETY
-        // makes sure the block is executed on the right thread for the context
+        // context.perform makes sure the block is executed on the right thread for the context
         context.perform {
             // Check if main thread
             if Thread.isMainThread {

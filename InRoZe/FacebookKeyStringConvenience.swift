@@ -12,7 +12,6 @@ import Foundation
  * Graph API. if labels are changing then update these structs
  */
 
-// Event convenience struct keys for string label from Facebook fetch
 public struct FBEvent {
     static let id = "id"                    // (Type: numeric string)
     static let cover = "cover"              // (Type: CoverPhoto)
@@ -25,25 +24,37 @@ public struct FBEvent {
 }
 
 
-// Place convenience struct label for string label from Fecebook fetch
 public struct FBPlace {
-    static let id = "id"
-    static let name = "name"
-    static let city = "city"
-    static let country = "country"
-    static let countryCode = "country_code"
-    static let latitude = "latitude"
-    static let longitude = "longitude"
-    static let street = "street"
+    static let id = "id"                    // (Type: numeric string)
+    static let location = "location"        // (Type: Location)
+    static let name = "name"                // (Type: string)
+
 }
 
 
 public struct FBCoverPhoto {
-    static let id = "id" // (Type: numeric string)
-    static let source = "source" // (Type: string - direct URL)
+    static let id = "id"                    // (Type: numeric string)
+    static let source = "source"            // (Type: string - direct URL)
 }
 
 
-public struct FBlocation {
-    
+public struct FBLocation {
+    static let city = "city"                // (Type: string)
+    static let country = "country"          // (Type: string)
+    static let countryCode = "country_code" // (Type: string)
+    static let latitude = "latitude"        // (Type: float)
+    static let longitude = "longitude"      // (Type: float)
+    static let street = "street"            // (Type: string)
+    static let zip = "zip"                  // (Type: string)
+}
+
+
+public struct FBUser {
+    static let id = "id"                    // (Type: numeric string)
+    static let email = "email"              // (Type: string)
+    static let firstName = "first_name"     // (Type: string)
+    static let lastName = "last_name"       // (Type: string)
+    static let name = "name"                // (Type: string)
+    static let gender = "gender"            // (Type: string)
+    static let cover = "cover"              // (Type: CoverPhoto)
 }
