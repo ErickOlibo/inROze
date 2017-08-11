@@ -19,6 +19,7 @@
 		A72B793B1F2231AF009FB389 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72B79391F2231AF009FB389 /* LaunchScreen.storyboard */; };
 		A775C3B21F3C7F8B00A3449F /* ServerKeyStringConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B11F3C7F8B00A3449F /* ServerKeyStringConvenience.swift */; };
 		A775C3B41F3C7FA100A3449F /* NotificationKeyStringConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B31F3C7FA100A3449F /* NotificationKeyStringConvenience.swift */; };
+		A775C3B61F3CC0CC00A3449F /* FacebookRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */; };
 		A77676051F26B9B200F1FA52 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676041F26B9B200F1FA52 /* EventViewController.swift */; };
 		A77676071F26B9DB00F1FA52 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676061F26B9DB00F1FA52 /* SearchViewController.swift */; };
 		A77676091F26B9E800F1FA52 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676081F26B9E800F1FA52 /* ProfileViewController.swift */; };
@@ -56,6 +57,7 @@
 		A72B793C1F2231AF009FB389 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A775C3B11F3C7F8B00A3449F /* ServerKeyStringConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerKeyStringConvenience.swift; sourceTree = "<group>"; };
 		A775C3B31F3C7FA100A3449F /* NotificationKeyStringConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKeyStringConvenience.swift; sourceTree = "<group>"; };
+		A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookRequest.swift; sourceTree = "<group>"; };
 		A77676041F26B9B200F1FA52 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		A77676061F26B9DB00F1FA52 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A77676081F26B9E800F1FA52 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 		A72B792C1F2231AF009FB389 /* InRoZe */ = {
 			isa = PBXGroup;
 			children = (
+				A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */,
 				A72B79311F2231AF009FB389 /* Main.storyboard */,
 				A7EC36861F365AA900548C11 /* TabBarViewController.swift */,
 				A7EC36841F36553B00548C11 /* LoginViewController.swift */,
@@ -372,6 +375,7 @@
 				A77676071F26B9DB00F1FA52 /* SearchViewController.swift in Sources */,
 				A77676181F28CCE400F1FA52 /* Constants.swift in Sources */,
 				A77676161F27C52F00F1FA52 /* EventCollectionViewCell.swift in Sources */,
+				A775C3B61F3CC0CC00A3449F /* FacebookRequest.swift in Sources */,
 				A7A24D501F3B655E00EFB82E /* Place.swift in Sources */,
 				A70F25DD1F2C8B2F0048D060 /* FBEventSOld.swift in Sources */,
 				A7EC36851F36553B00548C11 /* LoginViewController.swift in Sources */,

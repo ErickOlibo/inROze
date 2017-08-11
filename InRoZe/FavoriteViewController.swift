@@ -19,6 +19,15 @@ class FavoriteViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("Favorite")
+        let request = FacebookRequest()
+        let ids = request.sampleEvents
+        let param = request.param
+        _ = request.requestEventsInfo(with: ids, parameters: param)
+        
+    }
  
 
 }

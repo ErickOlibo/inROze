@@ -21,6 +21,8 @@ public struct FBEvent {
     static let place = "place"              // (Type: Place)
     static let startTime = "start_time"     // (Type: datetime string)
     static let updatedTime = "updated_time" // (Type: datetime string)
+    static let placeDeep = "place.fields(name, id, location)"
+    static let coverDeep = "cover.fields(id, source)"
 }
 
 
