@@ -38,20 +38,36 @@ public class FacebookRequest
     let param = [FBEvent.id, FBEvent.name, FBEvent.startTime, FBEvent.endTime, FBEvent.updatedTime,
                  FBEvent.cover, FBEvent.place, FBEvent.descript]
     
+
     
-    // Call Facebook Graph API
-    func requestCurrentEventsInfo(with idsArray: [String], parameters: [String]) {
-        let eventIDsString = idsArray.joined(separator: ",")
-        let params = parameters.joined(separator: ", ")
-        print(eventIDsString)
-        print(params)
+    // Recursive Fabeook GraphRequest using batchSize
+    func recursiveGraphRequest(array: [String], parameters: [String], batchSize: Int) {
         
-        // Background with Completion check for MEMORY CYCLE with [weak self]
-        FBSDKGraphRequest(graphPath: "/?ids=\(eventIDsString)", parameters: ["fields" : params])
+        var arrayVar = array // array to send in the recursion
+        var subArray: [String]
+        var batch = batchSize
+        if (array.count < batchSize) {
+            batch = array.count
+        }
+        
+        subArray = Array(array[0 ..< batch]) // copying a new array of batchSize
+        let idsString = subArray.joined(separator: ",")
+        let params = parameters.joined(separator: ",")
+        arrayVar = Array(Set(arrayVar).subtracting(Set(subArray)))
+        
+        // information
+        print("array Size: \(array.count) | batchSize: \(batchSize) | batch: \(batch) | subArray: \(subArray.count)")
+
+        FBSDKGraphRequest(graphPath: "/?ids=\(idsString)", parameters: ["fields" : params])
             .start(completionHandler:  { (connection, result, error) in
                 if error == nil,  let result = result as? NSDictionary{
-                    //print(result)
                     self.updateEventDatabase(with: result)
+                    if (arrayVar.count > 0) {
+                        print("Size Of ArrayVar: \(arrayVar.count)")
+                        self.recursiveGraphRequest(array: arrayVar, parameters: parameters, batchSize: batchSize)
+                    }
+                    
+                    
                 } else {
                     print("there an error: \(String(describing: error))")
                 }
