@@ -138,7 +138,6 @@
 		A72B792C1F2231AF009FB389 /* InRoZe */ = {
 			isa = PBXGroup;
 			children = (
-				A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */,
 				A72B79311F2231AF009FB389 /* Main.storyboard */,
 				A7EC36861F365AA900548C11 /* TabBarViewController.swift */,
 				A7EC36841F36553B00548C11 /* LoginViewController.swift */,
@@ -213,6 +212,7 @@
 		A7A24D511F3C405C00EFB82E /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */,
 				A7A24D4D1F3B653C00EFB82E /* Event.swift */,
 				A7A24D4F1F3B655E00EFB82E /* Place.swift */,
 				A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */,

@@ -11,6 +11,17 @@ import UIKit
 
 public struct Constants {
     
+    
+    // Possible slogan for InRoZe
+    struct Slogan {
+        static let one = "La Nuit En Roze!"
+        static let two = "La Vie En Roze!"
+        static let three = "Follow The Music"
+        static let four = "Follow Your Music"
+        static let five = "La Nuit En Roze, Follow Your Music!"
+        static let six = "La Nuit En Roze, Follow The Music!"
+    }
+    
     // Inroze 9 + 2 colors (HEX string color)
     struct InrozeHexColor {
         

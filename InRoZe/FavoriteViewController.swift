@@ -22,9 +22,27 @@ class FavoriteViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("Favorite")
+        let request = FacebookRequest()
         
-        //_ = FacebookRequest().requestCurrentEventsInfo(from: "TLN")
-        _ = FacebookRequest().printEventIDsFromCoreData()
+        //TRY
+        //_ = request.requestCurrentEventsInfo(with: request.sampleEvents, parameters: request.tmpParam)
+        
+        
+        // slicing and fetching
+        let array = request.sampleEvents
+        var fIdx = 0
+        let bSize = 2
+        while fIdx < array.count {
+            var batch = bSize
+            if (array.count - fIdx < bSize) {
+                batch = array.count - fIdx
+            }
+            let currentArray = Array(array[fIdx ..< fIdx + batch])
+            _ = request.requestCurrentEventsInfo(with: currentArray, parameters: request.tmpParam)
+            fIdx += bSize
+        }
+        
+
         
     }
  
