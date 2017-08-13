@@ -24,9 +24,11 @@ public class FacebookRequest
     let container = AppDelegate.persistentContainer
 
     // Array of EventIDs from the database
+    let batchSize = 20 // Check the limit with facebook 
+    
     var eventIDsArray = [String]() {
         didSet {
-            printSlicedArray(with: eventIDsArray, firstIndex: 0, batchSize: 10)
+            //recursiveGraphRequest(array: eventIDsArray, parameters: tmpParam, batchSize: batchSize)
         }
     }
     
@@ -56,79 +58,69 @@ public class FacebookRequest
         arrayVar = Array(Set(arrayVar).subtracting(Set(subArray)))
         
         // information
-        print("array Size: \(array.count) | batchSize: \(batchSize) | batch: \(batch) | subArray: \(subArray.count)")
+        //print("array Size: \(array.count) | batchSize: \(batchSize) | batch: \(batch) | subArray: \(subArray.count)")
 
         FBSDKGraphRequest(graphPath: "/?ids=\(idsString)", parameters: ["fields" : params])
             .start(completionHandler:  { (connection, result, error) in
-                if error == nil,  let result = result as? NSDictionary{
+                if error == nil,  let result = result as? [String : Any]{
                     self.updateEventDatabase(with: result)
                     if (arrayVar.count > 0) {
-                        print("Size Of ArrayVar: \(arrayVar.count)")
+                        //print("Size Of ArrayVar: \(arrayVar.count)")
                         self.recursiveGraphRequest(array: arrayVar, parameters: parameters, batchSize: batchSize)
                     }
-                    
-                    
                 } else {
                     print("there an error: \(String(describing: error))")
                 }
             })
     }
     
-    
     // insert response from FaceBook events to CoreData 
-    private func updateEventDatabase(with result: NSDictionary) {
-        print("updating Event Database")
-        print(result)
+    private func updateEventDatabase(with result: [String : Any]) {
+        
+            //print("updating Event Database")
+            let context = container.viewContext
+            context.perform {
+                let request: NSFetchRequest<Event> = Event.fetchRequest()
+                do {
+                    for resID in result {
+                        request.predicate = NSPredicate(format: "id = %@", resID.key)
+                        let match = try context.fetch(request)
+                        if match.count > 0 {
+                            assert(match.count == 1, "Inconsistency: unique event identifier, dublicate")
+                            print("Core match: \(match[0].id!)")
+                        }
+                        
+                        print(resID)
+                    }
+                    
+                } catch {
+                    print("\(error)")
+                }
+                
+            }
     }
-    
-    
     
     func collectEventIDsFromCoreData() {
         let context = container.viewContext
         context.perform {
             let request: NSFetchRequest<Event> = Event.fetchRequest()
+            
             if let events = try? context.fetch(request) {
                 var eventCount = 1
                 var eventIDsArr = [String]()
                 for event in events as [Event] {
-                    
+                    // (CONDITIONS) add conditions for the updatedTime and endTime
                     if let eventStr = event.id {
-                        print("\(eventCount)) \(eventStr)")
+                        //print("\(eventCount)) \(eventStr)")
                         eventIDsArr.append(eventStr)
-                        
                     }
                     eventCount += 1
-                    
                 }
                 self.eventIDsArray = eventIDsArr
             }
         }
     }
-    
-    
-    // print sliced Array
-    private func printSlicedArray(with array: [String], firstIndex: Int, batchSize: Int) {
-        var currentIndex = firstIndex
-        while currentIndex < array.count {
-            var bSize = batchSize
-            if (array.count - currentIndex < batchSize) {
-                bSize = array.count - currentIndex
-            }
-            let currentSlice = Array(array[currentIndex ..< currentIndex + bSize])
-            print(currentSlice)
-            currentIndex += bSize
-        }
-        
-    }
-    
-    
-    
-    // saves EventIDs reponse to Core data
-    private func saveEventIDs(_ result: NSDictionary) {
-        
-        
-    }
-    
+
     
     // Clear core data of events end_time older than NOW
     

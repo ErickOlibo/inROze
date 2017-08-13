@@ -97,6 +97,9 @@ public struct Constants {
 
 // HELPERS Functions and Extensions
 
+
+
+// User Default simple database
 extension UserDefaults {
     
     enum Keys: String {
