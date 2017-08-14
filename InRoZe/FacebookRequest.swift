@@ -84,13 +84,32 @@ public class FacebookRequest
                 do {
                     for resID in result {
                         request.predicate = NSPredicate(format: "id = %@", resID.key)
-                        let match = try context.fetch(request)
-                        if match.count > 0 {
-                            assert(match.count == 1, "Inconsistency: unique event identifier, dublicate")
-                            print("Core match: \(match[0].id!)")
-                        }
+                        let events = try context.fetch(request)
+                        if events.count > 0 {
+                            assert(events.count == 1, "Inconsistency: unique event identifier, dublicate")
                         
+                            // to move later as own function in Event.swift -> updateInfofor(arguments)
+                            let event = events[0]
+                            if let uniqID = resID.value as? [String : Any] {
+                                
+                                if let name = uniqID["name"] as? String,
+                                    let sTime = uniqID["start_time"] as? NSDate,
+                                    let uTime = uniqID["updated_time"] as? NSDate {
+                                    event.name = name
+                                    event.startTime = sTime
+                                    event.updatedTime = uTime
+                                    event.endTime = uniqID["end_time"] as? NSDate ?? sTime.addingTimeInterval(12 * 60 * 60)
+                                }
+                            }
+                        }
                         print(resID)
+                    }
+                    // Save the context
+                    do {
+                        try context.save()
+                        print("Saved data")
+                    } catch {
+                        print("Error during saving: \(error)")
                     }
                     
                 } catch {
