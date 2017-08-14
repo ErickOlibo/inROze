@@ -33,9 +33,9 @@ class FavoriteViewController: UIViewController {
       
         // slicing and fetching
         let array = request.sampleEvents
-        let param = request.tmpParam
+        let params = request.param
         let batchSize = 2 // no issue with batch size bigger than all eventIDs
-        _ = request.recursiveGraphRequest(array: array, parameters: param, batchSize: batchSize)
+        _ = request.recursiveGraphRequest(array: array, parameters: params, batchSize: batchSize)
        
 
   

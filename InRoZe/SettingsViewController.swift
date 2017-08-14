@@ -15,15 +15,15 @@ class SettingsViewController: UIViewController {
     // Core Data model container and context
     let context = AppDelegate.viewContext
     let container = AppDelegate.persistentContainer
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
         
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("Settings")
@@ -43,28 +43,16 @@ class SettingsViewController: UIViewController {
                         newFormat.dateFormat = "MMMM dd yyyy HH:mm"
                         let reverse = newFormat.string(from: event.startTime! as Date)
                         print("******** REVERSE start: \(reverse) *********")
+                        if event.location != nil {
+                            
+                            print("LOCATION: \(event.location!.name!)")
+                        }
                     }
                     if event.endTime != nil { print("END: \(event.endTime!)") }
                     if event.updatedTime != nil { print("UPDATED: \(event.updatedTime!)") }
-//                    
-//                    
-//                    print("NAME: \(event.name ?? "nil")")
-//                    print("START TIME: \(event.startTime ?? NSDate())")
-//                    //let formatter = ISO8601DateFormatter()
-//                    //let sTime = event.startTime
-//                    //let stringTime = formatter.string(from: sTime! as Date)
-//                    //print("StartTime: \(stringTime)")
-//
-//                        
-//                    
-//                    
-                    
                 }
             }
-            
         }
-        
-
-        
     }
+
 }

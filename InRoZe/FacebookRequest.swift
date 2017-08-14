@@ -107,9 +107,7 @@ public class FacebookRequest
                 var eventCount = 1
                 var eventIDsArr = [String]()
                 for event in events as [Event] {
-                    // (CONDITIONS) add conditions for the updatedTime and endTime
                     if let eventStr = event.id {
-                        //print("\(eventCount)) \(eventStr)")
                         eventIDsArr.append(eventStr)
                     }
                     eventCount += 1
