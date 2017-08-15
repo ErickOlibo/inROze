@@ -27,30 +27,38 @@ public class FacebookRequest
     // batchsize to limit facebook load
     private let batchSize = 20
 
-    // is true whne the Facebook recursiveGraphRequest has fetch all events
+    // is true when the Facebook recursiveGraphRequest has fetch all events
     // and update of the core data is done
     private var isDoneUpdatingData = false
     
     // Should be private
     private var eventIDsArray = [String]() {
         didSet {
-            recursiveGraphRequest(array: eventIDsArray, parameters: param, batchSize: batchSize)
+            // if last Facebook Request is nil or time elapsed is bigger
+            let userDefault = UserDefaults()
+            if (!userDefault.isDateSet(for: RequestDate.toFacebook)) ||
+                userDefault.hasEnoughTimeElapsed(since: RequestDate.toFacebook) {
+                
+                recursiveGraphRequest(array: eventIDsArray, parameters: param, batchSize: batchSize)
+                
+                // update the date to FacebbokRequest
+                userDefault.setDateNow(for: RequestDate.toFacebook)
+            }
         }
     }
     
+    
     // Sample ids Array to use
-    let sampleEvents = ["100531250667584", "102851610417423", "1036341596468620", "104974153527931", "106338836720028"]
+    //let sampleEvents = ["100531250667584", "102851610417423", "1036341596468620", "104974153527931", "106338836720028"]
     
     // Facebook Query fields parameters
-    let tmpParam = [FBEvent.id, FBEvent.name, FBEvent.startTime, FBEvent.endTime, FBEvent.updatedTime]
+    //let tmpParam = [FBEvent.id, FBEvent.name, FBEvent.startTime, FBEvent.endTime, FBEvent.updatedTime]
     let param = [FBEvent.id, FBEvent.name, FBEvent.startTime, FBEvent.endTime, FBEvent.updatedTime,
                  FBEvent.cover, FBEvent.place, FBEvent.descript]
     
-
-    
     // Recursive Fabeook GraphRequest using batchSize
     private func recursiveGraphRequest(array: [String], parameters: [String], batchSize: Int) {
-        
+        print("recursiveGraphRequest FUNC | conditional call to facebook graph api")
         var arrayVar = array // array to send in the recursion
         var subArray: [String]
         var batch = batchSize
@@ -95,7 +103,7 @@ public class FacebookRequest
             do {
                 try context.save()
                 if (self.isDoneUpdatingData) {
-                    print("isDone saving last data")
+                    print("FacebookRequest: UpdateEventInfoToCoreData isDone. Saved")
                     // create notification center
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
                     

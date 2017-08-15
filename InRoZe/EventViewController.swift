@@ -44,8 +44,11 @@ class EventViewController: UIViewController
     
     @objc private func updateData() {
         // Getting notified when CoreData changes
-        // right now sets on load from server changes
         print("CORE DATA IS READY TO BE RELOADED")
+        
+        // Code request Facebook only every 1 hours max
+        // request Server every 6 hours
+        // Write code
     }
 
     // Start Notification listener when view on screen
@@ -54,7 +57,6 @@ class EventViewController: UIViewController
         print("EventViewController")
         
         // Notification add Observer
-        //NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NSNotification.Name(rawValue: NotificationFor.eventIDsDidUpdate), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
     }
     
@@ -71,7 +73,6 @@ class EventViewController: UIViewController
         super.viewWillDisappear(animated)
         
         // Notification remove Observer
-        //NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationFor.eventIDsDidUpdate), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
     }
 }

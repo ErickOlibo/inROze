@@ -30,10 +30,20 @@ public class ServerRequest
     }
     
     public func getEventsIDsCurrentList(parameter: String, urlToServer: String) {
-        let _ = taskForURLSession(postParams: parameter, url: urlToServer, isEventFetch: true)
+        
+        // if last server Request is nil or time elapsed is bigger
+        let userDefault = UserDefaults()
+        if (!userDefault.isDateSet(for: RequestDate.toServer)) ||
+            userDefault.hasEnoughTimeElapsed(since: RequestDate.toServer) {
+            let _ = taskForURLSession(postParams: parameter, url: urlToServer, isEventFetch: true)
+            
+            // update the date to server
+            userDefault.setDateNow(for: RequestDate.toServer)
+        }
     }
     
     private func taskForURLSession(postParams: String, url: String, isEventFetch: Bool) {
+        print("taskForURLSession FUNC | conditional call to server")
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
         request.httpBody = postParams.data(using: .utf8)

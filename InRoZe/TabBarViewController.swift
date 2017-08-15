@@ -16,8 +16,8 @@ class TabBarViewController: UITabBarController {
         super.viewDidLoad()
         view.backgroundColor = .black
   
-        // MUST BE SOMEWHERE ELSE NOT THE MAIN QUEUE
-        // SERVER should be query every hour via UserDefault settings
+        // ServerRequest is controlling frequency of calls to server
+        // within the getEventsIDsCurrentList level
         if let userID = AccessToken.current?.userId {
             // Load eventIDs from Server
             let params = "id=\(userID)"
@@ -25,7 +25,6 @@ class TabBarViewController: UITabBarController {
             request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
             print(params)
         }
-        
     }
 
     

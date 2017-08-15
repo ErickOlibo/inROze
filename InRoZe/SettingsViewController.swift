@@ -35,22 +35,22 @@ class SettingsViewController: UIViewController {
             } else {
                 print("Events count: \(events.count)")
                 for event in events {
-                    if event.name != nil { print("NAME: \(event.name!)") }
+                    //if event.name != nil { print("NAME: \(event.name!)") }
                     if event.startTime != nil {
-                        print("START: \(event.startTime!)")
+                        //print("START: \(event.startTime!)")
                         //print("**** --> EVENT DESCRIPTION After CoreData: \(event.text!)")
                         let newFormat = DateFormatter()
                         newFormat.locale = NSLocale.current
                         newFormat.dateFormat = "MMMM dd yyyy HH:mm"
-                        let reverse = newFormat.string(from: event.startTime! as Date)
-                        print("******** REVERSE start: \(reverse) *********")
+                        //let reverse = newFormat.string(from: event.startTime! as Date)
+                        //print("******** REVERSE start: \(reverse) *********")
                         if event.location != nil {
                             
-                            print("LOCATION: \(event.location!.name!)")
+                            //print("LOCATION: \(event.location!.name!)")
                         }
                     }
-                    if event.endTime != nil { print("END: \(event.endTime!)") }
-                    if event.updatedTime != nil { print("UPDATED: \(event.updatedTime!)") }
+                    //if event.endTime != nil { print("END: \(event.endTime!)") }
+                    //if event.updatedTime != nil { print("UPDATED: \(event.updatedTime!)") }
                 }
             }
         }

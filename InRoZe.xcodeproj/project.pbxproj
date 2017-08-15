@@ -35,6 +35,7 @@
 		A7A24D4C1F3A4F0000EFB82E /* ServerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */; };
 		A7A24D4E1F3B653C00EFB82E /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A24D4D1F3B653C00EFB82E /* Event.swift */; };
 		A7A24D501F3B655E00EFB82E /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A24D4F1F3B655E00EFB82E /* Place.swift */; };
+		A7A4BECC1F4363C5000A5047 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A4BECB1F4363C5000A5047 /* UserDefaultsExtensions.swift */; };
 		A7EC36601F3387C200548C11 /* EventOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC365F1F3387C200548C11 /* EventOld.swift */; };
 		A7EC36621F3387DA00548C11 /* PlaceOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36611F3387DA00548C11 /* PlaceOld.swift */; };
 		A7EC36651F33954600548C11 /* NSDictionary+KeyPathConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */; };
@@ -74,6 +75,7 @@
 		A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRequest.swift; sourceTree = "<group>"; };
 		A7A24D4D1F3B653C00EFB82E /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Event.swift; path = ../Event.swift; sourceTree = "<group>"; };
 		A7A24D4F1F3B655E00EFB82E /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		A7A4BECB1F4363C5000A5047 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		A7EC365F1F3387C200548C11 /* EventOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventOld.swift; sourceTree = "<group>"; };
 		A7EC36611F3387DA00548C11 /* PlaceOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceOld.swift; sourceTree = "<group>"; };
 		A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+KeyPathConvenience.swift"; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				A77676171F28CCE400F1FA52 /* Constants.swift */,
 				A77676131F26D49E00F1FA52 /* UIColorExtensions.swift */,
 				A775C3B71F4236C800A3449F /* NSDateExtensions.swift */,
+				A7A4BECB1F4363C5000A5047 /* UserDefaultsExtensions.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 			files = (
 				A77676071F26B9DB00F1FA52 /* SearchViewController.swift in Sources */,
 				A77676181F28CCE400F1FA52 /* Constants.swift in Sources */,
+				A7A4BECC1F4363C5000A5047 /* UserDefaultsExtensions.swift in Sources */,
 				A77676161F27C52F00F1FA52 /* EventCollectionViewCell.swift in Sources */,
 				A775C3B61F3CC0CC00A3449F /* FacebookRequest.swift in Sources */,
 				A775C3B81F4236C800A3449F /* NSDateExtensions.swift in Sources */,
