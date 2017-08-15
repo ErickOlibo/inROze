@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import FacebookCore
-import FBSDKCoreKit
+
 
 class EventViewController: UIViewController
 {
@@ -38,34 +37,42 @@ class EventViewController: UIViewController
         collectionView.backgroundColor = .black
         let stickyLayout = collectionView.collectionViewLayout as! StickyCollectionViewFlowLayout
         stickyLayout.firstItemTransform = zoomOutFirstItemTransform
-
-        // MUST BE SOMEWHERE ELSE NOT THE MAIN QUEUE
-        if let userID = AccessToken.current?.userId {
-            // Load eventIDs from Server
-            let params = "id=\(userID)"
-            let request = ServerRequest()
-            request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
-            print(params)
-        }
+        
+        
     }
+    
     
     @objc private func updateData() {
         // Getting notified when CoreData changes
         // right now sets on load from server changes
+        print("CORE DATA IS READY TO BE RELOADED")
     }
 
     // Start Notification listener when view on screen
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("EventViewController")
         
-        // Notification center
-        NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NSNotification.Name(rawValue: NotificationFor.eventIDsDidUpdate), object: nil)
+        // Notification add Observer
+        //NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NSNotification.Name(rawValue: NotificationFor.eventIDsDidUpdate), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Collect Events from CoreData
+        let request = FacebookRequest()
+        request.collectEventIDsFromCoreData()
     }
     
     // Stop Notification listener when view leaves the screen
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationFor.eventIDsDidUpdate), object: nil)
+        
+        // Notification remove Observer
+        //NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationFor.eventIDsDidUpdate), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
     }
 }
 
@@ -73,6 +80,8 @@ extension EventViewController: UICollectionViewDataSource
 {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let itemsInSectionCount = fbEvents.events.count
+        print("Items In Section Counr: \(itemsInSectionCount)")
         return fbEvents.events.count
         
     }

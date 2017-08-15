@@ -15,4 +15,5 @@ import Foundation
 // Notification center channel names
 public struct NotificationFor {
     static let eventIDsDidUpdate = "eventIDsDidUpdate"
+    static let coreDataDidUpdate = "coreDataDidUpdate"
 }

@@ -47,10 +47,12 @@ public class ServerRequest
                 return
             }
             do {
-                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                if let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any] {
                     
                     if (isEventFetch) {
+                        
                         self.result = json
+                        //print(json)
                     } else {
                         print(json)
                     }
@@ -65,12 +67,12 @@ public class ServerRequest
     var result: [String : Any]? {
         didSet {
             updateDatabase(with: result!)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.eventIDsDidUpdate), object: nil)
+            //NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.eventIDsDidUpdate), object: nil)
         }
     }
     
     private func updateDatabase(with eventIDs: [String : Any]) {
-        print("Starting update Database")
+        print("Starting update Core Database from Server")
         container.performBackgroundTask { context in
             for (key, value) in eventIDs {
                 if (key == DBLabels.responseKey),
@@ -78,6 +80,7 @@ public class ServerRequest
                     let _ = events.first as? [String : String] {
                     for event in events {
                         if let eventDict = event as? [String : String] {
+
                             do {
                                 _ = try Event.findOrInsertEventID(matching: eventDict, in: context)
                             } catch {
@@ -88,6 +91,7 @@ public class ServerRequest
                     // Save in CoreDatabase
                     do {
                         try context.save()
+                        print("ServerRequest: UpdateDatabase DONE and SAVED")
                     } catch {
                         print("Error trying to save in CoreData: \(error)")
                     }

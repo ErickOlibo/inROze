@@ -50,10 +50,10 @@ class Place: NSManagedObject
                 place = places[0]
                 let placeName = eventPlace[FBPlace.name] as? String ?? ""
                 if (place!.name == placeName) {
-                    print("Place info already in Database")
+                    //print("Place info already in Database")
                     return place!
                 } else {
-                    print("Updating place info into Database")
+                    //print("Updating place info into Database")
                     place!.name = placeName
                     if let location = eventPlace[FBPlace.location] as? [String : Any] {
                         place!.city = location[FBLocation.city] as? String ?? ""

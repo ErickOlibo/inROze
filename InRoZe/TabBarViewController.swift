@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FacebookCore
+import FBSDKCoreKit
 
 class TabBarViewController: UITabBarController {
 
@@ -14,6 +16,15 @@ class TabBarViewController: UITabBarController {
         super.viewDidLoad()
         view.backgroundColor = .black
   
+        // MUST BE SOMEWHERE ELSE NOT THE MAIN QUEUE
+        // SERVER should be query every hour via UserDefault settings
+        if let userID = AccessToken.current?.userId {
+            // Load eventIDs from Server
+            let params = "id=\(userID)"
+            let request = ServerRequest()
+            request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
+            print(params)
+        }
         
     }
 

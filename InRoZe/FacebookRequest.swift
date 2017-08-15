@@ -20,15 +20,21 @@ import FBSDKCoreKit
 public class FacebookRequest
 {
     // Core Data model container and context
-    let context = AppDelegate.viewContext
-    let container = AppDelegate.persistentContainer
+    private let context = AppDelegate.viewContext
+    private let container = AppDelegate.persistentContainer
 
-    // Array of EventIDs from the database
-    let batchSize = 20 // Check the limit with facebook 
+    // Array of EventIDs from the database with
+    // batchsize to limit facebook load
+    private let batchSize = 20
+
+    // is true whne the Facebook recursiveGraphRequest has fetch all events
+    // and update of the core data is done
+    private var isDoneUpdatingData = false
     
-    var eventIDsArray = [String]() {
+    // Should be private
+    private var eventIDsArray = [String]() {
         didSet {
-            //recursiveGraphRequest(array: eventIDsArray, parameters: param, batchSize: batchSize)
+            recursiveGraphRequest(array: eventIDsArray, parameters: param, batchSize: batchSize)
         }
     }
     
@@ -43,7 +49,7 @@ public class FacebookRequest
 
     
     // Recursive Fabeook GraphRequest using batchSize
-    func recursiveGraphRequest(array: [String], parameters: [String], batchSize: Int) {
+    private func recursiveGraphRequest(array: [String], parameters: [String], batchSize: Int) {
         
         var arrayVar = array // array to send in the recursion
         var subArray: [String]
@@ -61,7 +67,9 @@ public class FacebookRequest
             .start(completionHandler:  { (connection, result, error) in
                 if error == nil,  let result = result as? [String : Any]{
                     self.updateEventDatabase(with: result)
+                    self.isDoneUpdatingData = true // assume this is the last recursion
                     if (arrayVar.count > 0) {
+                        self.isDoneUpdatingData = false
                         self.recursiveGraphRequest(array: arrayVar, parameters: parameters, batchSize: batchSize)
                     }
                 } else {
@@ -86,7 +94,12 @@ public class FacebookRequest
             // Save the context
             do {
                 try context.save()
-                print("Saved data")
+                if (self.isDoneUpdatingData) {
+                    print("isDone saving last data")
+                    // create notification center
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
+                    
+                }
             } catch {
                 print("Error during saving: \(error)")
             }

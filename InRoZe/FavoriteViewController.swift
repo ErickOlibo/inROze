@@ -23,19 +23,17 @@ class FavoriteViewController: UIViewController {
         super.viewWillAppear(animated)
         print("Favorite")
         let request = FacebookRequest()
-        
-        
-        //request.collectEventIDsFromCoreData()
+        request.collectEventIDsFromCoreData()
         
         //TRY
         //_ = request.requestCurrentEventsInfo(with: request.sampleEvents, parameters: request.tmpParam)
         
       
-        // slicing and fetching
-        let array = request.sampleEvents
-        let params = request.param
-        let batchSize = 2 // no issue with batch size bigger than all eventIDs
-        _ = request.recursiveGraphRequest(array: array, parameters: params, batchSize: batchSize)
+//        // slicing and fetching
+//        let array = request.sampleEvents
+//        let params = request.param
+//        let batchSize = 2 // no issue with batch size bigger than all eventIDs
+//        _ = request.recursiveGraphRequest(array: array, parameters: params, batchSize: batchSize)
        
 
   

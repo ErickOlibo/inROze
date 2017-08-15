@@ -18,8 +18,6 @@ class Event: NSManagedObject
         
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         request.predicate = NSPredicate(format: "id = %@", eventDict[DBLabels.eventID]!)
-        
-        
         do {
             
             let match = try context.fetch(request)
@@ -55,22 +53,20 @@ class Event: NSManagedObject
                 let event = events[0]
                 
                 if let uniqID = eventID.value as? [String : Any] {
-                    //print(uniqID)
                     
                     if let name = uniqID["name"] as? String,
                         let sTime = uniqID["start_time"] as? String,
                         let uTime = uniqID["updated_time"] as? String {
                         
                         event.name = name
-                        if let descript = uniqID["description"] as? String {
-                            let pDesc = descript.utf8
-                            
-                            print("DataToString: \(pDesc)")
-                        }
+                        
+//                        if let descript = uniqID["description"] as? String {
+//                            let pDesc = descript.utf16
+//                            print("************************ DataToString: \(pDesc)")
+//                        }
                         
                         event.text = uniqID["description"] as? String ?? ""
                         
-                        //print("** Event Description Before CoreData: \(uniqID["description"] as! String)")
                         if let cover = uniqID["cover"] as? [String : Any],
                             let coverSource = cover["source"] as? String,
                             let coverID = cover["id"] as? String {
@@ -113,13 +109,13 @@ class Event: NSManagedObject
     class func eventsStartingAfterNow(in context: NSManagedObjectContext) -> [Event] {
         var response: [Event]?
         let request: NSFetchRequest<Event> = Event.fetchRequest()
-        //request.predicate = NSPredicate(format: "startTime > %@", NSDate())
+        let nowTime = NSDate()
+        request.predicate = NSPredicate(format: "startTime > %@", nowTime)
         
         do {
             let events = try context.fetch(request)
             if events.count > 0 {
                 response = events
-                
             }
             
         } catch {
@@ -127,8 +123,6 @@ class Event: NSManagedObject
         }
         return response!
     }
-    
-
 }
 
 
