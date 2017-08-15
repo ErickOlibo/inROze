@@ -28,7 +28,7 @@ public class FacebookRequest
     
     var eventIDsArray = [String]() {
         didSet {
-            //recursiveGraphRequest(array: eventIDsArray, parameters: tmpParam, batchSize: batchSize)
+            //recursiveGraphRequest(array: eventIDsArray, parameters: param, batchSize: batchSize)
         }
     }
     
@@ -56,16 +56,12 @@ public class FacebookRequest
         let idsString = subArray.joined(separator: ",")
         let params = parameters.joined(separator: ",")
         arrayVar = Array(Set(arrayVar).subtracting(Set(subArray)))
-        
-        // information
-        //print("array Size: \(array.count) | batchSize: \(batchSize) | batch: \(batch) | subArray: \(subArray.count)")
 
         FBSDKGraphRequest(graphPath: "/?ids=\(idsString)", parameters: ["fields" : params])
             .start(completionHandler:  { (connection, result, error) in
                 if error == nil,  let result = result as? [String : Any]{
                     self.updateEventDatabase(with: result)
                     if (arrayVar.count > 0) {
-                        //print("Size Of ArrayVar: \(arrayVar.count)")
                         self.recursiveGraphRequest(array: arrayVar, parameters: parameters, batchSize: batchSize)
                     }
                 } else {
@@ -74,10 +70,9 @@ public class FacebookRequest
             })
     }
     
-    // insert response from FaceBook events to CoreData 
+    // insert response from FaceBook events into CoreData
     private func updateEventDatabase(with result: [String : Any]) {
         
-        //print("updating Event Database")
         let context = container.viewContext
         context.perform {
             let request: NSFetchRequest<Event> = Event.fetchRequest()
@@ -104,13 +99,11 @@ public class FacebookRequest
             let request: NSFetchRequest<Event> = Event.fetchRequest()
             
             if let events = try? context.fetch(request) {
-                var eventCount = 1
                 var eventIDsArr = [String]()
                 for event in events as [Event] {
                     if let eventStr = event.id {
                         eventIDsArr.append(eventStr)
                     }
-                    eventCount += 1
                 }
                 self.eventIDsArray = eventIDsArr
             }

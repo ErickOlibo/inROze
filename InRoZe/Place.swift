@@ -42,25 +42,25 @@ class Place: NSManagedObject
         if let pID = eventPlace[FBPlace.id] as? String {
             request.predicate = NSPredicate(format: "id = %@", pID)
         }
-        var place = Place()
+        var place: Place?
         do {
             let places = try context.fetch(request)
             if places.count > 0 {
                 assert(places.count == 1, "inconsistency: unique place identifier is duplicate")
                 place = places[0]
                 let placeName = eventPlace[FBPlace.name] as? String ?? ""
-                if (place.name == placeName) {
+                if (place!.name == placeName) {
                     print("Place info already in Database")
-                    return place
+                    return place!
                 } else {
                     print("Updating place info into Database")
-                    place.name = placeName
+                    place!.name = placeName
                     if let location = eventPlace[FBPlace.location] as? [String : Any] {
-                        place.city = location[FBLocation.city] as? String ?? ""
-                        place.country = location[FBLocation.country] as? String ?? ""
-                        place.street = location[FBLocation.street] as? String ?? ""
-                        place.latitude = location[FBLocation.latitude] as? Float ?? 0.0
-                        place.longitude = location[FBLocation.longitude] as? Float ?? 0.0
+                        place!.city = location[FBLocation.city] as? String ?? ""
+                        place!.country = location[FBLocation.country] as? String ?? ""
+                        place!.street = location[FBLocation.street] as? String ?? ""
+                        place!.latitude = location[FBLocation.latitude] as? Float ?? 0.0
+                        place!.longitude = location[FBLocation.longitude] as? Float ?? 0.0
                         
                     }
                 }
@@ -71,7 +71,7 @@ class Place: NSManagedObject
         }
         
         
-       return place
+       return place!
     }
     
     

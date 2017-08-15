@@ -33,7 +33,11 @@ class Event: NSManagedObject
 
         let event = Event(context: context)
         event.id = eventDict[DBLabels.eventID]
-        event.location = try? Place.findOrInsertPlaceID(matching: eventDict, in: context)
+        do {
+        event.location = try Place.findOrInsertPlaceID(matching: eventDict, in: context)
+        } catch {
+            print("Error findOrInsertEventID TO Location: \(error)")
+        }
         return event
     }
     
@@ -51,14 +55,22 @@ class Event: NSManagedObject
                 let event = events[0]
                 
                 if let uniqID = eventID.value as? [String : Any] {
-                    print(uniqID)
+                    //print(uniqID)
                     
                     if let name = uniqID["name"] as? String,
                         let sTime = uniqID["start_time"] as? String,
                         let uTime = uniqID["updated_time"] as? String {
                         
                         event.name = name
+                        if let descript = uniqID["description"] as? String {
+                            let pDesc = descript.utf8
+                            
+                            print("DataToString: \(pDesc)")
+                        }
+                        
                         event.text = uniqID["description"] as? String ?? ""
+                        
+                        //print("** Event Description Before CoreData: \(uniqID["description"] as! String)")
                         if let cover = uniqID["cover"] as? [String : Any],
                             let coverSource = cover["source"] as? String,
                             let coverID = cover["id"] as? String {
@@ -70,7 +82,7 @@ class Event: NSManagedObject
                         let formatter = ISO8601DateFormatter()
                         event.startTime = formatter.date(from: sTime)! as NSDate
                         event.updatedTime = formatter.date(from: uTime)! as NSDate
-                        print("StartTime after Conversion: \(event.startTime!)")
+                        //print("StartTime after Conversion: \(event.startTime!)")
                         
                         // If end_time is nil (from FB request) add default: +12 hours of Start_time
                         if let eTime = uniqID["end_time"] as? String {
@@ -84,9 +96,9 @@ class Event: NSManagedObject
                             do {
                                 event.location = try Place.updatePlaceInfoForEvent(with: eventPlace, in: context)
                             } catch {
-                                print(error)
+                                print("updateInfoForEvent EVENT To Location Error: \(error)")
                             }
-                        }  
+                        }
                     }
                 }
             }
@@ -99,7 +111,7 @@ class Event: NSManagedObject
     
     // Select events where StartTime is after Now
     class func eventsStartingAfterNow(in context: NSManagedObjectContext) -> [Event] {
-        var response = [Event]()
+        var response: [Event]?
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         //request.predicate = NSPredicate(format: "startTime > %@", NSDate())
         
@@ -113,9 +125,10 @@ class Event: NSManagedObject
         } catch {
             print("eventsStartingAfterNow ERROR: \(error)")
         }
-        return response
+        return response!
     }
     
+
 }
 
 

@@ -38,6 +38,7 @@ class SettingsViewController: UIViewController {
                     if event.name != nil { print("NAME: \(event.name!)") }
                     if event.startTime != nil {
                         print("START: \(event.startTime!)")
+                        //print("**** --> EVENT DESCRIPTION After CoreData: \(event.text!)")
                         let newFormat = DateFormatter()
                         newFormat.locale = NSLocale.current
                         newFormat.dateFormat = "MMMM dd yyyy HH:mm"
