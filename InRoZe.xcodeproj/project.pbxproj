@@ -29,7 +29,6 @@
 		A77676181F28CCE400F1FA52 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676171F28CCE400F1FA52 /* Constants.swift */; };
 		A78979F41F3C687C00467AA6 /* FacebookKeyStringConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78979F31F3C687C00467AA6 /* FacebookKeyStringConvenience.swift */; };
 		A7A24D4C1F3A4F0000EFB82E /* ServerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */; };
-		A7A24D4E1F3B653C00EFB82E /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A24D4D1F3B653C00EFB82E /* Event.swift */; };
 		A7A24D501F3B655E00EFB82E /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A24D4F1F3B655E00EFB82E /* Place.swift */; };
 		A7A4BECC1F4363C5000A5047 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A4BECB1F4363C5000A5047 /* UserDefaultsExtensions.swift */; };
 		A7EC36651F33954600548C11 /* NSDictionary+KeyPathConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */; };
@@ -41,6 +40,7 @@
 		A7F5271E1F4496630008080B /* PlaceOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5271C1F4496630008080B /* PlaceOld.swift */; };
 		A7F527201F44969C0008080B /* FacebookEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5271F1F44969C0008080B /* FacebookEvents.swift */; };
 		A7F527221F4496E50008080B /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F527211F4496E50008080B /* RequestHandler.swift */; };
+		A7F527241F4498540008080B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F527231F4498540008080B /* Event.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +69,6 @@
 		A77676171F28CCE400F1FA52 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A78979F31F3C687C00467AA6 /* FacebookKeyStringConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookKeyStringConvenience.swift; sourceTree = "<group>"; };
 		A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRequest.swift; sourceTree = "<group>"; };
-		A7A24D4D1F3B653C00EFB82E /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Event.swift; path = ../Event.swift; sourceTree = "<group>"; };
 		A7A24D4F1F3B655E00EFB82E /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		A7A4BECB1F4363C5000A5047 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+KeyPathConvenience.swift"; sourceTree = "<group>"; };
@@ -81,6 +80,7 @@
 		A7F5271C1F4496630008080B /* PlaceOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceOld.swift; sourceTree = "<group>"; };
 		A7F5271F1F44969C0008080B /* FacebookEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookEvents.swift; sourceTree = "<group>"; };
 		A7F527211F4496E50008080B /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
+		A7F527231F4498540008080B /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		AB83D2E3F35B2A53E9FA9FFF /* Pods-InRoZe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InRoZe.release.xcconfig"; path = "Pods/Target Support Files/Pods-InRoZe/Pods-InRoZe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -207,7 +207,7 @@
 			children = (
 				A7F527211F4496E50008080B /* RequestHandler.swift */,
 				A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */,
-				A7A24D4D1F3B653C00EFB82E /* Event.swift */,
+				A7F527231F4498540008080B /* Event.swift */,
 				A7A24D4F1F3B655E00EFB82E /* Place.swift */,
 				A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */,
 				A72B79341F2231AF009FB389 /* InRoZe.xcdatamodeld */,
@@ -374,6 +374,7 @@
 				A77676181F28CCE400F1FA52 /* Constants.swift in Sources */,
 				A7A4BECC1F4363C5000A5047 /* UserDefaultsExtensions.swift in Sources */,
 				A77676161F27C52F00F1FA52 /* EventCollectionViewCell.swift in Sources */,
+				A7F527241F4498540008080B /* Event.swift in Sources */,
 				A775C3B61F3CC0CC00A3449F /* FacebookRequest.swift in Sources */,
 				A7F527191F4495F30008080B /* FBEventOld.swift in Sources */,
 				A775C3B81F4236C800A3449F /* NSDateExtensions.swift in Sources */,
@@ -383,7 +384,6 @@
 				A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */,
 				A77676051F26B9B200F1FA52 /* EventViewController.swift in Sources */,
 				A72B79301F2231AF009FB389 /* FavoriteViewController.swift in Sources */,
-				A7A24D4E1F3B653C00EFB82E /* Event.swift in Sources */,
 				A7EC36871F365AA900548C11 /* TabBarViewController.swift in Sources */,
 				A775C3B41F3C7FA100A3449F /* NotificationKeyStringConvenience.swift in Sources */,
 				A72B79361F2231AF009FB389 /* InRoZe.xcdatamodeld in Sources */,
