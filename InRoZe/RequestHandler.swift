@@ -25,7 +25,7 @@ public class RequestHandler
         // Conditions of execution
         if (true) {
             if let userID = AccessToken.current?.userId {
-                let params = "id=\(userID)&cityCode="
+                let params = "id=\(userID)&cityCode=\(UserDefaults().currentCityCode)"
                 let request = ServerRequest()
                 request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
                 print(params)
