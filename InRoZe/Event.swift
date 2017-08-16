@@ -35,7 +35,7 @@ class Event: NSManagedObject
         do {
         event.location = try Place.findOrInsertPlaceID(matching: eventDict, in: context)
         } catch {
-            print("Error findOrInsertEventID TO Location: \(error)")
+            print("[Event] - Error findOrInsertEventID TO Location: \(error)")
         }
         return event
     }
@@ -93,7 +93,7 @@ class Event: NSManagedObject
                             do {
                                 event.location = try Place.updatePlaceInfoForEvent(with: eventPlace, in: context)
                             } catch {
-                                print("updateInfoForEvent EVENT To Location Error: \(error)")
+                                print("[Event] - EVENT To Location Error: \(error)")
                             }
                         }
                     }
@@ -120,7 +120,7 @@ class Event: NSManagedObject
                 response = events
             }
         } catch {
-            print("eventsStartingAfterNow ERROR: \(error)")
+            print("[Event] - eventsStartingAfterNow ERROR: \(error)")
         }
         return response!
     }

@@ -19,6 +19,9 @@ import FBSDKCoreKit
 
 public class RequestHandler
 {
+    
+    // MARK: - Handler to SERVER
+    
     // request fetch EventIDs from CityCode server
     public func fetchEventIDsFromServer() {
         let userDefault = UserDefaults()
@@ -29,7 +32,7 @@ public class RequestHandler
                 let params = "id=\(userID)&cityCode=\(userDefault.currentCityCode)"
                 let request = ServerRequest()
                 request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
-                print(params)
+                print("[RequestHandler] - fetchEventsIDFromServer: \(params)")
                 
             }
         }
@@ -42,11 +45,65 @@ public class RequestHandler
             let params = "id=\(userID)&cityCode=\(userDefault.currentCityCode)"
             let request = ServerRequest()
             request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
-            print(params)
+            print("[RequestHandler] - TEST: fetchEventsIDFromServer: \(params)")
             
         }
        
     }
+    
+    // Saves user info into the Server
+    private func saveCurrentUserProfile(_ result: NSDictionary) {
+        if let id = result[FBUser.id]  as? String,
+            let name = result[FBUser.name] as? String {
+            
+            if let _ = AccessToken.current {
+                // Get some info about User
+                let email = result[FBUser.email] as? String? ?? ""
+                let gender = result[FBUser.gender] as? String? ?? "Neutral"
+                
+                // Going to the network -> MOVE FROM MAIN QUEUE
+                let parameters = "id=\(id)&name=\(name)&email=\(email!)&gender=\(gender!)"
+                let serverRequest = ServerRequest()
+                serverRequest.setUserLoggedIn(to: true, parameters: parameters, urlToServer: UrlFor.logInOut)
+                
+                
+                if let currentUser = UserProfile.current {
+                    print("[RequestHandler] - current user got: \(currentUser)")
+                } else {
+                    print("[RequestHandler] - Current user is NIL")
+                    UserProfile.loadCurrent{ profile in
+                        print("[currentUser] - \(profile)")
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    // MARK: - Handler to FACEBOOK
+    
+    // Call FB Graph API and fetch user info
+    func requestUserInfo() {
+        print("Inside request User")
+        let params = [FBUser.email, FBUser.name, FBUser.id, FBUser.gender, FBUser.cover].joined(separator: ", ")
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields" : params])
+            .start(completionHandler:  { (connection, result, error) in
+                if let result = result as? NSDictionary{
+                    self.saveCurrentUserProfile(result)
+                }
+            })
+    }
+    
+  
+    
+    
+    
+    
     
     
     

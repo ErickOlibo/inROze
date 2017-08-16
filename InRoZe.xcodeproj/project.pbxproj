@@ -207,9 +207,9 @@
 			children = (
 				A7F527211F4496E50008080B /* RequestHandler.swift */,
 				A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */,
+				A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */,
 				A7F527231F4498540008080B /* Event.swift */,
 				A7A24D4F1F3B655E00EFB82E /* Place.swift */,
-				A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */,
 				A72B79341F2231AF009FB389 /* InRoZe.xcdatamodeld */,
 			);
 			name = "Core Data";

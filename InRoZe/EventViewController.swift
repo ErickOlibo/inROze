@@ -37,52 +37,45 @@ class EventViewController: UIViewController
         collectionView.backgroundColor = .black
         let stickyLayout = collectionView.collectionViewLayout as! StickyCollectionViewFlowLayout
         stickyLayout.firstItemTransform = zoomOutFirstItemTransform
-        
-        
     }
     
     
     @objc private func updateData() {
         // Getting notified when CoreData changes
-        print("CORE DATA IS READY TO BE RELOADED")
+        print("[EventViewController] - CORE DATA IS READY TO BE RELOADED")
         
         // Code request Facebook only every 1 hours max
         // request Server every 6 hours
         // Write code
     }
 
-    // Start Notification listener when view on screen
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("EventViewController")
-        
         // Notification add Observer
         NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        // Collect Events from CoreData
-        let request = FacebookRequest()
-        request.collectEventIDsFromCoreData()
+
     }
     
-    // Stop Notification listener when view leaves the screen
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         // Notification remove Observer
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
     }
 }
+
+
+// MARK: - Extension
 
 extension EventViewController: UICollectionViewDataSource
 {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let itemsInSectionCount = fbEvents.events.count
-        print("Items In Section Counr: \(itemsInSectionCount)")
+        print("[EventViewController] - Items In Section Count: \(itemsInSectionCount)")
         return fbEvents.events.count
         
     }
@@ -93,9 +86,9 @@ extension EventViewController: UICollectionViewDataSource
         if ((cell.coverImage) != nil) {
             cell.clear()
             cell.placeHolder(isTrue: true)
-            print("Reuseable cell (\(indexPath.row)) is NOT NIL")
+            //print("Reuseable cell (\(indexPath.row)) is NOT NIL")
         } else {
-            print("cell is NIL")
+            //print("cell is NIL")
         }
         
         var event = fbEvents.events[indexPath.row]
@@ -111,7 +104,7 @@ extension EventViewController: UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("the Selected Cell nr is: \(indexPath.row)")
+        print("[EventViewController] - the Selected Cell nr is: \(indexPath.row)")
     }
 }
 

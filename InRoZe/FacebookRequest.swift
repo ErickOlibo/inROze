@@ -55,7 +55,7 @@ public class FacebookRequest
     
     // Recursive Fabeook GraphRequest using batchSize
     private func recursiveGraphRequest(array: [String], parameters: [String], batchSize: Int) {
-        print("recursiveGraphRequest FUNC | conditional call to facebook graph api")
+        print("[FacebookRequest] - recursiveGraphRequest | conditional graph api")
         var arrayVar = array // array to send in the recursion
         var subArray: [String]
         var batch = batchSize
@@ -78,7 +78,7 @@ public class FacebookRequest
                         self.recursiveGraphRequest(array: arrayVar, parameters: parameters, batchSize: batchSize)
                     }
                 } else {
-                    print("there an error: \(String(describing: error))")
+                    print("[recursiveGraphRequest] - there an error: \(String(describing: error))")
                 }
             })
     }
@@ -93,20 +93,20 @@ public class FacebookRequest
                 do {
                     _ = try Event.updateInfoForEvent(matching: resID, in: context, with: request)
                 } catch {
-                    print("Error with Event.UpdateInfoForEvent: \(error)")
+                    print("[updateEventDatabase] - Error with Event.UpdateInfoForEvent: \(error)")
                 }
             }
             // Save the context
             do {
                 try context.save()
                 if (self.isDoneUpdatingData) {
-                    print("FacebookRequest: UpdateEventInfoToCoreData isDone. Saved")
+                    print("[updateEventDatabase] -  UpdateEventInfoToCoreData isDone. Saved")
                     // create notification center
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
                     
                 }
             } catch {
-                print("Error during saving: \(error)")
+                print("[updateEventDatabase] - Error during saving: \(error)")
             }
         }
     }

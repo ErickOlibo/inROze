@@ -35,16 +35,19 @@ extension UserDefaults {
     
     public func hasEnoughTimeElapsed(since lastRequest: String) -> Bool {
         var interval = TimeInterval()
+        var fromWhere: String
         let currentTime = NSDate()
         if (lastRequest == RequestDate.toFacebook) {
+            fromWhere = "FACEBOOK"
             interval = IntervalBetweenRequest.toFacebook
         } else {
+            fromWhere = "SERVER"
             interval = IntervalBetweenRequest.toServer
         }
         
         let lastSavedTime = object(forKey: lastRequest)
         let elapsedTime = currentTime.timeIntervalSince(lastSavedTime as? Date ?? currentTime as Date)
-        print("ElapsedTime: \(elapsedTime) | Interval: \(interval)")
+        print("[UserDefaultsExtension] - From: \(fromWhere) | ElapsedTime: \(elapsedTime) | Interval: \(interval)")
         if (elapsedTime <= interval) { return false }
         
         return true
@@ -65,11 +68,11 @@ extension UserDefaults {
     
     public var currentCityCode: String {
         get {
-            print("Get Current CityCode")
+            print("[UserDefaultsExtension] - Get Current CityCode")
             return string(forKey: UserKeys.cityCode ) ?? "TLN" //always Tallinn as default cityCode
         }
         set {
-            print("New CityCode: \(newValue)")
+            print("[UserDefaultsExtension] - New CityCode: \(newValue)")
             set(newValue, forKey: UserKeys.cityCode)
             synchronize()
         }
