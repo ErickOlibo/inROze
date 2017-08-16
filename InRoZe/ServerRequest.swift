@@ -29,6 +29,8 @@ public class ServerRequest
         let _ = taskForURLSession(postParams: postParams, url: urlToServer, isEventFetch: false)
     }
     
+    // request to Server for latest updated list of EventIDs
+    // ADD the city and country selector here when other cities are implemented
     public func getEventsIDsCurrentList(parameter: String, urlToServer: String) {
         
         // if last server Request is nil or time elapsed is bigger
@@ -42,6 +44,8 @@ public class ServerRequest
         }
     }
     
+    // when call to the server, conditional call must be depending on the Country/ City
+    // ADD the city selector 
     private func taskForURLSession(postParams: String, url: String, isEventFetch: Bool) {
         print("taskForURLSession FUNC | conditional call to server")
         var request = URLRequest(url: URL(string: url)!)

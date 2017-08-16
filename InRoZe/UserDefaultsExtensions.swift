@@ -21,7 +21,9 @@ public struct IntervalBetweenRequest {
     static let toServer = TimeInterval(3 * 60 * 60) // 3 hours before collecting new eventIDS from server
 }
 
-
+private struct UserKeys {
+    static let cityCode = "cityCode"
+}
 
 
 
@@ -59,5 +61,17 @@ extension UserDefaults {
     public func isDateSet(for requestDate: String) -> Bool {
         return (object(forKey: requestDate) != nil)
       
+    }
+    
+    public var currentCityCode: String {
+        get {
+            print("Get Current CityCode")
+            return string(forKey: UserKeys.cityCode ) ?? ""
+        }
+        set {
+            print("New CityCode: \(newValue)")
+            set(newValue, forKey: UserKeys.cityCode)
+            synchronize()
+        }
     }
 }

@@ -48,12 +48,9 @@ public class FacebookRequest
     }
     
     
-    // Sample ids Array to use
-    //let sampleEvents = ["100531250667584", "102851610417423", "1036341596468620", "104974153527931", "106338836720028"]
-    
+
     // Facebook Query fields parameters
-    //let tmpParam = [FBEvent.id, FBEvent.name, FBEvent.startTime, FBEvent.endTime, FBEvent.updatedTime]
-    let param = [FBEvent.id, FBEvent.name, FBEvent.startTime, FBEvent.endTime, FBEvent.updatedTime,
+    let param: [String] = [FBEvent.id, FBEvent.name, FBEvent.startTime, FBEvent.endTime, FBEvent.updatedTime,
                  FBEvent.cover, FBEvent.place, FBEvent.descript]
     
     // Recursive Fabeook GraphRequest using batchSize

@@ -11,6 +11,7 @@ import CoreData
 
 class Event: NSManagedObject
 {
+    
     // Find or insert eventID to the Database
     // update placeID if eventID already present
     class func findOrInsertEventID(matching eventDict: [String : String], in context: NSManagedObjectContext) throws -> Event
@@ -104,8 +105,9 @@ class Event: NSManagedObject
         return true
     }
     
-    
     // Select events where StartTime is after Now
+    // ADD the LOCATION (city or country) selector as a parameter
+    // of the FUNC. Revise when several Cities are implemented
     class func eventsStartingAfterNow(in context: NSManagedObjectContext) -> [Event] {
         var response: [Event]?
         let request: NSFetchRequest<Event> = Event.fetchRequest()
@@ -117,7 +119,6 @@ class Event: NSManagedObject
             if events.count > 0 {
                 response = events
             }
-            
         } catch {
             print("eventsStartingAfterNow ERROR: \(error)")
         }

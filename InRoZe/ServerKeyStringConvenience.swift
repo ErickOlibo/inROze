@@ -26,3 +26,12 @@ public struct DBLabels {
     static let placeID = "place_id"
     static let responseKey = "eventPlaceIDs"
 }
+
+// cityCode requirement for loading right eventIDs
+public struct CityCode {
+    static let tallinn = "TLN"
+    static let stockholm = "STO"
+    static let helsinki = "HEL"
+    static let riga = "RIG"
+    static let brussels = "BRU"
+}

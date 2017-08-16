@@ -20,7 +20,8 @@ class TabBarViewController: UITabBarController {
         // within the getEventsIDsCurrentList level
         if let userID = AccessToken.current?.userId {
             // Load eventIDs from Server
-            let params = "id=\(userID)"
+
+            let params = "id=\(userID)&cityCode=\(UserDefaults().currentCityCode)"
             let request = ServerRequest()
             request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
             print(params)
