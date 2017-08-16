@@ -24,7 +24,10 @@ public struct UrlFor {
 public struct DBLabels {
     static let eventID = "event_id"
     static let placeID = "place_id"
-    static let responseKey = "eventPlaceIDs"
+    static let eventEventIDs = "eventEventIDs"
+    static let cityCode =  "cityCode"
+    static let errorType = "error"
+    static let rows = "rows"
 }
 
 // cityCode requirement for loading right eventIDs

@@ -17,7 +17,7 @@ class TabBarViewController: UITabBarController {
         view.backgroundColor = .black
   
         // Request handler for eventIds from server
-        RequestHandler().fetchEventIDsFromServer()
+        RequestHandler().fetchEventIDsFromServerTest()
 
     }
 

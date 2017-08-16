@@ -31,15 +31,11 @@ public class ServerRequest
     // request to Server for latest updated list of EventIDs
     public func getEventsIDsCurrentList(parameter: String, urlToServer: String) {
         
-        // if last server Request is nil or time elapsed is bigger
-        let userDefault = UserDefaults()
-        if (!userDefault.isDateSet(for: RequestDate.toServer)) ||
-            userDefault.hasEnoughTimeElapsed(since: RequestDate.toServer) {
             let _ = taskForURLSession(postParams: parameter, url: urlToServer, isEventFetch: true)
             
             // update the date to server
-            userDefault.setDateNow(for: RequestDate.toServer)
-        }
+            //userDefault.setDateNow(for: RequestDate.toServer)
+        
     }
     
     // when call to the server, conditional call must be depending on the Country/ City
@@ -60,11 +56,18 @@ public class ServerRequest
             }
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any] {
-                    
                     if (isEventFetch) {
-                        
-                        self.result = json
-                        //print(json)
+                        // check if there is no error
+                        if let errorType = json[DBLabels.errorType] as! Bool?, !errorType {
+                            print("There is an error from server response: \(errorType)")
+                            
+                            // only when number of rows in response is > 0
+                            if (json[DBLabels.rows]! as! Int > 0) {
+                                print("There are Rows eventIDs from Server Response")
+                                //self.result = json
+                            }
+                            
+                        }
                     } else {
                         print(json)
                     }
@@ -87,7 +90,7 @@ public class ServerRequest
         print("Starting update Core Database from Server")
         container.performBackgroundTask { context in
             for (key, value) in eventIDs {
-                if (key == DBLabels.responseKey),
+                if (key == DBLabels.eventEventIDs),
                     let events = value as? [Any],
                     let _ = events.first as? [String : String] {
                     for event in events {
@@ -103,6 +106,9 @@ public class ServerRequest
                     // Save in CoreDatabase
                     do {
                         try context.save()
+                        let userDefault = UserDefaults()
+                        userDefault.setDateNow(for: RequestDate.toServer)
+                        
                         print("ServerRequest: UpdateDatabase DONE and SAVED")
                     } catch {
                         print("Error trying to save in CoreData: \(error)")
