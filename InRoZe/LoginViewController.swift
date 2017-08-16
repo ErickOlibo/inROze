@@ -26,13 +26,7 @@ class LoginViewController: UIViewController {
             case .cancelled:
                 print("cancelled")
             case .success( _,  _, _):
-                // set default cityCode
-                let userDefault = UserDefaults()
-                userDefault.currentCityCode = CityCode.tallinn
-                
-                
                 // Get info about logged user
-                
                 self?.requestUserInfo()
                 
                 //Perform Segue programmatically

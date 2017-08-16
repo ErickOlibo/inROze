@@ -16,33 +16,11 @@ class TabBarViewController: UITabBarController {
         super.viewDidLoad()
         view.backgroundColor = .black
   
-        // ServerRequest is controlling frequency of calls to server
-        // within the getEventsIDsCurrentList level
-        if let userID = AccessToken.current?.userId {
-            // Load eventIDs from Server
+        // Request handler for eventIds from server
+        RequestHandler().fetchEventIDsFromServer()
 
-            let params = "id=\(userID)&cityCode=\(UserDefaults().currentCityCode)"
-            let request = ServerRequest()
-            request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
-            print(params)
-        }
     }
 
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

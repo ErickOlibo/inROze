@@ -12,7 +12,6 @@ import CoreData
 /* This class sync the log in status (true/false) of the user
  * and fetch the latest list of (EventIDs - PlaceIds)
  * from the Server. 
- * The contry specific fecth STILL TO IMPLEMENT
  *
  */
 
@@ -30,7 +29,6 @@ public class ServerRequest
     }
     
     // request to Server for latest updated list of EventIDs
-    // ADD the city and country selector here when other cities are implemented
     public func getEventsIDsCurrentList(parameter: String, urlToServer: String) {
         
         // if last server Request is nil or time elapsed is bigger

@@ -10,8 +10,8 @@ import Foundation
 
 
 public struct RequestDate {
-    static let toFacebook = "RequestDateToFacebook"
-    static let toServer = "RequestDateToServer"
+    static let toFacebook = "RequestDateToFacebook\(UserDefaults().currentCityCode)"
+    static let toServer = "RequestDateToServer\(UserDefaults().currentCityCode)"
     
 }
 
@@ -66,7 +66,7 @@ extension UserDefaults {
     public var currentCityCode: String {
         get {
             print("Get Current CityCode")
-            return string(forKey: UserKeys.cityCode ) ?? ""
+            return string(forKey: UserKeys.cityCode ) ?? "TLN" //always Tallinn as default cityCode
         }
         set {
             print("New CityCode: \(newValue)")
