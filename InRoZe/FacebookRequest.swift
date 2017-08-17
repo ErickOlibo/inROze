@@ -87,11 +87,12 @@ public class FacebookRequest
                     print("[updateEventDatabase] - Error with Event.UpdateInfoForEvent: \(error)")
                 }
             }
+            print("[updateEventDatabase] -  inserting batch Info")
             // Save the context
-            do {
-                try context.save()
-                print("[updateEventDatabase] -  Saving batch Info")
-                if (self.isDoneUpdatingData) {
+            if (self.isDoneUpdatingData) {
+                do {
+                    try context.save()
+                    
                     print("[updateEventDatabase] -  UpdateEventInfoToCoreData isDone. Saved")
                     
                     // update the date to FacebbokRequest
@@ -100,9 +101,9 @@ public class FacebookRequest
                     // create notification center
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
                     
+                } catch {
+                    print("[updateEventDatabase] - Error during saving: \(error)")
                 }
-            } catch {
-                print("[updateEventDatabase] - Error during saving: \(error)")
             }
         }
     }

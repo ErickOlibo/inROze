@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 
 class EventViewController: UIViewController
@@ -15,6 +16,27 @@ class EventViewController: UIViewController
     // Core Data model container and context
     let context = AppDelegate.viewContext
     let container = AppDelegate.persistentContainer
+    
+    lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
+        let context = AppDelegate.viewContext
+        // Initilaze Fetch Request
+        let request: NSFetchRequest<Event> = Event.fetchRequest()
+        let nowTime = NSDate()
+        
+        // Add sor Descriptors and Predicate
+        request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
+        request.predicate = NSPredicate(format: "startTime > %@", nowTime)
+        
+        // Initialze Fetched Results Controller
+        let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        // Configure Fetch Results Controller
+        fetchedRC.delegate = self
+        
+        print("\(fetchedRC)")
+        return fetchedRC
+    }()
+    
     
     @IBOutlet weak var currentDate: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -39,6 +61,15 @@ class EventViewController: UIViewController
         
         // Request handler for eventIds from server
         RequestHandler().fetchEventIDsFromServer()
+        
+        // Execute the FetchRequest
+        do {
+            try self.fetchResultsController.performFetch()
+        } catch {
+            let fetchError = error as NSError
+            print("fethcError: \(fetchError) | fetchError.userInfo: \(fetchError.userInfo)")
+        }
+        
     }
     
     
@@ -67,39 +98,6 @@ class EventViewController: UIViewController
 }
 
 
-// MARK: - Extension
-
-extension EventViewController: UICollectionViewDataSource
-{
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: eventCell, for: indexPath) as! EventCollectionViewCell
-        // Here I should reset the cell
-       
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    }
-}
-
-
-extension EventViewController: UICollectionViewDelegateFlowLayout
-{
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.width, height: collectionView.bounds.width * (9 / 16) + cellHeightOffset)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: NSInteger) -> CGFloat {
-        return 0
-    }
-}
 
 
 
