@@ -17,18 +17,14 @@ class EventViewController: UIViewController
     let container = AppDelegate.persistentContainer
     
     @IBOutlet weak var currentDate: UILabel!
-    
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var myResult = [String : Any]()
-    
-    
     let eventCell = "Event Cell"
-    let cellHeightOffset: CGFloat = 140.0 // distance between bottom picture and bottom cell
-    let zoomOutFirstItemTransform: CGFloat = 0.1
     
-    // Get Events
-    var fbEvents = FBEventSOld(size: 100)
+    // Collectionview cell properties behaviour
+    let cellHeightOffset: CGFloat = 140.0 // distance between bottom picture and bottom cell
+    let zoomOutFirstItemTransform: CGFloat = 0.1 // zoom out rate when moving out of scope
+    
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -37,7 +33,6 @@ class EventViewController: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("[EventVC] - viewDidLoad")
         collectionView.backgroundColor = .black
         let stickyLayout = collectionView.collectionViewLayout as! StickyCollectionViewFlowLayout
         stickyLayout.firstItemTransform = zoomOutFirstItemTransform
@@ -48,35 +43,12 @@ class EventViewController: UIViewController
     
     
     @objc private func updateData() {
-        // Getting notified when CoreData changes
-        print("[EventViewController] - CORE DATA IS READY TO BE RELOADED")
-        let context = container.viewContext
-        context.perform {
-            let events = Event.eventsStartingAfterNow(in: context)
-            if events.count > 0 {
-                print("[EventVC] - events number: \(events.count)")
-                var rank = 1
-                for event in events {
-                    if event.name != nil {
-                        print("\(rank)) - Name: \(event.name!))")
-                        print("\(rank)) - [\(event.startTime!)]  - Place: \(event.location!.name!))")
-                        print("***************     ******************")
-                        rank += 1
-                    }
-                }
-            } else {
-                print("[EventVC] - currentEvents is ZERO")
-            }
-        }
-        // Code request Facebook only every 1 hours max
-        // request Server every 6 hours
-        // Write code
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("[EventVC] - viewWillAppear")
-        updateData()
+        
         // Notification add Observer
         NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
     }
@@ -88,7 +60,7 @@ class EventViewController: UIViewController
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("[EventVC] - viewWillDisappear")
+
         // Notification remove Observer
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
     }
@@ -101,37 +73,18 @@ extension EventViewController: UICollectionViewDataSource
 {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let itemsInSectionCount = fbEvents.events.count
-        print("[EventViewController] - Items In Section Count: \(itemsInSectionCount)")
-        return fbEvents.events.count
+        return 1
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: eventCell, for: indexPath) as! EventCollectionViewCell
         // Here I should reset the cell
-        if ((cell.coverImage) != nil) {
-            cell.clear()
-            cell.placeHolder(isTrue: true)
-            //print("Reuseable cell (\(indexPath.row)) is NOT NIL")
-        } else {
-            //print("cell is NIL")
-        }
-        
-        var event = fbEvents.events[indexPath.row]
-        let cover = UIImage(named: event.cover)
-        
-        if event.colors == nil {
-            cover?.getColors(scaleDownSize: CGSize(width: 100, height: 100)) { colors in
-                event.colors = colors
-                cell.eventCell = event
-            }
-        } else { cell.eventCell = event }
+       
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("[EventViewController] - the Selected Cell nr is: \(indexPath.row)")
     }
 }
 
