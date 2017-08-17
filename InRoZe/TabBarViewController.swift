@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import FacebookCore
-import FBSDKCoreKit
+
 
 class TabBarViewController: UITabBarController {
 
@@ -17,7 +16,7 @@ class TabBarViewController: UITabBarController {
         view.backgroundColor = .black
   
         // Request handler for eventIds from server
-        RequestHandler().fetchEventIDsFromServer()
+        //RequestHandler().fetchEventIDsFromServer()
 
     }
 

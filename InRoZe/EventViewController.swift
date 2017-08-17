@@ -12,6 +12,9 @@ import UIKit
 class EventViewController: UIViewController
 {
     
+    // Core Data model container and context
+    let context = AppDelegate.viewContext
+    let container = AppDelegate.persistentContainer
     
     @IBOutlet weak var currentDate: UILabel!
     
@@ -34,16 +37,37 @@ class EventViewController: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("[EventVC] - viewDidLoad")
         collectionView.backgroundColor = .black
         let stickyLayout = collectionView.collectionViewLayout as! StickyCollectionViewFlowLayout
         stickyLayout.firstItemTransform = zoomOutFirstItemTransform
+        
+        // Request handler for eventIds from server
+        RequestHandler().fetchEventIDsFromServer()
     }
     
     
     @objc private func updateData() {
         // Getting notified when CoreData changes
         print("[EventViewController] - CORE DATA IS READY TO BE RELOADED")
-        
+        let context = container.viewContext
+        context.perform {
+            let events = Event.eventsStartingAfterNow(in: context)
+            if events.count > 0 {
+                print("[EventVC] - events number: \(events.count)")
+                var rank = 1
+                for event in events {
+                    if event.name != nil {
+                        print("\(rank)) - Name: \(event.name!))")
+                        print("\(rank)) - [\(event.startTime!)]  - Place: \(event.location!.name!))")
+                        print("***************     ******************")
+                        rank += 1
+                    }
+                }
+            } else {
+                print("[EventVC] - currentEvents is ZERO")
+            }
+        }
         // Code request Facebook only every 1 hours max
         // request Server every 6 hours
         // Write code
@@ -51,6 +75,8 @@ class EventViewController: UIViewController
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("[EventVC] - viewWillAppear")
+        updateData()
         // Notification add Observer
         NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
     }
@@ -62,6 +88,7 @@ class EventViewController: UIViewController
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        print("[EventVC] - viewWillDisappear")
         // Notification remove Observer
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
     }

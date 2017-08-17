@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class Event: NSManagedObject
+public class Event: NSManagedObject
 {
     
     // Find or insert eventID to the Database
@@ -109,9 +109,10 @@ class Event: NSManagedObject
     // ADD the LOCATION (city or country) selector as a parameter
     // of the FUNC. Revise when several Cities are implemented
     class func eventsStartingAfterNow(in context: NSManagedObjectContext) -> [Event] {
-        var response: [Event]?
+        var response = [Event]()
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         let nowTime = NSDate()
+        request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
         request.predicate = NSPredicate(format: "startTime > %@", nowTime)
         
         do {
@@ -122,7 +123,7 @@ class Event: NSManagedObject
         } catch {
             print("[Event] - eventsStartingAfterNow ERROR: \(error)")
         }
-        return response!
+        return response
     }
 }
 

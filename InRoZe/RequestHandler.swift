@@ -9,6 +9,7 @@
 import Foundation
 import FacebookCore
 import FBSDKCoreKit
+import CoreData
 
 
 /* Handles all the request calls to the Facebook Graph API
@@ -19,6 +20,10 @@ import FBSDKCoreKit
 
 public class RequestHandler
 {
+    
+    // Core Data model container and context
+    private let context = AppDelegate.viewContext
+    private let container = AppDelegate.persistentContainer
     
     // Properties listeners
     var isDoneUpdatingServeRequest = false {
@@ -113,6 +118,8 @@ public class RequestHandler
             
         } else {
             print("[RequestHandler] - No need Fetch Facebook Request")
+            // create notification center
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
         }
         
         
@@ -120,7 +127,25 @@ public class RequestHandler
   
     
     
-    
+    // Request Events info from the Core Database depending on city
+    public func getEventsFromCoreDatabase (in context: NSManagedObjectContext) -> [Event] {
+        var result = [Event]()
+        context.perform {
+            let events = Event.eventsStartingAfterNow(in: context)
+            if events.count > 0 {
+                result = events
+                print("[RequestHandler] - Events count: \(events.count)")
+                for event in events {
+                    if event.name != nil {print("Event Name: \(event.name!)")}
+                }
+                
+                
+            } else {
+                print("[RequestHandler] - There is no events Starting after now")
+            }
+        }
+        return result
+    }
     
     
     

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class Place: NSManagedObject
+public class Place: NSManagedObject
 {
     // Find or insert eventID to the Database
     // update placeID if eventID already present
