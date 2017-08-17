@@ -58,17 +58,24 @@ extension UserDefaults {
     public func setDateNow(for requestDate: String) {
         let dateNow = NSDate()
         set(dateNow, forKey: requestDate)
+        print("[UserDefaultsExtension] - SetDateNow for: \(requestDate)")
         synchronize()
     }
     
     public func isDateSet(for requestDate: String) -> Bool {
-        return (object(forKey: requestDate) != nil)
+        if (object(forKey: requestDate) != nil) {
+            print("[UserDefaultsExtension] - isDateSet: TRUE - date: \(object(forKey: requestDate) as! Date)")
+            return true
+        } else {
+            print("[UserDefaultsExtension] - isDateSet: FALSE")
+            return false
+        }
       
     }
     
     public var currentCityCode: String {
         get {
-            print("[UserDefaultsExtension] - Get Current CityCode")
+            //print("[UserDefaultsExtension] - Get Current CityCode")
             return string(forKey: UserKeys.cityCode ) ?? "TLN" //always Tallinn as default cityCode
         }
         set {

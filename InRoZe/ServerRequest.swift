@@ -19,8 +19,8 @@ public class ServerRequest
 {
     
     // Core Data model container and context
-    let context = AppDelegate.viewContext
-    let container = AppDelegate.persistentContainer
+    private let context = AppDelegate.viewContext
+    private let container = AppDelegate.persistentContainer
     
     
     public func setUserLoggedIn(to isLogged: Bool, parameters: String, urlToServer: String) {
@@ -32,11 +32,8 @@ public class ServerRequest
     public func getEventsIDsCurrentList(parameter: String, urlToServer: String) {
         
             let _ = taskForURLSession(postParams: parameter, url: urlToServer, isEventFetch: true)
-            
-            // update the date to server
-            //userDefault.setDateNow(for: RequestDate.toServer)
-        
     }
+    
     
     // when call to the server, conditional call must be depending on the Country/ City
     // ADD the city selector 
@@ -64,7 +61,10 @@ public class ServerRequest
                             // only when number of rows in response is > 0
                             if (json[DBLabels.rows]! as! Int > 0) {
                                 print("[ServerRequest] - There are Rows eventIDs from Server Response")
-                                //self.result = json
+                                self.result = json
+                                
+                                // update the date to server
+                                UserDefaults().setDateNow(for: RequestDate.toServer)
                             }
                             
                         }
@@ -107,10 +107,16 @@ public class ServerRequest
                     // Save in CoreDatabase
                     do {
                         try context.save()
-                        let userDefault = UserDefaults()
-                        userDefault.setDateNow(for: RequestDate.toServer)
+                        UserDefaults().setDateNow(for: RequestDate.toServer)
                         
                         print("[ServerRequest] -  UpdateDatabase DONE and SAVED")
+                        RequestHandler().isDoneUpdatingServeRequest = true
+                        
+                        
+                        //notify whoever is listening
+                        //print("[ServerRequest] - Post Notification: serverRequestDoneUpdating")
+                        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.serverRequestDoneUpdating), object: nil)
+                        
                     } catch {
                         print("[ServerRequest] - Error trying to save in CoreData: \(error)")
                     }

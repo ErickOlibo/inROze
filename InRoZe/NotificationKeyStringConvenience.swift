@@ -16,4 +16,5 @@ import Foundation
 public struct NotificationFor {
     static let eventIDsDidUpdate = "eventIDsDidUpdate"
     static let coreDataDidUpdate = "coreDataDidUpdate"
+    static let serverRequestDoneUpdating = "serverRequestDoneUpdating"
 }

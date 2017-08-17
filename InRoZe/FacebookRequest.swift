@@ -34,16 +34,7 @@ public class FacebookRequest
     // Should be private
     private var eventIDsArray = [String]() {
         didSet {
-            // if last Facebook Request is nil or time elapsed is bigger
-            let userDefault = UserDefaults()
-            if (!userDefault.isDateSet(for: RequestDate.toFacebook)) ||
-                userDefault.hasEnoughTimeElapsed(since: RequestDate.toFacebook) {
-                
-                recursiveGraphRequest(array: eventIDsArray, parameters: param, batchSize: batchSize)
-                
-                // update the date to FacebbokRequest
-                userDefault.setDateNow(for: RequestDate.toFacebook)
-            }
+            recursiveGraphRequest(array: eventIDsArray, parameters: param, batchSize: batchSize)
         }
     }
     
@@ -99,8 +90,13 @@ public class FacebookRequest
             // Save the context
             do {
                 try context.save()
+                print("[updateEventDatabase] -  Saving batch Info")
                 if (self.isDoneUpdatingData) {
                     print("[updateEventDatabase] -  UpdateEventInfoToCoreData isDone. Saved")
+                    
+                    // update the date to FacebbokRequest
+                    UserDefaults().setDateNow(for: RequestDate.toFacebook)
+                    
                     // create notification center
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
                     
@@ -111,7 +107,7 @@ public class FacebookRequest
         }
     }
     
-    func collectEventIDsFromCoreData() {
+    public func collectEventIDsFromCoreData() {
         let context = container.viewContext
         context.perform {
             let request: NSFetchRequest<Event> = Event.fetchRequest()

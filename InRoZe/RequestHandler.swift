@@ -20,6 +20,15 @@ import FBSDKCoreKit
 public class RequestHandler
 {
     
+    // Properties listeners
+    var isDoneUpdatingServeRequest = false {
+        didSet {
+            print("[RequestHandler] - isDoneUpdatingServeRequest: \(isDoneUpdatingServeRequest)")
+            fetchEventsInfoFromFacebook()
+        }
+    }
+    
+    
     // MARK: - Handler to SERVER
     
     // request fetch EventIDs from CityCode server
@@ -35,21 +44,14 @@ public class RequestHandler
                 print("[RequestHandler] - fetchEventsIDFromServer: \(params)")
                 
             }
+        } else {
+            // Go straight to Facebook Request
+            print("[RequestHandler] - No need Server Request - Go To Facebook Request")
+            fetchEventsInfoFromFacebook()
         }
+        
     }
-    
-    // request fetch EventIDs from CityCode server
-    public func fetchEventIDsFromServerTest() {
-        let userDefault = UserDefaults()
-        if let userID = AccessToken.current?.userId {
-            let params = "id=\(userID)&cityCode=\(userDefault.currentCityCode)"
-            let request = ServerRequest()
-            request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
-            print("[RequestHandler] - TEST: fetchEventsIDFromServer: \(params)")
-            
-        }
-       
-    }
+
     
     // Saves user info into the Server
     private func saveCurrentUserProfile(_ result: NSDictionary) {
@@ -88,7 +90,7 @@ public class RequestHandler
     // MARK: - Handler to FACEBOOK
     
     // Call FB Graph API and fetch user info
-    func requestUserInfo() {
+    public func requestUserInfo() {
         print("Inside request User")
         let params = [FBUser.email, FBUser.name, FBUser.id, FBUser.gender, FBUser.cover].joined(separator: ", ")
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields" : params])
@@ -99,6 +101,22 @@ public class RequestHandler
             })
     }
     
+    
+    // Request events Info from Facebook Graph API
+    private func fetchEventsInfoFromFacebook () {
+        
+        let userDefault = UserDefaults()
+        // Conditions of execution
+        if (!userDefault.isDateSet(for: RequestDate.toFacebook)) ||
+            userDefault.hasEnoughTimeElapsed(since: RequestDate.toFacebook) {
+            FacebookRequest().collectEventIDsFromCoreData()
+            
+        } else {
+            print("[RequestHandler] - No need Fetch Facebook Request")
+        }
+        
+        
+    }
   
     
     
@@ -109,3 +127,22 @@ public class RequestHandler
     
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
