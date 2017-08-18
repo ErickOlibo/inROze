@@ -162,7 +162,6 @@
 				A776760E1F26BE8A00F1FA52 /* Source */,
 				A72B79371F2231AF009FB389 /* Assets.xcassets */,
 				A72B79421F2231F8009FB389 /* Supporting Files */,
-				A7F5274E1F479ED70008080B /* InRoZe-Bridging-Header.h */,
 			);
 			path = InRoZe;
 			sourceTree = "<group>";
@@ -173,6 +172,7 @@
 				A72B792D1F2231AF009FB389 /* AppDelegate.swift */,
 				A72B79391F2231AF009FB389 /* LaunchScreen.storyboard */,
 				A72B793C1F2231AF009FB389 /* Info.plist */,
+				A7F5274E1F479ED70008080B /* InRoZe-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
