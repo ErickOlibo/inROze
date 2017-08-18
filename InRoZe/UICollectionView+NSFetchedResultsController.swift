@@ -121,10 +121,9 @@ extension EventViewController: UICollectionViewDataSource
         //print("\(indexPath.row)) - Date: [\(event.startTime!)] - Name: \(event.name!) | Place: \(event.location!.name!)")
         cell.cellBackground.backgroundColor = .black
         
-        // get random image
-        let eventCoverArray = FacebookEvents.eventCoverArray
-        let rdImage = eventCoverArray[Int(arc4random_uniform(UInt32(eventCoverArray.count)))]
-        cell.coverImage.image = UIImage(named: rdImage)
+        print("[id: \(event.id!) | Name: \(event.name!) | Place: \(event.location!.name!)]")
+        cell.coverImage.sd_setImage(with: URL(string: event.imageURL! ), completed: nil)
+        
         cell.eventName.text = event.name
         cell.eventLocation.text = event.location!.name
         cell.eventName.textColor = .white

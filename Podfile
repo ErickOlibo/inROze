@@ -6,6 +6,7 @@ target 'InRoZe' do
   use_frameworks!
 
   # Pods for InRoZe
+  pod 'SDWebImage'
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'FacebookShare'
