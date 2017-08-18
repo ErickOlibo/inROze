@@ -13,6 +13,17 @@ import CoreData
 class EventViewController: UIViewController
 {
     
+    
+    @IBOutlet weak var currentDate: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    let eventCell = "Event Cell"
+    
+    // Collectionview cell properties behaviour
+    let cellHeightOffset: CGFloat = 140.0 // distance between bottom picture and bottom cell
+    let zoomOutFirstItemTransform: CGFloat = 0.1 // zoom out rate when moving out of scope
+    
+    
     // Core Data model container and context
     let context = AppDelegate.viewContext
     let container = AppDelegate.persistentContainer
@@ -33,19 +44,14 @@ class EventViewController: UIViewController
         // Configure Fetch Results Controller
         fetchedRC.delegate = self
         
-        print("\(fetchedRC)")
+        print("FetchedRC: \(fetchedRC)")
         return fetchedRC
     }()
     
+    // Initialize an array of BlockOperations
+    var blockOperations = [BlockOperation]()
+
     
-    @IBOutlet weak var currentDate: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
-    
-    let eventCell = "Event Cell"
-    
-    // Collectionview cell properties behaviour
-    let cellHeightOffset: CGFloat = 140.0 // distance between bottom picture and bottom cell
-    let zoomOutFirstItemTransform: CGFloat = 0.1 // zoom out rate when moving out of scope
     
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -94,6 +100,16 @@ class EventViewController: UIViewController
 
         // Notification remove Observer
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
+    }
+    
+    
+    
+    
+    // DeInit
+    deinit {
+        for operation in blockOperations {
+            operation.cancel()
+        }
     }
 }
 
