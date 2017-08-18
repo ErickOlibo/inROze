@@ -23,7 +23,6 @@ extension EventViewController: NSFetchedResultsControllerDelegate
 {
     // MARK: -
     // MARK: Fetched Results Controller Delegate Methods
-    
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         // collectionView should beginUpdates <- works for tableView
         
@@ -52,7 +51,7 @@ extension EventViewController: NSFetchedResultsControllerDelegate
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
         case .insert:
-            print("[Controller Did Change Object] - INSERT: \(newIndexPath!)")
+            //print("[Controller Did Change Object] - INSERT: \(newIndexPath!)")
             blockOperations.append(
                 BlockOperation(block: { [weak self] in
                     if let this = self {
@@ -70,7 +69,7 @@ extension EventViewController: NSFetchedResultsControllerDelegate
                 })
             )
         case .update:
-            print("[Controller Did Change Object] - UPDATE: \(indexPath!)")
+            //print("[Controller Did Change Object] - UPDATE: \(indexPath!)")
             blockOperations.append(
                 BlockOperation(block: { [weak self] in
                     if let this = self {
@@ -79,7 +78,7 @@ extension EventViewController: NSFetchedResultsControllerDelegate
                 })
             )
         case .move:
-            print("[Controller Did Change Object] - MOVE: \(indexPath!)")
+            //print("[Controller Did Change Object] - MOVE: \(indexPath!)")
             blockOperations.append(
                 BlockOperation(block: { [weak self] in
                     if let this = self {
@@ -102,8 +101,6 @@ extension EventViewController: NSFetchedResultsControllerDelegate
 }
 
 
-
-
 extension EventViewController: UICollectionViewDataSource
 {
     
@@ -119,8 +116,9 @@ extension EventViewController: UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: eventCell, for: indexPath) as! EventCollectionViewCell
         // Here I should set the cell
-        let event = fetchResultsController.object(at: indexPath)
-        print("\(indexPath.row)) - Date: [\(event.startTime!)] - Name: \(event.name!) | Place: \(event.location!.name!)")
+        
+        //let event = fetchResultsController.object(at: indexPath)
+        //print("\(indexPath.row)) - Date: [\(event.startTime!)] - Name: \(event.name!) | Place: \(event.location!.name!)")
         cell.cellBackground.backgroundColor = .black
         
         // get random image
@@ -131,16 +129,11 @@ extension EventViewController: UICollectionViewDataSource
         return cell
     }
     
-    
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // When cell is selected a segue to a detail view can be triggered here
     }
     
 
-    
-    
-    
 }
 
 

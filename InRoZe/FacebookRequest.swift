@@ -27,6 +27,9 @@ public class FacebookRequest
     // batchsize to limit facebook load
     private let batchSize = 20
 
+    // Dictionary to merge results from FacebookRequest
+    private var mergedResults = [String : Any]()
+    
     // is true when the Facebook recursiveGraphRequest has fetch all events
     // and update of the core data is done
     private var isDoneUpdatingData = false
@@ -62,12 +65,20 @@ public class FacebookRequest
         FBSDKGraphRequest(graphPath: "/?ids=\(idsString)", parameters: ["fields" : params])
             .start(completionHandler:  { (connection, result, error) in
                 if error == nil,  let result = result as? [String : Any]{
-                    self.updateEventDatabase(with: result)
+                    
+                    // Merge dictionarry together
+                    self.mergedResults.merge(dict: result)
+
                     self.isDoneUpdatingData = true // assume this is the last recursion
                     if (arrayVar.count > 0) {
                         self.isDoneUpdatingData = false
                         self.recursiveGraphRequest(array: arrayVar, parameters: parameters, batchSize: batchSize)
                     }
+                    // if isDone with batching of FB request
+                    if (self.isDoneUpdatingData) {
+                        self.updateEventDatabase(with: self.mergedResults)
+                    }
+                    
                 } else {
                     print("[recursiveGraphRequest] - there an error: \(String(describing: error))")
                 }
@@ -87,13 +98,17 @@ public class FacebookRequest
                     print("[updateEventDatabase] - Error with Event.UpdateInfoForEvent: \(error)")
                 }
             }
-            print("[updateEventDatabase] -  inserting batch Info")
             // Save the context
             if (self.isDoneUpdatingData) {
+                
+                // Delete old events from database
+                _ = Event.deleteEventsEndedBeforeNow(in: context, with: request)
+                
                 do {
+                    print("[updateEventDatabase] -  BEFORE try to save context")
                     try context.save()
+                    print("[updateEventDatabase] -  AFTER SAVED in Context!")
                     
-                    print("[updateEventDatabase] -  UpdateEventInfoToCoreData isDone. Saved")
                     
                     // update the date to FacebbokRequest
                     UserDefaults().setDateNow(for: RequestDate.toFacebook)

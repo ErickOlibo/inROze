@@ -42,6 +42,7 @@
 		A7F527221F4496E50008080B /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F527211F4496E50008080B /* RequestHandler.swift */; };
 		A7F527241F4498540008080B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F527231F4498540008080B /* Event.swift */; };
 		A7F527261F462F4E0008080B /* UICollectionView+NSFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F527251F462F4E0008080B /* UICollectionView+NSFetchedResultsController.swift */; };
+		A7F527281F472ED90008080B /* ConvenienceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F527271F472ED90008080B /* ConvenienceExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		A7F527211F4496E50008080B /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		A7F527231F4498540008080B /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A7F527251F462F4E0008080B /* UICollectionView+NSFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+NSFetchedResultsController.swift"; sourceTree = "<group>"; };
+		A7F527271F472ED90008080B /* ConvenienceExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvenienceExtensions.swift; sourceTree = "<group>"; };
 		AB83D2E3F35B2A53E9FA9FFF /* Pods-InRoZe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InRoZe.release.xcconfig"; path = "Pods/Target Support Files/Pods-InRoZe/Pods-InRoZe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,6 +195,7 @@
 		A77676121F26BF3100F1FA52 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A7F527271F472ED90008080B /* ConvenienceExtensions.swift */,
 				A78979F31F3C687C00467AA6 /* FacebookKeyStringConvenience.swift */,
 				A775C3B11F3C7F8B00A3449F /* ServerKeyStringConvenience.swift */,
 				A775C3B31F3C7FA100A3449F /* NotificationKeyStringConvenience.swift */,
@@ -392,6 +395,7 @@
 				A72B79361F2231AF009FB389 /* InRoZe.xcdatamodeld in Sources */,
 				A7F527261F462F4E0008080B /* UICollectionView+NSFetchedResultsController.swift in Sources */,
 				A775C3B21F3C7F8B00A3449F /* ServerKeyStringConvenience.swift in Sources */,
+				A7F527281F472ED90008080B /* ConvenienceExtensions.swift in Sources */,
 				A7F527201F44969C0008080B /* FacebookEvents.swift in Sources */,
 				A77676091F26B9E800F1FA52 /* ProfileViewController.swift in Sources */,
 				A7F5271D1F4496630008080B /* EventOld.swift in Sources */,

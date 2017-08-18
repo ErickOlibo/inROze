@@ -108,7 +108,8 @@ public class Event: NSManagedObject
     // Select events where StartTime is after Now
     // ADD the LOCATION (city or country) selector as a parameter
     // of the FUNC. Revise when several Cities are implemented
-    class func eventsStartingAfterNow(in context: NSManagedObjectContext) -> [Event] {
+    class func eventsStartingAfterNow(in context: NSManagedObjectContext) -> [Event]
+    {
         var response = [Event]()
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         let nowTime = NSDate()
@@ -125,6 +126,33 @@ public class Event: NSManagedObject
         }
         return response
     }
+    
+    
+    // Deletes older (where endTime < NOW) from the database
+    class func deleteEventsEndedBeforeNow(in context: NSManagedObjectContext, with request: NSFetchRequest<Event>) -> Bool
+    {
+        //var response = [Event]()
+        let nowTime = NSDate()
+        request.sortDescriptors = [NSSortDescriptor(key: "endTime", ascending: true, selector: nil)]
+        request.predicate = NSPredicate(format: "endTime < %@", nowTime)
+        
+        do {
+            let events = try context.fetch(request)
+            if events.count > 0 {
+                for event in events {
+                    // to make sure events are being deleted
+                    print("[DELETE_EVENT] -> EndTime: [\(event.endTime!)] | Name: \(event.name!) | Place: \(event.location!.name!)")
+                    context.delete(event)
+                }
+            }
+        } catch {
+            print("[Event] - deleteEventsEndedBeforeNow: \(error)")
+        }
+        
+        return true
+    }
+    
+    
 }
 
 

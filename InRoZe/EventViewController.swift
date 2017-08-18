@@ -44,7 +44,6 @@ class EventViewController: UIViewController
         // Configure Fetch Results Controller
         fetchedRC.delegate = self
         
-        print("FetchedRC: \(fetchedRC)")
         return fetchedRC
     }()
     
