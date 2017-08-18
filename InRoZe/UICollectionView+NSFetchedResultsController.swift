@@ -117,7 +117,7 @@ extension EventViewController: UICollectionViewDataSource
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: eventCell, for: indexPath) as! EventCollectionViewCell
         // Here I should set the cell
         
-        //let event = fetchResultsController.object(at: indexPath)
+        let event = fetchResultsController.object(at: indexPath)
         //print("\(indexPath.row)) - Date: [\(event.startTime!)] - Name: \(event.name!) | Place: \(event.location!.name!)")
         cell.cellBackground.backgroundColor = .black
         
@@ -125,6 +125,10 @@ extension EventViewController: UICollectionViewDataSource
         let eventCoverArray = FacebookEvents.eventCoverArray
         let rdImage = eventCoverArray[Int(arc4random_uniform(UInt32(eventCoverArray.count)))]
         cell.coverImage.image = UIImage(named: rdImage)
+        cell.eventName.text = event.name
+        cell.eventLocation.text = event.location!.name
+        cell.eventName.textColor = .white
+        cell.eventLocation.textColor = .white
 
         return cell
     }

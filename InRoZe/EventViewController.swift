@@ -69,6 +69,7 @@ class EventViewController: UIViewController
         
         // Execute the FetchRequest
         do {
+            print("ViewDidLoad FetchResultControler is performing Fetch")
             try self.fetchResultsController.performFetch()
         } catch {
             let fetchError = error as NSError
