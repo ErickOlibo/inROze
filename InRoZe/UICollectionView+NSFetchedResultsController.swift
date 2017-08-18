@@ -120,7 +120,7 @@ extension EventViewController: UICollectionViewDataSource
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: eventCell, for: indexPath) as! EventCollectionViewCell
         // Here I should set the cell
         let event = fetchResultsController.object(at: indexPath)
-        print("\(indexPath)) - Name: \(event.name!) | Place: \(event.location!.name!)")
+        print("\(indexPath.row)) - Date: [\(event.startTime!)] - Name: \(event.name!) | Place: \(event.location!.name!)")
         cell.cellBackground.backgroundColor = .black
         
         // get random image
