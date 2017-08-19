@@ -52,8 +52,8 @@ extension EventViewController: UICollectionViewDataSource
                 cell.coverImage.image = nil
 
                 // conditional colors setting 3 options
-                // option 1 -> Colors are already in the Database
                 if (event.primary != nil && event.secondary != nil && event.detail != nil && event.background != nil) {
+                    // option 1 -> Colors are already in the Database
                     print("COLORS already in database")
                     let colorsInHex = ColorsInHexString(background: event.background!, primary: event.primary!, secondary: event.secondary!, detail: event.detail!)
                     let colors = colorsFromHexString(with: colorsInHex)
@@ -90,9 +90,8 @@ extension EventViewController: UICollectionViewDataSource
                     cell.coverImage.image = image
                     
                   
-                }
-                // Option 2 -> Colors are alreadt in EventDictionary
-                else if let colors = self?.colorsEventDictionary[event.id!] {
+                } else if let colors = self?.colorsEventDictionary[event.id!] {
+                    // Option 2 -> Colors are alreadt in EventDictionary
                     print("COLORS are in the EVENT DICTIONARY")
                     
                     // the cell background
@@ -136,20 +135,7 @@ extension EventViewController: UICollectionViewDataSource
                         print("COLORS NOT IN DATABASE")
                         // append to Event Dictionarry
                         self?.colorsEventDictionary[event.id!] = colors
-//                        if let context = self?.container.viewContext {
-//                            print("In  a SELF optional")
-//                            context.perform {
-//                                let colorsInHex = colorsToHexString(with: colors)
-//                                _ = Event.updateEventImageColors(with: event.id!, and: colorsInHex, in: context)
-//                                
-//                                // Save context
-//                                do {
-//                                    try context.save()
-//                                } catch {
-//                                    print("CELL -> Error trying to save colors to database: \(error)")
-//                                }
-//                            }
-//                        }
+
                         
                         // the cell background
                         cell.cellBackground.backgroundColor = colors.background
@@ -196,6 +182,12 @@ extension EventViewController: UICollectionViewDataSource
         
         
         return cell
+    }
+    
+    
+    func configureCell() {
+        // try to configure the cell
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
