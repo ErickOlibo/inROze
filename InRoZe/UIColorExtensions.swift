@@ -68,3 +68,63 @@ func coloredString(_ string: String, color: UIColor) -> NSMutableAttributedStrin
     attributedString.addAttribute(NSForegroundColorAttributeName, value: color, range: stringRange)
     return attributedString
 }
+
+
+func colorsToHexString(with imageColors: UIImageColors) -> ColorsInHexString {
+    var result = ColorsInHexString()
+    result.background = UIColor.changeColorToHexString(imageColors.background)
+    result.primary = UIColor.changeColorToHexString(imageColors.primary)
+    result.secondary = UIColor.changeColorToHexString(imageColors.secondary)
+    result.detail = UIColor.changeColorToHexString(imageColors.detail)
+    
+    return result
+}
+
+
+func colorsFromHexString(with hexColors: ColorsInHexString) -> UIImageColors {
+    var result = UIImageColors()
+    result.background = UIColor.changeHexStringToColor(hexColors.background)
+    result.primary = UIColor.changeHexStringToColor(hexColors.primary)
+    result.secondary = UIColor.changeHexStringToColor(hexColors.secondary)
+    result.detail = UIColor.changeHexStringToColor(hexColors.detail)
+
+    return result
+}
+
+
+
+
+public struct ColorsInHexString {
+    public var background: String!
+    public var primary: String!
+    public var secondary: String!
+    public var detail: String!
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
