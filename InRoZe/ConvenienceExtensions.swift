@@ -17,3 +17,22 @@ extension Dictionary {
         }
     }
 }
+
+
+// extension for the Date
+
+extension Date {
+    func split(this date: Date) -> (day: String, num: String, month: String)
+    {
+        let newFormatter = DateFormatter()
+        newFormatter.locale = NSLocale.current
+        newFormatter.dateFormat = "d"
+        let splitNum = newFormatter.string(from: date)
+        newFormatter.dateFormat = "MMM"
+        let splitMonth = newFormatter.string(from: date)
+        newFormatter.dateFormat = "E"
+        let splitDay = newFormatter.string(from: date)
+        
+        return (splitDay, splitNum, splitMonth)
+    }
+}

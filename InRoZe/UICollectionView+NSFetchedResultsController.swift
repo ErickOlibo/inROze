@@ -18,7 +18,73 @@ extension EventViewController
 }
 
 // MARK: - Extension
+extension EventViewController: UICollectionViewDataSource
+{
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return fetchResultsController.sections?[section].numberOfObjects ?? 0
+        
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return fetchResultsController.sections?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: eventCell, for: indexPath) as! EventCollectionViewCell
+        // Here I should set the cell
+        
+        let event = fetchResultsController.object(at: indexPath)
+        //print("\(indexPath.row)) - Date: [\(event.startTime!)] - Name: \(event.name!) | Place: \(event.location!.name!)")
+        cell.cellBackground.backgroundColor = .black
+        
+        print("[(\(event.startTime!)) -> Name: \(event.name!) | Place: \(event.location!.name!)]")
+        // setting the image and the otherall collection cell
+        cell.placeHolderPicture.image = UIImage(named: "placeHolderCell")
+        cell.backgroundColor = .lightGray
+        cell.coverImage.sd_setImage(with: URL(string: event.imageURL! ), completed: { (image, error, cacheType, imageURL) in
+            
+            if (image != nil) {
+                //print("Image at row [\(indexPath.row)] is done downloading and ready to display")
+                cell.placeHolderPicture.image = nil
+                cell.backgroundColor = .clear
+            }
+        })
+        // Set the date format and color
+        let splitDate = Date().split(this: event.startTime! as Date)
+        let theDate = "\(splitDate.day.uppercased())\n" + "\(splitDate.num)\n" + "\(splitDate.month.uppercased())"
+        cell.date.text = theDate
+        cell.eventName.text = event.name
+        cell.eventLocation.text = event.location!.name
+        cell.eventName.textColor = .white
+        cell.eventLocation.textColor = .white
+        cell.date.textColor = .white
+        
+        
+        
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // When cell is selected a segue to a detail view can be triggered here
+    }
+    
+    
+}
 
+
+extension EventViewController: UICollectionViewDelegateFlowLayout
+{
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.bounds.width, height: collectionView.bounds.width * (9 / 16) + cellHeightOffset)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: NSInteger) -> CGFloat {
+        return 0
+    }
+}
 
 extension EventViewController: NSFetchedResultsControllerDelegate
 {
@@ -102,53 +168,4 @@ extension EventViewController: NSFetchedResultsControllerDelegate
 }
 
 
-extension EventViewController: UICollectionViewDataSource
-{
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return fetchResultsController.sections?[section].numberOfObjects ?? 0
-        
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return fetchResultsController.sections?.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: eventCell, for: indexPath) as! EventCollectionViewCell
-        // Here I should set the cell
-        
-        let event = fetchResultsController.object(at: indexPath)
-        //print("\(indexPath.row)) - Date: [\(event.startTime!)] - Name: \(event.name!) | Place: \(event.location!.name!)")
-        cell.cellBackground.backgroundColor = .black
-        
-        print("[id: \(event.id!) | Name: \(event.name!) | Place: \(event.location!.name!)]")
-        cell.coverImage.sd_setImage(with: URL(string: event.imageURL! ), completed: nil)
-        
-        cell.eventName.text = event.name
-        cell.eventLocation.text = event.location!.name
-        cell.eventName.textColor = .white
-        cell.eventLocation.textColor = .white
 
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // When cell is selected a segue to a detail view can be triggered here
-    }
-    
-
-}
-
-
-extension EventViewController: UICollectionViewDelegateFlowLayout
-{
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.width, height: collectionView.bounds.width * (9 / 16) + cellHeightOffset)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: NSInteger) -> CGFloat {
-        return 0
-    }
-}
