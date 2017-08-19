@@ -34,31 +34,72 @@ extension EventViewController: UICollectionViewDataSource
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: eventCell, for: indexPath) as! EventCollectionViewCell
         // Here I should set the cell
         
+        // Clear the reuseable cell for use
+        if (cell.coverImage != nil) {
+            cell.clear()
+        } else {
+            print("Ceall is NIL")
+        }
+        
         let event = fetchResultsController.object(at: indexPath)
         //print("\(indexPath.row)) - Date: [\(event.startTime!)] - Name: \(event.name!) | Place: \(event.location!.name!)")
-        cell.cellBackground.backgroundColor = .black
+        //cell.cellBackground.backgroundColor = .black
         
-        print("[(\(event.startTime!)) -> Name: \(event.name!) | Place: \(event.location!.name!)]")
+        //print("[(\(event.startTime!)) -> Name: \(event.name!) | Place: \(event.location!.name!)]")
         // setting the image and the otherall collection cell
         cell.placeHolderPicture.image = UIImage(named: "placeHolderCell")
-        cell.backgroundColor = .lightGray
-        cell.coverImage.sd_setImage(with: URL(string: event.imageURL! ), completed: { (image, error, cacheType, imageURL) in
+        cell.backgroundColor = .darkGray
+        cell.spinner.startAnimating()
+        
+        //var cellImageView = UIImageView()
+        
+        cell.coverImage.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
             
+            // is the shit here
+            print("ARE YOU EVENT HERE")
             if (image != nil) {
+                cell.coverImage.image = nil
                 //print("Image at row [\(indexPath.row)] is done downloading and ready to display")
-                cell.placeHolderPicture.image = nil
-                cell.backgroundColor = .clear
+                image?.getColors(scaleDownSize: CGSize(width: 100, height: 100)){ colors in
+                    // the cell background
+                    cell.cellBackground.backgroundColor = colors.background
+                    
+                    // 4 littler Squares (UI)
+                    cell.background.backgroundColor = colors.detail
+                    cell.primary.backgroundColor = colors.primary
+                    cell.secondary.backgroundColor = colors.secondary
+                    cell.detail.backgroundColor = colors.detail
+                    
+                    // footer line and date frame
+                    cell.footer.backgroundColor = colors.primary
+                    cell.dateDisplay.backgroundColor = colors.primary
+                    
+                    // Set the date format and color
+                    let splitDate = Date().split(this: event.startTime! as Date)
+                    let theDate = "\(splitDate.day.uppercased())\n" + "\(splitDate.num)\n" + "\(splitDate.month.uppercased())"
+                    if colors.primary.isDarkColor {
+                        cell.date.attributedText = coloredString(theDate, color: .white)
+                    } else {
+                       cell.date.attributedText = coloredString(theDate, color: .black)
+                    }
+                    
+                    // Set attibuted text for Name and Location
+                    cell.eventName.attributedText = coloredString(event.name!, color: colors.primary)
+                    cell.eventLocation.attributedText = coloredString(event.location!.name!, color: colors.detail)
+
+                    
+                    
+                    // remove the placeholder stop spinner
+                    cell.spinner.stopAnimating()
+                    cell.placeHolderPicture.image = nil
+                    cell.backgroundColor = .clear
+                    cell.coverImage.image = image
+                    
+                }
+   
             }
-        })
-        // Set the date format and color
-        let splitDate = Date().split(this: event.startTime! as Date)
-        let theDate = "\(splitDate.day.uppercased())\n" + "\(splitDate.num)\n" + "\(splitDate.month.uppercased())"
-        cell.date.text = theDate
-        cell.eventName.text = event.name
-        cell.eventLocation.text = event.location!.name
-        cell.eventName.textColor = .white
-        cell.eventLocation.textColor = .white
-        cell.date.textColor = .white
+        }
+        
         
         
         

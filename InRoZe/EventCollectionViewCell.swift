@@ -42,5 +42,20 @@ class EventCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var detail: UIView!
 
     
+    // cleaning the cell before reuse
+    public func clear () {
+        cellBackground.backgroundColor = .clear
+        coverImage.image = nil
+        eventName.text = nil
+        date.text = nil
+        footer.backgroundColor = .clear
+        eventLocation.text = nil
+        dateDisplay.backgroundColor = .clear
+        background.backgroundColor = .clear
+        primary.backgroundColor = .clear
+        secondary.backgroundColor = .clear
+        detail.backgroundColor = .clear
+    }
+    
 
 }
