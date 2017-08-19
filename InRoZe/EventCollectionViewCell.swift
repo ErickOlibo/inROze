@@ -58,10 +58,10 @@ class EventCollectionViewCell: UICollectionViewCell {
     }
     
     
-//        override func prepareForReuse() {
-//            super.prepareForReuse()
-//            clear()
-//        }
-//    
+        override func prepareForReuse() {
+            super.prepareForReuse()
+            clear()
+        }
+    
 
 }

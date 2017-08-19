@@ -101,7 +101,13 @@ public struct ColorsInHexString {
     public var detail: String!
 }
 
-
+public struct EventCell {
+    public var event: Event!
+    public var colors: UIImageColors!
+    public var img: UIImage!
+    
+    
+}
 
 
 
