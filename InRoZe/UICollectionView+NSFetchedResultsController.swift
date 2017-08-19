@@ -41,18 +41,18 @@ extension EventViewController: UICollectionViewDataSource
         let event = fetchResultsController.object(at: indexPath)
 
         cell.placeHolderPicture.image = UIImage(named: "placeHolderCell")
-        cell.backgroundColor = .darkGray
+        cell.backgroundColor = .black
         cell.spinner.startAnimating()
         
         //var cellImageView = UIImageView()
         
-        cell.coverImage.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
-            
-            // is the shit here
+        cell.coverImage.sd_setImage(with: URL(string: event.imageURL! )) { [weak self] (image, error, cacheType, imageURL) in
+
             if (image != nil) {
                 cell.coverImage.image = nil
 
-                // conditional colors setting
+                // conditional colors setting 3 options
+                // option 1 -> Colors are already in the Database
                 if (event.primary != nil && event.secondary != nil && event.detail != nil && event.background != nil) {
                     print("COLORS already in database")
                     let colorsInHex = ColorsInHexString(background: event.background!, primary: event.primary!, secondary: event.secondary!, detail: event.detail!)
@@ -89,25 +89,67 @@ extension EventViewController: UICollectionViewDataSource
                     cell.backgroundColor = .clear
                     cell.coverImage.image = image
                     
+                  
+                }
+                // Option 2 -> Colors are alreadt in EventDictionary
+                else if let colors = self?.colorsEventDictionary[event.id!] {
+                    print("COLORS are in the EVENT DICTIONARY")
                     
-                } else {
+                    // the cell background
+                    cell.cellBackground.backgroundColor = colors.background
+                    
+                    // 4 littler Squares (UI)
+                    cell.background.backgroundColor = colors.detail
+                    cell.primary.backgroundColor = colors.primary
+                    cell.secondary.backgroundColor = colors.secondary
+                    cell.detail.backgroundColor = colors.detail
+                    
+                    // footer line and date frame
+                    cell.footer.backgroundColor = colors.primary
+                    cell.dateDisplay.backgroundColor = colors.primary
+                    
+                    // Set the date format and color
+                    let splitDate = Date().split(this: event.startTime! as Date)
+                    let theDate = "\(splitDate.day.uppercased())\n" + "\(splitDate.num)\n" + "\(splitDate.month.uppercased())"
+                    if colors.primary.isDarkColor {
+                        cell.date.attributedText = coloredString(theDate, color: .white)
+                    } else {
+                        cell.date.attributedText = coloredString(theDate, color: .black)
+                    }
+                    
+                    // Set attibuted text for Name and Location
+                    cell.eventName.attributedText = coloredString(event.name!, color: colors.primary)
+                    cell.eventLocation.attributedText = coloredString(event.location!.name!, color: colors.detail)
+                    
+                    
+                    
+                    // remove the placeholder stop spinner
+                    cell.spinner.stopAnimating()
+                    cell.placeHolderPicture.image = nil
+                    cell.backgroundColor = .clear
+                    cell.coverImage.image = image
+                    
+                
+                }else {
                     image?.getColors(scaleDownSize: CGSize(width: 100, height: 100)){ [weak self] colors in
                         // Save colors to core data
                         print("COLORS NOT IN DATABASE")
-                        if let context = self?.container.viewContext {
-                            print("In  a SELF optional")
-                            context.perform {
-                                let colorsInHex = colorsToHexString(with: colors)
-                                _ = Event.updateEventImageColors(with: event.id!, and: colorsInHex, in: context)
-                                
-                                // Save context
-                                do {
-                                    try context.save()
-                                } catch {
-                                    print("CELL -> Error trying to save colors to database: \(error)")
-                                }
-                            }
-                        }
+                        // append to Event Dictionarry
+                        self?.colorsEventDictionary[event.id!] = colors
+//                        if let context = self?.container.viewContext {
+//                            print("In  a SELF optional")
+//                            context.perform {
+//                                let colorsInHex = colorsToHexString(with: colors)
+//                                _ = Event.updateEventImageColors(with: event.id!, and: colorsInHex, in: context)
+//                                
+//                                // Save context
+//                                do {
+//                                    try context.save()
+//                                } catch {
+//                                    print("CELL -> Error trying to save colors to database: \(error)")
+//                                }
+//                            }
+//                        }
                         
                         // the cell background
                         cell.cellBackground.backgroundColor = colors.background

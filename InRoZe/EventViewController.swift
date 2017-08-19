@@ -21,7 +21,7 @@ class EventViewController: UIViewController
     
     // Collectionview cell properties behaviour
     let cellHeightOffset: CGFloat = 140.0 // distance between bottom picture and bottom cell
-    let zoomOutFirstItemTransform: CGFloat = 0.0 // zoom out rate when moving out of scope
+    let zoomOutFirstItemTransform: CGFloat = 0.05 // zoom out rate when moving out of scope
     
     
     // Core Data model container and context
@@ -50,6 +50,8 @@ class EventViewController: UIViewController
     // Initialize an array of BlockOperations
     var blockOperations = [BlockOperation]()
 
+    // Initialize a dictionary of Colors to save in Core data
+    var colorsEventDictionary = [String : UIImageColors]()
     
     
     
@@ -85,7 +87,7 @@ class EventViewController: UIViewController
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         // Notification add Observer
         NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
     }
@@ -97,6 +99,24 @@ class EventViewController: UIViewController
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+
+        // Save the ColorEventDictionary to core Data
+        let context = container.viewContext
+        print("In  a SELF optional")
+        context.perform {
+            for event in self.colorsEventDictionary {
+                let eventID = event.key
+                let colors = event.value
+                let colorsInHex = colorsToHexString(with: colors)
+                _ = Event.updateEventImageColors(with: eventID, and: colorsInHex, in: context)
+            }
+            // Save context
+            do {
+                try context.save()
+            } catch {
+                print("CELL -> Error trying to save colors to database: \(error)")
+            }
+        }
 
         // Notification remove Observer
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
