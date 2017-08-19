@@ -39,11 +39,7 @@ extension EventViewController: UICollectionViewDataSource
         }
         
         let event = fetchResultsController.object(at: indexPath)
-        //print("\(indexPath.row)) - Date: [\(event.startTime!)] - Name: \(event.name!) | Place: \(event.location!.name!)")
-        //cell.cellBackground.backgroundColor = .black
-        
-        //print("[(\(event.startTime!)) -> Name: \(event.name!) | Place: \(event.location!.name!)]")
-        // setting the image and the otherall collection cell
+
         cell.placeHolderPicture.image = UIImage(named: "placeHolderCell")
         cell.backgroundColor = .darkGray
         cell.spinner.startAnimating()

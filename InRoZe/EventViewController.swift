@@ -21,7 +21,7 @@ class EventViewController: UIViewController
     
     // Collectionview cell properties behaviour
     let cellHeightOffset: CGFloat = 140.0 // distance between bottom picture and bottom cell
-    let zoomOutFirstItemTransform: CGFloat = 0.1 // zoom out rate when moving out of scope
+    let zoomOutFirstItemTransform: CGFloat = 0.0 // zoom out rate when moving out of scope
     
     
     // Core Data model container and context

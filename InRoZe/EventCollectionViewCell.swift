@@ -57,5 +57,11 @@ class EventCollectionViewCell: UICollectionViewCell {
         detail.backgroundColor = .clear
     }
     
+    
+//        override func prepareForReuse() {
+//            super.prepareForReuse()
+//            clear()
+//        }
+//    
 
 }
