@@ -44,6 +44,7 @@ extension EventViewController: UICollectionViewDataSource
         var eventToCell = EventCell()
         
         cell.placeHolderPicture.image = UIImage(named: "placeHolderCell")
+        cell.placeHolderPicture.alpha = 1
         cell.backgroundColor = .darkGray
         cell.spinner.startAnimating()
         
@@ -94,41 +95,79 @@ extension EventViewController: UICollectionViewDataSource
     
     func configureWith(cell : EventCollectionViewCell, eventCell: EventCell) {
         
+        // Animator
+        let animator = UIViewPropertyAnimator(duration: 0.4, curve: .easeInOut)
+        cell.coverImage.alpha = 0
+        //cell.placeHolderPicture.alpha = 1
+        
         let event = eventCell.event!
         let colors = eventCell.colors!
         let image = eventCell.img!
+        cell.coverImage.image = image
+
         
         // try to configure the cell
-        cell.cellBackground.backgroundColor = colors.background
+        cell.cellBackground.backgroundColor = colors.background.withAlphaComponent(0)
         
         // 4 littler Squares (UI)
-        cell.background.backgroundColor = colors.detail
-        cell.primary.backgroundColor = colors.primary
-        cell.secondary.backgroundColor = colors.secondary
-        cell.detail.backgroundColor = colors.detail
+        cell.background.backgroundColor = colors.detail.withAlphaComponent(0)
+        cell.primary.backgroundColor = colors.primary.withAlphaComponent(0)
+        cell.secondary.backgroundColor = colors.secondary.withAlphaComponent(0)
+        cell.detail.backgroundColor = colors.detail.withAlphaComponent(0)
         
         // footer line and date frame
-        cell.footer.backgroundColor = colors.primary
-        cell.dateDisplay.backgroundColor = colors.primary
+        cell.footer.backgroundColor = colors.primary.withAlphaComponent(0)
+        cell.dateDisplay.backgroundColor = colors.primary.withAlphaComponent(0)
         
         // Set the date format and color
         let splitDate = Date().split(this: event.startTime! as Date)
         let theDate = "\(splitDate.day.uppercased())\n" + "\(splitDate.num)\n" + "\(splitDate.month.uppercased())"
         if colors.primary.isDarkColor {
             cell.date.attributedText = coloredString(theDate, color: .white)
+            cell.date.textColor.withAlphaComponent(0)
         } else {
             cell.date.attributedText = coloredString(theDate, color: .black)
+            cell.date.textColor.withAlphaComponent(0)
         }
         
         // Set attibuted text for Name and Location
         cell.eventName.attributedText = coloredString(event.name!, color: colors.primary)
         cell.eventLocation.attributedText = coloredString(event.location!.name!, color: colors.detail)
+        cell.eventName.textColor.withAlphaComponent(0)
+        cell.eventLocation.textColor.withAlphaComponent(0)
         
+        // Create animations
+        animator.addAnimations {
+            // try to configure the cell
+            cell.cellBackground.backgroundColor = colors.background.withAlphaComponent(1)
+            
+            // Text animations
+            cell.date.textColor.withAlphaComponent(1)
+            cell.eventName.textColor.withAlphaComponent(1)
+            cell.eventLocation.textColor.withAlphaComponent(1)
+            
+            
+            // 4 littler Squares (UI)
+            cell.background.backgroundColor = colors.detail.withAlphaComponent(1)
+            cell.primary.backgroundColor = colors.primary.withAlphaComponent(1)
+            cell.secondary.backgroundColor = colors.secondary.withAlphaComponent(1)
+            cell.detail.backgroundColor = colors.detail.withAlphaComponent(1)
+            
+            // footer line and date frame
+            cell.footer.backgroundColor = colors.primary.withAlphaComponent(1)
+            cell.dateDisplay.backgroundColor = colors.primary.withAlphaComponent(1)
+            
+            cell.placeHolderPicture.alpha = 0
+            cell.backgroundColor?.withAlphaComponent(0)
+            cell.coverImage.alpha = 1
+        }
+        
+        animator.startAnimation()
         // remove the placeholder stop spinner
         cell.spinner.stopAnimating()
-        cell.placeHolderPicture.image = nil
-        cell.backgroundColor = .clear
-        cell.coverImage.image = image
+//        cell.placeHolderPicture.image = nil
+//        cell.backgroundColor = .clear
+//        cell.coverImage.image = image
         
     }
     
