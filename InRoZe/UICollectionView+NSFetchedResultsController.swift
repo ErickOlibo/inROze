@@ -43,8 +43,8 @@ extension EventViewController: UICollectionViewDataSource
         // Create an empty eventCell
         var eventToCell = EventCell()
         
-        cell.placeHolderPicture.image = UIImage(named: "placeHolderCell")
-        cell.placeHolderPicture.alpha = 1
+        //cell.placeHolderPicture.image = UIImage(named: "placeHolderCell")
+        //cell.placeHolderPicture.alpha = 1
         cell.backgroundColor = .darkGray
         cell.spinner.startAnimating()
         
@@ -96,7 +96,7 @@ extension EventViewController: UICollectionViewDataSource
     func configureWith(cell : EventCollectionViewCell, eventCell: EventCell) {
         
         // Animator
-        let animator = UIViewPropertyAnimator(duration: 0.4, curve: .easeInOut)
+        let animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut)
         cell.coverImage.alpha = 0
         //cell.placeHolderPicture.alpha = 1
         
@@ -131,10 +131,12 @@ extension EventViewController: UICollectionViewDataSource
         }
         
         // Set attibuted text for Name and Location
+        cell.date.attributedText = coloredString(theDate, color: colors.detail)
         cell.eventName.attributedText = coloredString(event.name!, color: colors.primary)
         cell.eventLocation.attributedText = coloredString(event.location!.name!, color: colors.detail)
         cell.eventName.textColor.withAlphaComponent(0)
         cell.eventLocation.textColor.withAlphaComponent(0)
+        cell.backgroundColor = UIColor.black.withAlphaComponent(1)
         
         // Create animations
         animator.addAnimations {
@@ -158,19 +160,21 @@ extension EventViewController: UICollectionViewDataSource
             
             // footer line and date frame
             cell.footer.backgroundColor = colors.detail.withAlphaComponent(1)
-            cell.dateDisplay.backgroundColor = colors.primary.withAlphaComponent(1)
+            //cell.dateDisplay.backgroundColor = colors.primary.withAlphaComponent(1)
             
-            cell.placeHolderPicture.alpha = 0
+            //cell.placeHolderPicture.alpha = 0
             
             
+            cell.coverImage.layer.borderWidth = 1
+            cell.coverImage.layer.cornerRadius = 10
+            cell.coverImage.layer.masksToBounds = true
+            cell.separator.backgroundColor = colors.primary
+            cell.coverImage.layer.borderColor = colors.detail.cgColor
             
             cell.coverImage.alpha = 1
             
         }
-        cell.coverImage.layer.borderWidth = 1
-        cell.coverImage.layer.cornerRadius = 10
-        cell.coverImage.layer.masksToBounds = true
-        cell.coverImage.layer.borderColor = colors.detail.cgColor
+        
         animator.startAnimation()
         // remove the placeholder stop spinner
         cell.spinner.stopAnimating()
