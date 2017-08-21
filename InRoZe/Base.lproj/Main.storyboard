@@ -212,6 +212,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1bF-sv-OlW" firstAttribute="bottom" secondItem="z2P-3c-htw" secondAttribute="top" id="331-O3-jqP"/>
                             <constraint firstAttribute="trailing" secondItem="1bF-sv-OlW" secondAttribute="trailing" id="QY2-dF-l38"/>

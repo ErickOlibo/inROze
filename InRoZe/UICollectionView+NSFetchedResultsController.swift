@@ -140,6 +140,9 @@ extension EventViewController: UICollectionViewDataSource
         animator.addAnimations {
             // try to configure the cell
             cell.cellBackground.backgroundColor = colors.background.withAlphaComponent(1)
+            cell.backgroundColor = colors.background
+
+            
             
             // Text animations
             cell.date.textColor.withAlphaComponent(1)
@@ -159,7 +162,8 @@ extension EventViewController: UICollectionViewDataSource
             
             cell.placeHolderPicture.alpha = 0
             
-            cell.backgroundColor = colors.background
+            
+            
             cell.coverImage.alpha = 1
             
         }
