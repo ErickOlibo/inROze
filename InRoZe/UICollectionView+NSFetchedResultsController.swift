@@ -154,14 +154,19 @@ extension EventViewController: UICollectionViewDataSource
             cell.detail.backgroundColor = colors.detail.withAlphaComponent(1)
             
             // footer line and date frame
-            cell.footer.backgroundColor = colors.primary.withAlphaComponent(1)
+            cell.footer.backgroundColor = colors.detail.withAlphaComponent(1)
             cell.dateDisplay.backgroundColor = colors.primary.withAlphaComponent(1)
             
             cell.placeHolderPicture.alpha = 0
-            cell.backgroundColor?.withAlphaComponent(0)
+            
+            cell.backgroundColor = colors.background
             cell.coverImage.alpha = 1
+            
         }
-        
+        cell.coverImage.layer.borderWidth = 1
+        cell.coverImage.layer.cornerRadius = 10
+        cell.coverImage.layer.masksToBounds = true
+        cell.coverImage.layer.borderColor = colors.detail.cgColor
         animator.startAnimation()
         // remove the placeholder stop spinner
         cell.spinner.stopAnimating()

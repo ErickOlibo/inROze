@@ -30,7 +30,7 @@ class EventCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var dateDisplay: UIView! {
         didSet {
-            dateDisplay.layer.cornerRadius = 10
+            dateDisplay.layer.cornerRadius = 5
 
         }
     }

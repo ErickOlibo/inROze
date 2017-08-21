@@ -20,7 +20,7 @@ class EventViewController: UIViewController
     let eventCell = "Event Cell"
     
     // Collectionview cell properties behaviour
-    let cellHeightOffset: CGFloat = 140.0 // distance between bottom picture and bottom cell
+    let cellHeightOffset: CGFloat = 160.0 // distance between bottom picture and bottom cell
     let zoomOutFirstItemTransform: CGFloat = 0.05 // zoom out rate when moving out of scope
     
     
