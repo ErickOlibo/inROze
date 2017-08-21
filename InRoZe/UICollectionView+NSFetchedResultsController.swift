@@ -48,6 +48,8 @@ extension EventViewController: UICollectionViewDataSource
         cell.backgroundColor = .darkGray
         cell.spinner.startAnimating()
         
+        
+        print("PathIndexRow: \(indexPath.row) | name: \(event.name!) | location: \(event.location!.name!)")
         cell.coverImage.sd_setImage(with: URL(string: event.imageURL! )) { [weak self] (image, error, cacheType, imageURL) in
             
             if (image != nil) {
@@ -89,6 +91,7 @@ extension EventViewController: UICollectionViewDataSource
                 }
             }
         }
+        
         return cell
     }
     

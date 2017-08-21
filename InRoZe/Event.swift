@@ -66,7 +66,9 @@ public class Event: NSManagedObject
 //                            print("************************ DataToString: \(pDesc)")
 //                        }
                         
-                        event.text = uniqID["description"] as? String ?? ""
+                        if let eventText = uniqID["description"] as? String {
+                            event.text = eventText
+                        }
                         
                         if let cover = uniqID["cover"] as? [String : Any],
                             let coverSource = cover["source"] as? String,
@@ -114,7 +116,7 @@ public class Event: NSManagedObject
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         let nowTime = NSDate()
         request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
-        request.predicate = NSPredicate(format: "startTime > %@", nowTime)
+        request.predicate = NSPredicate(format: "startTime > %@ AND imageURL != nil", nowTime)
         
         do {
             let events = try context.fetch(request)
