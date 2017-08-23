@@ -15,6 +15,7 @@
 		A72B79361F2231AF009FB389 /* InRoZe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A72B79341F2231AF009FB389 /* InRoZe.xcdatamodeld */; };
 		A72B79381F2231AF009FB389 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A72B79371F2231AF009FB389 /* Assets.xcassets */; };
 		A72B793B1F2231AF009FB389 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72B79391F2231AF009FB389 /* LaunchScreen.storyboard */; };
+		A730E7861F4DE6ED004AB9D8 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A730E7851F4DE6ED004AB9D8 /* Artist.swift */; };
 		A775C3B21F3C7F8B00A3449F /* ServerKeyStringConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B11F3C7F8B00A3449F /* ServerKeyStringConvenience.swift */; };
 		A775C3B41F3C7FA100A3449F /* NotificationKeyStringConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B31F3C7FA100A3449F /* NotificationKeyStringConvenience.swift */; };
 		A775C3B61F3CC0CC00A3449F /* FacebookRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */; };
@@ -57,6 +58,7 @@
 		A72B79371F2231AF009FB389 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A72B793A1F2231AF009FB389 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A72B793C1F2231AF009FB389 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A730E7851F4DE6ED004AB9D8 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		A775C3B11F3C7F8B00A3449F /* ServerKeyStringConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerKeyStringConvenience.swift; sourceTree = "<group>"; };
 		A775C3B31F3C7FA100A3449F /* NotificationKeyStringConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKeyStringConvenience.swift; sourceTree = "<group>"; };
 		A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookRequest.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				A7F527211F4496E50008080B /* RequestHandler.swift */,
 				A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */,
 				A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */,
+				A730E7851F4DE6ED004AB9D8 /* Artist.swift */,
 				A7F527231F4498540008080B /* Event.swift */,
 				A7A24D4F1F3B655E00EFB82E /* Place.swift */,
 				A7F527251F462F4E0008080B /* UICollectionView+NSFetchedResultsController.swift */,
@@ -402,6 +405,7 @@
 				A775C3B21F3C7F8B00A3449F /* ServerKeyStringConvenience.swift in Sources */,
 				A7F527281F472ED90008080B /* ConvenienceExtensions.swift in Sources */,
 				A7F527201F44969C0008080B /* FacebookEvents.swift in Sources */,
+				A730E7861F4DE6ED004AB9D8 /* Artist.swift in Sources */,
 				A77676091F26B9E800F1FA52 /* ProfileViewController.swift in Sources */,
 				A7F5271D1F4496630008080B /* EventOld.swift in Sources */,
 				A776760D1F26BE8200F1FA52 /* StickyCollectionViewFlowLayout.swift in Sources */,
