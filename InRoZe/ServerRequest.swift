@@ -62,7 +62,7 @@ public class ServerRequest
                             if (json[DBLabels.rows]! as! Int > 0) {
                                 print("[ServerRequest] - There are Rows eventIDs from Server Response")
                                 self.result = json
-                                
+                                print(json)
                                 // update the date to server
                                 UserDefaults().setDateNow(for: RequestDate.toServer)
                             }
@@ -96,6 +96,10 @@ public class ServerRequest
                     let _ = events.first as? [String : String] {
                     for event in events {
                         if let eventDict = event as? [String : String] {
+                            // Print the djs list if not nil
+                            if let artistList = eventDict[DBLabels.artistsList] {
+                                print("EventID: [\(eventDict[DBLabels.eventID]!)] -> List: [\(artistList)]")
+                            }
 
                             do {
                                 _ = try Event.findOrInsertEventID(matching: eventDict, in: context)

@@ -15,14 +15,13 @@ import Foundation
 public struct FBEvent {
     static let id = "id"                    // (Type: numeric string)
     static let cover = "cover"              // (Type: CoverPhoto)
-    static let descript = "description"     // (Type: string)
+    static let description = "description"     // (Type: string)
     static let endTime = "end_time"         // (Type: datetime string)
     static let name = "name"                // (Type: string)
     static let place = "place"              // (Type: Place)
     static let startTime = "start_time"     // (Type: datetime string)
     static let updatedTime = "updated_time" // (Type: datetime string)
-    static let placeDeep = "place.fields(name, id, location)"
-    static let coverDeep = "cover.fields(id, source)"
+    //static let
 }
 
 
@@ -34,9 +33,11 @@ public struct FBPlace {
 }
 
 
-public struct FBCoverPhoto {
+public struct FBPhoto {
     static let id = "id"                    // (Type: numeric string)
     static let source = "source"            // (Type: string - direct URL)
+    static let offsetX = "offset_x"
+    static let offsetY = "offset_y"
 }
 
 

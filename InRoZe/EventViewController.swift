@@ -21,7 +21,7 @@ class EventViewController: UIViewController
     
     // Collectionview cell properties behaviour
     let cellHeightOffset: CGFloat = 160.0 // distance between bottom picture and bottom cell
-    let zoomOutFirstItemTransform: CGFloat = 0.05 // zoom out rate when moving out of scope
+    //let zoomOutFirstItemTransform: CGFloat = 0.05 // zoom out rate when moving out of scope
     
     
     // Core Data model container and context
@@ -63,8 +63,8 @@ class EventViewController: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .black
-        let stickyLayout = collectionView.collectionViewLayout as! StickyCollectionViewFlowLayout
-        stickyLayout.firstItemTransform = zoomOutFirstItemTransform
+        //let stickyLayout = collectionView.collectionViewLayout as! StickyCollectionViewFlowLayout
+        //stickyLayout.firstItemTransform = zoomOutFirstItemTransform
         
         // Request handler for eventIds from server
         RequestHandler().fetchEventIDsFromServer()

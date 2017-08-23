@@ -8,6 +8,8 @@
         <attribute name="imageID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="offsetX" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="offsetY" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="primary" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="secondary" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -26,7 +28,7 @@
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="location" inverseEntity="Event" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="630" positionY="72" width="128" height="238"/>
+        <element name="Event" positionX="630" positionY="72" width="128" height="270"/>
         <element name="Place" positionX="259" positionY="9" width="128" height="163"/>
     </elements>
 </model>

@@ -49,7 +49,7 @@ extension EventViewController: UICollectionViewDataSource
         cell.spinner.startAnimating()
         
         
-        print("PathIndexRow: \(indexPath.row) | name: \(event.name!) | location: \(event.location!.name!)")
+        //print("[\(indexPath.row)] -> name: \(event.name!) | location: \(event.location!.name!)")
         cell.coverImage.sd_setImage(with: URL(string: event.imageURL! )) { [weak self] (image, error, cacheType, imageURL) in
             
             if (image != nil) {
@@ -57,12 +57,22 @@ extension EventViewController: UICollectionViewDataSource
                 eventToCell.event = event
                 eventToCell.img = image
                 
+                // Get metric about the picture
+                let imgWidthInPoints = image!.size.width
+                let imgWidthInPixels = imgWidthInPoints * image!.scale
+                let imgHeightInPoints = image!.size.height
+                let imgHeightInPixels = imgHeightInPoints * image!.scale
+                let ratio = String(format: "%.2f", imgWidthInPixels / imgHeightInPixels)
+                 print("[\(indexPath.row)] -> Pixels (W: \(imgWidthInPixels) | H: \(imgHeightInPixels)) -> Ratio (\(ratio)) -> OFFSET (X: \(event.offsetX) | Y: \(event.offsetY))")
+                
+                //print("***********")
+                
                 cell.coverImage.image = nil
                 
                 // conditional colors setting 3 options
                 if (event.primary != nil && event.secondary != nil && event.detail != nil && event.background != nil) {
                     // option 1 -> Colors are already in the Database
-                    print("COLORS already in database")
+                    //print("COLORS already in database")
                     let colorsInHex = ColorsInHexString(background: event.background!, primary: event.primary!, secondary: event.secondary!, detail: event.detail!)
                     let colors = colorsFromHexString(with: colorsInHex)
                     
@@ -71,7 +81,7 @@ extension EventViewController: UICollectionViewDataSource
                     
                 } else if let colors = self?.colorsEventDictionary[event.id!] {
                     // Option 2 -> Colors are alreadt in EventDictionary
-                    print("COLORS are in the EVENT DICTIONARY")
+                    //print("COLORS are in the EVENT DICTIONARY")
                     
                     eventToCell.colors = colors
                     self!.configureWith(cell: cell, eventCell: eventToCell)
@@ -80,7 +90,7 @@ extension EventViewController: UICollectionViewDataSource
                 }else {
                     image?.getColors(scaleDownSize: CGSize(width: 100, height: 100)){ [weak self] colors in
                         // Save colors to core data
-                        print("COLORS NOT IN DATABASE")
+                        //print("COLORS NOT IN DATABASE")
                         
                         eventToCell.colors = colors
                         self!.configureWith(cell: cell, eventCell: eventToCell)
@@ -99,7 +109,7 @@ extension EventViewController: UICollectionViewDataSource
     func configureWith(cell : EventCollectionViewCell, eventCell: EventCell) {
         
         // Animator
-        let animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut)
+        let animator = UIViewPropertyAnimator(duration: 0.2, curve: .easeInOut)
         cell.coverImage.alpha = 0
         //cell.placeHolderPicture.alpha = 1
         
@@ -139,7 +149,8 @@ extension EventViewController: UICollectionViewDataSource
         cell.eventLocation.attributedText = coloredString(event.location!.name!, color: colors.detail)
         cell.eventName.textColor.withAlphaComponent(0)
         cell.eventLocation.textColor.withAlphaComponent(0)
-        cell.backgroundColor = UIColor.black.withAlphaComponent(1)
+        cell.backgroundColor = colors.background.withAlphaComponent(0)
+        //cell.backgroundColor = UIColor.black.withAlphaComponent(1)
         
         // Create animations
         animator.addAnimations {
@@ -173,7 +184,7 @@ extension EventViewController: UICollectionViewDataSource
             cell.coverImage.layer.masksToBounds = true
             cell.separator.backgroundColor = colors.primary
             cell.coverImage.layer.borderColor = colors.detail.cgColor
-            
+            cell.backgroundColor = colors.background.withAlphaComponent(1)
             cell.coverImage.alpha = 1
             
         }

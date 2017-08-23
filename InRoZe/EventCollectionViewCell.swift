@@ -56,6 +56,9 @@ class EventCollectionViewCell: UICollectionViewCell {
         primary.backgroundColor = .clear
         secondary.backgroundColor = .clear
         detail.backgroundColor = .clear
+        separator.backgroundColor = .clear
+        coverImage.layer.borderColor = UIColor.clear.cgColor
+        
     }
     
     

@@ -53,11 +53,11 @@ public class Event: NSManagedObject
                 
                 let event = events[0]
                 
-                if let uniqID = eventID.value as? [String : Any] {
+                if let eventInfo = eventID.value as? [String : Any] {
                     
-                    if let name = uniqID["name"] as? String,
-                        let sTime = uniqID["start_time"] as? String,
-                        let uTime = uniqID["updated_time"] as? String {
+                    if let name = eventInfo[FBEvent.name] as? String,
+                        let sTime = eventInfo[FBEvent.startTime] as? String,
+                        let uTime = eventInfo[FBEvent.updatedTime] as? String {
                         
                         event.name = name
                         
@@ -66,13 +66,15 @@ public class Event: NSManagedObject
 //                            print("************************ DataToString: \(pDesc)")
 //                        }
                         
-                        if let eventText = uniqID["description"] as? String {
+                        if let eventText = eventInfo[FBEvent.description] as? String {
                             event.text = eventText
                         }
                         
-                        if let cover = uniqID["cover"] as? [String : Any],
-                            let coverSource = cover["source"] as? String,
-                            let coverID = cover["id"] as? String {
+                        if let cover = eventInfo[FBEvent.cover] as? [String : Any],
+                            let coverSource = cover[FBPhoto.source] as? String,
+                            let coverID = cover[FBPhoto.id] as? String {
+                            event.offsetX = cover[FBPhoto.offsetX] as? Float ?? 0.0
+                            event.offsetY = cover[FBPhoto.offsetY] as? Float ?? 0.0
                             event.imageID = coverID
                             event.imageURL = coverSource
                         }
@@ -84,14 +86,14 @@ public class Event: NSManagedObject
                         //print("StartTime after Conversion: \(event.startTime!)")
                         
                         // If end_time is nil (from FB request) add default: +12 hours of Start_time
-                        if let eTime = uniqID["end_time"] as? String {
+                        if let eTime = eventInfo[FBEvent.endTime] as? String {
                             event.endTime = formatter.date(from: eTime)! as NSDate
                         } else {
                             event.endTime = (formatter.date(from: sTime)! as NSDate).addingTimeInterval(12 * 60 * 60)
                         }
                         
                         // updating Location ralationship for eventID
-                        if let eventPlace = uniqID["place"] as? [String : Any] {
+                        if let eventPlace = eventInfo[FBEvent.place] as? [String : Any] {
                             do {
                                 event.location = try Place.updatePlaceInfoForEvent(with: eventPlace, in: context)
                             } catch {

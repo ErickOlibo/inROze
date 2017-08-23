@@ -45,7 +45,7 @@ public class FacebookRequest
 
     // Facebook Query fields parameters
     let param: [String] = [FBEvent.id, FBEvent.name, FBEvent.startTime, FBEvent.endTime, FBEvent.updatedTime,
-                 FBEvent.cover, FBEvent.place, FBEvent.descript]
+                 FBEvent.cover, FBEvent.place, FBEvent.description]
     
     // Recursive Fabeook GraphRequest using batchSize
     private func recursiveGraphRequest(array: [String], parameters: [String], batchSize: Int) {
