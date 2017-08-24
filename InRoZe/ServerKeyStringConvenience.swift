@@ -29,6 +29,13 @@ public struct DBLabels {
     static let cityCode =  "cityCode"
     static let errorType = "error"
     static let rows = "rows"
+    
+    // for the Artist info fields
+    static let artistID = "artist_id"
+    static let artistName = "name"
+    static let artistType = "type"
+    static let artistCountry = "country"
+    
 }
 
 // cityCode requirement for loading right eventIDs

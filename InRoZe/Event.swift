@@ -16,6 +16,11 @@ public class Event: NSManagedObject
     // update placeID if eventID already present
     class func findOrInsertEventID(matching eventDict: [String : String], in context: NSManagedObjectContext) throws -> Event
     {
+        // getting array for artists
+        var artists = [String]()
+        if let list = eventDict[DBLabels.artistsList] {
+            artists = list.components(separatedBy: ", ")
+        }
         
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         request.predicate = NSPredicate(format: "id = %@", eventDict[DBLabels.eventID]!)
@@ -24,19 +29,65 @@ public class Event: NSManagedObject
             let match = try context.fetch(request)
             if match.count > 0 {
                 assert(match.count == 1, "findOrInsertEventID -- database inconsistency")
-                return match[0]
+                let foundEvent = match[0]
+                // need to update Performers
+                if (artists.count > 0) {
+                    // erase previous performers
+                    do {
+                        let toEraseArtists = try Artist.findArtistPerformingAt(this: foundEvent.id!, in: context)
+                        if (toEraseArtists.count > 0) {
+                            for artist in toEraseArtists {
+                                artist.removeFromEvents(foundEvent)
+                            }
+                        }
+                    } catch {
+                        print("[Event] - Error findArtisPerformingAt: \(error)")
+                        
+                    }
+                    // add updated performers list
+                    for artistID in artists {
+                        var artist = Artist()
+                        do {
+                            artist = try Artist.findArtist(with: artistID, in: context)
+                        } catch {
+                            print("[Event] - Error insertOrUpdateArtists TO Artit: \(error)")
+                        }
+                        foundEvent.addToArtists(artist)
+                        
+                    }
+                    
+                }
+
+                return foundEvent
             }
         } catch {
             throw error
         }
-
+        
         let event = Event(context: context)
         event.id = eventDict[DBLabels.eventID]
         do {
-        event.location = try Place.findOrInsertPlaceID(matching: eventDict, in: context)
+            // Event Location is never updated not good
+            event.location = try Place.findOrInsertPlaceID(matching: eventDict, in: context)
         } catch {
             print("[Event] - Error findOrInsertEventID TO Location: \(error)")
         }
+        
+        // if new event need to insert artists list for this event if list is not nil
+        if (artists.count > 0){
+            // get the array of artist
+            for artistID in artists {
+                var artist = Artist()
+                do {
+                    artist = try Artist.findArtist(with: artistID, in: context)
+                } catch {
+                    print("[Event] - Error insertOrUpdateArtists TO Artit: \(error)")
+                }
+                event.addToArtists(artist)
+                
+            }
+        }
+        
         return event
     }
     
