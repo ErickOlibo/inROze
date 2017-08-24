@@ -25,19 +25,28 @@ public class ServerRequest
     
     public func setUserLoggedIn(to isLogged: Bool, parameters: String, urlToServer: String) {
         let postParams = "\(parameters)&isLogged=\(isLogged)"
-        let _ = taskForURLSession(postParams: postParams, url: urlToServer, isEventFetch: false)
+        let _ = taskForURLSession(postParams: postParams, url: urlToServer, isExpectingResponse: false, type: SessionType.user)
     }
     
     // request to Server for latest updated list of EventIDs
     public func getEventsIDsCurrentList(parameter: String, urlToServer: String) {
         
-            let _ = taskForURLSession(postParams: parameter, url: urlToServer, isEventFetch: true)
+        let _ = taskForURLSession(postParams: parameter, url: urlToServer, isExpectingResponse: true, type: SessionType.events)
     }
     
     
+    
+    // request to Server for the latest update of ArtistsList
+    public func getArtistsList(parameter: String, urlToServer: String) {
+        
+        let _ = taskForURLSession(postParams: parameter, url: urlToServer, isExpectingResponse: true, type: SessionType.artists)
+    }
+    
+    
+    
     // when call to the server, conditional call must be depending on the Country/ City
-    // ADD the city selector 
-    private func taskForURLSession(postParams: String, url: String, isEventFetch: Bool) {
+    // isExpectingResponse determine if tthe request is expecting answer from the server
+    private func taskForURLSession(postParams: String, url: String, isExpectingResponse: Bool, type: String) {
         print("[ServerRequest] - taskForURLSession FUNC | conditional call to server")
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
@@ -53,18 +62,24 @@ public class ServerRequest
             }
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any] {
-                    if (isEventFetch) {
+                    if (isExpectingResponse) {
                         // check if there is no error
                         if let errorType = json[DBLabels.errorType] as! Bool?, !errorType {
                             print("[ServerRequest] - There is an error from server response: \(errorType)")
                             
                             // only when number of rows in response is > 0
                             if (json[DBLabels.rows]! as! Int > 0) {
-                                print("[ServerRequest] - There are Rows eventIDs from Server Response")
-                                self.result = json
-                                print(json)
-                                // update the date to server
-                                UserDefaults().setDateNow(for: RequestDate.toServer)
+                                print("[ServerRequest] - There are Rows from Server Response")
+                                
+                                if (type == SessionType.events) {
+                                    self.result = json
+                                    UserDefaults().setDateNow(for: RequestDate.toServer)
+                                } else if (type == SessionType.artists) {
+                                    self.resultArtists = json
+                                    UserDefaults().setDateNow(for: RequestDate.toServerArtist)
+                                } else {
+                                    print("issue with the TYPE condition")
+                                }
                             }
                             
                         }
@@ -81,11 +96,48 @@ public class ServerRequest
     
     var result: [String : Any]? {
         didSet {
-            print("[ServerRequest] - Result Array from Server was SET")
+            print("[ServerRequest] - Result Array from Server Event was SET")
             updateDatabase(with: result!)
-            //NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.eventIDsDidUpdate), object: nil)
         }
     }
+    
+    var resultArtists: [String : Any]? {
+        didSet {
+            print("[ServerRequest] - Result Array from Server Artist was SET")
+            updateArtistsDatabase(with: result!)
+        }
+    }
+    
+    // Update core database with the result
+    // set the RequestHandler().isDoneUpdatingServerRequest = true
+    // So that facebook can do its job
+    private func updateArtistsDatabase(with artistsDict: [String : Any]) {
+        print("[ServerRequest] - Starting updateArtistsDatabase from Server")
+        container.performBackgroundTask { context in
+            for (key, value) in artistsDict {
+                if (key == DBLabels.artistsResponse),
+                let artists = value as? [Any],
+                    let _ = artists.first as? [String : String] {
+                    for artist in artists {
+                        if let artistInfo = artist as? [String : String] {
+                            
+                            // insert to artist core database
+                            do {
+                                _ = try Artist.insertOrUpdateArtist(with: artistInfo, in: context)
+                            } catch {
+                                print(error)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+        
+    }
+    
+    
     
     private func updateDatabase(with eventIDs: [String : Any]) {
         print("[ServerRequest] - Starting updateDatabase from Server")
@@ -96,11 +148,11 @@ public class ServerRequest
                     let _ = events.first as? [String : String] {
                     for event in events {
                         if let eventDict = event as? [String : String] {
-                            // Print the djs list if not nil
-                            if let artistList = eventDict[DBLabels.artistsList] {
-                                print("EventID: [\(eventDict[DBLabels.eventID]!)] -> List: [\(artistList)]")
-                            }
-
+//                            // Print the djs list if not nil
+//                            if let artistList = eventDict[DBLabels.artistsList] {
+//                                print("EventID: [\(eventDict[DBLabels.eventID]!)] -> List: [\(artistList)]")
+//                            }
+                            
                             do {
                                 _ = try Event.findOrInsertEventID(matching: eventDict, in: context)
                             } catch {
@@ -113,9 +165,10 @@ public class ServerRequest
                         try context.save()
                         UserDefaults().setDateNow(for: RequestDate.toServer)
                         
-                        print("[ServerRequest] -  UpdateDatabase DONE and SAVED")
-                        RequestHandler().isDoneUpdatingServeRequest = true
+                        print("[ServerRequest] -  UpdateDatabase ID DONE and SAVED")
                         
+                        //RequestHandler().isDoneUpdatingServeRequest = true
+                        RequestHandler().fetchArtistsListFromServer()
                         
                         //notify whoever is listening
                         //print("[ServerRequest] - Post Notification: serverRequestDoneUpdating")
@@ -156,7 +209,7 @@ public class ServerRequest
         
         
     }
-
+    
 }
 
 

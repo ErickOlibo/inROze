@@ -12,6 +12,7 @@ import Foundation
 public struct RequestDate {
     static let toFacebook = "RequestDateToFacebook\(UserDefaults().currentCityCode)"
     static let toServer = "RequestDateToServer\(UserDefaults().currentCityCode)"
+    static let toServerArtist = "RequestDateToServer\(UserDefaults().currentCountryCode)"
     
 }
 
@@ -19,10 +20,27 @@ public struct RequestDate {
 public struct IntervalBetweenRequest {
     static let toFacebook = TimeInterval(1 * 60 * 60) // 1 hour before new update from Facebook Graph API
     static let toServer = TimeInterval(3 * 60 * 60) // 3 hours before collecting new eventIDS from server
+    static let toServerArtist = TimeInterval(24 * 60 * 60) // 24 hours
 }
 
 private struct UserKeys {
     static let cityCode = "cityCode"
+    static let countryCode = "countryCode"
+}
+
+
+private func cityToCountryCode(cityCode: String) -> String {
+    switch cityCode.uppercased() {
+        case "TLN":
+        return "EE"
+        case "HEL":
+        return "FI"
+        case "STO":
+        return "SE"
+        
+    default:
+        return "EE"
+    }
 }
 
 
@@ -40,9 +58,12 @@ extension UserDefaults {
         if (lastRequest == RequestDate.toFacebook) {
             fromWhere = "FACEBOOK"
             interval = IntervalBetweenRequest.toFacebook
-        } else {
+        } else if (lastRequest == RequestDate.toServer) {
             fromWhere = "SERVER"
             interval = IntervalBetweenRequest.toServer
+        } else {
+            fromWhere = "SERVER_ARTISTS"
+            interval = IntervalBetweenRequest.toServerArtist
         }
         
         let lastSavedTime = object(forKey: lastRequest)
@@ -81,7 +102,39 @@ extension UserDefaults {
         set {
             print("[UserDefaultsExtension] - New CityCode: \(newValue)")
             set(newValue, forKey: UserKeys.cityCode)
+            
+            // set the currentCountryCode accordingly 
+            let countryCode = cityToCountryCode(cityCode: newValue)
+            set(countryCode, forKey: UserKeys.countryCode)
             synchronize()
         }
     }
+    
+    public var currentCountryCode: String {
+        get {
+            //print("[UserDefaultsExtension] - Get Current CityCode")
+            return string(forKey: UserKeys.countryCode ) ?? "EE" //always Tallinn as default cityCode
+        }
+        
+    }
+    
+    
+    
+    
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -15,8 +15,9 @@ import Foundation
 
 // URLs to connect to the Server
 public struct UrlFor {
-    static let logInOut = "https://www.defkut.com/inroze/ServerRoze/users.php";
-    static let currentEventsID = "https://www.defkut.com/inroze/ServerRoze/currentEvents.php";
+    static let logInOut = "https://www.defkut.com/inroze/ServerRoze/users.php"
+    static let currentEventsID = "https://www.defkut.com/inroze/ServerRoze/currentEvents.php"
+    static let artistsTable = "https://www.defkut.com/inroze/ServerRoze/getArtistsList.php"
 }
 
 
@@ -29,6 +30,7 @@ public struct DBLabels {
     static let cityCode =  "cityCode"
     static let errorType = "error"
     static let rows = "rows"
+    static let artistsResponse = "artistsResponse"
     
     // for the Artist info fields
     static let artistID = "artist_id"
@@ -45,4 +47,12 @@ public struct CityCode {
     static let helsinki = "HEL"
     static let riga = "RIG"
     static let brussels = "BRU"
+}
+
+
+// Session Type for taskForURLSeesion to Server
+public struct SessionType {
+    static let user = "user"
+    static let events = "events"
+    static let artists = "artists"
 }
