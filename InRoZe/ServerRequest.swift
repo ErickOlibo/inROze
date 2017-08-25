@@ -58,12 +58,9 @@ public class ServerRequest
                         if let errorType = json[DBLabels.errorType] as! Bool?, !errorType {
                             print("[ServerRequest] - There is an error from server response: \(errorType)")
                             
-                            // only when number of rows in response is > 0
                             if (json[DBLabels.rows]! as! Int > 0) {
-                                print("[ServerRequest] - There are Rows eventIDs from Server Response")
                                 self.result = json
-                                print(json)
-                                // update the date to server
+                                //print(json)
                                 UserDefaults().setDateNow(for: RequestDate.toServer)
                             }
                             
@@ -81,14 +78,12 @@ public class ServerRequest
     
     var result: [String : Any]? {
         didSet {
-            print("[ServerRequest] - Result Array from Server was SET")
             updateDatabase(with: result!)
-            //NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.eventIDsDidUpdate), object: nil)
         }
     }
     
     private func updateDatabase(with eventIDs: [String : Any]) {
-        print("[ServerRequest] - Starting updateDatabase from Server")
+        //print("[ServerRequest] - Starting updateDatabase from Server")
         container.performBackgroundTask { context in
             for (key, value) in eventIDs {
                 if (key == DBLabels.eventEventIDs),
@@ -97,9 +92,9 @@ public class ServerRequest
                     for event in events {
                         if let eventDict = event as? [String : String] {
                             // Print the djs list if not nil
-                            if let artistList = eventDict[DBLabels.artistsList] {
-                                print("EventID: [\(eventDict[DBLabels.eventID]!)] -> List: [\(artistList)]")
-                            }
+//                            if let artistList = eventDict[DBLabels.artistsList] {
+//                                print("EventID: [\(eventDict[DBLabels.eventID]!)] -> List: [\(artistList)]")
+//                            }
 
                             do {
                                 _ = try Event.findOrInsertEventID(matching: eventDict, in: context)

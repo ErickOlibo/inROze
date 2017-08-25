@@ -15,11 +15,9 @@
 		A72B79361F2231AF009FB389 /* InRoZe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A72B79341F2231AF009FB389 /* InRoZe.xcdatamodeld */; };
 		A72B79381F2231AF009FB389 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A72B79371F2231AF009FB389 /* Assets.xcassets */; };
 		A72B793B1F2231AF009FB389 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72B79391F2231AF009FB389 /* LaunchScreen.storyboard */; };
-		A730E7861F4DE6ED004AB9D8 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A730E7851F4DE6ED004AB9D8 /* Artist.swift */; };
 		A775C3B21F3C7F8B00A3449F /* ServerKeyStringConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B11F3C7F8B00A3449F /* ServerKeyStringConvenience.swift */; };
 		A775C3B41F3C7FA100A3449F /* NotificationKeyStringConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B31F3C7FA100A3449F /* NotificationKeyStringConvenience.swift */; };
 		A775C3B61F3CC0CC00A3449F /* FacebookRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */; };
-		A775C3B81F4236C800A3449F /* NSDateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B71F4236C800A3449F /* NSDateExtensions.swift */; };
 		A77676051F26B9B200F1FA52 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676041F26B9B200F1FA52 /* EventViewController.swift */; };
 		A77676071F26B9DB00F1FA52 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676061F26B9DB00F1FA52 /* SearchViewController.swift */; };
 		A77676091F26B9E800F1FA52 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676081F26B9E800F1FA52 /* ProfileViewController.swift */; };
@@ -35,11 +33,6 @@
 		A7EC36651F33954600548C11 /* NSDictionary+KeyPathConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */; };
 		A7EC36851F36553B00548C11 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36841F36553B00548C11 /* LoginViewController.swift */; };
 		A7EC36871F365AA900548C11 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36861F365AA900548C11 /* TabBarViewController.swift */; };
-		A7F527191F4495F30008080B /* FBEventOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F527171F4495F30008080B /* FBEventOld.swift */; };
-		A7F5271A1F4495F30008080B /* FBEventSOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F527181F4495F30008080B /* FBEventSOld.swift */; };
-		A7F5271D1F4496630008080B /* EventOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5271B1F4496630008080B /* EventOld.swift */; };
-		A7F5271E1F4496630008080B /* PlaceOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5271C1F4496630008080B /* PlaceOld.swift */; };
-		A7F527201F44969C0008080B /* FacebookEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5271F1F44969C0008080B /* FacebookEvents.swift */; };
 		A7F527221F4496E50008080B /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F527211F4496E50008080B /* RequestHandler.swift */; };
 		A7F527241F4498540008080B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F527231F4498540008080B /* Event.swift */; };
 		A7F527261F462F4E0008080B /* UICollectionView+NSFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F527251F462F4E0008080B /* UICollectionView+NSFetchedResultsController.swift */; };
@@ -58,11 +51,9 @@
 		A72B79371F2231AF009FB389 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A72B793A1F2231AF009FB389 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A72B793C1F2231AF009FB389 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A730E7851F4DE6ED004AB9D8 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		A775C3B11F3C7F8B00A3449F /* ServerKeyStringConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerKeyStringConvenience.swift; sourceTree = "<group>"; };
 		A775C3B31F3C7FA100A3449F /* NotificationKeyStringConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKeyStringConvenience.swift; sourceTree = "<group>"; };
 		A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookRequest.swift; sourceTree = "<group>"; };
-		A775C3B71F4236C800A3449F /* NSDateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtensions.swift; sourceTree = "<group>"; };
 		A77676041F26B9B200F1FA52 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		A77676061F26B9DB00F1FA52 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A77676081F26B9E800F1FA52 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -78,11 +69,6 @@
 		A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+KeyPathConvenience.swift"; sourceTree = "<group>"; };
 		A7EC36841F36553B00548C11 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A7EC36861F365AA900548C11 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		A7F527171F4495F30008080B /* FBEventOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBEventOld.swift; sourceTree = "<group>"; };
-		A7F527181F4495F30008080B /* FBEventSOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBEventSOld.swift; sourceTree = "<group>"; };
-		A7F5271B1F4496630008080B /* EventOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventOld.swift; sourceTree = "<group>"; };
-		A7F5271C1F4496630008080B /* PlaceOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceOld.swift; sourceTree = "<group>"; };
-		A7F5271F1F44969C0008080B /* FacebookEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookEvents.swift; sourceTree = "<group>"; };
 		A7F527211F4496E50008080B /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		A7F527231F4498540008080B /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A7F527251F462F4E0008080B /* UICollectionView+NSFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+NSFetchedResultsController.swift"; sourceTree = "<group>"; };
@@ -159,7 +145,6 @@
 				A77676041F26B9B200F1FA52 /* EventViewController.swift */,
 				A77676151F27C52F00F1FA52 /* EventCollectionViewCell.swift */,
 				A7A24D511F3C405C00EFB82E /* Core Data */,
-				A7EC36631F3387FD00548C11 /* Facebook */,
 				A77676121F26BF3100F1FA52 /* Helpers */,
 				A776760E1F26BE8A00F1FA52 /* Source */,
 				A72B79371F2231AF009FB389 /* Assets.xcassets */,
@@ -205,8 +190,8 @@
 				A775C3B31F3C7FA100A3449F /* NotificationKeyStringConvenience.swift */,
 				A77676171F28CCE400F1FA52 /* Constants.swift */,
 				A77676131F26D49E00F1FA52 /* UIColorExtensions.swift */,
-				A775C3B71F4236C800A3449F /* NSDateExtensions.swift */,
 				A7A4BECB1F4363C5000A5047 /* UserDefaultsExtensions.swift */,
+				A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -217,26 +202,12 @@
 				A7F527211F4496E50008080B /* RequestHandler.swift */,
 				A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */,
 				A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */,
-				A730E7851F4DE6ED004AB9D8 /* Artist.swift */,
 				A7F527231F4498540008080B /* Event.swift */,
 				A7A24D4F1F3B655E00EFB82E /* Place.swift */,
 				A7F527251F462F4E0008080B /* UICollectionView+NSFetchedResultsController.swift */,
 				A72B79341F2231AF009FB389 /* InRoZe.xcdatamodeld */,
 			);
 			name = "Core Data";
-			sourceTree = "<group>";
-		};
-		A7EC36631F3387FD00548C11 /* Facebook */ = {
-			isa = PBXGroup;
-			children = (
-				A7F5271F1F44969C0008080B /* FacebookEvents.swift */,
-				A7F5271B1F4496630008080B /* EventOld.swift */,
-				A7F5271C1F4496630008080B /* PlaceOld.swift */,
-				A7F527171F4495F30008080B /* FBEventOld.swift */,
-				A7F527181F4495F30008080B /* FBEventSOld.swift */,
-				A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */,
-			);
-			name = Facebook;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,11 +361,8 @@
 				A77676161F27C52F00F1FA52 /* EventCollectionViewCell.swift in Sources */,
 				A7F527241F4498540008080B /* Event.swift in Sources */,
 				A775C3B61F3CC0CC00A3449F /* FacebookRequest.swift in Sources */,
-				A7F527191F4495F30008080B /* FBEventOld.swift in Sources */,
-				A775C3B81F4236C800A3449F /* NSDateExtensions.swift in Sources */,
 				A7A24D501F3B655E00EFB82E /* Place.swift in Sources */,
 				A7EC36851F36553B00548C11 /* LoginViewController.swift in Sources */,
-				A7F5271E1F4496630008080B /* PlaceOld.swift in Sources */,
 				A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */,
 				A77676051F26B9B200F1FA52 /* EventViewController.swift in Sources */,
 				A72B79301F2231AF009FB389 /* FavoriteViewController.swift in Sources */,
@@ -404,13 +372,9 @@
 				A7F527261F462F4E0008080B /* UICollectionView+NSFetchedResultsController.swift in Sources */,
 				A775C3B21F3C7F8B00A3449F /* ServerKeyStringConvenience.swift in Sources */,
 				A7F527281F472ED90008080B /* ConvenienceExtensions.swift in Sources */,
-				A7F527201F44969C0008080B /* FacebookEvents.swift in Sources */,
-				A730E7861F4DE6ED004AB9D8 /* Artist.swift in Sources */,
 				A77676091F26B9E800F1FA52 /* ProfileViewController.swift in Sources */,
-				A7F5271D1F4496630008080B /* EventOld.swift in Sources */,
 				A776760D1F26BE8200F1FA52 /* StickyCollectionViewFlowLayout.swift in Sources */,
 				A72B792E1F2231AF009FB389 /* AppDelegate.swift in Sources */,
-				A7F5271A1F4495F30008080B /* FBEventSOld.swift in Sources */,
 				A78979F41F3C687C00467AA6 /* FacebookKeyStringConvenience.swift in Sources */,
 				A7EC36651F33954600548C11 /* NSDictionary+KeyPathConvenience.swift in Sources */,
 				A7F527221F4496E50008080B /* RequestHandler.swift in Sources */,

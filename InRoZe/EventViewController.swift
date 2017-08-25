@@ -63,8 +63,8 @@ class EventViewController: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .black
-        //let stickyLayout = collectionView.collectionViewLayout as! StickyCollectionViewFlowLayout
-        //stickyLayout.firstItemTransform = zoomOutFirstItemTransform
+        let stickyLayout = collectionView.collectionViewLayout as! StickyCollectionViewFlowLayout
+        stickyLayout.firstItemTransform = zoomOutFirstItemTransform
         
         // Request handler for eventIds from server
         RequestHandler().fetchEventIDsFromServer()

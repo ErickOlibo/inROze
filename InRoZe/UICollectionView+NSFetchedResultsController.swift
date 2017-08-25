@@ -19,6 +19,8 @@ extension EventViewController: UICollectionViewDataSource
 {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let numberOfItems = fetchResultsController.sections?[section].numberOfObjects ?? 0
+        print("******* COLLECTIONVIEW ITEMS ***** number Of Items: [\(numberOfItems)]")
         return fetchResultsController.sections?[section].numberOfObjects ?? 0
         
     }
