@@ -38,11 +38,12 @@ public class Place: NSManagedObject
     // Update PlaceID missing attributes
     class func updatePlaceInfoForEvent(with eventPlace: [String : Any], in context: NSManagedObjectContext) throws -> Place
     {
+        
         let request: NSFetchRequest<Place> = Place.fetchRequest()
-        var placeID: String?
+        //var placeID: String?
         if let pID = eventPlace[FBPlace.id] as? String {
             //print("PlaceID from EventPlace Dict: \(pID)")
-            placeID = pID
+            //placeID = pID
             request.predicate = NSPredicate(format: "id = %@", pID)
         } else {
             print("PlaceID from EventPlace Dict: NULL")

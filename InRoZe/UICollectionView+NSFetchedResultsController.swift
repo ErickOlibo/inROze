@@ -60,14 +60,14 @@ extension EventViewController: UICollectionViewDataSource
                 eventToCell.img = image
                 
                 // Get metric about the picture
-                let imgWidthInPoints = image!.size.width
-                let imgWidthInPixels = imgWidthInPoints * image!.scale
-                let imgHeightInPoints = image!.size.height
-                let imgHeightInPixels = imgHeightInPoints * image!.scale
-                let ratio = String(format: "%.2f", imgWidthInPixels / imgHeightInPixels)
-                 //print("[\(indexPath.row)] -> Pixels (W: \(imgWidthInPixels) | H: \(imgHeightInPixels)) -> Ratio (\(ratio)) -> OFFSET (X: \(event.offsetX) | Y: \(event.offsetY))")
-                
-                //print("***********")
+//                let imgWidthInPoints = image!.size.width
+//                let imgWidthInPixels = imgWidthInPoints * image!.scale
+//                let imgHeightInPoints = image!.size.height
+//                let imgHeightInPixels = imgHeightInPoints * image!.scale
+//                let ratio = String(format: "%.2f", imgWidthInPixels / imgHeightInPixels)
+//                print("[\(indexPath.row)] -> Pixels (W: \(imgWidthInPixels) | H: \(imgHeightInPixels)) -> Ratio (\(ratio)) -> OFFSET (X: \(event.offsetX) | Y: \(event.offsetY))")
+//                
+//                print("***********")
                 
                 cell.coverImage.image = nil
                 

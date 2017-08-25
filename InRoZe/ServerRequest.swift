@@ -60,7 +60,7 @@ public class ServerRequest
                             
                             if (json[DBLabels.rows]! as! Int > 0) {
                                 self.result = json
-                                 print(json)
+                                 //print(json)
                                 UserDefaults().setDateNow(for: RequestDate.toServer)
                             }
                             
@@ -79,6 +79,31 @@ public class ServerRequest
     var result: [String : Any]? {
         didSet {
             updateDatabase(with: result!)
+            updateArtistsDatabase(with: result!)
+        }
+    }
+    
+    // print artist list
+    private func updateArtistsDatabase(with jsonDict: [String : Any]) {
+        for (key, value) in jsonDict {
+            if (key == DBLabels.upToDateArtistsList),
+                let  artists = value as? [Any] {
+                for artistInfo in artists {
+                    if let arts = artistInfo as? [String : String],
+                        let artistName = arts["name"]?.utf8 {
+                        print("DJ Name: [\(artistName)] in UTF8")
+                        
+                        // the Do - Catch to the Artist Entity
+                    }
+
+                }
+                // Save context (do - catch)
+                
+                
+                // Print Artist stats
+                //self.printArtistsStatistics()
+            }
+            
         }
     }
     
@@ -139,6 +164,27 @@ public class ServerRequest
             } else {
                 print("[printDatabaseStatistics] - off main thread")
             }
+            let request: NSFetchRequest<Event> = Event.fetchRequest()
+            if let eventsCount = (try? context.fetch(request))?.count {
+                print("[printDatabaseStatistics] - \(eventsCount) events IDs")
+            }
+            // Better way to count number of element in entity (CoreData)
+            if let placesCount = try? context.count(for: Place.fetchRequest()) {
+                print("[printDatabaseStatistics] - \(placesCount) Places IDs")
+            }
+        }
+        
+        
+    }
+    
+    private func printArtistsStatistics() {
+        print("[printDatabaseStatistics] - print data Stats")
+        
+        let context = container.viewContext
+        // THREAD SAFETY
+        // context.perform makes sure the block is executed on the right thread for the context
+        context.perform {
+            // CHANGE WHEN ARTIST ENTITY incorporated
             let request: NSFetchRequest<Event> = Event.fetchRequest()
             if let eventsCount = (try? context.fetch(request))?.count {
                 print("[printDatabaseStatistics] - \(eventsCount) events IDs")
