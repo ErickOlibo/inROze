@@ -65,7 +65,7 @@ extension EventViewController: UICollectionViewDataSource
                 let imgHeightInPoints = image!.size.height
                 let imgHeightInPixels = imgHeightInPoints * image!.scale
                 let ratio = String(format: "%.2f", imgWidthInPixels / imgHeightInPixels)
-                 print("[\(indexPath.row)] -> Pixels (W: \(imgWidthInPixels) | H: \(imgHeightInPixels)) -> Ratio (\(ratio)) -> OFFSET (X: \(event.offsetX) | Y: \(event.offsetY))")
+                 //print("[\(indexPath.row)] -> Pixels (W: \(imgWidthInPixels) | H: \(imgHeightInPixels)) -> Ratio (\(ratio)) -> OFFSET (X: \(event.offsetX) | Y: \(event.offsetY))")
                 
                 //print("***********")
                 
