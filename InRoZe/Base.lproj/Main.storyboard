@@ -113,7 +113,7 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Location" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVX-kU-dhZ">
-                                                            <rect key="frame" x="102" y="154" width="292" height="20"/>
+                                                            <rect key="frame" x="122" y="154" width="272" height="20"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -160,7 +160,7 @@
                                                         <constraint firstItem="ESj-es-IV2" firstAttribute="width" secondItem="fHF-r2-Okt" secondAttribute="width" id="MlT-qq-vFI"/>
                                                         <constraint firstItem="vIo-8S-eeW" firstAttribute="top" secondItem="cHu-vH-cmw" secondAttribute="bottom" constant="5" id="PQA-Jx-1zu"/>
                                                         <constraint firstAttribute="trailing" secondItem="CVX-kU-dhZ" secondAttribute="trailing" constant="20" id="RbP-8P-cJs"/>
-                                                        <constraint firstItem="CVX-kU-dhZ" firstAttribute="leading" secondItem="ESj-es-IV2" secondAttribute="leading" constant="10" id="Rh0-H9-mak"/>
+                                                        <constraint firstItem="CVX-kU-dhZ" firstAttribute="leading" secondItem="ESj-es-IV2" secondAttribute="leading" constant="30" id="Rh0-H9-mak"/>
                                                         <constraint firstItem="ESj-es-IV2" firstAttribute="leading" secondItem="fHF-r2-Okt" secondAttribute="trailing" constant="8" id="Sfg-B1-PwP"/>
                                                         <constraint firstItem="rge-4x-Mr6" firstAttribute="leading" secondItem="1OJ-Bj-nQG" secondAttribute="trailing" constant="3" id="VWo-XE-0BV"/>
                                                         <constraint firstItem="fHF-r2-Okt" firstAttribute="centerY" secondItem="mTP-Sk-xyb" secondAttribute="centerY" id="cYL-VP-XDX"/>

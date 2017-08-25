@@ -36,7 +36,8 @@ class EventViewController: UIViewController
         
         // Add sor Descriptors and Predicate
         request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
-        request.predicate = NSPredicate(format: "startTime > %@ AND imageURL != nil AND name != nil AND text != nil", nowTime)
+        request.predicate = NSPredicate(format: "endTime > %@ AND imageURL != nil AND name != nil AND text != nil", nowTime)
+        //request.predicate = NSPredicate(format: "startTime < %@", nowTime)
         
         // Initialze Fetched Results Controller
         let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
