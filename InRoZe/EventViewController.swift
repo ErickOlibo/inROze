@@ -65,10 +65,7 @@ class EventViewController: UIViewController
         collectionView.backgroundColor = .black
         let stickyLayout = collectionView.collectionViewLayout as! StickyCollectionViewFlowLayout
         stickyLayout.firstItemTransform = zoomOutFirstItemTransform
-        
-        // Request handler for artists List from server
-        RequestHandler().fetchArtistsListFromServer()
-        
+
         // Request handler for eventIds from server
         RequestHandler().fetchEventIDsFromServer()
         

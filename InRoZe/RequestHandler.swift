@@ -50,9 +50,8 @@ public class RequestHandler
                 
             }
         } else {
-            // Go straight to Facebook Request
+            // Go straight to Server Request Artist List
             print("[RequestHandler] - No need Server Request - Go To Server Request for Artists List")
-            //fetchEventsInfoFromFacebook()
             fetchArtistsListFromServer()
         }
         
@@ -62,8 +61,8 @@ public class RequestHandler
     public func fetchArtistsListFromServer() {
         let userDefault = UserDefaults()
         // condition of execution of request
-        if (!userDefault.isDateSet(for: RequestDate.toServer)) ||
-            userDefault.hasEnoughTimeElapsed(since: RequestDate.toServer) {
+        if (!userDefault.isDateSet(for: RequestDate.toServerArtist)) ||
+            userDefault.hasEnoughTimeElapsed(since: RequestDate.toServerArtist) {
             if let userID = AccessToken.current?.userId {
                 let params = "id=\(userID)&countryCode=\(userDefault.currentCountryCode)"
                 let request = ServerRequest()

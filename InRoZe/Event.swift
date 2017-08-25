@@ -14,58 +14,31 @@ public class Event: NSManagedObject
     
     // Find or insert eventID to the Database
     // update placeID if eventID already present
-    class func findOrInsertEventID(matching eventDict: [String : String], in context: NSManagedObjectContext) throws -> Event
+    class func findOrInsertEventID(matching eventDict: [String : Any], in context: NSManagedObjectContext) throws -> Event
     {
-        // getting array for artists
-        var artists = [String]()
-        if let list = eventDict[DBLabels.artistsList] {
-            artists = list.components(separatedBy: ", ")
-        }
-        
+        guard let eventID = eventDict[DBLabels.eventID] as? String else { return Event() }
         let request: NSFetchRequest<Event> = Event.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %@", eventDict[DBLabels.eventID]!)
+        request.predicate = NSPredicate(format: "id = %@", eventID)
+        
+        //        if let eventID = eventDict[DBLabels.eventID] as? String {
+        //
+        //        }
+        
+        
         do {
-            
             let match = try context.fetch(request)
             if match.count > 0 {
+                print("EVENT ALREADY IN DATA")
                 assert(match.count == 1, "findOrInsertEventID -- database inconsistency")
-                let foundEvent = match[0]
-                // need to update Performers
-                if (artists.count > 0) {
-                    // erase previous performers
-                    do {
-                        let toEraseArtists = try Artist.findArtistPerformingAt(this: foundEvent.id!, in: context)
-                        if (toEraseArtists.count > 0) {
-                            for artist in toEraseArtists {
-                                artist.removeFromEvents(foundEvent)
-                            }
-                        }
-                    } catch {
-                        print("[Event] - Error findArtisPerformingAt: \(error)")
-                        
-                    }
-                    // add updated performers list
-                    for artistID in artists {
-                        var artist = Artist()
-                        do {
-                            artist = try Artist.findArtist(with: artistID, in: context)
-                        } catch {
-                            print("[Event] - Error insertOrUpdateArtists TO Artit: \(error)")
-                        }
-                        foundEvent.addToArtists(artist)
-                        
-                    }
-                    
-                }
-
-                return foundEvent
+                return match[0]
             }
         } catch {
             throw error
         }
         
+        print("CREATE NEW EVENT")
         let event = Event(context: context)
-        event.id = eventDict[DBLabels.eventID]
+        event.id = eventID
         do {
             // Event Location is never updated not good
             event.location = try Place.findOrInsertPlaceID(matching: eventDict, in: context)
@@ -73,22 +46,8 @@ public class Event: NSManagedObject
             print("[Event] - Error findOrInsertEventID TO Location: \(error)")
         }
         
-        // if new event need to insert artists list for this event if list is not nil
-        if (artists.count > 0){
-            // get the array of artist
-            for artistID in artists {
-                var artist = Artist()
-                do {
-                    artist = try Artist.findArtist(with: artistID, in: context)
-                } catch {
-                    print("[Event] - Error insertOrUpdateArtists TO Artit: \(error)")
-                }
-                event.addToArtists(artist)
-                
-            }
-        }
-        
         return event
+        
     }
     
     
@@ -111,11 +70,6 @@ public class Event: NSManagedObject
                         let uTime = eventInfo[FBEvent.updatedTime] as? String {
                         
                         event.name = name
-                        
-//                        if let descript = uniqID["description"] as? String {
-//                            let pDesc = descript.utf16
-//                            print("************************ DataToString: \(pDesc)")
-//                        }
                         
                         if let eventText = eventInfo[FBEvent.description] as? String {
                             event.text = eventText

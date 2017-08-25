@@ -56,3 +56,41 @@ public struct SessionType {
     static let events = "events"
     static let artists = "artists"
 }
+
+
+
+public struct RequestDate {
+    static let toFacebook = "RequestDateToFacebook\(UserDefaults().currentCityCode)"
+    static let toServer = "RequestDateToServer\(UserDefaults().currentCityCode)"
+    static let toServerArtist = "RequestDateToServer\(UserDefaults().currentCountryCode)"
+    
+}
+
+
+public struct IntervalBetweenRequest {
+    static let toFacebook = TimeInterval(1 * 60 * 60) // 1 hour before new update from Facebook Graph API
+    static let toServer = TimeInterval(1 * 60) // (3 mins for test)3 hours before collecting new eventIDS from server
+    static let toServerArtist = TimeInterval(1 * 60) // (1 min for test) 24 hours
+}
+
+public struct UserKeys {
+    static let cityCode = "cityCode"
+    static let countryCode = "countryCode"
+}
+
+
+public func cityToCountryCode(cityCode: String) -> String {
+    switch cityCode.uppercased() {
+    case "TLN":
+        return "EE"
+    case "HEL":
+        return "FI"
+    case "STO":
+        return "SE"
+        
+    default:
+        return "EE"
+    }
+}
+
+
