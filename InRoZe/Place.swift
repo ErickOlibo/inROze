@@ -13,12 +13,11 @@ public class Place: NSManagedObject
 {
     // Find or insert eventID to the Database
     // update placeID if eventID already present
-    class func findOrInsertPlaceID(matching eventDict: [String : Any], in context: NSManagedObjectContext) throws -> Place
+    class func findOrInsertPlaceID(matching eventDict: [String : String], in context: NSManagedObjectContext) throws -> Place
     {
         
-        
         let request: NSFetchRequest<Place> = Place.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %@", eventDict[DBLabels.placeID] as! String)
+        request.predicate = NSPredicate(format: "id = %@", eventDict[DBLabels.placeID]!)
         do {
             
             let match = try context.fetch(request)
@@ -29,8 +28,9 @@ public class Place: NSManagedObject
         } catch {
             throw error
         }
+        
         let place = Place(context: context)
-        place.id = eventDict[DBLabels.placeID]! as? String
+        place.id = eventDict[DBLabels.placeID]
         return place
     }
     
@@ -38,37 +38,40 @@ public class Place: NSManagedObject
     // Update PlaceID missing attributes
     class func updatePlaceInfoForEvent(with eventPlace: [String : Any], in context: NSManagedObjectContext) throws -> Place
     {
-        
-        var place = Place()
         let request: NSFetchRequest<Place> = Place.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %@", eventPlace[FBPlace.id] as! String)
-        
+        if let pID = eventPlace[FBPlace.id] as? String {
+            request.predicate = NSPredicate(format: "id = %@", pID)
+        }
+        var place: Place?
         do {
-            var places = try context.fetch(request)
+            let places = try context.fetch(request)
             if places.count > 0 {
                 assert(places.count == 1, "inconsistency: unique place identifier is duplicate")
                 place = places[0]
                 let placeName = eventPlace[FBPlace.name] as? String ?? ""
-                if (place.name == placeName) {
-                    print("NO UPDATE NEEDED -> PLACE ALREADY IN DATA")
-                    return place
+                if (place!.name == placeName) {
+                    //print("Place info already in Database")
+                    return place!
                 } else {
-                    print("UPDATE NEEDED -> PLACE NAME HAS CHANGED")
-                    place.name = placeName
+                    //print("Updating place info into Database")
+                    place!.name = placeName
                     if let location = eventPlace[FBPlace.location] as? [String : Any] {
-                        place.city = location[FBLocation.city] as? String ?? ""
-                        place.country = location[FBLocation.country] as? String ?? ""
-                        place.street = location[FBLocation.street] as? String ?? ""
-                        place.latitude = location[FBLocation.latitude] as? Float ?? 0.0
-                        place.longitude = location[FBLocation.longitude] as? Float ?? 0.0
+                        place!.city = location[FBLocation.city] as? String ?? ""
+                        place!.country = location[FBLocation.country] as? String ?? ""
+                        place!.street = location[FBLocation.street] as? String ?? ""
+                        place!.latitude = location[FBLocation.latitude] as? Float ?? 0.0
+                        place!.longitude = location[FBLocation.longitude] as? Float ?? 0.0
                         
                     }
                 }
+                
             }
         } catch {
             throw error
         }
-       return place
+        
+        
+       return place!
     }
     
     

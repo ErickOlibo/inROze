@@ -50,33 +50,13 @@ public class RequestHandler
                 
             }
         } else {
-            // Go straight to Server Request Artist List
-            print("[RequestHandler] - No need Server Request - Go To Server Request for Artists List")
-            fetchArtistsListFromServer()
+            // Go straight to Facebook Request
+            print("[RequestHandler] - No need Server Request - Go To Facebook Request")
+            fetchEventsInfoFromFacebook()
         }
         
     }
 
-    // request fetch ArtistsList from Server
-    public func fetchArtistsListFromServer() {
-        let userDefault = UserDefaults()
-        // condition of execution of request
-        if (!userDefault.isDateSet(for: RequestDate.toServerArtist)) ||
-            userDefault.hasEnoughTimeElapsed(since: RequestDate.toServerArtist) {
-            if let userID = AccessToken.current?.userId {
-                let params = "id=\(userID)&countryCode=\(userDefault.currentCountryCode)"
-                let request = ServerRequest()
-                request.getArtistsList(parameter: params, urlToServer: UrlFor.artistsTable)
-                print("[RequestHandler] - fetchArtistsListFromServer: \(params)")
-            }
-        } else {
-            print("[RequestHandler] - No need Server ArtistsList Request Go To facebook")
-            fetchEventsInfoFromFacebook()
-        }
-        
-        
-    }
-    
     
     // Saves user info into the Server
     private func saveCurrentUserProfile(_ result: NSDictionary) {
