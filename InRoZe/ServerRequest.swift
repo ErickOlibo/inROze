@@ -60,7 +60,7 @@ public class ServerRequest
                             
                             if (json[DBLabels.rows]! as! Int > 0) {
                                 self.result = json
-                                print(json)
+                                 print(json)
                                 UserDefaults().setDateNow(for: RequestDate.toServer)
                             }
                             
