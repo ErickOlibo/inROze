@@ -43,7 +43,7 @@ public class RequestHandler
         if (!userDefault.isDateSet(for: RequestDate.toServer)) ||
             userDefault.hasEnoughTimeElapsed(since: RequestDate.toServer) {
             if let userID = AccessToken.current?.userId {
-                let params = "id=\(userID)&cityCode=\(userDefault.currentCityCode)"
+                let params = "id=\(userID)&cityCode=\(userDefault.currentCityCode)&countryCode=\(userDefault.currentCountryCode)"
                 let request = ServerRequest()
                 request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
                 print("[RequestHandler] - fetchEventsIDFromServer: \(params)")

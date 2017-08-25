@@ -86,7 +86,7 @@ public class ServerRequest
         //print("[ServerRequest] - Starting updateDatabase from Server")
         container.performBackgroundTask { context in
             for (key, value) in eventIDs {
-                if (key == DBLabels.eventEventIDs),
+                if (key == DBLabels.eventsToPlaces),
                     let events = value as? [Any],
                     let _ = events.first as? [String : String] {
                     for event in events {

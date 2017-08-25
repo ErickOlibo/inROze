@@ -41,7 +41,7 @@ public class Place: NSManagedObject
         let request: NSFetchRequest<Place> = Place.fetchRequest()
         var placeID: String?
         if let pID = eventPlace[FBPlace.id] as? String {
-            print("PlaceID from EventPlace Dict: \(pID)")
+            //print("PlaceID from EventPlace Dict: \(pID)")
             placeID = pID
             request.predicate = NSPredicate(format: "id = %@", pID)
         } else {
@@ -51,7 +51,7 @@ public class Place: NSManagedObject
         var place: Place?
         do {
             let places = try context.fetch(request)
-            print("PlaceID [\(placeID!)] search returns \(places.count) hit")
+            //print("PlaceID [\(placeID!)] search returns \(places.count) hit")
             if places.count > 0 {
                 assert(places.count == 1, "inconsistency: unique place identifier is duplicate")
                 place = places[0]

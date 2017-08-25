@@ -26,11 +26,13 @@ public struct DBLabels {
     static let eventID = "event_id"
     static let placeID = "place_id"
     static let artistsList = "artists_list"
-    static let eventEventIDs = "eventEventIDs"
     static let cityCode =  "cityCode"
     static let errorType = "error"
     static let rows = "rows"
-    static let artistsResponse = "artistsResponse"
+    
+    static let eventsToPlaces = "eventsToPlaces"
+    static let artistsOfEvents = "artistsOfEvents"
+    static let upToDateArtistsList = "upToDateArtistsList"
     
     // for the Artist info fields
     static let artistID = "artist_id"
