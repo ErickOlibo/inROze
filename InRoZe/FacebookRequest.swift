@@ -87,7 +87,7 @@ public class FacebookRequest
     
     // insert response from FaceBook events into CoreData
     private func updateEventDatabase(with result: [String : Any]) {
-        
+        //print(result)
         let context = container.viewContext
         context.perform {
             let request: NSFetchRequest<Event> = Event.fetchRequest()
@@ -140,11 +140,5 @@ public class FacebookRequest
         }
     }
 
-    
-    // Clear core data of events end_time older than NOW
-    
-    private func deleteOldEvents() {
-        
-    }
-    
+
 }

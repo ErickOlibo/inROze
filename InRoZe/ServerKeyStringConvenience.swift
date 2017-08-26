@@ -51,6 +51,16 @@ public struct CityCode {
     static let brussels = "BRU"
 }
 
+// countryCode keyString
+public struct CountryCode {
+    static let estonia = "EE"
+    static let finland = "FI"
+    static let sweden = "SE"
+    static let latvia = "LV"
+    static let belgium = "BE"
+    
+}
+
 
 // Session Type for taskForURLSeesion to Server
 public struct SessionType {
@@ -81,17 +91,22 @@ public struct UserKeys {
 }
 
 
-public func cityToCountryCode(cityCode: String) -> String {
+public func countryCodeFrom(cityCode: String) -> String {
+    
     switch cityCode.uppercased() {
-    case "TLN":
-        return "EE"
-    case "HEL":
-        return "FI"
-    case "STO":
-        return "SE"
+    case CityCode.tallinn:
+        return CountryCode.estonia
+    case CityCode.helsinki:
+        return CountryCode.finland
+    case CityCode.stockholm:
+        return CountryCode.sweden
+    case CityCode.riga:
+        return CountryCode.latvia
+    case CityCode.brussels:
+        return CountryCode.belgium
         
     default:
-        return "EE"
+        return CountryCode.estonia
     }
 }
 

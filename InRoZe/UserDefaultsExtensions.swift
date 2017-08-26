@@ -68,7 +68,7 @@ extension UserDefaults {
             set(newValue, forKey: UserKeys.cityCode)
             
             // set the currentCountryCode accordingly 
-            let countryCode = cityToCountryCode(cityCode: newValue)
+            let countryCode = countryCodeFrom(cityCode: newValue)
             set(countryCode, forKey: UserKeys.countryCode)
             synchronize()
         }

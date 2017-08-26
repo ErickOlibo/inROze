@@ -28,7 +28,7 @@ public class RequestHandler
     // Properties listeners
     var isDoneUpdatingServeRequest = false {
         didSet {
-            print("[RequestHandler] - isDoneUpdatingServeRequest: \(isDoneUpdatingServeRequest)")
+            //print("[RequestHandler] - isDoneUpdatingServeRequest: \(isDoneUpdatingServeRequest)")
             fetchEventsInfoFromFacebook()
         }
     }
@@ -36,7 +36,8 @@ public class RequestHandler
     
     // MARK: - Handler to SERVER
     
-    // request fetch EventIDs from CityCode server
+    // request fetch EventIDs ArtistsForEvents and ArtitsList from server
+    // with userID, cityCode and countryCode parameters
     public func fetchEventIDsFromServer() {
         let userDefault = UserDefaults()
         // Conditions of execution
@@ -46,7 +47,7 @@ public class RequestHandler
                 let params = "id=\(userID)&cityCode=\(userDefault.currentCityCode)&countryCode=\(userDefault.currentCountryCode)"
                 let request = ServerRequest()
                 request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
-                print("[RequestHandler] - fetchEventsIDFromServer: \(params)")
+                //print("[RequestHandler] - fetchEventsIDFromServer: \(params)")
                 
             }
         } else {
@@ -85,18 +86,14 @@ public class RequestHandler
             }
         }
     }
-    
-    
-    
-    
-    
+
     
     
     // MARK: - Handler to FACEBOOK
     
     // Call FB Graph API and fetch user info
     public func requestUserInfo() {
-        print("Inside request User")
+        //print("Inside request User")
         let params = [FBUser.email, FBUser.name, FBUser.id, FBUser.gender, FBUser.cover].joined(separator: ", ")
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields" : params])
             .start(completionHandler:  { (connection, result, error) in
@@ -124,33 +121,7 @@ public class RequestHandler
         
         
     }
-  
-    
-    
-    // Request Events info from the Core Database depending on city
-    public func getEventsFromCoreDatabase (in context: NSManagedObjectContext) -> [Event] {
-        var result = [Event]()
-        context.perform {
-            let events = Event.eventsStartingAfterNow(in: context)
-            if events.count > 0 {
-                result = events
-                print("[RequestHandler] - Events count: \(events.count)")
-                for event in events {
-                    if event.name != nil {print("Event Name: \(event.name!)")}
-                }
-                
-                
-            } else {
-                print("[RequestHandler] - There is no events Starting after now")
-            }
-        }
-        return result
-    }
-    
-    
-    
-    
-    
+
 }
 
 

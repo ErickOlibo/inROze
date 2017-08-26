@@ -85,26 +85,26 @@ public class ServerRequest
     
     // print artist list
     private func updateArtistsDatabase(with jsonDict: [String : Any]) {
-        for (key, value) in jsonDict {
-            if (key == DBLabels.upToDateArtistsList),
-                let  artists = value as? [Any] {
-                for artistInfo in artists {
-                    if let arts = artistInfo as? [String : String],
-                        let artistName = arts["name"]?.utf8 {
-                        print("DJ Name: [\(artistName)] in UTF8")
-                        
-                        // the Do - Catch to the Artist Entity
-                    }
-
-                }
-                // Save context (do - catch)
-                
-                
-                // Print Artist stats
-                //self.printArtistsStatistics()
-            }
-            
-        }
+//        for (key, value) in jsonDict {
+//            if (key == DBLabels.upToDateArtistsList),
+//                let  artists = value as? [Any] {
+//                for artistInfo in artists {
+//                    if let arts = artistInfo as? [String : String],
+//                        let artistName = arts["name"]?.utf8 {
+//                        print("DJ Name: [\(artistName)] in UTF8")
+//                        
+//                        // the Do - Catch to the Artist Entity
+//                    }
+//
+//                }
+//                // Save context (do - catch)
+//                
+//                
+//                // Print Artist stats
+//                //self.printArtistsStatistics()
+//            }
+//            
+//        }
     }
     
     private func updateDatabase(with eventIDs: [String : Any]) {

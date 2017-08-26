@@ -95,10 +95,10 @@ public class Event: NSManagedObject
                         // updating Location ralationship for eventID
                         if let eventPlace = eventInfo[FBEvent.place] as? [String : Any] {
                             do {
-                                if let pID = eventPlace[FBPlace.id] as? String,
-                                    let eID = eventInfo[FBEvent.id] as? String {
-                                    print("EventID: [\(eID)] -> PlaceID: [\(pID)]")
-                                }
+//                                if let pID = eventPlace[FBPlace.id] as? String,
+//                                    let eID = eventInfo[FBEvent.id] as? String {
+//                                    print("EventID: [\(eID)] -> PlaceID: [\(pID)]")
+//                                }
                                 
                                 event.location = try Place.updatePlaceInfoForEvent(with: eventPlace, in: context)
                             } catch {
