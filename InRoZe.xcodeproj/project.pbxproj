@@ -30,6 +30,7 @@
 		A7A24D4C1F3A4F0000EFB82E /* ServerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */; };
 		A7A24D501F3B655E00EFB82E /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A24D4F1F3B655E00EFB82E /* Place.swift */; };
 		A7A4BECC1F4363C5000A5047 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A4BECB1F4363C5000A5047 /* UserDefaultsExtensions.swift */; };
+		A7D4D2A61F51913C00546341 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4D2A51F51913C00546341 /* Artist.swift */; };
 		A7EC36651F33954600548C11 /* NSDictionary+KeyPathConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */; };
 		A7EC36851F36553B00548C11 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36841F36553B00548C11 /* LoginViewController.swift */; };
 		A7EC36871F365AA900548C11 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36861F365AA900548C11 /* TabBarViewController.swift */; };
@@ -66,6 +67,7 @@
 		A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRequest.swift; sourceTree = "<group>"; };
 		A7A24D4F1F3B655E00EFB82E /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		A7A4BECB1F4363C5000A5047 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
+		A7D4D2A51F51913C00546341 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+KeyPathConvenience.swift"; sourceTree = "<group>"; };
 		A7EC36841F36553B00548C11 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A7EC36861F365AA900548C11 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -202,9 +204,10 @@
 				A7F527211F4496E50008080B /* RequestHandler.swift */,
 				A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */,
 				A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */,
+				A7F527251F462F4E0008080B /* UICollectionView+NSFetchedResultsController.swift */,
+				A7D4D2A51F51913C00546341 /* Artist.swift */,
 				A7F527231F4498540008080B /* Event.swift */,
 				A7A24D4F1F3B655E00EFB82E /* Place.swift */,
-				A7F527251F462F4E0008080B /* UICollectionView+NSFetchedResultsController.swift */,
 				A72B79341F2231AF009FB389 /* InRoZe.xcdatamodeld */,
 			);
 			name = "Core Data";
@@ -358,6 +361,7 @@
 				A77676071F26B9DB00F1FA52 /* SearchViewController.swift in Sources */,
 				A77676181F28CCE400F1FA52 /* Constants.swift in Sources */,
 				A7A4BECC1F4363C5000A5047 /* UserDefaultsExtensions.swift in Sources */,
+				A7D4D2A61F51913C00546341 /* Artist.swift in Sources */,
 				A77676161F27C52F00F1FA52 /* EventCollectionViewCell.swift in Sources */,
 				A7F527241F4498540008080B /* Event.swift in Sources */,
 				A775C3B61F3CC0CC00A3449F /* FacebookRequest.swift in Sources */,

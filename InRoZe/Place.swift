@@ -31,6 +31,7 @@ public class Place: NSManagedObject
         
         let place = Place(context: context)
         place.id = eventDict[DBLabels.placeID]
+        place.countryCode = eventDict[DBLabels.placeCountryCode]
         return place
     }
     

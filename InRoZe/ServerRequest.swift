@@ -85,26 +85,35 @@ public class ServerRequest
     
     // print artist list
     private func updateArtistsDatabase(with jsonDict: [String : Any]) {
-//        for (key, value) in jsonDict {
-//            if (key == DBLabels.upToDateArtistsList),
-//                let  artists = value as? [Any] {
-//                for artistInfo in artists {
-//                    if let arts = artistInfo as? [String : String],
-//                        let artistName = arts["name"]?.utf8 {
-//                        print("DJ Name: [\(artistName)] in UTF8")
-//                        
-//                        // the Do - Catch to the Artist Entity
-//                    }
-//
-//                }
-//                // Save context (do - catch)
-//                
-//                
-//                // Print Artist stats
-//                //self.printArtistsStatistics()
-//            }
-//            
-//        }
+        for (key, value) in jsonDict {
+            if (key == DBLabels.upToDateArtistsList),
+                let  artistsArray = value as? [Any] {
+                //print(artistsArray)
+                for artistInfoArray in artistsArray {
+                    if let artistInfo = artistInfoArray as? [String : String]{
+                        
+                        // the Do - Catch to the Artist Entity
+                        do {
+                            _ = try Artist.findOrCreateArtist(with: artistInfo, in: context)
+                        } catch {
+                            print("[ServerRequest] - Error trying to FindOrCreateArtist: \(error)")
+                        }
+                    }
+                }
+                // Save context (do - catch)
+                do {
+                    try context.save()
+                    UserDefaults().setDateNow(for: RequestDate.toServer)
+                } catch {
+                    print("[ServerRequest] - Error trying to Save Context after FindOrCreateArtist: \(error)")
+                    
+                }
+                
+                // Print Artist stats
+                self.printArtistsStatistics()
+            }
+            
+        }
     }
     
     private func updateDatabase(with eventIDs: [String : Any]) {
@@ -178,20 +187,15 @@ public class ServerRequest
     }
     
     private func printArtistsStatistics() {
-        print("[printDatabaseStatistics] - print data Stats")
+        print("[printArtistsStatistics] - Artists Stats")
         
         let context = container.viewContext
         // THREAD SAFETY
         // context.perform makes sure the block is executed on the right thread for the context
         context.perform {
-            // CHANGE WHEN ARTIST ENTITY incorporated
-            let request: NSFetchRequest<Event> = Event.fetchRequest()
-            if let eventsCount = (try? context.fetch(request))?.count {
-                print("[printDatabaseStatistics] - \(eventsCount) events IDs")
-            }
             // Better way to count number of element in entity (CoreData)
-            if let placesCount = try? context.count(for: Place.fetchRequest()) {
-                print("[printDatabaseStatistics] - \(placesCount) Places IDs")
+            if let artistsCount = try? context.count(for: Artist.fetchRequest()) {
+                print("[printArtistsStatistics] - \(artistsCount) Artists")
             }
         }
         

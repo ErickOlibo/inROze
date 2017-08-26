@@ -25,6 +25,7 @@ public struct UrlFor {
 public struct DBLabels {
     static let eventID = "event_id"
     static let placeID = "place_id"
+    static let placeCountryCode = "country_code"
     static let artistsList = "artists_list"
     static let cityCode =  "cityCode"
     static let errorType = "error"
@@ -39,6 +40,7 @@ public struct DBLabels {
     static let artistName = "name"
     static let artistType = "type"
     static let artistCountry = "country"
+    static let artistCountryCode = "country_code"
     
 }
 
