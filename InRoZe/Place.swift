@@ -15,14 +15,13 @@ public class Place: NSManagedObject
     // update placeID if eventID already present
     class func findOrInsertPlaceID(matching eventDict: [String : String], in context: NSManagedObjectContext) throws -> Place
     {
-        
         let request: NSFetchRequest<Place> = Place.fetchRequest()
         request.predicate = NSPredicate(format: "id = %@", eventDict[DBLabels.placeID]!)
         do {
-            
             let match = try context.fetch(request)
             if match.count > 0 {
                 assert(match.count == 1, "findOrInsertEventID -- database inconsistency")
+                match[0].countryCode = eventDict[DBLabels.placeCountryCode]
                 return match[0]
             }
         } catch {
@@ -39,12 +38,8 @@ public class Place: NSManagedObject
     // Update PlaceID missing attributes
     class func updatePlaceInfoForEvent(with eventPlace: [String : Any], in context: NSManagedObjectContext) throws -> Place
     {
-        
         let request: NSFetchRequest<Place> = Place.fetchRequest()
-        //var placeID: String?
         if let pID = eventPlace[FBPlace.id] as? String {
-            //print("PlaceID from EventPlace Dict: \(pID)")
-            //placeID = pID
             request.predicate = NSPredicate(format: "id = %@", pID)
         } else {
             print("PlaceID from EventPlace Dict: NULL")
@@ -53,7 +48,6 @@ public class Place: NSManagedObject
         var place: Place?
         do {
             let places = try context.fetch(request)
-            //print("PlaceID [\(placeID!)] search returns \(places.count) hit")
             if places.count > 0 {
                 assert(places.count == 1, "inconsistency: unique place identifier is duplicate")
                 place = places[0]
@@ -80,7 +74,7 @@ public class Place: NSManagedObject
         }
         
         
-       return place!
+        return place!
     }
     
     // Create New Event sent by FBook
