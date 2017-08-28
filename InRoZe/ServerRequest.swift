@@ -121,6 +121,8 @@ public class ServerRequest
                     // insert artists to database
                     self.updateArtistsDatabase(with: eventIDs, in: context)
                     
+                    // insert performers for events
+                    self.insertOrUpdateArtistsOfEvents(with: eventIDs, in: context)
                     
                     // Save in CoreDatabase
                     do {
@@ -138,6 +140,25 @@ public class ServerRequest
             }
         }
     }
+    
+    private func insertOrUpdateArtistsOfEvents(with eventDict: [String : Any], in context: NSManagedObjectContext) {
+        
+        //print("[insertOrUpdateArtistsOfEvents] - \(eventDict[DBLabels.artistsOfEvents] as! [String : String])")
+        
+        if let artsOfEventsArr = eventDict[DBLabels.artistsOfEvents] as? [Any],
+            let _ = artsOfEventsArr.first as? [String : String] {
+            for event in artsOfEventsArr {
+                if let artistsOfEv = event as? [String : String] {
+                    print("[\(artistsOfEv[DBLabels.eventID]!)] - ArtistsList: [\(artistsOfEv[DBLabels.artistsList]!)]")
+                    // add artists to Event
+                    
+                }
+            }
+        }
+        
+        
+    }
+    
     
     
     private func printDatabaseStatistics() {
@@ -164,28 +185,14 @@ public class ServerRequest
             
             // Better way to count number of element in entity (CoreData)
             if let artistsCount = try? context.count(for: Artist.fetchRequest()) {
-                print("[printArtistsStatistics] - \(artistsCount) Artists")
+                print("[printDatabaseStatistics] - \(artistsCount) Artists")
             }
         }
         
         
     }
     
-    private func printArtistsStatistics() {
-        print("[printArtistsStatistics] - Artists Stats")
-        
-        let context = container.viewContext
-        // THREAD SAFETY
-        // context.perform makes sure the block is executed on the right thread for the context
-        context.perform {
-            // Better way to count number of element in entity (CoreData)
-            if let artistsCount = try? context.count(for: Artist.fetchRequest()) {
-                print("[printArtistsStatistics] - \(artistsCount) Artists")
-            }
-        }
-        
-        
-    }
+
 
 }
 

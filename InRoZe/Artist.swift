@@ -43,7 +43,22 @@ public class Artist: NSManagedObject
     }
 
     
+    class func findArtistWith(id: String, in context: NSManagedObjectContext) throws -> Artist? {
+        let request: NSFetchRequest<Artist> = Artist.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", id)
+        do {
+            let match = try context.fetch(request)
+            if match.count > 0 {
+                assert(match.count == 1, "findArtistWithID -- database inconsistency")
+                return match[0]
+                
+            }
+        } catch {
+            throw error
+        }
+        return nil
+    }
     
-    
+    // Add gigs to Artist
     
 }

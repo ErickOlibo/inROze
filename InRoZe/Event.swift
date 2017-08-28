@@ -16,7 +16,10 @@ public class Event: NSManagedObject
     // update placeID if eventID already present
     class func findOrInsertEventID(matching eventDict: [String : String], in context: NSManagedObjectContext) throws -> Event
     {
-        
+        //print(eventDict)
+        if let artistsList = eventDict[DBLabels.artistsList] {
+        print("[\(eventDict[DBLabels.eventID]!)] - ArtistList: [\(artistsList)]")
+        }
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         request.predicate = NSPredicate(format: "id = %@", eventDict[DBLabels.eventID]!)
         do {
@@ -24,11 +27,14 @@ public class Event: NSManagedObject
             let match = try context.fetch(request)
             if match.count > 0 {
                 assert(match.count == 1, "findOrInsertEventID -- database inconsistency")
+                //update artists for eventID -> remove all then add new
                 return match[0]
             }
         } catch {
             throw error
         }
+        // add artists to new event
+        
 
         let event = Event(context: context)
         event.id = eventDict[DBLabels.eventID]
@@ -39,6 +45,64 @@ public class Event: NSManagedObject
         }
         return event
     }
+    
+    
+    class func addArtistsListToEvent(with eventDict: [String : String], in context: NSManagedObjectContext) throws -> Bool {
+        let artistsListArr = eventDict[DBLabels.artistsList]!.components(separatedBy: ", ")
+        
+        let id = eventDict[DBLabels.eventID]!
+        let artistsSet = NSSet(array: artistsListArr)
+        
+        let request: NSFetchRequest<Event> = Event.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", id)
+        do {
+            let match = try context.fetch(request)
+            if match.count > 0 {
+                assert(match.count == 1, "addArtistsListToEvent -- database inconsistency")
+                let event = match[0]
+                event.performers = artistsSet
+                return true
+            }
+        } catch {
+            throw error
+        }
+       
+        return false
+    }
+    
+    
+    class func updateArtistsListForEvent(with eventDict: [String : String], in context: NSManagedObjectContext) throws -> Bool {
+        let id = eventDict[DBLabels.eventID]!
+        do {
+            let _ = try removeAllArtistsFromEvent(id: id, in: context)
+            let _ = try addArtistsListToEvent(with: eventDict, in: context)
+        } catch {
+            throw error
+        }
+        
+        
+        return true
+    }
+    
+    class func removeAllArtistsFromEvent(id: String, in context: NSManagedObjectContext) throws -> Bool {
+        // look for artist that are in EventID and set event to nil
+        let request: NSFetchRequest<Event> = Event.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", id)
+        do {
+            let match = try context.fetch(request)
+            if match.count > 0 {
+                assert(match.count == 1, "removeAllArtistsFromEvent -- database inconsistency")
+                let event = match[0]
+                event.performers = nil
+                return true
+            }
+        } catch {
+            throw error
+        }
+        return false
+    }
+    
+    
     
     
     // Update eventID missing attributes
@@ -83,7 +147,6 @@ public class Event: NSManagedObject
                         let formatter = ISO8601DateFormatter()
                         event.startTime = formatter.date(from: sTime)! as NSDate
                         event.updatedTime = formatter.date(from: uTime)! as NSDate
-                        //print("StartTime after Conversion: \(event.startTime!)")
                         
                         // If end_time is nil (from FB request) add default: +12 hours of Start_time
                         if let eTime = eventInfo[FBEvent.endTime] as? String {
@@ -95,8 +158,9 @@ public class Event: NSManagedObject
                         // updating Location ralationship for eventID
                         if let eventPlace = eventInfo[FBEvent.place] as? [String : Any] {
                             do {
-
-                                event.location = try Place.updatePlaceInfoForEvent(with: eventPlace, in: context)
+                                if let location = try Place.updatePlaceInfoForEvent(with: eventPlace, in: context){
+                                   event.location = location
+                                }
                             } catch {
                                 print("[Event] - EVENT To Location Error: \(error)")
                             }
@@ -109,6 +173,11 @@ public class Event: NSManagedObject
         }
         return true
     }
+    
+    
+
+    
+    
     
     // Select events where StartTime is after Now
     // ADD the LOCATION (city or country) selector as a parameter
