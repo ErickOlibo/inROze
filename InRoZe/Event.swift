@@ -48,10 +48,21 @@ public class Event: NSManagedObject
     
     
     class func addArtistsListToEvent(with eventDict: [String : String], in context: NSManagedObjectContext) throws -> Bool {
-        let artistsListArr = eventDict[DBLabels.artistsList]!.components(separatedBy: ", ")
-        
         let id = eventDict[DBLabels.eventID]!
-        let artistsSet = NSSet(array: artistsListArr)
+        let artistsListArr = eventDict[DBLabels.artistsList]!.components(separatedBy: ", ")
+        var artsArr = [Artist]()
+        
+        for artistID in artistsListArr {
+            do {
+                if let match = try Artist.findArtistWith(id: artistID, in: context) {
+                    artsArr.append(match)
+                }
+            } catch {
+                throw error
+            }
+        }
+        
+        let artsNSSet = NSSet(array: artsArr)
         
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         request.predicate = NSPredicate(format: "id = %@", id)
@@ -60,7 +71,8 @@ public class Event: NSManagedObject
             if match.count > 0 {
                 assert(match.count == 1, "addArtistsListToEvent -- database inconsistency")
                 let event = match[0]
-                event.performers = artistsSet
+                event.performers = artsNSSet
+                print("[\(id)] - event.performers: [\(event.performers!)]")
                 return true
             }
         } catch {

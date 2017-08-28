@@ -99,6 +99,7 @@ public class ServerRequest
                 }
             }
         }
+        print("DONE updateArtistsDatabase")
     }
     
     private func updateDatabase(with eventIDs: [String : Any]) {
@@ -143,14 +144,17 @@ public class ServerRequest
     
     private func insertOrUpdateArtistsOfEvents(with eventDict: [String : Any], in context: NSManagedObjectContext) {
         
-        //print("[insertOrUpdateArtistsOfEvents] - \(eventDict[DBLabels.artistsOfEvents] as! [String : String])")
-        
         if let artsOfEventsArr = eventDict[DBLabels.artistsOfEvents] as? [Any],
             let _ = artsOfEventsArr.first as? [String : String] {
             for event in artsOfEventsArr {
                 if let artistsOfEv = event as? [String : String] {
-                    print("[\(artistsOfEv[DBLabels.eventID]!)] - ArtistsList: [\(artistsOfEv[DBLabels.artistsList]!)]")
+                    //print("[\(artistsOfEv[DBLabels.eventID]!)] - ArtistsList: [\(artistsOfEv[DBLabels.artistsList]!)]")
                     // add artists to Event
+                    do {
+                        let _ = try Event.updateArtistsListForEvent(with: artistsOfEv, in: context)
+                    } catch {
+                        print("[ServerRequest] - insertOrUpdateArtistsOfEvents Error trying to update: \(error)")
+                    }
                     
                 }
             }
@@ -162,7 +166,6 @@ public class ServerRequest
     
     
     private func printDatabaseStatistics() {
-        print("[printDatabaseStatistics] - print data Stats")
         
         let context = container.viewContext
         // THREAD SAFETY
@@ -187,6 +190,25 @@ public class ServerRequest
             if let artistsCount = try? context.count(for: Artist.fetchRequest()) {
                 print("[printDatabaseStatistics] - \(artistsCount) Artists")
             }
+            
+            // list events with artists > 0
+            request.predicate = NSPredicate(format: "performers.@count > 0")
+            do {
+                let matches = try context.fetch(request)
+                if matches.count > 0 {
+                    for match in matches {
+                        print("[\(match.id!)] - [\(match.performers!.count)] - [\(match.name!)]")
+//                        if let artistCount = match.performers?.count {
+//                            if artistCount > 0 {
+//                                print("[\(match.id!)] - [\(artistCount)] - [\(match.name!)]")
+//                            }
+//                        }
+                    }
+                }
+            } catch {
+                print("[printDatabaseStatistics] - \(error)")
+            }
+            
         }
         
         
