@@ -79,20 +79,17 @@ public class ServerRequest
     var result: [String : Any]? {
         didSet {
             updateDatabase(with: result!)
-            updateArtistsDatabase(with: result!)
+            //updateArtistsDatabase(with: result!)
         }
     }
     
     // print artist list
-    private func updateArtistsDatabase(with jsonDict: [String : Any]) {
+    private func updateArtistsDatabase(with jsonDict: [String : Any], in context: NSManagedObjectContext) {
         for (key, value) in jsonDict {
             if (key == DBLabels.upToDateArtistsList),
                 let  artistsArray = value as? [Any] {
-                //print(artistsArray)
                 for artistInfoArray in artistsArray {
                     if let artistInfo = artistInfoArray as? [String : String]{
-                        
-                        // the Do - Catch to the Artist Entity
                         do {
                             _ = try Artist.findOrCreateArtist(with: artistInfo, in: context)
                         } catch {
@@ -100,19 +97,7 @@ public class ServerRequest
                         }
                     }
                 }
-                // Save context (do - catch)
-                do {
-                    try context.save()
-                    UserDefaults().setDateNow(for: RequestDate.toServer)
-                } catch {
-                    print("[ServerRequest] - Error trying to Save Context after FindOrCreateArtist: \(error)")
-                    
-                }
-                
-                // Print Artist stats
-                self.printArtistsStatistics()
             }
-            
         }
     }
     
@@ -125,10 +110,6 @@ public class ServerRequest
                     let _ = events.first as? [String : String] {
                     for event in events {
                         if let eventDict = event as? [String : String] {
-                            // Print the djs list if not nil
-//                            if let artistList = eventDict[DBLabels.artistsList] {
-//                                print("EventID: [\(eventDict[DBLabels.eventID]!)] -> List: [\(artistList)]")
-//                            }
 
                             do {
                                 _ = try Event.findOrInsertEventID(matching: eventDict, in: context)
@@ -137,6 +118,10 @@ public class ServerRequest
                             }
                         }
                     }
+                    // insert artists to database
+                    self.updateArtistsDatabase(with: eventIDs, in: context)
+                    
+                    
                     // Save in CoreDatabase
                     do {
                         try context.save()
@@ -144,11 +129,6 @@ public class ServerRequest
                         
                         print("[ServerRequest] -  UpdateDatabase DONE and SAVED")
                         RequestHandler().isDoneUpdatingServeRequest = true
-                        
-                        
-                        //notify whoever is listening
-                        //print("[ServerRequest] - Post Notification: serverRequestDoneUpdating")
-                        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.serverRequestDoneUpdating), object: nil)
                         
                     } catch {
                         print("[ServerRequest] - Error trying to save in CoreData: \(error)")
@@ -180,6 +160,11 @@ public class ServerRequest
             // Better way to count number of element in entity (CoreData)
             if let placesCount = try? context.count(for: Place.fetchRequest()) {
                 print("[printDatabaseStatistics] - \(placesCount) Places IDs")
+            }
+            
+            // Better way to count number of element in entity (CoreData)
+            if let artistsCount = try? context.count(for: Artist.fetchRequest()) {
+                print("[printArtistsStatistics] - \(artistsCount) Artists")
             }
         }
         

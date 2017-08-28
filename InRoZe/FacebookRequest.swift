@@ -114,7 +114,7 @@ public class FacebookRequest
                     UserDefaults().setDateNow(for: RequestDate.toFacebook)
                     
                     // create notification center
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.initialLoginRequestIsDone), object: nil)
                     
                 } catch {
                     print("[updateEventDatabase] - Error during saving: \(error)")

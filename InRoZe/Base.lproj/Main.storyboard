@@ -336,6 +336,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="nsf-G1-9aO">
+                                <rect key="frame" x="189" y="350" width="37" height="37"/>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rG3-h1-OYi">
                                 <rect key="frame" x="0.0" y="627" width="414" height="60"/>
                                 <color key="backgroundColor" red="0.23529411759999999" green="0.34509803919999998" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -354,11 +357,15 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="uUX-v3-71G" firstAttribute="top" secondItem="rG3-h1-OYi" secondAttribute="bottom" id="RdP-ey-Rwb"/>
+                            <constraint firstItem="nsf-G1-9aO" firstAttribute="centerX" secondItem="RRo-TU-H8E" secondAttribute="centerX" id="afe-LX-yee"/>
                             <constraint firstItem="rG3-h1-OYi" firstAttribute="leading" secondItem="RRo-TU-H8E" secondAttribute="leading" id="dXh-z2-UUC"/>
                             <constraint firstAttribute="trailing" secondItem="rG3-h1-OYi" secondAttribute="trailing" id="eaw-E6-4IP"/>
+                            <constraint firstItem="nsf-G1-9aO" firstAttribute="centerY" secondItem="RRo-TU-H8E" secondAttribute="centerY" id="nM9-S1-rlr"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="facebookButton" destination="rG3-h1-OYi" id="yVI-V1-0PC"/>
+                        <outlet property="spinner" destination="nsf-G1-9aO" id="nlV-NC-RFW"/>
                         <segue destination="Nj7-xt-p6X" kind="show" identifier="login view" id="p0M-Yn-h6e"/>
                     </connections>
                 </viewController>

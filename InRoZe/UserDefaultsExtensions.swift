@@ -83,9 +83,23 @@ extension UserDefaults {
     }
     
     
+    public var wasLaunchedOnce: Bool {
+        get {
+            print("UserDefaultExtensions isFirstLaunch is GET")
+            return bool(forKey: User.launchedAlready)
+        }
+        set {
+            set(newValue, forKey: User.launchedAlready)
+        }
+        
+    }
     
     
-    
+}
+
+// private struct for userdefaults onlt
+private struct User {
+    static let launchedAlready = "launchedAlready"
 }
 
 

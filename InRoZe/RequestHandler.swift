@@ -75,14 +75,14 @@ public class RequestHandler
                 serverRequest.setUserLoggedIn(to: true, parameters: parameters, urlToServer: UrlFor.logInOut)
                 
                 
-                if let currentUser = UserProfile.current {
-                    print("[RequestHandler] - current user got: \(currentUser)")
-                } else {
-                    print("[RequestHandler] - Current user is NIL")
-                    UserProfile.loadCurrent{ profile in
-                        print("[currentUser] - \(profile)")
-                    }
-                }
+//                if let currentUser = UserProfile.current {
+//                    print("[RequestHandler] - current user got: \(currentUser)")
+//                } else {
+//                    print("[RequestHandler] - Current user is NIL")
+//                    UserProfile.loadCurrent{ profile in
+//                        print("[currentUser] - \(profile)")
+//                    }
+//                }
             }
         }
     }

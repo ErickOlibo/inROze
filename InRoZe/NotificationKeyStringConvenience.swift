@@ -17,4 +17,5 @@ public struct NotificationFor {
     static let eventIDsDidUpdate = "eventIDsDidUpdate"
     static let coreDataDidUpdate = "coreDataDidUpdate"
     static let serverRequestDoneUpdating = "serverRequestDoneUpdating"
+    static let initialLoginRequestIsDone = "initialLoginRequestIsDone"
 }
