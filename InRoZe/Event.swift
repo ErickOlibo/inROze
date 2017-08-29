@@ -72,7 +72,7 @@ public class Event: NSManagedObject
                 assert(match.count == 1, "addArtistsListToEvent -- database inconsistency")
                 let event = match[0]
                 event.performers = artsNSSet
-                print("[\(id)] - event.performers: [\(event.performers!)]")
+                //print("[\(id)] - event.performers: [\(event.performers!)]")
                 return true
             }
         } catch {

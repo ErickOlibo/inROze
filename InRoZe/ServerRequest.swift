@@ -197,24 +197,30 @@ public class ServerRequest
                 let matches = try context.fetch(request)
                 if matches.count > 0 {
                     for match in matches {
-                        print("[\(match.id!)] - [\(match.performers!.count)] - [\(match.name!)]")
-//                        if let artistCount = match.performers?.count {
-//                            if artistCount > 0 {
-//                                print("[\(match.id!)] - [\(artistCount)] - [\(match.name!)]")
-//                            }
-//                        }
+                        if let eventName = match.name {
+                            print("EventID: [\(match.id!)] - Count: [\(match.performers!.count)] - Name: [\(eventName)]")
+                        }
                     }
                 }
             } catch {
                 print("[printDatabaseStatistics] - \(error)")
             }
             
+            // list of artist that have gigs
+            let req: NSFetchRequest<Artist> = Artist.fetchRequest()
+            req.predicate = NSPredicate(format: "gigs.@count > 0")
+            do {
+                let matches = try context.fetch(req)
+                if matches.count > 0 {
+                    for match in matches {
+                        print("ArtistID: [\(match.id!)] - Count: [\(match.gigs!.count)] - Name: [\(match.name!)]")
+                    }
+                }
+            } catch {
+                
+            }
         }
-        
-        
     }
-    
-
 
 }
 
