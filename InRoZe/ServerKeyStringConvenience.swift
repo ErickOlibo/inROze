@@ -30,6 +30,7 @@ public struct DBLabels {
     static let cityCode =  "cityCode"
     static let errorType = "error"
     static let rows = "rows"
+    static let profileURL = "profile_url"
     
     static let eventsToPlaces = "eventsToPlaces"
     static let artistsOfEvents = "artistsOfEvents"

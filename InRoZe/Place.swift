@@ -22,6 +22,7 @@ public class Place: NSManagedObject
             if match.count > 0 {
                 assert(match.count == 1, "findOrInsertEventID -- database inconsistency")
                 match[0].countryCode = eventDict[DBLabels.placeCountryCode]
+                match[0].profileURL = eventDict[DBLabels.profileURL]
                 return match[0]
             }
         } catch {
@@ -31,6 +32,7 @@ public class Place: NSManagedObject
         let place = Place(context: context)
         place.id = eventDict[DBLabels.placeID]
         place.countryCode = eventDict[DBLabels.placeCountryCode]
+        place.profileURL = eventDict[DBLabels.profileURL]
         return place
     }
     
