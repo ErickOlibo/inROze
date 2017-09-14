@@ -12,7 +12,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Favorite View Controller-->
+        <!--Follows-->
         <scene sceneID="zQD-04-gUi">
             <objects>
                 <viewController id="WGQ-mm-pbP" customClass="FavoriteViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
@@ -25,7 +25,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="favorite_Low32px" selectedImage="favorite_High32px" id="MPp-hd-7Vn">
+                    <tabBarItem key="tabBarItem" title="Follows" image="2_Follows" selectedImage="2_FollowsFilled" id="MPp-hd-7Vn">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -34,7 +34,7 @@
             </objects>
             <point key="canvasLocation" x="1216" y="-285"/>
         </scene>
-        <!--Event View Controller-->
+        <!--Events-->
         <scene sceneID="qP8-N1-48b">
             <objects>
                 <viewController id="fri-Sc-NVw" customClass="EventViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
@@ -233,7 +233,7 @@
                             <constraint firstItem="1bF-sv-OlW" firstAttribute="leading" secondItem="Qor-oC-J7N" secondAttribute="leading" id="zKk-Zp-0X6"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="events_Low32px" selectedImage="events_High32px" id="Tin-wH-z75">
+                    <tabBarItem key="tabBarItem" title="Events" image="1_Events" selectedImage="1_EventsFilled" id="Tin-wH-z75">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <connections>
@@ -258,7 +258,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="search_Low32px" selectedImage="search_High32px" id="2uI-A2-fWm">
+                    <tabBarItem key="tabBarItem" title="" image="3_AddaDJ" selectedImage="3_AddaDJFilled" id="2uI-A2-fWm">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                 </viewController>
@@ -266,7 +266,7 @@
             </objects>
             <point key="canvasLocation" x="461" y="220"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--DJs-->
         <scene sceneID="f3q-GW-gO6">
             <objects>
                 <viewController id="0QJ-u6-4K9" customClass="ProfileViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
@@ -293,7 +293,7 @@
                             <constraint firstItem="pmI-Vd-mHq" firstAttribute="centerX" secondItem="oCU-My-glw" secondAttribute="centerX" id="lE6-Qc-gS0"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="profile_Low32px" selectedImage="profile_High32px" id="TRD-p5-wDO">
+                    <tabBarItem key="tabBarItem" title="DJs" image="4_DJs" selectedImage="4_DJsFilled" id="TRD-p5-wDO">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -302,7 +302,7 @@
             </objects>
             <point key="canvasLocation" x="1233" y="671"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--Settings-->
         <scene sceneID="Ppm-Hn-nqG">
             <objects>
                 <viewController id="wjD-Jv-kdo" customClass="SettingsViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
@@ -315,7 +315,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="settings_Low32px" selectedImage="settings_High32px" id="7gy-pl-eXx">
+                    <tabBarItem key="tabBarItem" title="Settings" image="5_Settings" selectedImage="5_SettingsFilled" id="7gy-pl-eXx">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -338,6 +338,7 @@
                         <subviews>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="nsf-G1-9aO">
                                 <rect key="frame" x="189" y="350" width="37" height="37"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rG3-h1-OYi">
                                 <rect key="frame" x="0.0" y="627" width="414" height="60"/>
@@ -354,7 +355,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="uUX-v3-71G" firstAttribute="top" secondItem="rG3-h1-OYi" secondAttribute="bottom" id="RdP-ey-Rwb"/>
                             <constraint firstItem="nsf-G1-9aO" firstAttribute="centerX" secondItem="RRo-TU-H8E" secondAttribute="centerX" id="afe-LX-yee"/>
@@ -402,15 +403,15 @@
         </scene>
     </scenes>
     <resources>
-        <image name="events_High32px" width="32" height="32"/>
-        <image name="events_Low32px" width="32" height="32"/>
-        <image name="favorite_High32px" width="32" height="32"/>
-        <image name="favorite_Low32px" width="32" height="32"/>
-        <image name="profile_High32px" width="32" height="32"/>
-        <image name="profile_Low32px" width="32" height="32"/>
-        <image name="search_High32px" width="32" height="32"/>
-        <image name="search_Low32px" width="32" height="32"/>
-        <image name="settings_High32px" width="32" height="32"/>
-        <image name="settings_Low32px" width="32" height="32"/>
+        <image name="1_Events" width="25" height="25"/>
+        <image name="1_EventsFilled" width="25" height="25"/>
+        <image name="2_Follows" width="25" height="25"/>
+        <image name="2_FollowsFilled" width="25" height="25"/>
+        <image name="3_AddaDJ" width="32" height="32"/>
+        <image name="3_AddaDJFilled" width="32" height="32"/>
+        <image name="4_DJs" width="25" height="25"/>
+        <image name="4_DJsFilled" width="25" height="25"/>
+        <image name="5_Settings" width="25" height="25"/>
+        <image name="5_SettingsFilled" width="25" height="25"/>
     </resources>
 </document>
