@@ -91,11 +91,16 @@ public struct Constants {
 }
 
 
-
-
+// City random background image
+public func randomCityBackground () -> UIImage? {
+    let numberOfImages: UInt32 = 4 // current number of images for cities
+    let imageName = "City\(arc4random_uniform(numberOfImages) + 1)"
+    return UIImage(named: imageName)
+}
 
 
 // HELPERS Functions and Extensions
+
 
 
 

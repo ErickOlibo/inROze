@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var facebookButton: UIButton!
+    @IBOutlet weak var cityBackground: UIImageView!
     
     @IBAction func loginTapped(_ sender: UIButton) {
         
@@ -64,15 +65,20 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("Login view WILL appear")
+        // add a City background random
+        cityBackground.image = randomCityBackground()
         
         // Add Notification observer for after login fetch request to FB and Server
         NotificationCenter.default.addObserver(self, selector: #selector(updateDatabase), name: NSNotification.Name(rawValue: NotificationFor.initialLoginRequestIsDone), object: nil)
     }
  
+
 
     // Once success -> get the request to load
     @objc private func updateDatabase () {
