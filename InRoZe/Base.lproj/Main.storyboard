@@ -356,17 +356,26 @@
                                     <action selector="loginTapped:" destination="bAg-N4-UsF" eventType="touchUpInside" id="JlE-6w-IpW"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_Inroze_2017" translatesAutoresizingMaskIntoConstraints="NO" id="aHa-EQ-von">
+                                <rect key="frame" x="83" y="119.99999999999999" width="248.33333333333331" height="82.666666666666643"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="aHa-EQ-von" secondAttribute="height" multiplier="3:1" id="Nze-i0-jnk"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="rG3-h1-OYi" firstAttribute="width" secondItem="RRo-TU-H8E" secondAttribute="width" multiplier="6:10" id="1uL-jh-rA3"/>
                             <constraint firstItem="xFy-kx-hGn" firstAttribute="leading" secondItem="RRo-TU-H8E" secondAttribute="leadingMargin" constant="-20" id="3Q1-ka-NTr"/>
                             <constraint firstItem="xFy-kx-hGn" firstAttribute="top" secondItem="rG3-h1-OYi" secondAttribute="bottom" constant="50" id="JLc-kk-FTL"/>
+                            <constraint firstItem="aHa-EQ-von" firstAttribute="top" secondItem="gxc-bl-xIN" secondAttribute="bottom" constant="100" id="OYj-rE-Yhg"/>
                             <constraint firstItem="xFy-kx-hGn" firstAttribute="centerX" secondItem="RRo-TU-H8E" secondAttribute="centerX" id="aKt-wx-znF"/>
                             <constraint firstItem="nsf-G1-9aO" firstAttribute="centerX" secondItem="RRo-TU-H8E" secondAttribute="centerX" id="afe-LX-yee"/>
                             <constraint firstItem="uUX-v3-71G" firstAttribute="top" secondItem="xFy-kx-hGn" secondAttribute="bottom" id="dhF-Bx-2K7"/>
                             <constraint firstItem="rG3-h1-OYi" firstAttribute="centerX" secondItem="RRo-TU-H8E" secondAttribute="centerX" id="j0d-CW-Owt"/>
                             <constraint firstItem="nsf-G1-9aO" firstAttribute="centerY" secondItem="RRo-TU-H8E" secondAttribute="centerY" id="nM9-S1-rlr"/>
+                            <constraint firstItem="aHa-EQ-von" firstAttribute="centerX" secondItem="RRo-TU-H8E" secondAttribute="centerX" id="rIJ-Hu-c08"/>
+                            <constraint firstItem="aHa-EQ-von" firstAttribute="width" secondItem="RRo-TU-H8E" secondAttribute="width" multiplier="6:10" id="t6a-xa-FuQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xFy-kx-hGn" secondAttribute="trailing" constant="-20" id="tIY-xi-9V7"/>
                         </constraints>
                     </view>
@@ -420,5 +429,6 @@
         <image name="4_DJsFilled" width="25" height="25"/>
         <image name="5_Settings" width="25" height="25"/>
         <image name="5_SettingsFilled" width="25" height="25"/>
+        <image name="Logo_Inroze_2017" width="990" height="330"/>
     </resources>
 </document>
