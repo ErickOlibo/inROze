@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,28 +21,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchIcon" translatesAutoresizingMaskIntoConstraints="NO" id="p6N-QB-3f9">
-                                <rect key="frame" x="150" y="296" width="75" height="75"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchIcon" translatesAutoresizingMaskIntoConstraints="NO" id="b6w-1y-xMx">
+                                <rect key="frame" x="147.5" y="293.5" width="80" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="75" id="iSH-DZ-Etj"/>
-                                    <constraint firstAttribute="height" constant="75" id="ug3-RB-uDt"/>
+                                    <constraint firstAttribute="height" constant="80" id="TvI-sZ-YcJ"/>
+                                    <constraint firstAttribute="width" constant="80" id="jSW-BK-765"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="La Vie En Rose!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFd-Ee-h1D">
-                                <rect key="frame" x="16" y="411" width="343" height="21"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="vFd-Ee-h1D" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="1c3-lq-7PX"/>
-                            <constraint firstItem="vFd-Ee-h1D" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="Fe9-SC-EJ0"/>
-                            <constraint firstItem="p6N-QB-3f9" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Q8M-lS-Mvd"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="vFd-Ee-h1D" secondAttribute="trailing" id="aK6-V7-mNM"/>
-                            <constraint firstItem="vFd-Ee-h1D" firstAttribute="top" secondItem="p6N-QB-3f9" secondAttribute="bottom" constant="40" id="c3Y-6M-5Or"/>
-                            <constraint firstItem="p6N-QB-3f9" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="lQf-FJ-7V1"/>
+                            <constraint firstItem="b6w-1y-xMx" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="84T-S7-DX6"/>
+                            <constraint firstItem="b6w-1y-xMx" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="a1x-Bc-jei"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -53,6 +42,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchIcon" width="75" height="75"/>
+        <image name="LaunchIcon" width="80" height="80"/>
     </resources>
 </document>
