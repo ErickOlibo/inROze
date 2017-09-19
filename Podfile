@@ -10,5 +10,6 @@ target 'InRoZe' do
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'FacebookShare'
+  pod 'Font-Awesome-Swift'
 
 end

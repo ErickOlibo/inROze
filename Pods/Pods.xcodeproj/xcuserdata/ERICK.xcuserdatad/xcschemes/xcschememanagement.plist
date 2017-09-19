@@ -39,6 +39,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Font-Awesome-Swift-Font-Awesome-Swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Font-Awesome-Swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-InRoZe.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,12 +82,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>6EBD875930E0B8675A9D49001484C3DC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7335E9C9689F3B8A16F063A884748533</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8EF874029AE6D0E006EFB0BB858460CA</key>
+		<key>7470B9D5590A587730DD1CCC5B42C959</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9735AA72928D41DB06EA697E23930C72</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,7 +107,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BC4F6D742E669F2504FE3293C49E9A80</key>
+		<key>BA453546C51032641C49CACBC22725EE</key>
 		<dict>
 			<key>primary</key>
 			<true/>

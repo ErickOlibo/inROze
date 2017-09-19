@@ -52,6 +52,7 @@ public struct CityCode {
     static let helsinki = "HEL"
     static let riga = "RIG"
     static let brussels = "BRU"
+    static let none = "NONE"
 }
 
 // countryCode keyString
