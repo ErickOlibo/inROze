@@ -18,14 +18,13 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var cityBackground: UIImageView!
-    @IBOutlet weak var selectCity: UIView!
-    @IBOutlet weak var selectCityHeight: NSLayoutConstraint!
+
     
     var dropList: UIDropDown!
+    let spacingFromBottom: CGFloat = 20
+    let dropListHeight: CGFloat = 40
     
     @IBAction func loginTapped(_ sender: UIButton) {
-        
-        
         facebookButton.isHidden = true
         
         // Facebook login
@@ -91,45 +90,41 @@ class LoginViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        //print("DidLayout Subview View: \(self.selectCity.bounds.size)")
-        //print("LogoImage center: \(logoImage.center.y) | logo size: \(logoImage.bounds.size.height)")
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         displayDropList()
     }
     
     private func displayDropList () {
         // Drop down list
-        dropList = UIDropDown(frame: CGRect(x: 0, y: 0, width: self.selectCity.bounds.size.width, height: 40))
-        //dropList.tableHeight = 200
-        dropList.hideOptionsWhenSelect = true
-        dropList.center = CGPoint(x: self.selectCity.bounds.size.width * 0.5, y: self.selectCity.bounds.size.height * 0.5)
-        print("DropList Center: \(dropList.center)")
-        dropList.placeholder = "Select a City..."
+        dropList = UIDropDown(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width * 0.6, height: dropListHeight))
+        dropList.tableHeight = 200
         dropList.options = availableCities()
-        dropList.didSelect { (city, index) in
-            //put selection in the userDefault and enable facebook button
+        let currentCityName = cityNameFrom(cityCode: UserDefaults().currentCityCode)
+        let indexOfSelectedCity = availableCities().index(of: currentCityName)
+        dropList.selectedIdx = indexOfSelectedCity
+        dropList.animationType = UIDropDownAnimationType(rawValue: 2)!
+        dropList.hideOptionsWhenSelect = true
+        let yPoint = logoImage.center.y + logoImage.bounds.size.height * 0.5 + spacingFromBottom + dropListHeight * 0.5
+        dropList.center = CGPoint(x: self.view.bounds.size.width * 0.5, y: yPoint)
+        
+        if (UserDefaults().currentCityCode != CityCode.none) {
+            dropList.placeholder = currentCityName
+        } else {
+            dropList.placeholder = "Select a City..."
+        }
+        dropList.didSelect {(city, index)  in
             UserDefaults().currentCityCode = cityCodeFrom(cityName: city)
             print("Selected City: \(city) at cityCode: \(cityCodeFrom(cityName: city))")
-            //self.updateFacebookButtonState()
+            self.updateFacebookButtonState()
             
         }
-        
-        
-        dropList.tableWillAppear {
-            self.selectCity.center.y += self.dropList.tableHeight * 0.5
-            self.selectCity.bounds.size.height += self.dropList.tableHeight
-            
-        }
-        
-        dropList.tableWillDisappear {
-            self.selectCity.center.y -= self.dropList.tableHeight * 0.5
-            self.selectCity.bounds.size.height -= self.dropList.tableHeight
-            //self.updateFacebookButtonState()
-            
-        }
- 
-        self.selectCity.addSubview(dropList)
+        self.view.addSubview(dropList)
     }
-
+    
     
     // enable or disable the facebook button depending on City selected
     private func updateFacebookButtonState() {
@@ -140,11 +135,8 @@ class LoginViewController: UIViewController {
             facebookButton.layer.borderColor = UIColor.changeHexStringToColor(ColorInHexFor.facebook).cgColor
             facebookButton.setFAText(prefixText: "", icon: .FAFacebook, postfixText: "  Log in with Facebook", size: 25, forState: .normal)
             facebookButton.setFATitleColor(color: UIColor.changeHexStringToColor(ColorInHexFor.facebook), forState: .normal)
-            //facebookButton.setFATitleColor(color: UIColor.green, forState: .selected)
             facebookButton.setTitleColor(.white, for: .highlighted)
 
-            
-            
         } else {
             facebookButton.isEnabled = false
             facebookButton.backgroundColor = .clear

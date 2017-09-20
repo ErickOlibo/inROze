@@ -21,6 +21,13 @@ public class UIDropDown: UIControl {
     fileprivate var table: UITableView!
     
     public fileprivate(set) var selectedIndex: Int?
+    
+    //Added by Erick Olibo
+    public var selectedIdx: Int? {
+        didSet {
+            selectedIndex = selectedIdx
+        }
+    }
     public var options = [String]()
     public var hideOptionsWhenSelect = false
     public var placeholder: String! {
@@ -256,7 +263,7 @@ public class UIDropDown: UIControl {
         
         switch self.animationType {
         case .Default, .Classic:
-            UIView.animate(withDuration: 0.6,
+            UIView.animate(withDuration: 0.3,
                            delay: 0,
                            usingSpringWithDamping: 0.9,
                            initialSpringVelocity: 0.1,

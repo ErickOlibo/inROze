@@ -75,28 +75,23 @@ public struct CountryCode {
     static let sweden = "SE"
     static let latvia = "LV"
     static let belgium = "BE"
+    static let none = "NONE"
     
 }
 
-public func cityCodeFrom(cityName: String) -> String {
-    switch cityName.lowercased() {
-        case "tallinn":
-        return CityCode.tallinn
-    case "stockholm":
-        return CityCode.stockholm
-    case "helsinki":
-        return CityCode.helsinki
-    case "riga":
-        return CityCode.riga
-    case "brussels":
-        return CityCode.brussels
-    case "atlanta":
-        return CityCode.atlanta
-    default:
-        return CityCode.none
-        
-    }
+// cityName keyString
+public struct CityName {
+    static let tallinn = "Tallinn"
+    static let stockholm = "Stockholm"
+    static let helsinki = "Helsinki"
+    static let riga = "Riga"
+    static let brussels = "Brussels"
+    static let atlanta = "Atlanta"
+    static let none = "NONE"
+    
 }
+
+
 
 // Session Type for taskForURLSeesion to Server
 public struct SessionType {
@@ -142,8 +137,54 @@ public func countryCodeFrom(cityCode: String) -> String {
         return CountryCode.belgium
         
     default:
-        return CountryCode.estonia
+        return CountryCode.none
     }
 }
+
+public func cityCodeFrom(cityName: String) -> String {
+    switch cityName.lowercased() {
+    case "tallinn":
+        return CityCode.tallinn
+    case "stockholm":
+        return CityCode.stockholm
+    case "helsinki":
+        return CityCode.helsinki
+    case "riga":
+        return CityCode.riga
+    case "brussels":
+        return CityCode.brussels
+    case "atlanta":
+        return CityCode.atlanta
+    default:
+        return CityCode.none
+        
+    }
+}
+
+public func cityNameFrom(cityCode: String) -> String {
+    switch cityCode.uppercased() {
+    case CityCode.tallinn:
+        return CityName.tallinn
+    case CityCode.stockholm:
+        return CityName.stockholm
+    case CityCode.helsinki:
+        return CityName.helsinki
+    case CityCode.riga:
+        return CityName.riga
+    case CityCode.brussels:
+        return CityName.brussels
+    case CityCode.atlanta:
+        return CityName.atlanta
+    default:
+        return CityName.none
+        
+    }
+}
+
+
+
+
+
+
 
 
