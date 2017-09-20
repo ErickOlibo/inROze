@@ -47,7 +47,7 @@ public struct DBLabels {
 
 // List of cities available
 private struct AvailableCities {
-    static let list = ["Tallinn", "Helsinki", "Stockholm", "Riga", "Brussels"]
+    static let list = ["Tallinn", "Helsinki", "Stockholm", "Riga", "Brussels", "Atlanta"]
     
 }
 
@@ -64,6 +64,7 @@ public struct CityCode {
     static let helsinki = "HEL"
     static let riga = "RIG"
     static let brussels = "BRU"
+    static let atlanta = "ATL"
     static let none = "NONE"
 }
 
@@ -77,6 +78,25 @@ public struct CountryCode {
     
 }
 
+public func cityCodeFrom(cityName: String) -> String {
+    switch cityName.lowercased() {
+        case "tallinn":
+        return CityCode.tallinn
+    case "stockholm":
+        return CityCode.stockholm
+    case "helsinki":
+        return CityCode.helsinki
+    case "riga":
+        return CityCode.riga
+    case "brussels":
+        return CityCode.brussels
+    case "atlanta":
+        return CityCode.atlanta
+    default:
+        return CityCode.none
+        
+    }
+}
 
 // Session Type for taskForURLSeesion to Server
 public struct SessionType {

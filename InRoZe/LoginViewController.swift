@@ -98,18 +98,18 @@ class LoginViewController: UIViewController {
     
     private func displayDropList () {
         // Drop down list
-        //let orginalHeight = selectCityHeight.constant
         dropList = UIDropDown(frame: CGRect(x: 0, y: 0, width: self.selectCity.bounds.size.width, height: 40))
+        //dropList.tableHeight = 200
         dropList.hideOptionsWhenSelect = true
-        //let centerY = logoImage.center.y + logoImage.bounds.size.height * 0.5 + 50
         dropList.center = CGPoint(x: self.selectCity.bounds.size.width * 0.5, y: self.selectCity.bounds.size.height * 0.5)
         print("DropList Center: \(dropList.center)")
         dropList.placeholder = "Select a City..."
         dropList.options = availableCities()
-        dropList.didSelect { (option, index) in
+        dropList.didSelect { (city, index) in
             //put selection in the userDefault and enable facebook button
-            
-            print("Selected: \(option) at index: \(index)")
+            UserDefaults().currentCityCode = cityCodeFrom(cityName: city)
+            print("Selected City: \(city) at cityCode: \(cityCodeFrom(cityName: city))")
+            //self.updateFacebookButtonState()
             
         }
         
@@ -123,6 +123,7 @@ class LoginViewController: UIViewController {
         dropList.tableWillDisappear {
             self.selectCity.center.y -= self.dropList.tableHeight * 0.5
             self.selectCity.bounds.size.height -= self.dropList.tableHeight
+            //self.updateFacebookButtonState()
             
         }
  
