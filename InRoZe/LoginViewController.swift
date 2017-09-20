@@ -18,6 +18,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var cityBackground: UIImageView!
+    @IBOutlet weak var foreGroundView: UIView!
 
     
     var dropList: UIDropDown!
@@ -25,21 +26,32 @@ class LoginViewController: UIViewController {
     let dropListHeight: CGFloat = 40
     
     @IBAction func loginTapped(_ sender: UIButton) {
-        facebookButton.isHidden = true
+        //hideUI(state: true)
+        
+        //spinner.color = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
+        self.view.bringSubview(toFront: foreGroundView)
+        self.view.bringSubview(toFront: spinner)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.foreGroundView.isHidden = false
+        }
         
         // Facebook login
         let loginManager = LoginManager()
         loginManager.logIn([.publicProfile, .email], viewController: self) { [weak self] loginResult in
+            self?.spinner.startAnimating()
+            
             switch loginResult {
             case .failed(let error):
-                self?.facebookButton.isHidden = false
+                self?.spinner.stopAnimating()
+                //self?.hideUI(state: false)
+                self?.foreGroundView.isHidden = true
                 print(error.localizedDescription)
             case .cancelled:
-                self?.facebookButton.isHidden = false
+                self?.spinner.stopAnimating()
+                //self?.hideUI(state: false)
+                self?.foreGroundView.isHidden = true
                 print("cancelled")
             case .success( _,  _, _):
-                self?.spinner.startAnimating()
-
                 // Get info about logged user and saved to Server as loggedIn
                 let requestHandler = RequestHandler()
                 requestHandler.requestUserInfo()
@@ -60,6 +72,8 @@ class LoginViewController: UIViewController {
         
     }
     
+
+    
     // change status bar color
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -67,7 +81,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        foreGroundView.isHidden = true
+        foreGroundView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         print("currentCity: \(UserDefaults().currentCityCode)")
         // facebook button
         updateFacebookButtonState()
@@ -122,7 +137,16 @@ class LoginViewController: UIViewController {
             self.updateFacebookButtonState()
             
         }
+        
+//        dropList.tableWillAppear {
+//            self.facebookButton.isHidden = true
+//        }
+//        dropList.tableWillDisappear {
+//            self.facebookButton.isHidden = false
+//        }
+        
         self.view.addSubview(dropList)
+        //self.view.sendSubview(toBack: dropList)
     }
     
     
