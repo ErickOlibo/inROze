@@ -362,26 +362,39 @@
                                     <constraint firstAttribute="width" secondItem="aHa-EQ-von" secondAttribute="height" multiplier="3:1" id="Nze-i0-jnk"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rm5-Et-bfX">
+                                <rect key="frame" x="82.666666666666686" y="252.66666666666669" width="248.66666666666663" height="44.000000000000057"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="njq-6Z-wAo"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="rG3-h1-OYi" firstAttribute="width" secondItem="RRo-TU-H8E" secondAttribute="width" multiplier="6:10" id="1uL-jh-rA3"/>
                             <constraint firstItem="xFy-kx-hGn" firstAttribute="leading" secondItem="RRo-TU-H8E" secondAttribute="leadingMargin" constant="-20" id="3Q1-ka-NTr"/>
+                            <constraint firstItem="rm5-Et-bfX" firstAttribute="centerX" secondItem="RRo-TU-H8E" secondAttribute="centerX" id="Dzg-eq-Wg6"/>
                             <constraint firstItem="xFy-kx-hGn" firstAttribute="top" secondItem="rG3-h1-OYi" secondAttribute="bottom" constant="50" id="JLc-kk-FTL"/>
                             <constraint firstItem="aHa-EQ-von" firstAttribute="top" secondItem="gxc-bl-xIN" secondAttribute="bottom" constant="100" id="OYj-rE-Yhg"/>
                             <constraint firstItem="xFy-kx-hGn" firstAttribute="centerX" secondItem="RRo-TU-H8E" secondAttribute="centerX" id="aKt-wx-znF"/>
                             <constraint firstItem="nsf-G1-9aO" firstAttribute="centerX" secondItem="RRo-TU-H8E" secondAttribute="centerX" id="afe-LX-yee"/>
                             <constraint firstItem="uUX-v3-71G" firstAttribute="top" secondItem="xFy-kx-hGn" secondAttribute="bottom" id="dhF-Bx-2K7"/>
                             <constraint firstItem="rG3-h1-OYi" firstAttribute="centerX" secondItem="RRo-TU-H8E" secondAttribute="centerX" id="j0d-CW-Owt"/>
+                            <constraint firstItem="rm5-Et-bfX" firstAttribute="width" secondItem="RRo-TU-H8E" secondAttribute="width" multiplier="6:10" id="mJH-pb-Czo"/>
                             <constraint firstItem="nsf-G1-9aO" firstAttribute="centerY" secondItem="RRo-TU-H8E" secondAttribute="centerY" id="nM9-S1-rlr"/>
                             <constraint firstItem="aHa-EQ-von" firstAttribute="centerX" secondItem="RRo-TU-H8E" secondAttribute="centerX" id="rIJ-Hu-c08"/>
                             <constraint firstItem="aHa-EQ-von" firstAttribute="width" secondItem="RRo-TU-H8E" secondAttribute="width" multiplier="6:10" id="t6a-xa-FuQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xFy-kx-hGn" secondAttribute="trailing" constant="-20" id="tIY-xi-9V7"/>
+                            <constraint firstItem="rm5-Et-bfX" firstAttribute="top" secondItem="aHa-EQ-von" secondAttribute="bottom" constant="50" id="y0P-MK-Qf5"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="cityBackground" destination="xFy-kx-hGn" id="808-Ay-RjC"/>
                         <outlet property="facebookButton" destination="rG3-h1-OYi" id="yVI-V1-0PC"/>
+                        <outlet property="logoImage" destination="aHa-EQ-von" id="9qP-hb-3Ho"/>
+                        <outlet property="selectCity" destination="rm5-Et-bfX" id="vG6-Yf-rkh"/>
+                        <outlet property="selectCityHeight" destination="njq-6Z-wAo" id="RrW-X2-vao"/>
                         <outlet property="spinner" destination="nsf-G1-9aO" id="nlV-NC-RFW"/>
                         <segue destination="Nj7-xt-p6X" kind="show" identifier="login view" id="p0M-Yn-h6e"/>
                     </connections>

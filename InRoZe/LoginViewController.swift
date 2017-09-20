@@ -14,9 +14,14 @@ import Font_Awesome_Swift
 
 class LoginViewController: UIViewController {
     
+    @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var cityBackground: UIImageView!
+    @IBOutlet weak var selectCity: UIView!
+    @IBOutlet weak var selectCityHeight: NSLayoutConstraint!
+    
+    var dropList: UIDropDown!
     
     @IBAction func loginTapped(_ sender: UIButton) {
         
@@ -35,13 +40,7 @@ class LoginViewController: UIViewController {
                 print("cancelled")
             case .success( _,  _, _):
                 self?.spinner.startAnimating()
-                
-                // NEED TO IMPLEMENT CITY CHOICE
-                // default is TLN. User Profile should be requested after
-                // City selection
-                // Code Here
-                
-                
+
                 // Get info about logged user and saved to Server as loggedIn
                 let requestHandler = RequestHandler()
                 requestHandler.requestUserInfo()
@@ -73,7 +72,6 @@ class LoginViewController: UIViewController {
         print("currentCity: \(UserDefaults().currentCityCode)")
         // facebook button
         updateFacebookButtonState()
-
         
     }
     
@@ -81,11 +79,54 @@ class LoginViewController: UIViewController {
         super.viewWillAppear(animated)
         print("Login view WILL appear")
         updateFacebookButtonState()
+        
         // add a City background random
         cityBackground.image = randomCityBackground()
         
         // Add Notification observer for after login fetch request to FB and Server
         NotificationCenter.default.addObserver(self, selector: #selector(updateDatabase), name: NSNotification.Name(rawValue: NotificationFor.initialLoginRequestIsDone), object: nil)
+    }
+    
+
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        //print("DidLayout Subview View: \(self.selectCity.bounds.size)")
+        //print("LogoImage center: \(logoImage.center.y) | logo size: \(logoImage.bounds.size.height)")
+        displayDropList()
+    }
+    
+    private func displayDropList () {
+        // Drop down list
+        //let orginalHeight = selectCityHeight.constant
+        dropList = UIDropDown(frame: CGRect(x: 0, y: 0, width: self.selectCity.bounds.size.width, height: 40))
+        dropList.hideOptionsWhenSelect = true
+        //let centerY = logoImage.center.y + logoImage.bounds.size.height * 0.5 + 50
+        dropList.center = CGPoint(x: self.selectCity.bounds.size.width * 0.5, y: self.selectCity.bounds.size.height * 0.5)
+        print("DropList Center: \(dropList.center)")
+        dropList.placeholder = "Select a City..."
+        dropList.options = availableCities()
+        dropList.didSelect { (option, index) in
+            //put selection in the userDefault and enable facebook button
+            
+            print("Selected: \(option) at index: \(index)")
+            
+        }
+        
+        
+        dropList.tableWillAppear {
+            self.selectCity.center.y += self.dropList.tableHeight * 0.5
+            self.selectCity.bounds.size.height += self.dropList.tableHeight
+            
+        }
+        
+        dropList.tableWillDisappear {
+            self.selectCity.center.y -= self.dropList.tableHeight * 0.5
+            self.selectCity.bounds.size.height -= self.dropList.tableHeight
+            
+        }
+ 
+        self.selectCity.addSubview(dropList)
     }
 
     

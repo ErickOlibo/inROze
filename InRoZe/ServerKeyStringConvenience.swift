@@ -45,6 +45,18 @@ public struct DBLabels {
     
 }
 
+// List of cities available
+private struct AvailableCities {
+    static let list = ["Tallinn", "Helsinki", "Stockholm", "Riga", "Brussels"]
+    
+}
+
+public func availableCities() -> [String] {
+    let cities = AvailableCities.list
+    return cities.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
+}
+
+
 // cityCode requirement for loading right eventIDs
 public struct CityCode {
     static let tallinn = "TLN"
