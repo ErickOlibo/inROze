@@ -19,6 +19,7 @@
 		A76E72C71F7518700023D47F /* AddArtistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72C61F7518700023D47F /* AddArtistViewController.swift */; };
 		A76E72C91F7518CB0023D47F /* ArtistSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72C81F7518CB0023D47F /* ArtistSearchViewController.swift */; };
 		A76E72CC1F7541370023D47F /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72CB1F7541370023D47F /* EventsViewController.swift */; };
+		A76E72CE1F754BC60023D47F /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72CD1F754BC60023D47F /* EventTableViewCell.swift */; };
 		A775C3B21F3C7F8B00A3449F /* ServerKeyStringConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B11F3C7F8B00A3449F /* ServerKeyStringConvenience.swift */; };
 		A775C3B41F3C7FA100A3449F /* NotificationKeyStringConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B31F3C7FA100A3449F /* NotificationKeyStringConvenience.swift */; };
 		A775C3B61F3CC0CC00A3449F /* FacebookRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */; };
@@ -61,6 +62,7 @@
 		A76E72C61F7518700023D47F /* AddArtistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddArtistViewController.swift; sourceTree = "<group>"; };
 		A76E72C81F7518CB0023D47F /* ArtistSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistSearchViewController.swift; sourceTree = "<group>"; };
 		A76E72CB1F7541370023D47F /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		A76E72CD1F754BC60023D47F /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		A775C3B11F3C7F8B00A3449F /* ServerKeyStringConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerKeyStringConvenience.swift; sourceTree = "<group>"; };
 		A775C3B31F3C7FA100A3449F /* NotificationKeyStringConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKeyStringConvenience.swift; sourceTree = "<group>"; };
 		A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookRequest.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				A7EC36841F36553B00548C11 /* LoginViewController.swift */,
 				A7EC36861F365AA900548C11 /* TabBarViewController.swift */,
 				A76E72CB1F7541370023D47F /* EventsViewController.swift */,
+				A76E72CD1F754BC60023D47F /* EventTableViewCell.swift */,
 				A76E72C41F7517FB0023D47F /* FollowsViewController.swift */,
 				A76E72C61F7518700023D47F /* AddArtistViewController.swift */,
 				A76E72C81F7518CB0023D47F /* ArtistSearchViewController.swift */,
@@ -419,6 +422,7 @@
 				A76E72CC1F7541370023D47F /* EventsViewController.swift in Sources */,
 				A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */,
 				A7E03D9B1F71D820000095BD /* UIDropDown.swift in Sources */,
+				A76E72CE1F754BC60023D47F /* EventTableViewCell.swift in Sources */,
 				A76E72C91F7518CB0023D47F /* ArtistSearchViewController.swift in Sources */,
 				A77676051F26B9B200F1FA52 /* EventViewController.swift in Sources */,
 				A72B79301F2231AF009FB389 /* FavoriteViewController.swift in Sources */,
