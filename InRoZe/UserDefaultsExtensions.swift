@@ -61,7 +61,7 @@ extension UserDefaults {
     public var currentCityCode: String {
         get {
             //print("[UserDefaultsExtension] - Get Current CityCode")
-            return string(forKey: UserKeys.cityCode ) ?? "TLN" //always Tallinn as default cityCode
+            return string(forKey: UserKeys.cityCode ) ?? "NONE" // none should only occur at the 1st launch
         }
         set {
             print("[UserDefaultsExtension] - New CityCode: \(newValue)")

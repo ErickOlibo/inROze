@@ -100,6 +100,18 @@ public func randomCityBackground () -> UIImage? {
 
 
 // HELPERS Functions and Extensions
+public struct ColorInHexFor {
+    static let facebook = "3B5998"
+    static let instagram = "BC2A8D"
+    static let twitter = "00ACED"
+    static let logoOrange = "FFA700"
+    static let logoRed = "D23900"
+    static let logoYellow = "FED377"
+    static let logoBrown = "5A1208"
+    static let logoBlack = "2A2A2A"
+    
+    
+}
 
 
 

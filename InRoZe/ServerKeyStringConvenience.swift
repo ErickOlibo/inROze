@@ -45,6 +45,18 @@ public struct DBLabels {
     
 }
 
+// List of cities available
+private struct AvailableCities {
+    static let list = ["Tallinn", "Helsinki", "Stockholm", "Riga", "Brussels", "Atlanta"]
+    
+}
+
+public func availableCities() -> [String] {
+    let cities = AvailableCities.list
+    return cities.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
+}
+
+
 // cityCode requirement for loading right eventIDs
 public struct CityCode {
     static let tallinn = "TLN"
@@ -52,6 +64,8 @@ public struct CityCode {
     static let helsinki = "HEL"
     static let riga = "RIG"
     static let brussels = "BRU"
+    static let atlanta = "ATL"
+    static let none = "NONE"
 }
 
 // countryCode keyString
@@ -61,8 +75,22 @@ public struct CountryCode {
     static let sweden = "SE"
     static let latvia = "LV"
     static let belgium = "BE"
+    static let none = "NONE"
     
 }
+
+// cityName keyString
+public struct CityName {
+    static let tallinn = "Tallinn"
+    static let stockholm = "Stockholm"
+    static let helsinki = "Helsinki"
+    static let riga = "Riga"
+    static let brussels = "Brussels"
+    static let atlanta = "Atlanta"
+    static let none = "NONE"
+    
+}
+
 
 
 // Session Type for taskForURLSeesion to Server
@@ -109,8 +137,54 @@ public func countryCodeFrom(cityCode: String) -> String {
         return CountryCode.belgium
         
     default:
-        return CountryCode.estonia
+        return CountryCode.none
     }
 }
+
+public func cityCodeFrom(cityName: String) -> String {
+    switch cityName.lowercased() {
+    case "tallinn":
+        return CityCode.tallinn
+    case "stockholm":
+        return CityCode.stockholm
+    case "helsinki":
+        return CityCode.helsinki
+    case "riga":
+        return CityCode.riga
+    case "brussels":
+        return CityCode.brussels
+    case "atlanta":
+        return CityCode.atlanta
+    default:
+        return CityCode.none
+        
+    }
+}
+
+public func cityNameFrom(cityCode: String) -> String {
+    switch cityCode.uppercased() {
+    case CityCode.tallinn:
+        return CityName.tallinn
+    case CityCode.stockholm:
+        return CityName.stockholm
+    case CityCode.helsinki:
+        return CityName.helsinki
+    case CityCode.riga:
+        return CityName.riga
+    case CityCode.brussels:
+        return CityName.brussels
+    case CityCode.atlanta:
+        return CityName.atlanta
+    default:
+        return CityName.none
+        
+    }
+}
+
+
+
+
+
+
 
 

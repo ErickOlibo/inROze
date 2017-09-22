@@ -13,13 +13,12 @@ class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
-  
-        // Request handler for eventIds from server
-        //RequestHandler().fetchEventIDsFromServer()
+        //view.backgroundColor = .black
 
     }
 
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
 
 }
