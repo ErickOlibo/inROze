@@ -24,6 +24,7 @@ class LoginViewController: UIViewController {
     var dropList: UIDropDown!
     let spacingFromBottom: CGFloat = 20
     let dropListHeight: CGFloat = 40
+    let paddingToFacebookButtonTop: CGFloat = 10 // calculated number
     
     @IBAction func loginTapped(_ sender: UIButton) {
         //hideUI(state: true)
@@ -114,7 +115,7 @@ class LoginViewController: UIViewController {
     private func displayDropList () {
         // Drop down list
         dropList = UIDropDown(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width * 0.6, height: dropListHeight))
-        dropList.tableHeight = 200
+        dropList.tableHeight = 196
         dropList.options = availableCities()
         let currentCityName = cityNameFrom(cityCode: UserDefaults().currentCityCode)
         let indexOfSelectedCity = availableCities().index(of: currentCityName)
@@ -137,6 +138,10 @@ class LoginViewController: UIViewController {
         }
 
         self.view.addSubview(dropList)
+        let dropListBottomY = dropList.center.y + dropList.frame.size.height * 0.5
+        let facebookButtonTopY = facebookButton.center.y - facebookButton.frame.size.height * 0.5
+        dropList.tableHeight = facebookButtonTopY - dropListBottomY - paddingToFacebookButtonTop
+
     }
     
     
