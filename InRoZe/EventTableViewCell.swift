@@ -10,6 +10,7 @@ import UIKit
 
 class EventTableViewCell: UITableViewCell
 {
+    @IBOutlet weak var cellView: UIView!
 
     // outlets to the UI components in the custom UITableViewCell
     @IBOutlet weak var locationCover: UIImageView! {
@@ -39,6 +40,7 @@ class EventTableViewCell: UITableViewCell
     
     
     private func updateUI() {
+        
         print("Event cell is on updateUI")
     }
     /*

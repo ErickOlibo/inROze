@@ -20,6 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Event Cell" rowHeight="289" id="wte-Kb-I6i" customClass="EventTableViewCell" customModule="InRoZe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="289"/>
@@ -71,6 +72,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="cellView" destination="Hnd-gk-IKz" id="r38-il-2LC"/>
                                     <outlet property="eventCover" destination="D0h-Pv-9Uv" id="vOo-qT-axp"/>
                                     <outlet property="eventTimeLocation" destination="8qy-I6-JfF" id="I8Y-Mp-5Es"/>
                                     <outlet property="eventTitle" destination="Ym7-KE-goa" id="kzd-QM-nh7"/>

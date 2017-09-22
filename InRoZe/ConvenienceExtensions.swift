@@ -24,15 +24,17 @@ extension Dictionary {
 extension Date {
     func split(this date: Date) -> (hour: String, day: String, num: String, month: String)
     {
+        //let usercalendar = Calendar.current
+        
         let newFormatter = DateFormatter()
-        newFormatter.locale = NSLocale.current
+        newFormatter.calendar = Calendar.current
         newFormatter.dateFormat = "d"
         let splitNum = newFormatter.string(from: date)
         newFormatter.dateFormat = "MMM"
         let splitMonth = newFormatter.string(from: date)
         newFormatter.dateFormat = "E"
         let splitDay = newFormatter.string(from: date)
-        newFormatter.dateFormat = "hh:mm"
+        newFormatter.dateFormat = "HH:mm"
         let splitHours = newFormatter.string(from: date)
         
         return (splitHours, splitDay, splitNum, splitMonth)

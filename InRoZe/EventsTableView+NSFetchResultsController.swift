@@ -33,8 +33,10 @@ extension EventsViewController
         
         // Configure the cell...
         let event = fetchResultsController.object(at: indexPath)
+        
+        // sent the whole event result to the cell
         cell.event = event
-        cell.eventTitle.text = event.name
+        
         
         // Event cover image
         cell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
@@ -60,8 +62,8 @@ extension EventsViewController
         combinedAttributedText.append(dateTimeAttributedText)
         combinedAttributedText.append(locationNameAttributedText)
         cell.eventTimeLocation.attributedText = combinedAttributedText
-        //cell.eventTimeLocation.text = "\(splitDate.day), \(splitDate.num) \(splitDate.month) - \(splitDate.hour) @ \(event.location!.name!)"
-
+        cell.eventTitle.text = event.name
+        
         return cell
     }
     
