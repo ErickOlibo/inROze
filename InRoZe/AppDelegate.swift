@@ -28,12 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        if let _ = AccessToken.current {
+        if (AccessToken.current != nil) {
             if let initViewController = storyboard.instantiateViewController(withIdentifier: "TabBarIdentifier") as? TabBarViewController {
                 window?.rootViewController = initViewController
             }
-        } else {
-            print("AppDelegate -> Token is NIL")
         }
         return true
     }
