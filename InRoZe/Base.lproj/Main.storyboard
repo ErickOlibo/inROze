@@ -12,6 +12,35 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Events-->
+        <scene sceneID="mJn-JL-Joc">
+            <objects>
+                <tableViewController id="rfH-yd-zM2" customClass="EventsViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="N9b-SQ-AWx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Event Cell" id="wte-Kb-I6i">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wte-Kb-I6i" id="Hnd-gk-IKz">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="rfH-yd-zM2" id="u8b-9F-C7p"/>
+                            <outlet property="delegate" destination="rfH-yd-zM2" id="m0m-4a-VbU"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Events" image="1_Events" selectedImage="1_EventsFilled" id="wkM-BQ-ZH2"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SOz-qR-MKX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="322" y="-788"/>
+        </scene>
         <!--Follows-->
         <scene sceneID="zQD-04-gUi">
             <objects>
@@ -33,27 +62,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rnq-M6-D2U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1216" y="-285"/>
-        </scene>
-        <!--Events-->
-        <scene sceneID="qP8-N1-48b">
-            <objects>
-                <viewController id="fri-Sc-NVw" customClass="EventsViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="791-QD-1nI"/>
-                        <viewControllerLayoutGuide type="bottom" id="z2P-3c-htw"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Qor-oC-J7N">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Events" image="1_Events" selectedImage="1_EventsFilled" id="Tin-wH-z75">
-                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
-                    </tabBarItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JJG-Nx-LVV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="460.86956521739131" y="-682.33695652173924"/>
         </scene>
         <!--Add Artist View Controller-->
         <scene sceneID="o2A-WI-quu">
@@ -226,7 +234,7 @@
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
-                        <segue destination="fri-Sc-NVw" kind="relationship" relationship="viewControllers" id="Z7A-DV-C2n"/>
+                        <segue destination="rfH-yd-zM2" kind="relationship" relationship="viewControllers" id="d4V-FU-8Hx"/>
                         <segue destination="WGQ-mm-pbP" kind="relationship" relationship="viewControllers" id="GII-pI-2SJ"/>
                         <segue destination="TUo-e2-SLn" kind="relationship" relationship="viewControllers" id="EBu-Np-agl"/>
                         <segue destination="0QJ-u6-4K9" kind="relationship" relationship="viewControllers" id="wdr-ey-ZSy"/>
