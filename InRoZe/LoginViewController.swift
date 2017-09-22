@@ -69,9 +69,7 @@ class LoginViewController: UIViewController {
                 }
             }
         }
-        
     }
-    
 
     
     // change status bar color
@@ -137,16 +135,8 @@ class LoginViewController: UIViewController {
             self.updateFacebookButtonState()
             
         }
-        
-//        dropList.tableWillAppear {
-//            self.facebookButton.isHidden = true
-//        }
-//        dropList.tableWillDisappear {
-//            self.facebookButton.isHidden = false
-//        }
-        
+
         self.view.addSubview(dropList)
-        //self.view.sendSubview(toBack: dropList)
     }
     
     

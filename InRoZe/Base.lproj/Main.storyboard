@@ -15,7 +15,7 @@
         <!--Follows-->
         <scene sceneID="zQD-04-gUi">
             <objects>
-                <viewController id="WGQ-mm-pbP" customClass="FavoriteViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="WGQ-mm-pbP" customClass="FollowsViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cMR-Ho-9So"/>
                         <viewControllerLayoutGuide type="bottom" id="2CK-VN-pqe"/>
@@ -37,7 +37,7 @@
         <!--Events-->
         <scene sceneID="qP8-N1-48b">
             <objects>
-                <viewController id="fri-Sc-NVw" customClass="EventViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fri-Sc-NVw" customClass="EventsViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="791-QD-1nI"/>
                         <viewControllerLayoutGuide type="bottom" id="z2P-3c-htw"/>
@@ -245,10 +245,10 @@
             </objects>
             <point key="canvasLocation" x="460.86956521739131" y="-682.33695652173924"/>
         </scene>
-        <!--Search View Controller-->
+        <!--Add Artist View Controller-->
         <scene sceneID="o2A-WI-quu">
             <objects>
-                <viewController id="TUo-e2-SLn" customClass="SearchViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="TUo-e2-SLn" customClass="AddArtistViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wet-Et-3eq"/>
                         <viewControllerLayoutGuide type="bottom" id="VDk-Q5-lcq"/>
@@ -269,7 +269,7 @@
         <!--DJs-->
         <scene sceneID="f3q-GW-gO6">
             <objects>
-                <viewController id="0QJ-u6-4K9" customClass="ProfileViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0QJ-u6-4K9" customClass="ArtistSearchViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="s30-lN-JZ9"/>
                         <viewControllerLayoutGuide type="bottom" id="8sK-mI-j5d"/>
@@ -282,7 +282,7 @@
                                 <rect key="frame" x="177" y="353" width="60" height="30"/>
                                 <state key="normal" title="Sign Out"/>
                                 <connections>
-                                    <action selector="signOutButton:" destination="0QJ-u6-4K9" eventType="touchUpInside" id="glx-1u-4eF"/>
+                                    <action selector="signOutButton:" destination="0QJ-u6-4K9" eventType="touchUpInside" id="atY-lo-apf"/>
                                     <segue destination="bAg-N4-UsF" kind="show" id="qaQ-ZH-pj3"/>
                                 </connections>
                             </button>
