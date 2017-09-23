@@ -16,17 +16,17 @@
         <scene sceneID="mJn-JL-Joc">
             <objects>
                 <tableViewController id="rfH-yd-zM2" customClass="EventsViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="289" sectionHeaderHeight="28" sectionFooterHeight="28" id="N9b-SQ-AWx">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="453" sectionHeaderHeight="28" sectionFooterHeight="28" id="N9b-SQ-AWx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Event Cell" rowHeight="289" id="wte-Kb-I6i" customClass="EventTableViewCell" customModule="InRoZe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="289"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Event Cell" rowHeight="453" id="wte-Kb-I6i" customClass="EventTableViewCell" customModule="InRoZe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="453"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wte-Kb-I6i" id="Hnd-gk-IKz">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="288.66666666666669"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="452.66666666666669"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U7z-tv-Szv">
@@ -56,8 +56,62 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="b1v-d0-dBL">
+                                            <rect key="frame" x="0.0" y="280.66666666666669" width="414" height="80"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="80" id="7qj-5h-eug"/>
+                                            </constraints>
+                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Skl-gn-6Gt">
+                                                <size key="itemSize" width="150" height="80"/>
+                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            </collectionViewFlowLayout>
+                                            <cells>
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Collection DJ Cell" id="cSy-eZ-t1r" customClass="EventDJsCollectionViewCell" customModule="InRoZe" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="80"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="80"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kna-Nl-Ql3">
+                                                                <rect key="frame" x="0.0" y="0.0" width="130" height="60"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DJ Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujK-zH-Gk4">
+                                                                        <rect key="frame" x="12" y="19" width="106" height="21"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="ujK-zH-Gk4" secondAttribute="trailing" constant="12" id="7YK-oD-7VZ"/>
+                                                                    <constraint firstItem="ujK-zH-Gk4" firstAttribute="centerX" secondItem="Kna-Nl-Ql3" secondAttribute="centerX" id="8pE-1S-NAh"/>
+                                                                    <constraint firstItem="ujK-zH-Gk4" firstAttribute="leading" secondItem="Kna-Nl-Ql3" secondAttribute="leading" constant="12" id="K4a-Z9-8j1"/>
+                                                                    <constraint firstItem="ujK-zH-Gk4" firstAttribute="centerY" secondItem="Kna-Nl-Ql3" secondAttribute="centerY" id="VR4-dp-Z1s"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                    </view>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="Kna-Nl-Ql3" secondAttribute="trailing" constant="12" id="6EK-jj-NOd"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="Kna-Nl-Ql3" secondAttribute="bottom" constant="12" id="FYV-c3-Mci"/>
+                                                        <constraint firstItem="Kna-Nl-Ql3" firstAttribute="leading" secondItem="cSy-eZ-t1r" secondAttribute="leadingMargin" constant="-8" id="fSc-Wo-5lR"/>
+                                                        <constraint firstItem="Kna-Nl-Ql3" firstAttribute="top" secondItem="cSy-eZ-t1r" secondAttribute="topMargin" constant="-8" id="lGr-1U-2cz"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="djBackground" destination="Kna-Nl-Ql3" id="j1Q-wi-xlR"/>
+                                                        <outlet property="djName" destination="ujK-zH-Gk4" id="8QR-WO-rhS"/>
+                                                    </connections>
+                                                </collectionViewCell>
+                                            </cells>
+                                        </collectionView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="b1v-d0-dBL" firstAttribute="top" secondItem="D0h-Pv-9Uv" secondAttribute="bottom" constant="10" id="31R-el-0Bx"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Ym7-KE-goa" secondAttribute="trailing" constant="10" id="Hqm-1y-bQg"/>
                                         <constraint firstItem="D0h-Pv-9Uv" firstAttribute="centerX" secondItem="Hnd-gk-IKz" secondAttribute="centerX" id="JwH-Ue-go8"/>
                                         <constraint firstItem="Ym7-KE-goa" firstAttribute="top" secondItem="U7z-tv-Szv" secondAttribute="top" constant="-5" id="OYq-bO-K3s"/>
@@ -69,10 +123,12 @@
                                         <constraint firstItem="U7z-tv-Szv" firstAttribute="top" secondItem="Hnd-gk-IKz" secondAttribute="topMargin" id="nmu-WM-ciz"/>
                                         <constraint firstItem="D0h-Pv-9Uv" firstAttribute="top" secondItem="U7z-tv-Szv" secondAttribute="bottom" constant="10" id="ohF-Mj-umF"/>
                                         <constraint firstItem="Ym7-KE-goa" firstAttribute="leading" secondItem="U7z-tv-Szv" secondAttribute="trailing" constant="15" id="ohu-ln-yvu"/>
+                                        <constraint firstItem="b1v-d0-dBL" firstAttribute="centerX" secondItem="Hnd-gk-IKz" secondAttribute="centerX" id="qhy-XF-mLk"/>
+                                        <constraint firstItem="b1v-d0-dBL" firstAttribute="width" secondItem="Hnd-gk-IKz" secondAttribute="width" id="qvu-K0-Wg6"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="cellView" destination="Hnd-gk-IKz" id="sTO-OF-ZZy"/>
+                                    <outlet property="collectionView" destination="b1v-d0-dBL" id="xRA-EO-Vrz"/>
                                     <outlet property="eventCover" destination="D0h-Pv-9Uv" id="vOo-qT-axp"/>
                                     <outlet property="eventTimeLocation" destination="8qy-I6-JfF" id="I8Y-Mp-5Es"/>
                                     <outlet property="eventTitle" destination="Ym7-KE-goa" id="kzd-QM-nh7"/>
@@ -89,7 +145,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SOz-qR-MKX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="428" y="-684"/>
+            <point key="canvasLocation" x="427.536231884058" y="-684.78260869565224"/>
         </scene>
         <!--Follows-->
         <scene sceneID="zQD-04-gUi">

@@ -14,6 +14,7 @@ class EventsViewController: FetchedResultsTableViewController {
     // properties
     let eventCell = "Event Cell"
     
+    
     // All this are from AutoLayout in the main.Storyboard
     let spacingFromNavBar: CGFloat = 10
     let locationCoverSize: CGFloat = 40

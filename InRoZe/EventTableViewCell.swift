@@ -10,8 +10,8 @@ import UIKit
 
 class EventTableViewCell: UITableViewCell
 {
-    @IBOutlet weak var cellView: UIView!
 
+    let collectionDJCell = "Collection DJ Cell"
     // outlets to the UI components in the custom UITableViewCell
     @IBOutlet weak var locationCover: UIImageView! {
         didSet {
@@ -36,6 +36,11 @@ class EventTableViewCell: UITableViewCell
     // public API of this TableViewCell subclass
     var event: Event? { didSet { updateUI() } }
     
+    // Properties for the CollectionCell
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    
+    
     
     
     
@@ -58,3 +63,47 @@ class EventTableViewCell: UITableViewCell
  */
 
 }
+
+extension EventTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+{
+    func numberOfSections(in collectionView: UICollectionView) -> Int
+    {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return event?.performers?.count ?? 0
+    }
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: 150, height: 200)
+//    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+        var arrayDJs = [String]()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionDJCell, for: indexPath) as! EventDJsCollectionViewCell
+        cell.djBackground.backgroundColor = UIColor.randomColor(alpha: 1.0)
+        //event?.performers.
+        if let djsSet = event?.performers, djsSet.count > 0 {
+            for deejay in djsSet {
+                print("DeeJay: \(deejay)")
+            }
+            
+        }
+        
+        
+        return cell
+    }
+    
+    
+}
+
+
+
+
+
+
+
+
