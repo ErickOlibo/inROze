@@ -14,6 +14,7 @@ extension EventsViewController
 {
     // MARK: - Table view data source
     
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return fetchResultsController.sections?.count ?? 0
     }
@@ -25,7 +26,6 @@ extension EventsViewController
             return 0
         }
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: eventCell, for: indexPath) as! EventTableViewCell
@@ -73,12 +73,10 @@ extension EventsViewController
         let event = fetchResultsController.object(at: indexPath)
         let performersCount = event.performers?.count ?? 0
         if (performersCount > 0) {
-            let cellHeight = tableView.estimatedRowHeight + performersCollectionCellHeight
-            print("Index: \(indexPath.row) - Cell Height: \(cellHeight)")
+            let cellHeight = cellHeightDefault + performersCollectionCellHeight
             return cellHeight
         } else {
-            print("Index: \(indexPath.row) - Cell Height: \(tableView.estimatedRowHeight)")
-            return tableView.estimatedRowHeight
+            return cellHeightDefault
         }
     }
     

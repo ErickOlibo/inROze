@@ -18,11 +18,12 @@ class EventsViewController: FetchedResultsTableViewController {
     let spacingFromNavBar: CGFloat = 10
     let locationCoverSize: CGFloat = 40
     let spacingFromCover: CGFloat = 10
-    let spacingUnderCover: CGFloat = 10
+    let spacingUnderCover: CGFloat = 18
     let eventCoverTrailing: CGFloat = 18
     let performersCollectionCellHeight: CGFloat = 70
     let coverRatio = CGFloat(16) / 9
-
+    let phoneSizeWidth = UIScreen.main.bounds.width
+    var cellHeightDefault: CGFloat = 0
     
 
     // Core dat Model container and context
@@ -49,42 +50,35 @@ class EventsViewController: FetchedResultsTableViewController {
         return fetchedRC
     }()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Estimated rowHeight
         let viewSizeWidthFromPhone: CGFloat = self.view.bounds.width
-        print("Phone Size: \(self.view.bounds.size)")
         let coverHeight = (viewSizeWidthFromPhone - 2 * eventCoverTrailing) / coverRatio
-        print("Cover Height: \(coverHeight)")
-        tableView.estimatedRowHeight = spacingFromNavBar + locationCoverSize + spacingFromCover + coverHeight + spacingUnderCover
-        tableView.rowHeight = UITableViewAutomaticDimension
+        cellHeightDefault = spacingFromNavBar + locationCoverSize + spacingFromCover + coverHeight + spacingUnderCover
         
         // Request handler for eventIds from server
         RequestHandler().fetchEventIDsFromServer()
-        
-        // Execute the FetchRequest
-        do {
-            print("ViewDidLoad FetchResultControler is performing Fetch")
-            try self.fetchResultsController.performFetch()
-        } catch {
-            let fetchError = error as NSError
-            print("fethcError: \(fetchError) | fetchError.userInfo: \(fetchError.userInfo)")
-        }
-
     }
 
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.tintColor = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
-        //self.view.backgroundColor = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
+
+        updateUI()
         print("Events")
-        
-        
+    }
+    
+    private func updateUI() {
+        // Execute the FetchRequest
+        do {
+            try self.fetchResultsController.performFetch()
+        } catch {
+            print("Error in performFetch - EventVC - updateUI()")
+            //let fetchError = error as NSError
+            //print("fethcError: \(fetchError) | fetchError.userInfo: \(fetchError.userInfo)")
+        }
     }
 
     
