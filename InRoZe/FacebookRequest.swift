@@ -49,7 +49,7 @@ public class FacebookRequest
     
     // Recursive Fabeook GraphRequest using batchSize
     private func recursiveGraphRequest(array: [String], parameters: [String], batchSize: Int) {
-        print("[FacebookRequest] - recursiveGraphRequest | conditional graph api")
+        //print("[FacebookRequest] - recursiveGraphRequest | conditional graph api")
         var arrayVar = array // array to send in the recursion
         var subArray: [String]
         var batch = batchSize
@@ -80,7 +80,7 @@ public class FacebookRequest
                     }
                     
                 } else {
-                    print("[recursiveGraphRequest] - there an error: \(String(describing: error))")
+                    print("[recursiveGraphRequest] - there an error")
                 }
             })
     }
@@ -95,7 +95,7 @@ public class FacebookRequest
                 do {
                     _ = try Event.updateInfoForEvent(matching: resID, in: context, with: request)
                 } catch {
-                    print("[updateEventDatabase] - Error with Event.UpdateInfoForEvent: \(error)")
+                    print("[updateEventDatabase] - Error with Event.UpdateInfoForEvent")
                 }
             }
             // Save the context
@@ -117,7 +117,7 @@ public class FacebookRequest
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.initialLoginRequestIsDone), object: nil)
                     
                 } catch {
-                    print("[updateEventDatabase] - Error during saving: \(error)")
+                    print("[updateEventDatabase] - Error during saving")
                 }
             }
         }

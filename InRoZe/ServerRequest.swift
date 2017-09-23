@@ -56,7 +56,7 @@ public class ServerRequest
                     if (isEventFetch) {
                         // check if there is no error
                         if let errorType = json[DBLabels.errorType] as! Bool?, !errorType {
-                            print("[ServerRequest] - There is an error from server response: \(errorType)")
+                            print("[ServerRequest] - There is an error from server response")
                             
                             if (json[DBLabels.rows]! as! Int > 0) {
                                 self.result = json
@@ -69,8 +69,8 @@ public class ServerRequest
                         print(json)
                     }
                 }
-            } catch let error {
-                print("[ServerRequest] - Error in URL Seesion: \(error.localizedDescription)")
+            } catch {
+                print("[ServerRequest] - Error in URL Seesion")
             }
         }
         task.resume()
@@ -93,7 +93,7 @@ public class ServerRequest
                         do {
                             _ = try Artist.findOrCreateArtist(with: artistInfo, in: context)
                         } catch {
-                            print("[ServerRequest] - Error trying to FindOrCreateArtist: \(error)")
+                            print("[ServerRequest] - Error trying to FindOrCreateArtist")
                         }
                     }
                 }
@@ -134,7 +134,7 @@ public class ServerRequest
                         RequestHandler().isDoneUpdatingServeRequest = true
                         
                     } catch {
-                        print("[ServerRequest] - Error trying to save in CoreData: \(error)")
+                        print("[ServerRequest] - Error trying to save in CoreData")
                     }
                     self.printDatabaseStatistics()
                 }
@@ -153,7 +153,7 @@ public class ServerRequest
                     do {
                         let _ = try Event.updateArtistsListForEvent(with: artistsOfEv, in: context)
                     } catch {
-                        print("[ServerRequest] - insertOrUpdateArtistsOfEvents Error trying to update: \(error)")
+                        print("[ServerRequest] - insertOrUpdateArtistsOfEvents Error trying to update")
                     }
                     
                 }
@@ -196,14 +196,15 @@ public class ServerRequest
             do {
                 let matches = try context.fetch(request)
                 if matches.count > 0 {
-                    for match in matches {
-                        if let eventName = match.name {
-                            print("EventID: [\(match.id!)] - Count: [\(match.performers!.count)] - Name: [\(eventName)]")
-                        }
-                    }
+                    print("Number of Events with Djs: \(matches.count)")
+//                    for match in matches {
+//                        if let eventName = match.name {
+//                            print("EventID: [\(match.id!)] - Count: [\(match.performers!.count)] - Name: [\(eventName)]")
+//                        }
+//                    }
                 }
             } catch {
-                print("[printDatabaseStatistics] - \(error)")
+                print("[printDatabaseStatistics] there was an error")
             }
             
             // list of artist that have gigs
@@ -212,9 +213,10 @@ public class ServerRequest
             do {
                 let matches = try context.fetch(req)
                 if matches.count > 0 {
-                    for match in matches {
-                        print("ArtistID: [\(match.id!)] - Count: [\(match.gigs!.count)] - Name: [\(match.name!)]")
-                    }
+                    print("Number of Artists with gigs: \(matches.count)")
+//                    for match in matches {
+//                        print("ArtistID: [\(match.id!)] - Count: [\(match.gigs!.count)] - Name: [\(match.name!)]")
+//                    }
                 }
             } catch {
                 

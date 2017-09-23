@@ -31,7 +31,7 @@ class SettingsViewController: UIViewController {
         context.perform{
             let events = Event.eventsStartingAfterNow(in: context)
             if events.count == 0 {
-                print("Events = 0")
+                //print("Events = 0")
             } else {
                 print("Events count: \(events.count)")
                 for event in events {

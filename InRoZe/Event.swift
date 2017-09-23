@@ -17,9 +17,9 @@ public class Event: NSManagedObject
     class func findOrInsertEventID(matching eventDict: [String : String], in context: NSManagedObjectContext) throws -> Event
     {
         //print(eventDict)
-        if let artistsList = eventDict[DBLabels.artistsList] {
-        print("[\(eventDict[DBLabels.eventID]!)] - ArtistList: [\(artistsList)]")
-        }
+//        if let artistsList = eventDict[DBLabels.artistsList] {
+//        print("[\(eventDict[DBLabels.eventID]!)] - ArtistList: [\(artistsList)]")
+//        }
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         request.predicate = NSPredicate(format: "id = %@", eventDict[DBLabels.eventID]!)
         do {
@@ -41,7 +41,7 @@ public class Event: NSManagedObject
         do {
         event.location = try Place.findOrInsertPlaceID(matching: eventDict, in: context)
         } catch {
-            print("[Event] - Error findOrInsertEventID TO Location: \(error)")
+            print("[Event] - Error findOrInsertEventID TO Location")
         }
         return event
     }
@@ -174,7 +174,7 @@ public class Event: NSManagedObject
                                    event.location = location
                                 }
                             } catch {
-                                print("[Event] - EVENT To Location Error: \(error)")
+                                print("[Event] - EVENT To Location Error")
                             }
                         }
                     }
@@ -208,7 +208,7 @@ public class Event: NSManagedObject
                 response = events
             }
         } catch {
-            print("[Event] - eventsStartingAfterNow ERROR: \(error)")
+            print("[Event] - eventsStartingAfterNow ERROR")
         }
         return response
     }
@@ -231,7 +231,7 @@ public class Event: NSManagedObject
                 
             }
         } catch {
-            print("[Event] - UpdateEventImageColors failed with error: \(error)")
+            print("[Event] - UpdateEventImageColors failed with error")
         }
         
         
@@ -252,14 +252,15 @@ public class Event: NSManagedObject
         do {
             let events = try context.fetch(request)
             if events.count > 0 {
+                print("Number of Event to DELETE: \(events.count)")
                 for event in events {
                     // to make sure events are being deleted
-                    print("[DELETE_EVENT] -> EndTime: [\(event.endTime!)] | Name: \(event.name!) | Place: \(event.location!.name!)")
+                    //print("[DELETE_EVENT] -> EndTime: [\(event.endTime!)] | Name: \(event.name!) | Place: \(event.location!.name!)")
                     context.delete(event)
                 }
             }
         } catch {
-            print("[Event] - deleteEventsEndedBeforeNow: \(error)")
+            print("[Event] - deleteEventsEndedBeforeNow")
         }
         
         return true

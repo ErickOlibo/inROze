@@ -31,8 +31,8 @@ class ArtistSearchViewController: UIViewController {
         let profile = UserProfile.current
         if (profile != nil) {
             print("\(profile!.fullName!)")
-            print("\(profile!.firstName!)")
-            print("\(profile!.profileURL!)")
+            //print("\(profile!.firstName!)")
+            //print("\(profile!.profileURL!)")
         }
     }
     
