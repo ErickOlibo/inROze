@@ -40,9 +40,25 @@ class EventTableViewCell: UITableViewCell
     
     
     private func updateUI() {
-        
+        print("Cell View Size: \(cellView.bounds.size)")
+        //let performersCount = event?.performers?.count ?? 0
+        //adjustCellHeight(hasDJs: performersCount > 0)
         print("Event cell is on updateUI")
     }
+    
+//    private func adjustCellHeight(hasDJs: Bool) {
+//        let offsetFromEventCoverBottom: CGFloat = 10
+//        let offsetFromDJsListView = offsetFromEventCoverBottom
+//        let bottomEventCover = eventCover.bounds.size.height * 0.5 + eventCover.center.y
+//        let heightForDJsListView: CGFloat = 50
+//        cellView.bounds.size.height = bottomEventCover + offsetFromEventCoverBottom
+//        if (hasDJs) {
+//            cellView.bounds.size.height += heightForDJsListView + offsetFromDJsListView
+//            print("hasDJs - > Size Cell: \(cellView.bounds.size)")
+//        } else {
+//            print("NO DJ - > Size Cell: \(cellView.bounds.size)")
+//        }
+//    }
     /*
     override func awakeFromNib() {
         super.awakeFromNib()

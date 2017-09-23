@@ -72,7 +72,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="cellView" destination="Hnd-gk-IKz" id="r38-il-2LC"/>
+                                    <outlet property="cellView" destination="Hnd-gk-IKz" id="sTO-OF-ZZy"/>
                                     <outlet property="eventCover" destination="D0h-Pv-9Uv" id="vOo-qT-axp"/>
                                     <outlet property="eventTimeLocation" destination="8qy-I6-JfF" id="I8Y-Mp-5Es"/>
                                     <outlet property="eventTitle" destination="Ym7-KE-goa" id="kzd-QM-nh7"/>

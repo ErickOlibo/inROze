@@ -67,6 +67,21 @@ extension EventsViewController
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        // measure the cell height
+        let event = fetchResultsController.object(at: indexPath)
+        let performersCount = event.performers?.count ?? 0
+        if (performersCount > 0) {
+            let cellHeight = tableView.estimatedRowHeight + performersCollectionCellHeight
+            print("Index: \(indexPath.row) - Cell Height: \(cellHeight)")
+            return cellHeight
+        } else {
+            print("Index: \(indexPath.row) - Cell Height: \(tableView.estimatedRowHeight)")
+            return tableView.estimatedRowHeight
+        }
+    }
+    
     
     /*
      // Override to support conditional editing of the table view.

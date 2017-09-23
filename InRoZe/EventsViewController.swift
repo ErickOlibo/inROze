@@ -13,6 +13,17 @@ class EventsViewController: FetchedResultsTableViewController {
     
     // properties
     let eventCell = "Event Cell"
+    
+    // All this are from AutoLayout in the main.Storyboard
+    let spacingFromNavBar: CGFloat = 10
+    let locationCoverSize: CGFloat = 40
+    let spacingFromCover: CGFloat = 10
+    let spacingUnderCover: CGFloat = 10
+    let eventCoverTrailing: CGFloat = 18
+    let performersCollectionCellHeight: CGFloat = 70
+    let coverRatio = CGFloat(16) / 9
+
+    
 
     // Core dat Model container and context
     let context = AppDelegate.viewContext
@@ -43,6 +54,14 @@ class EventsViewController: FetchedResultsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Estimated rowHeight
+        let viewSizeWidthFromPhone: CGFloat = self.view.bounds.width
+        print("Phone Size: \(self.view.bounds.size)")
+        let coverHeight = (viewSizeWidthFromPhone - 2 * eventCoverTrailing) / coverRatio
+        print("Cover Height: \(coverHeight)")
+        tableView.estimatedRowHeight = spacingFromNavBar + locationCoverSize + spacingFromCover + coverHeight + spacingUnderCover
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         // Request handler for eventIds from server
         RequestHandler().fetchEventIDsFromServer()
         
