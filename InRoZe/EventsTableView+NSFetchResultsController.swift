@@ -64,6 +64,8 @@ extension EventsViewController
         cell.eventTimeLocation.attributedText = combinedAttributedText
         cell.eventTitle.text = event.name
         
+        //DJ set
+        
         return cell
     }
     

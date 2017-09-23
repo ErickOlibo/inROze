@@ -10,8 +10,16 @@ import UIKit
 
 class EventDJsCollectionViewCell: UICollectionViewCell
 {
-    @IBOutlet weak var djBackground: UIView!
-    @IBOutlet weak var djName: UILabel!
+    @IBOutlet weak var djBackground: UIView! {
+        didSet {
+            print("DJ Background is Set")
+        }
+    }
+    @IBOutlet weak var djName: UILabel! {
+        didSet {
+            print("DJ Name is Set")
+        }
+    }
     
     
     

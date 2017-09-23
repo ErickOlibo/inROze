@@ -45,7 +45,7 @@ class EventTableViewCell: UITableViewCell
     
     
     private func updateUI() {
-
+        print("INSIDE THE CELL: ID: [\(event!.id!)]")
     }
     
 
@@ -82,17 +82,22 @@ extension EventTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
+        print("Collection Cell index: [\(indexPath.row)]")
         var arrayDJs = [String]()
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionDJCell, for: indexPath) as! EventDJsCollectionViewCell
         cell.djBackground.backgroundColor = UIColor.randomColor(alpha: 1.0)
         //event?.performers.
         if let djsSet = event?.performers, djsSet.count > 0 {
             for deejay in djsSet {
-                print("DeeJay: \(deejay)")
+                let thisDJ = deejay as! Artist
+                arrayDJs.append(thisDJ.name!)
+   
+                print("DeeJay: \(thisDJ.name!)")
             }
             
         }
-        
+        let sortedDJs = arrayDJs.sorted()
+        cell.djName.text = sortedDJs[indexPath.row]
         
         return cell
     }
