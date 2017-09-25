@@ -66,7 +66,7 @@
                                                 <size key="itemSize" width="200" height="80"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                <inset key="sectionInset" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Collection DJ Cell" id="cSy-eZ-t1r" customClass="EventDJsCollectionViewCell" customModule="InRoZe" customModuleProvider="target">
@@ -112,9 +112,23 @@
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fpO-Af-yvW">
                                                                         <rect key="frame" x="9" y="9" width="42" height="42"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZt-8a-faW">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="nZt-8a-faW" secondAttribute="height" multiplier="1:1" id="VRI-od-kqI"/>
+                                                                                </constraints>
+                                                                                <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="30"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
+                                                                            <constraint firstItem="nZt-8a-faW" firstAttribute="width" secondItem="fpO-Af-yvW" secondAttribute="width" id="AsN-SY-mPy"/>
+                                                                            <constraint firstItem="nZt-8a-faW" firstAttribute="centerY" secondItem="fpO-Af-yvW" secondAttribute="centerY" id="P8A-vD-fOW"/>
                                                                             <constraint firstAttribute="width" secondItem="fpO-Af-yvW" secondAttribute="height" multiplier="1:1" id="UUQ-kC-JO7"/>
+                                                                            <constraint firstItem="nZt-8a-faW" firstAttribute="centerX" secondItem="fpO-Af-yvW" secondAttribute="centerX" id="V2s-2G-wCM"/>
                                                                             <constraint firstAttribute="width" constant="42" id="zZN-MG-DMg"/>
                                                                         </constraints>
                                                                     </view>
@@ -137,6 +151,7 @@
                                                         <constraint firstItem="TFm-uT-8Ko" firstAttribute="top" secondItem="cSy-eZ-t1r" secondAttribute="topMargin" constant="-8" id="dJG-Xz-wNQ"/>
                                                     </constraints>
                                                     <connections>
+                                                        <outlet property="firstLetter" destination="nZt-8a-faW" id="CBf-eX-CcH"/>
                                                         <outlet property="followDJBottonView" destination="DhL-vB-fSb" id="IwV-jl-2Eo"/>
                                                         <outlet property="innerCircle" destination="fpO-Af-yvW" id="iOB-1u-Qr0"/>
                                                         <outlet property="outerCircle" destination="TFm-uT-8Ko" id="7Te-2S-FEq"/>
