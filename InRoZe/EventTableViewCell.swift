@@ -98,29 +98,22 @@ extension EventTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         print("Collection Cell index: [\(indexPath.row)]")
-        var arrayDJs = [String]()
-        var arrayDJsGigs = [String : Int]()
-        //var arrDjs = []()
-        //var totalGigsArray = [Int]()
+        var arrayDJsGigs = [String : Artist]()
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionDJCell, for: indexPath) as! EventDJsCollectionViewCell
-        cell.djBackground.backgroundColor = UIColor.randomColor(alpha: 1.0)
-        //event?.performers.
         if let djsSet = event?.performers, djsSet.count > 0 {
             for deejay in djsSet {
                 let thisDJ = deejay as! Artist
-                arrayDJsGigs[thisDJ.name!] = thisDJ.gigs!.count
-                //totalGigsArray.append(thisDJ.gigs!.count)
-                arrayDJs.append(thisDJ.name!)
+                arrayDJsGigs[thisDJ.name!] = thisDJ
    
-                print("DeeJay: \(thisDJ.name!) | TotalGigs count: \(thisDJ.gigs!.count)")
+                //print("DeeJay: \(thisDJ.name!) | TotalGigs count: \(thisDJ.gigs!.count) | isFollowed: \(thisDJ.isFollowed) | First letter: \((thisDJ.name!.uppercased()).characters.first!)")
             }
             
         }
-        let sortedDJs = arrayDJs.sorted()
+        //let sortedDJs = arrayDJs.sorted()
         let sortedArr = arrayDJsGigs.sorted { $0.key < $1.key }
         
-        cell.djName.text = sortedArr[indexPath.row].key
-        cell.otherGigs.text = "Total Gigs: \(sortedArr[indexPath.row].value)"
+        cell.thisDJ = arrayDJsGigs[sortedArr[indexPath.row].key]
+        //cell.otherGigs.text = "Total Gigs: \(sortedArr[indexPath.row].value)"
         
         return cell
     }

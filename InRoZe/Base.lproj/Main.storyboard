@@ -63,58 +63,85 @@
                                                 <constraint firstAttribute="height" constant="80" id="7qj-5h-eug"/>
                                             </constraints>
                                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Skl-gn-6Gt">
-                                                <size key="itemSize" width="199" height="80"/>
+                                                <size key="itemSize" width="200" height="80"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                 <inset key="sectionInset" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Collection DJ Cell" id="cSy-eZ-t1r" customClass="EventDJsCollectionViewCell" customModule="InRoZe" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="0.0" width="199" height="80"/>
+                                                    <rect key="frame" x="20" y="0.0" width="200" height="80"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                        <rect key="frame" x="0.0" y="0.0" width="199" height="80"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="200" height="80"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kna-Nl-Ql3">
-                                                                <rect key="frame" x="0.0" y="0.0" width="179" height="60"/>
+                                                                <rect key="frame" x="30" y="0.0" width="170" height="60"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DJ Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujK-zH-Gk4">
-                                                                        <rect key="frame" x="12" y="19" width="155" height="21"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lor-m0-dov">
-                                                                        <rect key="frame" x="12" y="39" width="167" height="21"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Dh-2k-dGo">
+                                                                        <rect key="frame" x="0.0" y="43" width="170" height="17"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    </view>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DhL-vB-fSb">
+                                                                        <rect key="frame" x="126" y="0.0" width="44" height="44"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="DhL-vB-fSb" secondAttribute="height" id="19T-Ft-dVN"/>
+                                                                            <constraint firstAttribute="width" constant="44" id="qUb-wt-pdg"/>
+                                                                        </constraints>
+                                                                        <state key="normal" image="2_Follows"/>
+                                                                        <state key="selected" image="2_FollowsFilled"/>
+                                                                        <connections>
+                                                                            <action selector="followDJButton:" destination="cSy-eZ-t1r" eventType="touchUpInside" id="cTd-px-16M"/>
+                                                                        </connections>
+                                                                    </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="trailing" secondItem="ujK-zH-Gk4" secondAttribute="trailing" constant="12" id="7YK-oD-7VZ"/>
-                                                                    <constraint firstItem="ujK-zH-Gk4" firstAttribute="centerX" secondItem="Kna-Nl-Ql3" secondAttribute="centerX" id="8pE-1S-NAh"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="Lor-m0-dov" secondAttribute="trailing" id="F5u-rV-WJy"/>
-                                                                    <constraint firstItem="ujK-zH-Gk4" firstAttribute="leading" secondItem="Kna-Nl-Ql3" secondAttribute="leading" constant="12" id="K4a-Z9-8j1"/>
-                                                                    <constraint firstItem="ujK-zH-Gk4" firstAttribute="centerY" secondItem="Kna-Nl-Ql3" secondAttribute="centerY" id="VR4-dp-Z1s"/>
-                                                                    <constraint firstItem="Lor-m0-dov" firstAttribute="top" secondItem="ujK-zH-Gk4" secondAttribute="bottom" constant="-1" id="qLc-cK-aa7"/>
-                                                                    <constraint firstItem="Lor-m0-dov" firstAttribute="leading" secondItem="Kna-Nl-Ql3" secondAttribute="leading" constant="12" id="rka-x0-m4P"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="DhL-vB-fSb" secondAttribute="trailing" id="C9x-FK-03R"/>
+                                                                    <constraint firstItem="DhL-vB-fSb" firstAttribute="top" secondItem="Kna-Nl-Ql3" secondAttribute="top" id="LTy-YL-EFl"/>
+                                                                    <constraint firstItem="0Dh-2k-dGo" firstAttribute="leading" secondItem="Kna-Nl-Ql3" secondAttribute="leading" id="OgD-Ij-wah"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="0Dh-2k-dGo" secondAttribute="trailing" id="Xiy-WA-ehk"/>
+                                                                    <constraint firstItem="0Dh-2k-dGo" firstAttribute="top" secondItem="DhL-vB-fSb" secondAttribute="bottom" constant="-1" id="iZG-h4-l3r"/>
+                                                                    <constraint firstAttribute="width" constant="170" id="tvH-Ky-NMu"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="0Dh-2k-dGo" secondAttribute="bottom" id="vpJ-1k-96z"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TFm-uT-8Ko">
+                                                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fpO-Af-yvW">
+                                                                        <rect key="frame" x="9" y="9" width="42" height="42"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="fpO-Af-yvW" secondAttribute="height" multiplier="1:1" id="UUQ-kC-JO7"/>
+                                                                            <constraint firstAttribute="width" constant="42" id="zZN-MG-DMg"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="fpO-Af-yvW" firstAttribute="centerY" secondItem="TFm-uT-8Ko" secondAttribute="centerY" id="PdZ-6p-Dgu"/>
+                                                                    <constraint firstAttribute="width" constant="60" id="g15-eM-nwX"/>
+                                                                    <constraint firstItem="fpO-Af-yvW" firstAttribute="centerX" secondItem="TFm-uT-8Ko" secondAttribute="centerX" id="had-l1-YaR"/>
+                                                                    <constraint firstAttribute="width" secondItem="TFm-uT-8Ko" secondAttribute="height" multiplier="1:1" id="kkC-Rm-thw"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
                                                     </view>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailingMargin" secondItem="Kna-Nl-Ql3" secondAttribute="trailing" constant="12" id="6EK-jj-NOd"/>
-                                                        <constraint firstAttribute="bottomMargin" secondItem="Kna-Nl-Ql3" secondAttribute="bottom" constant="12" id="FYV-c3-Mci"/>
-                                                        <constraint firstItem="Kna-Nl-Ql3" firstAttribute="leading" secondItem="cSy-eZ-t1r" secondAttribute="leadingMargin" constant="-8" id="fSc-Wo-5lR"/>
-                                                        <constraint firstItem="Kna-Nl-Ql3" firstAttribute="top" secondItem="cSy-eZ-t1r" secondAttribute="topMargin" constant="-8" id="lGr-1U-2cz"/>
+                                                        <constraint firstItem="TFm-uT-8Ko" firstAttribute="leading" secondItem="cSy-eZ-t1r" secondAttribute="leadingMargin" constant="-8" id="9rn-0O-BVP"/>
+                                                        <constraint firstItem="Kna-Nl-Ql3" firstAttribute="top" secondItem="cSy-eZ-t1r" secondAttribute="topMargin" constant="-8" id="DQi-iU-E1k"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="Kna-Nl-Ql3" secondAttribute="trailing" constant="-8" id="GyG-7z-aZX"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="Kna-Nl-Ql3" secondAttribute="bottom" constant="12" id="PNn-OO-0MW"/>
+                                                        <constraint firstItem="TFm-uT-8Ko" firstAttribute="top" secondItem="cSy-eZ-t1r" secondAttribute="topMargin" constant="-8" id="dJG-Xz-wNQ"/>
                                                     </constraints>
                                                     <connections>
-                                                        <outlet property="djBackground" destination="Kna-Nl-Ql3" id="j1Q-wi-xlR"/>
-                                                        <outlet property="djName" destination="ujK-zH-Gk4" id="8QR-WO-rhS"/>
-                                                        <outlet property="otherGigs" destination="Lor-m0-dov" id="lWc-gk-AHj"/>
+                                                        <outlet property="followDJBottonView" destination="DhL-vB-fSb" id="IwV-jl-2Eo"/>
+                                                        <outlet property="innerCircle" destination="fpO-Af-yvW" id="iOB-1u-Qr0"/>
+                                                        <outlet property="outerCircle" destination="TFm-uT-8Ko" id="7Te-2S-FEq"/>
+                                                        <outlet property="textDisplayBg" destination="Kna-Nl-Ql3" id="Z8H-56-Dod"/>
+                                                        <outlet property="textDisplayGigs" destination="0Dh-2k-dGo" id="ocf-FL-5Sz"/>
                                                     </connections>
                                                 </collectionViewCell>
                                             </cells>
