@@ -34,18 +34,31 @@ class EventTableViewCell: UITableViewCell
     @IBOutlet weak var eventTimeLocation: UILabel!
     
     // public API of this TableViewCell subclass
-    var event: Event? { didSet { updateUI() } }
+    var event: Event? //{ didSet { updateUI() } }
     
     // Properties for the CollectionCell
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView! {
+        didSet {
+            //print("CollectionView was SET")
+        }
+    }
     
-    
+    func setCollectionViewDataSourceDelegate<D: UICollectionViewDataSource & UICollectionViewDelegate>(_ dataSourceDelegate: D, forRow row: Int) {
+        collectionView.delegate = dataSourceDelegate
+        collectionView.dataSource = dataSourceDelegate
+        collectionView.tag = row
+        collectionView.reloadData()
+    }
     
     
     
     
     private func updateUI() {
-        print("INSIDE THE CELL: ID: [\(event!.id!)]")
+        if event!.performers!.count > 0 {
+            for djs in event!.performers! {
+                print("Place: [\(event!.location!.name!)] -> DJS print: \((djs as! Artist).name!)")
+            }
+        }
     }
     
 
@@ -68,11 +81,13 @@ extension EventTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
 {
     func numberOfSections(in collectionView: UICollectionView) -> Int
     {
+        print("numberOfSections")
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
+        print("number of items in collection view: \(event?.performers?.count ?? 0)")
         return event?.performers?.count ?? 0
     }
     
@@ -84,20 +99,28 @@ extension EventTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
     {
         print("Collection Cell index: [\(indexPath.row)]")
         var arrayDJs = [String]()
+        var arrayDJsGigs = [String : Int]()
+        //var arrDjs = []()
+        //var totalGigsArray = [Int]()
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionDJCell, for: indexPath) as! EventDJsCollectionViewCell
         cell.djBackground.backgroundColor = UIColor.randomColor(alpha: 1.0)
         //event?.performers.
         if let djsSet = event?.performers, djsSet.count > 0 {
             for deejay in djsSet {
                 let thisDJ = deejay as! Artist
+                arrayDJsGigs[thisDJ.name!] = thisDJ.gigs!.count
+                //totalGigsArray.append(thisDJ.gigs!.count)
                 arrayDJs.append(thisDJ.name!)
    
-                print("DeeJay: \(thisDJ.name!)")
+                print("DeeJay: \(thisDJ.name!) | TotalGigs count: \(thisDJ.gigs!.count)")
             }
             
         }
         let sortedDJs = arrayDJs.sorted()
-        cell.djName.text = sortedDJs[indexPath.row]
+        let sortedArr = arrayDJsGigs.sorted { $0.key < $1.key }
+        
+        cell.djName.text = sortedArr[indexPath.row].key
+        cell.otherGigs.text = "Total Gigs: \(sortedArr[indexPath.row].value)"
         
         return cell
     }

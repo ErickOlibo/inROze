@@ -12,15 +12,16 @@ class EventDJsCollectionViewCell: UICollectionViewCell
 {
     @IBOutlet weak var djBackground: UIView! {
         didSet {
-            print("DJ Background is Set")
+            //print("DJ Background is Set")
         }
     }
     @IBOutlet weak var djName: UILabel! {
         didSet {
-            print("DJ Name is Set")
+            //print("DJ Name is Set")
         }
     }
     
+    @IBOutlet weak var otherGigs: UILabel!
     
     
 }

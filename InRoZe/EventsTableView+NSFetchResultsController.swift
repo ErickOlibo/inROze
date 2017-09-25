@@ -27,6 +27,11 @@ extension EventsViewController
         }
     }
     
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let tableViewCell = cell as? EventTableViewCell else { return }
+        tableViewCell.setCollectionViewDataSourceDelegate(tableViewCell.self, forRow: indexPath.row)
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: eventCell, for: indexPath) as! EventTableViewCell
         
@@ -65,7 +70,7 @@ extension EventsViewController
         cell.eventTitle.text = event.name
         
         //DJ set
-        
+                
         return cell
     }
     
