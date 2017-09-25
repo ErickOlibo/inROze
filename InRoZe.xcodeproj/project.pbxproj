@@ -23,6 +23,7 @@
 		A76E72D01F7576580023D47F /* EventsTableView+NSFetchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72CF1F7576580023D47F /* EventsTableView+NSFetchResultsController.swift */; };
 		A76E72D21F75776C0023D47F /* FetchedResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72D11F75776C0023D47F /* FetchedResultsTableViewController.swift */; };
 		A76E72D41F76579E0023D47F /* EventDJsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72D31F76579E0023D47F /* EventDJsCollectionViewCell.swift */; };
+		A76E72D61F79C2CC0023D47F /* Bungee-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A76E72D51F79C2CC0023D47F /* Bungee-Regular.ttf */; };
 		A775C3B21F3C7F8B00A3449F /* ServerKeyStringConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B11F3C7F8B00A3449F /* ServerKeyStringConvenience.swift */; };
 		A775C3B41F3C7FA100A3449F /* NotificationKeyStringConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B31F3C7FA100A3449F /* NotificationKeyStringConvenience.swift */; };
 		A775C3B61F3CC0CC00A3449F /* FacebookRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */; };
@@ -69,6 +70,7 @@
 		A76E72CF1F7576580023D47F /* EventsTableView+NSFetchResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EventsTableView+NSFetchResultsController.swift"; sourceTree = "<group>"; };
 		A76E72D11F75776C0023D47F /* FetchedResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableViewController.swift; sourceTree = "<group>"; };
 		A76E72D31F76579E0023D47F /* EventDJsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDJsCollectionViewCell.swift; sourceTree = "<group>"; };
+		A76E72D51F79C2CC0023D47F /* Bungee-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bungee-Regular.ttf"; sourceTree = "<group>"; };
 		A775C3B11F3C7F8B00A3449F /* ServerKeyStringConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerKeyStringConvenience.swift; sourceTree = "<group>"; };
 		A775C3B31F3C7FA100A3449F /* NotificationKeyStringConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKeyStringConvenience.swift; sourceTree = "<group>"; };
 		A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookRequest.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 		A7624B931F6AC78D0050151E /* Custom Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				A76E72D51F79C2CC0023D47F /* Bungee-Regular.ttf */,
 			);
 			name = "Custom Fonts";
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				A72B793B1F2231AF009FB389 /* LaunchScreen.storyboard in Resources */,
 				A72B79381F2231AF009FB389 /* Assets.xcassets in Resources */,
 				A72B79331F2231AF009FB389 /* Main.storyboard in Resources */,
+				A76E72D61F79C2CC0023D47F /* Bungee-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

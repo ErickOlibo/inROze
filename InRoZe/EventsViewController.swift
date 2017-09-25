@@ -54,6 +54,14 @@ class EventsViewController: FetchedResultsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Find fonts added 
+//        for family: String in UIFont.familyNames {
+//            print("\(family)")
+//            for names: String in UIFont.fontNames(forFamilyName: family) {
+//                print("== \(names)")
+//            }
+//        }
+
         // Estimated rowHeight
         let viewSizeWidthFromPhone: CGFloat = self.view.bounds.width
         let coverHeight = (viewSizeWidthFromPhone - 2 * eventCoverTrailing) / coverRatio
