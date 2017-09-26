@@ -10,6 +10,9 @@ import UIKit
 
 class EventDJsCollectionViewCell: UICollectionViewCell
 {
+    // Core Data model container and context
+    private let context = AppDelegate.viewContext
+    private let container = AppDelegate.persistentContainer
     
     // get full artist for this cell
     var thisDJ: Artist? { didSet { updateUI() } }
@@ -64,12 +67,19 @@ class EventDJsCollectionViewCell: UICollectionViewCell
     
     @IBAction func followDJButton(_ sender: UIButton) {
         print("Follow button was Pressed: Name: \(thisDJ!.name!) -> gigs: [\(thisDJ!.gigs!.count)] -> Follow Before Press: [\(thisDJ!.isFollowed)]")
+
+        saveFollowed()
         
-        thisDJ?.isFollowed = !thisDJ!.isFollowed
         setIsFollowButton(for: thisDJ!.isFollowed)
     }
     
-    
+    private func saveFollowed() {
+        thisDJ?.isFollowed = !thisDJ!.isFollowed
+        let artistId = thisDJ!.id!
+        container.performBackgroundTask { context in
+            _ = Artist.setIsFollowed(for: artistId, in: context)
+        }
+    }
     
     
     

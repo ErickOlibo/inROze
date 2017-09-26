@@ -34,7 +34,7 @@ class EventTableViewCell: UITableViewCell
     @IBOutlet weak var eventTimeLocation: UILabel!
     
     // public API of this TableViewCell subclass
-    var event: Event? //{ didSet { updateUI() } }
+    var event: Event? { didSet { updateUI() } }
     
     // Properties for the CollectionCell
     @IBOutlet weak var collectionView: UICollectionView! {
@@ -49,10 +49,7 @@ class EventTableViewCell: UITableViewCell
         collectionView.tag = row
         collectionView.reloadData()
     }
-    
-    
-    
-    
+
     private func updateUI() {
         if event!.performers!.count > 0 {
             for djs in event!.performers! {
@@ -60,52 +57,32 @@ class EventTableViewCell: UITableViewCell
             }
         }
     }
-    
-
-    /*
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
- */
 
 }
+
 
 extension EventTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 {
     func numberOfSections(in collectionView: UICollectionView) -> Int
     {
-        print("numberOfSections")
         return 1
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        print("number of items in collection view: \(event?.performers?.count ?? 0)")
         return event?.performers?.count ?? 0
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: 150, height: 200)
-//    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        print("Collection Cell index: [\(indexPath.row)]")
         var arrayDJsGigs = [String : Artist]()
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionDJCell, for: indexPath) as! EventDJsCollectionViewCell
         if let djsSet = event?.performers, djsSet.count > 0 {
             for deejay in djsSet {
                 let thisDJ = deejay as! Artist
                 arrayDJsGigs[thisDJ.name!] = thisDJ
-   
-                //print("DeeJay: \(thisDJ.name!) | TotalGigs count: \(thisDJ.gigs!.count) | isFollowed: \(thisDJ.isFollowed) | First letter: \((thisDJ.name!.uppercased()).characters.first!)")
             }
             
         }

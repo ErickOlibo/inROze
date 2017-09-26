@@ -59,6 +59,38 @@ public class Artist: NSManagedObject
         return nil
     }
     
-    // Add gigs to Artist
+    // set Artist to followed
+    class func setIsFollowed(for artistID: String , in context: NSManagedObjectContext) -> Bool {
+        let request: NSFetchRequest<Artist> = Artist.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", artistID)
+        do {
+            let match = try context.fetch(request)
+            if match.count > 0 {
+                assert(match.count == 1, "findArtistWithID -- database inconsistency")
+                match[0].isFollowed = !match[0].isFollowed
+                
+                // save context here
+                do {
+                    print("[setIsFollowed] - Which Thread is Context at: \(Thread.current)")
+                    try context.save()
+                } catch {
+                    print("[setIsFollowed] - Error while Saving Context: \(error)")
+                }
+                return match[0].isFollowed
+                
+            }
+        } catch {
+            print("[setIsFollowed] - Error while setting isFollowed Bool: \(error)")
+        }
+        
+        return false
+    }
+  
+    
+    
+    
+    
+    
+    
     
 }
