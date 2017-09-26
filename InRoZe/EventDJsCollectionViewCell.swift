@@ -22,6 +22,7 @@ class EventDJsCollectionViewCell: UICollectionViewCell
     let moreGigsString = " more gigs"
     let moreGigString = " more gig"
     let noGigString = "no other gig"
+    let blankString = ""
 
     // Outlets for Cell UI
     @IBOutlet weak var textDisplayBg: UIView! {
@@ -93,7 +94,6 @@ class EventDJsCollectionViewCell: UICollectionViewCell
     
     private func setIsFollowButton(for state: Bool) {
         var followImg = UIImage()
-        moreGigsString(for: state)
         updateCellColorforFollowed(for: state)
         if (state) {
             followImg = (UIImage(named: "2_FollowsFilled")?.withRenderingMode(.alwaysTemplate))!
@@ -106,35 +106,6 @@ class EventDJsCollectionViewCell: UICollectionViewCell
         }
         
     }
-    
-    private func moreGigsString(for state: Bool) {
-        let numberGigs = thisDJ!.gigs!.count - 1
-        let numberGigsAttributed: NSAttributedString
-        if (state) {
-            numberGigsAttributed = coloredString(String(numberGigs), color: followedColor)
-        } else {
-            numberGigsAttributed = coloredString(String(numberGigs), color: notFollowedColor)
-        }
-        
-        let moreGigsLabelAttributed = NSMutableAttributedString()
-        switch numberGigs {
-        case 0:
-            break
-            //moreGigs.attributedText = coloredString(noGigString, color: notFollowedColor)
-        case 1:
-            let otherGigsAttributedText = coloredString(moreGigString, color: notFollowedColor)
-            moreGigsLabelAttributed.append(numberGigsAttributed)
-            moreGigsLabelAttributed.append(otherGigsAttributedText)
-            moreGigs.attributedText = moreGigsLabelAttributed
-        default:
-            let otherGigsAttributedText = coloredString(moreGigsString, color: notFollowedColor)
-            moreGigsLabelAttributed.append(numberGigsAttributed)
-            moreGigsLabelAttributed.append(otherGigsAttributedText)
-            moreGigs.attributedText = moreGigsLabelAttributed
-        }
-        
-    }
-    
     
    
     private func updateCellColorforFollowed(for state: Bool) {
@@ -150,6 +121,7 @@ class EventDJsCollectionViewCell: UICollectionViewCell
             followDJBottonView.layer.borderColor = followedColor.cgColor
             firstLetter.attributedText = coloredString(djInitial, color: .white)
             djName.attributedText = coloredString(thisDJname, color: .black)
+            moreGigs.attributedText = coloredString(moreGigsText(), color: .black)
             
             
         } else {
@@ -162,7 +134,20 @@ class EventDJsCollectionViewCell: UICollectionViewCell
             followDJBottonView.layer.borderColor = notFollowedColor.cgColor
             firstLetter.attributedText = coloredString(djInitial, color: notFollowedColor)
             djName.attributedText = coloredString(thisDJname, color: notFollowedColor)
+            moreGigs.attributedText = coloredString(moreGigsText(), color: .lightGray)
             
+        }
+    }
+    
+    private func moreGigsText()  -> String {
+        let totalOtherGigs = thisDJ!.gigs!.count - 1
+        switch totalOtherGigs {
+        case 0:
+            return blankString
+        case 1:
+            return String(totalOtherGigs) + moreGigString
+        default:
+            return String(totalOtherGigs) + moreGigsString
             
         }
     }
