@@ -16,10 +16,6 @@ public class Event: NSManagedObject
     // update placeID if eventID already present
     class func findOrInsertEventID(matching eventDict: [String : String], in context: NSManagedObjectContext) throws -> Event
     {
-        //print(eventDict)
-//        if let artistsList = eventDict[DBLabels.artistsList] {
-//        print("[\(eventDict[DBLabels.eventID]!)] - ArtistList: [\(artistsList)]")
-//        }
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         request.predicate = NSPredicate(format: "id = %@", eventDict[DBLabels.eventID]!)
         do {
@@ -33,8 +29,6 @@ public class Event: NSManagedObject
         } catch {
             throw error
         }
-        // add artists to new event
-        
 
         let event = Event(context: context)
         event.id = eventDict[DBLabels.eventID]
@@ -63,7 +57,6 @@ public class Event: NSManagedObject
         }
         
         let artsNSSet = NSSet(array: artsArr)
-        
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         request.predicate = NSPredicate(format: "id = %@", id)
         do {
@@ -78,10 +71,8 @@ public class Event: NSManagedObject
         } catch {
             throw error
         }
-       
         return false
     }
-    
     
     class func updateArtistsListForEvent(with eventDict: [String : String], in context: NSManagedObjectContext) throws -> Bool {
         let id = eventDict[DBLabels.eventID]!
@@ -91,8 +82,6 @@ public class Event: NSManagedObject
         } catch {
             throw error
         }
-        
-        
         return true
     }
     
@@ -160,11 +149,11 @@ public class Event: NSManagedObject
                         event.startTime = formatter.date(from: sTime)! as NSDate
                         event.updatedTime = formatter.date(from: uTime)! as NSDate
                         
-                        // If end_time is nil (from FB request) add default: +12 hours of Start_time
+                        // If end_time is nil (from FB request) add default: +8 hours of Start_time
                         if let eTime = eventInfo[FBEvent.endTime] as? String {
                             event.endTime = formatter.date(from: eTime)! as NSDate
                         } else {
-                            event.endTime = (formatter.date(from: sTime)! as NSDate).addingTimeInterval(12 * 60 * 60)
+                            event.endTime = (formatter.date(from: sTime)! as NSDate).addingTimeInterval(8 * 60 * 60)
                         }
                         
                         // updating Location ralationship for eventID
@@ -179,17 +168,21 @@ public class Event: NSManagedObject
                         }
                     }
                 }
+                
+                // Delete event where endTime is older than now
+                let nowTime = NSDate()
+                if ((event.endTime! as Date) < (nowTime as Date)) {
+                    print("DELETE This Event: [\(event.name!)]")
+                    context.delete(event)
+                }
+                
             }
         } catch {
             throw error
         }
         return true
     }
-    
-    
 
-    
-    
     
     // Select events where StartTime is after Now
     // ADD the LOCATION (city or country) selector as a parameter
@@ -233,9 +226,6 @@ public class Event: NSManagedObject
         } catch {
             print("[Event] - UpdateEventImageColors failed with error")
         }
-        
-        
-        
         return true
     }
     
@@ -244,7 +234,6 @@ public class Event: NSManagedObject
     // Deletes older (where endTime < NOW) from the database
     class func deleteEventsEndedBeforeNow(in context: NSManagedObjectContext, with request: NSFetchRequest<Event>) -> Bool
     {
-        //var response = [Event]()
         let nowTime = NSDate()
         request.sortDescriptors = [NSSortDescriptor(key: "endTime", ascending: true, selector: nil)]
         request.predicate = NSPredicate(format: "endTime < %@", nowTime)
@@ -254,13 +243,29 @@ public class Event: NSManagedObject
             if events.count > 0 {
                 print("Number of Event to DELETE: \(events.count)")
                 for event in events {
-                    // to make sure events are being deleted
-                    //print("[DELETE_EVENT] -> EndTime: [\(event.endTime!)] | Name: \(event.name!) | Place: \(event.location!.name!)")
                     context.delete(event)
                 }
             }
         } catch {
             print("[Event] - deleteEventsEndedBeforeNow")
+        }
+        
+        return true
+    }
+    
+    
+    // Delete an single Event from database
+    class func deleteEvent(matching eventID: String, in context: NSManagedObjectContext) -> Bool
+    {
+        let request: NSFetchRequest<Event> = Event.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", eventID)
+        do {
+            let match = try context.fetch(request)
+            if match.count > 0 {
+                context.delete(match[0])
+            }
+        } catch {
+            print("Error while attempting to delete this event: [\(eventID)]")
         }
         
         return true

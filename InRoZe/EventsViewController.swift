@@ -32,7 +32,7 @@ class EventsViewController: FetchedResultsTableViewController {
     let container = AppDelegate.persistentContainer
     
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
-        let context = AppDelegate.viewContext
+        //let context = AppDelegate.viewContext
         // Initilaze Fetch Request
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         let nowTime = NSDate()
@@ -43,7 +43,7 @@ class EventsViewController: FetchedResultsTableViewController {
         //request.predicate = NSPredicate(format: "startTime < %@", nowTime)
         
         // Initialze Fetched Results Controller
-        let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.context, sectionNameKeyPath: nil, cacheName: nil)
         
         // Configure Fetch Results Controller
         fetchedRC.delegate = self
@@ -67,16 +67,18 @@ class EventsViewController: FetchedResultsTableViewController {
         let coverHeight = (viewSizeWidthFromPhone - 2 * eventCoverTrailing) / coverRatio
         cellHeightDefault = spacingFromNavBar + locationCoverSize + spacingFromCover + coverHeight + spacingUnderCover
         
-        // Request handler for eventIds from server
-        RequestHandler().fetchEventIDsFromServer()
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.tintColor = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
-
-        updateUI()
         print("Events")
+        updateUI()
+        
+        // Request handler for eventIds from server
+        RequestHandler().fetchEventIDsFromServer()
+        
     }
     
     private func updateUI() {

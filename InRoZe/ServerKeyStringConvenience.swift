@@ -112,8 +112,8 @@ public struct RequestDate {
 
 public struct IntervalBetweenRequest {
     static let toFacebook = TimeInterval(1 * 60) // 1 hour before new update from Facebook Graph API
-    static let toServer = TimeInterval(1 * 10) // (3 mins for test)3 hours before collecting new eventIDS from server
-    static let toServerArtist = TimeInterval(1 * 60) // (1 min for test) 24 hours
+    static let toServer = TimeInterval(1 * 60) // (3 mins for test)3 hours before collecting new eventIDS from server
+    static let toServerArtist = TimeInterval(24 * 60 * 60) // (1 min for test) 24 hours
 }
 
 public struct UserKeys {

@@ -49,7 +49,7 @@ public class FacebookRequest
     
     // Recursive Fabeook GraphRequest using batchSize
     private func recursiveGraphRequest(array: [String], parameters: [String], batchSize: Int) {
-        //print("[FacebookRequest] - recursiveGraphRequest | conditional graph api")
+        print("[FacebookRequest] - recursiveGraphRequest | conditional graph api")
         var arrayVar = array // array to send in the recursion
         var subArray: [String]
         var batch = batchSize
@@ -88,8 +88,8 @@ public class FacebookRequest
     // insert response from FaceBook events into CoreData
     private func updateEventDatabase(with result: [String : Any]) {
         //print(result)
-        let context = container.viewContext
-        context.perform {
+        //let context = container.viewContext
+        container.performBackgroundTask { context in 
             let request: NSFetchRequest<Event> = Event.fetchRequest()
             for resID in result {
                 do {
@@ -106,6 +106,7 @@ public class FacebookRequest
                 
                 do {
                     print("[updateEventDatabase] -  BEFORE try to save context")
+                    print("[updateEventDatabase] - Which Thread is Context at: \(Thread.current)")
                     try context.save()
                     print("[updateEventDatabase] -  AFTER SAVED in Context!")
                     
@@ -117,7 +118,7 @@ public class FacebookRequest
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.initialLoginRequestIsDone), object: nil)
                     
                 } catch {
-                    print("[updateEventDatabase] - Error during saving")
+                    print("[updateEventDatabase] - Error during saving: \(error)")
                 }
             }
         }

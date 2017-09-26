@@ -56,7 +56,7 @@ public class ServerRequest
                     if (isEventFetch) {
                         // check if there is no error
                         if let errorType = json[DBLabels.errorType] as! Bool?, !errorType {
-                            print("[ServerRequest] - There is an error from server response")
+                            print("[ServerRequest] - There is an error from server response: \(errorType)")
                             
                             if (json[DBLabels.rows]! as! Int > 0) {
                                 self.result = json
@@ -127,6 +127,7 @@ public class ServerRequest
                     
                     // Save in CoreDatabase
                     do {
+                        print("[ServerRequest] -  Which thread is this Context at: \(Thread.current)")
                         try context.save()
                         UserDefaults().setDateNow(for: RequestDate.toServer)
                         
