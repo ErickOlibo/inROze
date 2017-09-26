@@ -86,7 +86,21 @@
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Dh-2k-dGo">
                                                                         <rect key="frame" x="0.0" y="43" width="170" height="17"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c3k-p6-vPk">
+                                                                                <rect key="frame" x="36" y="0.0" width="124" height="15"/>
+                                                                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="bottom" secondItem="c3k-p6-vPk" secondAttribute="bottom" constant="2" id="0Qp-Ie-FtL"/>
+                                                                            <constraint firstItem="c3k-p6-vPk" firstAttribute="top" secondItem="0Dh-2k-dGo" secondAttribute="top" id="cxp-Js-G9a"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="c3k-p6-vPk" secondAttribute="trailing" constant="10" id="jJJ-rc-XE2"/>
+                                                                            <constraint firstItem="c3k-p6-vPk" firstAttribute="leading" secondItem="0Dh-2k-dGo" secondAttribute="leading" constant="36" id="nuN-Rd-V8I"/>
+                                                                        </constraints>
                                                                     </view>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DhL-vB-fSb">
                                                                         <rect key="frame" x="126" y="0.0" width="44" height="44"/>
@@ -100,14 +114,24 @@
                                                                             <action selector="followDJButton:" destination="cSy-eZ-t1r" eventType="touchUpInside" id="cTd-px-16M"/>
                                                                         </connections>
                                                                     </button>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="awH-zq-NVD">
+                                                                        <rect key="frame" x="36" y="0.0" width="85" height="44"/>
+                                                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="24"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
+                                                                    <constraint firstItem="awH-zq-NVD" firstAttribute="leading" secondItem="Kna-Nl-Ql3" secondAttribute="leading" constant="36" id="4j1-CP-1Bk"/>
                                                                     <constraint firstAttribute="trailing" secondItem="DhL-vB-fSb" secondAttribute="trailing" id="C9x-FK-03R"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="awH-zq-NVD" secondAttribute="trailing" constant="49" id="Krb-bI-B8V"/>
                                                                     <constraint firstItem="DhL-vB-fSb" firstAttribute="top" secondItem="Kna-Nl-Ql3" secondAttribute="top" id="LTy-YL-EFl"/>
                                                                     <constraint firstItem="0Dh-2k-dGo" firstAttribute="leading" secondItem="Kna-Nl-Ql3" secondAttribute="leading" id="OgD-Ij-wah"/>
                                                                     <constraint firstAttribute="trailing" secondItem="0Dh-2k-dGo" secondAttribute="trailing" id="Xiy-WA-ehk"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="awH-zq-NVD" secondAttribute="bottom" constant="16" id="hEc-xf-TYO"/>
                                                                     <constraint firstItem="0Dh-2k-dGo" firstAttribute="top" secondItem="DhL-vB-fSb" secondAttribute="bottom" constant="-1" id="iZG-h4-l3r"/>
+                                                                    <constraint firstItem="awH-zq-NVD" firstAttribute="top" secondItem="Kna-Nl-Ql3" secondAttribute="top" id="see-Yw-Fqp"/>
                                                                     <constraint firstAttribute="width" constant="170" id="tvH-Ky-NMu"/>
                                                                     <constraint firstAttribute="bottom" secondItem="0Dh-2k-dGo" secondAttribute="bottom" id="vpJ-1k-96z"/>
                                                                 </constraints>
@@ -156,9 +180,11 @@
                                                         <constraint firstItem="TFm-uT-8Ko" firstAttribute="top" secondItem="cSy-eZ-t1r" secondAttribute="topMargin" constant="-8" id="dJG-Xz-wNQ"/>
                                                     </constraints>
                                                     <connections>
+                                                        <outlet property="djName" destination="awH-zq-NVD" id="lgg-It-yLU"/>
                                                         <outlet property="firstLetter" destination="nZt-8a-faW" id="CBf-eX-CcH"/>
                                                         <outlet property="followDJBottonView" destination="DhL-vB-fSb" id="IwV-jl-2Eo"/>
                                                         <outlet property="innerCircle" destination="fpO-Af-yvW" id="iOB-1u-Qr0"/>
+                                                        <outlet property="moreGigs" destination="c3k-p6-vPk" id="a82-Oo-KAk"/>
                                                         <outlet property="outerCircle" destination="TFm-uT-8Ko" id="7Te-2S-FEq"/>
                                                         <outlet property="textDisplayBg" destination="Kna-Nl-Ql3" id="Z8H-56-Dod"/>
                                                         <outlet property="textDisplayGigs" destination="0Dh-2k-dGo" id="ocf-FL-5Sz"/>
