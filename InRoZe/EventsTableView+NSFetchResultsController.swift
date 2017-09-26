@@ -42,10 +42,23 @@ extension EventsViewController
         // sent the whole event result to the cell
         cell.event = event
         
+        cell.selectionStyle = .none
+        
         
         // Event cover image
         cell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
             if (image != nil) {
+                
+                // set the image offset here
+//                if (indexPath.row == 0) {
+//                  let cellCoverSize = cell.eventCover.bounds.size
+//                    print("Cover Image Size: [\(cellCoverSize)]")
+//                }
+//                let imgW = image!.size.width
+//                let imgH = image!.size.height
+//                print("[\(indexPath.row)] || offSet: [X: \(event.offsetX), Y: \(event.offsetY)] || original Image size: [W: \(imgW), H: \(imgH)] || LINK: https://www.facebook.com/\(event.id!)")
+                
+                
                 cell.eventCover.image = image
             }
         }
@@ -69,7 +82,7 @@ extension EventsViewController
         cell.eventTimeLocation.attributedText = combinedAttributedText
         cell.eventTitle.text = event.name
         
-        //DJ set
+        //offset for image
                 
         return cell
     }
@@ -87,6 +100,10 @@ extension EventsViewController
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Cell pressed at indexPath Row [\(indexPath.row)]")
+    }
+
 
     
     
