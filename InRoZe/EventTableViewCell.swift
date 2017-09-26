@@ -118,6 +118,8 @@ extension EventTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
+
+    
     
 }
 
