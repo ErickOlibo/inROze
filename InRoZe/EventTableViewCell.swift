@@ -34,7 +34,7 @@ class EventTableViewCell: UITableViewCell
     @IBOutlet weak var eventTimeLocation: UILabel!
     
     // public API of this TableViewCell subclass
-    var event: Event? { didSet { updateUI() } }
+    var event: Event? //{ didSet { updateUI() } }
     
     // Properties for the CollectionCell
     @IBOutlet weak var collectionView: UICollectionView! {

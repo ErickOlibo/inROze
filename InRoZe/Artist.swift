@@ -76,6 +76,8 @@ public class Artist: NSManagedObject
                 } catch {
                     print("[setIsFollowed] - Error while Saving Context: \(error)")
                 }
+                // print list
+                //printListOfFollows(in: context)
                 return match[0].isFollowed
                 
             }
@@ -84,6 +86,25 @@ public class Artist: NSManagedObject
         }
         
         return false
+    }
+    
+    class func printListOfFollows(in context: NSManagedObjectContext) {
+        var text = "List of DJS: "
+        let request: NSFetchRequest<Artist> = Artist.fetchRequest()
+        request.predicate = NSPredicate(format: "isFollowed = true")
+        do {
+           let match = try context.fetch(request)
+            if match.count > 0 {
+                for dj in match {
+                    text += "\(dj.name!) | "
+                }
+            }
+        } catch {
+            print("[printListOfFollows] - Error while getting Follows list: \(error)")
+            
+        }
+        print("[printListOfFollows] - \(text)")
+        
     }
   
     
