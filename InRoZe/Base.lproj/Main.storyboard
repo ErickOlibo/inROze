@@ -188,6 +188,7 @@
                                                         <outlet property="outerCircle" destination="TFm-uT-8Ko" id="7Te-2S-FEq"/>
                                                         <outlet property="textDisplayBg" destination="Kna-Nl-Ql3" id="Z8H-56-Dod"/>
                                                         <outlet property="textDisplayGigs" destination="0Dh-2k-dGo" id="ocf-FL-5Sz"/>
+                                                        <segue destination="8yR-qp-x1Q" kind="show" identifier="Deejay Gigs List" id="Bza-19-mdf"/>
                                                     </connections>
                                                 </collectionViewCell>
                                             </cells>
@@ -230,6 +231,76 @@
             </objects>
             <point key="canvasLocation" x="427.536231884058" y="-684.78260869565224"/>
         </scene>
+        <!--DJ list-->
+        <scene sceneID="8KM-Nb-VCN">
+            <objects>
+                <tableViewController title="DJ list" id="8yR-qp-x1Q" customClass="DeejayGigsTableViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="hGD-nm-KfD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Deejay Gig Cell" rowHeight="60" id="GEV-js-GQI" customClass="DeejayGigsTableViewCell" customModule="InRoZe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GEV-js-GQI" id="1lw-ja-f5i">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CeG-3c-T4a">
+                                            <rect key="frame" x="20" y="10" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="CeG-3c-T4a" secondAttribute="height" multiplier="1:1" id="0gH-Pa-VvF"/>
+                                                <constraint firstAttribute="width" constant="40" id="vNY-IY-PBZ"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.90000000000000002" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nkh-Pu-Gus">
+                                            <rect key="frame" x="68" y="10" width="294" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="S42-Wz-sP3"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZNp-9x-NNI">
+                                            <rect key="frame" x="68" y="29" width="294" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="1kG-nR-Qdl"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="ZNp-9x-NNI" secondAttribute="trailing" constant="44" id="85K-YC-hHQ"/>
+                                        <constraint firstItem="Nkh-Pu-Gus" firstAttribute="top" secondItem="1lw-ja-f5i" secondAttribute="topMargin" constant="2" id="KY2-2k-UPw"/>
+                                        <constraint firstItem="CeG-3c-T4a" firstAttribute="centerY" secondItem="1lw-ja-f5i" secondAttribute="centerY" id="Mdo-My-ynp"/>
+                                        <constraint firstItem="CeG-3c-T4a" firstAttribute="leading" secondItem="1lw-ja-f5i" secondAttribute="leadingMargin" constant="12" id="fe1-QF-5As"/>
+                                        <constraint firstItem="ZNp-9x-NNI" firstAttribute="leading" secondItem="1lw-ja-f5i" secondAttribute="leadingMargin" constant="60" id="iu4-NN-97f"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Nkh-Pu-Gus" secondAttribute="trailing" constant="44" id="kGf-bg-yqU"/>
+                                        <constraint firstItem="Nkh-Pu-Gus" firstAttribute="leading" secondItem="1lw-ja-f5i" secondAttribute="leadingMargin" constant="60" id="nzr-xZ-oRt"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ZNp-9x-NNI" secondAttribute="bottom" constant="1.6666666666666643" id="rbN-zN-FEa"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="eventDateTimeLocation" destination="ZNp-9x-NNI" id="seH-Jm-HDh"/>
+                                    <outlet property="eventName" destination="Nkh-Pu-Gus" id="diB-X6-EGH"/>
+                                    <outlet property="locationCover" destination="CeG-3c-T4a" id="7Ni-XZ-Ch0"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="8yR-qp-x1Q" id="EyS-kN-Z06"/>
+                            <outlet property="delegate" destination="8yR-qp-x1Q" id="FDY-56-eEa"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h2M-s7-MWe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1343.4782608695652" y="-687.22826086956525"/>
+        </scene>
         <!--Follows-->
         <scene sceneID="zQD-04-gUi">
             <objects>
@@ -250,7 +321,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rnq-M6-D2U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3030.434782608696" y="-285.32608695652175"/>
+            <point key="canvasLocation" x="3937.68115942029" y="-285.32608695652175"/>
         </scene>
         <!--Add Artist View Controller-->
         <scene sceneID="o2A-WI-quu">
@@ -440,7 +511,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nhS-2i-wgI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Events" image="1_Events" selectedImage="1_EventsFilled" id="gwB-Zu-sBd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vYt-kV-r8B">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="vYt-kV-r8B">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

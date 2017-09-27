@@ -24,6 +24,8 @@
 		A76E72D21F75776C0023D47F /* FetchedResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72D11F75776C0023D47F /* FetchedResultsTableViewController.swift */; };
 		A76E72D41F76579E0023D47F /* EventDJsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72D31F76579E0023D47F /* EventDJsCollectionViewCell.swift */; };
 		A76E72D61F79C2CC0023D47F /* Bungee-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A76E72D51F79C2CC0023D47F /* Bungee-Regular.ttf */; };
+		A76E72D81F7BFA820023D47F /* DeejayGigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72D71F7BFA820023D47F /* DeejayGigsTableViewController.swift */; };
+		A76E72DA1F7C08650023D47F /* DeejayGigsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72D91F7C08650023D47F /* DeejayGigsTableViewCell.swift */; };
 		A775C3B21F3C7F8B00A3449F /* ServerKeyStringConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B11F3C7F8B00A3449F /* ServerKeyStringConvenience.swift */; };
 		A775C3B41F3C7FA100A3449F /* NotificationKeyStringConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B31F3C7FA100A3449F /* NotificationKeyStringConvenience.swift */; };
 		A775C3B61F3CC0CC00A3449F /* FacebookRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */; };
@@ -71,6 +73,8 @@
 		A76E72D11F75776C0023D47F /* FetchedResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableViewController.swift; sourceTree = "<group>"; };
 		A76E72D31F76579E0023D47F /* EventDJsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDJsCollectionViewCell.swift; sourceTree = "<group>"; };
 		A76E72D51F79C2CC0023D47F /* Bungee-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bungee-Regular.ttf"; sourceTree = "<group>"; };
+		A76E72D71F7BFA820023D47F /* DeejayGigsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeejayGigsTableViewController.swift; sourceTree = "<group>"; };
+		A76E72D91F7C08650023D47F /* DeejayGigsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeejayGigsTableViewCell.swift; sourceTree = "<group>"; };
 		A775C3B11F3C7F8B00A3449F /* ServerKeyStringConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerKeyStringConvenience.swift; sourceTree = "<group>"; };
 		A775C3B31F3C7FA100A3449F /* NotificationKeyStringConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKeyStringConvenience.swift; sourceTree = "<group>"; };
 		A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookRequest.swift; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 				A7EC36841F36553B00548C11 /* LoginViewController.swift */,
 				A7EC36861F365AA900548C11 /* TabBarViewController.swift */,
 				A76E72CB1F7541370023D47F /* EventsViewController.swift */,
+				A76E72D71F7BFA820023D47F /* DeejayGigsTableViewController.swift */,
+				A76E72D91F7C08650023D47F /* DeejayGigsTableViewCell.swift */,
 				A76E72CD1F754BC60023D47F /* EventTableViewCell.swift */,
 				A76E72D31F76579E0023D47F /* EventDJsCollectionViewCell.swift */,
 				A76E72CF1F7576580023D47F /* EventsTableView+NSFetchResultsController.swift */,
@@ -426,6 +432,7 @@
 				A77676071F26B9DB00F1FA52 /* SearchViewController.swift in Sources */,
 				A77676181F28CCE400F1FA52 /* Constants.swift in Sources */,
 				A7A4BECC1F4363C5000A5047 /* UserDefaultsExtensions.swift in Sources */,
+				A76E72D81F7BFA820023D47F /* DeejayGigsTableViewController.swift in Sources */,
 				A7D4D2A61F51913C00546341 /* Artist.swift in Sources */,
 				A77676161F27C52F00F1FA52 /* EventCollectionViewCell.swift in Sources */,
 				A7F527241F4498540008080B /* Event.swift in Sources */,
@@ -457,6 +464,7 @@
 				A7EC36651F33954600548C11 /* NSDictionary+KeyPathConvenience.swift in Sources */,
 				A7F527221F4496E50008080B /* RequestHandler.swift in Sources */,
 				A77676141F26D49E00F1FA52 /* UIColorExtensions.swift in Sources */,
+				A76E72DA1F7C08650023D47F /* DeejayGigsTableViewCell.swift in Sources */,
 				A7A24D4C1F3A4F0000EFB82E /* ServerRequest.swift in Sources */,
 				A776760B1F26B9F600F1FA52 /* SettingsViewController.swift in Sources */,
 			);

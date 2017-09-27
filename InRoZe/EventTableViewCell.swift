@@ -92,11 +92,20 @@ extension EventTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
         cell.thisDJ = arrayDJsGigs[sortedArr[indexPath.row].key]
         //cell.otherGigs.text = "Total Gigs: \(sortedArr[indexPath.row].value)"
         
+        // tag of cell for future reference
+        cell.tag = indexPath.row
+        
         return cell
     }
     
-
+    // selected collection cell
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("row: \(indexPath.row)")
+        
+        
+    }
     
+
     
 }
 

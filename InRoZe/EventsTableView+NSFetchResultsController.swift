@@ -105,7 +105,24 @@ extension EventsViewController
     }
 
 
+    // - Mark - Navigation
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Deejay Gigs List" {
+            if let djsCollectionCell: EventDJsCollectionViewCell = sender as? EventDJsCollectionViewCell {
+                if let collectionView: UICollectionView = djsCollectionCell.superview as? UICollectionView {
+                    if let destination = segue.destination as? DeejayGigsTableViewController {
+                        
+                        destination.artistID = "Segue from EventsTableView"
+                        print("CollectionView.tag: \(collectionView.tag)")
+                        let thisDJ = djsCollectionCell.thisDJ!
+                        print("DJ Name: \(thisDJ.name!)")
+                        print("CollectionViewCell.tag: \(djsCollectionCell.tag)")
+                    }
+                }
+            }
+        }
+    }
     
     /*
      // Override to support conditional editing of the table view.
