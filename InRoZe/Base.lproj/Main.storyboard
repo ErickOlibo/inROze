@@ -247,7 +247,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="59.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CeG-3c-T4a">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CeG-3c-T4a">
                                             <rect key="frame" x="20" y="10" width="40" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="CeG-3c-T4a" secondAttribute="height" multiplier="1:1" id="0gH-Pa-VvF"/>
@@ -255,39 +255,40 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.90000000000000002" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nkh-Pu-Gus">
-                                            <rect key="frame" x="68" y="10" width="294" height="21"/>
+                                            <rect key="frame" x="68" y="5" width="294" height="26"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="S42-Wz-sP3"/>
+                                                <constraint firstAttribute="height" constant="26" id="S42-Wz-sP3"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZNp-9x-NNI">
-                                            <rect key="frame" x="68" y="29" width="294" height="21"/>
+                                            <rect key="frame" x="68" y="35.666666666666664" width="294" height="16"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="1kG-nR-Qdl"/>
+                                                <constraint firstAttribute="height" constant="16" id="1kG-nR-Qdl"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="ZNp-9x-NNI" secondAttribute="trailing" constant="44" id="85K-YC-hHQ"/>
-                                        <constraint firstItem="Nkh-Pu-Gus" firstAttribute="top" secondItem="1lw-ja-f5i" secondAttribute="topMargin" constant="2" id="KY2-2k-UPw"/>
+                                        <constraint firstItem="Nkh-Pu-Gus" firstAttribute="top" secondItem="1lw-ja-f5i" secondAttribute="topMargin" constant="-3" id="KY2-2k-UPw"/>
                                         <constraint firstItem="CeG-3c-T4a" firstAttribute="centerY" secondItem="1lw-ja-f5i" secondAttribute="centerY" id="Mdo-My-ynp"/>
                                         <constraint firstItem="CeG-3c-T4a" firstAttribute="leading" secondItem="1lw-ja-f5i" secondAttribute="leadingMargin" constant="12" id="fe1-QF-5As"/>
                                         <constraint firstItem="ZNp-9x-NNI" firstAttribute="leading" secondItem="1lw-ja-f5i" secondAttribute="leadingMargin" constant="60" id="iu4-NN-97f"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Nkh-Pu-Gus" secondAttribute="trailing" constant="44" id="kGf-bg-yqU"/>
                                         <constraint firstItem="Nkh-Pu-Gus" firstAttribute="leading" secondItem="1lw-ja-f5i" secondAttribute="leadingMargin" constant="60" id="nzr-xZ-oRt"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="ZNp-9x-NNI" secondAttribute="bottom" constant="1.6666666666666643" id="rbN-zN-FEa"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ZNp-9x-NNI" secondAttribute="bottom" id="rbN-zN-FEa"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
+                                    <outlet property="eventCover" destination="CeG-3c-T4a" id="uFI-nv-idB"/>
                                     <outlet property="eventDateTimeLocation" destination="ZNp-9x-NNI" id="seH-Jm-HDh"/>
                                     <outlet property="eventName" destination="Nkh-Pu-Gus" id="diB-X6-EGH"/>
-                                    <outlet property="locationCover" destination="CeG-3c-T4a" id="7Ni-XZ-Ch0"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

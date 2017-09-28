@@ -107,6 +107,33 @@ public class Artist: NSManagedObject
         
     }
   
+    class func findPerformingEvents(for artist: Artist, in context: NSManagedObjectContext) -> [Event]? {
+        let request: NSFetchRequest<Event> = Event.fetchRequest()
+
+        // Add sor Descriptors and Predicate
+        request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
+        request.predicate = NSPredicate(format: "ANY performers.id == %@", artist.id!)
+        do {
+            let match = try context.fetch(request)
+            print("match for [findPerformingEvents]: \(match.count)")
+            if match.count > 0 {
+                for event in match {
+                    print("Date: [\(event.startTime!)] -> Name: [\(event.name!)] -> Location: [\(event.location!.name!)]")
+                }
+                return match
+            }
+        } catch {
+            print("[findPerformingEvents] - Error while searching for Artist: \(error)")
+        }
+        return nil
+    }
+    
+    
+    
+    
+    
+    
+    
     
     
     

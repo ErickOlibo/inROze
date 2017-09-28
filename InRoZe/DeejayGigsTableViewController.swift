@@ -10,24 +10,32 @@ import UIKit
 
 class DeejayGigsTableViewController: FetchedResultsTableViewController {
     
+    // Core Data model container and context
+    private let context = AppDelegate.viewContext
+    private let container = AppDelegate.persistentContainer
+    
+    
     // properties
     let deejayGigCell = "Deejay Gig Cell"
-    var artistID: String? { didSet { updateUI() } }
+    var artist: Artist? { didSet { updateUI() } }
+    private var gigsList: [Event]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // navigation bar
+        self.navigationController?.navigationBar.tintColor = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     private func updateUI() {
-        print("DJGigsTVC is SET: ArtistID: \(artistID!)")
+        print("DJGigsTVC is SET: ArtistID: \(artist!.id!)")
+        gigsList = Artist.findPerformingEvents(for: artist!, in: context)
+        
+        
     }
 
     // MARK: - Table view data source
@@ -39,26 +47,29 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 100
+        return gigsList?.count ?? 0
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Deejay Gig Cell", for: indexPath) as! DeejayGigsTableViewCell
-
+        
         // Configure the cell...
-        print("ROW: [\(indexPath.row)]")
-        cell.eventName.text = "Event Name here"
-        cell.eventDateTimeLocation.text = "Event date time location"
+        cell.selectionStyle = .none
+        
+        // place cover image
+        cell.eventCover.sd_setImage(with: URL(string: gigsList![indexPath.row].imageURL! )) { (image, error, cacheType, imageURL) in
+            if (image != nil) {
+                cell.eventCover.image = image
+            }
+        }
+        cell.eventName.text = gigsList![indexPath.row].name!
+        cell.eventDateTimeLocation.attributedText = dateTimeLocationFormatter(with: gigsList![indexPath.row])
 
         return cell
     }
  
-    
-     // MARK: - Navigation
-     
 
- 
 
     /*
     // Override to support conditional editing of the table view.

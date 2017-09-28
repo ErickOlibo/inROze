@@ -97,7 +97,7 @@ extension UserDefaults {
     
 }
 
-// private struct for userdefaults onlt
+// private struct for userdefaults only
 private struct User {
     static let launchedAlready = "launchedAlready"
 }

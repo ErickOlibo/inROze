@@ -13,23 +13,21 @@ class DeejayGigsTableViewCell: UITableViewCell {
     
     
     // outlets
-    @IBOutlet weak var locationCover: UIImageView!
-    @IBOutlet weak var eventName: UILabel! { didSet { updateUI() } }
+    @IBOutlet weak var eventCover: UIImageView! {
+        didSet {
+            eventCover.layer.masksToBounds = true
+            eventCover.layer.borderWidth = 0.5
+            eventCover.layer.borderColor = UIColor.black.cgColor
+            eventCover.layer.cornerRadius = 5
+        }
+    }
+
+    @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var eventDateTimeLocation: UILabel!
     
     private func updateUI() {
-        print("Inside DJ gigs Cell")
+        
     }
 
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
-//
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
 
 }

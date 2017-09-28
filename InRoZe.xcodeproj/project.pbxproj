@@ -41,6 +41,7 @@
 		A7A24D4C1F3A4F0000EFB82E /* ServerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */; };
 		A7A24D501F3B655E00EFB82E /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A24D4F1F3B655E00EFB82E /* Place.swift */; };
 		A7A4BECC1F4363C5000A5047 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A4BECB1F4363C5000A5047 /* UserDefaultsExtensions.swift */; };
+		A7AA5B7C1F7D593300BB2B8A /* ConvenienceFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AA5B7B1F7D593300BB2B8A /* ConvenienceFunctions.swift */; };
 		A7D4D2A61F51913C00546341 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4D2A51F51913C00546341 /* Artist.swift */; };
 		A7E03D9B1F71D820000095BD /* UIDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E03D9A1F71D820000095BD /* UIDropDown.swift */; };
 		A7EC36651F33954600548C11 /* NSDictionary+KeyPathConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */; };
@@ -90,6 +91,7 @@
 		A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRequest.swift; sourceTree = "<group>"; };
 		A7A24D4F1F3B655E00EFB82E /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		A7A4BECB1F4363C5000A5047 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
+		A7AA5B7B1F7D593300BB2B8A /* ConvenienceFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvenienceFunctions.swift; sourceTree = "<group>"; };
 		A7D4D2A51F51913C00546341 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		A7E03D9A1F71D820000095BD /* UIDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDropDown.swift; sourceTree = "<group>"; };
 		A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+KeyPathConvenience.swift"; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 		A77676121F26BF3100F1FA52 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A7AA5B7B1F7D593300BB2B8A /* ConvenienceFunctions.swift */,
 				A7F527271F472ED90008080B /* ConvenienceExtensions.swift */,
 				A78979F31F3C687C00467AA6 /* FacebookKeyStringConvenience.swift */,
 				A775C3B11F3C7F8B00A3449F /* ServerKeyStringConvenience.swift */,
@@ -462,6 +465,7 @@
 				A76E72C51F7517FB0023D47F /* FollowsViewController.swift in Sources */,
 				A78979F41F3C687C00467AA6 /* FacebookKeyStringConvenience.swift in Sources */,
 				A7EC36651F33954600548C11 /* NSDictionary+KeyPathConvenience.swift in Sources */,
+				A7AA5B7C1F7D593300BB2B8A /* ConvenienceFunctions.swift in Sources */,
 				A7F527221F4496E50008080B /* RequestHandler.swift in Sources */,
 				A77676141F26D49E00F1FA52 /* UIColorExtensions.swift in Sources */,
 				A76E72DA1F7C08650023D47F /* DeejayGigsTableViewCell.swift in Sources */,

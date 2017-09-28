@@ -35,7 +35,6 @@ extension EventsViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: eventCell, for: indexPath) as! EventTableViewCell
         
-        
         // Configure the cell...
         let event = fetchResultsController.object(at: indexPath)
         
@@ -48,17 +47,7 @@ extension EventsViewController
         // Event cover image
         cell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
             if (image != nil) {
-                
-                // set the image offset here
-//                if (indexPath.row == 0) {
-//                  let cellCoverSize = cell.eventCover.bounds.size
-//                    print("Cover Image Size: [\(cellCoverSize)]")
-//                }
-//                let imgW = image!.size.width
-//                let imgH = image!.size.height
-//                print("[\(indexPath.row)] || offSet: [X: \(event.offsetX), Y: \(event.offsetY)] || original Image size: [W: \(imgW), H: \(imgH)] || LINK: https://www.facebook.com/\(event.id!)")
-                
-                
+
                 cell.eventCover.image = image
             }
         }
@@ -70,20 +59,8 @@ extension EventsViewController
             }
         }
         
-        // starting time
-        let splitDate = Date().split(this: event.startTime! as Date)
-        let dateTimeText = "\(splitDate.day), \(splitDate.num) \(splitDate.month) - \(splitDate.hour) @ "
-        let locationNameAttributedText = coloredString(event.location!.name!, color: .black)
-        let dateTimeAttributedText = coloredString(dateTimeText, color: .gray)
-        let combinedAttributedText = NSMutableAttributedString()
-        
-        combinedAttributedText.append(dateTimeAttributedText)
-        combinedAttributedText.append(locationNameAttributedText)
-        cell.eventTimeLocation.attributedText = combinedAttributedText
+        cell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
         cell.eventTitle.text = event.name
-        
-        //offset for image
-                
         return cell
     }
     
@@ -109,55 +86,18 @@ extension EventsViewController
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Deejay Gigs List" {
-            if let djsCollectionCell: EventDJsCollectionViewCell = sender as? EventDJsCollectionViewCell {
-                if let collectionView: UICollectionView = djsCollectionCell.superview as? UICollectionView {
+            if let djsCollectionCell = sender as? EventDJsCollectionViewCell {
+                if let _ = djsCollectionCell.superview as? UICollectionView {
                     if let destination = segue.destination as? DeejayGigsTableViewController {
-                        
-                        destination.artistID = "Segue from EventsTableView"
-                        print("CollectionView.tag: \(collectionView.tag)")
                         let thisDJ = djsCollectionCell.thisDJ!
-                        print("DJ Name: \(thisDJ.name!)")
-                        print("CollectionViewCell.tag: \(djsCollectionCell.tag)")
+                        destination.artist = thisDJ
+                        destination.navigationItem.title = thisDJ.name!
                     }
                 }
             }
         }
     }
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
+
    
 }
 
