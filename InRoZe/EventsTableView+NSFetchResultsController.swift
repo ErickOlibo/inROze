@@ -84,6 +84,7 @@ extension EventsViewController
 
     // - Mark - Navigation
     
+    // list of segue to be done here
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Deejay Gigs List" {
             if let djsCollectionCell = sender as? EventDJsCollectionViewCell {

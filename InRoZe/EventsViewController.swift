@@ -13,6 +13,7 @@ class EventsViewController: FetchedResultsTableViewController {
     
     // properties
     let eventCell = "Event Cell"
+
     
     
     // All this are from AutoLayout in the main.Storyboard
@@ -54,13 +55,6 @@ class EventsViewController: FetchedResultsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Find fonts added 
-//        for family: String in UIFont.familyNames {
-//            print("\(family)")
-//            for names: String in UIFont.fontNames(forFamilyName: family) {
-//                print("== \(names)")
-//            }
-//        }
 
         // Estimated rowHeight
         let viewSizeWidthFromPhone: CGFloat = self.view.bounds.width
@@ -74,21 +68,20 @@ class EventsViewController: FetchedResultsTableViewController {
         super.viewWillAppear(animated)
         
         self.tabBarController?.tabBar.tintColor = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
-        print("Events")
+        print("EventsViewController")
         updateUI()
-        
-        // put that in a refresh part
-        // Request handler for eventIds from server
+
         RequestHandler().fetchEventIDsFromServer()
         
     }
     
     private func updateUI() {
+        
         // Execute the FetchRequest
         do {
-            print("fetchResultsController perform fetch")
             try self.fetchResultsController.performFetch()
-            self.tableView.reloadData()
+            //self.tableView.reloadData()
+            
         } catch {
             print("Error in performFetch - EventVC - updateUI()")
 

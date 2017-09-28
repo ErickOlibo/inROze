@@ -60,14 +60,14 @@ public class Artist: NSManagedObject
     }
     
     // set Artist to followed
-    class func setIsFollowed(for artistID: String , in context: NSManagedObjectContext) -> Bool {
+    class func setOppositeIsFollowed(for artistID: String , in context: NSManagedObjectContext) -> Bool {
         let request: NSFetchRequest<Artist> = Artist.fetchRequest()
         request.predicate = NSPredicate(format: "id = %@", artistID)
         do {
             let match = try context.fetch(request)
             if match.count > 0 {
                 assert(match.count == 1, "findArtistWithID -- database inconsistency")
-                //print("BEFORE -> SET Is FOLLOW: current Status Core Data: \(match[0].isFollowed)")
+                print("BEFORE -> SET Is FOLLOW: current Status Core Data: \(match[0].isFollowed)")
                 match[0].isFollowed = !match[0].isFollowed
                 
                 // save context here
@@ -79,7 +79,7 @@ public class Artist: NSManagedObject
                 }
                 // print list
                 //printListOfFollows(in: context)
-                //print("AFTER -> SET Is FOLLOW: current Status Core Data: \(match[0].isFollowed)")
+                print("AFTER SAVE) DJ [\(match[0].name!)] || current Status FROM Core Data: \(match[0].isFollowed)")
                 return match[0].isFollowed
                 
             }

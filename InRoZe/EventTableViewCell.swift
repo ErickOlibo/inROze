@@ -10,6 +10,9 @@ import UIKit
 
 class EventTableViewCell: UITableViewCell
 {
+    // Core dat Model container and context
+    let context = AppDelegate.viewContext
+    let container = AppDelegate.persistentContainer
 
     let collectionDJCell = "Collection DJ Cell"
     // outlets to the UI components in the custom UITableViewCell
@@ -34,7 +37,7 @@ class EventTableViewCell: UITableViewCell
     @IBOutlet weak var eventTimeLocation: UILabel!
     
     // public API of this TableViewCell subclass
-    var event: Event? { didSet { updateUI() } }
+    var event: Event? // { didSet { updateUI() } }
     
     // Properties for the CollectionCell
     @IBOutlet weak var collectionView: UICollectionView! {
@@ -51,11 +54,6 @@ class EventTableViewCell: UITableViewCell
     }
 
     private func updateUI() {
-        if event!.performers!.count > 0 {
-            for djs in event!.performers! {
-                print("Place: [\(event!.location!.name!)] -> DJS print: \((djs as! Artist).name!)")
-            }
-        }
     }
 
 }
@@ -79,6 +77,8 @@ extension EventTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
     {
         var arrayDJsGigs = [String : Artist]()
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionDJCell, for: indexPath) as! EventDJsCollectionViewCell
+        
+        
         if let djsSet = event?.performers, djsSet.count > 0 {
             for deejay in djsSet {
                 let thisDJ = deejay as! Artist
@@ -93,8 +93,6 @@ extension EventTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
         
         // tag of cell for future reference
         cell.tag = indexPath.row
-        print("This DJ is followed: \(currentDJ!.isFollowed)")
-        print("CellForItemAt: \(indexPath.row)")
         return cell
     }
     

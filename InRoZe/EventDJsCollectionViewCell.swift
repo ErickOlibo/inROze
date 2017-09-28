@@ -23,6 +23,7 @@ class EventDJsCollectionViewCell: UICollectionViewCell
     let moreGigString = " more gig"
     let noGigString = "no other gig"
     let blankString = ""
+    private var currentFollowState = false
 
     // Outlets for Cell UI
     @IBOutlet weak var textDisplayBg: UIView! {
@@ -67,35 +68,24 @@ class EventDJsCollectionViewCell: UICollectionViewCell
     
     
     @IBAction func followDJButton(_ sender: UIButton) {
-        print("Follow button was Pressed: Name: \(thisDJ!.name!) -> gigs: [\(thisDJ!.gigs!.count)] -> Follow Before Press: [\(thisDJ!.isFollowed)]")
+        let currentState = Artist.setOppositeIsFollowed(for: thisDJ!.id!, in: context)
+        currentFollowState = currentState
+        setIsFollowButton()
+        updateCellColorforFollowed()
 
-        saveFollowed()
-        
-        setIsFollowButton(for: thisDJ!.isFollowed)
     }
-    
-    private func saveFollowed() {
-        thisDJ?.isFollowed = !thisDJ!.isFollowed
-        let artistId = thisDJ!.id!
-        container.performBackgroundTask { context in
-            _ = Artist.setIsFollowed(for: artistId, in: context)
-        }
-    }
-    
-    
     
     private func updateUI() {
+        currentFollowState = thisDJ!.isFollowed
         firstLetter.text = String((thisDJ!.name!.uppercased()).characters.first!)
         djName.text = thisDJ!.name!.uppercased()
-        setIsFollowButton(for: thisDJ!.isFollowed)
-        updateCellColorforFollowed(for: thisDJ!.isFollowed)
-        
+        setIsFollowButton()
+        updateCellColorforFollowed()
     }
     
-    private func setIsFollowButton(for state: Bool) {
+    private func setIsFollowButton() {
         var followImg = UIImage()
-        updateCellColorforFollowed(for: state)
-        if (state) {
+        if (currentFollowState) {
             followImg = (UIImage(named: "2_FollowsFilled")?.withRenderingMode(.alwaysTemplate))!
             followDJBottonView.setImage(followImg, for: .normal)
             followDJBottonView.tintColor = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
@@ -104,17 +94,14 @@ class EventDJsCollectionViewCell: UICollectionViewCell
             followDJBottonView.setImage(followImg, for: .normal)
             followDJBottonView.tintColor = .lightGray
         }
-        
     }
     
-   
-    private func updateCellColorforFollowed(for state: Bool) {
+    private func updateCellColorforFollowed() {
         let djInitial = String((thisDJ!.name!.uppercased()).characters.first!)
         let thisDJname = thisDJ!.name!.uppercased()
-        if (state) {
+        if (currentFollowState) {
             textDisplayBg.layer.borderColor = followedColor.cgColor
             outerCircle.layer.borderColor = followedColor.cgColor
-            
             innerCircle.layer.borderColor = followedColor.cgColor
             innerCircle.backgroundColor = followedColor
             textDisplayGigs.layer.borderColor = followedColor.cgColor
@@ -127,7 +114,6 @@ class EventDJsCollectionViewCell: UICollectionViewCell
         } else {
             textDisplayBg.layer.borderColor = notFollowedColor.cgColor
             outerCircle.layer.borderColor = notFollowedColor.cgColor
-            
             innerCircle.layer.borderColor = notFollowedColor.cgColor
             innerCircle.backgroundColor = .white
             textDisplayGigs.layer.borderColor = notFollowedColor.cgColor

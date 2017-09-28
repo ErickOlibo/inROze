@@ -272,6 +272,23 @@ public class Event: NSManagedObject
     }
     
     
+    // retrieve event info from eventID
+    class func findEvent(from eventID: String, in context: NSManagedObjectContext) -> Event? {
+        let request: NSFetchRequest<Event> = Event.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", eventID)
+        do {
+            let match = try context.fetch(request)
+            if match.count > 0 {
+                assert(match.count == 1, "EventID is not unique in the database")
+                return match[0]
+            }
+        } catch {
+            print("Error while attempting to delete this event: [\(eventID)]")
+        }
+        
+        return nil
+    }
+    
 }
 
 
