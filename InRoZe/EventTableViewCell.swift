@@ -34,7 +34,7 @@ class EventTableViewCell: UITableViewCell
     @IBOutlet weak var eventTimeLocation: UILabel!
     
     // public API of this TableViewCell subclass
-    var event: Event? //{ didSet { updateUI() } }
+    var event: Event? { didSet { updateUI() } }
     
     // Properties for the CollectionCell
     @IBOutlet weak var collectionView: UICollectionView! {
@@ -88,13 +88,13 @@ extension EventTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
         }
         //let sortedDJs = arrayDJs.sorted()
         let sortedArr = arrayDJsGigs.sorted { $0.key < $1.key }
-        
-        cell.thisDJ = arrayDJsGigs[sortedArr[indexPath.row].key]
-        //cell.otherGigs.text = "Total Gigs: \(sortedArr[indexPath.row].value)"
+        let currentDJ = arrayDJsGigs[sortedArr[indexPath.row].key]
+        cell.thisDJ = currentDJ
         
         // tag of cell for future reference
         cell.tag = indexPath.row
-        
+        print("This DJ is followed: \(currentDJ!.isFollowed)")
+        print("CellForItemAt: \(indexPath.row)")
         return cell
     }
     

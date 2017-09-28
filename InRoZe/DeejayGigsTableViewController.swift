@@ -16,23 +16,56 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     
     
     // properties
+    let followedRightButton = UIBarButtonItem()
     let deejayGigCell = "Deejay Gig Cell"
     var artist: Artist? { didSet { updateUI() } }
+    var currentFollowState = false
+    
     private var gigsList: [Event]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // navigation bar
+        navigationController?.delegate = self
         self.navigationController?.navigationBar.tintColor = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: (UIImage(named: "2_Follows")?.withRenderingMode(.alwaysTemplate))!, style: .plain, target: self, action: #selector(pressedFollowed))
+        currentFollowState = artist!.isFollowed
 
     }
 
+    @objc private func pressedFollowed() {
+        print("pressed Followed")
+        currentFollowState = !currentFollowState
+        updateFollowedButton()
+        container.performBackgroundTask { context in
+            _ = Artist.setIsFollowed(for: self.artist!.id!, in: context)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // set the status and color of rightButton
+        updateFollowedButton()
+    }
+    
+    
+    private func updateFollowedButton() {
+        print("currentFollowState: \(currentFollowState)")
+        if (currentFollowState) {
+            navigationItem.rightBarButtonItem?.image = (UIImage(named: "2_FollowsFilled")?.withRenderingMode(.alwaysTemplate))!
+            navigationItem.rightBarButtonItem?.tintColor = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
+        } else {
+            navigationItem.rightBarButtonItem?.image = (UIImage(named: "2_Follows")?.withRenderingMode(.alwaysTemplate))!
+            navigationItem.rightBarButtonItem?.tintColor = .lightGray
+        }
+    }
+    
     private func updateUI() {
-        print("DJGigsTVC is SET: ArtistID: \(artist!.id!)")
         gigsList = Artist.findPerformingEvents(for: artist!, in: context)
         
         
@@ -109,3 +142,15 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
 
 
 }
+
+
+extension DeejayGigsTableViewController:  UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if ((viewController as? EventsViewController) != nil) {
+            print("back to Events")
+        }
+    }
+    
+}
+
+

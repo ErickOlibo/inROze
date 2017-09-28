@@ -77,6 +77,7 @@ class EventsViewController: FetchedResultsTableViewController {
         print("Events")
         updateUI()
         
+        // put that in a refresh part
         // Request handler for eventIds from server
         RequestHandler().fetchEventIDsFromServer()
         
@@ -85,11 +86,12 @@ class EventsViewController: FetchedResultsTableViewController {
     private func updateUI() {
         // Execute the FetchRequest
         do {
+            print("fetchResultsController perform fetch")
             try self.fetchResultsController.performFetch()
+            self.tableView.reloadData()
         } catch {
             print("Error in performFetch - EventVC - updateUI()")
-            //let fetchError = error as NSError
-            //print("fethcError: \(fetchError) | fetchError.userInfo: \(fetchError.userInfo)")
+
         }
     }
 

@@ -67,6 +67,7 @@ public class Artist: NSManagedObject
             let match = try context.fetch(request)
             if match.count > 0 {
                 assert(match.count == 1, "findArtistWithID -- database inconsistency")
+                //print("BEFORE -> SET Is FOLLOW: current Status Core Data: \(match[0].isFollowed)")
                 match[0].isFollowed = !match[0].isFollowed
                 
                 // save context here
@@ -78,6 +79,7 @@ public class Artist: NSManagedObject
                 }
                 // print list
                 //printListOfFollows(in: context)
+                //print("AFTER -> SET Is FOLLOW: current Status Core Data: \(match[0].isFollowed)")
                 return match[0].isFollowed
                 
             }
@@ -115,11 +117,11 @@ public class Artist: NSManagedObject
         request.predicate = NSPredicate(format: "ANY performers.id == %@", artist.id!)
         do {
             let match = try context.fetch(request)
-            print("match for [findPerformingEvents]: \(match.count)")
+            //print("match for [findPerformingEvents]: \(match.count)")
             if match.count > 0 {
-                for event in match {
-                    print("Date: [\(event.startTime!)] -> Name: [\(event.name!)] -> Location: [\(event.location!.name!)]")
-                }
+//                for event in match {
+//                    print("Date: [\(event.startTime!)] -> Name: [\(event.name!)] -> Location: [\(event.location!.name!)]")
+//                }
                 return match
             }
         } catch {
