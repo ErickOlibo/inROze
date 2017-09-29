@@ -7,25 +7,26 @@
 //
 
 import UIKit
+import CoreData
 
 class DeejayGigsTableViewController: FetchedResultsTableViewController {
     
     // Core Data model container and context
-    private let context = AppDelegate.viewContext
-    private let container = AppDelegate.persistentContainer
+    var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    
     
     
     // properties
     let followedRightButton = UIBarButtonItem()
     let deejayGigCell = "Deejay Gig Cell"
     var artist: Artist? { didSet { updateUI() } }
-    private var currentFollowState = false
-    
+
+    //private var currentFollowState = false
     private var gigsList: [Event]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("DeejayGigsTableViewController")
         // navigation bar see Extension below
         navigationController?.delegate = self
         self.navigationController?.navigationBar.tintColor = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
@@ -34,24 +35,43 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: (UIImage(named: "2_Follows")?.withRenderingMode(.alwaysTemplate))!, style: .plain, target: self, action: #selector(pressedFollowed))
-        currentFollowState = artist!.isFollowed
+        //currentFollowState = artist!.isFollowed
     }
 
     @objc private func pressedFollowed() {
-        let currentState = Artist.setOppositeIsFollowed(for: artist!.id!, in: context)
-        currentFollowState = currentState
-        updateFollowedButton()
+        if let context = container?.viewContext {
+            context.perform {
+                if let artistState = Artist.currentIsFollowedState(for: self.artist!.id!, in: context) {
+                    self.artist!.isFollowed = !artistState
+                    self.updateFollowedButton()
+                    self.changeState()
+                }
+            }
+        } 
+    }
+    
+    private func changeState() {
+        // change state of isFollowed
+        container?.performBackgroundTask{ context in
+            let success = Artist.changeIsFollowed(for: self.artist!.id!, in: context)
+            if (success) {
+                print("[DeejayGigsTableViewController in pressedFollowed] - isFollowed CHANGED")
+            } else {
+                print("[pressedFollowed] - FAILED")
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         // set the status and color of rightButton
         updateFollowedButton()
     }
     
     
     private func updateFollowedButton() {
-        if (currentFollowState) {
+        if (artist!.isFollowed) {
             navigationItem.rightBarButtonItem?.image = (UIImage(named: "2_FollowsFilled")?.withRenderingMode(.alwaysTemplate))!
             navigationItem.rightBarButtonItem?.tintColor = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
         } else {
@@ -61,8 +81,15 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     }
     
     private func updateUI() {
-        gigsList = Artist.findPerformingEvents(for: artist!, in: context)
-        
+        print("Artist was set")
+        if let context = container?.viewContext {
+            context.perform {
+                self.gigsList = Artist.findPerformingEvents(for: self.artist!, in: context)
+                if let currentState = Artist.currentIsFollowedState(for: self.artist!.id!, in: context) {
+                    self.artist!.isFollowed = currentState
+                }
+            }
+        }
         
     }
 

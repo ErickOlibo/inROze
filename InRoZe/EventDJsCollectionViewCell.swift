@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
 class EventDJsCollectionViewCell: UICollectionViewCell
 {
     // Core Data model container and context
-    private let context = AppDelegate.viewContext
-    private let container = AppDelegate.persistentContainer
+    var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+
     
     // get full artist for this cell
     var thisDJ: Artist? { didSet { updateUI() } }
@@ -23,7 +24,7 @@ class EventDJsCollectionViewCell: UICollectionViewCell
     let moreGigString = " more gig"
     let noGigString = "no other gig"
     let blankString = ""
-    private var currentFollowState = false
+    //private var currentFollowState = false
 
     // Outlets for Cell UI
     @IBOutlet weak var textDisplayBg: UIView! {
@@ -68,15 +69,42 @@ class EventDJsCollectionViewCell: UICollectionViewCell
     
     
     @IBAction func followDJButton(_ sender: UIButton) {
-        let currentState = Artist.setOppositeIsFollowed(for: thisDJ!.id!, in: context)
-        currentFollowState = currentState
-        setIsFollowButton()
-        updateCellColorforFollowed()
-
+        if let context = container?.viewContext {
+            context.perform {
+                if let artistState = Artist.currentIsFollowedState(for: self.thisDJ!.id!, in: context) {
+                    self.thisDJ!.isFollowed = !artistState
+                    //self.currentFollowState = !artistState
+                    self.setIsFollowButton()
+                    self.updateCellColorforFollowed()
+                    self.changeState()
+                }
+            }
+        }
     }
     
+    
+    private func changeState() {
+        // change state of isFollowed
+        container?.performBackgroundTask{ context in
+            let success = Artist.changeIsFollowed(for: self.thisDJ!.id!, in: context)
+            if (success) {
+                print("[EventDJsCollectionViewCell in followDJButton] - isFollowed CHANGED")
+            } else {
+                print("[followDJButton] - FAILED")
+            }
+        }
+    }
+    
+    
     private func updateUI() {
-        currentFollowState = thisDJ!.isFollowed
+        if let context = container?.viewContext {
+            context.perform {
+                if let currentState = Artist.currentIsFollowedState(for: self.thisDJ!.id!, in: context) {
+                    //self.currentFollowState = currentState
+                    self.thisDJ!.isFollowed = currentState // might be redundant
+                }
+            }
+        }
         firstLetter.text = String((thisDJ!.name!.uppercased()).characters.first!)
         djName.text = thisDJ!.name!.uppercased()
         setIsFollowButton()
@@ -85,7 +113,7 @@ class EventDJsCollectionViewCell: UICollectionViewCell
     
     private func setIsFollowButton() {
         var followImg = UIImage()
-        if (currentFollowState) {
+        if (thisDJ!.isFollowed) {
             followImg = (UIImage(named: "2_FollowsFilled")?.withRenderingMode(.alwaysTemplate))!
             followDJBottonView.setImage(followImg, for: .normal)
             followDJBottonView.tintColor = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
@@ -99,7 +127,7 @@ class EventDJsCollectionViewCell: UICollectionViewCell
     private func updateCellColorforFollowed() {
         let djInitial = String((thisDJ!.name!.uppercased()).characters.first!)
         let thisDJname = thisDJ!.name!.uppercased()
-        if (currentFollowState) {
+        if (thisDJ!.isFollowed) {
             textDisplayBg.layer.borderColor = followedColor.cgColor
             outerCircle.layer.borderColor = followedColor.cgColor
             innerCircle.layer.borderColor = followedColor.cgColor

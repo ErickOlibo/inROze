@@ -8,11 +8,10 @@
 
 import UIKit
 
+
 class EventTableViewCell: UITableViewCell
 {
-    // Core dat Model container and context
-    let context = AppDelegate.viewContext
-    let container = AppDelegate.persistentContainer
+
 
     let collectionDJCell = "Collection DJ Cell"
     // outlets to the UI components in the custom UITableViewCell

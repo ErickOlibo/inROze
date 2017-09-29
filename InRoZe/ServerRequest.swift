@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import CoreData
 
 /* This class sync the log in status (true/false) of the user
@@ -19,8 +20,8 @@ public class ServerRequest
 {
     
     // Core Data model container and context
-    private let context = AppDelegate.viewContext
-    private let container = AppDelegate.persistentContainer
+    var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    
     
     
     public func setUserLoggedIn(to isLogged: Bool, parameters: String, urlToServer: String) {
@@ -31,14 +32,14 @@ public class ServerRequest
     // request to Server for latest updated list of EventIDs
     public func getEventsIDsCurrentList(parameter: String, urlToServer: String) {
         
-            let _ = taskForURLSession(postParams: parameter, url: urlToServer, isEventFetch: true)
+        let _ = taskForURLSession(postParams: parameter, url: urlToServer, isEventFetch: true)
     }
     
     
     // when call to the server, conditional call must be depending on the Country/ City
-    // ADD the city selector 
+    // ADD the city selector
     private func taskForURLSession(postParams: String, url: String, isEventFetch: Bool) {
-        print("[ServerRequest] - taskForURLSession FUNC | conditional call to server")
+        //print("[ServerRequest] - taskForURLSession FUNC | conditional call to server")
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
         request.httpBody = postParams.data(using: .utf8)
@@ -56,11 +57,11 @@ public class ServerRequest
                     if (isEventFetch) {
                         // check if there is no error
                         if let errorType = json[DBLabels.errorType] as! Bool?, !errorType {
-                            print("[ServerRequest] - There is an error from server response: \(errorType)")
+                            //print("[ServerRequest] - There is an error from server response: \(errorType)")
                             
                             if (json[DBLabels.rows]! as! Int > 0) {
                                 self.result = json
-                                 //print(json)
+                                //print(json)
                                 UserDefaults().setDateNow(for: RequestDate.toServer)
                             }
                             
@@ -79,7 +80,6 @@ public class ServerRequest
     var result: [String : Any]? {
         didSet {
             updateDatabase(with: result!)
-            //updateArtistsDatabase(with: result!)
         }
     }
     
@@ -99,19 +99,19 @@ public class ServerRequest
                 }
             }
         }
-        print("DONE updateArtistsDatabase")
     }
     
     private func updateDatabase(with eventIDs: [String : Any]) {
         //print("[ServerRequest] - Starting updateDatabase from Server")
-        container.performBackgroundTask { context in
+        container?.performBackgroundTask { context in
+            print("[ServerRequest - updateDatabase] - Which Thread is Context at: \(Thread.current)")
             for (key, value) in eventIDs {
                 if (key == DBLabels.eventsToPlaces),
                     let events = value as? [Any],
                     let _ = events.first as? [String : String] {
                     for event in events {
                         if let eventDict = event as? [String : String] {
-
+                            
                             do {
                                 _ = try Event.findOrInsertEventID(matching: eventDict, in: context)
                             } catch {
@@ -131,13 +131,12 @@ public class ServerRequest
                         try context.save()
                         UserDefaults().setDateNow(for: RequestDate.toServer)
                         
-                        print("[ServerRequest] -  UpdateDatabase DONE and SAVED")
                         RequestHandler().isDoneUpdatingServeRequest = true
                         
                     } catch {
                         print("[ServerRequest] - Error trying to save in CoreData")
                     }
-                    self.printDatabaseStatistics()
+                    //self.printDatabaseStatistics()
                 }
             }
         }
@@ -156,75 +155,67 @@ public class ServerRequest
                     } catch {
                         print("[ServerRequest] - insertOrUpdateArtistsOfEvents Error trying to update")
                     }
-                    
                 }
             }
         }
-        
-        
     }
     
     
     
     private func printDatabaseStatistics() {
         
-        let context = container.viewContext
-        // THREAD SAFETY
-        // context.perform makes sure the block is executed on the right thread for the context
-        context.perform {
-            // Check if main thread
-            if Thread.isMainThread {
-                print("[printDatabaseStatistics] - on main thread")
-            } else {
-                print("[printDatabaseStatistics] - off main thread")
-            }
-            let request: NSFetchRequest<Event> = Event.fetchRequest()
-            if let eventsCount = (try? context.fetch(request))?.count {
-                print("[printDatabaseStatistics] - \(eventsCount) events IDs")
-            }
-            // Better way to count number of element in entity (CoreData)
-            if let placesCount = try? context.count(for: Place.fetchRequest()) {
-                print("[printDatabaseStatistics] - \(placesCount) Places IDs")
-            }
-            
-            // Better way to count number of element in entity (CoreData)
-            if let artistsCount = try? context.count(for: Artist.fetchRequest()) {
-                print("[printDatabaseStatistics] - \(artistsCount) Artists")
-            }
-            
-            // list events with artists > 0
-            request.predicate = NSPredicate(format: "performers.@count > 0")
-            do {
-                let matches = try context.fetch(request)
-                if matches.count > 0 {
-                    print("Number of Events with Djs: \(matches.count)")
-//                    for match in matches {
-//                        if let eventName = match.name {
-//                            print("EventID: [\(match.id!)] - Count: [\(match.performers!.count)] - Name: [\(eventName)]")
-//                        }
-//                    }
+        if let context = container?.viewContext {
+            // THREAD SAFETY
+            // context.perform makes sure the block is executed on the right thread for the context
+            context.perform {
+                // Check if main thread
+                if Thread.isMainThread {
+                    print("[printDatabaseStatistics] - on main thread")
+                } else {
+                    print("[printDatabaseStatistics] - off main thread")
                 }
-            } catch {
-                print("[printDatabaseStatistics] there was an error")
-            }
-            
-            // list of artist that have gigs
-            let req: NSFetchRequest<Artist> = Artist.fetchRequest()
-            req.predicate = NSPredicate(format: "gigs.@count > 0")
-            do {
-                let matches = try context.fetch(req)
-                if matches.count > 0 {
-                    print("Number of Artists with gigs: \(matches.count)")
-//                    for match in matches {
-//                        print("ArtistID: [\(match.id!)] - Count: [\(match.gigs!.count)] - Name: [\(match.name!)]")
-//                    }
+                let request: NSFetchRequest<Event> = Event.fetchRequest()
+                if let eventsCount = (try? context.fetch(request))?.count {
+                    print("[printDatabaseStatistics] - \(eventsCount) events IDs")
                 }
-            } catch {
+                // Better way to count number of element in entity (CoreData)
+                if let placesCount = try? context.count(for: Place.fetchRequest()) {
+                    print("[printDatabaseStatistics] - \(placesCount) Places IDs")
+                }
                 
+                // Better way to count number of element in entity (CoreData)
+                if let artistsCount = try? context.count(for: Artist.fetchRequest()) {
+                    print("[printDatabaseStatistics] - \(artistsCount) Artists")
+                }
+                
+                // list events with artists > 0
+                request.predicate = NSPredicate(format: "performers.@count > 0")
+                do {
+                    let matches = try context.fetch(request)
+                    if matches.count > 0 {
+                        print("Number of Events with Djs: \(matches.count)")
+                        
+                    }
+                } catch {
+                    print("[printDatabaseStatistics] there was an error")
+                }
+                
+                // list of artist that have gigs
+                let req: NSFetchRequest<Artist> = Artist.fetchRequest()
+                req.predicate = NSPredicate(format: "gigs.@count > 0")
+                do {
+                    let matches = try context.fetch(req)
+                    if matches.count > 0 {
+                        print("Number of Artists with gigs: \(matches.count)")
+                        
+                    }
+                } catch {
+                    
+                }
             }
         }
     }
-
+    
 }
 
 

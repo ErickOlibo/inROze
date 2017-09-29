@@ -65,7 +65,6 @@ public class Event: NSManagedObject
                 assert(match.count == 1, "addArtistsListToEvent -- database inconsistency")
                 let event = match[0]
                 event.performers = artsNSSet
-                //print("[\(id)] - event.performers: [\(event.performers!)]")
                 return true
             }
         } catch {
@@ -123,14 +122,7 @@ public class Event: NSManagedObject
                     if let name = eventInfo[FBEvent.name] as? String,
                         let sTime = eventInfo[FBEvent.startTime] as? String,
                         let uTime = eventInfo[FBEvent.updatedTime] as? String {
-                        
                         event.name = name
-                        
-//                        if let descript = uniqID["description"] as? String {
-//                            let pDesc = descript.utf16
-//                            print("************************ DataToString: \(pDesc)")
-//                        }
-                        
                         if let eventText = eventInfo[FBEvent.description] as? String {
                             event.text = eventText
                         }
@@ -241,7 +233,6 @@ public class Event: NSManagedObject
         do {
             let events = try context.fetch(request)
             if events.count > 0 {
-                print("Number of Event to DELETE: \(events.count)")
                 for event in events {
                     context.delete(event)
                 }

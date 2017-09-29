@@ -43,13 +43,13 @@ extension UserDefaults {
     public func setDateNow(for requestDate: String) {
         let dateNow = NSDate()
         set(dateNow, forKey: requestDate)
-        print("[UserDefaultsExtension] - SetDateNow for: \(requestDate)")
+        //print("[UserDefaultsExtension] - SetDateNow for: \(requestDate)")
         synchronize()
     }
     
     public func isDateSet(for requestDate: String) -> Bool {
         if (object(forKey: requestDate) != nil) {
-            print("[UserDefaultsExtension] - isDateSet: TRUE - date: \(object(forKey: requestDate) as! Date)")
+            //print("[UserDefaultsExtension] - isDateSet: TRUE - date: \(object(forKey: requestDate) as! Date)")
             return true
         } else {
             print("[UserDefaultsExtension] - isDateSet: FALSE")

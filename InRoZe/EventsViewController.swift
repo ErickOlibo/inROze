@@ -29,11 +29,11 @@ class EventsViewController: FetchedResultsTableViewController {
     
 
     // Core dat Model container and context
-    let context = AppDelegate.viewContext
-    let container = AppDelegate.persistentContainer
+    var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    let mainContext = AppDelegate.viewContext
     
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
-        //let context = AppDelegate.viewContext
+        
         // Initilaze Fetch Request
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         let nowTime = NSDate()
@@ -44,7 +44,9 @@ class EventsViewController: FetchedResultsTableViewController {
         //request.predicate = NSPredicate(format: "startTime < %@", nowTime)
         
         // Initialze Fetched Results Controller
-        let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.context, sectionNameKeyPath: nil, cacheName: nil)
+
+        
+        let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
         
         // Configure Fetch Results Controller
         fetchedRC.delegate = self
@@ -54,7 +56,6 @@ class EventsViewController: FetchedResultsTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
 
         // Estimated rowHeight
         let viewSizeWidthFromPhone: CGFloat = self.view.bounds.width
@@ -80,7 +81,7 @@ class EventsViewController: FetchedResultsTableViewController {
         // Execute the FetchRequest
         do {
             try self.fetchResultsController.performFetch()
-            //self.tableView.reloadData()
+            self.tableView.reloadData()
             
         } catch {
             print("Error in performFetch - EventVC - updateUI()")

@@ -59,36 +59,47 @@ public class Artist: NSManagedObject
         return nil
     }
     
-    // set Artist to followed
-    class func setOppositeIsFollowed(for artistID: String , in context: NSManagedObjectContext) -> Bool {
+    // new idea on setIsFollowed
+    class func currentIsFollowedState(for artistID: String, in context: NSManagedObjectContext) -> Bool? {
         let request: NSFetchRequest<Artist> = Artist.fetchRequest()
         request.predicate = NSPredicate(format: "id = %@", artistID)
         do {
             let match = try context.fetch(request)
             if match.count > 0 {
                 assert(match.count == 1, "findArtistWithID -- database inconsistency")
-                print("BEFORE -> SET Is FOLLOW: current Status Core Data: \(match[0].isFollowed)")
-                match[0].isFollowed = !match[0].isFollowed
-                
-                // save context here
-                do {
-                    print("[setIsFollowed] - Which Thread is Context at: \(Thread.current)")
-                    try context.save()
-                } catch {
-                    print("[setIsFollowed] - Error while Saving Context: \(error)")
-                }
-                // print list
-                //printListOfFollows(in: context)
-                print("AFTER SAVE) DJ [\(match[0].name!)] || current Status FROM Core Data: \(match[0].isFollowed)")
                 return match[0].isFollowed
-                
             }
         } catch {
-            print("[setIsFollowed] - Error while setting isFollowed Bool: \(error)")
+            print("[currentIsFollowedState] - Error while Saving Context: \(error)")
         }
-        
+        return nil
+    }
+    
+    // new idea changeIsFollowed
+    class func changeIsFollowed(for artistID: String, in context: NSManagedObjectContext) -> Bool {
+        let request: NSFetchRequest<Artist> = Artist.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", artistID)
+        do {
+            let match = try context.fetch(request)
+            if match.count > 0 {
+                assert(match.count == 1, "findArtistWithID -- database inconsistency")
+                match[0].isFollowed = !match[0].isFollowed
+                
+                // save context
+                do {
+                    try context.save()
+                } catch {
+                    print("[changeIsFollowed] - Error while Saving Context: \(error)")
+                }
+                return true
+            }
+        } catch {
+            print("[changeIsFollowed] - Error while Saving Context: \(error)")
+        }
         return false
     }
+    
+
     
     class func printListOfFollows(in context: NSManagedObjectContext) {
         var text = "List of DJS: "
@@ -119,9 +130,6 @@ public class Artist: NSManagedObject
             let match = try context.fetch(request)
             //print("match for [findPerformingEvents]: \(match.count)")
             if match.count > 0 {
-//                for event in match {
-//                    print("Date: [\(event.startTime!)] -> Name: [\(event.name!)] -> Location: [\(event.location!.name!)]")
-//                }
                 return match
             }
         } catch {

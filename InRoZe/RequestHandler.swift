@@ -9,26 +9,16 @@
 import Foundation
 import FacebookCore
 import FBSDKCoreKit
-import CoreData
 
-
-/* Handles all the request calls to the Facebook Graph API
- * and the InRoZe server API. The frequency of a call to a API
- * is control here via the userDefaultsExtension file
- */
 
 
 public class RequestHandler
 {
     
-    // Core Data model container and context
-    private let context = AppDelegate.viewContext
-    private let container = AppDelegate.persistentContainer
-    
+
     // Properties listeners
     var isDoneUpdatingServeRequest = false {
         didSet {
-            //print("[RequestHandler] - isDoneUpdatingServeRequest: \(isDoneUpdatingServeRequest)")
             fetchEventsInfoFromFacebook()
         }
     }
@@ -47,12 +37,10 @@ public class RequestHandler
                 let params = "id=\(userID)&cityCode=\(userDefault.currentCityCode)&countryCode=\(userDefault.currentCountryCode)"
                 let request = ServerRequest()
                 request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
-                //print("[RequestHandler] - fetchEventsIDFromServer: \(params)")
                 
             }
         } else {
             // Go straight to Facebook Request
-            print("[RequestHandler] - No need Server Request - Go To Facebook Request")
             fetchEventsInfoFromFacebook()
         }
         
@@ -73,16 +61,6 @@ public class RequestHandler
                 let parameters = "id=\(id)&name=\(name)&email=\(email!)&gender=\(gender!)"
                 let serverRequest = ServerRequest()
                 serverRequest.setUserLoggedIn(to: true, parameters: parameters, urlToServer: UrlFor.logInOut)
-                
-                
-//                if let currentUser = UserProfile.current {
-//                    print("[RequestHandler] - current user got: \(currentUser)")
-//                } else {
-//                    print("[RequestHandler] - Current user is NIL")
-//                    UserProfile.loadCurrent{ profile in
-//                        print("[currentUser] - \(profile)")
-//                    }
-//                }
             }
         }
     }
@@ -93,7 +71,6 @@ public class RequestHandler
     
     // Call FB Graph API and fetch user info
     public func requestUserInfo() {
-        //print("Inside request User")
         let params = [FBUser.email, FBUser.name, FBUser.id, FBUser.gender, FBUser.cover].joined(separator: ", ")
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields" : params])
             .start(completionHandler:  { (connection, result, error) in
@@ -114,7 +91,6 @@ public class RequestHandler
             FacebookRequest().collectEventIDsFromCoreData()
             
         } else {
-            print("[RequestHandler] - No need Fetch Facebook Request")
             // create notification center
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
         }

@@ -20,12 +20,11 @@ import FBSDKCoreKit
 public class FacebookRequest
 {
     // Core Data model container and context
-    private let context = AppDelegate.viewContext
-    private let container = AppDelegate.persistentContainer
+    var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
 
     // Array of EventIDs from the database with
-    // batchsize to limit facebook load
-    private let batchSize = 20
+    // batchsize eventIds limit per request (facebook Max IDs = 50)
+    private let batchSize = 40
 
     // Dictionary to merge results from FacebookRequest
     private var mergedResults = [String : Any]()
@@ -80,17 +79,16 @@ public class FacebookRequest
                     }
                     
                 } else {
-                    print("[recursiveGraphRequest] - there an error")
+                    print("[recursiveGraphRequest] - there an error -> FACEBOOK Request: \(String(describing: error))")
                 }
             })
     }
     
     // insert response from FaceBook events into CoreData
     private func updateEventDatabase(with result: [String : Any]) {
-        //print(result)
-        //let context = container.viewContext
-        container.performBackgroundTask { context in 
+        container?.performBackgroundTask { context in 
             let request: NSFetchRequest<Event> = Event.fetchRequest()
+            print("[updateEventDatabase] - Which Thread is Context at: \(Thread.current)")
             for resID in result {
                 do {
                     _ = try Event.updateInfoForEvent(matching: resID, in: context, with: request)
@@ -105,10 +103,10 @@ public class FacebookRequest
                 _ = Event.deleteEventsEndedBeforeNow(in: context, with: request)
                 
                 do {
-                    print("[updateEventDatabase] -  BEFORE try to save context")
-                    print("[updateEventDatabase] - Which Thread is Context at: \(Thread.current)")
+                    //print("[updateEventDatabase] -  BEFORE try to save context")
+                    print("[FB request - updateEventDatabase] - Which Thread is Context at: \(Thread.current)")
                     try context.save()
-                    print("[updateEventDatabase] -  AFTER SAVED in Context!")
+                    //print("[updateEventDatabase] -  AFTER SAVED in Context!")
                     
                     
                     // update the date to FacebbokRequest
@@ -125,18 +123,19 @@ public class FacebookRequest
     }
     
     public func collectEventIDsFromCoreData() {
-        let context = container.viewContext
-        context.perform {
-            let request: NSFetchRequest<Event> = Event.fetchRequest()
-            
-            if let events = try? context.fetch(request) {
-                var eventIDsArr = [String]()
-                for event in events as [Event] {
-                    if let eventStr = event.id {
-                        eventIDsArr.append(eventStr)
+        if let context = container?.viewContext {
+            context.perform {
+                let request: NSFetchRequest<Event> = Event.fetchRequest()
+                
+                if let events = try? context.fetch(request) {
+                    var eventIDsArr = [String]()
+                    for event in events as [Event] {
+                        if let eventStr = event.id {
+                            eventIDsArr.append(eventStr)
+                        }
                     }
+                    self.eventIDsArray = eventIDsArr
                 }
-                self.eventIDsArray = eventIDsArr
             }
         }
     }
