@@ -27,45 +27,14 @@ class EventDJsCollectionViewCell: UICollectionViewCell
     //private var currentFollowState = false
 
     // Outlets for Cell UI
-    @IBOutlet weak var textDisplayBg: UIView! {
-        didSet {
-            textDisplayBg.layer.masksToBounds = true
-            textDisplayBg.layer.borderWidth = 2
-            textDisplayBg.layer.cornerRadius = 10
-        }
-    }
-    
-    @IBOutlet weak var outerCircle: UIView! {
-        didSet {
-            outerCircle.layer.borderWidth = 6
-            outerCircle.layer.cornerRadius = outerCircle.bounds.width / 2
-        }
-    }
-    
-    @IBOutlet weak var innerCircle: UIView! {
-        didSet {
-            innerCircle.layer.borderWidth = 2
-            innerCircle.layer.cornerRadius = innerCircle.bounds.width / 2
-        }
-    }
-    
-    @IBOutlet weak var textDisplayGigs: UIView! {
-        didSet {
-            textDisplayGigs.layer.borderWidth = 1
-        }
-    }
-    
-    @IBOutlet weak var followDJBottonView: UIButton! {
-        didSet {
-            followDJBottonView.layer.borderWidth = 1
-        }
-    }
-    
-    
+    @IBOutlet weak var textDisplayBg: UIView!
+    @IBOutlet weak var outerCircle: UIView!
+    @IBOutlet weak var innerCircle: UIView!
+    @IBOutlet weak var textDisplayGigs: UIView!
+    @IBOutlet weak var followDJBottonView: UIButton!
     @IBOutlet weak var firstLetter: UILabel!
     @IBOutlet weak var djName: UILabel!
     @IBOutlet weak var moreGigs: UILabel!
-    
     
     
     @IBAction func followDJButton(_ sender: UIButton) {
@@ -81,15 +50,13 @@ class EventDJsCollectionViewCell: UICollectionViewCell
             }
         }
     }
-    
+
     
     private func changeState() {
         // change state of isFollowed
         container?.performBackgroundTask{ context in
             let success = Artist.changeIsFollowed(for: self.thisDJ!.id!, in: context)
-            if (success) {
-                print("[EventDJsCollectionViewCell in followDJButton] - isFollowed CHANGED")
-            } else {
+            if (!success) {
                 print("[followDJButton] - FAILED")
             }
         }
@@ -100,8 +67,7 @@ class EventDJsCollectionViewCell: UICollectionViewCell
         if let context = container?.viewContext {
             context.perform {
                 if let currentState = Artist.currentIsFollowedState(for: self.thisDJ!.id!, in: context) {
-                    //self.currentFollowState = currentState
-                    self.thisDJ!.isFollowed = currentState // might be redundant
+                    self.thisDJ!.isFollowed = currentState
                 }
             }
         }

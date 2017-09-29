@@ -12,38 +12,17 @@ import UIKit
 class EventTableViewCell: UITableViewCell
 {
 
+    
+    var event: Event?
 
     let collectionDJCell = "Collection DJ Cell"
-    // outlets to the UI components in the custom UITableViewCell
-    @IBOutlet weak var locationCover: UIImageView! {
-        didSet {
-            locationCover.layer.masksToBounds = true
-            locationCover.layer.borderWidth = 0.5
-            locationCover.layer.borderColor = UIColor.black.cgColor
-            locationCover.layer.cornerRadius = locationCover.bounds.width / 2
-        }
-    }
-    @IBOutlet weak var eventCover: UIImageView! {
-        didSet {
-            eventCover.layer.masksToBounds = true
-            eventCover.layer.borderWidth = 0.5
-            eventCover.layer.borderColor = UIColor.black.cgColor
-            eventCover.layer.cornerRadius = 10
-        }
-    }
     
+    // outlets to the UI components in the custom UITableViewCell
+    @IBOutlet weak var locationCover: UIImageView!
+    @IBOutlet weak var eventCover: UIImageView!
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventTimeLocation: UILabel!
-    
-    // public API of this TableViewCell subclass
-    var event: Event? // { didSet { updateUI() } }
-    
-    // Properties for the CollectionCell
-    @IBOutlet weak var collectionView: UICollectionView! {
-        didSet {
-            //print("CollectionView was SET")
-        }
-    }
+    @IBOutlet weak var collectionView: UICollectionView!
     
     func setCollectionViewDataSourceDelegate<D: UICollectionViewDataSource & UICollectionViewDelegate>(_ dataSourceDelegate: D, forRow row: Int) {
         collectionView.delegate = dataSourceDelegate
@@ -52,8 +31,6 @@ class EventTableViewCell: UITableViewCell
         collectionView.reloadData()
     }
 
-    private func updateUI() {
-    }
 
 }
 
@@ -77,6 +54,16 @@ extension EventTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
         var arrayDJsGigs = [String : Artist]()
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionDJCell, for: indexPath) as! EventDJsCollectionViewCell
         
+        //set up the collection Cell for Deejay
+        cell.textDisplayBg.layer.masksToBounds = true
+        cell.textDisplayBg.layer.borderWidth = 2
+        cell.textDisplayBg.layer.cornerRadius = 10
+        cell.outerCircle.layer.borderWidth = 6
+        cell.outerCircle.layer.cornerRadius = cell.outerCircle.bounds.width / 2
+        cell.innerCircle.layer.borderWidth = 2
+        cell.innerCircle.layer.cornerRadius = cell.innerCircle.bounds.width / 2
+        cell.textDisplayGigs.layer.borderWidth = 1
+        cell.followDJBottonView.layer.borderWidth = 1
         
         if let djsSet = event?.performers, djsSet.count > 0 {
             for deejay in djsSet {

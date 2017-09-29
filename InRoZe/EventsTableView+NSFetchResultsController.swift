@@ -35,24 +35,31 @@ extension EventsViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: eventCell, for: indexPath) as! EventTableViewCell
         
-        // Configure the cell...
+        // Common set up for both cell height
         let event = fetchResultsController.object(at: indexPath)
-        
-        // sent the whole event result to the cell
         cell.event = event
-        
         cell.selectionStyle = .none
         
+        // locationCover
+        cell.locationCover.layer.masksToBounds = true
+        cell.locationCover.layer.borderWidth = 0.5
+        cell.locationCover.layer.borderColor = UIColor.black.cgColor
+        cell.locationCover.layer.cornerRadius = cell.locationCover.bounds.width / 2
         
-        // Event cover image
+        // event Cover
+        cell.eventCover.layer.masksToBounds = true
+        cell.eventCover.layer.borderWidth = 0.5
+        cell.eventCover.layer.borderColor = UIColor.black.cgColor
+        cell.eventCover.layer.cornerRadius = 10
+        
+        
+        
         cell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
             if (image != nil) {
-
                 cell.eventCover.image = image
             }
         }
         
-        // place cover image
         cell.locationCover.sd_setImage(with: URL(string: event.location!.profileURL! )) { (image, error, cacheType, imageURL) in
             if (image != nil) {
                 cell.locationCover.image = image
@@ -64,18 +71,18 @@ extension EventsViewController
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        // measure the cell height
-        let event = fetchResultsController.object(at: indexPath)
-        let performersCount = event.performers?.count ?? 0
-        if (performersCount > 0) {
-            let cellHeight = cellHeightDefault + performersCollectionCellHeight
-            return cellHeight
-        } else {
-            return cellHeightDefault
-        }
-    }
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        
+//        // measure the cell height
+//        let event = fetchResultsController.object(at: indexPath)
+//        let performersCount = event.performers?.count ?? 0
+//        if (performersCount > 0) {
+//            let cellHeight = cellHeightDefault + performersCollectionCellHeight
+//            return cellHeight
+//        } else {
+//            return cellHeightDefault
+//        }
+//    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Cell pressed at indexPath Row [\(indexPath.row)]")
