@@ -17,15 +17,16 @@ class EventsViewController: FetchedResultsTableViewController {
     
     
     // All this are from AutoLayout in the main.Storyboard
-    let spacingFromNavBar: CGFloat = 10
-    let locationCoverSize: CGFloat = 40
-    let spacingFromCover: CGFloat = 10
-    let spacingUnderCover: CGFloat = 18
-    let eventCoverTrailing: CGFloat = 18
-    let performersCollectionCellHeight: CGFloat = 70
+    let marginWidth: CGFloat = 18 * 2
+    let aboveCoverMargin: CGFloat = 60
+    let belowCoverMargin: CGFloat = 10
     let coverRatio = CGFloat(16) / 9
     let phoneSizeWidth = UIScreen.main.bounds.width
+    let djCellMargin: CGFloat = 70
+    let belowDjCellMargin: CGFloat = 10
+    
     var cellHeightDefault: CGFloat = 0
+    var cellHeightDeejays: CGFloat = 0
     
 
     // Core dat Model container and context
@@ -58,11 +59,10 @@ class EventsViewController: FetchedResultsTableViewController {
         super.viewDidLoad()
 
         // Estimated rowHeight
-        let viewSizeWidthFromPhone: CGFloat = self.view.bounds.width
-        let coverHeight = (viewSizeWidthFromPhone - 2 * eventCoverTrailing) / coverRatio
-        cellHeightDefault = spacingFromNavBar + locationCoverSize + spacingFromCover + coverHeight + spacingUnderCover
-        
-        
+        let coverHeight = (phoneSizeWidth - marginWidth) / coverRatio
+        cellHeightDefault = aboveCoverMargin + coverHeight + belowCoverMargin
+        cellHeightDeejays = aboveCoverMargin + coverHeight + djCellMargin + belowDjCellMargin
+        print("DJ: \(cellHeightDeejays) - Default: \(cellHeightDefault)")
     }
 
     override func viewWillAppear(_ animated: Bool) {

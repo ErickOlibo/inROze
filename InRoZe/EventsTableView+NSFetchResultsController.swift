@@ -34,7 +34,7 @@ extension EventsViewController
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: eventCell, for: indexPath) as! EventTableViewCell
-        
+        cell.needsUpdateConstraints()
         // Common set up for both cell height
         let event = fetchResultsController.object(at: indexPath)
         cell.event = event
@@ -71,18 +71,19 @@ extension EventsViewController
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        
-//        // measure the cell height
-//        let event = fetchResultsController.object(at: indexPath)
-//        let performersCount = event.performers?.count ?? 0
-//        if (performersCount > 0) {
-//            let cellHeight = cellHeightDefault + performersCollectionCellHeight
-//            return cellHeight
-//        } else {
-//            return cellHeightDefault
-//        }
-//    }
+ 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        // measure the cell height
+        let event = fetchResultsController.object(at: indexPath)
+        let performersCount = event.performers?.count ?? 0
+        if (performersCount > 0) {
+            
+            return cellHeightDeejays
+        } else {
+            return cellHeightDefault
+        }
+    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Cell pressed at indexPath Row [\(indexPath.row)]")
