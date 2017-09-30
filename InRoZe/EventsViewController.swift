@@ -59,6 +59,12 @@ class EventsViewController: FetchedResultsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // the NIB to be loaded
+        let nibNameDefault = UINib(nibName: "EventTVDefaultCell", bundle: nil)
+        tableView.register(nibNameDefault, forCellReuseIdentifier: "Event Default Cell")
+        let nibNameDeejay = UINib(nibName: "EventTVDeejayCell", bundle: nil)
+        tableView.register(nibNameDeejay, forCellReuseIdentifier: "Event Deejay Cell")
+        
         // Estimated rowHeight
         let coverHeight = (phoneSizeWidth - marginWidth) / coverRatio
         cellHeightDefault = aboveCoverMargin + coverHeight + belowCoverMargin

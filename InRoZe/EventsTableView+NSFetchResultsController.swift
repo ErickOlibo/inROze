@@ -28,48 +28,84 @@ extension EventsViewController
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let tableViewCell = cell as? EventTableViewCell else { return }
+        //guard let tableViewCell = cell as? EventTableViewCell else { return }
+        guard let tableViewCell = cell as? EventTVDeejayCell else { return }
         tableViewCell.setCollectionViewDataSourceDelegate(tableViewCell.self, forRow: indexPath.row)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: eventCell, for: indexPath) as! EventTableViewCell
-        cell.needsUpdateConstraints()
-        // Common set up for both cell height
+        
         let event = fetchResultsController.object(at: indexPath)
+        // conditionel cell
+        let performersCount = event.performers?.count ?? 0
+        if (performersCount > 0) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Event Deejay Cell", for: indexPath) as! EventTVDeejayCell
+            cell.event = event
+            cell.selectionStyle = .none
+            cell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
+                if (image != nil) { cell.eventCover.image = image } }
+            
+            cell.locationCover.sd_setImage(with: URL(string: event.location!.profileURL! )) { (image, error, cacheType, imageURL) in
+                if (image != nil) { cell.locationCover.image = image } }
+            
+            cell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
+            cell.eventTitle.text = event.name
+            return cell
+            
+            
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Event Default Cell", for: indexPath) as! EventTVDefaultCell
+            cell.selectionStyle = .none
+            cell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
+                if (image != nil) { cell.eventCover.image = image } }
+            
+            cell.locationCover.sd_setImage(with: URL(string: event.location!.profileURL! )) { (image, error, cacheType, imageURL) in
+                if (image != nil) { cell.locationCover.image = image } }
+            
+            cell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
+            cell.eventTitle.text = event.name
+            return cell
+            
+        }
+        
+        
+        
+        //cell.needsUpdateConstraints()
+        // Common set up for both cell height
+        
 
-        cell.event = event
-        cell.selectionStyle = .none
+//        cell.event = event
+//        cell.selectionStyle = .none
         
-        // locationCover
-        cell.locationCover.layer.masksToBounds = true
-        cell.locationCover.layer.borderWidth = 0.5
-        cell.locationCover.layer.borderColor = UIColor.black.cgColor
-        cell.locationCover.layer.cornerRadius = cell.locationCover.bounds.width / 2
+//        // locationCover
+//        cell.locationCover.layer.masksToBounds = true
+//        cell.locationCover.layer.borderWidth = 0.5
+//        cell.locationCover.layer.borderColor = UIColor.black.cgColor
+//        cell.locationCover.layer.cornerRadius = cell.locationCover.bounds.width / 2
+//        
+//        // event Cover
+//        cell.eventCover.layer.masksToBounds = true
+//        cell.eventCover.layer.borderWidth = 0.5
+//        cell.eventCover.layer.borderColor = UIColor.black.cgColor
+//        cell.eventCover.layer.cornerRadius = 10
         
-        // event Cover
-        cell.eventCover.layer.masksToBounds = true
-        cell.eventCover.layer.borderWidth = 0.5
-        cell.eventCover.layer.borderColor = UIColor.black.cgColor
-        cell.eventCover.layer.cornerRadius = 10
         
         
-        
-        cell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
-            if (image != nil) {
-                cell.eventCover.image = image
-            }
-        }
-        
-        cell.locationCover.sd_setImage(with: URL(string: event.location!.profileURL! )) { (image, error, cacheType, imageURL) in
-            if (image != nil) {
-                cell.locationCover.image = image
-            }
-        }
-        
-        cell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
-        cell.eventTitle.text = event.name
-        return cell
+//        cell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
+//            if (image != nil) {
+//                cell.eventCover.image = image
+//            }
+//        }
+//        
+//        cell.locationCover.sd_setImage(with: URL(string: event.location!.profileURL! )) { (image, error, cacheType, imageURL) in
+//            if (image != nil) {
+//                cell.locationCover.image = image
+//            }
+//        }
+//        
+//        cell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
+//        cell.eventTitle.text = event.name
+//        return cell
     }
     
  

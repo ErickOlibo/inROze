@@ -33,6 +33,9 @@ class EventTVDeejayCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        let nibNameCollectionDeejay = UINib(nibName: "CollectionDeejayCell", bundle: nil)
+        collectionView.register(nibNameCollectionDeejay, forCellWithReuseIdentifier: "Collection Deejay Cell")
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
