@@ -33,10 +33,17 @@
 		A77676141F26D49E00F1FA52 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676131F26D49E00F1FA52 /* UIColorExtensions.swift */; };
 		A77676181F28CCE400F1FA52 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77676171F28CCE400F1FA52 /* Constants.swift */; };
 		A78979F41F3C687C00467AA6 /* FacebookKeyStringConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78979F31F3C687C00467AA6 /* FacebookKeyStringConvenience.swift */; };
+		A79349C11F7FBD1C00BC77AD /* EventTVDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79349BF1F7FBD1C00BC77AD /* EventTVDefaultCell.swift */; };
+		A79349C21F7FBD1C00BC77AD /* EventTVDefaultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79349C01F7FBD1C00BC77AD /* EventTVDefaultCell.xib */; };
+		A79349C61F7FBD8D00BC77AD /* EventTVDeejayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79349C41F7FBD8D00BC77AD /* EventTVDeejayCell.swift */; };
+		A79349C71F7FBD8D00BC77AD /* EventTVDeejayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79349C51F7FBD8D00BC77AD /* EventTVDeejayCell.xib */; };
+		A79349C91F7FCC9100BC77AD /* CustomViewConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79349C81F7FCC9100BC77AD /* CustomViewConvenience.swift */; };
 		A7A24D4C1F3A4F0000EFB82E /* ServerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */; };
 		A7A24D501F3B655E00EFB82E /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A24D4F1F3B655E00EFB82E /* Place.swift */; };
 		A7A4BECC1F4363C5000A5047 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A4BECB1F4363C5000A5047 /* UserDefaultsExtensions.swift */; };
 		A7AA5B7C1F7D593300BB2B8A /* ConvenienceFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AA5B7B1F7D593300BB2B8A /* ConvenienceFunctions.swift */; };
+		A7D1CDC51F7FEEA2003513F8 /* CollectionDeejayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D1CDC31F7FEEA2003513F8 /* CollectionDeejayCell.swift */; };
+		A7D1CDC61F7FEEA2003513F8 /* CollectionDeejayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7D1CDC41F7FEEA2003513F8 /* CollectionDeejayCell.xib */; };
 		A7D4D2A61F51913C00546341 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4D2A51F51913C00546341 /* Artist.swift */; };
 		A7E03D9B1F71D820000095BD /* UIDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E03D9A1F71D820000095BD /* UIDropDown.swift */; };
 		A7EC36651F33954600548C11 /* NSDictionary+KeyPathConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */; };
@@ -77,10 +84,17 @@
 		A77676131F26D49E00F1FA52 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		A77676171F28CCE400F1FA52 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A78979F31F3C687C00467AA6 /* FacebookKeyStringConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookKeyStringConvenience.swift; sourceTree = "<group>"; };
+		A79349BF1F7FBD1C00BC77AD /* EventTVDefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTVDefaultCell.swift; sourceTree = "<group>"; };
+		A79349C01F7FBD1C00BC77AD /* EventTVDefaultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventTVDefaultCell.xib; sourceTree = "<group>"; };
+		A79349C41F7FBD8D00BC77AD /* EventTVDeejayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTVDeejayCell.swift; sourceTree = "<group>"; };
+		A79349C51F7FBD8D00BC77AD /* EventTVDeejayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventTVDeejayCell.xib; sourceTree = "<group>"; };
+		A79349C81F7FCC9100BC77AD /* CustomViewConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewConvenience.swift; sourceTree = "<group>"; };
 		A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRequest.swift; sourceTree = "<group>"; };
 		A7A24D4F1F3B655E00EFB82E /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		A7A4BECB1F4363C5000A5047 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		A7AA5B7B1F7D593300BB2B8A /* ConvenienceFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvenienceFunctions.swift; sourceTree = "<group>"; };
+		A7D1CDC31F7FEEA2003513F8 /* CollectionDeejayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionDeejayCell.swift; sourceTree = "<group>"; };
+		A7D1CDC41F7FEEA2003513F8 /* CollectionDeejayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionDeejayCell.xib; sourceTree = "<group>"; };
 		A7D4D2A51F51913C00546341 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		A7E03D9A1F71D820000095BD /* UIDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDropDown.swift; sourceTree = "<group>"; };
 		A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+KeyPathConvenience.swift"; sourceTree = "<group>"; };
@@ -165,6 +179,7 @@
 				A76E72C61F7518700023D47F /* AddArtistViewController.swift */,
 				A76E72C81F7518CB0023D47F /* ArtistSearchViewController.swift */,
 				A776760A1F26B9F600F1FA52 /* SettingsViewController.swift */,
+				A79349C31F7FBD2C00BC77AD /* Event Custom Cells */,
 				A7A24D511F3C405C00EFB82E /* Core Data */,
 				A77676121F26BF3100F1FA52 /* Helpers */,
 				A776760E1F26BE8A00F1FA52 /* Source */,
@@ -223,6 +238,7 @@
 		A77676121F26BF3100F1FA52 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A79349C81F7FCC9100BC77AD /* CustomViewConvenience.swift */,
 				A7AA5B7B1F7D593300BB2B8A /* ConvenienceFunctions.swift */,
 				A7F527271F472ED90008080B /* ConvenienceExtensions.swift */,
 				A78979F31F3C687C00467AA6 /* FacebookKeyStringConvenience.swift */,
@@ -234,6 +250,19 @@
 				A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		A79349C31F7FBD2C00BC77AD /* Event Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A7D1CDC31F7FEEA2003513F8 /* CollectionDeejayCell.swift */,
+				A7D1CDC41F7FEEA2003513F8 /* CollectionDeejayCell.xib */,
+				A79349C41F7FBD8D00BC77AD /* EventTVDeejayCell.swift */,
+				A79349C51F7FBD8D00BC77AD /* EventTVDeejayCell.xib */,
+				A79349BF1F7FBD1C00BC77AD /* EventTVDefaultCell.swift */,
+				A79349C01F7FBD1C00BC77AD /* EventTVDefaultCell.xib */,
+			);
+			name = "Event Custom Cells";
 			sourceTree = "<group>";
 		};
 		A7A24D511F3C405C00EFB82E /* Core Data */ = {
@@ -322,10 +351,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A79349C71F7FBD8D00BC77AD /* EventTVDeejayCell.xib in Resources */,
 				A72B793B1F2231AF009FB389 /* LaunchScreen.storyboard in Resources */,
+				A7D1CDC61F7FEEA2003513F8 /* CollectionDeejayCell.xib in Resources */,
 				A72B79381F2231AF009FB389 /* Assets.xcassets in Resources */,
 				A72B79331F2231AF009FB389 /* Main.storyboard in Resources */,
 				A76E72D61F79C2CC0023D47F /* Bungee-Regular.ttf in Resources */,
+				A79349C21F7FBD1C00BC77AD /* EventTVDefaultCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +450,8 @@
 				A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */,
 				A76E72D21F75776C0023D47F /* FetchedResultsTableViewController.swift in Sources */,
 				A7E03D9B1F71D820000095BD /* UIDropDown.swift in Sources */,
+				A79349C11F7FBD1C00BC77AD /* EventTVDefaultCell.swift in Sources */,
+				A79349C61F7FBD8D00BC77AD /* EventTVDeejayCell.swift in Sources */,
 				A76E72CE1F754BC60023D47F /* EventTableViewCell.swift in Sources */,
 				A76E72C91F7518CB0023D47F /* ArtistSearchViewController.swift in Sources */,
 				A76E72D01F7576580023D47F /* EventsTableView+NSFetchResultsController.swift in Sources */,
@@ -429,8 +463,10 @@
 				A7F527281F472ED90008080B /* ConvenienceExtensions.swift in Sources */,
 				A776760D1F26BE8200F1FA52 /* StickyCollectionViewFlowLayout.swift in Sources */,
 				A72B792E1F2231AF009FB389 /* AppDelegate.swift in Sources */,
+				A79349C91F7FCC9100BC77AD /* CustomViewConvenience.swift in Sources */,
 				A76E72C71F7518700023D47F /* AddArtistViewController.swift in Sources */,
 				A76E72C51F7517FB0023D47F /* FollowsViewController.swift in Sources */,
+				A7D1CDC51F7FEEA2003513F8 /* CollectionDeejayCell.swift in Sources */,
 				A78979F41F3C687C00467AA6 /* FacebookKeyStringConvenience.swift in Sources */,
 				A7EC36651F33954600548C11 /* NSDictionary+KeyPathConvenience.swift in Sources */,
 				A7AA5B7C1F7D593300BB2B8A /* ConvenienceFunctions.swift in Sources */,

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="EventTVDeejayCell" customModule="InRoZe" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="360" height="320"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="360" height="320"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MHa-5m-94p" customClass="CustomUIImageView" customModule="InRoZe" customModuleProvider="target">
+                        <rect key="frame" x="20" y="10" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="1gy-sd-Vhq"/>
+                            <constraint firstAttribute="width" secondItem="MHa-5m-94p" secondAttribute="height" multiplier="1:1" id="dA5-Ls-Nkb"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBound" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hp9-h8-psb" customClass="CustomUIImageView" customModule="InRoZe" customModuleProvider="target">
+                        <rect key="frame" x="20" y="60" width="320" height="180"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="hp9-h8-psb" secondAttribute="height" multiplier="16:9" id="L27-Qz-8Pf"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBound" value="YES"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.89999997615814209" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JUy-7t-y7Z">
+                        <rect key="frame" x="70" y="7" width="270" height="26"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="26" id="94Z-mV-GYj"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time &amp; place" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000001192092896" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MdP-5D-0F9">
+                        <rect key="frame" x="70" y="36" width="270" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="pmQ-Cn-nS7"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="h3r-JH-PC2">
+                        <rect key="frame" x="0.0" y="250" width="360" height="70"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="scrollIndicatorInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Pb0-n6-5lC">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="JUy-7t-y7Z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="5hS-2E-j8r"/>
+                    <constraint firstItem="hp9-h8-psb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="9GR-eN-Wai"/>
+                    <constraint firstItem="MHa-5m-94p" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="HqB-dX-dYD"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="hp9-h8-psb" secondAttribute="bottom" constant="71.5" id="JF1-Ir-lcV"/>
+                    <constraint firstItem="MHa-5m-94p" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="Jwr-mP-I2i"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="hp9-h8-psb" secondAttribute="trailing" constant="12" id="Ptr-pj-XmD"/>
+                    <constraint firstItem="JUy-7t-y7Z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="62" id="QrI-NJ-Sg5"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="JUy-7t-y7Z" secondAttribute="trailing" constant="12" id="S9w-W0-Jsc"/>
+                    <constraint firstItem="MdP-5D-0F9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="28" id="Ypq-gi-lfH"/>
+                    <constraint firstItem="hp9-h8-psb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="52" id="Zbf-SD-P8g"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="MdP-5D-0F9" secondAttribute="trailing" constant="12" id="bVW-XH-2FO"/>
+                    <constraint firstItem="MdP-5D-0F9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="62" id="hLD-jy-w3y"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="collectionView" destination="h3r-JH-PC2" id="Lx4-Jf-LpD"/>
+                <outlet property="eventCover" destination="hp9-h8-psb" id="8SM-VU-7K7"/>
+                <outlet property="eventTimeLocation" destination="MdP-5D-0F9" id="e9V-Zg-BRC"/>
+                <outlet property="eventTitle" destination="JUy-7t-y7Z" id="cWF-gs-eZJ"/>
+                <outlet property="locationCover" destination="MHa-5m-94p" id="u94-rp-0iw"/>
+            </connections>
+            <point key="canvasLocation" x="37" y="86"/>
+        </tableViewCell>
+    </objects>
+</document>
