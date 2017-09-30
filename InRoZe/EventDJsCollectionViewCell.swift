@@ -27,14 +27,13 @@ class EventDJsCollectionViewCell: UICollectionViewCell
     //private var currentFollowState = false
 
     // Outlets for Cell UI
-    @IBOutlet weak var textDisplayBg: UIView!
     @IBOutlet weak var outerCircle: UIView!
     @IBOutlet weak var innerCircle: UIView!
-    @IBOutlet weak var textDisplayGigs: UIView!
     @IBOutlet weak var followDJBottonView: UIButton!
     @IBOutlet weak var firstLetter: UILabel!
     @IBOutlet weak var djName: UILabel!
     @IBOutlet weak var moreGigs: UILabel!
+    @IBOutlet weak var djCellFrame: UIImageView!
     
     
     @IBAction func followDJButton(_ sender: UIButton) {
@@ -94,24 +93,23 @@ class EventDJsCollectionViewCell: UICollectionViewCell
         let djInitial = String((thisDJ!.name!.uppercased()).characters.first!)
         let thisDJname = thisDJ!.name!.uppercased()
         if (thisDJ!.isFollowed) {
-            textDisplayBg.layer.borderColor = followedColor.cgColor
             outerCircle.layer.borderColor = followedColor.cgColor
             innerCircle.layer.borderColor = followedColor.cgColor
             innerCircle.backgroundColor = followedColor
-            textDisplayGigs.layer.borderColor = followedColor.cgColor
-            followDJBottonView.layer.borderColor = followedColor.cgColor
+            djCellFrame.tintColor = followedColor
+            djCellFrame.layer.borderColor = followedColor.cgColor
+            //followDJBottonView.layer.borderColor = followedColor.cgColor
             firstLetter.attributedText = coloredString(djInitial, color: .white)
             djName.attributedText = coloredString(thisDJname, color: .black)
             moreGigs.attributedText = coloredString(moreGigsText(), color: .black)
             
             
         } else {
-            textDisplayBg.layer.borderColor = notFollowedColor.cgColor
             outerCircle.layer.borderColor = notFollowedColor.cgColor
             innerCircle.layer.borderColor = notFollowedColor.cgColor
             innerCircle.backgroundColor = .white
-            textDisplayGigs.layer.borderColor = notFollowedColor.cgColor
-            followDJBottonView.layer.borderColor = notFollowedColor.cgColor
+            djCellFrame.tintColor = notFollowedColor
+            djCellFrame.layer.borderColor = notFollowedColor.cgColor
             firstLetter.attributedText = coloredString(djInitial, color: notFollowedColor)
             djName.attributedText = coloredString(thisDJname, color: notFollowedColor)
             moreGigs.attributedText = coloredString(moreGigsText(), color: .lightGray)

@@ -42,9 +42,10 @@ class EventsViewController: FetchedResultsTableViewController {
         // Add sor Descriptors and Predicate
         request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
         request.predicate = NSPredicate(format: "endTime > %@ AND imageURL != nil AND name != nil AND text != nil", nowTime)
-        //request.predicate = NSPredicate(format: "startTime < %@", nowTime)
+        request.fetchBatchSize = 20
         
         // Initialze Fetched Results Controller
+        
 
         
         let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
@@ -63,6 +64,9 @@ class EventsViewController: FetchedResultsTableViewController {
         cellHeightDefault = aboveCoverMargin + coverHeight + belowCoverMargin
         cellHeightDeejays = aboveCoverMargin + coverHeight + djCellMargin + belowDjCellMargin
         print("DJ: \(cellHeightDeejays) - Default: \(cellHeightDefault)")
+        
+//        tableView.estimatedRowHeight = cellHeightDefault
+//        tableView.rowHeight = UITableViewAutomaticDimension
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +79,8 @@ class EventsViewController: FetchedResultsTableViewController {
         RequestHandler().fetchEventIDsFromServer()
         
     }
+    
+
     
     private func updateUI() {
         

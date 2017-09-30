@@ -37,6 +37,7 @@ extension EventsViewController
         cell.needsUpdateConstraints()
         // Common set up for both cell height
         let event = fetchResultsController.object(at: indexPath)
+
         cell.event = event
         cell.selectionStyle = .none
         
@@ -84,6 +85,20 @@ extension EventsViewController
             return cellHeightDefault
         }
     }
+    
+    
+//    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        // measure the cell height
+//        let event = fetchResultsController.object(at: indexPath)
+//        let performersCount = event.performers?.count ?? 0
+//        if (performersCount > 0) {
+//            
+//            return cellHeightDeejays
+//        } else {
+//            return cellHeightDefault
+//        }
+//    }
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Cell pressed at indexPath Row [\(indexPath.row)]")

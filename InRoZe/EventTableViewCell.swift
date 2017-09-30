@@ -53,17 +53,7 @@ extension EventTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
     {
         var arrayDJsGigs = [String : Artist]()
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionDJCell, for: indexPath) as! EventDJsCollectionViewCell
-        
-        //set up the collection Cell for Deejay
-        cell.textDisplayBg.layer.masksToBounds = true
-        cell.textDisplayBg.layer.borderWidth = 2
-        cell.textDisplayBg.layer.cornerRadius = 10
-        cell.outerCircle.layer.borderWidth = 6
-        cell.outerCircle.layer.cornerRadius = cell.outerCircle.bounds.width / 2
-        cell.innerCircle.layer.borderWidth = 2
-        cell.innerCircle.layer.cornerRadius = cell.innerCircle.bounds.width / 2
-        cell.textDisplayGigs.layer.borderWidth = 1
-        cell.followDJBottonView.layer.borderWidth = 1
+
         
         if let djsSet = event?.performers, djsSet.count > 0 {
             for deejay in djsSet {
