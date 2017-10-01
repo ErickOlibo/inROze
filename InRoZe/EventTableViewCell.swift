@@ -51,6 +51,8 @@ extension EventTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
+        
+        // CHANGE THIS WITH A FETCH REQUEST
         var arrayDJsGigs = [String : Artist]()
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionDJCell, for: indexPath) as! EventDJsCollectionViewCell
 
@@ -66,9 +68,8 @@ extension EventTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
         let sortedArr = arrayDJsGigs.sorted { $0.key < $1.key }
         let currentDJ = arrayDJsGigs[sortedArr[indexPath.row].key]
         cell.thisDJ = currentDJ
-        
-        // tag of cell for future reference
-        cell.tag = indexPath.row
+        //-----------------------CHANGE
+
         return cell
     }
     
