@@ -694,7 +694,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nhS-2i-wgI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Events" image="1_Events" selectedImage="1_EventsFilled" id="gwB-Zu-sBd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="vYt-kV-r8B">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vYt-kV-r8B">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

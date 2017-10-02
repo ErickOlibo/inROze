@@ -11,6 +11,15 @@ import CoreData
 
 class CollectionDeejayCell: UICollectionViewCell {
     
+    // nib
+    static var nib:UINib {
+        return UINib(nibName: identifier, bundle: nil)
+    }
+    
+    static var identifier: String {
+        return String(describing: self)
+    }
+    
     // Core Data model container and context
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     

@@ -44,7 +44,7 @@ class EventsViewController: FetchedResultsTableViewController {
         let nowTime = NSDate()
         request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
         request.predicate = NSPredicate(format: "endTime > %@ AND imageURL != nil AND name != nil AND text != nil", nowTime)
-        //request.fetchBatchSize = 20
+        request.fetchBatchSize = 20
         
         let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedRC.delegate = self
@@ -55,11 +55,15 @@ class EventsViewController: FetchedResultsTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cellHeightDefault = adjustedHeight + (phoneSizeWidth - marginWidth) / coverRatio
-        cellHeightDeejays = cellHeightDefault + 70
-        //tableView.estimatedRowHeight = adjustedHeight + (phoneSizeWidth - marginWidth) / coverRatio
+//        cellHeightDefault = adjustedHeight + (phoneSizeWidth - marginWidth) / coverRatio
+//        cellHeightDeejays = cellHeightDefault + 70
+//        
+//        //tableView.estimatedRowHeight = adjustedHeight + (phoneSizeWidth - marginWidth) / coverRatio
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.register(EventTVDefaultCell.nib, forCellReuseIdentifier: EventTVDefaultCell.identifier)
+        tableView.register(EventTVDeejayCell.nib, forCellReuseIdentifier: EventTVDeejayCell.identifier)
+        
         
 
         

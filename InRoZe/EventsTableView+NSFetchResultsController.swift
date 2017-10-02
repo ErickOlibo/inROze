@@ -39,7 +39,8 @@ extension EventsViewController
         let event = fetchResultsController.object(at: indexPath)
         
         if let performerCount = event.performers?.count, performerCount > 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: eventCellDeejay, for: indexPath) as! EventTableViewDeejayCell
+            //let cell = tableView.dequeueReusableCell(withIdentifier: eventCellDeejay, for: indexPath) as! EventTableViewDeejayCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: EventTVDeejayCell.identifier, for: indexPath) as! EventTVDeejayCell
             // configure cell
             cell.event = event
             cell.selectionStyle = .none
@@ -58,7 +59,8 @@ extension EventsViewController
             return cell
             
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: eventCellDefault, for: indexPath) as! EventTableViewDefaultCell
+            //let cell = tableView.dequeueReusableCell(withIdentifier: eventCellDefault, for: indexPath) as! EventTableViewDefaultCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: EventTVDefaultCell.identifier, for: indexPath) as! EventTVDefaultCell
             // configure cell
             cell.event = event
             cell.selectionStyle = .none
