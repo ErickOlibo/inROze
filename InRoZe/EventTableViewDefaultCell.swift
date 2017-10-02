@@ -22,6 +22,11 @@ class EventTableViewDefaultCell: UITableViewCell
     @IBOutlet weak var eventCover: UIImageView!
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventTimeLocation: UILabel!
+    @IBOutlet weak var heightMeter: UIView! {
+        didSet {
+            print("HeightMeter: [\(heightMeter!.frame.size.height)]")
+        }
+    }
     
 
     

@@ -23,12 +23,13 @@ class EventTableViewDeejayCell: UITableViewCell
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventTimeLocation: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var heightMeter: UIView!
     
     func setCollectionViewDataSourceDelegate<D: UICollectionViewDataSource & UICollectionViewDelegate>(_ dataSourceDelegate: D, forRow row: Int) {
         collectionView.delegate = dataSourceDelegate
         collectionView.dataSource = dataSourceDelegate
-        collectionView.tag = row
-        collectionView.reloadData()
+//        collectionView.tag = row
+//        collectionView.reloadData()
     }
     
     

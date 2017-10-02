@@ -263,19 +263,31 @@
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ddT-Zb-VN1">
+                                            <rect key="frame" x="0.0" y="0.0" width="2" height="320"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="2" id="GES-RC-12p"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="ddT-Zb-VN1" firstAttribute="height" secondItem="Hnd-gk-IKz" secondAttribute="width" multiplier="9:16" constant="118" id="1dC-vh-sr1"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="b1v-d0-dBL" secondAttribute="bottom" constant="-8.3333333333333144" id="2rA-TS-zJY"/>
                                         <constraint firstItem="D0h-Pv-9Uv" firstAttribute="leading" secondItem="Hnd-gk-IKz" secondAttribute="leadingMargin" constant="12" id="7iz-LN-QQb"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="8qy-I6-JfF" secondAttribute="trailing" constant="12" id="Dmt-91-3WQ"/>
+                                        <constraint firstItem="ddT-Zb-VN1" firstAttribute="leading" secondItem="Hnd-gk-IKz" secondAttribute="leadingMargin" constant="-8" id="Ii8-Lt-tQq"/>
+                                        <constraint firstItem="D0h-Pv-9Uv" firstAttribute="width" secondItem="Hnd-gk-IKz" secondAttribute="width" constant="-40" id="Jch-Dg-JEP"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="b1v-d0-dBL" secondAttribute="trailing" constant="-8" id="Mkx-GQ-zOj"/>
                                         <constraint firstItem="U7z-tv-Szv" firstAttribute="leading" secondItem="Hnd-gk-IKz" secondAttribute="leadingMargin" constant="12" id="NRY-rv-jao"/>
                                         <constraint firstItem="Ym7-KE-goa" firstAttribute="leading" secondItem="Hnd-gk-IKz" secondAttribute="leadingMargin" constant="62" id="QLS-Wy-aXt"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Ym7-KE-goa" secondAttribute="trailing" constant="12" id="Tk5-tS-ifY"/>
+                                        <constraint firstItem="ddT-Zb-VN1" firstAttribute="top" secondItem="Hnd-gk-IKz" secondAttribute="topMargin" constant="-8" id="YWZ-hY-FK0"/>
                                         <constraint firstItem="D0h-Pv-9Uv" firstAttribute="top" secondItem="Hnd-gk-IKz" secondAttribute="topMargin" constant="52" id="Zhg-wK-MuK"/>
                                         <constraint firstItem="b1v-d0-dBL" firstAttribute="leading" secondItem="Hnd-gk-IKz" secondAttribute="leadingMargin" constant="-8" id="ffC-Lx-ng4"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="D0h-Pv-9Uv" secondAttribute="trailing" constant="12" id="hgV-5E-6QU"/>
                                         <constraint firstItem="8qy-I6-JfF" firstAttribute="top" secondItem="Hnd-gk-IKz" secondAttribute="topMargin" constant="28" id="i8d-fC-b4P"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ddT-Zb-VN1" secondAttribute="bottom" constant="-8.3333333333333144" id="jEp-jK-mIc"/>
                                         <constraint firstItem="Ym7-KE-goa" firstAttribute="top" secondItem="Hnd-gk-IKz" secondAttribute="topMargin" constant="-1" id="meK-OJ-eKO"/>
                                         <constraint firstItem="8qy-I6-JfF" firstAttribute="leading" secondItem="Hnd-gk-IKz" secondAttribute="leadingMargin" constant="62" id="teu-O2-khk"/>
                                         <constraint firstItem="U7z-tv-Szv" firstAttribute="top" secondItem="Hnd-gk-IKz" secondAttribute="topMargin" constant="2" id="yNw-7q-JwC"/>
@@ -286,6 +298,7 @@
                                     <outlet property="eventCover" destination="D0h-Pv-9Uv" id="8hn-1i-Ruo"/>
                                     <outlet property="eventTimeLocation" destination="8qy-I6-JfF" id="Mc8-ks-Car"/>
                                     <outlet property="eventTitle" destination="Ym7-KE-goa" id="8U6-a9-sdv"/>
+                                    <outlet property="heightMeter" destination="ddT-Zb-VN1" id="Hu4-G5-9Fp"/>
                                     <outlet property="locationCover" destination="U7z-tv-Szv" id="8Xn-FV-CIv"/>
                                 </connections>
                             </tableViewCell>
@@ -316,7 +329,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EGm-uV-Yar" customClass="CustomUIImageView" customModule="InRoZe" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="60" width="320" height="180"/>
+                                            <rect key="frame" x="20" y="60.000000000000014" width="320" height="180.33333333333337"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="EGm-uV-Yar" secondAttribute="height" multiplier="16:9" id="95T-wx-K8H"/>
                                             </constraints>
@@ -351,18 +364,30 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ii9-BY-hZO">
+                                            <rect key="frame" x="0.0" y="0.0" width="2" height="250"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="2" id="paK-rg-geO"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="cPd-Jm-B3I" firstAttribute="top" secondItem="AAq-DN-BnT" secondAttribute="topMargin" constant="28" id="0HD-Lb-xad"/>
                                         <constraint firstItem="EGm-uV-Yar" firstAttribute="top" secondItem="AAq-DN-BnT" secondAttribute="topMargin" constant="52" id="1bJ-TW-MJG"/>
                                         <constraint firstItem="cPd-Jm-B3I" firstAttribute="leading" secondItem="AAq-DN-BnT" secondAttribute="leadingMargin" constant="62" id="57t-WJ-uHj"/>
+                                        <constraint firstItem="ii9-BY-hZO" firstAttribute="top" secondItem="AAq-DN-BnT" secondAttribute="topMargin" constant="-8" id="BDV-62-awL"/>
                                         <constraint firstItem="bw2-Vr-E6D" firstAttribute="top" secondItem="AAq-DN-BnT" secondAttribute="topMargin" constant="2" id="LIF-TJ-HDF"/>
                                         <constraint firstItem="EGm-uV-Yar" firstAttribute="leading" secondItem="AAq-DN-BnT" secondAttribute="leadingMargin" constant="12" id="O07-we-I3K"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="cPd-Jm-B3I" secondAttribute="trailing" constant="12" id="T3H-PW-Zbf"/>
+                                        <constraint firstItem="ii9-BY-hZO" firstAttribute="leading" secondItem="AAq-DN-BnT" secondAttribute="leadingMargin" constant="-8" id="UqK-IO-dNh"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="EGm-uV-Yar" secondAttribute="trailing" constant="12" id="W7r-do-Qzn"/>
                                         <constraint firstItem="n2s-5f-Bet" firstAttribute="leading" secondItem="AAq-DN-BnT" secondAttribute="leadingMargin" constant="62" id="gvo-Rk-caV"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ii9-BY-hZO" secondAttribute="bottom" constant="-8.3333333333333428" id="tLg-MD-XOx"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="n2s-5f-Bet" secondAttribute="trailing" constant="12" id="ul5-85-tFa"/>
+                                        <constraint firstItem="ii9-BY-hZO" firstAttribute="height" secondItem="AAq-DN-BnT" secondAttribute="width" multiplier="9:16" constant="48" id="umM-kx-Gab"/>
                                         <constraint firstItem="bw2-Vr-E6D" firstAttribute="leading" secondItem="AAq-DN-BnT" secondAttribute="leadingMargin" constant="12" id="xwa-pt-Wpv"/>
+                                        <constraint firstItem="EGm-uV-Yar" firstAttribute="width" secondItem="AAq-DN-BnT" secondAttribute="width" constant="-40" id="yIg-Ha-cYC"/>
                                         <constraint firstItem="n2s-5f-Bet" firstAttribute="top" secondItem="AAq-DN-BnT" secondAttribute="topMargin" constant="-1" id="yKj-1a-Irt"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -370,6 +395,7 @@
                                     <outlet property="eventCover" destination="EGm-uV-Yar" id="KFa-go-69w"/>
                                     <outlet property="eventTimeLocation" destination="cPd-Jm-B3I" id="v7P-5W-zIq"/>
                                     <outlet property="eventTitle" destination="n2s-5f-Bet" id="hsI-Dd-19z"/>
+                                    <outlet property="heightMeter" destination="ii9-BY-hZO" id="7QZ-Hn-Btm"/>
                                     <outlet property="locationCover" destination="bw2-Vr-E6D" id="Sdj-Qa-UE4"/>
                                 </connections>
                             </tableViewCell>
@@ -668,7 +694,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nhS-2i-wgI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Events" image="1_Events" selectedImage="1_EventsFilled" id="gwB-Zu-sBd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vYt-kV-r8B">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="vYt-kV-r8B">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
