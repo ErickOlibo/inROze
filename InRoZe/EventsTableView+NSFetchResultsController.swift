@@ -28,36 +28,80 @@ extension EventsViewController
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let tableViewCell = cell as? EventTableViewCell else { return }
+        guard let tableViewCell = cell as? EventTableViewDeejayCell else { return }
         tableViewCell.setCollectionViewDataSourceDelegate(tableViewCell.self, forRow: indexPath.row)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: eventCell, for: indexPath) as! EventTableViewCell
+        //var thisCellIdentifier = eventCellDefault
+        // conditional cell
+        
         let event = fetchResultsController.object(at: indexPath)
         
-        // configure cell
-        cell.event = event
-        cell.selectionStyle = .none
-        cell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
-            if (image != nil) {
-                cell.eventCover.image = image
-            }
+        if let performerCount = event.performers?.count, performerCount > 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: eventCellDeejay, for: indexPath) as! EventTableViewDeejayCell
+            // configure cell
+            cell.event = event
+            cell.selectionStyle = .none
+//            cell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
+//                if (image != nil) {
+//                    cell.eventCover.image = image
+//                }
+//            }
+//            cell.locationCover.sd_setImage(with: URL(string: event.location!.profileURL! )) { (image, error, cacheType, imageURL) in
+//                if (image != nil) {
+//                    cell.locationCover.image = image
+//                }
+//            }
+            cell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
+            cell.eventTitle.text = event.name
+            return cell
+            
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: eventCellDefault, for: indexPath) as! EventTableViewDefaultCell
+            // configure cell
+            cell.event = event
+            cell.selectionStyle = .none
+//            cell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
+//                if (image != nil) {
+//                    cell.eventCover.image = image
+//                }
+//            }
+//            cell.locationCover.sd_setImage(with: URL(string: event.location!.profileURL! )) { (image, error, cacheType, imageURL) in
+//                if (image != nil) {
+//                    cell.locationCover.image = image
+//                }
+//            }
+            cell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
+            cell.eventTitle.text = event.name
+            return cell
         }
-        cell.locationCover.sd_setImage(with: URL(string: event.location!.profileURL! )) { (image, error, cacheType, imageURL) in
-            if (image != nil) {
-                cell.locationCover.image = image
-            }
-        }
-        cell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
-        cell.eventTitle.text = event.name
-        return cell
+ 
     }
     
   
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Cell pressed at indexPath Row [\(indexPath.row)]")
     }
+    
+    // SECTION for Height at index path
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        let event = fetchResultsController.object(at: indexPath)
+//        if let performerCount = event.performers?.count, performerCount > 0 {
+//            return cellHeightDeejays
+//        } else {
+//            return cellHeightDefault
+//        }
+//    }
+    
+//    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        let event = fetchResultsController.object(at: indexPath)
+//        if let performerCount = event.performers?.count, performerCount > 0 {
+//            return cellHeightDeejays
+//        } else {
+//            return cellHeightDefault
+//        }
+//    }
 
 
     // - Mark - Navigation

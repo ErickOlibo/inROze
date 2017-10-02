@@ -1,20 +1,20 @@
 //
-//  EventTableViewCell.swift
+//  EventTableViewDeejayCell.swift
 //  InRoZe
 //
-//  Created by Erick Olibo on 22/09/2017.
+//  Created by Erick Olibo on 02/10/2017.
 //  Copyright © 2017 Erick Olibo. All rights reserved.
 //
 
 import UIKit
 
 
-class EventTableViewCell: UITableViewCell
+class EventTableViewDeejayCell: UITableViewCell
 {
-
+    
     
     var event: Event?
-
+    
     let collectionDJCell = "Collection DJ Cell"
     
     // outlets to the UI components in the custom UITableViewCell
@@ -30,12 +30,12 @@ class EventTableViewCell: UITableViewCell
         collectionView.tag = row
         collectionView.reloadData()
     }
-
-
+    
+    
 }
 
 
-extension EventTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+extension EventTableViewDeejayCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 {
     func numberOfSections(in collectionView: UICollectionView) -> Int
     {
@@ -55,7 +55,7 @@ extension EventTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
         // CHANGE THIS WITH A FETCH REQUEST
         var arrayDJsGigs = [String : Artist]()
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionDJCell, for: indexPath) as! EventDJsCollectionViewCell
-
+        
         
         if let djsSet = event?.performers, djsSet.count > 0 {
             for deejay in djsSet {
@@ -69,7 +69,7 @@ extension EventTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
         let currentDJ = arrayDJsGigs[sortedArr[indexPath.row].key]
         cell.thisDJ = currentDJ
         //-----------------------CHANGE
-
+        
         return cell
     }
     
@@ -80,9 +80,10 @@ extension EventTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
         
     }
     
-
+    
     
 }
+
 
 
 
