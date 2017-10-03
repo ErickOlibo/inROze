@@ -24,7 +24,7 @@
 		A76E72D41F76579E0023D47F /* EventDeejayNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72D31F76579E0023D47F /* EventDeejayNameCell.swift */; };
 		A76E72D61F79C2CC0023D47F /* Bungee-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A76E72D51F79C2CC0023D47F /* Bungee-Regular.ttf */; };
 		A76E72D81F7BFA820023D47F /* DeejayGigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72D71F7BFA820023D47F /* DeejayGigsTableViewController.swift */; };
-		A76E72DA1F7C08650023D47F /* DeejayGigsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72D91F7C08650023D47F /* DeejayGigsTableViewCell.swift */; };
+		A76E72DA1F7C08650023D47F /* DeejayGigsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72D91F7C08650023D47F /* DeejayGigsCell.swift */; };
 		A775C3B21F3C7F8B00A3449F /* ServerKeyStringConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B11F3C7F8B00A3449F /* ServerKeyStringConvenience.swift */; };
 		A775C3B41F3C7FA100A3449F /* NotificationKeyStringConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B31F3C7FA100A3449F /* NotificationKeyStringConvenience.swift */; };
 		A775C3B61F3CC0CC00A3449F /* FacebookRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */; };
@@ -76,7 +76,7 @@
 		A76E72D31F76579E0023D47F /* EventDeejayNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDeejayNameCell.swift; sourceTree = "<group>"; };
 		A76E72D51F79C2CC0023D47F /* Bungee-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bungee-Regular.ttf"; sourceTree = "<group>"; };
 		A76E72D71F7BFA820023D47F /* DeejayGigsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeejayGigsTableViewController.swift; sourceTree = "<group>"; };
-		A76E72D91F7C08650023D47F /* DeejayGigsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeejayGigsTableViewCell.swift; sourceTree = "<group>"; };
+		A76E72D91F7C08650023D47F /* DeejayGigsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeejayGigsCell.swift; sourceTree = "<group>"; };
 		A775C3B11F3C7F8B00A3449F /* ServerKeyStringConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerKeyStringConvenience.swift; sourceTree = "<group>"; };
 		A775C3B31F3C7FA100A3449F /* NotificationKeyStringConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKeyStringConvenience.swift; sourceTree = "<group>"; };
 		A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookRequest.swift; sourceTree = "<group>"; };
@@ -174,13 +174,12 @@
 				A76E72CF1F7576580023D47F /* EventsTableView+NSFetchResultsController.swift */,
 				A7F4BAD91F839006001279F3 /* Event Cells */,
 				A76E72D71F7BFA820023D47F /* DeejayGigsTableViewController.swift */,
-				A76E72D91F7C08650023D47F /* DeejayGigsTableViewCell.swift */,
+				A76E72D91F7C08650023D47F /* DeejayGigsCell.swift */,
 				A76E72D11F75776C0023D47F /* FetchedResultsTableViewController.swift */,
 				A76E72C41F7517FB0023D47F /* FollowsViewController.swift */,
 				A76E72C61F7518700023D47F /* AddArtistViewController.swift */,
 				A76E72C81F7518CB0023D47F /* ArtistSearchViewController.swift */,
 				A776760A1F26B9F600F1FA52 /* SettingsViewController.swift */,
-				A79349C31F7FBD2C00BC77AD /* Event Custom Cells */,
 				A7A24D511F3C405C00EFB82E /* Core Data */,
 				A77676121F26BF3100F1FA52 /* Helpers */,
 				A776760E1F26BE8A00F1FA52 /* Source */,
@@ -253,7 +252,7 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
-		A79349C31F7FBD2C00BC77AD /* Event Custom Cells */ = {
+		A79349C31F7FBD2C00BC77AD /* Event Custom XIB Cells */ = {
 			isa = PBXGroup;
 			children = (
 				A7D1CDC31F7FEEA2003513F8 /* CollectionDeejayCell.swift */,
@@ -263,7 +262,7 @@
 				A79349BF1F7FBD1C00BC77AD /* EventTVDefaultCell.swift */,
 				A79349C01F7FBD1C00BC77AD /* EventTVDefaultCell.xib */,
 			);
-			name = "Event Custom Cells";
+			name = "Event Custom XIB Cells";
 			sourceTree = "<group>";
 		};
 		A7A24D511F3C405C00EFB82E /* Core Data */ = {
@@ -294,6 +293,7 @@
 				A706BC731F81DB2C001113FE /* EventDefaultCell.swift */,
 				A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */,
 				A76E72D31F76579E0023D47F /* EventDeejayNameCell.swift */,
+				A79349C31F7FBD2C00BC77AD /* Event Custom XIB Cells */,
 			);
 			name = "Event Cells";
 			sourceTree = "<group>";
@@ -484,7 +484,7 @@
 				A7AA5B7C1F7D593300BB2B8A /* ConvenienceFunctions.swift in Sources */,
 				A7F527221F4496E50008080B /* RequestHandler.swift in Sources */,
 				A77676141F26D49E00F1FA52 /* UIColorExtensions.swift in Sources */,
-				A76E72DA1F7C08650023D47F /* DeejayGigsTableViewCell.swift in Sources */,
+				A76E72DA1F7C08650023D47F /* DeejayGigsCell.swift in Sources */,
 				A7A24D4C1F3A4F0000EFB82E /* ServerRequest.swift in Sources */,
 				A776760B1F26B9F600F1FA52 /* SettingsViewController.swift in Sources */,
 			);
