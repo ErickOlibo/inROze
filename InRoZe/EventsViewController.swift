@@ -8,11 +8,13 @@
 
 import UIKit
 import CoreData
+import SDWebImage
 
 class EventsViewController: FetchedResultsTableViewController {
     
     // properties
     let eventCell = "Event Cell"
+    let manager = SDWebImageManager.shared()
 
     
     
@@ -59,6 +61,8 @@ class EventsViewController: FetchedResultsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        
         // the NIB to be loaded
         let nibNameDefault = UINib(nibName: "EventTVDefaultCell", bundle: nil)
         tableView.register(nibNameDefault, forCellReuseIdentifier: "Event Default Cell")

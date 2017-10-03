@@ -36,78 +36,45 @@ extension EventsViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let event = fetchResultsController.object(at: indexPath)
-        // conditionel cell
+        
+        // conditionel cell for NIB
         let performersCount = event.performers?.count ?? 0
         if (performersCount > 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Event Deejay Cell", for: indexPath) as! EventTVDeejayCell
+            //clear the reusable cell
+            cell.eventCover.sd_cancelCurrentImageLoad()
+            cell.locationCover.sd_cancelCurrentImageLoad()
+            cell.locationCover.image = nil
+            cell.eventCover.image = nil
             cell.event = event
             cell.selectionStyle = .none
             cell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
                 if (image != nil) { cell.eventCover.image = image } }
-            
             cell.locationCover.sd_setImage(with: URL(string: event.location!.profileURL! )) { (image, error, cacheType, imageURL) in
                 if (image != nil) { cell.locationCover.image = image } }
-            
             cell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
             cell.eventTitle.text = event.name
             return cell
-            
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Event Default Cell", for: indexPath) as! EventTVDefaultCell
             cell.selectionStyle = .none
             cell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
                 if (image != nil) { cell.eventCover.image = image } }
-            
             cell.locationCover.sd_setImage(with: URL(string: event.location!.profileURL! )) { (image, error, cacheType, imageURL) in
                 if (image != nil) { cell.locationCover.image = image } }
-            
             cell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
             cell.eventTitle.text = event.name
             return cell
-            
         }
         
-        
-        
-        //cell.needsUpdateConstraints()
-        // Common set up for both cell height
-        
+        // condition cell
 
-//        cell.event = event
-//        cell.selectionStyle = .none
-        
-//        // locationCover
-//        cell.locationCover.layer.masksToBounds = true
-//        cell.locationCover.layer.borderWidth = 0.5
-//        cell.locationCover.layer.borderColor = UIColor.black.cgColor
-//        cell.locationCover.layer.cornerRadius = cell.locationCover.bounds.width / 2
-//        
-//        // event Cover
-//        cell.eventCover.layer.masksToBounds = true
-//        cell.eventCover.layer.borderWidth = 0.5
-//        cell.eventCover.layer.borderColor = UIColor.black.cgColor
-//        cell.eventCover.layer.cornerRadius = 10
-        
-        
-        
-//        cell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
-//            if (image != nil) {
-//                cell.eventCover.image = image
-//            }
-//        }
-//        
-//        cell.locationCover.sd_setImage(with: URL(string: event.location!.profileURL! )) { (image, error, cacheType, imageURL) in
-//            if (image != nil) {
-//                cell.locationCover.image = image
-//            }
-//        }
-//        
-//        cell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
-//        cell.eventTitle.text = event.name
-//        return cell
     }
     
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+
+    }
  
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
@@ -122,18 +89,7 @@ extension EventsViewController
         }
     }
     
-    
-//    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        // measure the cell height
-//        let event = fetchResultsController.object(at: indexPath)
-//        let performersCount = event.performers?.count ?? 0
-//        if (performersCount > 0) {
-//            
-//            return cellHeightDeejays
-//        } else {
-//            return cellHeightDefault
-//        }
-//    }
+
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

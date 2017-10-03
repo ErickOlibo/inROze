@@ -16,6 +16,7 @@ class EventTVDeejayCell: UITableViewCell {
     // outlets to the UI components
     @IBOutlet weak var locationCover: CustomUIImageView!
     @IBOutlet weak var eventCover: CustomUIImageView!
+    
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventTimeLocation: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!

@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="360" height="320"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="360" height="320"/>
+                <rect key="frame" x="0.0" y="0.0" width="360" height="319.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MHa-5m-94p" customClass="CustomUIImageView" customModule="InRoZe" customModuleProvider="target">
@@ -94,7 +94,6 @@
                     <constraint firstItem="JUy-7t-y7Z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="5hS-2E-j8r"/>
                     <constraint firstItem="hp9-h8-psb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="9GR-eN-Wai"/>
                     <constraint firstItem="MHa-5m-94p" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="HqB-dX-dYD"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="hp9-h8-psb" secondAttribute="bottom" constant="71.5" id="JF1-Ir-lcV"/>
                     <constraint firstItem="MHa-5m-94p" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="Jwr-mP-I2i"/>
                     <constraint firstAttribute="trailingMargin" secondItem="hp9-h8-psb" secondAttribute="trailing" constant="12" id="Ptr-pj-XmD"/>
                     <constraint firstItem="JUy-7t-y7Z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="62" id="QrI-NJ-Sg5"/>

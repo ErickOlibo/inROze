@@ -80,7 +80,6 @@
                     <constraint firstItem="myo-gM-tbD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="52" id="17M-3M-urr"/>
                     <constraint firstItem="bCA-3p-TCw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="62" id="6rb-VI-40v"/>
                     <constraint firstItem="Io6-di-3Wb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="EOq-12-GTO"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="myo-gM-tbD" secondAttribute="bottom" constant="1.5" id="Glc-36-6jw"/>
                     <constraint firstAttribute="trailingMargin" secondItem="bCA-3p-TCw" secondAttribute="trailing" constant="12" id="XaH-H1-Qw4"/>
                     <constraint firstItem="Io6-di-3Wb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="YDz-nA-qmB"/>
                     <constraint firstItem="HIZ-eB-Akb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="28" id="aC5-mu-Wzp"/>
