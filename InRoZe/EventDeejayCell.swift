@@ -54,7 +54,7 @@ extension EventDeejayCell: UICollectionViewDelegate, UICollectionViewDataSource,
         
         // CHANGE THIS WITH A FETCH REQUEST
         var arrayDJsGigs = [String : Artist]()
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventDeejayNameCell.identifier, for: indexPath) as! EventDeejayNameCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventDJNameCell.identifier, for: indexPath) as! EventDJNameCell
         
         
         if let djsSet = event?.performers, djsSet.count > 0 {
@@ -69,7 +69,7 @@ extension EventDeejayCell: UICollectionViewDelegate, UICollectionViewDataSource,
         let currentDJ = arrayDJsGigs[sortedArr[indexPath.row].key]
         cell.thisDJ = currentDJ
         //-----------------------CHANGE
-        
+        cell.djName.text = currentDJ?.name
         return cell
     }
     

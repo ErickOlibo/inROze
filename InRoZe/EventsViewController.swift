@@ -11,27 +11,20 @@ import CoreData
 
 class EventsViewController: FetchedResultsTableViewController {
 
-    // All this are from AutoLayout in the main.Storyboard
-    // MUST BE DELETED
-    let marginWidth: CGFloat = 20 * 2
-    let aboveCoverMargin: CGFloat = 60
-    let belowCoverMargin: CGFloat = 10
-    let coverRatio = CGFloat(16) / 9
+    // Areas set in  AutoLayout at the main.Storyboard
+    let topAreaHeight: CGFloat = 70
     let phoneSizeWidth = UIScreen.main.bounds.width
-    let djCellMargin: CGFloat = 70
-    let belowDjCellMargin: CGFloat = 10
-    let adjustedHeight: CGFloat = 70
+    let coverRatio = CGFloat(16) / 9
+    let marginWidth: CGFloat = 20 * 2
+    let djAreaHeight: CGFloat = 100
     
     var cellHeightDefault: CGFloat = 0
     var cellHeightDeejays: CGFloat = 0
-    // --------------------------------------DELETE
-    
-    
 
-    // Core dat Model container and context
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     let mainContext = AppDelegate.viewContext
     
+    // Lazy controller for the Events. Need one for the Artist
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
         
         let request: NSFetchRequest<Event> = Event.fetchRequest()
@@ -49,8 +42,8 @@ class EventsViewController: FetchedResultsTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cellHeightDefault = adjustedHeight + (phoneSizeWidth - marginWidth) / coverRatio
-        cellHeightDeejays = cellHeightDefault + 70
+        cellHeightDefault = topAreaHeight + (phoneSizeWidth - marginWidth) / coverRatio
+        cellHeightDeejays = cellHeightDefault + djAreaHeight
         print("DEFAULT Cell: [\(cellHeightDefault)] -- DEEJAY Cell: [\(cellHeightDeejays)]")
     }
 

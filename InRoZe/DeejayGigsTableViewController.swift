@@ -18,7 +18,6 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     
     // properties
     let followedRightButton = UIBarButtonItem()
-    let deejayGigCell = "Deejay Gig Cell"
     var artist: Artist? { didSet { updateUI() } }
 
     //private var currentFollowState = false

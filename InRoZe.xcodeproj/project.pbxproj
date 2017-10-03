@@ -50,6 +50,7 @@
 		A7EC36651F33954600548C11 /* NSDictionary+KeyPathConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */; };
 		A7EC36851F36553B00548C11 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36841F36553B00548C11 /* LoginViewController.swift */; };
 		A7EC36871F365AA900548C11 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36861F365AA900548C11 /* TabBarViewController.swift */; };
+		A7F4BADB1F83C9B5001279F3 /* EventDJNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F4BADA1F83C9B5001279F3 /* EventDJNameCell.swift */; };
 		A7F527221F4496E50008080B /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F527211F4496E50008080B /* RequestHandler.swift */; };
 		A7F527241F4498540008080B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F527231F4498540008080B /* Event.swift */; };
 		A7F527281F472ED90008080B /* ConvenienceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F527271F472ED90008080B /* ConvenienceExtensions.swift */; };
@@ -102,6 +103,7 @@
 		A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+KeyPathConvenience.swift"; sourceTree = "<group>"; };
 		A7EC36841F36553B00548C11 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A7EC36861F365AA900548C11 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		A7F4BADA1F83C9B5001279F3 /* EventDJNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDJNameCell.swift; sourceTree = "<group>"; };
 		A7F527211F4496E50008080B /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		A7F527231F4498540008080B /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A7F527271F472ED90008080B /* ConvenienceExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvenienceExtensions.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 			children = (
 				A706BC731F81DB2C001113FE /* EventDefaultCell.swift */,
 				A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */,
+				A7F4BADA1F83C9B5001279F3 /* EventDJNameCell.swift */,
 				A76E72D31F76579E0023D47F /* EventDeejayNameCell.swift */,
 				A79349C31F7FBD2C00BC77AD /* Event Custom XIB Cells */,
 			);
@@ -454,6 +457,7 @@
 				A76E72D81F7BFA820023D47F /* DeejayGigsTableViewController.swift in Sources */,
 				A7D4D2A61F51913C00546341 /* Artist.swift in Sources */,
 				A7F527241F4498540008080B /* Event.swift in Sources */,
+				A7F4BADB1F83C9B5001279F3 /* EventDJNameCell.swift in Sources */,
 				A775C3B61F3CC0CC00A3449F /* FacebookRequest.swift in Sources */,
 				A7A24D501F3B655E00EFB82E /* Place.swift in Sources */,
 				A7EC36851F36553B00548C11 /* LoginViewController.swift in Sources */,
