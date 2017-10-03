@@ -1,5 +1,5 @@
 //
-//  EventTableViewCell.swift
+//  EventDefaultCell.swift
 //  InRoZe
 //
 //  Created by Erick Olibo on 22/09/2017.
@@ -9,27 +9,20 @@
 import UIKit
 
 
-class EventTableViewDefaultCell: UITableViewCell
+class EventDefaultCell: UITableViewCell
 {
     
-    
+    static var identifier: String {
+        return String(describing: self)
+    }
     var event: Event?
-    
-    //let collectionDJCell = "Collection DJ Cell"
-    
+
     // outlets to the UI components in the custom UITableViewCell
     @IBOutlet weak var locationCover: UIImageView!
     @IBOutlet weak var eventCover: UIImageView!
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventTimeLocation: UILabel!
-    @IBOutlet weak var heightMeter: UIView! {
-        didSet {
-            print("HeightMeter: [\(heightMeter!.frame.size.height)]")
-        }
-    }
-    
 
-    
 }
 
 

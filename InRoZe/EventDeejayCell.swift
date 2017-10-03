@@ -1,5 +1,5 @@
 //
-//  EventTableViewDeejayCell.swift
+//  EventDeejayCell.swift
 //  InRoZe
 //
 //  Created by Erick Olibo on 02/10/2017.
@@ -9,13 +9,13 @@
 import UIKit
 
 
-class EventTableViewDeejayCell: UITableViewCell
+class EventDeejayCell: UITableViewCell
 {
-    
+    static var identifier: String {
+        return String(describing: self)
+    }
     
     var event: Event?
-    
-    let collectionDJCell = "Collection DJ Cell"
     
     // outlets to the UI components in the custom UITableViewCell
     @IBOutlet weak var locationCover: UIImageView!
@@ -23,20 +23,19 @@ class EventTableViewDeejayCell: UITableViewCell
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventTimeLocation: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var heightMeter: UIView!
     
     func setCollectionViewDataSourceDelegate<D: UICollectionViewDataSource & UICollectionViewDelegate>(_ dataSourceDelegate: D, forRow row: Int) {
         collectionView.delegate = dataSourceDelegate
         collectionView.dataSource = dataSourceDelegate
-//        collectionView.tag = row
-//        collectionView.reloadData()
+        collectionView.tag = row
+        collectionView.reloadData()
     }
     
     
 }
 
 
-extension EventTableViewDeejayCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+extension EventDeejayCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 {
     func numberOfSections(in collectionView: UICollectionView) -> Int
     {
@@ -55,7 +54,7 @@ extension EventTableViewDeejayCell: UICollectionViewDelegate, UICollectionViewDa
         
         // CHANGE THIS WITH A FETCH REQUEST
         var arrayDJsGigs = [String : Artist]()
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionDJCell, for: indexPath) as! EventDJsCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventDeejayNameCell.identifier, for: indexPath) as! EventDeejayNameCell
         
         
         if let djsSet = event?.performers, djsSet.count > 0 {

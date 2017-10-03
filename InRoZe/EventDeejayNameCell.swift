@@ -1,5 +1,5 @@
 //
-//  EventDJsCollectionViewCell.swift
+//  EventDeejayNameCell.swift
 //  InRoZe
 //
 //  Created by Erick Olibo on 23/09/2017.
@@ -9,11 +9,14 @@
 import UIKit
 import CoreData
 
-class EventDJsCollectionViewCell: UICollectionViewCell
+class EventDeejayNameCell: UICollectionViewCell
 {
     // Core Data model container and context
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
 
+    static var identifier: String {
+        return String(describing: self)
+    }
     
     // get full artist for this cell
     var thisDJ: Artist? { didSet { updateUI() } }

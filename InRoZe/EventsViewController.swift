@@ -10,13 +10,7 @@ import UIKit
 import CoreData
 
 class EventsViewController: FetchedResultsTableViewController {
-    
-    // Event Cell prototype Cells 
-    let eventCellDeejay = "Event Cell Deejay"
-    let eventCellDefault = "Event Cell Default"
 
-    
-    
     // All this are from AutoLayout in the main.Storyboard
     // MUST BE DELETED
     let marginWidth: CGFloat = 20 * 2
@@ -55,20 +49,9 @@ class EventsViewController: FetchedResultsTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        cellHeightDefault = adjustedHeight + (phoneSizeWidth - marginWidth) / coverRatio
-//        cellHeightDeejays = cellHeightDefault + 70
-//        
-//        //tableView.estimatedRowHeight = adjustedHeight + (phoneSizeWidth - marginWidth) / coverRatio
-        tableView.estimatedRowHeight = 44
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.register(EventTVDefaultCell.nib, forCellReuseIdentifier: EventTVDefaultCell.identifier)
-        tableView.register(EventTVDeejayCell.nib, forCellReuseIdentifier: EventTVDeejayCell.identifier)
-        
-        
-
-        
-
-
+        cellHeightDefault = adjustedHeight + (phoneSizeWidth - marginWidth) / coverRatio
+        cellHeightDeejays = cellHeightDefault + 70
+        print("DEFAULT Cell: [\(cellHeightDefault)] -- DEEJAY Cell: [\(cellHeightDeejays)]")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -85,8 +68,6 @@ class EventsViewController: FetchedResultsTableViewController {
 
     
     private func updateUI() {
-        
-        // Execute the FetchRequest
         do {
             try self.fetchResultsController.performFetch()
             self.tableView.reloadData()

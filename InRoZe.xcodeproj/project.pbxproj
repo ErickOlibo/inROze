@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		297B48270458BA2567535BBB /* Pods_InRoZe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 025DA5AD4652E67328D77902 /* Pods_InRoZe.framework */; };
-		A706BC741F81DB2C001113FE /* EventTableViewDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A706BC731F81DB2C001113FE /* EventTableViewDefaultCell.swift */; };
+		A706BC741F81DB2C001113FE /* EventDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A706BC731F81DB2C001113FE /* EventDefaultCell.swift */; };
 		A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C7C811F2A55C400A0D5A8 /* UIImageColors.swift */; };
 		A72B792E1F2231AF009FB389 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72B792D1F2231AF009FB389 /* AppDelegate.swift */; };
 		A72B79331F2231AF009FB389 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72B79311F2231AF009FB389 /* Main.storyboard */; };
@@ -21,7 +21,7 @@
 		A76E72CC1F7541370023D47F /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72CB1F7541370023D47F /* EventsViewController.swift */; };
 		A76E72D01F7576580023D47F /* EventsTableView+NSFetchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72CF1F7576580023D47F /* EventsTableView+NSFetchResultsController.swift */; };
 		A76E72D21F75776C0023D47F /* FetchedResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72D11F75776C0023D47F /* FetchedResultsTableViewController.swift */; };
-		A76E72D41F76579E0023D47F /* EventDJsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72D31F76579E0023D47F /* EventDJsCollectionViewCell.swift */; };
+		A76E72D41F76579E0023D47F /* EventDeejayNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72D31F76579E0023D47F /* EventDeejayNameCell.swift */; };
 		A76E72D61F79C2CC0023D47F /* Bungee-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A76E72D51F79C2CC0023D47F /* Bungee-Regular.ttf */; };
 		A76E72D81F7BFA820023D47F /* DeejayGigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72D71F7BFA820023D47F /* DeejayGigsTableViewController.swift */; };
 		A76E72DA1F7C08650023D47F /* DeejayGigsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72D91F7C08650023D47F /* DeejayGigsTableViewCell.swift */; };
@@ -44,7 +44,7 @@
 		A7AA5B7C1F7D593300BB2B8A /* ConvenienceFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AA5B7B1F7D593300BB2B8A /* ConvenienceFunctions.swift */; };
 		A7D1CDC51F7FEEA2003513F8 /* CollectionDeejayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D1CDC31F7FEEA2003513F8 /* CollectionDeejayCell.swift */; };
 		A7D1CDC61F7FEEA2003513F8 /* CollectionDeejayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7D1CDC41F7FEEA2003513F8 /* CollectionDeejayCell.xib */; };
-		A7D1CDC81F81D0CF003513F8 /* EventTableViewDeejayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D1CDC71F81D0CF003513F8 /* EventTableViewDeejayCell.swift */; };
+		A7D1CDC81F81D0CF003513F8 /* EventDeejayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */; };
 		A7D4D2A61F51913C00546341 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4D2A51F51913C00546341 /* Artist.swift */; };
 		A7E03D9B1F71D820000095BD /* UIDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E03D9A1F71D820000095BD /* UIDropDown.swift */; };
 		A7EC36651F33954600548C11 /* NSDictionary+KeyPathConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */; };
@@ -58,7 +58,7 @@
 /* Begin PBXFileReference section */
 		025DA5AD4652E67328D77902 /* Pods_InRoZe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InRoZe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		434049AE2BF497F26E4FEE54 /* Pods-InRoZe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InRoZe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InRoZe/Pods-InRoZe.debug.xcconfig"; sourceTree = "<group>"; };
-		A706BC731F81DB2C001113FE /* EventTableViewDefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewDefaultCell.swift; sourceTree = "<group>"; };
+		A706BC731F81DB2C001113FE /* EventDefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDefaultCell.swift; sourceTree = "<group>"; };
 		A71C7C811F2A55C400A0D5A8 /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
 		A72B792A1F2231AF009FB389 /* InRoZe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InRoZe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72B792D1F2231AF009FB389 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 		A76E72CB1F7541370023D47F /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		A76E72CF1F7576580023D47F /* EventsTableView+NSFetchResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EventsTableView+NSFetchResultsController.swift"; sourceTree = "<group>"; };
 		A76E72D11F75776C0023D47F /* FetchedResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableViewController.swift; sourceTree = "<group>"; };
-		A76E72D31F76579E0023D47F /* EventDJsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDJsCollectionViewCell.swift; sourceTree = "<group>"; };
+		A76E72D31F76579E0023D47F /* EventDeejayNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDeejayNameCell.swift; sourceTree = "<group>"; };
 		A76E72D51F79C2CC0023D47F /* Bungee-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bungee-Regular.ttf"; sourceTree = "<group>"; };
 		A76E72D71F7BFA820023D47F /* DeejayGigsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeejayGigsTableViewController.swift; sourceTree = "<group>"; };
 		A76E72D91F7C08650023D47F /* DeejayGigsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeejayGigsTableViewCell.swift; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 		A7AA5B7B1F7D593300BB2B8A /* ConvenienceFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvenienceFunctions.swift; sourceTree = "<group>"; };
 		A7D1CDC31F7FEEA2003513F8 /* CollectionDeejayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionDeejayCell.swift; sourceTree = "<group>"; };
 		A7D1CDC41F7FEEA2003513F8 /* CollectionDeejayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionDeejayCell.xib; sourceTree = "<group>"; };
-		A7D1CDC71F81D0CF003513F8 /* EventTableViewDeejayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewDeejayCell.swift; sourceTree = "<group>"; };
+		A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDeejayCell.swift; sourceTree = "<group>"; };
 		A7D4D2A51F51913C00546341 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		A7E03D9A1F71D820000095BD /* UIDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDropDown.swift; sourceTree = "<group>"; };
 		A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+KeyPathConvenience.swift"; sourceTree = "<group>"; };
@@ -172,11 +172,9 @@
 				A7EC36861F365AA900548C11 /* TabBarViewController.swift */,
 				A76E72CB1F7541370023D47F /* EventsViewController.swift */,
 				A76E72CF1F7576580023D47F /* EventsTableView+NSFetchResultsController.swift */,
+				A7F4BAD91F839006001279F3 /* Event Cells */,
 				A76E72D71F7BFA820023D47F /* DeejayGigsTableViewController.swift */,
 				A76E72D91F7C08650023D47F /* DeejayGigsTableViewCell.swift */,
-				A706BC731F81DB2C001113FE /* EventTableViewDefaultCell.swift */,
-				A7D1CDC71F81D0CF003513F8 /* EventTableViewDeejayCell.swift */,
-				A76E72D31F76579E0023D47F /* EventDJsCollectionViewCell.swift */,
 				A76E72D11F75776C0023D47F /* FetchedResultsTableViewController.swift */,
 				A76E72C41F7517FB0023D47F /* FollowsViewController.swift */,
 				A76E72C61F7518700023D47F /* AddArtistViewController.swift */,
@@ -288,6 +286,16 @@
 				A7E03D9A1F71D820000095BD /* UIDropDown.swift */,
 			);
 			name = UIDropDown;
+			sourceTree = "<group>";
+		};
+		A7F4BAD91F839006001279F3 /* Event Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A706BC731F81DB2C001113FE /* EventDefaultCell.swift */,
+				A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */,
+				A76E72D31F76579E0023D47F /* EventDeejayNameCell.swift */,
+			);
+			name = "Event Cells";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -451,21 +459,21 @@
 				A7EC36851F36553B00548C11 /* LoginViewController.swift in Sources */,
 				A76E72CC1F7541370023D47F /* EventsViewController.swift in Sources */,
 				A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */,
-				A7D1CDC81F81D0CF003513F8 /* EventTableViewDeejayCell.swift in Sources */,
+				A7D1CDC81F81D0CF003513F8 /* EventDeejayCell.swift in Sources */,
 				A76E72D21F75776C0023D47F /* FetchedResultsTableViewController.swift in Sources */,
 				A7E03D9B1F71D820000095BD /* UIDropDown.swift in Sources */,
 				A79349C11F7FBD1C00BC77AD /* EventTVDefaultCell.swift in Sources */,
 				A79349C61F7FBD8D00BC77AD /* EventTVDeejayCell.swift in Sources */,
 				A76E72C91F7518CB0023D47F /* ArtistSearchViewController.swift in Sources */,
 				A76E72D01F7576580023D47F /* EventsTableView+NSFetchResultsController.swift in Sources */,
-				A76E72D41F76579E0023D47F /* EventDJsCollectionViewCell.swift in Sources */,
+				A76E72D41F76579E0023D47F /* EventDeejayNameCell.swift in Sources */,
 				A7EC36871F365AA900548C11 /* TabBarViewController.swift in Sources */,
 				A775C3B41F3C7FA100A3449F /* NotificationKeyStringConvenience.swift in Sources */,
 				A72B79361F2231AF009FB389 /* InRoZe.xcdatamodeld in Sources */,
 				A775C3B21F3C7F8B00A3449F /* ServerKeyStringConvenience.swift in Sources */,
 				A7F527281F472ED90008080B /* ConvenienceExtensions.swift in Sources */,
 				A776760D1F26BE8200F1FA52 /* StickyCollectionViewFlowLayout.swift in Sources */,
-				A706BC741F81DB2C001113FE /* EventTableViewDefaultCell.swift in Sources */,
+				A706BC741F81DB2C001113FE /* EventDefaultCell.swift in Sources */,
 				A72B792E1F2231AF009FB389 /* AppDelegate.swift in Sources */,
 				A79349C91F7FCC9100BC77AD /* CustomViewConvenience.swift in Sources */,
 				A76E72C71F7518700023D47F /* AddArtistViewController.swift in Sources */,
