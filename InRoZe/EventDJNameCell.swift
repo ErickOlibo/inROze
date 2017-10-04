@@ -30,7 +30,7 @@ class EventDJNameCell: UICollectionViewCell
     @IBOutlet weak var djName: UILabel!
     
     private func updateUI() {
-        print("DJNAME - This DJ: \(thisDJ!.name!)")
+        //print("DJNAME - This DJ: \(thisDJ!.name!)")
         if let context = container?.viewContext {
             context.perform {
                 if let currentState = Artist.currentIsFollowedState(for: self.thisDJ!.id!, in: context) {
@@ -42,14 +42,14 @@ class EventDJNameCell: UICollectionViewCell
     }
     
     private func updateCellColorforFollowed() {
-        profileImage.image = UIImage(named: profileImageName(for: thisDJ!.name!, when: thisDJ!.isFollowed))
+        profileImage.image = UIImage(named: profileImageForDJ(with: thisDJ!.id!, when: thisDJ!.isFollowed))
         if (thisDJ!.isFollowed) {
             outerCircle.layer.borderColor = followedColor.cgColor
-            profileImage.backgroundColor = profileImageBackgroundColor(for: thisDJ!.name!)
+            //profileImage.backgroundColor = profileImageBackgroundColor(for: thisDJ!.name!)
         } else {
             outerCircle.layer.borderColor = notFollowedColor.cgColor
             
-            profileImage.backgroundColor = .white
+            //profileImage.backgroundColor = .white
         }
         
     }

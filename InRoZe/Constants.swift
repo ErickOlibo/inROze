@@ -136,10 +136,14 @@ extension UserDefaults {
 
 
 // manage the colors and image for Deejay's profile pic
-public func profileImageName(for deejay: String, when isFollowed: Bool) -> String {
-    let firstLetter = String(deejay.uppercased().characters.first!)
-    let colorOrGrey = (isFollowed) ? "LetterColor_" : "LetterGrey_"
-    return colorOrGrey + firstLetter
+public func profileImageForDJ(with id: String, when isFollowed: Bool) -> String {
+    let lastTwo = id.substring(from:id.index(id.endIndex, offsetBy: -2))
+    // for animals -> ("LetterColor_" : "LetterGrey_")
+    // for people -> ("Color_P_Letter_" : "Grey_P_Letter_")
+    // for images -> ("Color_P_Letter_" : "Grey_P_Letter_")
+    // for 100 pics -> with String from the DJ CoverName("Color_" : "Grey_")
+    let colorOrGrey = (isFollowed) ? "Color_DJcover_" : "Grey_DJcover_"
+    return colorOrGrey + lastTwo
 }
 
 

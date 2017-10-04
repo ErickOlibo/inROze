@@ -405,13 +405,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xFy-kx-hGn">
-                                <rect key="frame" x="0.0" y="527.66666666666652" width="414" height="159.33333333333337"/>
+                                <rect key="frame" x="0.0" y="496" width="414" height="191"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="xFy-kx-hGn" secondAttribute="height" multiplier="13:5" id="PhY-Fh-cYF"/>
+                                    <constraint firstAttribute="width" secondItem="xFy-kx-hGn" secondAttribute="height" multiplier="13:6" id="POS-IS-hhE"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rG3-h1-OYi">
-                                <rect key="frame" x="82.666666666666686" y="463.66666666666669" width="248.66666666666663" height="44"/>
+                                <rect key="frame" x="82.666666666666686" y="452" width="248.66666666666663" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="nxb-ds-3g2"/>
                                 </constraints>
@@ -441,7 +441,7 @@
                             <constraint firstItem="xFy-kx-hGn" firstAttribute="leading" secondItem="RRo-TU-H8E" secondAttribute="leadingMargin" constant="-20" id="3Q1-ka-NTr"/>
                             <constraint firstItem="Pgc-Aj-xRe" firstAttribute="height" secondItem="RRo-TU-H8E" secondAttribute="height" id="42o-O2-DaV"/>
                             <constraint firstItem="Pgc-Aj-xRe" firstAttribute="centerY" secondItem="RRo-TU-H8E" secondAttribute="centerY" id="8MB-wh-8gp"/>
-                            <constraint firstItem="xFy-kx-hGn" firstAttribute="top" secondItem="rG3-h1-OYi" secondAttribute="bottom" constant="20" id="JLc-kk-FTL"/>
+                            <constraint firstItem="xFy-kx-hGn" firstAttribute="top" secondItem="rG3-h1-OYi" secondAttribute="bottom" id="JLc-kk-FTL"/>
                             <constraint firstItem="Pgc-Aj-xRe" firstAttribute="width" secondItem="RRo-TU-H8E" secondAttribute="width" id="OXy-MQ-Gpe"/>
                             <constraint firstItem="aHa-EQ-von" firstAttribute="top" secondItem="gxc-bl-xIN" secondAttribute="bottom" constant="100" id="OYj-rE-Yhg"/>
                             <constraint firstItem="xFy-kx-hGn" firstAttribute="centerX" secondItem="RRo-TU-H8E" secondAttribute="centerX" id="aKt-wx-znF"/>
@@ -501,7 +501,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nhS-2i-wgI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Events" image="1_Events" selectedImage="1_EventsFilled" id="gwB-Zu-sBd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="vYt-kV-r8B">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vYt-kV-r8B">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
