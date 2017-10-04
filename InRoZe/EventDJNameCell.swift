@@ -42,13 +42,16 @@ class EventDJNameCell: UICollectionViewCell
     }
     
     private func updateCellColorforFollowed() {
+        profileImage.image = UIImage(named: profileImageName(for: thisDJ!.name!, when: thisDJ!.isFollowed))
         if (thisDJ!.isFollowed) {
             outerCircle.layer.borderColor = followedColor.cgColor
-            profileImage.backgroundColor = followedColor
+            profileImage.backgroundColor = profileImageBackgroundColor(for: thisDJ!.name!)
         } else {
             outerCircle.layer.borderColor = notFollowedColor.cgColor
+            
             profileImage.backgroundColor = .white
         }
+        
     }
     
     
