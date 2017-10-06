@@ -18,7 +18,6 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     
     // properties
     let followedRightButton = UIBarButtonItem()
-    let deejayGigCell = "Deejay Gig Cell"
     var artist: Artist? { didSet { updateUI() } }
 
     //private var currentFollowState = false
@@ -108,7 +107,7 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Deejay Gig Cell", for: indexPath) as! DeejayGigsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: DeejayGigsCell.identifier, for: indexPath) as! DeejayGigsCell
         
         // Configure the cell...
         cell.selectionStyle = .none

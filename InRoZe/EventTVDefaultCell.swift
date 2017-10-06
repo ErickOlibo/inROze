@@ -10,6 +10,16 @@ import UIKit
 
 class EventTVDefaultCell: UITableViewCell {
     
+    //Nib
+    static var nib:UINib {
+        return UINib(nibName: identifier, bundle: nil)
+    }
+    
+    static var identifier: String {
+        return String(describing: self)
+    }
+    
+    var event: Event?
     // outlets to the UI components
     @IBOutlet weak var locationCover: CustomUIImageView!
     @IBOutlet weak var eventCover: CustomUIImageView!     

@@ -13,8 +13,7 @@ import SDWebImage
 extension EventsViewController
 {
     // MARK: - Table view data source
-    
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return fetchResultsController.sections?.count ?? 0
     }
@@ -28,13 +27,11 @@ extension EventsViewController
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        //guard let tableViewCell = cell as? EventTableViewCell else { return }
-        guard let tableViewCell = cell as? EventTVDeejayCell else { return }
+        guard let tableViewCell = cell as? EventDeejayCell else { return }
         tableViewCell.setCollectionViewDataSourceDelegate(tableViewCell.self, forRow: indexPath.row)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let event = fetchResultsController.object(at: indexPath)
         
         // conditionel cell for NIB
@@ -77,12 +74,8 @@ extension EventsViewController
     }
  
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        // measure the cell height
         let event = fetchResultsController.object(at: indexPath)
-        let performersCount = event.performers?.count ?? 0
-        if (performersCount > 0) {
-            
+        if let performerCount = event.performers?.count, performerCount > 0 {
             return cellHeightDeejays
         } else {
             return cellHeightDefault
@@ -102,10 +95,10 @@ extension EventsViewController
     // list of segue to be done here
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Deejay Gigs List" {
-            if let djsCollectionCell = sender as? EventDJsCollectionViewCell {
-                if let _ = djsCollectionCell.superview as? UICollectionView {
+            if let deejayNameCell = sender as? EventDJNameCell {
+                if let _ = deejayNameCell.superview as? UICollectionView {
                     if let destination = segue.destination as? DeejayGigsTableViewController {
-                        let thisDJ = djsCollectionCell.thisDJ!
+                        let thisDJ = deejayNameCell.thisDJ!
                         destination.artist = thisDJ
                         destination.navigationItem.title = thisDJ.name!
                     }

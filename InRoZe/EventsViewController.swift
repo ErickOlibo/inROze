@@ -16,47 +16,33 @@ class EventsViewController: FetchedResultsTableViewController {
     let eventCell = "Event Cell"
     let manager = SDWebImageManager.shared()
 
-    
-    
-    // All this are from AutoLayout in the main.Storyboard
-    let marginWidth: CGFloat = 18 * 2
-    let aboveCoverMargin: CGFloat = 60
-    let belowCoverMargin: CGFloat = 10
-    let coverRatio = CGFloat(16) / 9
+    // Areas set in  AutoLayout at the main.Storyboard
+    let topAreaHeight: CGFloat = 70
     let phoneSizeWidth = UIScreen.main.bounds.width
-    let djCellMargin: CGFloat = 70
-    let belowDjCellMargin: CGFloat = 10
+    let coverRatio = CGFloat(16) / 9
+    let marginWidth: CGFloat = 20 * 2
+    let djAreaHeight: CGFloat = 100
     
     var cellHeightDefault: CGFloat = 0
     var cellHeightDeejays: CGFloat = 0
-    
 
-    // Core dat Model container and context
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     let mainContext = AppDelegate.viewContext
     
+    // Lazy controller for the Events. Need one for the Artist
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
         
-        // Initilaze Fetch Request
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         let nowTime = NSDate()
-        
-        // Add sor Descriptors and Predicate
         request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
         request.predicate = NSPredicate(format: "endTime > %@ AND imageURL != nil AND name != nil AND text != nil", nowTime)
-        request.fetchBatchSize = 20
-        
-        // Initialze Fetched Results Controller
-        
-
+        //request.fetchBatchSize = 20
         
         let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
-        
-        // Configure Fetch Results Controller
         fetchedRC.delegate = self
-        
         return fetchedRC
     }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,10 +79,9 @@ class EventsViewController: FetchedResultsTableViewController {
 
     
     private func updateUI() {
-        
-        // Execute the FetchRequest
         do {
             try self.fetchResultsController.performFetch()
+            print("Are you reloading the table")
             self.tableView.reloadData()
             
         } catch {

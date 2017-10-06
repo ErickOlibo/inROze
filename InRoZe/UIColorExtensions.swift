@@ -68,6 +68,17 @@ extension UIColor {
     
 }
 
+extension CALayer {
+    var borderUIColor: UIColor {
+        set {
+            self.borderColor = newValue.cgColor
+        }
+        get {
+            return UIColor(cgColor: self.borderColor!)
+        }
+    }
+}
+
 
 func coloredString(_ string: String, color: UIColor) -> NSMutableAttributedString {
     let attributedString = NSMutableAttributedString(string: string)

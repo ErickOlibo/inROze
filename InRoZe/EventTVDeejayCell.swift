@@ -10,6 +10,15 @@ import UIKit
 
 class EventTVDeejayCell: UITableViewCell {
     
+    //Nib
+    static var nib:UINib {
+        return UINib(nibName: identifier, bundle: nil)
+    }
+    
+    static var identifier: String {
+        return String(describing: self)
+    }
+    
     var event: Event?
     let collectionDeejayCell = "Collection Deejay Cell"
     
@@ -34,8 +43,8 @@ class EventTVDeejayCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        let nibNameCollectionDeejay = UINib(nibName: "CollectionDeejayCell", bundle: nil)
-        collectionView.register(nibNameCollectionDeejay, forCellWithReuseIdentifier: "Collection Deejay Cell")
+        collectionView.register(CollectionDeejayCell.nib, forCellWithReuseIdentifier: CollectionDeejayCell.identifier)
+        
         
     }
 

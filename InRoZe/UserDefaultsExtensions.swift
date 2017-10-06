@@ -19,6 +19,7 @@ extension UserDefaults {
         var interval = TimeInterval()
         var fromWhere: String
         let currentTime = NSDate()
+
         if (lastRequest == RequestDate.toFacebook) {
             fromWhere = "FACEBOOK"
             interval = IntervalBetweenRequest.toFacebook
@@ -29,6 +30,8 @@ extension UserDefaults {
             fromWhere = "SERVER_ARTISTS"
             interval = IntervalBetweenRequest.toServerArtist
         }
+        
+        
         
         let lastSavedTime = object(forKey: lastRequest)
         let elapsedTime = currentTime.timeIntervalSince(lastSavedTime as? Date ?? currentTime as Date)
