@@ -67,12 +67,26 @@ extension EventsViewController
         
         // condition cell
 
+        let cell = tableView.dequeueReusableCell(withIdentifier: EventDeejayCell.identifier, for: indexPath) as! EventDeejayCell
+        cell.event = event
+        print("[\(indexPath.row)] [\(event.location!.name!)] - EndTime: [\(event.endTime ?? NSDate())] time now: [\(NSDate())]")
+        cell.selectionStyle = .none
+        cell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
+            if (image != nil) { cell.eventCover.image = image } }
+        cell.locationCover.sd_setImage(with: URL(string: event.location!.profileURL! )) { (image, error, cacheType, imageURL) in
+            if (image != nil) { cell.locationCover.image = image } }
+        cell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
+        cell.eventTitle.text = event.name
+        return cell
+ 
     }
     
-    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-
+  
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Cell pressed at indexPath Row [\(indexPath.row)]")
     }
- 
+    
+    // SECTION for Height at index path
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let event = fetchResultsController.object(at: indexPath)
         if let performerCount = event.performers?.count, performerCount > 0 {
@@ -84,10 +98,7 @@ extension EventsViewController
     
 
     
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Cell pressed at indexPath Row [\(indexPath.row)]")
-    }
+
 
 
     // - Mark - Navigation
