@@ -138,14 +138,21 @@ public class Event: NSManagedObject
                         
                         // Formatting DateTime
                         let formatter = ISO8601DateFormatter()
-                        event.startTime = formatter.date(from: sTime)! as NSDate
+                        let startTimeDate = formatter.date(from: sTime)! as NSDate
+                        event.startTime = startTimeDate
                         event.updatedTime = formatter.date(from: uTime)! as NSDate
                         
-                        // If end_time is nil (from FB request) add default: +8 hours of Start_time
                         if let eTime = eventInfo[FBEvent.endTime] as? String {
-                            event.endTime = formatter.date(from: eTime)! as NSDate
+                            let endTimeDate = formatter.date(from: eTime)! as NSDate
+                            let diffEndStart = endTimeDate.timeIntervalSince(startTimeDate as Date)
+                            
+                            if (diffEndStart > TimeInterval(10 * 60 * 60)) {
+                                event.endTime = (formatter.date(from: sTime)! as NSDate).addingTimeInterval(10 * 60 * 60)
+                            } else {
+                                event.endTime = endTimeDate
+                            }
                         } else {
-                            event.endTime = (formatter.date(from: sTime)! as NSDate).addingTimeInterval(8 * 60 * 60)
+                            event.endTime = (formatter.date(from: sTime)! as NSDate).addingTimeInterval(10 * 60 * 60)
                         }
                         
                         // updating Location ralationship for eventID
@@ -164,7 +171,7 @@ public class Event: NSManagedObject
                 // Delete event where endTime is older than now
                 let nowTime = NSDate()
                 if ((event.endTime! as Date) < (nowTime as Date)) {
-                    print("DELETE This Event: [\(event.name!)]")
+                    //print("DELETE This Event: [\(event.name!)]")
                     context.delete(event)
                 }
                 

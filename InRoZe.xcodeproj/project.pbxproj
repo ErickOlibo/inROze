@@ -169,6 +169,7 @@
 		A72B792C1F2231AF009FB389 /* InRoZe */ = {
 			isa = PBXGroup;
 			children = (
+				A72B792D1F2231AF009FB389 /* AppDelegate.swift */,
 				A72B79311F2231AF009FB389 /* Main.storyboard */,
 				A7EC36841F36553B00548C11 /* LoginViewController.swift */,
 				A7EC36861F365AA900548C11 /* TabBarViewController.swift */,
@@ -195,7 +196,6 @@
 		A72B79421F2231F8009FB389 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A72B792D1F2231AF009FB389 /* AppDelegate.swift */,
 				A72B79391F2231AF009FB389 /* LaunchScreen.storyboard */,
 				A72B793C1F2231AF009FB389 /* Info.plist */,
 				A7F5274E1F479ED70008080B /* InRoZe-Bridging-Header.h */,

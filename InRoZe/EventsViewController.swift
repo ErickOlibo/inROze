@@ -31,11 +31,10 @@ class EventsViewController: FetchedResultsTableViewController {
         let nowTime = NSDate()
         request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
         request.predicate = NSPredicate(format: "endTime > %@ AND imageURL != nil AND name != nil AND text != nil", nowTime)
-        request.fetchBatchSize = 20
+        //request.fetchBatchSize = 20
         
         let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedRC.delegate = self
-        
         return fetchedRC
     }()
     
@@ -63,6 +62,7 @@ class EventsViewController: FetchedResultsTableViewController {
     private func updateUI() {
         do {
             try self.fetchResultsController.performFetch()
+            print("Are you reloading the table")
             self.tableView.reloadData()
             
         } catch {

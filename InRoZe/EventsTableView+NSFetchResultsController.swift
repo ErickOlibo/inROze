@@ -36,6 +36,7 @@ extension EventsViewController
 
         let cell = tableView.dequeueReusableCell(withIdentifier: EventDeejayCell.identifier, for: indexPath) as! EventDeejayCell
         cell.event = event
+        print("[\(indexPath.row)] [\(event.location!.name!)] - EndTime: [\(event.endTime ?? NSDate())] time now: [\(NSDate())]")
         cell.selectionStyle = .none
         cell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
             if (image != nil) { cell.eventCover.image = image } }

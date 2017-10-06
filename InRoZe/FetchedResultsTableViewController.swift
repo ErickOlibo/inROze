@@ -27,13 +27,17 @@ class FetchedResultsTableViewController: UITableViewController, NSFetchedResults
         switch type {
         case .insert:
             tableView.insertRows(at: [newIndexPath!], with: .fade)
+            print("[Controller INSERT] - Old index [\(indexPath!.row)] || new index [\(newIndexPath!.row)]")
         case .delete:
             tableView.deleteRows(at: [indexPath!], with: .fade)
+            print("[Controller DELETE] - index [\(indexPath!.row)]")
         case .update:
             tableView.reloadRows(at: [indexPath!], with: .fade)
+            print("[Controller UPDATE] - index [\(indexPath!.row)]")
         case .move:
             tableView.deleteRows(at: [indexPath!], with: .fade)
             tableView.insertRows(at: [newIndexPath!], with: .fade)
+            print("[Controller MOVE (DELETE INSERT)] - Old index [\(indexPath!.row)] || new index [\(newIndexPath!.row)]")
         }
     }
     
