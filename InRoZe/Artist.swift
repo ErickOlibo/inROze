@@ -123,7 +123,7 @@ public class Artist: NSManagedObject
     class func findPerformingEvents(for artist: Artist, in context: NSManagedObjectContext) -> [Event]? {
         let request: NSFetchRequest<Event> = Event.fetchRequest()
 
-        // Add sor Descriptors and Predicate
+        // Add sort Descriptors and Predicate
         request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
         request.predicate = NSPredicate(format: "ANY performers.id == %@", artist.id!)
         do {
@@ -139,7 +139,21 @@ public class Artist: NSManagedObject
     }
     
     
-    
+    class func orderedPerformingDeejays(for event: Event, in context: NSManagedObjectContext) -> [Artist]? {
+        let request: NSFetchRequest<Artist> = Artist.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true, selector: nil)]
+        request.predicate = NSPredicate(format: "ANY gigs.id == %@", event.id!)
+        do {
+            let match = try context.fetch(request)
+            
+            if match.count > 0 {
+               return match
+            }
+        } catch {
+            print("[orderedPerformingDeejays] - Error while ordering performers: \(error)")
+        }        
+        return nil
+    }
     
     
     

@@ -14,15 +14,11 @@ import FBSDKCoreKit
 
 public class RequestHandler
 {
-    
-
-    // Properties listeners
     var isDoneUpdatingServeRequest = false {
         didSet {
             fetchEventsInfoFromFacebook()
         }
     }
-    
     
     // MARK: - Handler to SERVER
     
@@ -37,16 +33,12 @@ public class RequestHandler
                 let params = "id=\(userID)&cityCode=\(userDefault.currentCityCode)&countryCode=\(userDefault.currentCountryCode)"
                 let request = ServerRequest()
                 request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
-                
             }
         } else {
-            // Go straight to Facebook Request
             fetchEventsInfoFromFacebook()
         }
-        
     }
 
-    
     // Saves user info into the Server
     private func saveCurrentUserProfile(_ result: NSDictionary) {
         if let id = result[FBUser.id]  as? String,
@@ -64,11 +56,8 @@ public class RequestHandler
             }
         }
     }
-
-    
     
     // MARK: - Handler to FACEBOOK
-    
     // Call FB Graph API and fetch user info
     public func requestUserInfo() {
         let params = [FBUser.email, FBUser.name, FBUser.id, FBUser.gender, FBUser.cover].joined(separator: ", ")

@@ -13,7 +13,6 @@ import SDWebImage
 class EventsViewController: FetchedResultsTableViewController {
     
     // properties
-    let eventCell = "Event Cell"
     let manager = SDWebImageManager.shared()
 
     // Areas set in  AutoLayout at the main.Storyboard
@@ -29,20 +28,17 @@ class EventsViewController: FetchedResultsTableViewController {
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     let mainContext = AppDelegate.viewContext
     
-    // Lazy controller for the Events. Need one for the Artist
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
         
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         let nowTime = NSDate()
         request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
         request.predicate = NSPredicate(format: "endTime > %@ AND imageURL != nil AND name != nil AND text != nil", nowTime)
-        //request.fetchBatchSize = 20
-        
+        request.fetchBatchSize = 20
         let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedRC.delegate = self
         return fetchedRC
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,16 +49,12 @@ class EventsViewController: FetchedResultsTableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.tabBarController?.tabBar.tintColor = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
         print("EventsViewController")
         updateUI()
-
         RequestHandler().fetchEventIDsFromServer()
         
     }
-    
-
     
     private func updateUI() {
         do {
@@ -75,16 +67,5 @@ class EventsViewController: FetchedResultsTableViewController {
 
         }
     }
-
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

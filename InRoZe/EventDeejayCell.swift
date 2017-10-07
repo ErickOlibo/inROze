@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 
 class EventDeejayCell: UITableViewCell
@@ -16,6 +17,9 @@ class EventDeejayCell: UITableViewCell
     }
     
     var event: Event?
+    
+    // context & container
+    var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
     // outlets to the UI components in the custom UITableViewCell
     @IBOutlet weak var locationCover: UIImageView!
@@ -31,9 +35,7 @@ class EventDeejayCell: UITableViewCell
         collectionView.reloadData()
     }
     
-    
 }
-
 
 extension EventDeejayCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 {
@@ -41,7 +43,6 @@ extension EventDeejayCell: UICollectionViewDelegate, UICollectionViewDataSource,
     {
         return 1
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
@@ -51,25 +52,18 @@ extension EventDeejayCell: UICollectionViewDelegate, UICollectionViewDataSource,
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        
-        // CHANGE THIS WITH A FETCH REQUEST
-        var arrayDJsGigs = [String : Artist]()
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventDJNameCell.identifier, for: indexPath) as! EventDJNameCell
         
-        
-        if let djsSet = event?.performers, djsSet.count > 0 {
-            for deejay in djsSet {
-                let thisDJ = deejay as! Artist
-                arrayDJsGigs[thisDJ.name!] = thisDJ
+        if let context = container?.viewContext {
+            context.perform {
+                if let performingDeejays = Artist.orderedPerformingDeejays(for: self.event!, in: context) {
+                    let deejay = performingDeejays[indexPath.row]
+                    cell.djName.text = deejay.name!
+                    cell.thisDJ = deejay
+                    print("[\(indexPath.row)] - performing DJ: [\(performingDeejays[indexPath.row].name!)]")
+                }
             }
-            
         }
-        //let sortedDJs = arrayDJs.sorted()
-        let sortedArr = arrayDJsGigs.sorted { $0.key < $1.key }
-        let currentDJ = arrayDJsGigs[sortedArr[indexPath.row].key]
-        cell.thisDJ = currentDJ
-        //-----------------------CHANGE
-        cell.djName.text = currentDJ?.name
         return cell
     }
     
