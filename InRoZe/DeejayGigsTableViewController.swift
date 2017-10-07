@@ -89,7 +89,6 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
                 }
             }
         }
-        
     }
 
     
@@ -124,6 +123,9 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         return cell
     }
  
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Event in Deejay list nr: [\(indexPath.row)]")
+    }
 
 
 }
