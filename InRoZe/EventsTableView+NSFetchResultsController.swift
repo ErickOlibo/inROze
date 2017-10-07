@@ -29,24 +29,21 @@ extension EventsViewController
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let tableViewCell = cell as? EventDeejayCell else { return }
         tableViewCell.setCollectionViewDataSourceDelegate(tableViewCell.self, forRow: indexPath.row)
+        let event = fetchResultsController.object(at: indexPath)
+        tableViewCell.event = event
+        print("[\(indexPath.row)] [\(event.location!.name!)] - EndTime: [\(event.endTime ?? NSDate())] time now: [\(NSDate())]")
+        tableViewCell.selectionStyle = .none
+        tableViewCell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
+            if (image != nil) { tableViewCell.eventCover.image = image } }
+        tableViewCell.locationCover.sd_setImage(with: URL(string: event.location!.profileURL! )) { (image, error, cacheType, imageURL) in
+            if (image != nil) { tableViewCell.locationCover.image = image } }
+        tableViewCell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
+        tableViewCell.eventTitle.text = event.name
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let event = fetchResultsController.object(at: indexPath)
-
-
         let cell = tableView.dequeueReusableCell(withIdentifier: EventDeejayCell.identifier, for: indexPath) as! EventDeejayCell
-        cell.event = event
-        print("[\(indexPath.row)] [\(event.location!.name!)] - EndTime: [\(event.endTime ?? NSDate())] time now: [\(NSDate())]")
-        cell.selectionStyle = .none
-        cell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
-            if (image != nil) { cell.eventCover.image = image } }
-        cell.locationCover.sd_setImage(with: URL(string: event.location!.profileURL! )) { (image, error, cacheType, imageURL) in
-            if (image != nil) { cell.locationCover.image = image } }
-        cell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
-        cell.eventTitle.text = event.name
         return cell
- 
     }
     
   
