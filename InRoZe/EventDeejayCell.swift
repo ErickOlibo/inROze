@@ -49,40 +49,24 @@ extension EventDeejayCell: UICollectionViewDelegate, UICollectionViewDataSource,
         return event?.performers?.count ?? 0
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let nameCell = cell as? EventDJNameCell else { return }
+        let djsSet = event!.performers?.allObjects as! [Artist]
+        let sorted = djsSet.sorted(by: {$0.name! < $1.name!})
+        let deejay = sorted[indexPath.row]
+        nameCell.djName.text = deejay.name!
+        nameCell.thisDJ = deejay
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventDJNameCell.identifier, for: indexPath) as! EventDJNameCell
-        
-        if let context = container?.viewContext {
-            context.perform {
-                if let performingDeejays = Artist.orderedPerformingDeejays(for: self.event!, in: context) {
-                    let deejay = performingDeejays[indexPath.row]
-                    cell.djName.text = deejay.name!
-                    cell.thisDJ = deejay
-                    print("[\(indexPath.row)] - performing DJ: [\(performingDeejays[indexPath.row].name!)]")
-                }
-            }
-        }
         return cell
     }
     
     // selected collection cell
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("row: \(indexPath.row)")
-        
-        
     }
-    
-    
-    
+
 }
-
-
-
-
-
-
-
-
-

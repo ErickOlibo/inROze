@@ -23,3 +23,4 @@ func dateTimeLocationFormatter(with event: Event) -> NSAttributedString {
     combinedAttributedText.append(locationNameAttributedText)
     return combinedAttributedText
 }
+

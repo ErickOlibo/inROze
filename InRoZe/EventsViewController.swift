@@ -37,6 +37,7 @@ class EventsViewController: FetchedResultsTableViewController {
         request.fetchBatchSize = 20
         let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedRC.delegate = self
+        print("FETCH RESULTS CONTROLLER IS SET")
         return fetchedRC
     }()
     

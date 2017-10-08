@@ -27,11 +27,12 @@ extension EventsViewController
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
         guard let tableViewCell = cell as? EventDeejayCell else { return }
         tableViewCell.setCollectionViewDataSourceDelegate(tableViewCell.self, forRow: indexPath.row)
         let event = fetchResultsController.object(at: indexPath)
         tableViewCell.event = event
-        print("[\(indexPath.row)] [\(event.location!.name!)] - EndTime: [\(event.endTime ?? NSDate())] time now: [\(NSDate())]")
+        //print("[\(indexPath.row)] [\(event.location!.name!)] - EndTime: [\(event.endTime ?? NSDate())] time now: [\(NSDate())]")
         tableViewCell.selectionStyle = .none
         tableViewCell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
             if (image != nil) { tableViewCell.eventCover.image = image } }

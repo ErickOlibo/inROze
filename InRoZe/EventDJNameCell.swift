@@ -30,7 +30,6 @@ class EventDJNameCell: UICollectionViewCell
     @IBOutlet weak var djName: UILabel!
     
     private func updateUI() {
-        //print("DJNAME - This DJ: \(thisDJ!.name!)")
         if let context = container?.viewContext {
             context.perform {
                 if let currentState = Artist.currentIsFollowedState(for: self.thisDJ!.id!, in: context) {

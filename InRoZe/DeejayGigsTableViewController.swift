@@ -103,23 +103,24 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         // #warning Incomplete implementation, return the number of rows
         return gigsList?.count ?? 0
     }
-
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let djCell = cell as? DeejayGigsCell else { return }
+        // Configure the cell...
+        djCell.selectionStyle = .none
+        
+        // place cover image
+        djCell.eventCover.sd_setImage(with: URL(string: gigsList![indexPath.row].imageURL! )) { (image, error, cacheType, imageURL) in
+            if (image != nil) {
+                djCell.eventCover.image = image
+            }
+        }
+        djCell.eventName.text = gigsList![indexPath.row].name!
+        djCell.eventDateTimeLocation.attributedText = dateTimeLocationFormatter(with: gigsList![indexPath.row])
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DeejayGigsCell.identifier, for: indexPath) as! DeejayGigsCell
-        
-        // Configure the cell...
-        cell.selectionStyle = .none
-        
-        // place cover image
-        cell.eventCover.sd_setImage(with: URL(string: gigsList![indexPath.row].imageURL! )) { (image, error, cacheType, imageURL) in
-            if (image != nil) {
-                cell.eventCover.image = image
-            }
-        }
-        cell.eventName.text = gigsList![indexPath.row].name!
-        cell.eventDateTimeLocation.attributedText = dateTimeLocationFormatter(with: gigsList![indexPath.row])
-
         return cell
     }
  
