@@ -43,7 +43,7 @@ class EventsViewController: FetchedResultsTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cellHeightDefault = topAreaHeight + (phoneSizeWidth - marginWidth) / coverRatio
+        cellHeightDefault = (topAreaHeight + (phoneSizeWidth - marginWidth) / coverRatio).rounded(.up)
         cellHeightDeejays = cellHeightDefault + djAreaHeight
         print("DEFAULT Cell: [\(cellHeightDefault)] -- DEEJAY Cell: [\(cellHeightDeejays)]")
         self.navigationController?.navigationBar.isTranslucent = false

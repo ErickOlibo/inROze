@@ -33,10 +33,10 @@ extension EventsViewController
         let event = fetchResultsController.object(at: indexPath)
         eventCell.event = event
         eventCell.selectionStyle = .none
-//        eventCell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
-//            if (image != nil) { eventCell.eventCover.image = image } }
-//        eventCell.locationCover.sd_setImage(with: URL(string: event.location!.profileURL! )) { (image, error, cacheType, imageURL) in
-//            if (image != nil) { eventCell.locationCover.image = image } }
+        eventCell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
+            if (image != nil) { eventCell.eventCover.image = image } }
+        eventCell.locationCover.sd_setImage(with: URL(string: event.location!.profileURL! )) { (image, error, cacheType, imageURL) in
+            if (image != nil) { eventCell.locationCover.image = image } }
         eventCell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
         eventCell.eventTitle.text = event.name
     }
