@@ -71,7 +71,7 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="14" id="WL4-ny-IGK"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="14"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -97,25 +97,6 @@
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U7z-tv-Szv" customClass="CustomUIImageView" customModule="InRoZe" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="10" width="40" height="40"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="40" id="QGG-Uy-r3O"/>
-                                                <constraint firstAttribute="width" secondItem="U7z-tv-Szv" secondAttribute="height" multiplier="1:1" id="wff-kO-fee"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                    <real key="value" value="0.5"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBound" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="20"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D0h-Pv-9Uv" customClass="CustomUIImageView" customModule="InRoZe" customModuleProvider="target">
                                             <rect key="frame" x="20" y="60" width="374" height="210.33333333333331"/>
                                             <constraints>
@@ -135,22 +116,22 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.90000000000000002" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ym7-KE-goa">
-                                            <rect key="frame" x="70" y="7" width="324" height="26"/>
+                                            <rect key="frame" x="20" y="7" width="374" height="26"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="26" id="YuG-W1-xY9"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time &amp; place" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8qy-I6-JfF">
-                                            <rect key="frame" x="70" y="36" width="324" height="16"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time &amp; place" textAlignment="natural" lineBreakMode="tailTruncation" minimumScaleFactor="0.80000000000000004" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8qy-I6-JfF">
+                                            <rect key="frame" x="20" y="36" width="374" height="18"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="16" id="dAc-3F-KSg"/>
+                                                <constraint firstAttribute="height" constant="18" id="dAc-3F-KSg"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -159,8 +140,6 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="8qy-I6-JfF" secondAttribute="trailing" constant="12" id="Dmt-91-3WQ"/>
                                         <constraint firstItem="D0h-Pv-9Uv" firstAttribute="width" secondItem="Hnd-gk-IKz" secondAttribute="width" constant="-40" id="Jch-Dg-JEP"/>
                                         <constraint firstItem="b1v-d0-dBL" firstAttribute="centerX" secondItem="Hnd-gk-IKz" secondAttribute="centerX" id="M9S-Fo-JGf"/>
-                                        <constraint firstItem="U7z-tv-Szv" firstAttribute="leading" secondItem="Hnd-gk-IKz" secondAttribute="leadingMargin" constant="12" id="NRY-rv-jao"/>
-                                        <constraint firstItem="Ym7-KE-goa" firstAttribute="leading" secondItem="Hnd-gk-IKz" secondAttribute="leadingMargin" constant="62" id="QLS-Wy-aXt"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Ym7-KE-goa" secondAttribute="trailing" constant="12" id="Tk5-tS-ifY"/>
                                         <constraint firstItem="D0h-Pv-9Uv" firstAttribute="top" secondItem="Hnd-gk-IKz" secondAttribute="topMargin" constant="52" id="Zhg-wK-MuK"/>
                                         <constraint firstItem="b1v-d0-dBL" firstAttribute="width" secondItem="Hnd-gk-IKz" secondAttribute="width" id="eak-8b-J52"/>
@@ -168,8 +147,8 @@
                                         <constraint firstItem="8qy-I6-JfF" firstAttribute="top" secondItem="Hnd-gk-IKz" secondAttribute="topMargin" constant="28" id="i8d-fC-b4P"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="b1v-d0-dBL" secondAttribute="bottom" constant="-8.3333333333333144" id="kqG-Vd-3bM"/>
                                         <constraint firstItem="Ym7-KE-goa" firstAttribute="top" secondItem="Hnd-gk-IKz" secondAttribute="topMargin" constant="-1" id="meK-OJ-eKO"/>
-                                        <constraint firstItem="8qy-I6-JfF" firstAttribute="leading" secondItem="Hnd-gk-IKz" secondAttribute="leadingMargin" constant="62" id="teu-O2-khk"/>
-                                        <constraint firstItem="U7z-tv-Szv" firstAttribute="top" secondItem="Hnd-gk-IKz" secondAttribute="topMargin" constant="2" id="yNw-7q-JwC"/>
+                                        <constraint firstItem="8qy-I6-JfF" firstAttribute="leading" secondItem="Hnd-gk-IKz" secondAttribute="leadingMargin" constant="12" id="teu-O2-khk"/>
+                                        <constraint firstItem="Ym7-KE-goa" firstAttribute="leading" secondItem="Hnd-gk-IKz" secondAttribute="leadingMargin" constant="12" id="yfB-Yz-z9N"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -177,7 +156,6 @@
                                     <outlet property="eventCover" destination="D0h-Pv-9Uv" id="8hn-1i-Ruo"/>
                                     <outlet property="eventTimeLocation" destination="8qy-I6-JfF" id="Mc8-ks-Car"/>
                                     <outlet property="eventTitle" destination="Ym7-KE-goa" id="8U6-a9-sdv"/>
-                                    <outlet property="locationCover" destination="U7z-tv-Szv" id="8Xn-FV-CIv"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -479,7 +457,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nhS-2i-wgI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Events" image="1_Events" selectedImage="1_EventsFilled" id="gwB-Zu-sBd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vYt-kV-r8B">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="vYt-kV-r8B">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
