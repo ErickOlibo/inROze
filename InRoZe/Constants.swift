@@ -142,8 +142,13 @@ public func profileImageForDJ(with id: String, when isFollowed: Bool) -> String 
     // for people -> ("Color_P_Letter_" : "Grey_P_Letter_")
     // for images -> ("Color_P_Letter_" : "Grey_P_Letter_")
     // for 100 pics -> with String from the DJ CoverName("Color_" : "Grey_")
-    let colorOrGrey = (isFollowed) ? "Color_DJcover_" : "Grey_DJcover_"
+    let colorOrGrey = (isFollowed) ? "img_Color_DJcover_" : "img_Grey_DJcover_"
     return colorOrGrey + lastTwo
+}
+
+// background image for DJ profile
+public func profileImageBackgroundForDJ(when isFollowed: Bool) -> String {
+    return (isFollowed) ? "BackGround_Image_Followed" : "Background_Image_Notfollowed"
 }
 
 

@@ -46,6 +46,7 @@ class EventsViewController: FetchedResultsTableViewController {
         cellHeightDefault = topAreaHeight + (phoneSizeWidth - marginWidth) / coverRatio
         cellHeightDeejays = cellHeightDefault + djAreaHeight
         print("DEFAULT Cell: [\(cellHeightDefault)] -- DEEJAY Cell: [\(cellHeightDeejays)]")
+        self.navigationController?.navigationBar.isTranslucent = false
     }
 
     override func viewWillAppear(_ animated: Bool) {

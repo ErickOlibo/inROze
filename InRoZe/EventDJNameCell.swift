@@ -25,35 +25,29 @@ class EventDJNameCell: UICollectionViewCell
     let notFollowedColor: UIColor = .black
     
     // Cell Outlets
-    @IBOutlet weak var outerCircle: UIView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var djName: UILabel!
+    @IBOutlet weak var backgroundProfileImage: UIImageView!
     
     private func updateUI() {
-        if let context = container?.viewContext {
-            context.perform {
-                if let currentState = Artist.currentIsFollowedState(for: self.thisDJ!.id!, in: context) {
-                    self.thisDJ!.isFollowed = currentState
-                }
+        container?.performBackgroundTask{ context in
+            //print("FETCHING isFollowed From CORE DATA || Current Thread: [\(Thread.current)]")
+            if let currentState = Artist.currentIsFollowedState(for: self.thisDJ!.id!, in: context) {
+                self.thisDJ!.isFollowed = currentState
             }
         }
         updateCellColorforFollowed()
     }
     
     private func updateCellColorforFollowed() {
-        profileImage.image = UIImage(named: profileImageForDJ(with: thisDJ!.id!, when: thisDJ!.isFollowed))
-        if (thisDJ!.isFollowed) {
-            outerCircle.layer.borderColor = followedColor.cgColor
-            //profileImage.backgroundColor = profileImageBackgroundColor(for: thisDJ!.name!)
-        } else {
-            outerCircle.layer.borderColor = notFollowedColor.cgColor
-            
-            //profileImage.backgroundColor = .white
-        }
+        backgroundProfileImage.image = UIImage(named: profileImageForDJ(with: thisDJ!.id!, when: thisDJ!.isFollowed))
         
     }
     
-    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        backgroundProfileImage.image = nil
+    }
     
     
 }

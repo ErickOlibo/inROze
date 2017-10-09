@@ -28,18 +28,17 @@ extension EventsViewController
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        guard let tableViewCell = cell as? EventDeejayCell else { return }
-        tableViewCell.setCollectionViewDataSourceDelegate(tableViewCell.self, forRow: indexPath.row)
+        guard let eventCell = cell as? EventDeejayCell else { return }
+        eventCell.setCollectionViewDataSourceDelegate(eventCell.self, forRow: indexPath.row)
         let event = fetchResultsController.object(at: indexPath)
-        tableViewCell.event = event
-        //print("[\(indexPath.row)] [\(event.location!.name!)] - EndTime: [\(event.endTime ?? NSDate())] time now: [\(NSDate())]")
-        tableViewCell.selectionStyle = .none
-        tableViewCell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
-            if (image != nil) { tableViewCell.eventCover.image = image } }
-        tableViewCell.locationCover.sd_setImage(with: URL(string: event.location!.profileURL! )) { (image, error, cacheType, imageURL) in
-            if (image != nil) { tableViewCell.locationCover.image = image } }
-        tableViewCell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
-        tableViewCell.eventTitle.text = event.name
+        eventCell.event = event
+        eventCell.selectionStyle = .none
+//        eventCell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
+//            if (image != nil) { eventCell.eventCover.image = image } }
+//        eventCell.locationCover.sd_setImage(with: URL(string: event.location!.profileURL! )) { (image, error, cacheType, imageURL) in
+//            if (image != nil) { eventCell.locationCover.image = image } }
+        eventCell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
+        eventCell.eventTitle.text = event.name
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -61,12 +61,18 @@ extension EventDeejayCell: UICollectionViewDelegate, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventDJNameCell.identifier, for: indexPath) as! EventDJNameCell
+        
         return cell
     }
     
     // selected collection cell
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("row: \(indexPath.row)")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        //self.collectionView = nil
     }
 
 }
