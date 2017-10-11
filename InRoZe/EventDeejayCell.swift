@@ -26,12 +26,14 @@ class EventDeejayCell: UITableViewCell
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventTimeLocation: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var coverHeight: NSLayoutConstraint!
     
     func setCollectionViewDataSourceDelegate<D: UICollectionViewDataSource & UICollectionViewDelegate>(_ dataSourceDelegate: D, forRow row: Int) {
+        print("SetCollectionViewSource: what row: [\(row)]")
         collectionView.delegate = dataSourceDelegate
         collectionView.dataSource = dataSourceDelegate
         collectionView.tag = row
-        collectionView.reloadData()
+        //collectionView.reloadData() // here is my scrolling issue
     }
     
 }
@@ -46,6 +48,7 @@ extension EventDeejayCell: UICollectionViewDelegate, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         return event?.performers?.count ?? 0
+        //return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -71,7 +74,7 @@ extension EventDeejayCell: UICollectionViewDelegate, UICollectionViewDataSource,
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        //self.collectionView = nil
+        print("Before Reuse how many Cells visible: [\(self.collectionView.visibleCells.count)]")
     }
 
 }

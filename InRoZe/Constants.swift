@@ -82,13 +82,33 @@ public struct Constants {
             
         default:
             return UIColor.black
-            
-            
         }
     }
     
-    
 }
+
+// height of the cell depending on the device size and resolution
+
+public struct CellSize {
+    static let topAreaHeight: CGFloat = 70
+    static let phoneSizeWidth = UIScreen.main.bounds.width
+    static let coverRatio = CGFloat(16) / 9
+    static let marginWidth: CGFloat = 20 * 2
+    static let djAreaHeight: CGFloat = 100
+}
+
+var eventCoverHeight: CGFloat = {
+    return ((CellSize.phoneSizeWidth - CellSize.marginWidth) / CellSize.coverRatio).rounded(.down)
+}()
+
+var cellHeightForDefault: CGFloat = {
+    return CellSize.topAreaHeight + ((CellSize.phoneSizeWidth - CellSize.marginWidth) / CellSize.coverRatio).rounded(.down)
+}()
+
+var cellHeightForDeejay: CGFloat = {
+    return CellSize.topAreaHeight + ((CellSize.phoneSizeWidth - CellSize.marginWidth) / CellSize.coverRatio).rounded(.down) + CellSize.djAreaHeight
+}()
+
 
 
 // City random background image

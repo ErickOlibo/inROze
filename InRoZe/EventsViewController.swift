@@ -11,19 +11,6 @@ import CoreData
 import SDWebImage
 
 class EventsViewController: FetchedResultsTableViewController {
-    
-    // properties
-    let manager = SDWebImageManager.shared()
-
-    // Areas set in  AutoLayout at the main.Storyboard
-    let topAreaHeight: CGFloat = 70
-    let phoneSizeWidth = UIScreen.main.bounds.width
-    let coverRatio = CGFloat(16) / 9
-    let marginWidth: CGFloat = 20 * 2
-    let djAreaHeight: CGFloat = 100
-    
-    var cellHeightDefault: CGFloat = 0
-    var cellHeightDeejays: CGFloat = 0
 
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     let mainContext = AppDelegate.viewContext
@@ -43,9 +30,7 @@ class EventsViewController: FetchedResultsTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cellHeightDefault = (topAreaHeight + (phoneSizeWidth - marginWidth) / coverRatio).rounded(.up)
-        cellHeightDeejays = cellHeightDefault + djAreaHeight
-        print("DEFAULT Cell: [\(cellHeightDefault)] -- DEEJAY Cell: [\(cellHeightDeejays)]")
+        print("FROM CONSTANT --> Default: [\(cellHeightForDefault)] -- Deejay: [\(cellHeightForDeejay)]")
         self.navigationController?.navigationBar.isTranslucent = false
     }
 

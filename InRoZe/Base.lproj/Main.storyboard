@@ -100,7 +100,7 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D0h-Pv-9Uv">
                                             <rect key="frame" x="20" y="60" width="374" height="210.33333333333331"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="D0h-Pv-9Uv" secondAttribute="height" multiplier="16:9" id="ltt-aM-RC7"/>
+                                                <constraint firstAttribute="height" constant="210.33333333333331" id="mh5-3A-O1z"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -147,6 +147,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="collectionView" destination="b1v-d0-dBL" id="ddL-m8-jWI"/>
+                                    <outlet property="coverHeight" destination="mh5-3A-O1z" id="FPb-iP-bJE"/>
                                     <outlet property="eventCover" destination="D0h-Pv-9Uv" id="8hn-1i-Ruo"/>
                                     <outlet property="eventTimeLocation" destination="8qy-I6-JfF" id="Mc8-ks-Car"/>
                                     <outlet property="eventTitle" destination="Ym7-KE-goa" id="8U6-a9-sdv"/>

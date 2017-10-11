@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Kingfisher
 
 
 // Format the event day, time, and location to Attributed text for cell subtitle
