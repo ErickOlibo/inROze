@@ -11,5 +11,6 @@ target 'InRoZe' do
   pod 'FacebookLogin'
   pod 'FacebookShare'
   pod 'Font-Awesome-Swift'
+  pod 'Kingfisher', '~> 3.13.1'
 
 end

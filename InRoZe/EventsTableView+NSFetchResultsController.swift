@@ -8,7 +8,8 @@
 
 import UIKit
 import CoreData
-import SDWebImage
+//import SDWebImage
+import Kingfisher
 
 extension EventsViewController
 {
@@ -33,13 +34,51 @@ extension EventsViewController
         let event = fetchResultsController.object(at: indexPath)
         eventCell.event = event
         eventCell.selectionStyle = .none
-        eventCell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
-            if (image != nil) {
-                print("Event Image Size: \(String(describing: image?.size))")
-                //let rndImage = image?.withRenderingMode(.alwaysOriginal)
-                //eventCell.eventCover.image = rndImage
-            }
+        guard let eventURL = URL(string: event.imageURL!) else { return }
+        
+        let thisURL = event.imageURL!
+        var ending = ""
+        if thisURL.lowercased().range(of: "jpg") != nil {
+            ending = "JPG"
+        } else if thisURL.lowercased().range(of: "png") != nil {
+            ending = "PNG"
+        } else {
+            ending = "//"
         }
+        //let imageviewMode = eventCell.eventCover.contentMode
+        let eventFrameSize = eventCell.eventCover.frame.size
+        let currentRow = indexPath.row
+        let screenScale = UIScreen.main.scale
+        // resize
+        let imageSize = CGSize(width: eventFrameSize.width * screenScale, height: eventFrameSize.height * screenScale)
+        
+        let processor = ResizingImageProcessor(referenceSize: imageSize, mode: .aspectFill)
+//        var processor = ResizingImageProcessor(referenceSize: imageSize, mode: .aspectFill) >> CroppingImageProcessor(size: imageSize)
+//        processor = processor.append(another: RoundCornerImageProcessor(cornerRadius: 10 * screenScale))
+        
+        //print("[\(currentRow)] --> Mode: [\(imageviewMode.rawValue)] || Frame: [\(eventFrameSize)]")
+        //, options: [.processor(processor), .cacheSerializer(FormatIndicatedCacheSerializer.png)]
+        
+        eventCell.eventCover.kf.setImage(with: eventURL, options: [.processor(processor)]) { (image, error, cacheType, imageURL) in
+            let fetchImageSize = image?.size ?? CGSize(width: 0, height: 0)
+            print("[\(currentRow)] Place: [\(event.location!.name!)] --> Cache: [\(cacheType.hashValue)] --> Size: [\(fetchImageSize)] | Frame: [\(eventFrameSize)] Image Type: [\(ending)]")
+//            switch cacheType {
+//            case .none:
+//                print("[\(currentRow)] --> Just downloaded - Size: [\(fetchImageSize)] | Frame: [\(eventFrameSize)]")
+//            case .memory:
+//                print("[\(currentRow)] --> Got from memory cache - Size: [\(fetchImageSize)] | Frame: [\(eventFrameSize)]")
+//            case .disk:
+//                print("[\(currentRow)] --> Got from disk cache - Size: [\(fetchImageSize)] | Frame: [\(eventFrameSize)]")
+//            }
+        }
+        
+//        eventCell.eventCover.sd_setImage(with: URL(string: event.imageURL! )) { (image, error, cacheType, imageURL) in
+//            if (image != nil) {
+//                print("Event Image Size: \(String(describing: image?.size))")
+//                //let rndImage = image?.withRenderingMode(.alwaysOriginal)
+//                //eventCell.eventCover.image = rndImage
+//            }
+//        }
         eventCell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
         eventCell.eventTitle.text = event.name
     }

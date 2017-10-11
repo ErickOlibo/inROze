@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Kingfisher
 
 
 // Format the event day, time, and location to Attributed text for cell subtitle
@@ -23,4 +24,3 @@ func dateTimeLocationFormatter(with event: Event) -> NSAttributedString {
     combinedAttributedText.append(locationNameAttributedText)
     return combinedAttributedText
 }
-

@@ -25,6 +25,7 @@ PODS:
   - FBSDKShareKit (4.25.0):
     - FBSDKCoreKit
   - Font-Awesome-Swift (1.6.2)
+  - Kingfisher (3.13.1)
   - SDWebImage (4.1.0):
     - SDWebImage/Core (= 4.1.0)
   - SDWebImage/Core (4.1.0)
@@ -34,6 +35,7 @@ DEPENDENCIES:
   - FacebookLogin
   - FacebookShare
   - Font-Awesome-Swift
+  - Kingfisher (~> 3.13.1)
   - SDWebImage
 
 SPEC CHECKSUMS:
@@ -45,8 +47,9 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: f628c09684dae9c17f071cf90b014e886f5093ea
   FBSDKShareKit: aea699d3cac749af08e360f4e949b82ffa8813f5
   Font-Awesome-Swift: 4dc96df73b5f32aaccdee50a454c3ec253ee4977
+  Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
   SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
 
-PODFILE CHECKSUM: 9187053f37d724975d10f508d84324fcb04465c2
+PODFILE CHECKSUM: 5db7076d80fdfeb4bfb4452d37d0c6ac248a14eb
 
 COCOAPODS: 1.3.0
