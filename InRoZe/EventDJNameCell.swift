@@ -46,8 +46,7 @@ class EventDJNameCell: UICollectionViewCell
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        backgroundProfileImage.image = nil
-        
+        //print("Artist Before Reuse Cell: [\(thisDJ!.name!)]")
     }
     
     

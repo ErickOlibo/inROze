@@ -30,9 +30,11 @@ extension EventsViewController
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         guard let eventCell = cell as? EventDeejayCell else { return }
-        eventCell.setCollectionViewDataSourceDelegate(eventCell.self, forRow: indexPath.row)
         let event = fetchResultsController.object(at: indexPath)
         eventCell.event = event
+        if let djsCount = event.performers?.count, djsCount > 0 {
+            eventCell.setCollectionViewDataSourceDelegate(eventCell.self, forRow: indexPath.row)
+        }
         eventCell.selectionStyle = .none
         guard let eventURL = URL(string: event.imageURL!) else { return }
         eventCell.eventCover.kf.setImage(with: eventURL, options: [.backgroundDecode])
@@ -43,7 +45,7 @@ extension EventsViewController
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: EventDeejayCell.identifier, for: indexPath) as! EventDeejayCell
-        //cell.collectionView.reloadData()
+
         cell.coverHeight.constant = eventCoverHeight
         cell.eventCover.layoutIfNeeded()
         return cell
