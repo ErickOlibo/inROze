@@ -25,7 +25,6 @@ class EventDJNameCell: UICollectionViewCell
     let notFollowedColor: UIColor = .black
     
     // Cell Outlets
-    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var djName: UILabel!
     @IBOutlet weak var backgroundProfileImage: UIImageView!
     

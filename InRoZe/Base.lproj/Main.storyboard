@@ -29,7 +29,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="380.66666666666669"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="b1v-d0-dBL">
+                                        <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="b1v-d0-dBL">
                                             <rect key="frame" x="0.0" y="281" width="414" height="100"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -42,22 +42,14 @@
                                                 <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
-                                                <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EventDJNameCell" id="cSy-eZ-t1r" customClass="EventDJNameCell" customModule="InRoZe" customModuleProvider="target">
+                                                <collectionViewCell multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EventDJNameCell" id="cSy-eZ-t1r" customClass="EventDJNameCell" customModule="InRoZe" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="0.0" width="80" height="100"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="100"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Crp-3q-juP">
-                                                                <rect key="frame" x="15" y="5" width="50" height="50"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="Crp-3q-juP" secondAttribute="height" multiplier="1:1" id="Xre-NM-yk7"/>
-                                                                    <constraint firstAttribute="height" constant="50" id="aqq-gf-ACu"/>
-                                                                </constraints>
-                                                            </imageView>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3oa-FX-4gP">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3oa-FX-4gP">
                                                                 <rect key="frame" x="10" y="0.0" width="60" height="60"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
@@ -79,11 +71,9 @@
                                                     </view>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstItem="Crp-3q-juP" firstAttribute="centerX" secondItem="3oa-FX-4gP" secondAttribute="centerX" id="0eO-fj-6XV"/>
                                                         <constraint firstItem="awH-zq-NVD" firstAttribute="top" secondItem="3oa-FX-4gP" secondAttribute="bottom" constant="10" id="DwU-Yk-Fw7"/>
                                                         <constraint firstItem="awH-zq-NVD" firstAttribute="leading" secondItem="cSy-eZ-t1r" secondAttribute="leadingMargin" constant="-8" id="HKT-BO-GXB"/>
                                                         <constraint firstAttribute="trailingMargin" secondItem="awH-zq-NVD" secondAttribute="trailing" constant="-8" id="eao-cd-CF2"/>
-                                                        <constraint firstItem="Crp-3q-juP" firstAttribute="centerY" secondItem="3oa-FX-4gP" secondAttribute="centerY" id="wlr-EY-OOT"/>
                                                         <constraint firstItem="3oa-FX-4gP" firstAttribute="top" secondItem="cSy-eZ-t1r" secondAttribute="topMargin" constant="-8" id="xoq-gx-2bw"/>
                                                         <constraint firstItem="3oa-FX-4gP" firstAttribute="centerX" secondItem="cSy-eZ-t1r" secondAttribute="centerX" id="ycF-Eb-YMa"/>
                                                     </constraints>
@@ -91,7 +81,6 @@
                                                     <connections>
                                                         <outlet property="backgroundProfileImage" destination="3oa-FX-4gP" id="HjL-cN-PUr"/>
                                                         <outlet property="djName" destination="awH-zq-NVD" id="lgg-It-yLU"/>
-                                                        <outlet property="profileImage" destination="Crp-3q-juP" id="lMz-QL-Pmx"/>
                                                         <segue destination="8yR-qp-x1Q" kind="show" identifier="Deejay Gigs List" id="Bza-19-mdf"/>
                                                     </connections>
                                                 </collectionViewCell>

@@ -45,7 +45,6 @@ extension EventsViewController
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: EventDeejayCell.identifier, for: indexPath) as! EventDeejayCell
-
         cell.coverHeight.constant = eventCoverHeight
         cell.eventCover.layoutIfNeeded()
         return cell

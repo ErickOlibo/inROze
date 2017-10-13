@@ -14,7 +14,7 @@ class EventsViewController: FetchedResultsTableViewController {
 
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     let mainContext = AppDelegate.viewContext
-    
+
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
         
         let request: NSFetchRequest<Event> = Event.fetchRequest()
@@ -32,6 +32,9 @@ class EventsViewController: FetchedResultsTableViewController {
         super.viewDidLoad()
         print("FROM CONSTANT --> Default: [\(cellHeightForDefault)] -- Deejay: [\(cellHeightForDeejay)]")
         self.navigationController?.navigationBar.isTranslucent = false
+        updateUI()
+
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -55,4 +58,20 @@ class EventsViewController: FetchedResultsTableViewController {
         }
     }
 
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

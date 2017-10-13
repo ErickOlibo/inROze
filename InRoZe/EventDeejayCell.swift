@@ -18,6 +18,7 @@ class EventDeejayCell: UITableViewCell
     
     var event: Event?
     
+    
     // context & container
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
@@ -34,9 +35,8 @@ class EventDeejayCell: UITableViewCell
         collectionView.delegate = dataSourceDelegate
         collectionView.dataSource = dataSourceDelegate
         collectionView.tag = row
-        print("SetCollectionViewSource: what row: [\(row)]")
-        
-        collectionView.reloadData() // here is my scrolling issue
+
+        //collectionView.reloadData() // here is my scrolling issue
     }
     
 }
@@ -51,10 +51,12 @@ extension EventDeejayCell: UICollectionViewDelegate, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         let nrDJs = event?.performers?.count ?? 0
+        //print("count [\(nrDJs)] -> Tag [\(collectionView.tag)]")
         return nrDJs
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        print("[\(indexPath.row)] --> WillDisplay CollectionCell")
         guard let nameCell = cell as? EventDJNameCell else { return }
         let djsSet = event!.performers?.allObjects as! [Artist]
         let sorted = djsSet.sorted(by: {$0.name! < $1.name!})
@@ -66,7 +68,7 @@ extension EventDeejayCell: UICollectionViewDelegate, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventDJNameCell.identifier, for: indexPath) as! EventDJNameCell
-        
+        //let cell = reuseCells[0]
         return cell
     }
     
@@ -77,7 +79,19 @@ extension EventDeejayCell: UICollectionViewDelegate, UICollectionViewDataSource,
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        print("Before Reuse how many Cells visible: [\(self.collectionView.visibleCells.count)]")
+
+        
     }
 
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 }
