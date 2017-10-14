@@ -33,14 +33,17 @@ extension EventsViewController
         let event = fetchResultsController.object(at: indexPath)
         eventCell.event = event
         if let djsCount = event.performers?.count, djsCount > 0 {
+            //print ("index: [\(indexPath.row)] -- DJ count [\(djsCount)] --- so set the collectionView data and delegate")
             eventCell.setCollectionViewDataSourceDelegate(eventCell.self, forRow: indexPath.row)
+
         }
         eventCell.selectionStyle = .none
         guard let eventURL = URL(string: event.imageURL!) else { return }
         eventCell.eventCover.kf.setImage(with: eventURL, options: [.backgroundDecode])
         
         eventCell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
-        eventCell.eventTitle.text = event.name
+        eventCell.eventTitle.text = "[\(indexPath.row)] - \(event.name ?? "")"
+        //eventCell.eventTitle.text = event.name!
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

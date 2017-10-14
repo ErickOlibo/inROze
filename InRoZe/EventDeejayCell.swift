@@ -37,6 +37,7 @@ class EventDeejayCell: UITableViewCell
         collectionView.tag = row
 
         //collectionView.reloadData() // here is my scrolling issue
+//        collectionView.scrollRectToVisible(CGRect.zero, animated: false)
     }
     
 }
@@ -51,16 +52,19 @@ extension EventDeejayCell: UICollectionViewDelegate, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         let nrDJs = event?.performers?.count ?? 0
-        //print("count [\(nrDJs)] -> Tag [\(collectionView.tag)]")
+        print("****** Table [\(collectionView.tag)] - DJ count [\(nrDJs)] ****** ")
         return nrDJs
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        print("[\(indexPath.row)] --> WillDisplay CollectionCell")
+        
         guard let nameCell = cell as? EventDJNameCell else { return }
         let djsSet = event!.performers?.allObjects as! [Artist]
         let sorted = djsSet.sorted(by: {$0.name! < $1.name!})
+
         let deejay = sorted[indexPath.row]
+        //print("[\(collectionView.tag), \(indexPath.row)] --> WillDisplay DJname: [\(deejay.name ?? "--")]")
+        print("      ---- Table [\(collectionView.tag)] - Collect [\(indexPath.row)]")
         nameCell.djName.text = deejay.name!
         nameCell.thisDJ = deejay
     }
