@@ -15,6 +15,7 @@ class EventsViewController: FetchedResultsTableViewController {
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     let mainContext = AppDelegate.viewContext
 
+
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
         
         let request: NSFetchRequest<Event> = Event.fetchRequest()
@@ -46,17 +47,22 @@ class EventsViewController: FetchedResultsTableViewController {
         
     }
     
+    
     private func updateUI() {
         do {
             try self.fetchResultsController.performFetch()
-            print("Are you reloading the table")
-            self.tableView.reloadData()
+            if let count = fetchResultsController.fetchedObjects?.count {
+                print("Total Event Fetched: \(count)")
+            }
             
+            self.tableView.reloadData()
         } catch {
             print("Error in performFetch - EventVC - updateUI()")
 
         }
     }
+    
+
 
 
 }

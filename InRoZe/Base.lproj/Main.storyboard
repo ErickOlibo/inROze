@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="381"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wte-Kb-I6i" id="Hnd-gk-IKz">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="380.66666666666669"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="381"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="b1v-d0-dBL">
@@ -142,6 +142,65 @@
                                     <outlet property="eventTitle" destination="Ym7-KE-goa" id="8U6-a9-sdv"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventDefaultCell" rowHeight="281" id="rru-nd-f1J" customClass="EventDefaultCell" customModule="InRoZe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="409" width="414" height="281"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rru-nd-f1J" id="Sn3-Sn-dOg">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="281"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OVc-by-cNe">
+                                            <rect key="frame" x="20" y="60" width="374" height="210.33333333333331"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="210.33333333333331" id="igU-6O-PUt"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.89999997615814209" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KqH-qR-TFS">
+                                            <rect key="frame" x="20" y="7" width="374" height="26"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="26" id="mtS-cf-0dW"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time &amp; place" textAlignment="natural" lineBreakMode="tailTruncation" minimumScaleFactor="0.80000001192092896" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="efe-K9-ToM">
+                                            <rect key="frame" x="20" y="36" width="374" height="18"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="18" id="AMm-kM-bno"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="efe-K9-ToM" firstAttribute="leading" secondItem="Sn3-Sn-dOg" secondAttribute="leadingMargin" constant="12" id="8JC-rL-UJR"/>
+                                        <constraint firstItem="OVc-by-cNe" firstAttribute="width" secondItem="Sn3-Sn-dOg" secondAttribute="width" constant="-40" id="K3a-eT-rlR"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="efe-K9-ToM" secondAttribute="trailing" constant="12" id="Ly1-rx-VN3"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="KqH-qR-TFS" secondAttribute="trailing" constant="12" id="Mrn-E8-Ov1"/>
+                                        <constraint firstItem="KqH-qR-TFS" firstAttribute="leading" secondItem="Sn3-Sn-dOg" secondAttribute="leadingMargin" constant="12" id="Z8W-Qr-xpD"/>
+                                        <constraint firstItem="OVc-by-cNe" firstAttribute="centerX" secondItem="Sn3-Sn-dOg" secondAttribute="centerX" id="c4d-Lr-lVA"/>
+                                        <constraint firstItem="efe-K9-ToM" firstAttribute="top" secondItem="Sn3-Sn-dOg" secondAttribute="topMargin" constant="28" id="cAF-LR-VUW"/>
+                                        <constraint firstItem="KqH-qR-TFS" firstAttribute="top" secondItem="Sn3-Sn-dOg" secondAttribute="topMargin" constant="-1" id="h2y-N2-QTk"/>
+                                        <constraint firstItem="OVc-by-cNe" firstAttribute="top" secondItem="Sn3-Sn-dOg" secondAttribute="topMargin" constant="52" id="lfu-ge-2qr"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="coverHeight" destination="igU-6O-PUt" id="u0F-JD-Qrf"/>
+                                    <outlet property="eventCover" destination="OVc-by-cNe" id="EbJ-h6-3Zc"/>
+                                    <outlet property="eventTimeLocation" destination="efe-K9-ToM" id="goE-x8-NC7"/>
+                                    <outlet property="eventTitle" destination="KqH-qR-TFS" id="Lng-m7-fFL"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="rfH-yd-zM2" id="u8b-9F-C7p"/>
@@ -167,7 +226,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GEV-js-GQI" id="1lw-ja-f5i">
-                                    <rect key="frame" x="0.0" y="0.0" width="381" height="59.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CeG-3c-T4a">

@@ -18,10 +18,10 @@ class EventDefaultCell: UITableViewCell
     var event: Event?
 
     // outlets to the UI components in the custom UITableViewCell
-    @IBOutlet weak var locationCover: UIImageView!
     @IBOutlet weak var eventCover: UIImageView!
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventTimeLocation: UILabel!
+    @IBOutlet weak var coverHeight: NSLayoutConstraint!
 
 }
 

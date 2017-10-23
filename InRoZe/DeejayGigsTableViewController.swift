@@ -14,13 +14,10 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     // Core Data model container and context
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
-    
-    
     // properties
     let followedRightButton = UIBarButtonItem()
     var artist: Artist? { didSet { updateUI() } }
 
-    //private var currentFollowState = false
     private var gigsList: [Event]?
 
     override func viewDidLoad() {
@@ -34,7 +31,6 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: (UIImage(named: "2_Follows")?.withRenderingMode(.alwaysTemplate))!, style: .plain, target: self, action: #selector(pressedFollowed))
-        //currentFollowState = artist!.isFollowed
     }
 
     @objc private func pressedFollowed() {
@@ -63,7 +59,6 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         // set the status and color of rightButton
         updateFollowedButton()
     }
@@ -80,13 +75,15 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     }
     
     private func updateUI() {
-        print("Artist was set")
+        print("Artist was set ID: [\(artist!.id!)]")
         if let context = container?.viewContext {
             context.perform {
                 self.gigsList = Artist.findPerformingEvents(for: self.artist!, in: context)
                 if let currentState = Artist.currentIsFollowedState(for: self.artist!.id!, in: context) {
                     self.artist!.isFollowed = currentState
                 }
+                print("Number of Events GigList: \(self.gigsList?.count ?? 0)")
+                self.tableView.reloadData()
             }
         }
     }
@@ -106,21 +103,22 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let djCell = cell as? DeejayGigsCell else { return }
-        // Configure the cell...
         djCell.selectionStyle = .none
-        
-        // place cover image
-        djCell.eventCover.sd_setImage(with: URL(string: gigsList![indexPath.row].imageURL! )) { (image, error, cacheType, imageURL) in
-            if (image != nil) {
-                djCell.eventCover.image = image
-            }
-        }
+        print("Will display cell at: \(indexPath.row)")
+
         djCell.eventName.text = gigsList![indexPath.row].name!
         djCell.eventDateTimeLocation.attributedText = dateTimeLocationFormatter(with: gigsList![indexPath.row])
+        guard let thisEvent = gigsList?[indexPath.row] else { return }
+        guard let thisURL = thisEvent.imageURL else { return }
+        
+        guard let eventURL = URL(string: thisURL) else { return }
+        djCell.eventCover.kf.setImage(with: eventURL, options: [.backgroundDecode])
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DeejayGigsCell.identifier, for: indexPath) as! DeejayGigsCell
+        print("cell for row at: \(indexPath.row)")
         return cell
     }
  

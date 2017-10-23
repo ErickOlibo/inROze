@@ -22,7 +22,7 @@ class EventDJNameCell: UICollectionViewCell
     
     // UI colors for isFollowed
     let followedColor: UIColor = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
-    let notFollowedColor: UIColor = .black
+    let notFollowedColor: UIColor = .gray
     
     // Cell Outlets
     @IBOutlet weak var djName: UILabel!
@@ -40,6 +40,7 @@ class EventDJNameCell: UICollectionViewCell
     
     private func updateCellColorforFollowed() {
         backgroundProfileImage.image = UIImage(named: profileImageForDJ(with: thisDJ!.id!, when: thisDJ!.isFollowed))
+        djName.textColor = (thisDJ!.isFollowed) ? followedColor : notFollowedColor
         
     }
     

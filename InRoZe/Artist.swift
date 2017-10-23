@@ -124,8 +124,9 @@ public class Artist: NSManagedObject
         let request: NSFetchRequest<Event> = Event.fetchRequest()
 
         // Add sort Descriptors and Predicate
+        let nowTime = NSDate()
         request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
-        request.predicate = NSPredicate(format: "ANY performers.id == %@", artist.id!)
+        request.predicate = NSPredicate(format: "ANY performers.id == %@ AND endTime > %@", artist.id!, nowTime)
         do {
             let match = try context.fetch(request)
             //print("match for [findPerformingEvents]: \(match.count)")

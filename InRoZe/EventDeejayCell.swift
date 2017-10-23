@@ -18,7 +18,6 @@ class EventDeejayCell: UITableViewCell
     
     var event: Event?
     
-    
     // context & container
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
@@ -31,13 +30,11 @@ class EventDeejayCell: UITableViewCell
     
     func setCollectionViewDataSourceDelegate<D: UICollectionViewDataSource & UICollectionViewDelegate>(_ dataSourceDelegate: D, forRow row: Int) {
         
-
         collectionView.delegate = dataSourceDelegate
         collectionView.dataSource = dataSourceDelegate
         collectionView.tag = row
-
         //collectionView.reloadData() // here is my scrolling issue
-//        collectionView.scrollRectToVisible(CGRect.zero, animated: false)
+        
     }
     
 }
@@ -52,27 +49,26 @@ extension EventDeejayCell: UICollectionViewDelegate, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         let nrDJs = event?.performers?.count ?? 0
-        print("****** Table [\(collectionView.tag)] - DJ count [\(nrDJs)] ****** ")
         return nrDJs
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
         guard let nameCell = cell as? EventDJNameCell else { return }
+
         let djsSet = event!.performers?.allObjects as! [Artist]
         let sorted = djsSet.sorted(by: {$0.name! < $1.name!})
-
+        
         let deejay = sorted[indexPath.row]
-        //print("[\(collectionView.tag), \(indexPath.row)] --> WillDisplay DJname: [\(deejay.name ?? "--")]")
-        print("      ---- Table [\(collectionView.tag)] - Collect [\(indexPath.row)]")
         nameCell.djName.text = deejay.name!
         nameCell.thisDJ = deejay
+        
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventDJNameCell.identifier, for: indexPath) as! EventDJNameCell
-        //let cell = reuseCells[0]
         return cell
     }
     
