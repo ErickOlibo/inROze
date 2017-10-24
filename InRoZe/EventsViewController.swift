@@ -31,9 +31,7 @@ class EventsViewController: FetchedResultsTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //print("FROM CONSTANT --> Default: [\(cellHeightForDefault)] -- Deejay: [\(cellHeightForDeejay)]")
         self.navigationController?.navigationBar.isTranslucent = false
-        self.tableView.decelerationRate = UIScrollViewDecelerationRateFast
         updateUI()
 
         

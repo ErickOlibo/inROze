@@ -16,7 +16,7 @@ class EventDeejayCell: UITableViewCell
         return String(describing: self)
     }
     
-    var event: Event?
+    var event: Event? { didSet { configureCell() } }
     
     // context & container
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
@@ -34,10 +34,38 @@ class EventDeejayCell: UITableViewCell
         collectionView.dataSource = dataSourceDelegate
         collectionView.tag = row
         //collectionView.reloadData() // here is my scrolling issue
+    }
+    
+    
+    
+    // configure the Cell
+    
+    private func configureCell() {
+        guard let event = event else { return }
+        guard let name = event.name else { return }
+        coverHeight.constant = eventCoverHeight
+        eventCover.layoutIfNeeded()
+        selectionStyle = .none
+        eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
+        eventTitle.text = "[\(self.tag)] - \(name)"
+        //eventTitle.text = name
+        
+        guard let imageURL = event.imageURL else { return }
+        eventCover.kf.setImage(with: URL(string: imageURL), options: [.backgroundDecode])
+        
+        // setting up collectionView
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.tag = self.tag
+        collectionView.reloadData() // here is my scrolling issue
+        collectionView.scrollRectToVisible(CGRect.zero, animated: false)
         
     }
     
 }
+
+
+
 
 extension EventDeejayCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 {

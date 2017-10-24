@@ -29,54 +29,22 @@ extension EventsViewController
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let event = fetchResultsController.object(at: indexPath)
-        let djsCount = event.performers?.count ?? 0
 
-        if (djsCount > 0) {
-            guard let eventCell = cell as? EventDeejayCell else { return }
-            eventCell.tag = indexPath.row
-            eventCell.event = event
-            eventCell.selectionStyle = .none
-            eventCell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
-            eventCell.eventTitle.text = "[\(indexPath.row)] - \(event.name ?? "")"
-            //eventCell.eventTitle.text = event.name!
-            
-            eventCell.setCollectionViewDataSourceDelegate(eventCell.self, forRow: indexPath.row)
-            eventCell.collectionView.reloadData() // here is my scrolling issue
-            eventCell.collectionView.scrollRectToVisible(CGRect.zero, animated: false)
-            
-
-            guard let eventURL = URL(string: event.imageURL!) else { return }
-            eventCell.eventCover.kf.setImage(with: eventURL, options: [.backgroundDecode])
-            
-        } else {
-            guard let eventCell = cell as? EventDefaultCell else { return }
-            eventCell.tag = indexPath.row
-            eventCell.event = event
-            eventCell.selectionStyle = .none
-            
-            eventCell.eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)
-            eventCell.eventTitle.text = "[\(indexPath.row)] - \(event.name ?? "")"
-            //eventCell.eventTitle.text = event.name!
-            
-            guard let eventURL = URL(string: event.imageURL!) else { return }
-            eventCell.eventCover.kf.setImage(with: eventURL, options: [.backgroundDecode])
-        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let event = fetchResultsController.object(at: indexPath)
+        
         if let count = event.performers?.count, count > 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: EventDeejayCell.identifier, for: indexPath) as! EventDeejayCell
-            cell.coverHeight.constant = eventCoverHeight
-            cell.eventCover.layoutIfNeeded()
+            cell.tag = indexPath.row
+            cell.event = event
             return cell
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: EventDefaultCell.identifier, for: indexPath) as! EventDefaultCell
-            
-            cell.coverHeight.constant = eventCoverHeight
-            cell.eventCover.layoutIfNeeded()
+            cell.tag = indexPath.row
+            cell.event = event
             return cell
         }
     }
@@ -109,18 +77,7 @@ extension EventsViewController
         let thisDJ = deejayNameCell.thisDJ!
         destination.artist = thisDJ
         destination.navigationItem.title = thisDJ.name!
-        
-//        if segue.identifier == "Deejay Gigs List" {
-//            if let deejayNameCell = sender as? EventDJNameCell {
-//                if let _ = deejayNameCell.superview as? UICollectionView {
-//                    if let destination = segue.destination as? DeejayGigsTableViewController {
-//                        let thisDJ = deejayNameCell.thisDJ!
-//                        destination.artist = thisDJ
-//                        destination.navigationItem.title = thisDJ.name!
-//                    }
-//                }
-//            }
-//        }
+
     }
     
     
