@@ -38,6 +38,11 @@ extension EventsViewController
         if let count = event.performers?.count, count > 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: EventDeejayCell.identifier, for: indexPath) as! EventDeejayCell
             cell.tag = indexPath.row
+            
+            // create subset of ditDJNameView
+            let artists = deejays(event: event)
+            cell.djsViews = subsetNameViews(artists: artists)
+            
             cell.event = event
             return cell
             
@@ -63,6 +68,17 @@ extension EventsViewController
             return cellHeightForDefault
         }
     }
+    
+    private func deejays(event: Event) -> [String] {
+        var artists = [String]()
+        let djsSet = event.performers?.allObjects as! [Artist]
+        let sorted = djsSet.sorted(by: {$0.name! < $1.name!})
+        for dj in sorted {
+            artists.append(dj.name!)
+        }
+        return artists
+    }
+    
 
 
     // - Mark - Navigation

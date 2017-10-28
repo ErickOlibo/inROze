@@ -38,6 +38,7 @@
 		A7A24D501F3B655E00EFB82E /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A24D4F1F3B655E00EFB82E /* Place.swift */; };
 		A7A4BECC1F4363C5000A5047 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A4BECB1F4363C5000A5047 /* UserDefaultsExtensions.swift */; };
 		A7AA5B7C1F7D593300BB2B8A /* ConvenienceFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AA5B7B1F7D593300BB2B8A /* ConvenienceFunctions.swift */; };
+		A7CE831C1FA0AB1C00F2B4F1 /* DJNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE831B1FA0AB1C00F2B4F1 /* DJNameView.swift */; };
 		A7D1CDC81F81D0CF003513F8 /* EventDeejayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */; };
 		A7D4D2A61F51913C00546341 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4D2A51F51913C00546341 /* Artist.swift */; };
 		A7E03D9B1F71D820000095BD /* UIDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E03D9A1F71D820000095BD /* UIDropDown.swift */; };
@@ -85,6 +86,7 @@
 		A7A24D4F1F3B655E00EFB82E /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		A7A4BECB1F4363C5000A5047 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		A7AA5B7B1F7D593300BB2B8A /* ConvenienceFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvenienceFunctions.swift; sourceTree = "<group>"; };
+		A7CE831B1FA0AB1C00F2B4F1 /* DJNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJNameView.swift; sourceTree = "<group>"; };
 		A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDeejayCell.swift; sourceTree = "<group>"; };
 		A7D4D2A51F51913C00546341 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		A7E03D9A1F71D820000095BD /* UIDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDropDown.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			children = (
 				A72B792D1F2231AF009FB389 /* AppDelegate.swift */,
 				A72B79311F2231AF009FB389 /* Main.storyboard */,
+				A7CE831D1FA0AB3200F2B4F1 /* DJ Name */,
 				A7EC36841F36553B00548C11 /* LoginViewController.swift */,
 				A7EC36861F365AA900548C11 /* TabBarViewController.swift */,
 				A76E72CB1F7541370023D47F /* EventsViewController.swift */,
@@ -254,6 +257,14 @@
 				A72B79341F2231AF009FB389 /* InRoZe.xcdatamodeld */,
 			);
 			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		A7CE831D1FA0AB3200F2B4F1 /* DJ Name */ = {
+			isa = PBXGroup;
+			children = (
+				A7CE831B1FA0AB1C00F2B4F1 /* DJNameView.swift */,
+			);
+			name = "DJ Name";
 			sourceTree = "<group>";
 		};
 		A7E03D9C1F71D835000095BD /* UIDropDown */ = {
@@ -438,6 +449,7 @@
 				A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */,
 				A7D1CDC81F81D0CF003513F8 /* EventDeejayCell.swift in Sources */,
 				A76E72D21F75776C0023D47F /* FetchedResultsTableViewController.swift in Sources */,
+				A7CE831C1FA0AB1C00F2B4F1 /* DJNameView.swift in Sources */,
 				A7E03D9B1F71D820000095BD /* UIDropDown.swift in Sources */,
 				A76E72C91F7518CB0023D47F /* ArtistSearchViewController.swift in Sources */,
 				A76E72D01F7576580023D47F /* EventsTableView+NSFetchResultsController.swift in Sources */,
