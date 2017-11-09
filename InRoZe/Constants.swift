@@ -157,7 +157,7 @@ extension UserDefaults {
 
 // manage the colors and image for Deejay's profile pic
 public func profileImageForDJ(with id: String, when isFollowed: Bool) -> String {
-    let lastTwo = id.substring(from:id.index(id.endIndex, offsetBy: -2))
+    let lastTwo = id.suffix(2)
     // for animals -> ("LetterColor_" : "LetterGrey_")
     // for people -> ("Color_P_Letter_" : "Grey_P_Letter_")
     // for images -> ("Color_P_Letter_" : "Grey_P_Letter_")
@@ -173,7 +173,7 @@ public func profileImageBackgroundForDJ(when isFollowed: Bool) -> String {
 
 
 public func profileImageBackgroundColor(for deejay: String) -> UIColor {
-    let firstLetter = String(deejay.uppercased().characters.first!)
+    let firstLetter = String(deejay.uppercased().prefix(1))
     switch firstLetter {
     case "0":
         return UIColor.changeHexStringToColor(djColor.letter_0)

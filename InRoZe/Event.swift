@@ -138,22 +138,26 @@ public class Event: NSManagedObject
                         
                         // Formatting DateTime
                         let formatter = ISO8601DateFormatter()
-                        let startTimeDate = formatter.date(from: sTime)! as NSDate
+                        //let startTimeDate = formatter.date(from: sTime)! as NSDate
+                        //event.startTime = startTimeDate
+                        //event.updatedTime = formatter.date(from: uTime)! as NSDate
+                        let startTimeDate = formatter.date(from: sTime)!
                         event.startTime = startTimeDate
-                        event.updatedTime = formatter.date(from: uTime)! as NSDate
+                        event.updatedTime = formatter.date(from: uTime)!
                         
                         if let eTime = eventInfo[FBEvent.endTime] as? String {
-                            let endTimeDate = formatter.date(from: eTime)! as NSDate
+                            let endTimeDate = formatter.date(from: eTime)!
                             let diffEndStart = endTimeDate.timeIntervalSince(startTimeDate as Date)
                             
                             if (diffEndStart > TimeInterval(10 * 60 * 60)) {
-                                event.endTime = (formatter.date(from: sTime)! as NSDate).addingTimeInterval(10 * 60 * 60)
+                                event.endTime = (formatter.date(from: sTime)!).addingTimeInterval(10 * 60 * 60)
                             } else {
                                 event.endTime = endTimeDate
                             }
                         } else {
-                            event.endTime = (formatter.date(from: sTime)! as NSDate).addingTimeInterval(10 * 60 * 60)
+                            event.endTime = (formatter.date(from: sTime)!).addingTimeInterval(10 * 60 * 60)
                         }
+                        
                         
                         // updating Location ralationship for eventID
                         if let eventPlace = eventInfo[FBEvent.place] as? [String : Any] {

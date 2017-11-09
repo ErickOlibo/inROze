@@ -24,29 +24,34 @@ extension UIColor {
     
     
     public class func changeHexStringToColor(_ hex: String) -> UIColor {
-        var color = hex.uppercased()
+        let thisColor = hex.uppercased()
+        var color = ""
         
         // Remove the hashtag if any
-        if (color.hasPrefix("#")) {
-            let index = color.index(color.startIndex, offsetBy: 1)
-            color = color.substring(from: index)
+        if (thisColor.hasPrefix("#")) {
+            let index = thisColor.index(thisColor.startIndex, offsetBy: 1)
+            color = String(thisColor[index...])
         }
         
         // Return a default color if HexString in of bad formating
-        if (color.characters.count != 6) {
+        if (color.count != 6) {
             return UIColor.lightGray
         }
         
-        let red = color.substring(with: rangeOfSubstringFromInts(string: color, start: 0, end: 2))
-        let green = color.substring(with: rangeOfSubstringFromInts(string: color, start: 2, end: 4))
-        let blue = color.substring(with: rangeOfSubstringFromInts(string: color, start: 4, end: 6))
+//        let red = color.substring(with: rangeOfSubstringFromInts(string: color, start: 0, end: 2))
+//        let green = color.substring(with: rangeOfSubstringFromInts(string: color, start: 2, end: 4))
+//        let blue = color.substring(with: rangeOfSubstringFromInts(string: color, start: 4, end: 6))
+        let indexTwo = color.index(color.startIndex, offsetBy: 2)
+        let indexFour = color.index(color.startIndex, offsetBy: 4)
+        let red = String(color[color.startIndex..<indexTwo])
+        let green = String(color[indexTwo..<indexFour])
+        let blue = String(color[indexFour..<color.endIndex])
         var r: UInt32 = 0, g: UInt32 = 0, b: UInt32 = 0
         
         Scanner(string: red).scanHexInt32(&r)
         Scanner(string: green).scanHexInt32(&g)
         Scanner(string: blue).scanHexInt32(&b)
-        
-        return UIColor(colorLiteralRed: Float(r) / 255.0, green: Float(g) / 255.0, blue: Float(b) / 255.0, alpha: Float(1))
+        return UIColor(red: CGFloat(Float(r) / 255.0), green: CGFloat(Float(g) / 255.0), blue: CGFloat(Float(b) / 255.0), alpha: 1)
     }
     
     
@@ -83,7 +88,7 @@ extension CALayer {
 func coloredString(_ string: String, color: UIColor) -> NSMutableAttributedString {
     let attributedString = NSMutableAttributedString(string: string)
     let stringRange = NSRange(location: 0, length: attributedString.length)
-    attributedString.addAttribute(NSForegroundColorAttributeName, value: color, range: stringRange)
+    attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: stringRange)
     return attributedString
 }
 

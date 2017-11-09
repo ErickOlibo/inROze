@@ -73,7 +73,7 @@ class EventDeejayNameCell: UICollectionViewCell
                 }
             }
         }
-        firstLetter.text = String((thisDJ!.name!.uppercased()).characters.first!)
+        firstLetter.text = String(thisDJ!.name!.uppercased().prefix(1))
         djName.text = thisDJ!.name!.uppercased()
         setIsFollowButton()
         updateCellColorforFollowed()
@@ -93,7 +93,7 @@ class EventDeejayNameCell: UICollectionViewCell
     }
     
     private func updateCellColorforFollowed() {
-        let djInitial = String((thisDJ!.name!.uppercased()).characters.first!)
+        let djInitial = String(thisDJ!.name!.uppercased().prefix(1))
         let thisDJname = thisDJ!.name!.uppercased()
         if (thisDJ!.isFollowed) {
             outerCircle.layer.borderColor = followedColor.cgColor

@@ -6,11 +6,9 @@ target 'InRoZe' do
   use_frameworks!
 
   # Pods for InRoZe
-  pod 'SDWebImage'
   pod 'FacebookCore'
   pod 'FacebookLogin'
-  pod 'FacebookShare'
   pod 'Font-Awesome-Swift'
-  pod 'Kingfisher', '~> 3.13.1'
-
+  pod 'Kingfisher', '~> 4.0'
+  
 end

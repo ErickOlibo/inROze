@@ -38,7 +38,8 @@ class LoginViewController: UIViewController {
         
         // Facebook login
         let loginManager = LoginManager()
-        loginManager.logIn([.publicProfile, .email], viewController: self) { [weak self] loginResult in
+        
+        loginManager.logIn(readPermissions: [ReadPermission.publicProfile, ReadPermission.email], viewController: self) { [weak self] loginResult in
             self?.spinner.startAnimating()
             
             switch loginResult {
