@@ -28,7 +28,7 @@ extension UserDefaults {
             interval = IntervalBetweenRequest.toServer
         } else {
             fromWhere = "SERVER_ARTISTS"
-            interval = IntervalBetweenRequest.toServerArtist
+            interval = IntervalBetweenRequest.toServer
         }
         
         

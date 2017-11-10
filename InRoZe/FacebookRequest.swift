@@ -20,7 +20,15 @@ import FBSDKCoreKit
 public class FacebookRequest
 {
     // Core Data model container and context
-    var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    
+    var container: NSPersistentContainer? {
+        didSet {
+            DispatchQueue.main.async {
+                self.container = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+            }
+        }
+    }
 
     // Array of EventIDs from the database with
     // batchsize eventIds limit per request (facebook Max IDs = 50)

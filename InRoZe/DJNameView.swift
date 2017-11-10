@@ -20,7 +20,7 @@ class DJNameView: UIView {
     
     var djName = UILabel(frame: CGRect.zero)
     var djProfile = UIImageView(frame: CGRect.zero)
-    var dj = Artist() { didSet { updateUI() } }
+    var dj: Artist? { didSet { updateUI() } }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,17 +48,17 @@ class DJNameView: UIView {
     private func updateUI() {
         container?.performBackgroundTask{ context in
             //print("FETCHING isFollowed From CORE DATA || Current Thread: [\(Thread.current)]")
-            if let currentState = Artist.currentIsFollowedState(for: self.dj.id! , in: context) {
-                self.dj.isFollowed = currentState
+            if let currentState = Artist.currentIsFollowedState(for: self.dj!.id! , in: context) {
+                self.dj!.isFollowed = currentState
             }
         }
         updateCellColorforFollowed()
     }
     
     private func updateCellColorforFollowed() {
-        djProfile.image = UIImage(named: profileImageForDJ(with: dj.id!, when: dj.isFollowed))
-        djName.text = dj.name
-        djName.textColor = (dj.isFollowed) ? followedColor : notFollowedColor
+        djProfile.image = UIImage(named: profileImageForDJ(with: dj!.id!, when: dj!.isFollowed))
+        djName.text = dj!.name
+        djName.textColor = (dj!.isFollowed) ? followedColor : notFollowedColor
         
         // add view to superview
         self.addSubview(djName)
