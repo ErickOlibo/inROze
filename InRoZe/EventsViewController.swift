@@ -14,7 +14,10 @@ class EventsViewController: FetchedResultsTableViewController {
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     let mainContext = AppDelegate.viewContext
     var deejaysName = Set<String>()
+    var followsList = [Artist]()
 
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
         
         let request: NSFetchRequest<Event> = Event.fetchRequest()
@@ -31,6 +34,8 @@ class EventsViewController: FetchedResultsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isTranslucent = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
         updateUI()
         tableView.rowHeight = cellHeightForDJList
     }
@@ -44,6 +49,10 @@ class EventsViewController: FetchedResultsTableViewController {
     }
     
     private func updateUI() {
+        
+        // get number of Follows
+        followsList = Artist.listOfFollows(in: mainContext)
+        
         do {
             try self.fetchResultsController.performFetch()
             if let count = fetchResultsController.fetchedObjects?.count {
@@ -65,13 +74,37 @@ class EventsViewController: FetchedResultsTableViewController {
             print("Error in performFetch - EventVC - updateUI()")
 
         }
+        self.collectionView.reloadData()
     }
 
 
 }
 
 
-
+extension EventsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+{
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        print("list of Follows: [\(followsList.count)]")
+        return followsList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventDJNameCell.identifier, for: indexPath) as! EventDJNameCell
+        let thisDJ = followsList[indexPath.row]
+        cell.thisDJ = thisDJ
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("row: \(indexPath.row)")
+    }
+}
 
 
 

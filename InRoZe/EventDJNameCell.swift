@@ -29,18 +29,22 @@ class EventDJNameCell: UICollectionViewCell
     @IBOutlet weak var backgroundProfileImage: UIImageView!
     
     private func updateUI() {
+        guard let name = thisDJ?.name else { return }
+        djName.text = name
+        djName.textColor = .black
         container?.performBackgroundTask{ context in
             //print("FETCHING isFollowed From CORE DATA || Current Thread: [\(Thread.current)]")
             if let currentState = Artist.currentIsFollowedState(for: self.thisDJ!.id!, in: context) {
                 self.thisDJ!.isFollowed = currentState
             }
         }
-        updateCellColorforFollowed()
+        //updateCellColorforFollowed()
+        backgroundProfileImage.image = UIImage(named: profileImageForDJ(with: thisDJ!.id!, when: thisDJ!.isFollowed))
     }
     
     private func updateCellColorforFollowed() {
         backgroundProfileImage.image = UIImage(named: profileImageForDJ(with: thisDJ!.id!, when: thisDJ!.isFollowed))
-        djName.textColor = (thisDJ!.isFollowed) ? followedColor : notFollowedColor
+        //djName.textColor = (thisDJ!.isFollowed) ? followedColor : notFollowedColor
         
     }
     
