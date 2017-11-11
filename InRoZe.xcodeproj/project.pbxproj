@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		297B48270458BA2567535BBB /* Pods_InRoZe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 025DA5AD4652E67328D77902 /* Pods_InRoZe.framework */; };
-		A706BC741F81DB2C001113FE /* EventDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A706BC731F81DB2C001113FE /* EventDefaultCell.swift */; };
 		A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C7C811F2A55C400A0D5A8 /* UIImageColors.swift */; };
 		A72B792E1F2231AF009FB389 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72B792D1F2231AF009FB389 /* AppDelegate.swift */; };
 		A72B79331F2231AF009FB389 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72B79311F2231AF009FB389 /* Main.storyboard */; };
@@ -54,7 +53,6 @@
 /* Begin PBXFileReference section */
 		025DA5AD4652E67328D77902 /* Pods_InRoZe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InRoZe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		434049AE2BF497F26E4FEE54 /* Pods-InRoZe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InRoZe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InRoZe/Pods-InRoZe.debug.xcconfig"; sourceTree = "<group>"; };
-		A706BC731F81DB2C001113FE /* EventDefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDefaultCell.swift; sourceTree = "<group>"; };
 		A71C7C811F2A55C400A0D5A8 /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
 		A72B792A1F2231AF009FB389 /* InRoZe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InRoZe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72B792D1F2231AF009FB389 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -278,7 +276,6 @@
 		A7F4BAD91F839006001279F3 /* Event Cells */ = {
 			isa = PBXGroup;
 			children = (
-				A706BC731F81DB2C001113FE /* EventDefaultCell.swift */,
 				A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */,
 				A7F4BADA1F83C9B5001279F3 /* EventDJNameCell.swift */,
 				A76E72D31F76579E0023D47F /* EventDeejayNameCell.swift */,
@@ -454,7 +451,6 @@
 				A775C3B21F3C7F8B00A3449F /* ServerKeyStringConvenience.swift in Sources */,
 				A7F527281F472ED90008080B /* ConvenienceExtensions.swift in Sources */,
 				A776760D1F26BE8200F1FA52 /* StickyCollectionViewFlowLayout.swift in Sources */,
-				A706BC741F81DB2C001113FE /* EventDefaultCell.swift in Sources */,
 				A72B792E1F2231AF009FB389 /* AppDelegate.swift in Sources */,
 				A79349C91F7FCC9100BC77AD /* CustomViewConvenience.swift in Sources */,
 				A76E72C71F7518700023D47F /* AddArtistViewController.swift in Sources */,

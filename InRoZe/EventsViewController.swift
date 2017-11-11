@@ -14,15 +14,13 @@ class EventsViewController: FetchedResultsTableViewController {
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     let mainContext = AppDelegate.viewContext
     var deejaysName = Set<String>()
-    var dictDJViews = [String : DJNameView]()
-    var deejays = [String : Artist]()
 
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
         
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         let nowTime = NSDate()
         request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
-        request.predicate = NSPredicate(format: "endTime > %@ AND imageURL != nil AND name != nil AND text != nil", nowTime)
+        request.predicate = NSPredicate(format: "endTime > %@ AND imageURL != nil AND name != nil AND text != nil AND performers.@count > 0", nowTime)
         request.fetchBatchSize = 20
         let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedRC.delegate = self
@@ -34,19 +32,16 @@ class EventsViewController: FetchedResultsTableViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isTranslucent = false
         updateUI()
-
-        
+        tableView.rowHeight = cellHeightForDJList
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.tintColor = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
-        print("EventsViewController")
+        print("EventsViewController - Cell Height: [\(cellHeightForDJList)]")
         updateUI()
         RequestHandler().fetchEventIDsFromServer()
-        
     }
-    
     
     private func updateUI() {
         do {
@@ -62,42 +57,15 @@ class EventsViewController: FetchedResultsTableViewController {
                 for artist in artists {
                     guard let name = artist.name else { return }
                     deejaysName.insert(name)
-                    deejays[name] = artist
                 }
-                
             }
             print("Size of unique DJS : \(deejaysName.count)")
-            print("Size of Deejays: \(deejays.count)")
             
-            // create DJNAmeViews
-            createDJNameViews()
-
         } catch {
             print("Error in performFetch - EventVC - updateUI()")
 
         }
     }
-    
-    private func createDJNameViews() {
-        for artist in deejays.values {
-            let nameView = DJNameView(frame: CGRect(x: 0, y: 0, width: 80, height: 100))
-            let djName = artist.name!
-            nameView.dj = artist
-            dictDJViews[djName] = nameView
-            
-        }
-    }
-    
-    func subsetNameViews (artists: [String]) -> [DJNameView] {
-        var djNameViews = [DJNameView]()
-        for artist in artists {
-            guard let this = dictDJViews[artist] else { return djNameViews}
-            djNameViews.append(this)
-        }
-        
-        return djNameViews
-    }
-
 
 
 }

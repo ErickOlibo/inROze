@@ -65,20 +65,23 @@ public struct Constants {
     static func colorOf(day: String) -> UIColor {
         switch day.uppercased() {
             
-            case "MON":
+        case "MON":
             return InrozeColor.one
-            case "TUE":
+        case "TUE":
             return InrozeColor.two
-            case "WED":
+        case "WED":
             return InrozeColor.six
-            case "THU":
+        case "THU":
             return InrozeColor.three
-            case "FRI":
+        case "FRI":
             return InrozeColor.five
-            case "SAT":
+        case "SAT":
             return InrozeColor.eight
-            case "SUN":
+        case "SUN":
             return InrozeColor.nine
+        case "FOLLOW":
+            return InrozeColor.sepal
+            
             
         default:
             return UIColor.black
@@ -87,14 +90,23 @@ public struct Constants {
     
 }
 
+// Colors as UIColor as constant
+public struct Colors {
+    static let isFollowed: UIColor = Constants.colorOf(day: "Follow")
+    static let isNotFollowed: UIColor = .lightGray
+}
+
+
 // height of the cell depending on the device size and resolution
 
 public struct CellSize {
-    static let topAreaHeight: CGFloat = 70
+    static let topAreaHeight: CGFloat = 63 // from 70
     static let phoneSizeWidth = UIScreen.main.bounds.width
     static let coverRatio = CGFloat(16) / 9
     static let marginWidth: CGFloat = 20 * 2
     static let djAreaHeight: CGFloat = 100
+    static let deejaysListHeight: CGFloat = 48 // from 50
+    static let listTopBottonspacing: CGFloat = 2 * 10
 }
 
 var eventCoverHeight: CGFloat = {
@@ -107,6 +119,10 @@ var cellHeightForDefault: CGFloat = {
 
 var cellHeightForDeejay: CGFloat = {
     return CellSize.topAreaHeight + ((CellSize.phoneSizeWidth - CellSize.marginWidth) / CellSize.coverRatio).rounded(.down) + CellSize.djAreaHeight
+}()
+
+var cellHeightForDJList: CGFloat = {
+   return CellSize.topAreaHeight + ((CellSize.phoneSizeWidth - CellSize.marginWidth) / CellSize.coverRatio).rounded(.down) + CellSize.deejaysListHeight + CellSize.listTopBottonspacing
 }()
 
 
