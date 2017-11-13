@@ -33,11 +33,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="vK9-ev-iiC">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kh9-Uo-cgL">
-                                    <rect key="frame" x="0.0" y="40" width="414" height="90"/>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kh9-Uo-cgL">
+                                    <rect key="frame" x="0.0" y="10" width="414" height="90"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="90" id="FTg-gi-fFR"/>
@@ -98,7 +98,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventDeejayCell" rowHeight="381" id="wte-Kb-I6i" customClass="EventDeejayCell" customModule="InRoZe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="158" width="414" height="381"/>
+                                <rect key="frame" x="0.0" y="128" width="414" height="381"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wte-Kb-I6i" id="Hnd-gk-IKz">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="380.66666666666669"/>
@@ -183,6 +183,7 @@
                     <navigationItem key="navigationItem" title="Events" id="UfG-td-sgg"/>
                     <connections>
                         <outlet property="collectionView" destination="kh9-Uo-cgL" id="mzS-NR-NMx"/>
+                        <outlet property="tableHeaderView" destination="vK9-ev-iiC" id="eep-kf-FLV"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SOz-qR-MKX" userLabel="First Responder" sceneMemberID="firstResponder"/>

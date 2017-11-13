@@ -17,6 +17,7 @@ class EventsViewController: FetchedResultsTableViewController {
     var followsList = [Artist]()
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet var tableHeaderView: UIView! // investigate the retain (weak/strong) and other potential memory issues
     
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
         
@@ -34,16 +35,18 @@ class EventsViewController: FetchedResultsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isTranslucent = false
+        let headerBorderColor = UIColor.lightGray.cgColor
         collectionView.delegate = self
         collectionView.dataSource = self
+        tableHeaderView.addBorder(toSide: .Bottom, withColor: headerBorderColor, andThickness: 0.333)
+        tableHeaderView.addBorder(toSide: .Top, withColor: headerBorderColor, andThickness: 0.333)
         updateUI()
         tableView.rowHeight = cellHeightForDJList
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.tintColor = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
-        print("EventsViewController - Cell Height: [\(cellHeightForDJList)]")
+        //print("EventsViewController - Cell Height: [\(cellHeightForDJList)]")
         updateUI()
         RequestHandler().fetchEventIDsFromServer()
     }
@@ -74,7 +77,21 @@ class EventsViewController: FetchedResultsTableViewController {
             print("Error in performFetch - EventVC - updateUI()")
 
         }
-        self.collectionView.reloadData()
+        // FOR NORMAL WAY..
+        //self.tableViewIsHidden(forFollowsCount: followsList.count)
+        let rdmInt = Int(arc4random_uniform(2))
+        print("RandDom INT: \(rdmInt)")
+        self.tableViewIsHidden(forFollowsCount: rdmInt)
+    }
+    
+    private func tableViewIsHidden(forFollowsCount: Int) {
+        if forFollowsCount > 0 {
+            tableView.tableHeaderView = tableHeaderView
+            collectionView.reloadData()
+        } else {
+            tableView.tableHeaderView = nil
+
+        }
     }
 
 

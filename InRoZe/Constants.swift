@@ -92,8 +92,9 @@ public struct Constants {
 
 // Colors as UIColor as constant
 public struct Colors {
-    static let isFollowed: UIColor = Constants.colorOf(day: "Follow")
+    static let isFollowed: UIColor = Constants.InrozeColor.sepal
     static let isNotFollowed: UIColor = .lightGray
+    static let logoRed: UIColor = Constants.InrozeColor.sepal
 }
 
 
