@@ -92,6 +92,13 @@ func coloredString(_ string: String, color: UIColor) -> NSMutableAttributedStrin
     return attributedString
 }
 
+func color(attributedString attrString: NSAttributedString, color: UIColor) -> NSMutableAttributedString {
+    let attributedString = NSMutableAttributedString(attributedString: attrString)
+    let stringRange = NSRange(location: 0, length: attributedString.length)
+    attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: stringRange)
+    return attributedString
+}
+
 
 func colorsToHexString(with imageColors: UIImageColors) -> ColorsInHexString {
     var result = ColorsInHexString()

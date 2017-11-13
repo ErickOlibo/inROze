@@ -53,6 +53,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Bungee-Regular.ttf</string>
+		<string>FontAwesome.otf</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

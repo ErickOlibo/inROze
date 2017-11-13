@@ -14,6 +14,8 @@
 		A72B79361F2231AF009FB389 /* InRoZe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A72B79341F2231AF009FB389 /* InRoZe.xcdatamodeld */; };
 		A72B79381F2231AF009FB389 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A72B79371F2231AF009FB389 /* Assets.xcassets */; };
 		A72B793B1F2231AF009FB389 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72B79391F2231AF009FB389 /* LaunchScreen.storyboard */; };
+		A73E1FA01FBA3935001E31D3 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = A73E1F9F1FBA38DB001E31D3 /* FontAwesome.otf */; };
+		A73E1FA21FBA3BAF001E31D3 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E1FA11FBA3BAF001E31D3 /* FontAwesome.swift */; };
 		A76E72C51F7517FB0023D47F /* FollowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72C41F7517FB0023D47F /* FollowsViewController.swift */; };
 		A76E72C71F7518700023D47F /* AddArtistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72C61F7518700023D47F /* AddArtistViewController.swift */; };
 		A76E72C91F7518CB0023D47F /* ArtistSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72C81F7518CB0023D47F /* ArtistSearchViewController.swift */; };
@@ -61,6 +63,8 @@
 		A72B79371F2231AF009FB389 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A72B793A1F2231AF009FB389 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A72B793C1F2231AF009FB389 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A73E1F9F1FBA38DB001E31D3 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
+		A73E1FA11FBA3BAF001E31D3 /* FontAwesome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAwesome.swift; sourceTree = "<group>"; };
 		A76E72C41F7517FB0023D47F /* FollowsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowsViewController.swift; sourceTree = "<group>"; };
 		A76E72C61F7518700023D47F /* AddArtistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddArtistViewController.swift; sourceTree = "<group>"; };
 		A76E72C81F7518CB0023D47F /* ArtistSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistSearchViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +207,7 @@
 		A7624B931F6AC78D0050151E /* Custom Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				A73E1F9F1FBA38DB001E31D3 /* FontAwesome.otf */,
 				A76E72D51F79C2CC0023D47F /* Bungee-Regular.ttf */,
 			);
 			name = "Custom Fonts";
@@ -229,6 +234,7 @@
 		A77676121F26BF3100F1FA52 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A73E1FA11FBA3BAF001E31D3 /* FontAwesome.swift */,
 				A79349C81F7FCC9100BC77AD /* CustomViewConvenience.swift */,
 				A7AA5B7B1F7D593300BB2B8A /* ConvenienceFunctions.swift */,
 				A7F527271F472ED90008080B /* ConvenienceExtensions.swift */,
@@ -348,6 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A72B793B1F2231AF009FB389 /* LaunchScreen.storyboard in Resources */,
+				A73E1FA01FBA3935001E31D3 /* FontAwesome.otf in Resources */,
 				A72B79381F2231AF009FB389 /* Assets.xcassets in Resources */,
 				A72B79331F2231AF009FB389 /* Main.storyboard in Resources */,
 				A76E72D61F79C2CC0023D47F /* Bungee-Regular.ttf in Resources */,
@@ -445,6 +452,7 @@
 				A76E72C91F7518CB0023D47F /* ArtistSearchViewController.swift in Sources */,
 				A76E72D01F7576580023D47F /* EventsTableView+NSFetchResultsController.swift in Sources */,
 				A76E72D41F76579E0023D47F /* EventDeejayNameCell.swift in Sources */,
+				A73E1FA21FBA3BAF001E31D3 /* FontAwesome.swift in Sources */,
 				A7EC36871F365AA900548C11 /* TabBarViewController.swift in Sources */,
 				A775C3B41F3C7FA100A3449F /* NotificationKeyStringConvenience.swift in Sources */,
 				A72B79361F2231AF009FB389 /* InRoZe.xcdatamodeld in Sources */,

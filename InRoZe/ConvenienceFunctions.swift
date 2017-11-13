@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+//import Font_Awesome_Swift
 
 
 // Format the event day, time, and location to Attributed text for cell subtitle
@@ -41,19 +42,25 @@ func deejaysListAttributed(for event: Event) -> NSAttributedString {
         }
         return t1.isFollowed && !t2.isFollowed
     })
-    let attributedSpacing = coloredString(" - ", color: .black)
+    let attributeOne = [ NSAttributedStringKey.font: UIFont(name: "FontAwesome", size: 20.0)! ]
+    let faHash = FAType.FAHashtag.text!
+    let hashtag = NSAttributedString(string: faHash, attributes: attributeOne)
+    
+    let attributedSpacing = coloredString("  ", color: .black)
     let combinedAttributedText = NSMutableAttributedString()
     
     for deejay in sorted {
         if (deejay != sorted[0]) {
             combinedAttributedText.append(attributedSpacing)
+            
         }
         if let deejayName = deejay.name {
             if (deejay.isFollowed) {
                 print("isFollowed: [\(deejayName)]")
-                //let thisColor = Constants.colorOf(day: "mon")
+                combinedAttributedText.append(color(attributedString: hashtag, color: Colors.isFollowed))
                 combinedAttributedText.append(coloredString(deejayName, color: Colors.isFollowed))
             } else {
+                combinedAttributedText.append(color(attributedString: hashtag, color: Colors.isNotFollowed))
                 combinedAttributedText.append(coloredString(deejayName, color: Colors.isNotFollowed))
             }
         }
