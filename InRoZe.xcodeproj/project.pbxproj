@@ -14,6 +14,7 @@
 		A72B79361F2231AF009FB389 /* InRoZe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A72B79341F2231AF009FB389 /* InRoZe.xcdatamodeld */; };
 		A72B79381F2231AF009FB389 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A72B79371F2231AF009FB389 /* Assets.xcassets */; };
 		A72B793B1F2231AF009FB389 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72B79391F2231AF009FB389 /* LaunchScreen.storyboard */; };
+		A733850C1FBB94AD00E0C4C2 /* EventInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A733850B1FBB94AD00E0C4C2 /* EventInfoViewController.swift */; };
 		A73E1FA01FBA3935001E31D3 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = A73E1F9F1FBA38DB001E31D3 /* FontAwesome.otf */; };
 		A73E1FA21FBA3BAF001E31D3 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E1FA11FBA3BAF001E31D3 /* FontAwesome.swift */; };
 		A76E72C51F7517FB0023D47F /* FollowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72C41F7517FB0023D47F /* FollowsViewController.swift */; };
@@ -63,6 +64,7 @@
 		A72B79371F2231AF009FB389 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A72B793A1F2231AF009FB389 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A72B793C1F2231AF009FB389 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A733850B1FBB94AD00E0C4C2 /* EventInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoViewController.swift; sourceTree = "<group>"; };
 		A73E1F9F1FBA38DB001E31D3 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		A73E1FA11FBA3BAF001E31D3 /* FontAwesome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAwesome.swift; sourceTree = "<group>"; };
 		A76E72C41F7517FB0023D47F /* FollowsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowsViewController.swift; sourceTree = "<group>"; };
@@ -166,11 +168,7 @@
 				A7CE831D1FA0AB3200F2B4F1 /* DJ Name */,
 				A7EC36841F36553B00548C11 /* LoginViewController.swift */,
 				A7EC36861F365AA900548C11 /* TabBarViewController.swift */,
-				A76E72CB1F7541370023D47F /* EventsViewController.swift */,
-				A76E72CF1F7576580023D47F /* EventsTableView+NSFetchResultsController.swift */,
-				A7F4BAD91F839006001279F3 /* Event Cells */,
-				A76E72D71F7BFA820023D47F /* DeejayGigsTableViewController.swift */,
-				A76E72D91F7C08650023D47F /* DeejayGigsCell.swift */,
+				A733850D1FBB954C00E0C4C2 /* Events */,
 				A76E72D11F75776C0023D47F /* FetchedResultsTableViewController.swift */,
 				A76E72C41F7517FB0023D47F /* FollowsViewController.swift */,
 				A76E72C61F7518700023D47F /* AddArtistViewController.swift */,
@@ -194,6 +192,19 @@
 				A7F5274E1F479ED70008080B /* InRoZe-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A733850D1FBB954C00E0C4C2 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				A7F4BAD91F839006001279F3 /* Event Cells */,
+				A76E72CB1F7541370023D47F /* EventsViewController.swift */,
+				A76E72CF1F7576580023D47F /* EventsTableView+NSFetchResultsController.swift */,
+				A76E72D71F7BFA820023D47F /* DeejayGigsTableViewController.swift */,
+				A76E72D91F7C08650023D47F /* DeejayGigsCell.swift */,
+				A733850B1FBB94AD00E0C4C2 /* EventInfoViewController.swift */,
+			);
+			name = Events;
 			sourceTree = "<group>";
 		};
 		A7624B921F6AC7670050151E /* Resources */ = {
@@ -451,6 +462,7 @@
 				A7E03D9B1F71D820000095BD /* UIDropDown.swift in Sources */,
 				A76E72C91F7518CB0023D47F /* ArtistSearchViewController.swift in Sources */,
 				A76E72D01F7576580023D47F /* EventsTableView+NSFetchResultsController.swift in Sources */,
+				A733850C1FBB94AD00E0C4C2 /* EventInfoViewController.swift in Sources */,
 				A76E72D41F76579E0023D47F /* EventDeejayNameCell.swift in Sources */,
 				A73E1FA21FBA3BAF001E31D3 /* FontAwesome.swift in Sources */,
 				A7EC36871F365AA900548C11 /* TabBarViewController.swift in Sources */,
