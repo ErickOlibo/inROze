@@ -101,7 +101,7 @@ public class Artist: NSManagedObject
     
 
     class func listOfFollows(in context: NSManagedObjectContext) -> [Artist] {
-        var follows = [Artist]()
+        var follows = [Artist]()        
         let request: NSFetchRequest<Artist> = Artist.fetchRequest()
         request.predicate = NSPredicate(format: "isFollowed = true")
         do {

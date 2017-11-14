@@ -55,14 +55,35 @@ class EventsViewController: FetchedResultsTableViewController {
         let followListArr = Array(followsList)
         
         let sorted = followListArr.sorted(by: { lhs, rhs in
-            if lhs.gigs!.count == rhs.gigs!.count {
+            let thisLeft = cleanCount(artist: lhs)
+            let thisRight = cleanCount(artist: rhs)
+            if thisLeft == thisRight {
                 return lhs.name! < rhs.name!
             }
-            return lhs.gigs!.count > rhs.gigs!.count
+            return thisLeft > thisRight
+//            if lhs.gigs!.count == rhs.gigs!.count {
+//                return lhs.name! < rhs.name!
+//            }
+//            return lhs.gigs!.count > rhs.gigs!.count
         })
         followsList = sorted
         printArr()
     }
+    
+    private func cleanCount(artist: Artist) -> Int {
+        guard let count = artist.gigs?.count, count > 0 else { return 0 }
+        guard let allGigs = artist.gigs?.allObjects as? [Event] else { return 0 }
+        var afterNow = 0
+        let nowTime = NSDate()
+        for aGig in allGigs {
+            guard let endTime = aGig.endTime else { return 0 }
+            if endTime > nowTime as Date {
+                afterNow += 1
+            }
+        }
+        return afterNow
+    }
+    
     
     private func printArr() {
         var longString = ""
