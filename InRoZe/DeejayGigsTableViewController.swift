@@ -14,6 +14,21 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     // Core Data model container and context
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
+    // outlets
+    @IBOutlet weak var tableHeaderView: UIView!
+    @IBOutlet weak var upcomingGigsView: UIView!
+    @IBOutlet weak var upcomingGigsLabel: UILabel!
+    @IBOutlet weak var deejayPicture: UIImageView!
+    @IBOutlet weak var deejayName: UILabel!
+    @IBOutlet weak var countryName: UILabel!
+    @IBOutlet weak var followButton: UIButton!
+    
+    @IBAction func touchedFollow(_ sender: UIButton) {
+        pressedFollowed()
+    }
+    
+    
+    
     // properties
     let followedRightButton = UIBarButtonItem()
     var artist: Artist? { didSet { updateUI() } }
@@ -23,14 +38,16 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("DeejayGigsTableViewController")
+        self.title = "DeeJay Info"
         // navigation bar see Extension below
         navigationController?.delegate = self
-        self.navigationController?.navigationBar.tintColor = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
+        self.navigationController?.navigationBar.tintColor = Colors.logoRed
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: (UIImage(named: "2_Follows")?.withRenderingMode(.alwaysTemplate))!, style: .plain, target: self, action: #selector(pressedFollowed))
+        upcomingGigsView.backgroundColor = Colors.logoRed
     }
 
     @objc private func pressedFollowed() {
@@ -61,16 +78,36 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         super.viewWillAppear(animated)
         // set the status and color of rightButton
         updateFollowedButton()
+        updateDJInfo()
+    }
+    
+    private func updateDJInfo() {
+        guard let artistName = artist?.name else { return }
+        guard let artistCountry = artist?.country else { return }
+        deejayName.text = artistName
+        countryName.text = artistCountry
     }
     
     
     private func updateFollowedButton() {
+        // Update profile
+        deejayPicture.image = UIImage(named: profileImageForDJ(with: artist!.id!, when: artist!.isFollowed))
         if (artist!.isFollowed) {
             navigationItem.rightBarButtonItem?.image = (UIImage(named: "2_FollowsFilled")?.withRenderingMode(.alwaysTemplate))!
-            navigationItem.rightBarButtonItem?.tintColor = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
+            navigationItem.rightBarButtonItem?.tintColor = Colors.logoRed
+            followButton.setTitle("Followed", for: .normal)
+            followButton.backgroundColor = Colors.logoRed
+            followButton.setTitleColor(.white, for: .normal)
+            followButton.layer.borderColor = Colors.logoRed.cgColor
+            
+            
         } else {
             navigationItem.rightBarButtonItem?.image = (UIImage(named: "2_Follows")?.withRenderingMode(.alwaysTemplate))!
             navigationItem.rightBarButtonItem?.tintColor = .lightGray
+            followButton.setTitle("Follow", for: .normal)
+            followButton.backgroundColor = .clear
+            followButton.setTitleColor(.gray, for: .normal)
+            followButton.layer.borderColor = UIColor.gray.cgColor
         }
     }
     

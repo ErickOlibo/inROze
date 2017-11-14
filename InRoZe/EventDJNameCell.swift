@@ -4,7 +4,7 @@
 //
 //  Created by Erick Olibo on 03/10/2017.
 //  Copyright © 2017 Erick Olibo. All rights reserved.
-//
+//  TO DELETE NOT NEEDED
 
 import UIKit
 import CoreData
@@ -21,7 +21,7 @@ class EventDJNameCell: UICollectionViewCell
     var thisDJ: Artist? { didSet { updateUI() } }
     
     // UI colors for isFollowed
-    let followedColor: UIColor = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
+    let followedColor: UIColor = Colors.logoRed
     let notFollowedColor: UIColor = .gray
     
     // Cell Outlets

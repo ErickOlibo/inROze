@@ -106,6 +106,7 @@ public class Artist: NSManagedObject
         request.predicate = NSPredicate(format: "isFollowed = true")
         do {
             follows = try context.fetch(request)
+            
             return follows
         } catch {
             print("[printListOfFollows] - Error while getting Follows list: \(error)")

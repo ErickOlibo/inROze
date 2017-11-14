@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
     @IBAction func loginTapped(_ sender: UIButton) {
         //hideUI(state: true)
         
-        //spinner.color = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
+        //spinner.color = Colors.logoRed
         self.view.bringSubview(toFront: foreGroundView)
         self.view.bringSubview(toFront: spinner)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

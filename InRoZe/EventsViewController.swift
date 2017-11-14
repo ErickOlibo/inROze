@@ -39,7 +39,7 @@ class EventsViewController: FetchedResultsTableViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         tableHeaderView.addBorder(toSide: .Bottom, withColor: headerBorderColor, andThickness: 0.333)
-        tableHeaderView.addBorder(toSide: .Top, withColor: headerBorderColor, andThickness: 0.333)
+        //tableHeaderView.addBorder(toSide: .Top, withColor: headerBorderColor, andThickness: 0.333)
         updateUI()
         tableView.rowHeight = cellHeightForDJList
     }
@@ -51,10 +51,35 @@ class EventsViewController: FetchedResultsTableViewController {
         RequestHandler().fetchEventIDsFromServer()
     }
     
+    private func orderArtists() {
+        let followListArr = Array(followsList)
+        
+        let sorted = followListArr.sorted(by: { lhs, rhs in
+            if lhs.gigs!.count == rhs.gigs!.count {
+                return lhs.name! < rhs.name!
+            }
+            return lhs.gigs!.count > rhs.gigs!.count
+        })
+        followsList = sorted
+        printArr()
+    }
+    
+    private func printArr() {
+        var longString = ""
+        for artist in followsList {
+            longString += artist.name!
+            longString += " (\(artist.gigs!.count)) | "
+        }
+        print("** SORTED: \(longString)")
+    
+    }
+    
+    
     private func updateUI() {
         
         // get number of Follows
         followsList = Artist.listOfFollows(in: mainContext)
+        orderArtists()
         
         do {
             try self.fetchResultsController.performFetch()
@@ -77,11 +102,7 @@ class EventsViewController: FetchedResultsTableViewController {
             print("Error in performFetch - EventVC - updateUI()")
 
         }
-        // FOR NORMAL WAY..
-        //self.tableViewIsHidden(forFollowsCount: followsList.count)
-        let rdmInt = Int(arc4random_uniform(2))
-        print("RandDom INT: \(rdmInt)")
-        self.tableViewIsHidden(forFollowsCount: rdmInt)
+        self.tableViewIsHidden(forFollowsCount: followsList.count)
     }
     
     private func tableViewIsHidden(forFollowsCount: Int) {
@@ -93,8 +114,6 @@ class EventsViewController: FetchedResultsTableViewController {
 
         }
     }
-
-
 }
 
 

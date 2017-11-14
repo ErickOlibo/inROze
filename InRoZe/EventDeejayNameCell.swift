@@ -4,7 +4,7 @@
 //
 //  Created by Erick Olibo on 23/09/2017.
 //  Copyright © 2017 Erick Olibo. All rights reserved.
-//
+//  TO DELETE NOT NEEDED
 
 import UIKit
 import CoreData
@@ -21,7 +21,7 @@ class EventDeejayNameCell: UICollectionViewCell
     // get full artist for this cell
     var thisDJ: Artist? { didSet { updateUI() } }
     
-    let followedColor: UIColor = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
+    let followedColor: UIColor = Colors.logoRed
     let notFollowedColor: UIColor = .lightGray
     let moreGigsString = " more gigs"
     let moreGigString = " more gig"
@@ -84,7 +84,7 @@ class EventDeejayNameCell: UICollectionViewCell
         if (thisDJ!.isFollowed) {
             followImg = (UIImage(named: "2_FollowsFilled")?.withRenderingMode(.alwaysTemplate))!
             followDJBottonView.setImage(followImg, for: .normal)
-            followDJBottonView.tintColor = UIColor.changeHexStringToColor(ColorInHexFor.logoRed)
+            followDJBottonView.tintColor = Colors.logoRed
         } else {
             followImg = (UIImage(named: "2_Follows")?.withRenderingMode(.alwaysTemplate))!
             followDJBottonView.setImage(followImg, for: .normal)
