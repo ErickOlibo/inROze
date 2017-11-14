@@ -16,7 +16,8 @@ class EventDeejayCell: UITableViewCell
     var event: Event? { didSet { configureCell() } }
     
     // context & container
-    var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     
     // outlets to the UI components in the custom UITableViewCell
     @IBOutlet weak var eventCover: UIImageView!

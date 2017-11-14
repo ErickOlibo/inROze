@@ -11,7 +11,8 @@ import CoreData
 
 class EventsViewController: FetchedResultsTableViewController {
 
-    var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     let mainContext = AppDelegate.viewContext
     var deejaysName = Set<String>()
     var followsList = [Artist]()
@@ -97,6 +98,14 @@ class EventsViewController: FetchedResultsTableViewController {
     
     
     private func updateUI() {
+        
+        // number of events in the database
+        // Better way to count number of element in entity (CoreData)
+        if let eventCount = try? mainContext.count(for: Event.fetchRequest()) {
+            print("[printDatabaseStatistics] in EventsVC - \(eventCount) Events ")
+        }
+        
+        // Delete obsolete events
         
         // get number of Follows
         followsList = Artist.listOfFollows(in: mainContext)

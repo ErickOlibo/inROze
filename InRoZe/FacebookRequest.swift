@@ -19,16 +19,10 @@ import FBSDKCoreKit
 
 public class FacebookRequest
 {
+
     // Core Data model container and context
     //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
-    
-    var container: NSPersistentContainer? {
-        didSet {
-            DispatchQueue.main.async {
-                self.container = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
-            }
-        }
-    }
+    var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
 
     // Array of EventIDs from the database with
     // batchsize eventIds limit per request (facebook Max IDs = 50)
@@ -44,6 +38,8 @@ public class FacebookRequest
     // Should be private
     private var eventIDsArray = [String]() {
         didSet {
+            //print("******* EVENT IDs ARRAY ***********")
+            //print(eventIDsArray)
             recursiveGraphRequest(array: eventIDsArray, parameters: param, batchSize: batchSize)
         }
     }
@@ -134,7 +130,6 @@ public class FacebookRequest
         if let context = container?.viewContext {
             context.perform {
                 let request: NSFetchRequest<Event> = Event.fetchRequest()
-                
                 if let events = try? context.fetch(request) {
                     var eventIDsArr = [String]()
                     for event in events as [Event] {
@@ -142,6 +137,7 @@ public class FacebookRequest
                             eventIDsArr.append(eventStr)
                         }
                     }
+                    //print(eventIDsArr)
                     self.eventIDsArray = eventIDsArr
                 }
             }

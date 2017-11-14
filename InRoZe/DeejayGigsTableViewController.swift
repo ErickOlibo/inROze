@@ -12,7 +12,8 @@ import CoreData
 class DeejayGigsTableViewController: FetchedResultsTableViewController {
     
     // Core Data model container and context
-    var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     
     // outlets
     @IBOutlet weak var tableHeaderView: UIView!

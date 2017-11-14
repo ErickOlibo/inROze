@@ -14,7 +14,7 @@ import FBSDKCoreKit
 
 public class RequestHandler
 {
-    var isDoneUpdatingServeRequest = false {
+    var isDoneUpdatingServerRequest = false {
         didSet {
             fetchEventsInfoFromFacebook()
         }
@@ -31,6 +31,7 @@ public class RequestHandler
             userDefault.hasEnoughTimeElapsed(since: RequestDate.toServer) {
             if let userID = AccessToken.current?.userId {
                 let params = "id=\(userID)&cityCode=\(userDefault.currentCityCode)&countryCode=\(userDefault.currentCountryCode)"
+                //print("\(UrlFor.currentEventsID)/\(params)")
                 let request = ServerRequest()
                 request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
             }

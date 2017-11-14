@@ -12,7 +12,8 @@ import CoreData
 class DJNameView: UIView {
     
     // Core Data model container and context
-    var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     
     // UI colors for isFollowed
     let followedColor: UIColor = Colors.logoRed

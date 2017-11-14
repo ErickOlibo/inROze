@@ -20,8 +20,10 @@ public class ServerRequest
 {
     
     // Core Data model container and context
-    var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     
+    var result: [String : Any]? { didSet { updateDatabase(with: result!) } }
     
     
     public func setUserLoggedIn(to isLogged: Bool, parameters: String, urlToServer: String) {
@@ -77,11 +79,7 @@ public class ServerRequest
         task.resume()
     }
     
-    var result: [String : Any]? {
-        didSet {
-            updateDatabase(with: result!)
-        }
-    }
+    
     
     // print artist list
     private func updateArtistsDatabase(with jsonDict: [String : Any], in context: NSManagedObjectContext) {
@@ -131,7 +129,7 @@ public class ServerRequest
                         try context.save()
                         UserDefaults().setDateNow(for: RequestDate.toServer)
                         
-                        RequestHandler().isDoneUpdatingServeRequest = true
+                        RequestHandler().isDoneUpdatingServerRequest = true
                         
                     } catch {
                         print("[ServerRequest] - Error trying to save in CoreData")
