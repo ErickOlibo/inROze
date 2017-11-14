@@ -233,7 +233,6 @@ public class Event: NSManagedObject
     }
     
     
-    
     // Deletes older (where endTime < NOW) from the database
     class func deleteEventsEndedBeforeNow(in context: NSManagedObjectContext, with request: NSFetchRequest<Event>) -> Bool
     {
@@ -244,16 +243,39 @@ public class Event: NSManagedObject
         do {
             let events = try context.fetch(request)
             if events.count > 0 {
+                print("DELETE EVENTS ENDED Count: [\(events.count)]")
                 for event in events {
                     context.delete(event)
                 }
             }
         } catch {
-            print("[Event] - deleteEventsEndedBeforeNow")
+            print("[Event] - deleteEventsEndedBeforeNow Error")
         }
         
         return true
     }
+    
+    // Delete Events with NO performers meaning Events.Performers.count = 0
+    class func deleteEventsWithoutPerformers(in context: NSManagedObjectContext, with request: NSFetchRequest<Event>) -> Bool
+    {
+        request.predicate = NSPredicate(format: "performers.@count = 0")
+        do {
+            let events = try context.fetch(request)
+            if events.count > 0 {
+                print("Events Without Performers Count: [\(events.count)]")
+                var rank = 0
+                for event in events {
+                    rank += 1
+                    print("\(rank)) Event Name: \(event.name ?? "No Event Name")")
+                    context.delete(event)
+                }
+            }
+        } catch {
+            print("[Event] - deleteEventsWithoutPerformers Error")
+        }
+        return true
+    }
+    
     
     
     // Delete an single Event from database

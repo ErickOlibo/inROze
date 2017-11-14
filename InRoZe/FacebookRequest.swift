@@ -105,6 +105,10 @@ public class FacebookRequest
                 
                 // Delete old events from database
                 _ = Event.deleteEventsEndedBeforeNow(in: context, with: request)
+
+
+                // delete events without performers
+                _ = Event.deleteEventsWithoutPerformers(in: context, with: request)
                 
                 do {
                     //print("[updateEventDatabase] -  BEFORE try to save context")
