@@ -56,14 +56,25 @@ extension EventsViewController
     
     // list of segue to be done here
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "Deejay Gigs List" else { return }
-        guard let deejayNameCell = sender as? EventDJNameCell else { return }
-        guard let _ = deejayNameCell.superview as? UICollectionView else { return }
-        guard let destination = segue.destination as? DeejayGigsTableViewController else { return }
+        if (segue.identifier == "Deejay Gigs List") {
+            guard let deejayNameCell = sender as? EventDJNameCell else { return }
+            guard let _ = deejayNameCell.superview as? UICollectionView else { return }
+            guard let destination = segue.destination as? DeejayGigsTableViewController else { return }
+            let thisDJ = deejayNameCell.thisDJ!
+            destination.artist = thisDJ
+            destination.navigationItem.title = thisDJ.name!
+        }
         
-        let thisDJ = deejayNameCell.thisDJ!
-        destination.artist = thisDJ
-        destination.navigationItem.title = thisDJ.name!
+        if (segue.identifier == "Event Info") {
+            print("Event INfo")
+            guard let eventCell = sender as? EventDeejayCell else { return }
+            guard let destination = segue.destination as? EventInfoViewController else { return }
+            let thisEvent = eventCell.event!
+            destination.event = thisEvent
+            destination.navigationItem.title = thisEvent.location?.name ?? ""
+            
+        }
+
 
     }
     

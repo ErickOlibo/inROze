@@ -39,7 +39,7 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("DeejayGigsTableViewController")
-        self.title = "DeeJay Info"
+        //self.title = "DeeJay Info"
         // navigation bar see Extension below
         navigationController?.delegate = self
         self.navigationController?.navigationBar.tintColor = Colors.logoRed

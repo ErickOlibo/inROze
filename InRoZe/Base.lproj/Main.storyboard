@@ -109,7 +109,7 @@
                                 <rect key="frame" x="0.0" y="128" width="414" height="381"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wte-Kb-I6i" id="Hnd-gk-IKz">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="380.66666666666669"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="381"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D0h-Pv-9Uv">
@@ -180,6 +180,7 @@
                                     <outlet property="eventCover" destination="D0h-Pv-9Uv" id="8hn-1i-Ruo"/>
                                     <outlet property="eventTimeLocation" destination="8qy-I6-JfF" id="Mc8-ks-Car"/>
                                     <outlet property="eventTitle" destination="Ym7-KE-goa" id="8U6-a9-sdv"/>
+                                    <segue destination="Stf-hx-wqg" kind="show" identifier="Event Info" id="amR-Kn-XsZ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -198,10 +199,10 @@
             </objects>
             <point key="canvasLocation" x="204" y="-1573"/>
         </scene>
-        <!--DJ list-->
+        <!--Deejay Gigs Table View Controller-->
         <scene sceneID="8KM-Nb-VCN">
             <objects>
-                <tableViewController title="DJ list" id="8yR-qp-x1Q" customClass="DeejayGigsTableViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="8yR-qp-x1Q" customClass="DeejayGigsTableViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="hGD-nm-KfD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -307,7 +308,7 @@
                                 <rect key="frame" x="0.0" y="158" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GEV-js-GQI" id="1lw-ja-f5i">
-                                    <rect key="frame" x="0.0" y="0.0" width="376" height="59.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="376" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CeG-3c-T4a">
@@ -386,10 +387,10 @@
             </objects>
             <point key="canvasLocation" x="1083" y="-2116"/>
         </scene>
-        <!--View Controller-->
+        <!--Event Info View Controller-->
         <scene sceneID="ifn-sa-AFn">
             <objects>
-                <viewController id="Stf-hx-wqg" sceneMemberID="viewController">
+                <viewController id="Stf-hx-wqg" customClass="EventInfoViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hMG-wi-5WC"/>
                         <viewControllerLayoutGuide type="bottom" id="Ebc-LE-lHJ"/>
@@ -397,12 +398,65 @@
                     <view key="view" contentMode="scaleToFill" id="RMz-ff-7v9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="onQ-AG-C6Y">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H4f-lw-L8s" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="474.33333333333331"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="feL-mq-3en">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="233"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="feL-mq-3en" secondAttribute="height" multiplier="16:9" id="geL-4f-Xsm"/>
+                                                </constraints>
+                                            </imageView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5M0-Ai-miN">
+                                                <rect key="frame" x="8" y="271" width="398" height="183.33333333333337"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="5M0-Ai-miN" secondAttribute="bottom" constant="20" id="PJJ-Xc-uY4"/>
+                                            <constraint firstItem="5M0-Ai-miN" firstAttribute="leading" secondItem="H4f-lw-L8s" secondAttribute="leading" constant="8" id="Us7-Rx-d2O"/>
+                                            <constraint firstAttribute="trailing" secondItem="5M0-Ai-miN" secondAttribute="trailing" constant="8" id="Yaa-bq-Rr1"/>
+                                            <constraint firstItem="5M0-Ai-miN" firstAttribute="top" secondItem="feL-mq-3en" secondAttribute="bottom" constant="38" id="YoZ-4Q-wY9"/>
+                                            <constraint firstItem="feL-mq-3en" firstAttribute="centerX" secondItem="H4f-lw-L8s" secondAttribute="centerX" id="b1C-zh-YvL"/>
+                                            <constraint firstItem="feL-mq-3en" firstAttribute="width" secondItem="H4f-lw-L8s" secondAttribute="width" id="mZc-qI-NX3"/>
+                                            <constraint firstItem="feL-mq-3en" firstAttribute="top" secondItem="H4f-lw-L8s" secondAttribute="top" id="zfl-jj-BAe"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="H4f-lw-L8s" firstAttribute="width" secondItem="onQ-AG-C6Y" secondAttribute="width" id="MIY-Jf-5ox"/>
+                                    <constraint firstAttribute="trailing" secondItem="H4f-lw-L8s" secondAttribute="trailing" id="Mmh-Nj-udq"/>
+                                    <constraint firstItem="H4f-lw-L8s" firstAttribute="leading" secondItem="onQ-AG-C6Y" secondAttribute="leading" id="V85-mW-kUf"/>
+                                    <constraint firstAttribute="bottom" secondItem="H4f-lw-L8s" secondAttribute="bottom" id="pKl-hx-089"/>
+                                    <constraint firstItem="H4f-lw-L8s" firstAttribute="top" secondItem="onQ-AG-C6Y" secondAttribute="top" id="tL2-Bw-YTZ"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="onQ-AG-C6Y" firstAttribute="top" secondItem="RMz-ff-7v9" secondAttribute="top" id="CKL-De-WQY"/>
+                            <constraint firstItem="onQ-AG-C6Y" firstAttribute="leading" secondItem="RMz-ff-7v9" secondAttribute="leading" id="b0F-rv-de2"/>
+                            <constraint firstAttribute="trailing" secondItem="onQ-AG-C6Y" secondAttribute="trailing" id="fYM-4N-LP6"/>
+                            <constraint firstItem="Ebc-LE-lHJ" firstAttribute="top" secondItem="onQ-AG-C6Y" secondAttribute="bottom" id="m8N-q1-fff"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="eventCover" destination="feL-mq-3en" id="nMb-12-Uvs"/>
+                        <outlet property="eventText" destination="5M0-Ai-miN" id="hzF-mh-r69"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xk7-PB-L8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1083" y="-1287"/>
+            <point key="canvasLocation" x="1082.608695652174" y="-1287.2282608695652"/>
         </scene>
         <!--Follows-->
         <scene sceneID="zQD-04-gUi">
