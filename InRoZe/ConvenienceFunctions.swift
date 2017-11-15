@@ -36,11 +36,11 @@ func deejaysListAttributed(for event: Event) -> NSAttributedString {
     //let sorted = performers.sorted(by: {$0.name! < $1.name!})
     let myarray = Array(performers)
     
-    let sorted = myarray.sorted(by: { t1, t2 in
-        if t1.isFollowed == t2.isFollowed {
-            return t1.name! < t2.name!
+    let sorted = myarray.sorted(by: { lhs, rhs in
+        if lhs.isFollowed == rhs.isFollowed {
+            return lhs.name! < rhs.name!
         }
-        return t1.isFollowed && !t2.isFollowed
+        return lhs.isFollowed && !rhs.isFollowed
     })
     let attributeOne = [ NSAttributedStringKey.font: UIFont(name: "FontAwesome", size: 20.0)! ]
     let faHash = FAType.FAHashtag.text!
@@ -67,6 +67,44 @@ func deejaysListAttributed(for event: Event) -> NSAttributedString {
     }
     return combinedAttributedText
 }
+
+// creates a border color for one of the side of a view
+
+enum Side {
+    case Left, Right, Top, Bottom
+}
+
+func drawBorder(toView view: UIView, forSide side: Side, withColor color: CGColor, andThickness thickness: CGFloat) -> UIView {
+    let border = CALayer()
+    border.backgroundColor = color
+    switch side {
+    case .Left:
+        print("Something")
+    case .Right:
+        print("Something")
+    case .Top:
+        print("Something")
+    case .Bottom:
+        print("Something")
+        
+        
+        
+    }
+    
+    return view
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -58,12 +58,20 @@ extension UIView {
         
         let border = CALayer()
         border.backgroundColor = color
-        
+        //print("in AddBorder - this Frame: \(self.frame)")
         switch side {
-        case .Left: border.frame = CGRect(x: frame.minX, y: frame.minY, width: thickness, height: frame.height); break
-        case .Right: border.frame = CGRect(x: frame.maxX, y: frame.minY, width: thickness, height: frame.height); break
-        case .Top: border.frame = CGRect(x: frame.minX, y: frame.minY, width: frame.width, height: thickness); break
-        case .Bottom: border.frame = CGRect(x: frame.minX, y: frame.maxY, width: frame.width, height: thickness); break
+        case .Left:
+            border.frame = CGRect(x: 0.0, y: 0.0, width: thickness, height: frame.height)
+            //print("Left Border Frame: \(border.frame)")
+        case .Right:
+            border.frame = CGRect(x: frame.width, y: 0.0, width: thickness, height: frame.height)
+            //print("Right Border Frame: \(border.frame)")
+        case .Top:
+            border.frame = CGRect(x: 0.0, y: 0.0, width: frame.width, height: thickness)
+            //print("Top Border Frame: \(border.frame)")
+        case .Bottom:
+            border.frame = CGRect(x: 0.0, y: frame.height, width: frame.width, height: thickness)
+            //print("Bottom Border Frame: \(border.frame)")
         }
         
         layer.addSublayer(border)

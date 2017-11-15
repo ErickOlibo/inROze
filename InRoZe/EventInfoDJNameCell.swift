@@ -1,17 +1,17 @@
 //
-//  EventDJNameCell.swift
+//  EventInfoDJNameCell.swift
 //  InRoZe
 //
-//  Created by Erick Olibo on 03/10/2017.
+//  Created by Erick Olibo on 15/11/2017.
 //  Copyright © 2017 Erick Olibo. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-class EventDJNameCell: UICollectionViewCell
+class EventInfoDJNameCell: UICollectionViewCell
 {
-    
+
     // Core Data model container and context
     //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
@@ -19,18 +19,18 @@ class EventDJNameCell: UICollectionViewCell
     static var identifier: String { return String(describing: self) }
     
     var thisDJ: Artist? { didSet { updateUI() } }
-    
+
     // Cell Outlets
     @IBOutlet weak var djName: UILabel!
     @IBOutlet weak var backgroundProfileImage: UIImageView!
     
     
     private func updateUI() {
+        //print("EventInfoDJNameCell inside UPDATE")
         guard let name = thisDJ?.name else { return }
         djName.text = name
         djName.textColor = .black
         container?.performBackgroundTask{ context in
-            //print("FETCHING isFollowed From CORE DATA || Current Thread: [\(Thread.current)]")
             if let currentState = Artist.currentIsFollowedState(for: self.thisDJ!.id!, in: context) {
                 self.thisDJ!.isFollowed = currentState
             }
@@ -41,8 +41,6 @@ class EventDJNameCell: UICollectionViewCell
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        //print("Artist Before Reuse Cell: [\(thisDJ!.name!)]")
     }
-    
     
 }

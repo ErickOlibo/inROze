@@ -15,6 +15,7 @@
 		A72B79381F2231AF009FB389 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A72B79371F2231AF009FB389 /* Assets.xcassets */; };
 		A72B793B1F2231AF009FB389 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72B79391F2231AF009FB389 /* LaunchScreen.storyboard */; };
 		A733850C1FBB94AD00E0C4C2 /* EventInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A733850B1FBB94AD00E0C4C2 /* EventInfoViewController.swift */; };
+		A733850F1FBCA4BD00E0C4C2 /* EventInfoDJNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A733850E1FBCA4BD00E0C4C2 /* EventInfoDJNameCell.swift */; };
 		A73E1FA01FBA3935001E31D3 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = A73E1F9F1FBA38DB001E31D3 /* FontAwesome.otf */; };
 		A73E1FA21FBA3BAF001E31D3 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E1FA11FBA3BAF001E31D3 /* FontAwesome.swift */; };
 		A76E72C51F7517FB0023D47F /* FollowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72C41F7517FB0023D47F /* FollowsViewController.swift */; };
@@ -65,6 +66,7 @@
 		A72B793A1F2231AF009FB389 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A72B793C1F2231AF009FB389 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A733850B1FBB94AD00E0C4C2 /* EventInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoViewController.swift; sourceTree = "<group>"; };
+		A733850E1FBCA4BD00E0C4C2 /* EventInfoDJNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoDJNameCell.swift; sourceTree = "<group>"; };
 		A73E1F9F1FBA38DB001E31D3 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		A73E1FA11FBA3BAF001E31D3 /* FontAwesome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAwesome.swift; sourceTree = "<group>"; };
 		A76E72C41F7517FB0023D47F /* FollowsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowsViewController.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */,
 				A7F4BADA1F83C9B5001279F3 /* EventDJNameCell.swift */,
 				A76E72D31F76579E0023D47F /* EventDeejayNameCell.swift */,
+				A733850E1FBCA4BD00E0C4C2 /* EventInfoDJNameCell.swift */,
 			);
 			name = "Event Cells";
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */,
 				A7D1CDC81F81D0CF003513F8 /* EventDeejayCell.swift in Sources */,
 				A76E72D21F75776C0023D47F /* FetchedResultsTableViewController.swift in Sources */,
+				A733850F1FBCA4BD00E0C4C2 /* EventInfoDJNameCell.swift in Sources */,
 				A7CE831C1FA0AB1C00F2B4F1 /* DJNameView.swift in Sources */,
 				A7E03D9B1F71D820000095BD /* UIDropDown.swift in Sources */,
 				A76E72C91F7518CB0023D47F /* ArtistSearchViewController.swift in Sources */,

@@ -4,7 +4,7 @@
 //
 //  Created by Erick Olibo on 23/09/2017.
 //  Copyright © 2017 Erick Olibo. All rights reserved.
-//  TO DELETE NOT NEEDED
+//  TO DELETE - NOT NEEDED anymore
 
 import UIKit
 import CoreData
