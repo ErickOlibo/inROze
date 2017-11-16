@@ -138,9 +138,10 @@ public class Event: NSManagedObject
                         
                         // Formatting DateTime
                         let formatter = ISO8601DateFormatter()
-                        //let startTimeDate = formatter.date(from: sTime)! as NSDate
-                        //event.startTime = startTimeDate
-                        //event.updatedTime = formatter.date(from: uTime)! as NSDate
+                        
+                        // default time interval when endTime is nil or longer than X hours
+                        let defaultInterval: Double = 10 * 60 * 60
+                        
                         let startTimeDate = formatter.date(from: sTime)!
                         event.startTime = startTimeDate
                         event.updatedTime = formatter.date(from: uTime)!
@@ -149,13 +150,13 @@ public class Event: NSManagedObject
                             let endTimeDate = formatter.date(from: eTime)!
                             let diffEndStart = endTimeDate.timeIntervalSince(startTimeDate as Date)
                             
-                            if (diffEndStart > TimeInterval(10 * 60 * 60)) {
-                                event.endTime = (formatter.date(from: sTime)!).addingTimeInterval(10 * 60 * 60)
+                            if (diffEndStart > TimeInterval(defaultInterval)) {
+                                event.endTime = (formatter.date(from: sTime)!).addingTimeInterval(defaultInterval)
                             } else {
                                 event.endTime = endTimeDate
                             }
                         } else {
-                            event.endTime = (formatter.date(from: sTime)!).addingTimeInterval(10 * 60 * 60)
+                            event.endTime = (formatter.date(from: sTime)!).addingTimeInterval(defaultInterval)
                         }
                         
                         

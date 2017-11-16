@@ -182,9 +182,31 @@ public func cityNameFrom(cityCode: String) -> String {
 }
 
 
+public func appTimeZone(forThisCity city: City) -> String {
+    switch city {
+    case .Atlanta:
+        return "America/New_York"
+    case .Brussels:
+        return "Europe/Brussels"
+    case .Helsinki:
+        return "Europe/Helsinki"
+    case .Paris:
+        return "Europe/Paris"
+    case .Riga:
+        return "Europe/Riga"
+    case .Stockholm:
+        return "Europe/Stockholm"
+    case .Tallinn:
+        return "Europe/Tallinn"
+    case .Toronto:
+        return "America/Toronto"
+    }
+}
 
 
-
+public enum City {
+    case Tallinn, Stockholm, Helsinki, Riga, Brussels, Atlanta, Toronto, Paris
+}
 
 
 

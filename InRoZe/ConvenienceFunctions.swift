@@ -27,6 +27,15 @@ func dateTimeLocationFormatter(with event: Event) -> NSAttributedString {
 }
 
 
+// Takes a date at the current timeZone
+// return the date at the selected City TimeZone
+//func convertToLocalTimeZone(withDate date: Date) -> Date {
+//    var calendar = Calendar.current
+//    calendar.timeZone = TimeZone(identifier: appTimeZone(forThisCity: .Tallinn))!
+//    
+//}
+
+
 // get a particular icon of type FontAwesome and
 // return an attributed string
 func fontAwesomeAttributedString(forString iconString: String, withColor iconColor: UIColor, andFontSize size: CGFloat) -> NSAttributedString {
@@ -85,32 +94,6 @@ func deejaysListAttributed(for event: Event) -> NSAttributedString {
         }
     }
     return combinedAttributedText
-}
-
-// creates a border color for one of the side of a view
-
-enum Side {
-    case Left, Right, Top, Bottom
-}
-
-func drawBorder(toView view: UIView, forSide side: Side, withColor color: CGColor, andThickness thickness: CGFloat) -> UIView {
-    let border = CALayer()
-    border.backgroundColor = color
-    switch side {
-    case .Left:
-        print("Something")
-    case .Right:
-        print("Something")
-    case .Top:
-        print("Something")
-    case .Bottom:
-        print("Something")
-        
-        
-        
-    }
-    
-    return view
 }
 
 
