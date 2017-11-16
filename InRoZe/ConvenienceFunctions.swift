@@ -12,7 +12,7 @@ import UIKit
 
 
 // Format the event day, time, and location to Attributed text for cell subtitle
-// returns a Attributed string
+// returns an Attributed string
 func dateTimeLocationFormatter(with event: Event) -> NSAttributedString {
     
     let splitDate = Date().split(this: event.startTime! as Date)
@@ -25,6 +25,25 @@ func dateTimeLocationFormatter(with event: Event) -> NSAttributedString {
     combinedAttributedText.append(locationNameAttributedText)
     return combinedAttributedText
 }
+
+
+// get a particular icon of type FontAwesome and
+// return an attributed string
+func fontAwesomeAttributedString(forString iconString: String, withColor iconColor: UIColor, andFontSize size: CGFloat) -> NSAttributedString {
+    //let silence = NSAttributedString()
+    
+    let attributeOne = [ NSAttributedStringKey.font: UIFont(name: "FontAwesome", size: size)! ]
+    let iconAttributedText = NSMutableAttributedString()
+    let iconAttributed = NSAttributedString(string: iconString, attributes: attributeOne)
+    iconAttributedText.append(color(attributedString: iconAttributed, color: iconColor))
+    
+    
+    return iconAttributedText
+}
+
+
+
+
 
 
 // Get the Event Object from a configureCell method

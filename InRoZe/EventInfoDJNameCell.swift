@@ -28,14 +28,16 @@ class EventInfoDJNameCell: UICollectionViewCell
     private func updateUI() {
         //print("EventInfoDJNameCell inside UPDATE")
         guard let name = thisDJ?.name else { return }
+        guard let djIsFollowed = thisDJ?.isFollowed else { return }
+        guard let thisDJiD = thisDJ?.id else { return }
         djName.text = name
-        djName.textColor = .black
+        djName.textColor = djIsFollowed ? Colors.isFollowed: Colors.isNotFollowed
         container?.performBackgroundTask{ context in
             if let currentState = Artist.currentIsFollowedState(for: self.thisDJ!.id!, in: context) {
                 self.thisDJ!.isFollowed = currentState
             }
         }
-        backgroundProfileImage.image = UIImage(named: profileImageForDJ(with: thisDJ!.id!, when: thisDJ!.isFollowed))
+        backgroundProfileImage.image = UIImage(named: profileImageForDJ(with: thisDJiD, when: djIsFollowed))
     }
     
     
