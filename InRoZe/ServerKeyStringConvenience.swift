@@ -12,14 +12,12 @@ import Foundation
  * if labels are changing then update these structs
  */
 
-
 // URLs to connect to the Server
 public struct UrlFor {
     static let logInOut = "https://www.defkut.com/inroze/ServerRoze/users.php"
     static let currentEventsID = "https://www.defkut.com/inroze/ServerRoze/currentEvents.php"
     static let artistsTable = "https://www.defkut.com/inroze/ServerRoze/getArtistsList.php"
 }
-
 
 // Fields name from the Server Database Columns
 public struct DBLabels {
@@ -55,6 +53,8 @@ public func availableCities() -> [String] {
     let cities = AvailableCities.list
     return cities.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
 }
+
+
 
 
 // cityCode requirement for loading right eventIDs
@@ -182,7 +182,7 @@ public func cityNameFrom(cityCode: String) -> String {
 }
 
 
-public func appTimeZone(forThisCity city: City) -> String {
+public func timeZoneIdentifier(forCity city: City) -> String {
     switch city {
     case .Atlanta:
         return "America/New_York"
@@ -200,13 +200,41 @@ public func appTimeZone(forThisCity city: City) -> String {
         return "Europe/Tallinn"
     case .Toronto:
         return "America/Toronto"
+    case .Current:
+        return TimeZone.current.identifier
     }
 }
 
 
 public enum City {
-    case Tallinn, Stockholm, Helsinki, Riga, Brussels, Atlanta, Toronto, Paris
+    case Tallinn, Stockholm, Helsinki, Riga, Brussels, Atlanta, Toronto, Paris, Current
 }
+
+public func convertToTypeCity(fromCityName city: String) -> City {
+    switch city {
+    case CityName.atlanta.capitalized:
+        return .Atlanta
+    case CityName.brussels.capitalized:
+        return .Brussels
+    case CityName.helsinki.capitalized:
+        return .Helsinki
+    case CityName.riga.capitalized:
+        return .Riga
+    case CityName.stockholm.capitalized:
+        return .Stockholm
+    case CityName.tallinn.capitalized:
+        return .Tallinn
+    default:
+        return .Current
+    }
+}
+
+//public func chosenCity() -> City {
+//    let cityCode = UserDefaults().currentCityCode
+//    let cityName = cityNameFrom(cityCode: cityCode)
+//
+//}
+
 
 
 

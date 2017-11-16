@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import MapKit
 
 class EventInfoViewController: UIViewController {
     
@@ -34,14 +35,13 @@ class EventInfoViewController: UIViewController {
     @IBOutlet weak var startEndTime: UILabel!
     @IBOutlet weak var eventLocation: UILabel!
     @IBOutlet weak var eventAddress: UILabel!
+    @IBOutlet weak var directionIcon: UILabel!
     
 
     // ViewController Life-Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //view.backgroundColor = .lightGray
-        //print("Name: \(event?.name ?? "NO NAME")")
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         self.navigationController?.navigationBar.tintColor = Colors.logoRed
@@ -52,6 +52,11 @@ class EventInfoViewController: UIViewController {
         titleDateView.addBorder(toSide: .Bottom, withColor: color, andThickness: thick)
         timeLocationView.addBorder(toSide: .Top, withColor: color, andThickness: thick)
         timeLocationView.addBorder(toSide: .Bottom, withColor: color, andThickness: thick)
+        
+        // Tap recognizer
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapMapDirection))
+        directionIcon.isUserInteractionEnabled = true
+        directionIcon.addGestureRecognizer(tap)
 
     }
 
@@ -61,7 +66,47 @@ class EventInfoViewController: UIViewController {
         updateUI()
     }
     
-
+    // For the tap on the label
+    @objc func tapMapDirection(sender: UITapGestureRecognizer) {
+        
+        guard let venueName = event?.location?.name else { return }
+        
+        let alertController = UIAlertController(title: "Open in Maps", message: "Get Directions to \(venueName)", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction) -> Void in
+            alertController.dismiss(animated: true, completion: nil)
+            self.openMapForPlace()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action: UIAlertAction) -> Void in
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    private func openMapForPlace() {
+        
+        guard let venueName = event?.location?.name else { return }
+        guard let lat = event?.location?.latitude else { return }
+        guard let lon = event?.location?.longitude else { return }
+        
+        let latitude: CLLocationDegrees = Double(lat)
+        let longitude: CLLocationDegrees = Double(lon)
+        
+        let regionDistance:CLLocationDistance = 1000
+        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = venueName
+        mapItem.openInMaps(launchOptions: options)
+    }
+    
+    
     // Convenience Methods
     private func updateUI() {
         orderDJs()
@@ -74,7 +119,6 @@ class EventInfoViewController: UIViewController {
         guard let startTime = thisEvent.startTime else { return }
         let splitStartDate = Date().split(this: startTime)
         eventDate.text = "\(splitStartDate.num)\n\(splitStartDate.month)"
-        eventDate.tintColor = Colors.logoRed
         
         guard let endTime = thisEvent.endTime else { return }
         let splitEndDate = Date().split(this: endTime)
@@ -95,14 +139,10 @@ class EventInfoViewController: UIViewController {
         // The icons from FontAwesome
         guard let iconForTime = FAType.FAClockO.text else { return }
         guard let iconForPlace = FAType.FAMapMarker.text else { return }
-        timeIcon.attributedText = fontAwesomeAttributedString(forString: iconForTime, withColor: Colors.logoRed, andFontSize: 30.0)
+        guard let iconForDirection = FAType.FAMapSigns.text else { return }
+        timeIcon.attributedText = fontAwesomeAttributedString(forString: iconForTime, withColor: .black, andFontSize: 30.0)
         placeIcon.attributedText = fontAwesomeAttributedString(forString: iconForPlace, withColor: .black, andFontSize: 30.0)
-//        let fontSize: CGFloat = 20.0
-//        let attributeOne = [ NSAttributedStringKey.font: UIFont(name: "FontAwesome", size: fontSize)! ]
-//        let iconAttributedText = NSMutableAttributedString()
-//        guard let iconForTime = FAType.FAHashtag.text else { return }
-//        guard let iconForPlace = FAType.FAHashtag.text else { return }
-        
+        directionIcon.attributedText = fontAwesomeAttributedString(forString: iconForDirection, withColor: Colors.logoRed, andFontSize: 30.0)
         
     }
 
@@ -126,7 +166,6 @@ class EventInfoViewController: UIViewController {
         })
         orderedDJs = sorted
     }
-
 }
 
 
