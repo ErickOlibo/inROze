@@ -36,6 +36,7 @@ class FollowsViewController: FetchedResultsTableViewController {
         self.navigationController?.navigationBar.isTranslucent = false
         updateUI()
         tableView.rowHeight = cellHeightForFollows
+        //tableView.separatorStyle = .none
         tableView.separatorInset = UIEdgeInsetsMake(0, 70, 0, 30)
         print("Follows Cell height: \(cellHeightForFollows)")
         //view.backgroundColor = .red

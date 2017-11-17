@@ -96,6 +96,23 @@ extension UIView {
         layer.addSublayer(border)
     }
     
+    func addBorder(toSide side: ViewSide, withColor color: CGColor, andThickness thickness: CGFloat, withOffset offset: (begin: CGFloat , end: CGFloat) ) {
+        
+        let border = CALayer()
+        border.backgroundColor = color
+        switch side {
+        case .Left:
+            border.frame = CGRect(x: 0.0, y: 0.0 + offset.begin, width: thickness, height: frame.height - offset.begin - offset.end)
+        case .Right:
+            border.frame = CGRect(x: frame.width, y: 0.0 + offset.begin, width: thickness, height: frame.height - offset.begin - offset.end)
+        case .Top:
+            border.frame = CGRect(x: 0.0 + offset.begin, y: 0.0, width: frame.width - offset.begin - offset.end, height: thickness)
+        case .Bottom:
+            border.frame = CGRect(x: 0.0 + offset.begin, y: frame.height, width: frame.width - offset.begin - offset.end, height: thickness)
+        }
+        
+        layer.addSublayer(border)
+    }
     
     
     

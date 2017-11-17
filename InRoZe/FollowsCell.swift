@@ -34,9 +34,15 @@ class FollowsCell: UITableViewCell
     @IBOutlet weak var dateCircle: UIView!
     @IBOutlet weak var deejaysTitleBar: UIView!
     @IBOutlet weak var eventCover: UIImageView!
+    @IBOutlet weak var eventDate: UILabel!
+    @IBOutlet weak var deejaysList: UILabel!
+    @IBOutlet weak var eventLocation: UILabel!
+    @IBOutlet weak var eventTime: UILabel!
     
     
     private func configureCell() {
+        eventCover.layoutIfNeeded()
+        selectionStyle = .none
         cellSeparator(isLast: lastCell)
 
     }
@@ -50,5 +56,6 @@ class FollowsCell: UITableViewCell
             verticalSeparator.backgroundColor = Colors.logoRed
         }
     }
+
     
 }
