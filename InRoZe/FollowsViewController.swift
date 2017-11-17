@@ -14,6 +14,8 @@ class FollowsViewController: FetchedResultsTableViewController {
     //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     let mainContext = AppDelegate.viewContext
+    let event = Event()
+    let numberEvents = 10
 
     
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
@@ -34,6 +36,7 @@ class FollowsViewController: FetchedResultsTableViewController {
         self.navigationController?.navigationBar.isTranslucent = false
         updateUI()
         tableView.rowHeight = cellHeightForFollows
+        tableView.separatorInset = UIEdgeInsetsMake(0, 70, 0, 30)
         print("Follows Cell height: \(cellHeightForFollows)")
         //view.backgroundColor = .red
 

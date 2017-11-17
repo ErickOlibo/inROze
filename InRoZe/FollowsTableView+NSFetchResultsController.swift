@@ -13,6 +13,7 @@ import Kingfisher
 
 extension FollowsViewController
 {
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -20,14 +21,15 @@ extension FollowsViewController
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return numberEvents
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FollowsCell.identifier, for: indexPath) as! FollowsCell
-        //cell.tag = indexPath.row
-        
-        
+        cell.tag = indexPath.row
+        //print("Diff: [\(numberEvents - indexPath.row - 1)]")
+        cell.lastCell = (numberEvents - indexPath.row - 1) == 0
+        cell.event = event 
         return cell
     }
     

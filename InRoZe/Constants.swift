@@ -110,7 +110,7 @@ public struct CellSize {
     static let listTopBottonspacing: CGFloat = 2 * 10
     
     static let followCoverRatio = CGFloat(1) / 3
-    static let followTopSpacing: CGFloat = 39 // 20 + 24 + 5
+    static let followTopSpacing: CGFloat = 45 // 10 + 30 + 5
     static let followBottomSpacing: CGFloat = 10
     
     
