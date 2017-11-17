@@ -367,6 +367,7 @@
                                     <outlet property="eventCover" destination="CeG-3c-T4a" id="uFI-nv-idB"/>
                                     <outlet property="eventDateTimeLocation" destination="ZNp-9x-NNI" id="seH-Jm-HDh"/>
                                     <outlet property="eventName" destination="Nkh-Pu-Gus" id="diB-X6-EGH"/>
+                                    <segue destination="Stf-hx-wqg" kind="show" identifier="Gig Cell To Info" id="ekP-bR-cTf"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -387,7 +388,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h2M-s7-MWe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1083" y="-2116"/>
+            <point key="canvasLocation" x="1497" y="-2238"/>
         </scene>
         <!--Event Info View Controller-->
         <scene sceneID="ifn-sa-AFn">
@@ -494,6 +495,7 @@
                                                         <connections>
                                                             <outlet property="backgroundProfileImage" destination="xc6-ZS-YLy" id="W1U-Nd-HRl"/>
                                                             <outlet property="djName" destination="roA-36-Rhv" id="dzK-aZ-iF3"/>
+                                                            <segue destination="8yR-qp-x1Q" kind="show" identifier="Event Info To Deejay Profile" id="CCz-K1-KF9"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
@@ -646,27 +648,64 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xk7-PB-L8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1082.608695652174" y="-1287.2282608695652"/>
+            <point key="canvasLocation" x="1389.8550724637682" y="-1287.2282608695652"/>
         </scene>
         <!--Follows-->
-        <scene sceneID="zQD-04-gUi">
+        <scene sceneID="SlZ-aV-f7x">
             <objects>
-                <viewController id="WGQ-mm-pbP" customClass="FollowsViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cMR-Ho-9So"/>
-                        <viewControllerLayoutGuide type="bottom" id="2CK-VN-pqe"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="qYD-br-crd">
+                <tableViewController id="9F1-I0-TLi" customClass="FollowsViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="C29-WN-ycC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Follows" image="2_Follows" selectedImage="2_FollowsFilled" id="MPp-hd-7Vn"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rnq-M6-D2U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FollowsCell" rowHeight="148" id="mvE-Uh-gfj" customClass="FollowsCell" customModule="InRoZe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="148"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mvE-Uh-gfj" id="ZJt-q6-6bc">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="147.66666666666666"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r8M-9r-19Q">
+                                            <rect key="frame" x="38" y="0.0" width="4" height="148"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gmG-Nk-hAN">
+                                            <rect key="frame" x="32" y="14" width="16" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.92946392300000003" green="0.60142088069999999" blue="0.044391806460000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Am-a9-DVG">
+                                            <rect key="frame" x="70" y="10" width="314" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="0.92946392300000003" green="0.82375141110000005" blue="0.80861177569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2yx-92-xHb">
+                                            <rect key="frame" x="53" y="21" width="12" height="2"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dashedSeparator" destination="2yx-92-xHb" id="ulm-BV-Kyi"/>
+                                    <outlet property="dateCircle" destination="gmG-Nk-hAN" id="ose-TB-KkD"/>
+                                    <outlet property="deejaysTitleBar" destination="3Am-a9-DVG" id="gh1-Vq-qAg"/>
+                                    <outlet property="verticalSeparator" destination="r8M-9r-19Q" id="J8h-eR-hIf"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="9F1-I0-TLi" id="Dep-vc-FKh"/>
+                            <outlet property="delegate" destination="9F1-I0-TLi" id="uzF-KM-XSn"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Follows" id="sWv-Un-5U6"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b85-cp-0PF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-743" y="-677"/>
+            <point key="canvasLocation" x="89.855072463768124" y="-632.60869565217399"/>
         </scene>
         <!--Add Artist View Controller-->
         <scene sceneID="o2A-WI-quu">
@@ -836,7 +875,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="nhS-2i-wgI" kind="relationship" relationship="viewControllers" id="czr-Qo-XFF"/>
-                        <segue destination="WGQ-mm-pbP" kind="relationship" relationship="viewControllers" id="GII-pI-2SJ"/>
+                        <segue destination="Vyu-cK-2pi" kind="relationship" relationship="viewControllers" id="I6j-GU-CW7"/>
                         <segue destination="TUo-e2-SLn" kind="relationship" relationship="viewControllers" id="EBu-Np-agl"/>
                         <segue destination="0QJ-u6-4K9" kind="relationship" relationship="viewControllers" id="wdr-ey-ZSy"/>
                         <segue destination="wjD-Jv-kdo" kind="relationship" relationship="viewControllers" id="69g-eK-CRx"/>
@@ -865,6 +904,25 @@
             </objects>
             <point key="canvasLocation" x="-743" y="-1572"/>
         </scene>
+        <!--Follows-->
+        <scene sceneID="0nK-WY-9lN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Vyu-cK-2pi" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Follows" image="2_Follows" selectedImage="2_FollowsFilled" id="h9g-bg-FiM"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SSQ-qx-q4g">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9F1-I0-TLi" kind="relationship" relationship="rootViewController" id="tr9-Q0-AuG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="50a-b2-gbB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-743.47826086956525" y="-631.79347826086962"/>
+        </scene>
     </scenes>
     <resources>
         <image name="1_Events" width="25" height="25"/>
@@ -880,4 +938,8 @@
         <image name="Logo_Inroze_2017" width="990" height="330"/>
         <image name="img_Grey_DJcover_29" width="60" height="60"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="amR-Kn-XsZ"/>
+        <segue reference="CCz-K1-KF9"/>
+    </inferredMetricsTieBreakers>
 </document>

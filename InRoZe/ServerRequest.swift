@@ -125,7 +125,7 @@ public class ServerRequest
                     
                     // Save in CoreDatabase
                     do {
-                        print("[ServerRequest] -  Which thread is this Context at: \(Thread.current)")
+                        //print("[ServerRequest] -  Which thread is this Context at: \(Thread.current)")
                         try context.save()
                         UserDefaults().setDateNow(for: RequestDate.toServer)
                         

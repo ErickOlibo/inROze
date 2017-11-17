@@ -84,7 +84,6 @@ func deejaysListAttributed(for event: Event) -> NSAttributedString {
         }
         if let deejayName = deejay.name {
             if (deejay.isFollowed) {
-                print("isFollowed: [\(deejayName)]")
                 combinedAttributedText.append(color(attributedString: hashtag, color: Colors.isFollowed))
                 combinedAttributedText.append(coloredString(deejayName, color: Colors.isFollowed))
             } else {

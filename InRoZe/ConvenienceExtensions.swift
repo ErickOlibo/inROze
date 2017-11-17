@@ -28,8 +28,6 @@ extension Date {
         // FIX THIS
         let cityCode = UserDefaults().currentCityCode
         let cityName = cityNameFrom(cityCode: cityCode)
-        print("Current CityCode: [\(cityCode)]")
-        print("Curent CITY: [\(cityNameFrom(cityCode: cityCode))]")
         
         let locale = convertToTypeCity(fromCityName: cityName)
         let newFormatter = DateFormatter()

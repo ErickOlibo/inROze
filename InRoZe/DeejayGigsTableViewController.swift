@@ -38,8 +38,7 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("DeejayGigsTableViewController")
-        //self.title = "DeeJay Info"
+
         // navigation bar see Extension below
         navigationController?.delegate = self
         self.navigationController?.navigationBar.tintColor = Colors.logoRed
@@ -68,7 +67,7 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         container?.performBackgroundTask{ context in
             let success = Artist.changeIsFollowed(for: self.artist!.id!, in: context)
             if (success) {
-                print("[DeejayGigsTableViewController in pressedFollowed] - isFollowed CHANGED")
+                //print("[DeejayGigsTableViewController in pressedFollowed] - isFollowed CHANGED")
             } else {
                 print("[pressedFollowed] - FAILED")
             }
@@ -113,14 +112,13 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     }
     
     private func updateUI() {
-        print("Artist was set ID: [\(artist!.id!)]")
+        //print("Artist was set ID: [\(artist!.id!)]")
         if let context = container?.viewContext {
             context.perform {
                 self.gigsList = Artist.findPerformingEvents(for: self.artist!, in: context)
                 if let currentState = Artist.currentIsFollowedState(for: self.artist!.id!, in: context) {
                     self.artist!.isFollowed = currentState
                 }
-                print("Number of Events GigList: \(self.gigsList?.count ?? 0)")
                 self.tableView.reloadData()
             }
         }
@@ -140,30 +138,30 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let djCell = cell as? DeejayGigsCell else { return }
-        djCell.selectionStyle = .none
-        print("Will display cell at: \(indexPath.row)")
-
-        djCell.eventName.text = gigsList![indexPath.row].name!
-        djCell.eventDateTimeLocation.attributedText = dateTimeLocationFormatter(with: gigsList![indexPath.row])
-        guard let thisEvent = gigsList?[indexPath.row] else { return }
-        guard let thisURL = thisEvent.imageURL else { return }
-        
-        guard let eventURL = URL(string: thisURL) else { return }
-        djCell.eventCover.kf.setImage(with: eventURL, options: [.backgroundDecode])
         
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DeejayGigsCell.identifier, for: indexPath) as! DeejayGigsCell
-        print("cell for row at: \(indexPath.row)")
+        cell.selectionStyle = .none
+        if let event = gigsList?[indexPath.row]  {
+            cell.event = event
+        }
         return cell
     }
  
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Event in Deejay list nr: [\(indexPath.row)]")
+        //print("Event in Deejay list nr: [\(indexPath.row)]")
     }
 
+    // List of segue to be done here
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "Gig Cell To Info") {
+            guard let gigCell = sender as? DeejayGigsCell else { return }
+            guard let destination = segue.destination as? EventInfoViewController else { return }
+            destination.event = gigCell.event
+        }
+    }
 
 }
 

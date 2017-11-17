@@ -39,24 +39,17 @@ extension EventsViewController
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Cell pressed at indexPath Row [\(indexPath.row)]")
+        //print("Cell pressed at indexPath Row [\(indexPath.row)]")
     }
     
-    // SECTION for Height at index path
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let event = fetchResultsController.object(at: indexPath)
-//        if let performerCount = event.performers?.count, performerCount > 0 {
-//            return cellHeightForDeejay
-//        } else {
-//            return cellHeightForDefault
-//        }
-//    }
+
 
     // - Mark - Navigation
     
     // list of segue to be done here
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "Deejay Gigs List") {
+            //print("Deejay Gigs List")
             guard let deejayNameCell = sender as? EventDJNameCell else { return }
             guard let _ = deejayNameCell.superview as? UICollectionView else { return }
             guard let destination = segue.destination as? DeejayGigsTableViewController else { return }
@@ -66,7 +59,7 @@ extension EventsViewController
         }
         
         if (segue.identifier == "Event Info") {
-            print("Event INfo")
+            //print("Event INfo")
             guard let eventCell = sender as? EventDeejayCell else { return }
             guard let destination = segue.destination as? EventInfoViewController else { return }
             let thisEvent = eventCell.event!

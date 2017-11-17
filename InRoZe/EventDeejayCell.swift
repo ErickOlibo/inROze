@@ -37,19 +37,7 @@ class EventDeejayCell: UITableViewCell
         guard let imageURL = event.imageURL else { return }
         eventCover.kf.setImage(with: URL(string: imageURL), options: [.backgroundDecode])
     }
-    
-    private func thisDJ (row: Int) -> Artist {
-        let djsSet = event!.performers?.allObjects as! [Artist]
-        let sorted = djsSet.sorted(by: {$0.name! < $1.name!})
-        let deejay = sorted[row]
-        return deejay
-        
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-    
+
     
 }
 

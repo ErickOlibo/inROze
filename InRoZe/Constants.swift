@@ -108,6 +108,12 @@ public struct CellSize {
     static let djAreaHeight: CGFloat = 100
     static let deejaysListHeight: CGFloat = 48 // from 50
     static let listTopBottonspacing: CGFloat = 2 * 10
+    
+    static let followCoverRatio = CGFloat(1) / 3
+    static let followTopSpacing: CGFloat = 39 // 20 + 24 + 5
+    static let followBottomSpacing: CGFloat = 10
+    
+    
 }
 
 var eventCoverHeight: CGFloat = {
@@ -124,6 +130,10 @@ var cellHeightForDeejay: CGFloat = {
 
 var cellHeightForDJList: CGFloat = {
    return CellSize.topAreaHeight + ((CellSize.phoneSizeWidth - CellSize.marginWidth) / CellSize.coverRatio).rounded(.down) + CellSize.deejaysListHeight + CellSize.listTopBottonspacing
+}()
+
+var cellHeightForFollows: CGFloat = {
+    return CellSize.followTopSpacing + CellSize.followBottomSpacing + ((CellSize.phoneSizeWidth * CellSize.followCoverRatio) / CellSize.coverRatio).rounded(.down)
 }()
 
 

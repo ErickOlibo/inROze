@@ -29,7 +29,6 @@ class EventsViewController: FetchedResultsTableViewController {
         request.fetchBatchSize = 20
         let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedRC.delegate = self
-        print("FETCH RESULTS CONTROLLER IS SET")
         return fetchedRC
     }()
     
@@ -71,7 +70,7 @@ class EventsViewController: FetchedResultsTableViewController {
             longString += artist.name!
             longString += " (\(artist.gigs!.count)) | "
         }
-        print("** SORTED: \(longString)")
+        //print("** SORTED: \(longString)")
     
     }
     
@@ -159,7 +158,7 @@ extension EventsViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("row: \(indexPath.row)")
+        //print("row: \(indexPath.row)")
     }
 }
 

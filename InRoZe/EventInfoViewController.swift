@@ -17,7 +17,7 @@ class EventInfoViewController: UIViewController {
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     
     // properties
-    var event: Event? //{ didSet { updateUI() } }
+    var event: Event?
     var orderedDJs = [Artist]()
     let color = UIColor.lightGray.cgColor
     let thick: CGFloat = 0.333
@@ -62,7 +62,6 @@ class EventInfoViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("Event Info View Controller")
         updateUI()
     }
     
@@ -166,6 +165,22 @@ class EventInfoViewController: UIViewController {
         })
         orderedDJs = sorted
     }
+    
+    
+    // List of segue to be done here
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "Event Info To Deejay Profile") {
+            guard let eventInfoDJcell = sender as? EventInfoDJNameCell else { return }
+            guard let _ = eventInfoDJcell.superview as? UICollectionView else { return }
+            guard let destination = segue.destination as? DeejayGigsTableViewController else { return }
+            guard let thisDJ = eventInfoDJcell.thisDJ else { return }
+            destination.artist = thisDJ
+            destination.navigationItem.title = thisDJ.name!
+        }
+        
+        
+ 
+    }
 }
 
 
@@ -188,7 +203,7 @@ extension EventInfoViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("row: \(indexPath.row)")
+        //print("Event Info View Collection for Row: \(indexPath.row)")
     }
     
 }
