@@ -34,8 +34,8 @@ class EventDeejayCell: UITableViewCell
         eventTitle.text = name
         deejaysList.attributedText = deejaysListAttributed(for: event)
         
-        guard let imageURL = event.imageURL else { return }
-        eventCover.kf.setImage(with: URL(string: imageURL), options: [.backgroundDecode])
+        //guard let imageURL = event.imageURL else { return }
+        //eventCover.kf.setImage(with: URL(string: imageURL), options: [.backgroundDecode])
     }
 
     

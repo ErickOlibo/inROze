@@ -16,6 +16,9 @@ class EventsViewController: FetchedResultsTableViewController {
     let mainContext = AppDelegate.viewContext
     var deejaysName = Set<String>()
     var followsList = [Artist]()
+    
+    // Initialize a dictionary of Colors to save in the Core Data
+    var colorsOfEventCovers = [String : UIImageColors]()
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var tableHeaderView: UIView! // investigate the retain (weak/strong) and other potential memory issues
@@ -32,6 +35,7 @@ class EventsViewController: FetchedResultsTableViewController {
         return fetchedRC
     }()
     
+    // View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isTranslucent = false
@@ -49,6 +53,31 @@ class EventsViewController: FetchedResultsTableViewController {
         RequestHandler().fetchEventIDsFromServer()
     }
     
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        // Save the dictionary colorsOfEventCovers to care data
+        print("Save Colors Covers on WillDisappear")
+        mainContext.perform {
+            for event in self.colorsOfEventCovers {
+                let eventID = event.key
+                let colors = event.value
+                let colorsInHex = colorsToHexString(with: colors)
+                _ = Event.updateEventImageColors(with: eventID, and: colorsInHex, in: self.mainContext)
+            }
+            // Save Context
+            do {
+                try self.mainContext.save()
+            } catch {
+                print("CELL -> Error trying to save colors to database: \(error)")
+            }
+        }
+    }
+    
+    
+    
+    // Convenience Functions
     private func orderArtists() {
         let followListArr = Array(followsList)
         
