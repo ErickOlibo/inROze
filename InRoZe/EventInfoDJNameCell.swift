@@ -31,7 +31,8 @@ class EventInfoDJNameCell: UICollectionViewCell
         guard let djIsFollowed = thisDJ?.isFollowed else { return }
         guard let thisDJiD = thisDJ?.id else { return }
         djName.text = name
-        djName.textColor = djIsFollowed ? Colors.isFollowed: Colors.isNotFollowed
+        djName.textColor = djIsFollowed ? .black: Colors.isNotFollowed
+        
         container?.performBackgroundTask{ context in
             if let currentState = Artist.currentIsFollowedState(for: self.thisDJ!.id!, in: context) {
                 self.thisDJ!.isFollowed = currentState
