@@ -69,5 +69,27 @@ extension FollowsViewController
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("Preparing for segue in Follows")
+        if (segue.identifier == "Follows To EventInfo") {
+            guard let followsCell = sender as? FollowsCell else { return }
+            guard let destination = segue.destination as? EventInfoViewController else { return }
+            guard let thisEvent = followsCell.event else { return }
+            destination.event = thisEvent
+            destination.navigationItem.title = thisEvent.location?.name ?? ""
+            
+            
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

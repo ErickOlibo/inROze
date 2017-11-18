@@ -111,7 +111,7 @@
                                 <rect key="frame" x="0.0" y="128" width="414" height="381"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wte-Kb-I6i" id="Hnd-gk-IKz">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="380.66666666666669"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="381"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D0h-Pv-9Uv">
@@ -310,7 +310,7 @@
                                 <rect key="frame" x="0.0" y="158" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GEV-js-GQI" id="1lw-ja-f5i">
-                                    <rect key="frame" x="0.0" y="0.0" width="376" height="59.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="376" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CeG-3c-T4a">
@@ -661,7 +661,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="133"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mvE-Uh-gfj" id="ZJt-q6-6bc">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="132.66666666666666"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="133"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r8M-9r-19Q">
@@ -850,6 +850,7 @@ Cg
                                     <outlet property="eventLocation" destination="emZ-hu-niF" id="QA5-3K-4TQ"/>
                                     <outlet property="eventTime" destination="bbF-kP-qim" id="XQV-qb-efY"/>
                                     <outlet property="verticalSeparator" destination="r8M-9r-19Q" id="J8h-eR-hIf"/>
+                                    <segue destination="Stf-hx-wqg" kind="show" identifier="Follows To EventInfo" id="p5s-pF-ZfF"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1096,7 +1097,7 @@ Cg
         <image name="img_Grey_DJcover_29" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="amR-Kn-XsZ"/>
+        <segue reference="p5s-pF-ZfF"/>
         <segue reference="CCz-K1-KF9"/>
     </inferredMetricsTieBreakers>
 </document>
