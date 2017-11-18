@@ -21,6 +21,7 @@ class EventInfoViewController: UIViewController {
     var orderedDJs = [Artist]()
     let color = UIColor.lightGray.cgColor
     let thick: CGFloat = 0.333
+    var colors: UIImageColors? { didSet { configureColorsToUI() } }
     
     // OUtlets
     @IBOutlet weak var eventCover: UIImageView!
@@ -45,7 +46,7 @@ class EventInfoViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         self.navigationController?.navigationBar.tintColor = Colors.logoRed
-        titleDateView.backgroundColor = Colors.logoRed
+        titleDateView.backgroundColor = UIColor.groupTableViewBackground
         timeLocationView.backgroundColor = UIColor.groupTableViewBackground
         
         // Separator for views
@@ -83,6 +84,28 @@ class EventInfoViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    // Convenience functions
+    private func configureColorsToUI() {
+        guard let background = colors?.background else { return }
+        guard let primary = colors?.primary else { return }
+        guard let secondary = colors?.secondary else { return }
+        
+        // here is for the View design
+        if (background.isWhiteColor) {
+            titleDateView.backgroundColor = secondary
+            eventTitle.textColor = background
+            eventDate.textColor = background
+            eventDate.addBorder(toSide: .Right, withColor: background.cgColor, andThickness: 2.0)
+        } else {
+            titleDateView.backgroundColor = background
+            eventTitle.textColor = primary
+            eventDate.textColor = primary
+            eventDate.addBorder(toSide: .Right, withColor: primary.cgColor, andThickness: 2.0)
+        }
+        
+    }
+    
+    
     private func openMapForPlace() {
         
         guard let venueName = event?.location?.name else { return }
@@ -112,8 +135,8 @@ class EventInfoViewController: UIViewController {
         collectionView.reloadData()
         
         guard let thisEvent = event else { return }
+        guard let eventID = thisEvent.id else { return }
         eventTitle.text = thisEvent.name ?? ""
-        eventDate.addBorder(toSide: .Right, withColor: UIColor.white.cgColor, andThickness: 2.0)
         
         guard let startTime = thisEvent.startTime else { return }
         let splitStartDate = Date().split(this: startTime)
@@ -123,8 +146,36 @@ class EventInfoViewController: UIViewController {
         let splitEndDate = Date().split(this: endTime)
         startEndTime.text = "\(splitStartDate.hour) - \(splitEndDate.hour) (local time)"
         
+        // Set the Colors and update the UI
         guard let imageURL = thisEvent.imageURL else { return }
-        eventCover.kf.setImage(with: URL(string: imageURL), options: [.backgroundDecode])
+        eventCover.kf.setImage(with: URL(string: imageURL), options: [.backgroundDecode]) {
+            (image, error, cachetype, imageUrl) in
+            
+            if (image != nil) {
+                // conditional Settings for Colors
+                if (thisEvent.primary != nil && thisEvent.secondary != nil && thisEvent.detail != nil && thisEvent.background != nil) {
+                    // In Database
+                    let colorsInHex = ColorsInHexString(background: thisEvent.background!, primary: thisEvent.primary!, secondary: thisEvent.secondary!, detail: thisEvent.detail!)
+                    let colors = colorsFromHexString(with: colorsInHex)
+                    self.colors = colors
+                } else {
+                    image?.getColors(scaleDownSize: CGSize(width: 100, height: 100)){ [weak self] colors in
+                        self?.colors = colors
+                        self?.container?.performBackgroundTask { context in
+                            let colorsInHex = colorsToHexString(with: colors)
+                            _ = Event.updateEventImageColors(with: eventID, and: colorsInHex, in: context)
+                            
+                            // Save Context
+                            do {
+                                try context.save()
+                            } catch {
+                                print("EVENT INFO -> Error while trying to save This Event Colors to Database: \(error)")
+                            }
+                        }
+                    }
+                }
+            }
+        }
         
         guard let eventDesc = thisEvent.text else { return }
         eventText.attributedText = addTitleToText(forText: eventDesc, withTitle: "DETAILS:")
@@ -177,9 +228,6 @@ class EventInfoViewController: UIViewController {
             destination.artist = thisDJ
             destination.navigationItem.title = thisDJ.name!
         }
-        
-        
- 
     }
 }
 

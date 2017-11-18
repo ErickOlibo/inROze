@@ -43,7 +43,6 @@ class FollowsCell: UITableViewCell
     
     
 
-    
     private func configureCellForColors() {
         
         guard let background = colors?.background else { return }

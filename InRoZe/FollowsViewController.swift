@@ -80,17 +80,9 @@ class FollowsViewController: FetchedResultsTableViewController {
                 print("Total Event from IsFollowed Deejays: \(count)")
             }
             tableView.reloadData()
-//            guard let allEvent = fetchResultsController.fetchedObjects else { return }
-//            var rank = 0
-//            for event in allEvent {
-//                rank += 1
-//                guard let name = event.name else { return }
-//                guard let time = event.startTime else { return }
-//                print("\(rank)) - \(name) | \(time)")
-//            }
             
         } catch {
-            
+            print("UpdateUI in FolowVC -> Error while fetching: \(error)")
         }
         
         

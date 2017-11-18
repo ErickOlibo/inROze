@@ -424,7 +424,6 @@
                                                             <constraint firstAttribute="height" constant="40" id="up0-3P-cUd"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="16"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="Rvj-z7-rBv">
@@ -433,7 +432,6 @@
                                                             <constraint firstAttribute="height" constant="40" id="Wgx-EO-5AJ"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -1099,6 +1097,6 @@ Cg
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="amR-Kn-XsZ"/>
-        <segue reference="Bwf-dD-zDu"/>
+        <segue reference="CCz-K1-KF9"/>
     </inferredMetricsTieBreakers>
 </document>
