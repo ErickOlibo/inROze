@@ -50,6 +50,16 @@ extension UIColor {
         return (RGB[0] > 0.91 && RGB[1] > 0.91 && RGB[2] > 0.91) || (RGB[0] < 0.09 && RGB[1] < 0.09 && RGB[2] < 0.09)
     }
     
+    // Added for white background
+    var isBlackColor: Bool {
+        let RGB = self.cgColor.components
+        return (RGB[0] < 0.09 && RGB[1] < 0.09 && RGB[2] < 0.09)
+    }
+    var isWhiteColor: Bool {
+        let RGB = self.cgColor.components
+        return (RGB[0] > 0.91 && RGB[1] > 0.91 && RGB[2] > 0.91)
+    }
+    
     func isDistinct(compareColor: UIColor) -> Bool {
         let bg = self.cgColor.components
         let fg = compareColor.cgColor.components

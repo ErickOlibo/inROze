@@ -34,29 +34,6 @@ extension EventsViewController
         
         let event = fetchResultsController.object(at: indexPath)
         cell.event = event
-        
-        // EventCover and Colors setting
-        guard let imageURL = event.imageURL else { return cell }
-        cell.eventCover.kf.setImage(with: URL(string: imageURL), options: [.backgroundDecode]) {
-            (image, error, cachetype, imageUrl) in
-            
-            if (image != nil) {
-                // Conditional Settings for Colors (3 options)
-                if (event.primary != nil && event.secondary != nil && event.detail != nil && event.background != nil) {
-                    // *** Option 1 - Colors ALREADY IN DATABASE ==> NOTHING TO DO
-                    print("Option 1) - COLORS already in database Nothing to do")
-                } else if let _ = self.colorsOfEventCovers[event.id!]{
-                    print("Option 2) - COLORS in the EventCovers Dictionary")
-                } else {
-                    print("Option 3) - COLORS don't exist, so Create them")
-                    image?.getColors(scaleDownSize: CGSize(width: 100, height: 100)){ [weak self] colors in
-                        // append to Event Dictionarry
-                        self?.colorsOfEventCovers[event.id!] = colors
-                    }
-                }
-            }
-        }
-        
         return cell
     }
     

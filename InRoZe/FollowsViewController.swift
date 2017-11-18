@@ -14,8 +14,9 @@ class FollowsViewController: FetchedResultsTableViewController {
     //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     let mainContext = AppDelegate.viewContext
-    //let event = Event()
-    let numberEvents = 10
+
+    // Initialize a dictionary of Colors to save in the Core Data
+    var colorsOfEventCovers = [String : UIImageColors]()
 
     
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
@@ -31,6 +32,7 @@ class FollowsViewController: FetchedResultsTableViewController {
     }()
     
     
+    // ViewController Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isTranslucent = false
@@ -45,11 +47,31 @@ class FollowsViewController: FetchedResultsTableViewController {
         super.viewWillAppear(animated)
         updateUI()
         print("Follows")
-        
-        
-        
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        // Save the dictionary colorsOfEventCovers to care data
+        print("Save Colors Covers on WillDisappear")
+        container?.performBackgroundTask { context in
+            for event in self.colorsOfEventCovers {
+                let eventID = event.key
+                let colors = event.value
+                let colorsInHex = colorsToHexString(with: colors)
+                _ = Event.updateEventImageColors(with: eventID, and: colorsInHex, in: context)
+            }
+            // Save Context
+            do {
+                try context.save()
+            } catch {
+                print("CELL -> Error trying to save colors to database: \(error)")
+            }
+        }
+    }
+    
+    
+    // Convenience Functions
     private func updateUI() {
         
         do {
