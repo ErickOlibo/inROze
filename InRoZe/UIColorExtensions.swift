@@ -86,17 +86,20 @@ extension CALayer {
 
 
 func coloredString(_ string: String, color: UIColor) -> NSMutableAttributedString {
-    let attributedString = NSMutableAttributedString(string: string)
-    let stringRange = NSRange(location: 0, length: attributedString.length)
-    attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: stringRange)
-    return attributedString
+//    let attributedString = NSMutableAttributedString(string: string)
+//    let stringRange = NSRange(location: 0, length: attributedString.length)
+//    attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: stringRange)
+//    return attributedString
+    let attributeOne = [ NSAttributedStringKey.foregroundColor: color ]
+    return NSMutableAttributedString(string: string, attributes: attributeOne)
 }
 
 func color(attributedString attrString: NSAttributedString, color: UIColor) -> NSMutableAttributedString {
+    
     let attributedString = NSMutableAttributedString(attributedString: attrString)
     let stringRange = NSRange(location: 0, length: attributedString.length)
     attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: stringRange)
-    return attributedString
+    return attributedString    
 }
 
 

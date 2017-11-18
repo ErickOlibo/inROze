@@ -39,7 +39,6 @@ class EventsViewController: FetchedResultsTableViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         tableHeaderView.addBorder(toSide: .Bottom, withColor: headerBorderColor, andThickness: 0.333)
-        //tableHeaderView.addBorder(toSide: .Top, withColor: headerBorderColor, andThickness: 0.333)
         updateUI()
         tableView.rowHeight = cellHeightForDJList
     }

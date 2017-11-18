@@ -14,7 +14,7 @@ class FollowsViewController: FetchedResultsTableViewController {
     //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     let mainContext = AppDelegate.viewContext
-    let event = Event()
+    //let event = Event()
     let numberEvents = 10
 
     
@@ -23,7 +23,7 @@ class FollowsViewController: FetchedResultsTableViewController {
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         let nowTime = NSDate()
         request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
-        request.predicate = NSPredicate(format: "endTime > %@ AND imageURL != nil AND name != nil AND text != nil AND performers.@count > 0", nowTime)
+        request.predicate = NSPredicate(format: "ANY performers.isFollowed == YES AND endTime > %@ AND imageURL != nil AND name != nil AND text != nil AND performers.@count > 0", nowTime)
         request.fetchBatchSize = 20
         let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedRC.delegate = self
@@ -38,8 +38,6 @@ class FollowsViewController: FetchedResultsTableViewController {
         tableView.rowHeight = cellHeightForFollows
         //tableView.separatorStyle = .none
         tableView.separatorInset = UIEdgeInsetsMake(0, 70, 0, 30)
-        print("Follows Cell height: \(cellHeightForFollows)")
-        //view.backgroundColor = .red
 
     }
     
@@ -53,8 +51,37 @@ class FollowsViewController: FetchedResultsTableViewController {
     }
     
     private func updateUI() {
-        tableView.reloadData()
+        
+        do {
+            try self.fetchResultsController.performFetch()
+            if let count = fetchResultsController.fetchedObjects?.count {
+                print("Total Event from IsFollowed Deejays: \(count)")
+            }
+            tableView.reloadData()
+//            guard let allEvent = fetchResultsController.fetchedObjects else { return }
+//            var rank = 0
+//            for event in allEvent {
+//                rank += 1
+//                guard let name = event.name else { return }
+//                guard let time = event.startTime else { return }
+//                print("\(rank)) - \(name) | \(time)")
+//            }
+            
+        } catch {
+            
+        }
+        
+        
     }
 
     
 }
+
+
+
+
+
+
+
+
+

@@ -230,8 +230,8 @@
 		A73385141FBE501600E0C4C2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A73385121FBE4FF700E0C4C2 /* FollowsTableView+NSFetchResultsController.swift */,
 				A76E72C41F7517FB0023D47F /* FollowsViewController.swift */,
+				A73385121FBE4FF700E0C4C2 /* FollowsTableView+NSFetchResultsController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";

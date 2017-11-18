@@ -6,6 +6,7 @@
 //  Copyright © 2017 Erick Olibo. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import CoreData
 
@@ -41,11 +42,84 @@ class FollowsCell: UITableViewCell
     
     
     private func configureCell() {
+        cellSeparator(isLast: false)
+        guard let event = event else { return }
+        setTimeDate(forEvent: event)
+        
+        // the color here should be from the 5 colors from CDs
+        setDeejays(forEvent: event, withColor: .black)
+        
+        // here for the cell design color
+        circleDashBandColor(withColor: .green)
+        
+        guard let locationName = event.location?.name else { return }
         eventCover.layoutIfNeeded()
         selectionStyle = .none
-        cellSeparator(isLast: lastCell)
+        eventLocation.text = locationName
+        
+        guard let imageURL = event.imageURL else { return }
+        eventCover.kf.setImage(with: URL(string: imageURL), options: [.backgroundDecode])
+        
 
     }
+    
+    private func circleDashBandColor(withColor color: UIColor) {
+        dateCircle.layer.borderColor = color.cgColor
+        dashedSeparator.backgroundColor = color
+        deejaysTitleBar.backgroundColor = color
+    }
+    
+    private func setDeejays(forEvent event: Event, withColor color: UIColor) {
+        guard let deejays = event.performers?.allObjects as? [Artist] else { return }
+        let sorted = deejays.sorted(by: {$0.name! < $1.name!})
+        var list = ""
+        var times = 0
+        for dj in sorted {
+            if (dj.isFollowed) {
+                if (times != 0) {
+                    list += ", "
+                }
+                guard let name = dj.name else { return }
+                list += name
+                times += 1
+            }
+        }
+        deejaysList.attributedText = coloredString(list, color: color)
+    }
+    
+    
+    private func setTimeDate(forEvent event: Event) {
+        //guard let event = event else { return }
+        guard let startDate = event.startTime else { return }
+        guard let endDate = event.endTime else { return }
+        let splitStart = Date().split(this: startDate)
+        let splitEnd = Date().split(this: endDate)
+        let startTimeAttributed = coloredString(splitStart.hour, color: Colors.logoRed)
+        let endTimeAttributed = coloredString(splitEnd.hour, color: Colors.logoRed)
+        let spacingTimeAttributed = coloredString(" - ", color: .black)
+        let timeAttributed = NSMutableAttributedString()
+        timeAttributed.append(startTimeAttributed)
+        timeAttributed.append(spacingTimeAttributed)
+        timeAttributed.append(endTimeAttributed)
+        eventTime.attributedText = timeAttributed
+        
+        let monthAttributed = coloredString(splitStart.month.uppercased(), color: .black)
+        let dayAttributed = coloredString(splitStart.day.uppercased(), color: .black)
+        
+        let attributeOne =  [ NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Bold", size: 18.0)!, NSAttributedStringKey.foregroundColor: Colors.logoRed ]
+        
+        let number = "\n\(splitStart.num)\n"
+        let attrNumber = NSAttributedString(string: number, attributes: attributeOne)
+        
+        let dateAttributed = NSMutableAttributedString()
+        dateAttributed.append(dayAttributed)
+        dateAttributed.append(attrNumber)
+        dateAttributed.append(monthAttributed)
+        eventDate.attributedText = dateAttributed
+    
+    }
+    
+    
 
     // Vertical separator constructor
     private func cellSeparator(isLast last: Bool) {
@@ -59,3 +133,14 @@ class FollowsCell: UITableViewCell
 
     
 }
+
+
+
+
+
+
+
+
+
+
+

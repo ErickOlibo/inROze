@@ -116,7 +116,7 @@ public class Event: NSManagedObject
                 assert(events.count == 1, "Inconsistency: unique event identifier is duplicate")
                 
                 let event = events[0]
-                
+
                 if let eventInfo = eventID.value as? [String : Any] {
                     
                     if let name = eventInfo[FBEvent.name] as? String,

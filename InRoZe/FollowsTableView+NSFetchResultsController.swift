@@ -17,19 +17,24 @@ extension FollowsViewController
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return fetchResultsController.sections?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return numberEvents
+        if let sections = fetchResultsController.sections, sections.count > 0 {
+            return sections[section].numberOfObjects
+            
+        } else {
+            return 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FollowsCell.identifier, for: indexPath) as! FollowsCell
         cell.tag = indexPath.row
-        //print("Diff: [\(numberEvents - indexPath.row - 1)]")
         cell.lastCell = (numberEvents - indexPath.row - 1) == 0
-        cell.event = event 
+        let thisEvent = fetchResultsController.object(at: indexPath)
+        cell.event = thisEvent
         return cell
     }
     
@@ -37,4 +42,11 @@ extension FollowsViewController
         print("Follow Cell pressed at indexPath Row [\(indexPath.row)]")
     }
     
+    
+    
+    // Mark - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("Preparing for segue in Follows")
+    }
 }
