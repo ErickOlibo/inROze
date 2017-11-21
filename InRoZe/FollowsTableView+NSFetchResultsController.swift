@@ -22,7 +22,7 @@ extension FollowsViewController
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = fetchResultsController.sections, sections.count > 0 {
-            print("Sections Count: [\(sections.count)] -- This Section objects Count: [\(sections[section].numberOfObjects)]")
+            //print("Sections Count: [\(sections.count)] -- This Section objects Count: [\(sections[section].numberOfObjects)]")
             return sections[section].numberOfObjects
             
         } else {
@@ -73,25 +73,45 @@ extension FollowsViewController
     
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+//
+//        let cell = tableView.dequeueReusableCell(withIdentifier: FollowsHeaderCell.identifier) as! FollowsHeaderCell
+//        guard let sections = fetchResultsController.sections else { fatalError("ISSUE WITH SECTINOS")}
+//        cell.configureCell(withDate: sections[section].name)
+//
+//        return cell
+        
         let view = UIView()
-//        let thisView = UIView(frame: CGRect(x: view.frame.minX + 40.0, y: view.frame.minY, width: view.frame.width - 40.0, height: view.frame.height))
-//        thisView.backgroundColor = Colors.logoRed
         guard let sections = fetchResultsController.sections else { fatalError("ISSUE WITH SECTINOS")}
         let dayTitle = sections[section].name
-        print("****** \(dayTitle)")
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYYMMdd"
         guard let startDay = formatter.date(from: dayTitle) else { fatalError("CANT FORMAT DATE") }
+        formatter.dateFormat = "EEEE"
+        let weekDay = formatter.string(from: startDay)
         let splitDate = Date().split(this: startDay)
-        view.backgroundColor = Colors.logoRed
+        
         let dayLabel = UILabel()
-        dayLabel.text = splitDate.day + " " + splitDate.num + " " + splitDate.month
-        dayLabel.frame = CGRect(x: 70, y: 0, width: 100, height: 30)
+        let numLabel =  UILabel()
+        //dayLabel.text = weekDay
+        let numMonth = splitDate.num + ". " + splitDate.month
+        let attributeOne =  [ NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Bold", size: 18.0)!, NSAttributedStringKey.foregroundColor: UIColor.white ]
+        let attrWeekDay = NSAttributedString(string: weekDay, attributes: attributeOne)
+        let attrNumMonth = NSAttributedString(string: numMonth, attributes: attributeOne)
+        dayLabel.attributedText = attrWeekDay
+        numLabel.attributedText = attrNumMonth
+        //dayLabel.text = splitDate.day + " " + splitDate.num + " " + splitDate.month
+        //dayLabel.textColor = .white
+        numLabel.frame = CGRect(x: CellSize.phoneSizeWidth - 110, y: 0, width: 100, height: 30)
+        numLabel.textAlignment = .right
+        dayLabel.frame = CGRect(x: 10, y: 0, width: 200, height: 30)
         view.addSubview(dayLabel)
-        //view.addSubview(thisView)
-        
-        
+        view.addSubview(numLabel)
+        view.backgroundColor = Colors.logoRed
         return view
+        
+        
+        
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

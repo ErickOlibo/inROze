@@ -69,7 +69,7 @@ class FollowsCell: UITableViewCell
         selectionStyle = .none
         eventLocation.text = locationName
         
-        setStartDay()
+        //setStartDay()
         //guard let imageURL = event.imageURL else { return }
         //eventCover.kf.setImage(with: URL(string: imageURL), options: [.backgroundDecode])
     }
@@ -124,18 +124,19 @@ class FollowsCell: UITableViewCell
         eventTime.attributedText = timeAttributed
         
         let monthAttributed = coloredString(splitStart.month.uppercased(), color: .black)
-        let dayAttributed = coloredString(splitStart.day.uppercased(), color: .black)
+        //let dayAttributed = coloredString(splitStart.day.uppercased(), color: .black)
         
         let attributeOne =  [ NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Bold", size: 18.0)!, NSAttributedStringKey.foregroundColor: Colors.logoRed ]
         
-        let number = "\n\(splitStart.num)\n"
+        let number = "\(splitStart.num)\n"
         let attrNumber = NSAttributedString(string: number, attributes: attributeOne)
         
         let dateAttributed = NSMutableAttributedString()
-        dateAttributed.append(dayAttributed)
+        //dateAttributed.append(dayAttributed)
         dateAttributed.append(attrNumber)
         dateAttributed.append(monthAttributed)
-        eventDate.attributedText = dateAttributed
+        eventDate.text = ""
+        //eventDate.attributedText = dateAttributed
     
     }
     

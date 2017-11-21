@@ -853,6 +853,40 @@ Cg
                                     <segue destination="Stf-hx-wqg" kind="show" identifier="Follows To EventInfo" id="p5s-pF-ZfF"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FollowsHeaderCell" rowHeight="30" id="qTd-Q7-cWP" customClass="FollowsHeaderCell" customModule="InRoZe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="161" width="414" height="30"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qTd-Q7-cWP" id="Tnx-iO-DHl">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="29.666666666666668"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GF8-1N-Vo0">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
+                                            <color key="backgroundColor" red="0.92946392300000003" green="0.82375141110000005" blue="0.80861177569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WEDNESDAY" textAlignment="natural" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4k5-CR-Kac">
+                                            <rect key="frame" x="10" y="0.0" width="394" height="29.666666666666668"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="GF8-1N-Vo0" secondAttribute="bottom" id="4S1-MC-lSU"/>
+                                        <constraint firstAttribute="bottom" secondItem="4k5-CR-Kac" secondAttribute="bottom" id="MMN-NT-KoF"/>
+                                        <constraint firstItem="4k5-CR-Kac" firstAttribute="centerX" secondItem="Tnx-iO-DHl" secondAttribute="centerX" id="SO9-Hd-Fhq"/>
+                                        <constraint firstItem="GF8-1N-Vo0" firstAttribute="leading" secondItem="Tnx-iO-DHl" secondAttribute="leading" id="TfQ-yz-nam"/>
+                                        <constraint firstItem="4k5-CR-Kac" firstAttribute="leading" secondItem="Tnx-iO-DHl" secondAttribute="leading" constant="10" id="Vt2-25-it2"/>
+                                        <constraint firstItem="GF8-1N-Vo0" firstAttribute="top" secondItem="Tnx-iO-DHl" secondAttribute="top" id="eDd-AD-rHE"/>
+                                        <constraint firstItem="4k5-CR-Kac" firstAttribute="top" secondItem="Tnx-iO-DHl" secondAttribute="top" id="lb3-CD-Q5Z"/>
+                                        <constraint firstItem="GF8-1N-Vo0" firstAttribute="width" secondItem="Tnx-iO-DHl" secondAttribute="width" id="ymd-Xk-B9m"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dayBackground" destination="GF8-1N-Vo0" id="peh-zE-84v"/>
+                                    <outlet property="dayWeekName" destination="4k5-CR-Kac" id="4g0-6a-Amg"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="9F1-I0-TLi" id="Dep-vc-FKh"/>
@@ -1097,7 +1131,7 @@ Cg
         <image name="img_Grey_DJcover_29" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="amR-Kn-XsZ"/>
+        <segue reference="p5s-pF-ZfF"/>
         <segue reference="Bwf-dD-zDu"/>
     </inferredMetricsTieBreakers>
 </document>

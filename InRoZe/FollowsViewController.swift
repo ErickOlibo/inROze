@@ -27,7 +27,6 @@ class FollowsViewController: FetchedResultsTableViewController {
         let startDaySort = NSSortDescriptor(key: "startDay", ascending: true, selector: nil)
         let startTimeSort = NSSortDescriptor(key: "startTime", ascending: true, selector: nil)
         request.sortDescriptors = [startDaySort, startTimeSort]
-        
         request.predicate = NSPredicate(format: "ANY performers.isFollowed == YES AND endTime > %@ AND imageURL != nil AND name != nil AND text != nil AND performers.@count > 0", nowTime)
         request.fetchBatchSize = 20
         let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: "startDay", cacheName: nil)
@@ -44,12 +43,14 @@ class FollowsViewController: FetchedResultsTableViewController {
         tableView.rowHeight = cellHeightForFollows
         //tableView.separatorStyle = .none
         tableView.separatorInset = UIEdgeInsetsMake(0, 70, 0, 30)
+        tableView.reloadData()
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateUI()
+        
         print("Follows")
     }
     
@@ -83,13 +84,13 @@ class FollowsViewController: FetchedResultsTableViewController {
             if let count = fetchResultsController.fetchedObjects?.count {
                 print("Total Event from IsFollowed Deejays: \(count)")
             }
-            tableView.reloadData()
+            //tableView.reloadData()
             
         } catch {
             print("UpdateUI in FolowVC -> Error while fetching: \(error)")
         }
         
-        
+        tableView.reloadData()
     }
 
     
