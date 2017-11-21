@@ -7,16 +7,58 @@
 //
 
 import UIKit
-import Foundation
+import FacebookLogin
+import FacebookCore
 
 class SettingsViewController: UIViewController {
 
+    @IBAction func signOutButton(_ sender: UIButton) {
+        handleSignOut()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .yellow
         
-        // Do any additional setup after loading the view.
-        view.backgroundColor = .white
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("Artist Search")
+        
+        //Some other info
+        let profile = UserProfile.current
+        if (profile != nil) {
+            print("\(profile!.fullName!)")
+            //print("\(profile!.firstName!)")
+            //print("\(profile!.profileURL!)")
+        }
+    }
+    
+    fileprivate func handleSignOut() {
+        //Some user info
+        let profile = UserProfile.current
+        
+        if (profile != nil) {
+            let id = profile?.userId
+            
+            // Going to the network -> MOVE FROM MAIN QUEUE
+            let parameter = "id=\(id!)"
+            let requestServer = ServerRequest()
+            requestServer.setUserLoggedIn(to: false, parameters: parameter, urlToServer: UrlFor.logInOut)
+        }
+        
+        //Facebook LogOut
+        let loginManager = LoginManager()
+        loginManager.logOut()
+        
+        if let _ = AccessToken.current {
+            
+            print("Token is SET")
+        } else {
+            print("Token is NIL")
+        }
         
     }
     
