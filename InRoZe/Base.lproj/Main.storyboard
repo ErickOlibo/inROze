@@ -923,7 +923,7 @@ Cg
         <!--DJs-->
         <scene sceneID="f3q-GW-gO6">
             <objects>
-                <viewController id="0QJ-u6-4K9" customClass="ArtistSearchViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0QJ-u6-4K9" customClass="DJsSearchViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="s30-lN-JZ9"/>
                         <viewControllerLayoutGuide type="bottom" id="8sK-mI-j5d"/>

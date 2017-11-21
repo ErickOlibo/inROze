@@ -10,7 +10,7 @@ import UIKit
 import FacebookLogin
 import FacebookCore
 
-class ArtistSearchViewController: UIViewController {
+class DJsSearchViewController: UIViewController {
     
     @IBAction func signOutButton(_ sender: UIButton) {
         handleSignOut()
