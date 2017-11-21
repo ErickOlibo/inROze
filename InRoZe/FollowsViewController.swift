@@ -23,10 +23,14 @@ class FollowsViewController: FetchedResultsTableViewController {
         
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         let nowTime = NSDate()
-        request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
+        
+        let startDaySort = NSSortDescriptor(key: "startDay", ascending: true, selector: nil)
+        let startTimeSort = NSSortDescriptor(key: "startTime", ascending: true, selector: nil)
+        request.sortDescriptors = [startDaySort, startTimeSort]
+        
         request.predicate = NSPredicate(format: "ANY performers.isFollowed == YES AND endTime > %@ AND imageURL != nil AND name != nil AND text != nil AND performers.@count > 0", nowTime)
         request.fetchBatchSize = 20
-        let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
+        let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: "startDay", cacheName: nil)
         fetchedRC.delegate = self
         return fetchedRC
     }()
@@ -36,7 +40,7 @@ class FollowsViewController: FetchedResultsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isTranslucent = false
-        updateUI()
+        //updateUI()
         tableView.rowHeight = cellHeightForFollows
         //tableView.separatorStyle = .none
         tableView.separatorInset = UIEdgeInsetsMake(0, 70, 0, 30)

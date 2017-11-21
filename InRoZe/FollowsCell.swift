@@ -69,6 +69,7 @@ class FollowsCell: UITableViewCell
         selectionStyle = .none
         eventLocation.text = locationName
         
+        setStartDay()
         //guard let imageURL = event.imageURL else { return }
         //eventCover.kf.setImage(with: URL(string: imageURL), options: [.backgroundDecode])
     }
@@ -80,6 +81,13 @@ class FollowsCell: UITableViewCell
         
     }
     
+    
+    // set startDay for future implementation
+    private func setStartDay() {
+        guard let event = event else { return }
+        let startDay = event.startDay ?? "NOTHING"
+        print("*******  [\(startDay)]********")
+    }
     
     private func setDeejaysText(withColor color: UIColor) {
         guard let deejays = event?.performers?.allObjects as? [Artist] else { return }

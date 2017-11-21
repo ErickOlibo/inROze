@@ -146,6 +146,11 @@ public class Event: NSManagedObject
                         event.startTime = startTimeDate
                         event.updatedTime = formatter.date(from: uTime)!
                         
+                        // Set startDate as a time in string "YYYYMMdd" eample: 20171120 (2017 11 20 -> 2017 Nov 20)
+                        let dayFormatter = DateFormatter()
+                        dayFormatter.dateFormat = "YYYYMMdd"
+                        event.startDay = dayFormatter.string(from: startTimeDate)
+                        
                         if let eTime = eventInfo[FBEvent.endTime] as? String {
                             let endTimeDate = formatter.date(from: eTime)!
                             let diffEndStart = endTimeDate.timeIntervalSince(startTimeDate as Date)

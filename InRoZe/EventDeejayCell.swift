@@ -36,6 +36,8 @@ class EventDeejayCell: UITableViewCell
         
         guard let imageURL = event.imageURL else { return }
         eventCover.kf.setImage(with: URL(string: imageURL), options: [.backgroundDecode])
+        guard let startDay = event.startDay else { return }
+        print("EVENT ******** \(startDay)  ********")
     }
 
     
