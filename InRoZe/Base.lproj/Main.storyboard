@@ -931,21 +931,7 @@ Cg
                     <view key="view" contentMode="scaleToFill" id="oCU-My-glw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pmI-Vd-mHq">
-                                <rect key="frame" x="177" y="353" width="60" height="30"/>
-                                <state key="normal" title="Sign Out"/>
-                                <connections>
-                                    <action selector="signOutButton:" destination="0QJ-u6-4K9" eventType="touchUpInside" id="atY-lo-apf"/>
-                                    <segue destination="bAg-N4-UsF" kind="show" id="qaQ-ZH-pj3"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="pmI-Vd-mHq" firstAttribute="centerY" secondItem="oCU-My-glw" secondAttribute="centerY" id="6aL-cG-84s"/>
-                            <constraint firstItem="pmI-Vd-mHq" firstAttribute="centerX" secondItem="oCU-My-glw" secondAttribute="centerX" id="lE6-Qc-gS0"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="DJs" image="4_DJs" selectedImage="4_DJsFilled" id="TRD-p5-wDO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -965,14 +951,28 @@ Cg
                     <view key="view" contentMode="scaleToFill" id="Cz1-gK-9e4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MxZ-7r-wJN">
+                                <rect key="frame" x="177" y="353" width="60" height="30"/>
+                                <state key="normal" title="Sign Out"/>
+                                <connections>
+                                    <action selector="signOutButton:" destination="wjD-Jv-kdo" eventType="touchUpInside" id="6h0-pR-8s1"/>
+                                    <segue destination="bAg-N4-UsF" kind="show" id="FUi-ec-RwS"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MxZ-7r-wJN" firstAttribute="centerX" secondItem="Cz1-gK-9e4" secondAttribute="centerX" id="RP3-e2-FYZ"/>
+                            <constraint firstItem="MxZ-7r-wJN" firstAttribute="centerY" secondItem="Cz1-gK-9e4" secondAttribute="centerY" id="cNw-e7-d1k"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="5_Settings" selectedImage="5_SettingsFilled" id="7gy-pl-eXx"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tjO-CL-uIt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-743" y="2654"/>
+            <point key="canvasLocation" x="-2610" y="1488"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="ueb-7Y-CSx">
