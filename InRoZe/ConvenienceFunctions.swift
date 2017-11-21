@@ -8,12 +8,11 @@
 
 import Foundation
 import UIKit
-//import Font_Awesome_Swift
 
 
 // Format the event day, time, and location to Attributed text for cell subtitle
 // returns an Attributed string
-func dateTimeLocationFormatter(with event: Event) -> NSAttributedString {
+public func dateTimeLocationFormatter(with event: Event) -> NSAttributedString {
     
     let splitDate = Date().split(this: event.startTime! as Date)
     let dateTimeText = "\(splitDate.day), \(splitDate.num) \(splitDate.month) - \(splitDate.hour) @ "
@@ -27,38 +26,21 @@ func dateTimeLocationFormatter(with event: Event) -> NSAttributedString {
 }
 
 
-// Takes a date at the current timeZone
-// return the date at the selected City TimeZone
-//func convertToLocalTimeZone(withDate date: Date) -> Date {
-//    var calendar = Calendar.current
-//    calendar.timeZone = TimeZone(identifier: appTimeZone(forThisCity: .Tallinn))!
-//    
-//}
-
-
 // get a particular icon of type FontAwesome and
 // return an attributed string
-func fontAwesomeAttributedString(forString iconString: String, withColor iconColor: UIColor, andFontSize size: CGFloat) -> NSAttributedString {
-    //let silence = NSAttributedString()
-    
+public func fontAwesomeAttributedString(forString iconString: String, withColor iconColor: UIColor, andFontSize size: CGFloat) -> NSAttributedString {
     let attributeOne = [ NSAttributedStringKey.font: UIFont(name: "FontAwesome", size: size)! ]
     let iconAttributedText = NSMutableAttributedString()
     let iconAttributed = NSAttributedString(string: iconString, attributes: attributeOne)
     iconAttributedText.append(color(attributedString: iconAttributed, color: iconColor))
-    
-    
     return iconAttributedText
 }
-
-
-
-
 
 
 // Get the Event Object from a configureCell method
 // Returns an attributed string ordering the DJlist by isFollowed,
 // then by alphabetical order
-func deejaysListAttributed(for event: Event) -> NSAttributedString {
+public func deejaysListAttributed(for event: Event) -> NSAttributedString {
     let attributedDJsList = NSAttributedString(string: "")
     guard let performers = event.performers?.allObjects as? [Artist] else { return attributedDJsList }
     //let sorted = performers.sorted(by: {$0.name! < $1.name!})
@@ -80,7 +62,6 @@ func deejaysListAttributed(for event: Event) -> NSAttributedString {
     for deejay in sorted {
         if (deejay != sorted[0]) {
             combinedAttributedText.append(attributedSpacing)
-            
         }
         if let deejayName = deejay.name {
             if (deejay.isFollowed) {
@@ -95,6 +76,15 @@ func deejaysListAttributed(for event: Event) -> NSAttributedString {
     return combinedAttributedText
 }
 
+
+// manage the colors and image for Deejay's profile pic
+// Deejays prifies are determin by the last 2 digits of their
+// respective ID
+public func profileImageForDJ(with id: String, when isFollowed: Bool) -> String {
+    let lastTwo = id.suffix(2)
+    let colorOrGrey = (isFollowed) ? "img_Color_DJcover_" : "img_Grey_DJcover_"
+    return colorOrGrey + lastTwo
+}
 
 
 

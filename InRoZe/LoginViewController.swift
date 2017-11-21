@@ -152,9 +152,9 @@ class LoginViewController: UIViewController {
             facebookButton.isEnabled = true
             facebookButton.backgroundColor = .clear
             facebookButton.layer.borderWidth = 3
-            facebookButton.layer.borderColor = UIColor.changeHexStringToColor(ColorInHexFor.facebook).cgColor
+            facebookButton.layer.borderColor = UIColor.convertToUIColor(fromHexColor: ColorInHexFor.facebook).cgColor
             facebookButton.setFAText(prefixText: "", icon: .FAFacebook, postfixText: "  Log in with Facebook", size: 25, forState: .normal)
-            facebookButton.setFATitleColor(color: UIColor.changeHexStringToColor(ColorInHexFor.facebook), forState: .normal)
+            facebookButton.setFATitleColor(color: UIColor.convertToUIColor(fromHexColor: ColorInHexFor.facebook), forState: .normal)
             facebookButton.setTitleColor(.white, for: .highlighted)
 
         } else {

@@ -114,8 +114,20 @@ extension UIView {
         layer.addSublayer(border)
     }
     
-    
-    
+}
+
+
+
+extension String {
+    public func isValidHexColor() -> Bool {
+        let chars = CharacterSet(charactersIn: "#0123456789ABCDEF").inverted
+        let charsNum = self.count
+        guard charsNum == 6 || charsNum == 7 && self.hasPrefix("#") else { return false }
+        
+        if (charsNum == 6) && uppercased().rangeOfCharacter(from: chars) != nil { return false }
+        if (charsNum == 7 && self.hasPrefix("#")) && uppercased().rangeOfCharacter(from: chars) != nil { return false }
+        return true
+    }
 }
 
 

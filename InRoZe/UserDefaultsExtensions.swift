@@ -12,9 +12,6 @@ import Foundation
 
 extension UserDefaults {
     
-
-    
-    
     public func hasEnoughTimeElapsed(since lastRequest: String) -> Bool {
         var interval = TimeInterval()
         var fromWhere: String
@@ -31,28 +28,21 @@ extension UserDefaults {
             interval = IntervalBetweenRequest.toServer
         }
         
-        
-        
         let lastSavedTime = object(forKey: lastRequest)
         let elapsedTime = currentTime.timeIntervalSince(lastSavedTime as? Date ?? currentTime as Date)
         print("[UserDefaultsExtension] - From: \(fromWhere) | ElapsedTime: \(elapsedTime) | Interval: \(interval)")
         if (elapsedTime <= interval) { return false }
-        
         return true
     }
-    
-    
     
     public func setDateNow(for requestDate: String) {
         let dateNow = NSDate()
         set(dateNow, forKey: requestDate)
-        //print("[UserDefaultsExtension] - SetDateNow for: \(requestDate)")
         synchronize()
     }
     
     public func isDateSet(for requestDate: String) -> Bool {
         if (object(forKey: requestDate) != nil) {
-            //print("[UserDefaultsExtension] - isDateSet: TRUE - date: \(object(forKey: requestDate) as! Date)")
             return true
         } else {
             print("[UserDefaultsExtension] - isDateSet: FALSE")
@@ -63,7 +53,6 @@ extension UserDefaults {
     
     public var currentCityCode: String {
         get {
-            //print("[UserDefaultsExtension] - Get Current CityCode")
             return string(forKey: UserKeys.cityCode ) ?? "NONE" // none should only occur at the 1st launch
         }
         set {
@@ -79,12 +68,10 @@ extension UserDefaults {
     
     public var currentCountryCode: String {
         get {
-            //print("[UserDefaultsExtension] - Get Current CityCode")
             return string(forKey: UserKeys.countryCode ) ?? "EE" //always Tallinn as default cityCode
         }
         
     }
-    
     
     public var wasLaunchedOnce: Bool {
         get {
@@ -95,6 +82,19 @@ extension UserDefaults {
             set(newValue, forKey: User.launchedAlready)
         }
         
+    }
+    
+    enum Keys: String {
+        case isLoggedIn
+    }
+    
+    func setIsLoggedIn(value: Bool) {
+        set(value, forKey: Keys.isLoggedIn.rawValue)
+        synchronize()
+    }
+    
+    func isLoggedIn() -> Bool {
+        return bool(forKey: Keys.isLoggedIn.rawValue)
     }
     
     
