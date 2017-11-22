@@ -84,6 +84,16 @@ extension UserDefaults {
         
     }
     
+    public var isLoginNow: Bool {
+        get {
+            return bool(forKey: User.isLoginNow)
+        }
+        set {
+            set(newValue, forKey: User.isLoginNow)
+        }
+        
+    }
+    
     enum Keys: String {
         case isLoggedIn
     }
@@ -103,6 +113,7 @@ extension UserDefaults {
 // private struct for userdefaults only
 private struct User {
     static let launchedAlready = "launchedAlready"
+    static let isLoginNow = "isLoginNow"
 }
 
 

@@ -14,24 +14,25 @@ import FBSDKCoreKit
 
 public class RequestHandler
 {
-    var isDoneUpdatingServerRequest = false {
-        didSet {
-            fetchEventsInfoFromFacebook()
-        }
-    }
+    var isDoneUpdatingServerRequest = false { didSet { fetchEventsInfoFromFacebook() } }
+    
+    // Boolean to know if I'm just login. it can be a recursive login
+    //var isInitialLogin = false { didSet { print("isInitialLogin was set: [\(isInitialLogin)]") } }
+    
     
     // MARK: - Handler to SERVER
     
     // request fetch EventIDs ArtistsForEvents and ArtitsList from server
     // with userID, cityCode and countryCode parameters
     public func fetchEventIDsFromServer() {
+        print("SERVER FETCH: - INITIAL LOGIN: [\(UserDefaults().isLoginNow)]")
         let userDefault = UserDefaults()
         // Conditions of execution
         if (!userDefault.isDateSet(for: RequestDate.toServer)) ||
-            userDefault.hasEnoughTimeElapsed(since: RequestDate.toServer) {
+            userDefault.hasEnoughTimeElapsed(since: RequestDate.toServer) || UserDefaults().isLoginNow {
             if let userID = AccessToken.current?.userId {
                 let params = "id=\(userID)&cityCode=\(userDefault.currentCityCode)&countryCode=\(userDefault.currentCountryCode)"
-                print("\(UrlFor.currentEventsID)/\(params)")
+                print("- PARAMS: \(UrlFor.currentEventsID)/\(params)")
                 let request = ServerRequest()
                 request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
             }
@@ -40,6 +41,26 @@ public class RequestHandler
         }
     }
 
+    // Request events Info from Facebook Graph API
+    private func fetchEventsInfoFromFacebook () {
+        
+        let userDefault = UserDefaults()
+        print("FACEBOOK FETCH: - INITIAL LOGIN: [\(UserDefaults().isLoginNow)]")
+        // Conditions of execution
+        if (!userDefault.isDateSet(for: RequestDate.toFacebook)) ||
+            userDefault.hasEnoughTimeElapsed(since: RequestDate.toFacebook) || UserDefaults().isLoginNow {
+            print("Fetch Events Info From Facebook")
+            FacebookRequest().collectEventIDsFromCoreData()
+            
+        } else {
+            // create notification center
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
+        }
+        
+        
+    }
+    
+    
     // Saves user info into the Server
     private func saveCurrentUserProfile(_ result: NSDictionary) {
         if let id = result[FBUser.id]  as? String,
@@ -71,22 +92,7 @@ public class RequestHandler
     }
     
     
-    // Request events Info from Facebook Graph API
-    private func fetchEventsInfoFromFacebook () {
-        
-        let userDefault = UserDefaults()
-        // Conditions of execution
-        if (!userDefault.isDateSet(for: RequestDate.toFacebook)) ||
-            userDefault.hasEnoughTimeElapsed(since: RequestDate.toFacebook) {
-            FacebookRequest().collectEventIDsFromCoreData()
-            
-        } else {
-            // create notification center
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
-        }
-        
-        
-    }
+    
 
 }
 

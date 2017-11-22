@@ -32,9 +32,10 @@ class LoginViewController: UIViewController {
         //spinner.color = Colors.logoRed
         self.view.bringSubview(toFront: foreGroundView)
         self.view.bringSubview(toFront: spinner)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.foreGroundView.isHidden = false
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//            //self.foreGroundView.isHidden = false
+//        }
+        foreGroundView.isHidden = false
         
         // Facebook login
         let loginManager = LoginManager()
@@ -60,20 +61,24 @@ class LoginViewController: UIViewController {
                 // Get info about logged user and saved to Server as loggedIn
                 //let requestHandler = RequestHandler()
                 RequestHandler().requestUserInfo()
+                UserDefaults().isLoginNow = true
                 
                 UserProfile.loadCurrent{ profile in
+                    
+                    RequestHandler().fetchEventIDsFromServer()
+                    
                     // if is the first time app is launched
-                    let wasLaunchedOnce = UserDefaults().wasLaunchedOnce
-                    print("Was Launched Once: \(wasLaunchedOnce)")
-                    if (!wasLaunchedOnce) {
-                        print("First time launch Here")
-                        UserDefaults().wasLaunchedOnce = true
-                        RequestHandler().fetchEventIDsFromServer()
-                    } else {
-                        print("AFTER 2nd Time launch")
-                        RequestHandler().fetchEventIDsFromServer()
-                        //self?.updateDatabase()
-                    }
+//                    let wasLaunchedOnce = UserDefaults().wasLaunchedOnce
+//                    print("Was Launched Once: \(wasLaunchedOnce)")
+//                    if (!wasLaunchedOnce) {
+//                        print("First time launch Here")
+//                        UserDefaults().wasLaunchedOnce = true
+//                        RequestHandler().fetchEventIDsFromServer()
+//                    } else {
+//                        print("AFTER 2nd Time launch")
+//                        RequestHandler().fetchEventIDsFromServer()
+//                        //self?.updateDatabase()
+//                    }
                 }
             }
         }
@@ -181,7 +186,6 @@ class LoginViewController: UIViewController {
         DispatchQueue.main.async {
             self.spinner.stopAnimating()
         }
-        
         
         // Perform Segue programmatically
         print("I SHOULD THEN PERFORM SEGUE")

@@ -12,7 +12,11 @@ import CoreData
 class EventsViewController: FetchedResultsTableViewController {
 
     //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
-    var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
+    var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer {
+        didSet {
+            print("Container Which thread: [\(Thread.current)]")
+        }
+    }
     let mainContext = AppDelegate.viewContext
     var deejaysName = Set<String>()
     var followsList = [Artist]()
@@ -48,7 +52,12 @@ class EventsViewController: FetchedResultsTableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateUI()
-        RequestHandler().fetchEventIDsFromServer()
+        if (!UserDefaults().isLoginNow) {
+            RequestHandler().fetchEventIDsFromServer()
+        } else {
+            UserDefaults().isLoginNow = false
+        }
+        
     }
     
     

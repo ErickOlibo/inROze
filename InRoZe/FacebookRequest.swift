@@ -119,7 +119,7 @@ public class FacebookRequest
                     
                     // update the date to FacebbokRequest
                     UserDefaults().setDateNow(for: RequestDate.toFacebook)
-                    
+                    //UserDefaults().isLoginNow = false
                     // create notification center
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.initialLoginRequestIsDone), object: nil)
                     
