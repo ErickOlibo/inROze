@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIColor {
+    
     public class func convertToHexColor(from color: UIColor) -> String {
         var red: CGFloat = 0
         var green: CGFloat = 0
@@ -76,9 +77,9 @@ extension CALayer {
 
 
 // ARE THESE NECESSARY
-func coloredString(_ string: String, color: UIColor) -> NSMutableAttributedString {
+func coloredString(_ string: String, color: UIColor) -> NSAttributedString {
     let attributeOne = [ NSAttributedStringKey.foregroundColor: color ]
-    return NSMutableAttributedString(string: string, attributes: attributeOne)
+    return NSAttributedString(string: string, attributes: attributeOne)
 }
 
 // ARE THESE NECESSARY
@@ -90,7 +91,7 @@ func color(attributedString attrString: NSAttributedString, color: UIColor) -> N
     return attributedString    
 }
 
-
+// Colors from CD layout
 func colorsToHexString(with colors: UIImageColors) -> ColorsInHexString {
     var result = ColorsInHexString()
     result.background = UIColor.convertToHexColor(from: colors.background)

@@ -9,69 +9,48 @@
 import Foundation
 import UIKit
 
-public struct Constants {
-    // Inroze 9 + 2 colors (HEX string color)
-    struct InrozeHexColor {
-        
-        // Logo colors
-        static let petal = "#FFA700"
-        static let sepal = "#D23900"
 
-        // Other Colors
-        static let facebook = "#3B5998"
-        static let instagram = "#BC2A8D"
-        static let twitter = "#00ACED"
-        static let logoOrange = "#FFA700"
-        static let logoRed = "#D23900"
-        static let logoYellow = "#FED377"
-        static let logoBrown = "#5A1208"
-        static let logoBlack = "#2A2A2A"
-        
-    }
-    
-    // Inroze 9 + 2 colors (UIColor)
-    struct InrozeColor {
-    
-        // Logo colors
-        static let petal = UIColor.convertToUIColor(fromHexColor: InrozeHexColor.petal)
-        static let sepal = UIColor.convertToUIColor(fromHexColor: InrozeHexColor.sepal)
-        
 
-        
-        
-    }
+// Colors are convenience Constant UIColors throughout the whole app
+public struct Colors {
+    // UI Colors for Deejays "isFollowed" boolean status
+    static let isFollowed = UIColor.convertToUIColor(fromHexColor: ColorsInHex.logoRed)
+    static let isNotFollowed =  UIColor.lightGray
+    
+    // New Logo colors
+    static let logoRed = UIColor.convertToUIColor(fromHexColor: ColorsInHex.logoRed)
+    static let logoOrange = UIColor.convertToUIColor(fromHexColor: ColorsInHex.logoOrange)
+    static let logoYellow = UIColor.convertToUIColor(fromHexColor: ColorsInHex.logoYellow)
+    static let logoBrown = UIColor.convertToUIColor(fromHexColor: ColorsInHex.logoBrown)
+    static let logoBlack = UIColor.convertToUIColor(fromHexColor: ColorsInHex.logoBlack)
+    
+    // Social media colors
+    static let facebook = UIColor.convertToUIColor(fromHexColor: ColorsInHex.facebook)
+    static let instagram = UIColor.convertToUIColor(fromHexColor: ColorsInHex.instagram)
+    static let twitter = UIColor.convertToUIColor(fromHexColor: ColorsInHex.twitter)
     
 }
 
-private struct InrozeHexColor {
-    
+public struct ColorsInHex {
     // OLD logo color
     static let petal = "#FFA700"
     static let sepal = "#D23900"
     
-    // Other Colors
+    // Social Media Colors
     static let facebook = "#3B5998"
     static let instagram = "#BC2A8D"
     static let twitter = "#00ACED"
+    
+    // New logo colors
     static let logoOrange = "#FFA700"
     static let logoRed = "#D23900"
     static let logoYellow = "#FED377"
     static let logoBrown = "#5A1208"
     static let logoBlack = "#2A2A2A"
-    
-}
-
-// Colors are convenience Constant UIColors throughout the whole app
-public struct Colors {
-    static let isFollowed: UIColor = Constants.InrozeColor.sepal
-    static let isNotFollowed: UIColor = .lightGray
-    static let logoRed: UIColor = Constants.InrozeColor.sepal
-    
 }
 
 
 // height of the cell depending on the device size and resolution
-
 public struct CellSize {
     static let topAreaHeight: CGFloat = 63 // from 70
     static let phoneSizeWidth = UIScreen.main.bounds.width
@@ -84,8 +63,6 @@ public struct CellSize {
     static let followCoverRatio = CGFloat(1) / 3
     static let followTopSpacing: CGFloat = 45 // 10 + 30 + 5
     static let followBottomSpacing: CGFloat = 10
-    
-    
 }
 
 public var eventCoverHeight: CGFloat = {
@@ -116,30 +93,6 @@ public func randomCityBackground () -> UIImage? {
     let imageName = "NewCity\(arc4random_uniform(numberOfImages) + 1)"
     return UIImage(named: imageName)
 }
-
-
-// HELPERS Functions and Extensions
-public struct ColorInHexFor {
-    static let facebook = "#B5998"
-    static let instagram = "#BC2A8D"
-    static let twitter = "#00ACED"
-    static let logoOrange = "#FFA700"
-    static let logoRed = "#D23900"
-    static let logoYellow = "#FED377"
-    static let logoBrown = "#5A1208"
-    static let logoBlack = "#2A2A2A"
-    
-    
-}
-
-
-
-// TimeZone identifiers for selected country/cities
-
-public struct AppTimeZone {
-    
-}
-
 
 
 

@@ -44,29 +44,35 @@ class LoginViewController: UIViewController {
             
             switch loginResult {
             case .failed(let error):
+                print("LOGIN FAILED")
                 self?.spinner.stopAnimating()
                 //self?.hideUI(state: false)
                 self?.foreGroundView.isHidden = true
                 print(error.localizedDescription)
             case .cancelled:
+                print("LOGIN CANCELLED")
                 self?.spinner.stopAnimating()
                 //self?.hideUI(state: false)
                 self?.foreGroundView.isHidden = true
                 print("cancelled")
             case .success( _,  _, _):
+                print("LOGIN SUCCESS")
                 // Get info about logged user and saved to Server as loggedIn
-                let requestHandler = RequestHandler()
-                requestHandler.requestUserInfo()
+                //let requestHandler = RequestHandler()
+                RequestHandler().requestUserInfo()
                 
                 UserProfile.loadCurrent{ profile in
                     // if is the first time app is launched
                     let wasLaunchedOnce = UserDefaults().wasLaunchedOnce
-                    
+                    print("Was Launched Once: \(wasLaunchedOnce)")
                     if (!wasLaunchedOnce) {
+                        print("First time launch Here")
                         UserDefaults().wasLaunchedOnce = true
                         RequestHandler().fetchEventIDsFromServer()
                     } else {
-                        self?.updateDatabase()
+                        print("AFTER 2nd Time launch")
+                        RequestHandler().fetchEventIDsFromServer()
+                        //self?.updateDatabase()
                     }
                 }
             }
@@ -152,9 +158,9 @@ class LoginViewController: UIViewController {
             facebookButton.isEnabled = true
             facebookButton.backgroundColor = .clear
             facebookButton.layer.borderWidth = 3
-            facebookButton.layer.borderColor = UIColor.convertToUIColor(fromHexColor: ColorInHexFor.facebook).cgColor
+            facebookButton.layer.borderColor = Colors.facebook.cgColor
             facebookButton.setFAText(prefixText: "", icon: .FAFacebook, postfixText: "  Log in with Facebook", size: 25, forState: .normal)
-            facebookButton.setFATitleColor(color: UIColor.convertToUIColor(fromHexColor: ColorInHexFor.facebook), forState: .normal)
+            facebookButton.setFATitleColor(color: Colors.facebook, forState: .normal)
             facebookButton.setTitleColor(.white, for: .highlighted)
 
         } else {
@@ -170,11 +176,15 @@ class LoginViewController: UIViewController {
 
 
     // Once success -> get the request to load
-    @objc private func updateDatabase () {
+    @objc private func updateDatabase() {
         
-        spinner.stopAnimating()
+        DispatchQueue.main.async {
+            self.spinner.stopAnimating()
+        }
+        
         
         // Perform Segue programmatically
+        print("I SHOULD THEN PERFORM SEGUE")
         performSegue(withIdentifier: "login view", sender: self)
         
     }
