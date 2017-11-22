@@ -160,6 +160,7 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
             guard let gigCell = sender as? DeejayGigsCell else { return }
             guard let destination = segue.destination as? EventInfoViewController else { return }
             destination.event = gigCell.event
+            destination.navigationItem.title = gigCell.event?.location?.name ?? ""
         }
     }
 

@@ -38,13 +38,21 @@ class EventsViewController: FetchedResultsTableViewController {
         return fetchedRC
     }()
     
+    // Set up Navigation Bar UI style
+    private func setupNavBar() {
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    
     // View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         print("INSIDE viewDidLoad - Thread [\(Thread.current)]")
+        setupNavBar()
         container = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
         mainContext = AppDelegate.viewContext
-        self.navigationController?.navigationBar.isTranslucent = false
+        
         let headerBorderColor = UIColor.lightGray.cgColor
         collectionView.delegate = self
         collectionView.dataSource = self

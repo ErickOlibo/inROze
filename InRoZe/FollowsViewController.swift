@@ -34,10 +34,16 @@ class FollowsViewController: FetchedResultsTableViewController {
         return fetchedRC
     }()
     
+    // Set up Navigation Bar UI style
+    private func setupNavBar() {
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
     
     // ViewController Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavBar()
         self.navigationController?.navigationBar.isTranslucent = false
         //updateUI()
         tableView.rowHeight = cellHeightForFollows
