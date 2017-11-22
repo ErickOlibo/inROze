@@ -42,11 +42,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="vK9-ev-iiC">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Follows" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHa-Rn-To0">
+                                    <rect key="frame" x="17" y="10" width="387" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="UVl-tR-HMK"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kh9-Uo-cgL">
-                                    <rect key="frame" x="0.0" y="10" width="414" height="90"/>
+                                    <rect key="frame" x="0.0" y="40" width="414" height="90"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="90" id="FTg-gi-fFR"/>
@@ -103,12 +112,15 @@
                             <constraints>
                                 <constraint firstItem="kh9-Uo-cgL" firstAttribute="width" secondItem="vK9-ev-iiC" secondAttribute="width" id="6A9-Pb-gcy"/>
                                 <constraint firstAttribute="bottom" secondItem="kh9-Uo-cgL" secondAttribute="bottom" id="7Sd-J1-Pfh"/>
+                                <constraint firstAttribute="trailing" secondItem="IHa-Rn-To0" secondAttribute="trailing" constant="10" id="JQk-b2-0Fh"/>
+                                <constraint firstItem="IHa-Rn-To0" firstAttribute="leading" secondItem="vK9-ev-iiC" secondAttribute="leading" constant="17" id="MBy-pC-7da"/>
                                 <constraint firstItem="kh9-Uo-cgL" firstAttribute="centerX" secondItem="vK9-ev-iiC" secondAttribute="centerX" id="Zde-lM-Nr9"/>
+                                <constraint firstItem="IHa-Rn-To0" firstAttribute="top" secondItem="vK9-ev-iiC" secondAttribute="top" constant="10" id="c6A-Am-XOo"/>
                             </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventDeejayCell" rowHeight="381" id="wte-Kb-I6i" customClass="EventDeejayCell" customModule="InRoZe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="128" width="414" height="381"/>
+                                <rect key="frame" x="0.0" y="158" width="414" height="381"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wte-Kb-I6i" id="Hnd-gk-IKz">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="380.66666666666669"/>
@@ -199,7 +211,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SOz-qR-MKX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="204" y="-1573"/>
+            <point key="canvasLocation" x="202.89855072463769" y="-1573.3695652173915"/>
         </scene>
         <!--Deejay Gigs Table View Controller-->
         <scene sceneID="8KM-Nb-VCN">
@@ -1131,7 +1143,7 @@ Cg
         <image name="img_Grey_DJcover_29" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="p5s-pF-ZfF"/>
+        <segue reference="amR-Kn-XsZ"/>
         <segue reference="Bwf-dD-zDu"/>
     </inferredMetricsTieBreakers>
 </document>
