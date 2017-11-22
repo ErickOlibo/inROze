@@ -183,13 +183,16 @@ class LoginViewController: UIViewController {
     // Once success -> get the request to load
     @objc private func updateDatabase() {
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [unowned self] in
             self.spinner.stopAnimating()
+            
+            // Perform Segue programmatically
+            print("I SHOULD THEN PERFORM SEGUE: \(Thread.current)")
+            self.performSegue(withIdentifier: "login view", sender: self)
+            print("After SEGUE: \(Thread.current)")
         }
         
-        // Perform Segue programmatically
-        print("I SHOULD THEN PERFORM SEGUE")
-        performSegue(withIdentifier: "login view", sender: self)
+        
         
     }
     

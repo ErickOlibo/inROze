@@ -12,12 +12,13 @@ import CoreData
 class EventsViewController: FetchedResultsTableViewController {
 
     //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
-    var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer {
-        didSet {
-            print("Container Which thread: [\(Thread.current)]")
-        }
-    }
-    let mainContext = AppDelegate.viewContext
+    
+    //var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
+    var container: NSPersistentContainer!
+    var mainContext: NSManagedObjectContext!
+    
+
+    
     var deejaysName = Set<String>()
     var followsList = [Artist]()
 
@@ -26,7 +27,7 @@ class EventsViewController: FetchedResultsTableViewController {
     @IBOutlet var tableHeaderView: UIView! // investigate the retain (weak/strong) and other potential memory issues
     
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
-        
+        print("INSIDE fetchResultsController")
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         let nowTime = NSDate()
         request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
@@ -40,6 +41,9 @@ class EventsViewController: FetchedResultsTableViewController {
     // View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("INSIDE viewDidLoad - Thread [\(Thread.current)]")
+        container = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+        mainContext = AppDelegate.viewContext
         self.navigationController?.navigationBar.isTranslucent = false
         let headerBorderColor = UIColor.lightGray.cgColor
         collectionView.delegate = self
@@ -51,6 +55,7 @@ class EventsViewController: FetchedResultsTableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("INSIDE viewWillAppear")
         updateUI()
         if (!UserDefaults().isLoginNow) {
             RequestHandler().fetchEventIDsFromServer()
@@ -87,6 +92,7 @@ class EventsViewController: FetchedResultsTableViewController {
     }
     
     private func cleanStoreFromOldData() {
+        print("[] - What thread: [\(Thread.current)]")
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         // Delete old events from database
         _ = Event.deleteEventsEndedBeforeNow(in: mainContext, with: request)
@@ -97,7 +103,7 @@ class EventsViewController: FetchedResultsTableViewController {
     
     
     private func updateUI() {
-        
+        print("UPDATE UI")
         // clear data of old events and events without performers
         cleanStoreFromOldData()
         
