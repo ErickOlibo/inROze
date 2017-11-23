@@ -1168,6 +1168,7 @@ Cg
                                     <outlet property="deejayName" destination="vLc-3L-gBX" id="2dc-Nx-hWT"/>
                                     <outlet property="followButton" destination="16q-Hc-pAp" id="hpq-6G-eQQ"/>
                                     <outlet property="gigsMixesList" destination="MYy-wb-g0L" id="DSQ-6l-0Pf"/>
+                                    <segue destination="8yR-qp-x1Q" kind="show" identifier="DJs to Deejay Gigs List" id="fqI-E3-pH5"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1218,6 +1219,6 @@ Cg
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ekP-bR-cTf"/>
-        <segue reference="Bwf-dD-zDu"/>
+        <segue reference="fqI-E3-pH5"/>
     </inferredMetricsTieBreakers>
 </document>

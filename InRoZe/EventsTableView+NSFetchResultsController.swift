@@ -55,7 +55,7 @@ extension EventsViewController
             guard let destination = segue.destination as? DeejayGigsTableViewController else { return }
             let thisDJ = deejayNameCell.thisDJ!
             destination.artist = thisDJ
-            destination.navigationItem.title = thisDJ.name!
+            destination.navigationItem.title = thisDJ.name ?? ""
         }
         
         if (segue.identifier == "Event Info") {

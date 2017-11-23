@@ -43,6 +43,14 @@ extension DeejaysViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         print("Segue from DJs TableView")
+        if (segue.identifier == "DJs to Deejay Gigs List") {
+            guard let djCell = sender as? DJsSearchCell else { return }
+            guard let destination = segue.destination as? DeejayGigsTableViewController else { return }
+            let thisDJ = djCell.deejay!
+            destination.artist = thisDJ
+            destination.navigationItem.title = thisDJ.name ?? ""
+        }
+        
     }
     
     
