@@ -38,6 +38,7 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
 
         // navigation bar see Extension below
         navigationController?.delegate = self
