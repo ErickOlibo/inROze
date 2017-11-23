@@ -18,7 +18,7 @@
         <array key="Bungee-Regular.ttf">
             <string>Bungee-Regular</string>
         </array>
-        <array key="FontAwesome.ttf">
+        <array key="FontAwesome.otf">
             <string>FontAwesome</string>
         </array>
         <array key="HelveticaNeue.ttc">
@@ -1107,7 +1107,7 @@ Cg
             </objects>
             <point key="canvasLocation" x="-743.47826086956525" y="-631.79347826086962"/>
         </scene>
-        <!--Deejays View Controller-->
+        <!--DJs-->
         <scene sceneID="SEv-TN-MS5">
             <objects>
                 <tableViewController id="CtD-C5-3qD" customClass="DeejaysViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
@@ -1176,7 +1176,7 @@ Cg
                             <outlet property="delegate" destination="CtD-C5-3qD" id="pUE-M4-Y9g"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Q0u-10-ej5"/>
+                    <navigationItem key="navigationItem" title="DJs" id="Q0u-10-ej5"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YJh-KR-nfq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -28,26 +28,66 @@ class DJsSearchCell: UITableViewCell
     @IBOutlet weak var followButton: UIButton!
     
     @IBAction func followTouched(_ sender: UIButton) {
-        
+        pressedFollowed()
     }
     
     
     
     private func configureCell() {
-        guard let thisDJ = deejay else { return }
-        guard let name = thisDJ.name else { return }
-        
+        selectionStyle = .none
+        guard let name = deejay?.name else { return }
         deejayName.text = name
-        if (thisDJ.isFollowed) {
-            deejayName.textColor = .black
+        updateFollowedButton()
+    }
+    
+    @objc private func pressedFollowed() {
+        guard let djID = deejay?.id else { return }
+        print("Cell [\(tag)] - pressed: [\(deejay?.name ?? "NOT HERE")]")
+        if let context = container?.viewContext {
+            context.perform {
+                if let artistState = Artist.currentIsFollowedState(for: djID, in: context) {
+                    self.deejay!.isFollowed = !artistState
+                    self.updateFollowedButton()
+                    self.changeState()
+                }
+            }
+        }
+    }
+    
+    private func updateFollowedButton() {
+        guard let currentIsFollow = deejay?.isFollowed else { return }
+        deejayName.textColor = currentIsFollow ? .black : Colors.isNotFollowed
+        
+        if (currentIsFollow) {
+            followButton.tintColor = Colors.isFollowed
+            followButton.setImage((UIImage(named: "2_FollowsFilled")?.withRenderingMode(.alwaysTemplate))!, for: .normal)
             followButton.tintColor = Colors.isFollowed
         } else {
-            deejayName.textColor = Colors.isNotFollowed
+            followButton.tintColor = Colors.isNotFollowed
+            followButton.setImage((UIImage(named: "2_Follows")?.withRenderingMode(.alwaysTemplate))!, for: .normal)
             followButton.tintColor = Colors.isNotFollowed
         }
     }
     
     
+    private func changeState() {
+        guard let djID = deejay?.id else { return }
+        // Change state of isFollowed
+        container?.performBackgroundTask{ context in
+            let success = Artist.changeIsFollowed(for: djID, in: context)
+            if (success) {
+                
+            } else {
+                print("[pressedFollowed] in DJsSearchCell Failed")
+            }
+        }
+    }
 
 
 }
+
+
+
+
+
+
