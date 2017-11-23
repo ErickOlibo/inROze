@@ -23,11 +23,31 @@ class DJsSearchCell: UITableViewCell
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     
     // OUTlets
+    @IBOutlet weak var deejayName: UILabel!
+    @IBOutlet weak var gigsMixesList: UILabel!
+    @IBOutlet weak var followButton: UIButton!
+    
+    @IBAction func followTouched(_ sender: UIButton) {
+        
+    }
     
     
     
     private func configureCell() {
-        print("Row: \(tag)) - [\(deejay?.name ?? "N/A")]")
+        guard let thisDJ = deejay else { return }
+        guard let name = thisDJ.name else { return }
+        
+        deejayName.text = name
+        if (thisDJ.isFollowed) {
+            deejayName.textColor = .black
+            followButton.tintColor = Colors.isFollowed
+        } else {
+            deejayName.textColor = Colors.isNotFollowed
+            followButton.tintColor = Colors.isNotFollowed
+        }
     }
+    
+    
+
 
 }
