@@ -44,7 +44,7 @@ class FollowsViewController: FetchedResultsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
-        self.navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.isTranslucent = false
         //updateUI()
         tableView.rowHeight = cellHeightForFollows
         //tableView.separatorStyle = .none

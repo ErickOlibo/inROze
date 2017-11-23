@@ -59,27 +59,8 @@ extension FollowsViewController
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        guard let sections = fetchResultsController.sections else { fatalError("ISSUE WITH SECTINOS")}
-//        let dayTitle = sections[section].name
-//        print("****** \(dayTitle)")
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "YYYYMMdd"
-//        guard let startDay = formatter.date(from: dayTitle) else { fatalError("CANT FORMAT DATE") }
-//        let splitDate = Date().split(this: startDay)
-//
-//        return splitDate.day + " " + splitDate.num + " " + splitDate.month
-//    }
-    
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-//
-//        let cell = tableView.dequeueReusableCell(withIdentifier: FollowsHeaderCell.identifier) as! FollowsHeaderCell
-//        guard let sections = fetchResultsController.sections else { fatalError("ISSUE WITH SECTINOS")}
-//        cell.configureCell(withDate: sections[section].name)
-//
-//        return cell
         
         let view = UIView()
         guard let sections = fetchResultsController.sections else { fatalError("ISSUE WITH SECTINOS")}
@@ -109,8 +90,6 @@ extension FollowsViewController
         view.addSubview(numLabel)
         view.backgroundColor = Colors.logoRed
         return view
-        
-        
         
     }
     
