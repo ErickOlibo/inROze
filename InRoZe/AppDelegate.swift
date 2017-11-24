@@ -31,7 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
 //        print(urls[urls.count-1] as URL)
         
-        
+        // Change the whole app default tint color
+        //window?.tintColor = Colors.logoRed
         
         //Added FACEBOOK Stuff
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -45,6 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return true
     }
+    
+    
     
     
     // MARK: -  FACEBOOK added Func

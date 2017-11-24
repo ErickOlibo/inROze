@@ -20,16 +20,9 @@ extension DeejaysViewController
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-//        // Condition from search
-//        if searchController.isActive && searchController.searchBar.text != "" {
-//            if let sections = fetchSearchRC.sections, sections.count > 0 {
-//                print("Search. Row in section: [\(sections[section].numberOfObjects)]")
-//                return sections[section].numberOfObjects
-//            } else { return 0 }
-//        }
+
         if let sections = fetchResultsController.sections, sections.count > 0 {
-            print("ALL. Row in section: [\(sections[section].numberOfObjects)]")
+            //print("ALL. Row in section: [\(sections[section].numberOfObjects)]")
             return sections[section].numberOfObjects
             
         } else {
@@ -41,15 +34,9 @@ extension DeejaysViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DJsSearchCell.identifier, for: indexPath) as! DJsSearchCell
         cell.tag = indexPath.row
+        //print("SearcText: [\(searchText ?? "nil")]")
+        cell.searchText = searchText
         cell.deejay = fetchResultsController.object(at: indexPath)
-        
-//        if searchController.isActive && searchController.searchBar.text != "" {
-//            print("SearchText: \(searchController.searchBar.text ?? "--") - row: [\(indexPath.row)]")
-//            cell.deejay = fetchSearchRC.object(at: indexPath)
-//        } else {
-//            cell.deejay = fetchResultsController.object(at: indexPath)
-//        }
-
         return cell
     }
     

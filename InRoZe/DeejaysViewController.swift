@@ -29,25 +29,7 @@ class DeejaysViewController: FetchedResultsTableViewController {
         fetchedRC.delegate = self
         return fetchedRC
     }()
-    
-//    // Fetch Search Result Controller
-//    lazy var fetchSearchRC: NSFetchedResultsController = { () -> NSFetchedResultsController<Artist> in
-//        let request: NSFetchRequest<Artist> = Artist.fetchRequest()
-//        let isFollowSort = NSSortDescriptor(key: "isFollowed", ascending: false, selector: nil)
-//        let nameSort = NSSortDescriptor(key: "name", ascending: true, selector: nil)
-//        request.sortDescriptors = [isFollowSort, nameSort]
-//        
-//        print("in LAZY FetchSRC and searchText is [\(self.searchText ?? "nil")]")
-//        request.predicate = NSPredicate(format: "name != nil AND name contains[c] %@",  searchText ?? "")
-//        //request.predicate = NSPredicate(format: "name != nil AND name contains[c] %@",  "de")
-//        request.fetchBatchSize = 20
-//        let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
-//        fetchedRC.delegate = self
-//        return fetchedRC
-//    }()
-    
-    
-    
+
     
     // Set up Navigation Bar UI style
     private func setupNavBar() {
@@ -55,18 +37,19 @@ class DeejaysViewController: FetchedResultsTableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.view.backgroundColor = .white
         
-        //navigationItem.searchController = searchController
-        //navigationItem.hidesSearchBarWhenScrolling = false
-        
         // Stuff for search bar
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
-        tableView.tableHeaderView = searchController.searchBar
+
+        navigationItem.searchController = searchController
+        searchController.searchBar.placeholder = "Search Deejays"
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchBar.tintColor = Colors.logoRed
+        searchController.searchBar.returnKeyType = .done
         
-        
-        
+  
     }
     
     // ViewController Life Cycle
@@ -91,27 +74,16 @@ class DeejaysViewController: FetchedResultsTableViewController {
         }
         tableView.reloadData()
     }
-    
-//
-//    func updateFetchSearch() {
-//        do {
-//            try self.fetchSearchRC.performFetch()
-//            print("FetchedSearchRC count: [\(fetchSearchRC.fetchedObjects?.count ?? -1)]")
-//        } catch {
-//            print("updateFetchSearch in DeejaysVC -> Error while fetching: \(error)")
-//        }
-//        tableView.reloadData()
-//    }
-    
+
 }
-
-
 
 
 extension DeejaysViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         print("Here IN: updateSearchResults - ")
         guard searchController.searchBar.text!.count > 0 else {
+            searchText = searchController.searchBar.text
+            //print("is search bar text nil: [\(searchController.searchBar.text ?? "NIL")]")
             fetchResultsController.fetchRequest.predicate = NSPredicate(format: "name != nil ")
             updateUI()
             return

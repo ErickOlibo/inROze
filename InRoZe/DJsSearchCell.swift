@@ -16,6 +16,7 @@ class DJsSearchCell: UITableViewCell
     // properties
     static var identifier: String { return String(describing: self) }
     var deejay: Artist? { didSet { configureCell() } }
+    var searchText: String?
 
 
     // context & container
@@ -56,7 +57,11 @@ class DJsSearchCell: UITableViewCell
     
     private func updateFollowedButton() {
         guard let currentIsFollow = deejay?.isFollowed else { return }
-        deejayName.textColor = currentIsFollow ? .black : Colors.isNotFollowed
+        
+        // Line to change
+        //deejayName.textColor = currentIsFollow ? .black : Colors.isNotFollowed
+        deejayNameAttributed()
+        // define later the number of mixtapes
         setSubtitleText(currentIsFollow, mixCount: 2)
         
         if (currentIsFollow) {
@@ -68,6 +73,43 @@ class DJsSearchCell: UITableViewCell
             followButton.setImage((UIImage(named: "2_Follows")?.withRenderingMode(.alwaysTemplate))!, for: .normal)
             followButton.tintColor = Colors.isNotFollowed
         }
+    }
+    
+    // Attribute substring that match searchtext
+    private func deejayNameAttributed() {
+        guard let currentIsFollow = deejay?.isFollowed else { return }
+        guard let text = searchText, text.count > 0 else {
+            //print("[deejayNameAttributed] - SearchText Count: [NIL]")
+            deejayName.textColor = currentIsFollow ? .black : Colors.isNotFollowed
+            return
+        }
+        //print("[deejayNameAttributed] - SearchText Count: [\(text.count)]")
+        attributedDJName()
+    }
+    
+    
+    private func attributedDJName() {
+        //print("attributedDJName")
+        guard let currentIsFollow = deejay?.isFollowed else { return }
+        guard let name = deejay?.name else { return }
+        guard let text = searchText else { return }
+        let searchTxt = text.uppercased()
+        var attrName = NSMutableAttributedString(string: name)
+        attrName = color(attributedString: attrName, color: currentIsFollow ? .black : Colors.isNotFollowed)
+        let nameLength = attrName.string.count
+        let searchTxtLength = searchTxt.count
+        var range = NSRange(location: 0, length: attrName.length)
+        while (range.location != NSNotFound) {
+            range = (attrName.string as NSString).range(of: searchTxt, options: [], range: range)
+            if (range.location != NSNotFound) {
+                attrName.addAttribute(NSAttributedStringKey.foregroundColor, value: Colors.logoRed, range: NSRange(location: range.location, length: searchTxtLength))
+                range = NSRange(location: range.location + range.length, length: nameLength - (range.location + range.length))
+            }
+        }
+        deejayName.attributedText = attrName
+        
+
+        
     }
     
     
