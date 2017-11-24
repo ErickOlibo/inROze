@@ -89,9 +89,9 @@ public class ServerRequest
                 for artistInfoArray in artistsArray {
                     if let artistInfo = artistInfoArray as? [String : String]{
                         do {
-                            _ = try Artist.findOrCreateArtist(with: artistInfo, in: context)
+                            _ = try Artist.createOrUpdateArtist(with: artistInfo, in: context)
                         } catch {
-                            print("[ServerRequest] - Error trying to FindOrCreateArtist")
+                            print("[ServerRequest] - Error trying to createOrUpdateArtist")
                         }
                     }
                 }

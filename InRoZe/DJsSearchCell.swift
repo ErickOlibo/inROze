@@ -57,6 +57,7 @@ class DJsSearchCell: UITableViewCell
     private func updateFollowedButton() {
         guard let currentIsFollow = deejay?.isFollowed else { return }
         deejayName.textColor = currentIsFollow ? .black : Colors.isNotFollowed
+        setSubtitleText(currentIsFollow, mixCount: 2)
         
         if (currentIsFollow) {
             followButton.tintColor = Colors.isFollowed
@@ -81,6 +82,43 @@ class DJsSearchCell: UITableViewCell
                 print("[pressedFollowed] in DJsSearchCell Failed")
             }
         }
+    }
+    
+    
+    private func setSubtitleText(_ status: Bool, mixCount: Int) {
+        // set the number of gigs
+        var subtitle = ""
+        guard let gigs = deejay?.gigs?.count else { return }
+        let mixes = mixCount
+        let combi = (gig: gigs, mix: mixes)
+        
+        switch combi {
+        case (0, 0):
+            subtitle = ""
+        case (0, 1):
+            subtitle = "\(combi.mix) mixtape"
+        case (0, 2...):
+            subtitle = "\(combi.mix) mixtapes"
+        case (1, 0):
+            subtitle = "\(combi.gig) gig"
+        case (1, 1):
+            subtitle = "\(combi.gig) gig - \(combi.mix) mixtape"
+        case (1, 2...):
+            subtitle = "\(combi.gig) gig - \(combi.mix) mixtapes"
+        case (2..., 0):
+            subtitle = "\(combi.gig) gigs"
+        case (2..., 1):
+            subtitle = "\(combi.gig) gigs - \(combi.mix) mixtape"
+        case (2..., 2...):
+            subtitle = "\(combi.gig) gigs - \(combi.mix) mixtapes"
+        case (_, _):
+            subtitle = ""
+        }
+        gigsMixesList.text = subtitle
+        gigsMixesList.textColor = status ? .black : Colors.isNotFollowed
+
+        
+        
     }
 
 

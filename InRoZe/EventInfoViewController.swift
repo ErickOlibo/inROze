@@ -42,7 +42,6 @@ class EventInfoViewController: UIViewController {
     // ViewController Life-Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         collectionView.delegate = self
         collectionView.dataSource = self
         self.navigationController?.navigationBar.tintColor = Colors.logoRed

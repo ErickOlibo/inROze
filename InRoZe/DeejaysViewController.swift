@@ -36,13 +36,13 @@ class DeejaysViewController: FetchedResultsTableViewController {
     private func setupNavBar() {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.view.backgroundColor = .white
     }
     
     // ViewController Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
-        navigationController?.navigationBar.isTranslucent = false
 
     }
     

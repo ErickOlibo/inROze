@@ -42,6 +42,7 @@ class EventsViewController: FetchedResultsTableViewController {
     private func setupNavBar() {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.view.backgroundColor = .white
     }
     
     

@@ -11,23 +11,23 @@ import CoreData
 
 public class Artist: NSManagedObject
 {
-    // Finds or creates an entry for a certain Artist ID
-    // Unique attribute is ID
-    class func findOrCreateArtist(with artistInfo: [String : String], in context: NSManagedObjectContext) throws -> Artist
+    // Creates or Updates an Artist object with Dictionary
+    // Returns a Boolean- > True: for Created | False: for Updated
+    class func createOrUpdateArtist(with artistInfo: [String : String], in context: NSManagedObjectContext) throws -> Bool
     {
         let request: NSFetchRequest<Artist> = Artist.fetchRequest()
         request.predicate = NSPredicate(format: "id = %@", artistInfo[DBLabels.artistID]!)
         do {
             let match = try context.fetch(request)
             if match.count > 0 {
-                assert(match.count == 1, "findOrCreateArtist -- database inconsistency")
+                assert(match.count == 1, "createOrUpdateArtist -- database inconsistency")
                 // update match
                 let artistMatch = match[0]
                 artistMatch.country = artistInfo[DBLabels.artistCountry]
                 artistMatch.countryCode = artistInfo[DBLabels.artistCountryCode]
                 artistMatch.name = artistInfo[DBLabels.artistName]
                 artistMatch.type = artistInfo[DBLabels.artistType]
-                return artistMatch
+                return false
             }
         } catch {
             throw error
@@ -39,7 +39,7 @@ public class Artist: NSManagedObject
         artist.id = artistInfo[DBLabels.artistID]
         artist.name = artistInfo[DBLabels.artistName]
         artist.type = artistInfo[DBLabels.artistType]
-        return artist
+        return true
     }
 
     

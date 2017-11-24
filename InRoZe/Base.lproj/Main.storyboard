@@ -1067,7 +1067,7 @@ Cg
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UPY-ws-NQp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1820" y="218"/>
+            <point key="canvasLocation" x="-1859" y="218"/>
         </scene>
         <!--Events-->
         <scene sceneID="kfs-cK-5Kn">
@@ -1132,10 +1132,10 @@ Cg
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 Gigs - 2 MixShows" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MYy-wb-g0L">
-                                            <rect key="frame" x="20" y="40" width="314" height="15"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 gigs - 2 mixtapes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MYy-wb-g0L">
+                                            <rect key="frame" x="20" y="35" width="314" height="20"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="15" id="8Q2-CW-EEk"/>
+                                                <constraint firstAttribute="height" constant="20" id="8Q2-CW-EEk"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
