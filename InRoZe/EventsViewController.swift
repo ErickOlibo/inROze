@@ -27,7 +27,6 @@ class EventsViewController: FetchedResultsTableViewController {
     @IBOutlet var tableHeaderView: UIView! // investigate the retain (weak/strong) and other potential memory issues
     
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
-        print("INSIDE fetchResultsController")
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         let nowTime = NSDate()
         request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
@@ -49,7 +48,6 @@ class EventsViewController: FetchedResultsTableViewController {
     // View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("INSIDE viewDidLoad - Thread [\(Thread.current)]")
         setupNavBar()
         container = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
         mainContext = AppDelegate.viewContext
@@ -64,7 +62,6 @@ class EventsViewController: FetchedResultsTableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("INSIDE viewWillAppear")
         updateUI()
         if (!UserDefaults().isLoginNow) {
             RequestHandler().fetchEventIDsFromServer()
@@ -101,7 +98,6 @@ class EventsViewController: FetchedResultsTableViewController {
     }
     
     private func cleanStoreFromOldData() {
-        print("[] - What thread: [\(Thread.current)]")
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         // Delete old events from database
         _ = Event.deleteEventsEndedBeforeNow(in: mainContext, with: request)
@@ -112,7 +108,6 @@ class EventsViewController: FetchedResultsTableViewController {
     
     
     private func updateUI() {
-        print("UPDATE UI")
         // clear data of old events and events without performers
         cleanStoreFromOldData()
         
@@ -172,7 +167,7 @@ extension EventsViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        print("list of Follows: [\(followsList.count)]")
+        //print("list of Follows: [\(followsList.count)]")
         return followsList.count
     }
     

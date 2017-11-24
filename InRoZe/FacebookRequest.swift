@@ -92,7 +92,7 @@ public class FacebookRequest
     private func updateEventDatabase(with result: [String : Any]) {
         container?.performBackgroundTask { context in 
             let request: NSFetchRequest<Event> = Event.fetchRequest()
-            print("[updateEventDatabase] - Which Thread is Context at: \(Thread.current)")
+            //print("[updateEventDatabase] - Which Thread is Context at: \(Thread.current)")
             for resID in result {
                 do {
                     _ = try Event.updateInfoForEvent(matching: resID, in: context, with: request)
@@ -112,7 +112,7 @@ public class FacebookRequest
                 
                 do {
                     //print("[updateEventDatabase] -  BEFORE try to save context")
-                    print("[FB request - updateEventDatabase] - Which Thread is Context at: \(Thread.current)")
+                    //print("[FB request - updateEventDatabase] - Which Thread is Context at: \(Thread.current)")
                     try context.save()
                     //print("[updateEventDatabase] -  AFTER SAVED in Context!")
                     

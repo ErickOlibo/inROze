@@ -49,7 +49,6 @@ class DeejaysViewController: FetchedResultsTableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateUI()
-        print("DJs Search")
     }
     
     
@@ -57,8 +56,8 @@ class DeejaysViewController: FetchedResultsTableViewController {
     private func updateUI() {
         do {
             try self.fetchResultsController.performFetch()
-            guard let deejays = fetchResultsController.fetchedObjects else { return }
-            print("Total Deejays in core Data (dj search): \(deejays.count)")
+//            guard let deejays = fetchResultsController.fetchedObjects else { return }
+//            print("Total Deejays in core Data (dj search): \(deejays.count)")
         } catch {
             print("UpdateUI in FolowVC -> Error while fetching: \(error)")
         }

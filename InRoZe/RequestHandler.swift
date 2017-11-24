@@ -25,14 +25,12 @@ public class RequestHandler
     // request fetch EventIDs ArtistsForEvents and ArtitsList from server
     // with userID, cityCode and countryCode parameters
     public func fetchEventIDsFromServer() {
-        print("SERVER FETCH: - INITIAL LOGIN: [\(UserDefaults().isLoginNow)]")
         let userDefault = UserDefaults()
         // Conditions of execution
         if (!userDefault.isDateSet(for: RequestDate.toServer)) ||
             userDefault.hasEnoughTimeElapsed(since: RequestDate.toServer) || UserDefaults().isLoginNow {
             if let userID = AccessToken.current?.userId {
                 let params = "id=\(userID)&cityCode=\(userDefault.currentCityCode)&countryCode=\(userDefault.currentCountryCode)"
-                print("- PARAMS: \(UrlFor.currentEventsID)/\(params)")
                 let request = ServerRequest()
                 request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
             }
@@ -45,11 +43,10 @@ public class RequestHandler
     private func fetchEventsInfoFromFacebook () {
         
         let userDefault = UserDefaults()
-        print("FACEBOOK FETCH: - INITIAL LOGIN: [\(UserDefaults().isLoginNow)]")
         // Conditions of execution
         if (!userDefault.isDateSet(for: RequestDate.toFacebook)) ||
             userDefault.hasEnoughTimeElapsed(since: RequestDate.toFacebook) || UserDefaults().isLoginNow {
-            print("Fetch Events Info From Facebook")
+            //print("Fetch Events Info From Facebook")
             FacebookRequest().collectEventIDsFromCoreData()
             
         } else {
