@@ -37,6 +37,27 @@ public func fontAwesomeAttributedString(forString iconString: String, withColor 
 }
 
 
+
+// Get two strings, font names and 2 sizes
+// and returns an attributed text formatted in 2 line with
+public func twoLinesFormatter(withTwoString twoStrings: (first: String, second: String), fontNames: (first: String, second: String), fontSizes: (first: CGFloat, second: CGFloat), fontColors: (first: UIColor, second: UIColor) ) -> NSAttributedString {
+    
+    let twoLinesFormatted = NSMutableAttributedString()
+    let lineOne = twoStrings.first + "\n"
+    let lineTwo = twoStrings.second
+    let attributeOne = [ NSAttributedStringKey.font: UIFont(name: fontNames.first, size: fontSizes.first)! ]
+    let attributeTwo = [ NSAttributedStringKey.font: UIFont(name: fontNames.second, size: fontSizes.second)! ]
+    let attrLineOne = NSAttributedString(string: lineOne, attributes: attributeOne)
+    let attrLineTwo = NSAttributedString(string: lineTwo, attributes: attributeTwo)
+    twoLinesFormatted.append(color(attributedString: attrLineOne, color: fontColors.first))
+    twoLinesFormatted.append(color(attributedString: attrLineTwo, color: fontColors.second))
+    
+    return twoLinesFormatted
+}
+
+
+
+
 // Get the Event Object from a configureCell method
 // Returns an attributed string ordering the DJlist by isFollowed,
 // then by alphabetical order

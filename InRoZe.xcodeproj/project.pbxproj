@@ -186,7 +186,7 @@
 				A7B3E76B1FC6343300170C95 /* DJs */,
 				A76E72C61F7518700023D47F /* AddArtistViewController.swift */,
 				A76E72C81F7518CB0023D47F /* DJsSearchViewController.swift */,
-				A776760A1F26B9F600F1FA52 /* SettingsViewController.swift */,
+				A74866871FC9CB7E00674677 /* Settings */,
 				A7A24D511F3C405C00EFB82E /* Core Data */,
 				A77676121F26BF3100F1FA52 /* Helpers */,
 				A776760E1F26BE8A00F1FA52 /* Source */,
@@ -252,6 +252,22 @@
 				A73385151FBE506900E0C4C2 /* FollowsCell.swift */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		A74866871FC9CB7E00674677 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A74866881FC9CB9900674677 /* View Controllers */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		A74866881FC9CB9900674677 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A776760A1F26B9F600F1FA52 /* SettingsViewController.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		A7624B921F6AC7670050151E /* Resources */ = {
