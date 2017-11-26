@@ -89,6 +89,13 @@ extension UserDefaults {
         }
     }
     
+    // This gets the Nationality from the current CityCode
+    public var currentNationality: String {
+        get {
+            return nationalityFrom(countryCode: UserDefaults().currentCountryCode)
+        }
+    }
+    
     
     public var wasLaunchedOnce: Bool {
         get {

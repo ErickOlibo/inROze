@@ -206,6 +206,7 @@
                     <navigationItem key="navigationItem" title="Events" id="UfG-td-sgg"/>
                     <connections>
                         <outlet property="collectionView" destination="kh9-Uo-cgL" id="mzS-NR-NMx"/>
+                        <outlet property="myFollows" destination="IHa-Rn-To0" id="08z-3E-ggp"/>
                         <outlet property="tableHeaderView" destination="vK9-ev-iiC" id="eep-kf-FLV"/>
                     </connections>
                 </tableViewController>
@@ -416,7 +417,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="onQ-AG-C6Y">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H4f-lw-L8s" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="686.33333333333337"/>
@@ -1420,15 +1421,15 @@ Mixtapes</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="7Zm-6v-Bro" rowHeight="50" style="IBUITableViewCellStyleDefault" id="BKZ-Zw-i8Y">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" textLabel="7Zm-6v-Bro" rowHeight="50" style="IBUITableViewCellStyleDefault" id="BKZ-Zw-i8Y">
                                         <rect key="frame" x="0.0" y="461.33333333333337" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BKZ-Zw-i8Y" id="Oii-ad-Joe">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="49.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="362" height="49.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Missing DJ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Zm-6v-Bro">
-                                                    <rect key="frame" x="20" y="0.0" width="356" height="49.666666666666664"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Missing DJ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Zm-6v-Bro">
+                                                    <rect key="frame" x="20" y="0.0" width="342" height="49.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1436,6 +1437,7 @@ Mixtapes</string>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="0.82352941180000006" green="0.22352941179999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1549,7 +1551,7 @@ Mixtapes</string>
         <image name="img_Grey_DJcover_29" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ekP-bR-cTf"/>
-        <segue reference="CCz-K1-KF9"/>
+        <segue reference="amR-Kn-XsZ"/>
+        <segue reference="Bwf-dD-zDu"/>
     </inferredMetricsTieBreakers>
 </document>

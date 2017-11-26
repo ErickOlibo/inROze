@@ -39,6 +39,7 @@ class FollowsViewController: FetchedResultsTableViewController {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.view.backgroundColor = .white
+        
     }
     
     // ViewController Life Cycle
@@ -46,9 +47,8 @@ class FollowsViewController: FetchedResultsTableViewController {
         super.viewDidLoad()
         setupNavBar()
         navigationController?.navigationBar.isTranslucent = false
-        //updateUI()
         tableView.rowHeight = cellHeightForFollows
-        //tableView.separatorStyle = .none
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.separatorInset = UIEdgeInsetsMake(0, 70, 0, 30)
         tableView.reloadData()
 
@@ -57,7 +57,7 @@ class FollowsViewController: FetchedResultsTableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateUI()
-        
+        navigationItem.title = "Next in \(UserDefaults().currentCityName)"
         print("Follows")
     }
     

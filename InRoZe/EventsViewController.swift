@@ -25,6 +25,9 @@ class EventsViewController: FetchedResultsTableViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var tableHeaderView: UIView! // investigate the retain (weak/strong) and other potential memory issues
+    @IBOutlet weak var myFollows: UILabel!
+    
+    
     
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
         let request: NSFetchRequest<Event> = Event.fetchRequest()
@@ -58,6 +61,7 @@ class EventsViewController: FetchedResultsTableViewController {
         tableHeaderView.addBorder(toSide: .Bottom, withColor: headerBorderColor, andThickness: 0.333)
         updateUI()
         tableView.rowHeight = cellHeightForDJList
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -69,10 +73,22 @@ class EventsViewController: FetchedResultsTableViewController {
             UserDefaults().isLoginNow = false
         }
         
+        // set the labels with the correct Country name and City name
+        setOriginLabel()
+        
     }
     
     
     // Convenience Functions
+    private func setOriginLabel() {
+        let eventsInCity = "Events in \(UserDefaults().currentCityName)"
+        let myNationalityFollows = "My \(UserDefaults().currentNationality) Follows"
+        navigationItem.title = eventsInCity
+        myFollows.text = myNationalityFollows
+    }
+    
+    
+    
     private func orderArtists() {
         let followListArr = Array(followsList)
         

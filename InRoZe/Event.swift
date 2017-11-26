@@ -125,6 +125,8 @@ public class Event: NSManagedObject
                         event.name = name
                         if let eventText = eventInfo[FBEvent.description] as? String {
                             event.text = eventText
+                        } else {
+                            event.text = "No Description!"
                         }
                         
                         if let cover = eventInfo[FBEvent.cover] as? [String : Any],

@@ -56,6 +56,7 @@ class SettingsViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.view.backgroundColor = .white
         navigationItem.title = profile?.fullName ?? "Settings"
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         
     }
     

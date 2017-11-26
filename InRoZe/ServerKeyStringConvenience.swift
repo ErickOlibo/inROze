@@ -12,6 +12,10 @@ import Foundation
  * if labels are changing then update these structs
  */
 
+// NEED TO REWRITE ALL USING A CLASS OR Struct
+// Struct init with CityName, CityCode, CountryName, CountryCode, Nationality
+
+
 // URLs to connect to the Server
 public struct UrlFor {
     static let logInOut = "https://www.defkut.com/inroze/ServerRoze/users.php"
@@ -92,7 +96,6 @@ public struct CityName {
 }
 
 // CountryName keyString
-
 public struct CountryName {
     static let estonia = "Estonia"
     static let finland = "Finland"
@@ -102,6 +105,17 @@ public struct CountryName {
     static let none = "NONE"
 }
 
+
+// Nationality keyString
+public struct Nationality {
+    static let estonian = "Estonian"
+    static let finnish = "Finnish"
+    static let swedish = "Swedish"
+    static let latvian = "Latvian"
+    static let belgian = "Belgian"
+    static let none = "NONE"
+
+}
 
 
 // Session Type for taskForURLSeesion to Server
@@ -122,7 +136,7 @@ public struct RequestDate {
 
 
 public struct IntervalBetweenRequest {
-    static let toFacebook = TimeInterval(20 * 60 ) // 5 mins before new update from Facebook Graph API
+    static let toFacebook = TimeInterval(2 * 60 ) // 5 mins before new update from Facebook Graph API
     static let toServer = TimeInterval(1 * 60) // 1 min before collecting new eventIDS / Artist from server
     //static let toServerArtist = TimeInterval(2 * 60 * 60) // (1 min for test) 8 hours
 }
@@ -211,6 +225,28 @@ public func cityNameFrom(cityCode: String) -> String {
         
     }
 }
+
+
+public func nationalityFrom(countryCode: String) -> String {
+    switch countryCode.uppercased() {
+    case CountryCode.estonia:
+        return Nationality.estonian
+    case CountryCode.finland:
+        return Nationality.finnish
+    case CountryCode.sweden:
+        return Nationality.swedish
+    case CountryCode.latvia:
+        return Nationality.latvian
+    case CountryCode.belgium:
+        return Nationality.belgian
+    default:
+        return Nationality.none
+    }
+}
+
+
+
+
 
 
 public func timeZoneIdentifier(forCity city: City) -> String {

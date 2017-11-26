@@ -48,6 +48,7 @@ class DeejaysViewController: FetchedResultsTableViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchBar.tintColor = Colors.logoRed
         searchController.searchBar.returnKeyType = .done
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         
   
     }
