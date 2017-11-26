@@ -130,6 +130,8 @@ class SettingsViewController: UITableViewController {
         }
         let loginManager = LoginManager()
         loginManager.logOut()
+        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     private func handleMixtapes() {

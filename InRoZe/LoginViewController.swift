@@ -59,7 +59,6 @@ class LoginViewController: UIViewController {
             case .success( _,  _, _):
                 print("LOGIN SUCCESS")
                 // Get info about logged user and saved to Server as loggedIn
-                //let requestHandler = RequestHandler()
                 RequestHandler().requestUserInfo()
                 UserDefaults().isLoginNow = true
                 
@@ -184,11 +183,12 @@ class LoginViewController: UIViewController {
     @objc private func updateDatabase() {
         
         DispatchQueue.main.async { [unowned self] in
-            self.spinner.stopAnimating()
             
             // Perform Segue programmatically
             print("I SHOULD THEN PERFORM SEGUE: \(Thread.current)")
             self.performSegue(withIdentifier: "login view", sender: self)
+            self.spinner.stopAnimating()
+            self.foreGroundView.isHidden = true
             print("After SEGUE: \(Thread.current)")
         }
         
