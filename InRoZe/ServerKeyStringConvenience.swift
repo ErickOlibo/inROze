@@ -91,6 +91,17 @@ public struct CityName {
     
 }
 
+// CountryName keyString
+
+public struct CountryName {
+    static let estonia = "Estonia"
+    static let finland = "Finland"
+    static let sweden = "Sweden"
+    static let latvia = "Latvia"
+    static let belgium = "Belgium"
+    static let none = "NONE"
+}
+
 
 
 // Session Type for taskForURLSeesion to Server
@@ -140,6 +151,26 @@ public func countryCodeFrom(cityCode: String) -> String {
         return CountryCode.none
     }
 }
+
+public func countryNameFrom(cityCode: String) -> String {
+    
+    switch cityCode.uppercased() {
+    case CityCode.tallinn:
+        return CountryName.estonia
+    case CityCode.helsinki:
+        return CountryName.finland
+    case CityCode.stockholm:
+        return CountryName.sweden
+    case CityCode.riga:
+        return CountryName.latvia
+    case CityCode.brussels:
+        return CountryName.belgium
+        
+    default:
+        return CountryName.none
+    }
+}
+
 
 public func cityCodeFrom(cityName: String) -> String {
     switch cityName.lowercased() {

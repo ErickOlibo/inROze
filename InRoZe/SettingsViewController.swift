@@ -32,12 +32,19 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var numberMixtapesButton: UIButton!
     @IBOutlet weak var numberFollowsButton: UIButton!
     @IBOutlet weak var profileHolder: UIView!
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var currentCity: UILabel!
+    
+    
+    
     
     // View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        let headerBorderColor = UIColor.lightGray.cgColor
+        headerView.addBorder(toSide: .Bottom, withColor: headerBorderColor, andThickness: 0.333)
+        
         profileHolder.backgroundColor = .white
         profileHolder.layer.borderColor = Colors.logoRed.cgColor
         profileHolder.layer.borderWidth = 2.0
@@ -56,11 +63,17 @@ class SettingsViewController: UITableViewController {
         super.viewWillAppear(animated)
         print("Settings")
         setFollowsMix()
+        setCurrentCity()
 
     }
     
     
     // Covenience Methods
+    private func setCurrentCity() {
+        currentCity.text = UserDefaults().currentCityName
+    }
+    
+    
     private func setFollowsMix() {
         // From Core data later
         let numFollows = String(numbersFollowsAndMixtapes().0)

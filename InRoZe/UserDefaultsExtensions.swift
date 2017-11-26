@@ -51,6 +51,7 @@ extension UserDefaults {
       
     }
     
+    // This is a 3 letters City code, connected to Airport naming standard => Tallinn = TLN
     public var currentCityCode: String {
         get {
             return string(forKey: UserKeys.cityCode ) ?? "NONE" // none should only occur at the 1st launch
@@ -66,12 +67,28 @@ extension UserDefaults {
         }
     }
     
+    // This is the 2 letter Country code, connected to the internet Standard => Estonia = EE
     public var currentCountryCode: String {
         get {
             return string(forKey: UserKeys.countryCode ) ?? "EE" //always Tallinn as default cityCode
         }
         
     }
+    
+    // This get the current city name the user has selected
+    public var currentCityName: String {
+        get {
+            return cityNameFrom(cityCode: UserDefaults().currentCityCode)
+        }
+    }
+    
+    // This gets the current country name the user has the city selected
+    public var currentCountryName: String {
+        get {
+            return countryNameFrom(cityCode: UserDefaults().currentCityCode)
+        }
+    }
+    
     
     public var wasLaunchedOnce: Bool {
         get {
