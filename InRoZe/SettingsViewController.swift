@@ -58,6 +58,7 @@ class SettingsViewController: UITableViewController {
         navigationItem.title = profile?.fullName ?? "Settings"
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -155,6 +156,38 @@ class SettingsViewController: UITableViewController {
     private func handleFollows() {
         print("PRESSED -> handleFollows")
     }
+    
+    
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "About Inroze") {
+            guard let destination = segue.destination as? AboutViewController else { return }
+            destination.aboutURL = URL(string: UrlFor.aboutInroze)
+            destination.navigationItem.title = "InRoze"
+        }
+        
+        if (segue.identifier == "About Terms") {
+            guard let destination = segue.destination as? AboutViewController else { return }
+            destination.aboutURL = URL(string: UrlFor.aboutTerms)
+            destination.navigationItem.title = "Terms Of Use"
+        }
+
+        if (segue.identifier == "About Privacy") {
+            guard let destination = segue.destination as? AboutViewController else { return }
+            destination.aboutURL = URL(string: UrlFor.aboutPrivacy)
+            destination.navigationItem.title = "Privacy Policy"
+        }
+
+        if (segue.identifier == "About Sources") {
+            guard let destination = segue.destination as? AboutViewController else { return }
+            destination.aboutURL = URL(string: UrlFor.aboutSources)
+            destination.navigationItem.title = "Licenses"
+        }
+
+    }
+    
 
 }
 

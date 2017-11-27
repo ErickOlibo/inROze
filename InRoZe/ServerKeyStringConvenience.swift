@@ -21,6 +21,13 @@ public struct UrlFor {
     static let logInOut = "https://www.defkut.com/inroze/ServerRoze/users.php"
     static let currentEventsID = "https://www.defkut.com/inroze/ServerRoze/currentEvents.php"
     static let artistsTable = "https://www.defkut.com/inroze/ServerRoze/getArtistsList.php"
+    
+    // URL for About in the Setting section
+    static let aboutInroze = "https://www.pipedrive.com/en/about"
+    static let aboutTerms = "https://www.meetagainapp.com/terms_and_conditions.html"
+    static let aboutPrivacy = "https://www.pipedrive.com/en/privacy"
+    static let aboutSources = "https://www.pipedrive.com/en/terms-of-service"
+    
 }
 
 // Fields name from the Server Database Columns
@@ -136,7 +143,7 @@ public struct RequestDate {
 
 
 public struct IntervalBetweenRequest {
-    static let toFacebook = TimeInterval(2 * 60 ) // 5 mins before new update from Facebook Graph API
+    static let toFacebook = TimeInterval(20 * 60 ) // 5 mins before new update from Facebook Graph API
     static let toServer = TimeInterval(1 * 60) // 1 min before collecting new eventIDS / Artist from server
     //static let toServerArtist = TimeInterval(2 * 60 * 60) // (1 min for test) 8 hours
 }

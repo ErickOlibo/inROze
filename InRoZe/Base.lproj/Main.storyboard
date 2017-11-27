@@ -1459,6 +1459,9 @@ Mixtapes</string>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="swg-Yz-XHe" kind="show" identifier="About Inroze" id="bio-Fd-pA9"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="PFs-F7-4Ud" rowHeight="50" style="IBUITableViewCellStyleDefault" id="oeD-Mj-uWr">
                                         <rect key="frame" x="0.0" y="617.33333333333337" width="414" height="50"/>
@@ -1476,6 +1479,9 @@ Mixtapes</string>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="swg-Yz-XHe" kind="show" identifier="About Terms" id="U8r-Et-0uN"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ciT-xy-cA1" rowHeight="50" style="IBUITableViewCellStyleDefault" id="vUu-2L-kga">
                                         <rect key="frame" x="0.0" y="667.33333333333337" width="414" height="50"/>
@@ -1493,6 +1499,9 @@ Mixtapes</string>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="swg-Yz-XHe" kind="show" identifier="About Privacy" id="31V-VX-4wQ"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="TGB-nl-see" rowHeight="50" style="IBUITableViewCellStyleDefault" id="DJ6-mp-Mda">
                                         <rect key="frame" x="0.0" y="717.33333333333337" width="414" height="50"/>
@@ -1510,6 +1519,9 @@ Mixtapes</string>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="swg-Yz-XHe" kind="show" identifier="About Sources" id="I4I-cx-iH6"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1535,6 +1547,50 @@ Mixtapes</string>
             </objects>
             <point key="canvasLocation" x="90" y="2004"/>
         </scene>
+        <!--About View Controller-->
+        <scene sceneID="QdA-6U-YDE">
+            <objects>
+                <viewController id="swg-Yz-XHe" customClass="AboutViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LNe-vD-zRo"/>
+                        <viewControllerLayoutGuide type="bottom" id="9Lf-iJ-qwa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hyx-On-fQs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oKg-a4-pPe">
+                                <rect key="frame" x="0.0" y="64" width="414" height="623"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ZG4-X5-C5F">
+                                <rect key="frame" x="189" y="350" width="37" height="37"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="oKg-a4-pPe" secondAttribute="trailing" id="Mwd-yQ-73F"/>
+                            <constraint firstItem="oKg-a4-pPe" firstAttribute="top" secondItem="LNe-vD-zRo" secondAttribute="bottom" id="ax0-Dr-gQD"/>
+                            <constraint firstItem="oKg-a4-pPe" firstAttribute="leading" secondItem="Hyx-On-fQs" secondAttribute="leading" id="etQ-W4-HjL"/>
+                            <constraint firstItem="ZG4-X5-C5F" firstAttribute="centerX" secondItem="Hyx-On-fQs" secondAttribute="centerX" id="gI3-jT-7tP"/>
+                            <constraint firstItem="9Lf-iJ-qwa" firstAttribute="top" secondItem="oKg-a4-pPe" secondAttribute="bottom" id="lPt-9J-etB"/>
+                            <constraint firstItem="ZG4-X5-C5F" firstAttribute="centerY" secondItem="Hyx-On-fQs" secondAttribute="centerY" id="p7h-OG-0fx"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="spinner" destination="ZG4-X5-C5F" id="JP0-rZ-h4a"/>
+                        <outlet property="webView" destination="oKg-a4-pPe" id="Qrc-El-edU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9BH-XJ-ueC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="986.95652173913049" y="2003.8043478260872"/>
+        </scene>
     </scenes>
     <resources>
         <image name="1_Events" width="25" height="25"/>
@@ -1551,6 +1607,7 @@ Mixtapes</string>
         <image name="img_Grey_DJcover_29" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="31V-VX-4wQ"/>
         <segue reference="amR-Kn-XsZ"/>
         <segue reference="Bwf-dD-zDu"/>
     </inferredMetricsTieBreakers>
