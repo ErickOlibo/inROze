@@ -66,6 +66,19 @@ public func availableCities() -> [String] {
 }
 
 
+public func listAvaliableCities() -> [(String, Bool)] {
+    let list = availableCities()
+    let currentCity = UserDefaults().currentCityName
+    var listCitiesAndCurrent = [(String, Bool)]()
+    for city in list {
+        if city != currentCity {
+            listCitiesAndCurrent.append((city, false))
+        } else {
+            listCitiesAndCurrent.append((city, true))
+        }
+    }
+    return listCitiesAndCurrent
+}
 
 
 // cityCode requirement for loading right eventIDs

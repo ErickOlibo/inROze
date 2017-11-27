@@ -60,33 +60,33 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="90" id="FTg-gi-fFR"/>
                                     </constraints>
-                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2iN-YB-zeb">
-                                        <size key="itemSize" width="80" height="90"/>
+                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="5" id="2iN-YB-zeb">
+                                        <size key="itemSize" width="70" height="90"/>
                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                     </collectionViewFlowLayout>
                                     <cells>
                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EventDJNameCell" id="AYa-Rl-iHL" customClass="EventDJNameCell" customModule="InRoZe" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="80" height="90"/>
+                                            <rect key="frame" x="10" y="0.0" width="70" height="90"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                <rect key="frame" x="0.0" y="0.0" width="80" height="90"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="70" height="90"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jU5-yO-b55">
-                                                        <rect key="frame" x="10" y="0.0" width="60" height="60"/>
+                                                        <rect key="frame" x="5" y="0.0" width="60" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="60" id="0pg-OC-jMd"/>
                                                             <constraint firstAttribute="width" secondItem="jU5-yO-b55" secondAttribute="height" multiplier="1:1" id="5iQ-ZI-hdm"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uY-4Y-J3c">
-                                                        <rect key="frame" x="0.0" y="60" width="80" height="30"/>
+                                                        <rect key="frame" x="0.0" y="60" width="70" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="44c-L7-cBg"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="15"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="13"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -465,33 +465,33 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="90" id="LSb-1u-Fb0"/>
                                                 </constraints>
-                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="B1k-G8-f6e">
-                                                    <size key="itemSize" width="80" height="90"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="5" id="B1k-G8-f6e">
+                                                    <size key="itemSize" width="70" height="90"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EventInfoDJNameCell" id="1Wx-h9-NEg" customClass="EventInfoDJNameCell" customModule="InRoZe" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="80" height="90"/>
+                                                        <rect key="frame" x="10" y="0.0" width="70" height="90"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="90"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="70" height="90"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xc6-ZS-YLy">
-                                                                    <rect key="frame" x="10" y="0.0" width="60" height="60"/>
+                                                                    <rect key="frame" x="5" y="0.0" width="60" height="60"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="xc6-ZS-YLy" secondAttribute="height" multiplier="1:1" id="Iof-3d-u4y"/>
                                                                         <constraint firstAttribute="width" constant="60" id="OK7-fU-OUe"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="roA-36-Rhv">
-                                                                    <rect key="frame" x="0.0" y="60" width="80" height="30"/>
+                                                                    <rect key="frame" x="0.0" y="60" width="70" height="30"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="30" id="0Jm-oY-BRL"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="15"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="13"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -1364,6 +1364,9 @@ Mixtapes</string>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="RjJ-F7-cdW" kind="show" id="j31-q3-OeQ"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" textLabel="Hhh-Vt-ukk" rowHeight="50" style="IBUITableViewCellStyleDefault" id="Na1-XC-VJy" userLabel="Where is My City">
                                         <rect key="frame" x="0.0" y="255.33333333333334" width="414" height="50"/>
@@ -1589,7 +1592,35 @@ Mixtapes</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9BH-XJ-ueC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="986.95652173913049" y="2003.8043478260872"/>
+            <point key="canvasLocation" x="1412" y="2004"/>
+        </scene>
+        <!--Change City-->
+        <scene sceneID="zm9-Ll-ZEK">
+            <objects>
+                <tableViewController title="Change City" id="RjJ-F7-cdW" customClass="ChangeCityViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="7fH-JR-bAs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Change City Cell" id="xy4-ha-5st">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xy4-ha-5st" id="aa6-Xr-nfq">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="RjJ-F7-cdW" id="sUP-n5-qCG"/>
+                            <outlet property="delegate" destination="RjJ-F7-cdW" id="rjA-Rx-WFx"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S91-c6-KD2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1412" y="2711"/>
         </scene>
     </scenes>
     <resources>
@@ -1609,6 +1640,6 @@ Mixtapes</string>
     <inferredMetricsTieBreakers>
         <segue reference="31V-VX-4wQ"/>
         <segue reference="amR-Kn-XsZ"/>
-        <segue reference="Bwf-dD-zDu"/>
+        <segue reference="CCz-K1-KF9"/>
     </inferredMetricsTieBreakers>
 </document>

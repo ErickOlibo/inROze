@@ -121,6 +121,14 @@ class SettingsViewController: UITableViewController {
         signOutButton.setTitle("Sign Out", for: .normal)
         signOutButton.backgroundColor = .clear
         signOutButton.setTitleColor(Colors.logoRed, for: .normal)
+        signOutButton.setTitleColor(.lightGray, for: .highlighted)
+        signOutButton.layer.borderColor = Colors.logoRed.cgColor
+    }
+    
+    private func signOutTouched() {
+        signOutButton.setTitle("Sign Out", for: .normal)
+        signOutButton.backgroundColor = Colors.logoRed
+        signOutButton.setTitleColor(.white, for: .normal)
         signOutButton.layer.borderColor = Colors.logoRed.cgColor
     }
     
@@ -137,6 +145,7 @@ class SettingsViewController: UITableViewController {
     
     // Button touch inside handler
     private func handleSignOut() {
+        //signOutTouched()
         if (profile != nil) {
             let id = profile?.userId
             let parameter = "id=\(id!)"
@@ -146,6 +155,7 @@ class SettingsViewController: UITableViewController {
         let loginManager = LoginManager()
         loginManager.logOut()
         self.dismiss(animated: true, completion: nil)
+        // Animated: true might cause issues. if it does, change to false
         self.navigationController?.popToRootViewController(animated: true)
     }
     
@@ -158,16 +168,87 @@ class SettingsViewController: UITableViewController {
     }
     
     
+    // Trying the delegate from a statci cell
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("DID SELECT at IndexPath [Section : Row] -> [\(indexPath.section) : \(indexPath.row)]")
+        
+        // Cell pressed is Where is my city
+        let whereCityPath = IndexPath(row: 1, section: 0)
+        let missingDJPath = IndexPath(row: 2, section: 1)
+        if whereCityPath == indexPath { openMyCityAlert() }
+        if missingDJPath == indexPath { openMissingDJAlert()}
+        
+    }
+    
+    
+    // Covenience Methods
+    private func openMyCityAlert() {
+        let alert = UIAlertController(title: "Your City?",
+                                      message: "We are adding new Capital cities and large cities on a regular basis.\n\nVOTE for your city!",
+                                      preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action: UIAlertAction) -> Void in
+            alert.dismiss(animated: true, completion: nil)
+            print("Cancel pressed")
+        }
+        let ok = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction) -> Void in
+            alert.dismiss(animated: true, completion: nil)
+//            let textCityName = alert.textFields?[0]
+//            print("OK pressed - \(textCityName?.text!)")
+        }
+        
+        // add text field
+        alert.addTextField { (textField: UITextField) in
+            textField.placeholder = "City Name"
+            textField.textColor = Colors.logoRed
+        }
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    
+    private func openMissingDJAlert() {
+        let alert = UIAlertController(title: "Your Local DJ?",
+                                      message: "If you are or know a DJ that should appear in our app, let us know.\n\nSuggest a local DJ!",
+                                      preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action: UIAlertAction) -> Void in
+            alert.dismiss(animated: true, completion: nil)
+            print("Cancel pressed")
+        }
+        let ok = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction) -> Void in
+            alert.dismiss(animated: true, completion: nil)
+            //            let textCityName = alert.textFields?[0]
+            //            print("OK pressed - \(textCityName?.text!)")
+        }
+        
+        // add text field
+        alert.addTextField { (textField: UITextField) in
+            textField.placeholder = "Deejay's name"
+            textField.textColor = Colors.logoRed
+        }
+        alert.addTextField { (textField: UITextField) in
+            textField.placeholder = "His city"
+            textField.textColor = Colors.logoRed
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
     
     // MARK: - Navigation
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "About Inroze") {
             guard let destination = segue.destination as? AboutViewController else { return }
             destination.aboutURL = URL(string: UrlFor.aboutInroze)
             destination.navigationItem.title = "InRoze"
         }
-        
+
         if (segue.identifier == "About Terms") {
             guard let destination = segue.destination as? AboutViewController else { return }
             destination.aboutURL = URL(string: UrlFor.aboutTerms)
@@ -185,8 +266,10 @@ class SettingsViewController: UITableViewController {
             destination.aboutURL = URL(string: UrlFor.aboutSources)
             destination.navigationItem.title = "Licenses"
         }
+        
 
     }
+    
     
 
 }
