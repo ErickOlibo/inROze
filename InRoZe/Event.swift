@@ -123,11 +123,12 @@ public class Event: NSManagedObject
                         let sTime = eventInfo[FBEvent.startTime] as? String,
                         let uTime = eventInfo[FBEvent.updatedTime] as? String {
                         event.name = name
-                        if let eventText = eventInfo[FBEvent.description] as? String {
-                            event.text = eventText
-                        } else {
-                            event.text = "No Description!"
-                        }
+                        event.text = eventInfo[FBEvent.description] as? String ?? "No Description!"
+//                        if let eventText = eventInfo[FBEvent.description] as? String {
+//                            event.text = eventText
+//                        } else {
+//                            event.text = "No Description!"
+//                        }
                         
                         if let cover = eventInfo[FBEvent.cover] as? [String : Any],
                             let coverSource = cover[FBPhoto.source] as? String,
