@@ -104,6 +104,7 @@ public struct City {
 
 
 public var currentCity: City {
+    print("Cities -> CurrentCity: what's in UserDefault at 1st launch: ", UserDefaults().currentCityCode)
     let currentCityCodeType = cityCodeType(fromString: UserDefaults().currentCityCode)
     return cityInfo(forCode: currentCityCodeType)
 }
@@ -163,6 +164,7 @@ public func listCitiesInfo() -> [(name: String, code: String, cityInfo: City, cu
         if city.code != currentCity.code {
             listOfCities.append((name: city.name.rawValue, code: city.code.rawValue, cityInfo: city, current: false))
         } else {
+            
             listOfCities.append((name: city.name.rawValue, code: city.code.rawValue, cityInfo: city, current: true))
         }
     }

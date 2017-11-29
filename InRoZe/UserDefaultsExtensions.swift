@@ -70,45 +70,6 @@ extension UserDefaults {
             synchronize()
         }
     }
-    
-    
-//    
-//    
-//    
-//    //************************************************* DELETE
-//    // BELOW are a list of VAR that should be erased
-//    // This is the 2 letter Country code, connected to the internet Standard => Estonia = EE
-//    public var currentCountryCode: String {
-//        get {
-//            return string(forKey: UserKeys.countryCode ) ?? "EE" //always Tallinn as default cityCode
-//        }
-//        
-//    }
-//    
-//    // This get the current city name the user has selected
-//    public var currentCityName: String {
-//        get {
-//            return cityNameFrom(cityCode: UserDefaults().currentCityCode)
-//        }
-//    }
-//    
-//    // This gets the current country name the user has the city selected
-//    public var currentCountryName: String {
-//        get {
-//            return countryNameFrom(cityCode: UserDefaults().currentCityCode)
-//        }
-//    }
-//    
-//    // This gets the Nationality from the current CityCode
-//    public var currentNationality: String {
-//        get {
-//            return nationalityFrom(countryCode: UserDefaults().currentCountryCode)
-//        }
-//    }
-//    //*************************************************
-//    
-//    
-//    
 
     
 }

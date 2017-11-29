@@ -141,6 +141,11 @@ public class UIDropDown: UIControl {
         return true
     }
     
+    // Added Erick
+    public func willHideTable() {
+        hideTable()
+    }
+    
     fileprivate func setup() {
         
         title = UILabel(frame: CGRect(x: 0,

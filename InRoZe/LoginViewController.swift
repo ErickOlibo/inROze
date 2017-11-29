@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginTapped(_ sender: UIButton) {
         //hideUI(state: true)
-        
+        dropList.willHideTable()
         //spinner.color = Colors.logoRed
         self.view.bringSubview(toFront: foreGroundView)
         self.view.bringSubview(toFront: spinner)
@@ -77,9 +77,16 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         foreGroundView.isHidden = true
         foreGroundView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        print("currentCity: ", currentCity.name.rawValue)
+        print("viewDidLoad -> currentCity: ", currentCity.name.rawValue)
         // facebook button
         updateFacebookButtonState()
+        
+        // DropDown list setup
+        dropList = UIDropDown(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width * 0.6, height: dropListHeight))
+        dropList.tableHeight = 196
+        self.view.addSubview(dropList)
+        
+        print("login DID LOAD. Drop frame: \(dropList.frame)")
         
     }
     
@@ -90,7 +97,6 @@ class LoginViewController: UIViewController {
         
         // add a City background random
         cityBackground.image = randomCityBackground()
-        
         // Add Notification observer for after login fetch request to FB and Server
         NotificationCenter.default.addObserver(self, selector: #selector(updateDatabase), name: NSNotification.Name(rawValue: NotificationFor.initialLoginRequestIsDone), object: nil)
     }
@@ -105,16 +111,18 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         displayDropList()
+        print("login DID APPEAR. Drop frame: \(dropList.frame)")
     }
     
     private func displayDropList () {
         // Drop down list
-        dropList = UIDropDown(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width * 0.6, height: dropListHeight))
-        dropList.tableHeight = 196
         dropList.options = availableCities()
         let currentCityName = currentCity.name.rawValue
         let indexOfSelectedCity = availableCities().index(of: currentCityName)
-        dropList.selectedIdx = indexOfSelectedCity
+        if (UserDefaults().currentCityCode != "NONE") {
+            dropList.selectedIdx = indexOfSelectedCity
+        }
+        
         dropList.animationType = UIDropDownAnimationType(rawValue: 2)!
         dropList.hideOptionsWhenSelect = true
         let yPoint = logoImage.center.y + logoImage.bounds.size.height * 0.5 + spacingFromBottom + dropListHeight * 0.5
@@ -136,8 +144,6 @@ class LoginViewController: UIViewController {
             self.updateFacebookButtonState()
             
         }
-
-        self.view.addSubview(dropList)
         let dropListBottomY = dropList.center.y + dropList.frame.size.height * 0.5
         let facebookButtonTopY = facebookButton.center.y - facebookButton.frame.size.height * 0.5
         dropList.tableHeight = facebookButtonTopY - dropListBottomY - paddingToFacebookButtonTop
