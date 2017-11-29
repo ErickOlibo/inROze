@@ -16,13 +16,10 @@ class ChangeCityViewController: UITableViewController {
     var listOfCities = listCitiesInfo()
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         navigationController?.navigationBar.tintColor = Colors.logoRed
-        print(listOfCities)
-        
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

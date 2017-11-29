@@ -32,9 +32,6 @@ class LoginViewController: UIViewController {
         //spinner.color = Colors.logoRed
         self.view.bringSubview(toFront: foreGroundView)
         self.view.bringSubview(toFront: spinner)
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//            //self.foreGroundView.isHidden = false
-//        }
         foreGroundView.isHidden = false
         
         // Facebook login
@@ -80,7 +77,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         foreGroundView.isHidden = true
         foreGroundView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        print("currentCity: \(UserDefaults().currentCityCode)")
+        print("currentCity: ", currentCity.name.rawValue)
         // facebook button
         updateFacebookButtonState()
         

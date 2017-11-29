@@ -154,9 +154,9 @@ class SettingsViewController: UITableViewController {
         }
         let loginManager = LoginManager()
         loginManager.logOut()
-        self.dismiss(animated: true, completion: nil)
-        // Animated: true might cause issues. if it does, change to false
-        self.navigationController?.popToRootViewController(animated: true)
+//        self.dismiss(animated: true, completion: nil)
+//        // Animated: true might cause issues. if it does, change to false
+//        self.navigationController?.popToRootViewController(animated: true)
     }
     
     private func handleMixtapes() {
@@ -170,7 +170,6 @@ class SettingsViewController: UITableViewController {
     
     // Trying the delegate from a statci cell
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("DID SELECT at IndexPath [Section : Row] -> [\(indexPath.section) : \(indexPath.row)]")
         
         // Cell pressed is Where is my city
         let whereCityPath = IndexPath(row: 1, section: 0)
@@ -267,6 +266,13 @@ class SettingsViewController: UITableViewController {
             destination.navigationItem.title = "Licenses"
         }
         
+        if (segue.identifier == "Settings To Login") {
+            guard let _ = segue.destination as? LoginViewController else { return }
+            print("Here From Settings To Login")
+            self.dismiss(animated: true, completion: nil)
+            self.navigationController?.popToRootViewController(animated: true)
+            
+        }
 
     }
     
