@@ -25,10 +25,12 @@ class LoginViewController: UIViewController {
     let spacingFromBottom: CGFloat = 20
     let dropListHeight: CGFloat = 40
     let paddingToFacebookButtonTop: CGFloat = 10 // calculated number
+    var isdroppedDown = false
     
     @IBAction func loginTapped(_ sender: UIButton) {
         //hideUI(state: true)
-        dropList.willHideTable()
+        if isdroppedDown { dropList.willHideTable() }
+        //dropList.willHideTable() // <--- ISSUE of nil
         //spinner.color = Colors.logoRed
         self.view.bringSubview(toFront: foreGroundView)
         self.view.bringSubview(toFront: spinner)
@@ -112,6 +114,10 @@ class LoginViewController: UIViewController {
         super.viewDidAppear(animated)
         displayDropList()
         print("login DID APPEAR. Drop frame: \(dropList.frame)")
+        dropList.tableDidAppear { self.isdroppedDown = true }
+        dropList.tableDidDisappear  { self.isdroppedDown = false }
+        
+        
     }
     
     private func displayDropList () {
