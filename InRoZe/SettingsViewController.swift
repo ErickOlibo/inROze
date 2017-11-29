@@ -33,7 +33,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var numberFollowsButton: UIButton!
     @IBOutlet weak var profileHolder: UIView!
     @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var currentCity: UILabel!
+    @IBOutlet weak var currentSettingsCity: UILabel!
     
     
     
@@ -72,7 +72,7 @@ class SettingsViewController: UITableViewController {
     
     // Covenience Methods
     private func setCurrentCity() {
-        currentCity.text = UserDefaults().currentCityName
+        currentSettingsCity.text = currentCity.name.rawValue
     }
     
     

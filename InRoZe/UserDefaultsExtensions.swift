@@ -48,7 +48,15 @@ extension UserDefaults {
             print("[UserDefaultsExtension] - isDateSet: FALSE")
             return false
         }
-      
+    }
+    
+    public var isLoggedIn: Bool {
+        get {
+            return bool(forKey: UserKeys.isLoggedIn)
+        }
+        set {
+            set(newValue, forKey: UserKeys.isLoggedIn)
+        }
     }
     
     // This is a 3 letters City code, connected to Airport naming standard => Tallinn = TLN
@@ -59,87 +67,62 @@ extension UserDefaults {
         set {
             print("[UserDefaultsExtension] - New CityCode: \(newValue)")
             set(newValue, forKey: UserKeys.cityCode)
-            
-            // set the currentCountryCode accordingly 
-            let countryCode = countryCodeFrom(cityCode: newValue)
-            set(countryCode, forKey: UserKeys.countryCode)
             synchronize()
         }
     }
     
-    // This is the 2 letter Country code, connected to the internet Standard => Estonia = EE
-    public var currentCountryCode: String {
-        get {
-            return string(forKey: UserKeys.countryCode ) ?? "EE" //always Tallinn as default cityCode
-        }
-        
-    }
     
-    // This get the current city name the user has selected
-    public var currentCityName: String {
-        get {
-            return cityNameFrom(cityCode: UserDefaults().currentCityCode)
-        }
-    }
-    
-    // This gets the current country name the user has the city selected
-    public var currentCountryName: String {
-        get {
-            return countryNameFrom(cityCode: UserDefaults().currentCityCode)
-        }
-    }
-    
-    // This gets the Nationality from the current CityCode
-    public var currentNationality: String {
-        get {
-            return nationalityFrom(countryCode: UserDefaults().currentCountryCode)
-        }
-    }
-    
-    
-    public var wasLaunchedOnce: Bool {
-        get {
-            print("UserDefaultExtensions isFirstLaunch is GET")
-            return bool(forKey: User.launchedAlready)
-        }
-        set {
-            set(newValue, forKey: User.launchedAlready)
-        }
-        
-    }
-    
-    public var isLoginNow: Bool {
-        get {
-            return bool(forKey: User.isLoginNow)
-        }
-        set {
-            set(newValue, forKey: User.isLoginNow)
-        }
-        
-    }
-    
-    enum Keys: String {
-        case isLoggedIn
-    }
-    
-    func setIsLoggedIn(value: Bool) {
-        set(value, forKey: Keys.isLoggedIn.rawValue)
-        synchronize()
-    }
-    
-    func isLoggedIn() -> Bool {
-        return bool(forKey: Keys.isLoggedIn.rawValue)
-    }
-    
+//    
+//    
+//    
+//    //************************************************* DELETE
+//    // BELOW are a list of VAR that should be erased
+//    // This is the 2 letter Country code, connected to the internet Standard => Estonia = EE
+//    public var currentCountryCode: String {
+//        get {
+//            return string(forKey: UserKeys.countryCode ) ?? "EE" //always Tallinn as default cityCode
+//        }
+//        
+//    }
+//    
+//    // This get the current city name the user has selected
+//    public var currentCityName: String {
+//        get {
+//            return cityNameFrom(cityCode: UserDefaults().currentCityCode)
+//        }
+//    }
+//    
+//    // This gets the current country name the user has the city selected
+//    public var currentCountryName: String {
+//        get {
+//            return countryNameFrom(cityCode: UserDefaults().currentCityCode)
+//        }
+//    }
+//    
+//    // This gets the Nationality from the current CityCode
+//    public var currentNationality: String {
+//        get {
+//            return nationalityFrom(countryCode: UserDefaults().currentCountryCode)
+//        }
+//    }
+//    //*************************************************
+//    
+//    
+//    
+
     
 }
 
-// private struct for userdefaults only
-private struct User {
-    static let launchedAlready = "launchedAlready"
+
+
+// private struct for UserDefaults only
+public struct UserKeys {
+    static let cityCode = "cityCode"
+    static let countryCode = "countryCode"
     static let isLoginNow = "isLoginNow"
+    static let isLoggedIn = "isLoggedIn"
+    
 }
-
 
 
 

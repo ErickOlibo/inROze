@@ -60,24 +60,11 @@ class LoginViewController: UIViewController {
                 print("LOGIN SUCCESS")
                 // Get info about logged user and saved to Server as loggedIn
                 RequestHandler().requestUserInfo()
-                UserDefaults().isLoginNow = true
+                UserDefaults().isLoggedIn = true
                 
                 UserProfile.loadCurrent{ profile in
-                    
                     RequestHandler().fetchEventIDsFromServer()
-                    
-                    // if is the first time app is launched
-//                    let wasLaunchedOnce = UserDefaults().wasLaunchedOnce
-//                    print("Was Launched Once: \(wasLaunchedOnce)")
-//                    if (!wasLaunchedOnce) {
-//                        print("First time launch Here")
-//                        UserDefaults().wasLaunchedOnce = true
-//                        RequestHandler().fetchEventIDsFromServer()
-//                    } else {
-//                        print("AFTER 2nd Time launch")
-//                        RequestHandler().fetchEventIDsFromServer()
-//                        //self?.updateDatabase()
-//                    }
+
                 }
             }
         }
@@ -128,7 +115,7 @@ class LoginViewController: UIViewController {
         dropList = UIDropDown(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width * 0.6, height: dropListHeight))
         dropList.tableHeight = 196
         dropList.options = availableCities()
-        let currentCityName = cityNameFrom(cityCode: UserDefaults().currentCityCode)
+        let currentCityName = currentCity.name.rawValue
         let indexOfSelectedCity = availableCities().index(of: currentCityName)
         dropList.selectedIdx = indexOfSelectedCity
         dropList.animationType = UIDropDownAnimationType(rawValue: 2)!
@@ -136,14 +123,19 @@ class LoginViewController: UIViewController {
         let yPoint = logoImage.center.y + logoImage.bounds.size.height * 0.5 + spacingFromBottom + dropListHeight * 0.5
         dropList.center = CGPoint(x: self.view.bounds.size.width * 0.5, y: yPoint)
         
-        if (UserDefaults().currentCityCode != CityCode.none) {
+        if (UserDefaults.standard.object(forKey: UserKeys.cityCode) != nil) {
             dropList.placeholder = currentCityName
         } else {
             dropList.placeholder = "Select a City..."
         }
         dropList.didSelect {(city, index)  in
-            UserDefaults().currentCityCode = cityCodeFrom(cityName: city)
-            print("Selected City: \(city) at cityCode: \(cityCodeFrom(cityName: city))")
+            let listCities = listCitiesInfo()
+            let index = listCities.index(where: { $0.name == city })
+            guard let idx = index else { return }
+            let newCity = listCities[idx]
+            
+            UserDefaults().currentCityCode = newCity.code
+            print("Selected City: \(city) at cityCode: \(newCity.code)")
             self.updateFacebookButtonState()
             
         }
@@ -158,7 +150,7 @@ class LoginViewController: UIViewController {
     
     // enable or disable the facebook button depending on City selected
     private func updateFacebookButtonState() {
-        if (UserDefaults().currentCityCode != CityCode.none) {
+        if (UserDefaults.standard.object(forKey: UserKeys.cityCode) != nil) {
             facebookButton.isEnabled = true
             facebookButton.backgroundColor = .clear
             facebookButton.layer.borderWidth = 3

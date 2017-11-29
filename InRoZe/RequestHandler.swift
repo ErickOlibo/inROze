@@ -28,9 +28,9 @@ public class RequestHandler
         let userDefault = UserDefaults()
         // Conditions of execution
         if (!userDefault.isDateSet(for: RequestDate.toServer)) ||
-            userDefault.hasEnoughTimeElapsed(since: RequestDate.toServer) || UserDefaults().isLoginNow {
+            userDefault.hasEnoughTimeElapsed(since: RequestDate.toServer) || userDefault.isLoggedIn {
             if let userID = AccessToken.current?.userId {
-                let params = "id=\(userID)&cityCode=\(userDefault.currentCityCode)&countryCode=\(userDefault.currentCountryCode)"
+                let params = "id=\(userID)&cityCode=\(currentCity.code.rawValue)&countryCode=\(currentCity.countryCode.rawValue)"
                 let request = ServerRequest()
                 request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
             }
@@ -45,7 +45,7 @@ public class RequestHandler
         let userDefault = UserDefaults()
         // Conditions of execution
         if (!userDefault.isDateSet(for: RequestDate.toFacebook)) ||
-            userDefault.hasEnoughTimeElapsed(since: RequestDate.toFacebook) || UserDefaults().isLoginNow {
+            userDefault.hasEnoughTimeElapsed(since: RequestDate.toFacebook) || userDefault.isLoggedIn {
             //print("Fetch Events Info From Facebook")
             FacebookRequest().collectEventIDsFromCoreData()
             

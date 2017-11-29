@@ -1536,7 +1536,7 @@ Mixtapes</string>
                     </tableView>
                     <navigationItem key="navigationItem" id="X5a-Sd-wQq"/>
                     <connections>
-                        <outlet property="currentCity" destination="d2A-6l-g1j" id="quo-9w-kB4"/>
+                        <outlet property="currentSettingsCity" destination="d2A-6l-g1j" id="L1Q-mV-4v5"/>
                         <outlet property="headerView" destination="gZC-nO-x6F" id="Cof-fJ-N93"/>
                         <outlet property="numberFollowsButton" destination="d4x-R4-xxJ" id="F99-3j-Upm"/>
                         <outlet property="numberMixtapesButton" destination="LIh-PG-Wdb" id="GP3-EF-n3h"/>

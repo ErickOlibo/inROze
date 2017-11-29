@@ -67,10 +67,10 @@ class EventsViewController: FetchedResultsTableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateUI()
-        if (!UserDefaults().isLoginNow) {
+        if (!UserDefaults().isLoggedIn) {
             RequestHandler().fetchEventIDsFromServer()
         } else {
-            UserDefaults().isLoginNow = false
+            UserDefaults().isLoggedIn = false
         }
         
         // set the labels with the correct Country name and City name
@@ -81,8 +81,8 @@ class EventsViewController: FetchedResultsTableViewController {
     
     // Convenience Functions
     private func setOriginLabel() {
-        let eventsInCity = "Events in \(UserDefaults().currentCityName)"
-        let myNationalityFollows = "My \(UserDefaults().currentNationality) Follows"
+        let eventsInCity = "Events in \(currentCity.name.rawValue)"
+        let myNationalityFollows = "My \(currentCity.nationality.rawValue) Follows"
         navigationItem.title = eventsInCity
         myFollows.text = myNationalityFollows
     }

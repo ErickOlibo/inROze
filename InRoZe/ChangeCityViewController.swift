@@ -12,8 +12,8 @@ class ChangeCityViewController: UITableViewController {
 
     
     // Properties
-    let listCities = availableCities()
-    var citiesListBool = listAvaliableCities()
+    //let listCities = availableCities()
+    var listOfCities = listCitiesInfo()
     
     
     
@@ -21,20 +21,21 @@ class ChangeCityViewController: UITableViewController {
         super.viewDidLoad()
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         navigationController?.navigationBar.tintColor = Colors.logoRed
+        print(listOfCities)
         
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return citiesListBool.count
+        return listOfCities.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Change City Cell", for: indexPath)
         cell.selectionStyle = .none
-        cell.textLabel?.text = citiesListBool[indexPath.row].0
-        cell.accessoryType = citiesListBool[indexPath.row].1 ? .checkmark : .none
+        cell.textLabel?.text = listOfCities[indexPath.row].name
+        cell.accessoryType = listOfCities[indexPath.row].current ? .checkmark : .none
         return cell
     }
     
@@ -42,13 +43,12 @@ class ChangeCityViewController: UITableViewController {
         if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.none {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
             
-            let newCurrentCity = citiesListBool[indexPath.row].0
-            let newCityCode = cityCodeFrom(cityName: newCurrentCity)
+            let newCityCode = listOfCities[indexPath.row].code
             UserDefaults().currentCityCode = newCityCode
-            for index in 0..<citiesListBool.count {
-                citiesListBool[index].1 = false
+            for index in 0..<listOfCities.count {
+                listOfCities[index].current = false
             }
-            citiesListBool[indexPath.row].1 = true
+            listOfCities[indexPath.row].current = true
             tableView.reloadData()
         }
     }

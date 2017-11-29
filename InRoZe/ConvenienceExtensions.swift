@@ -25,14 +25,10 @@ extension Dictionary {
 extension Date {
     func split(this date: Date) -> (hour: String, day: String, num: String, month: String)
     {
-        // FIX THIS
-        let cityCode = UserDefaults().currentCityCode
-        let cityName = cityNameFrom(cityCode: cityCode)
-        
-        let locale = convertToTypeCity(fromCityName: cityName)
+
         let newFormatter = DateFormatter()
         // To make this one in relation to the City chosen
-        newFormatter.timeZone = TimeZone(identifier: timeZoneIdentifier(forCity: locale))!
+        newFormatter.timeZone = TimeZone(identifier: currentCity.timeZone.rawValue)!
         
         newFormatter.dateFormat = "d"
         let splitNum = newFormatter.string(from: date)
