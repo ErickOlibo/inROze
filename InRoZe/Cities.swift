@@ -46,7 +46,7 @@ public extension EnumCollection {
 
 // Enumeration of code and name for the City switch from the app
 public enum CityCode: String, EnumCollection {
-    case HKI, RIG, STO, TLN, BRU, PAR
+    case HKI, STO, TLN, BRU, PAR
 }
 
 // This is the function that needs constant Syncing with
@@ -55,8 +55,6 @@ public func cityCodeType(fromString code: String) -> CityCode {
     switch code {
     case CityCode.HKI.rawValue:
         return .HKI
-    case CityCode.RIG.rawValue:
-        return .RIG
     case CityCode.STO.rawValue:
         return .STO
     case CityCode.TLN.rawValue:
@@ -71,24 +69,23 @@ public func cityCodeType(fromString code: String) -> CityCode {
 }
 
 public enum CityName: String, EnumCollection {
-    case Helsinki, Riga, Stockholm, Tallinn, Brussels, Paris
+    case Helsinki, Stockholm, Tallinn, Brussels, Paris
 }
 
 public enum CountryName: String, EnumCollection {
-    case Finland, Latvia, Sweden, Estonia, Belgium, France
+    case Finland, Sweden, Estonia, Belgium, France
 }
 
 public enum CountryCode: String, EnumCollection {
-    case FI, LV, SE, EE, BE, FR
+    case FI, SE, EE, BE, FR
 }
 
 public enum Nationality: String, EnumCollection {
-    case Finnish, Latvian, Swedish, Estonian, Belgian, French
+    case Finnish, Swedish, Estonian, Belgian, French
 }
 
 public enum LocalTimeZone: String, EnumCollection {
     case Helsinki = "Europe/Helsinki"
-    case Riga = "Europe/Riga"
     case Stockholm = "Europe/Stockholm"
     case Tallinn = "Europe/Tallinn"
     case Brussels = "Europe/Brussels"
@@ -118,8 +115,6 @@ public func cityInfo (forCode: CityCode) -> City {
     switch forCode {
     case .HKI:
         return City(name: .Helsinki, code: .HKI, countryName: .Finland, countryCode: .FI, nationality: .Finnish, timeZone: .Helsinki)
-    case .RIG:
-        return City(name: .Riga, code: .RIG, countryName: .Latvia, countryCode: .LV, nationality: .Latvian, timeZone: .Riga)
     case .STO:
         return City(name: .Stockholm, code: .STO, countryName: .Sweden, countryCode: .SE, nationality: .Swedish, timeZone: .Stockholm)
     case .TLN:
