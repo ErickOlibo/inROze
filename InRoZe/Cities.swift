@@ -46,7 +46,7 @@ public extension EnumCollection {
 
 // Enumeration of code and name for the City switch from the app
 public enum CityCode: String, EnumCollection {
-    case HKI, RIG, STO, TLN, BRU
+    case HKI, RIG, STO, TLN, BRU, PAR
 }
 
 // This is the function that needs constant Syncing with
@@ -63,25 +63,27 @@ public func cityCodeType(fromString code: String) -> CityCode {
         return .TLN
     case CityCode.BRU.rawValue:
         return .BRU
+    case CityCode.PAR.rawValue:
+        return .PAR
     default:
         return .TLN
     }
 }
 
 public enum CityName: String, EnumCollection {
-    case Helsinki, Riga, Stockholm, Tallinn, Brussels
+    case Helsinki, Riga, Stockholm, Tallinn, Brussels, Paris
 }
 
 public enum CountryName: String, EnumCollection {
-    case Finland, Latvia, Sweden, Estonia, Belgium
+    case Finland, Latvia, Sweden, Estonia, Belgium, France
 }
 
 public enum CountryCode: String, EnumCollection {
-    case FI, LV, SE, EE, BE
+    case FI, LV, SE, EE, BE, FR
 }
 
 public enum Nationality: String, EnumCollection {
-    case Finnish, Latvian, Swedish, Estonian, Belgian
+    case Finnish, Latvian, Swedish, Estonian, Belgian, French
 }
 
 public enum LocalTimeZone: String, EnumCollection {
@@ -90,6 +92,7 @@ public enum LocalTimeZone: String, EnumCollection {
     case Stockholm = "Europe/Stockholm"
     case Tallinn = "Europe/Tallinn"
     case Brussels = "Europe/Brussels"
+    case Paris = "Europe/Paris"
 }
 
 
@@ -123,6 +126,8 @@ public func cityInfo (forCode: CityCode) -> City {
         return City(name: .Tallinn, code: .TLN, countryName: .Estonia, countryCode: .EE, nationality: .Estonian, timeZone: .Tallinn)
     case .BRU:
         return City(name: .Brussels, code: .BRU, countryName: .Belgium, countryCode: .BE, nationality: .Belgian, timeZone: .Brussels)
+    case .PAR:
+        return City(name: .Paris, code: .PAR, countryName: .France, countryCode: .FR, nationality: .French, timeZone: .Paris)
     }
 }
 
