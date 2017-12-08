@@ -20,7 +20,6 @@ import Foundation
 public struct UrlFor {
     static let logInOut = "https://www.defkut.com/inroze/ServerRoze/users.php"
     static let currentEventsID = "https://www.defkut.com/inroze/ServerRoze/currentEvents.php"
-    static let artistsTable = "https://www.defkut.com/inroze/ServerRoze/getArtistsList.php"
     
     // URL for About in the Setting section
     static let aboutInroze = "https://www.pipedrive.com/en/about"
