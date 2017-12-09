@@ -54,12 +54,13 @@ public class ServerRequest
             guard let data = data else {
                 return
             }
+
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any] {
                     if (isEventFetch) {
                         // check if there is no error
                         if let errorType = json[DBLabels.errorType] as! Bool?, !errorType {
-                            //print("[ServerRequest] - There is an error from server response: \(errorType)")
+                            print("[ServerRequest] - There is an error from server response: \(errorType)")
                             
                             if (json[DBLabels.rows]! as! Int > 0) {
                                 self.result = json
@@ -69,7 +70,7 @@ public class ServerRequest
                             
                         }
                     } else {
-                        print(json)
+                        //print(json)
                     }
                 }
             } catch {
@@ -80,6 +81,9 @@ public class ServerRequest
     }
     
     
+    private func printString(str: String) {
+        print(str)
+    }
     
     // print artist list
     private func updateArtistsDatabase(with jsonDict: [String : Any], in context: NSManagedObjectContext) {

@@ -104,7 +104,7 @@ public struct City {
 
 
 public var currentCity: City {
-    print("Cities -> CurrentCity: what's in UserDefault at 1st launch: ", UserDefaults().currentCityCode)
+    //print("Cities -> CurrentCity: what's in UserDefault at 1st launch: ", UserDefaults().currentCityCode)
     let currentCityCodeType = cityCodeType(fromString: UserDefaults().currentCityCode)
     return cityInfo(forCode: currentCityCodeType)
 }
