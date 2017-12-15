@@ -46,7 +46,6 @@
 		A7B3E7681FC6334F00170C95 /* DeejaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B3E7671FC6334F00170C95 /* DeejaysViewController.swift */; };
 		A7B3E76A1FC633E400170C95 /* DeejaysTableView+NSFetchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B3E7691FC633E400170C95 /* DeejaysTableView+NSFetchResultsController.swift */; };
 		A7B3E76F1FC63D9B00170C95 /* DJsSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B3E76E1FC63D9B00170C95 /* DJsSearchCell.swift */; };
-		A7CE831C1FA0AB1C00F2B4F1 /* DJNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE831B1FA0AB1C00F2B4F1 /* DJNameView.swift */; };
 		A7D1CDC81F81D0CF003513F8 /* EventDeejayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */; };
 		A7D4D2A61F51913C00546341 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4D2A51F51913C00546341 /* Artist.swift */; };
 		A7DDF2161FC47DDE001F8418 /* FollowsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DDF2151FC47DDE001F8418 /* FollowsHeaderCell.swift */; };
@@ -106,7 +105,6 @@
 		A7B3E7671FC6334F00170C95 /* DeejaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeejaysViewController.swift; sourceTree = "<group>"; };
 		A7B3E7691FC633E400170C95 /* DeejaysTableView+NSFetchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeejaysTableView+NSFetchResultsController.swift"; sourceTree = "<group>"; };
 		A7B3E76E1FC63D9B00170C95 /* DJsSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJsSearchCell.swift; sourceTree = "<group>"; };
-		A7CE831B1FA0AB1C00F2B4F1 /* DJNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJNameView.swift; sourceTree = "<group>"; };
 		A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDeejayCell.swift; sourceTree = "<group>"; };
 		A7D4D2A51F51913C00546341 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		A7DDF2151FC47DDE001F8418 /* FollowsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowsHeaderCell.swift; sourceTree = "<group>"; };
@@ -188,7 +186,6 @@
 				A7EC36861F365AA900548C11 /* TabBarViewController.swift */,
 				A72B79311F2231AF009FB389 /* Main.storyboard */,
 				A76E72D11F75776C0023D47F /* FetchedResultsTableViewController.swift */,
-				A7CE831D1FA0AB3200F2B4F1 /* DJ Name */,
 				A733850D1FBB954C00E0C4C2 /* Events */,
 				A73385111FBE49C800E0C4C2 /* Follows */,
 				A7B3E76B1FC6343300170C95 /* DJs */,
@@ -383,14 +380,6 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
-		A7CE831D1FA0AB3200F2B4F1 /* DJ Name */ = {
-			isa = PBXGroup;
-			children = (
-				A7CE831B1FA0AB1C00F2B4F1 /* DJNameView.swift */,
-			);
-			name = "DJ Name";
-			sourceTree = "<group>";
-		};
 		A7E03D9C1F71D835000095BD /* UIDropDown */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,7 +560,6 @@
 				A7D1CDC81F81D0CF003513F8 /* EventDeejayCell.swift in Sources */,
 				A76E72D21F75776C0023D47F /* FetchedResultsTableViewController.swift in Sources */,
 				A733850F1FBCA4BD00E0C4C2 /* EventInfoDJNameCell.swift in Sources */,
-				A7CE831C1FA0AB1C00F2B4F1 /* DJNameView.swift in Sources */,
 				A7B3E76F1FC63D9B00170C95 /* DJsSearchCell.swift in Sources */,
 				A7E03D9B1F71D820000095BD /* UIDropDown.swift in Sources */,
 				A76E72C91F7518CB0023D47F /* DJsSearchViewController.swift in Sources */,

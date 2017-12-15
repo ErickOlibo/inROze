@@ -12,7 +12,6 @@ import CoreData
 class DeejayGigsTableViewController: FetchedResultsTableViewController {
     
     // Core Data model container and context
-    //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     
     // outlets
@@ -132,7 +131,6 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     
     private func updateFollowedButton() {
         // Update profile
-        //djProfileImage.image = UIImage(named: profileImageForDJ(with: artist!.id!, when: artist!.isFollowed))
         if (artist!.isFollowed) {
             navigationItem.rightBarButtonItem?.image = (UIImage(named: "2_FollowsFilled")?.withRenderingMode(.alwaysTemplate))!
             navigationItem.rightBarButtonItem?.tintColor = Colors.logoRed
@@ -140,8 +138,6 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
             followButton.backgroundColor = Colors.logoRed
             followButton.setTitleColor(.white, for: .normal)
             followButton.layer.borderColor = Colors.logoRed.cgColor
-            
-            
         } else {
             navigationItem.rightBarButtonItem?.image = (UIImage(named: "2_Follows")?.withRenderingMode(.alwaysTemplate))!
             navigationItem.rightBarButtonItem?.tintColor = .lightGray
@@ -153,7 +149,6 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     }
     
     private func updateUI() {
-        //print("Artist was set ID: [\(artist!.id!)]")
         if let context = container?.viewContext {
             context.perform {
                 self.gigsList = Artist.findPerformingEvents(for: self.artist!, in: context)
@@ -169,12 +164,10 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return gigsList?.count ?? 0
     }
     

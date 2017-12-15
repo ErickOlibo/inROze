@@ -17,7 +17,6 @@ import UIKit
 // 3) The Default URL if above are null
 
 public func preferedProfilePictureURL(for artist: Artist) -> String? {
-    print("INSIDE preferedProfilePictureURL")
 
     if let mixURL = artist.picMixURL { return mixURL }
     if let fbURL = artist.picFbURL { return fbURL }
@@ -111,16 +110,6 @@ public func deejaysListAttributed(for event: Event) -> NSAttributedString {
         }
     }
     return combinedAttributedText
-}
-
-
-// manage the colors and image for Deejay's profile pic
-// Deejays prifies are determin by the last 2 digits of their
-// respective ID
-public func profileImageForDJ(with id: String, when isFollowed: Bool) -> String {
-    let lastTwo = id.suffix(2)
-    let colorOrGrey = (isFollowed) ? "img_Color_DJcover_" : "img_Grey_DJcover_"
-    return colorOrGrey + lastTwo
 }
 
 
