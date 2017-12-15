@@ -53,6 +53,20 @@ public struct DBLabels {
     static let artistPicMixURL = "pic_url"
     static let artistPicDefaultURL = "default_pic_url"
     
+    // for the Mixtape fields from Server
+    static let mixID = "mix_id"
+    static let mixCoverURL = "cover_url"
+    static let mixName = "name"
+    static let mixLength = "length"
+    static let mixCreatedTime = "created_time"
+    static let mixURL = "mix_url"
+    static let mixTag1 = "tag_1"
+    static let mixTag2 = "tag_2"
+    static let mixTag3 = "tag_3"
+    static let mixTag4 = "tag_4"
+    static let mixTag5 = "tag_5"
+    static let mixIsActive = "is_active"
+    
 }
 
 

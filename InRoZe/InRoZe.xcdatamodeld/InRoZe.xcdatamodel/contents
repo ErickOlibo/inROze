@@ -11,6 +11,7 @@
         <attribute name="picMixURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="gigs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="performers" inverseEntity="Event" syncable="YES"/>
+        <relationship name="mixes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Mixtape" inverseName="deejay" inverseEntity="Mixtape" syncable="YES"/>
     </entity>
     <entity name="Event" representedClassName=".Event" syncable="YES" codeGenerationType="category">
         <attribute name="background" optional="YES" attributeType="String" syncable="YES"/>
@@ -32,6 +33,22 @@
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="events" inverseEntity="Place" syncable="YES"/>
         <relationship name="performers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Artist" inverseName="gigs" inverseEntity="Artist" syncable="YES"/>
     </entity>
+    <entity name="Mixtape" representedClassName=".Mixtape" syncable="YES" codeGenerationType="category">
+        <attribute name="coverURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isActive" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isFollowed" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="length" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="mixURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tag1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tag2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tag3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tag4" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tag5" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="deejay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Artist" inverseName="mixes" inverseEntity="Artist" syncable="YES"/>
+    </entity>
     <entity name="Place" representedClassName=".Place" syncable="YES" codeGenerationType="category">
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
@@ -46,8 +63,9 @@
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="location" inverseEntity="Event" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Artist" positionX="414" positionY="449" width="128" height="193"/>
+        <element name="Artist" positionX="414" positionY="449" width="128" height="208"/>
         <element name="Event" positionX="630" positionY="72" width="128" height="313"/>
         <element name="Place" positionX="259" positionY="9" width="128" height="210"/>
+        <element name="Mixtape" positionX="216" positionY="324" width="128" height="253"/>
     </elements>
 </model>

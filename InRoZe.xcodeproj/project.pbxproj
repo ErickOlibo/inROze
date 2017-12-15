@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		297B48270458BA2567535BBB /* Pods_InRoZe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 025DA5AD4652E67328D77902 /* Pods_InRoZe.framework */; };
 		A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C7C811F2A55C400A0D5A8 /* UIImageColors.swift */; };
+		A726CCCE1FE4786D004DF51D /* Mixtape.swift in Sources */ = {isa = PBXBuildFile; fileRef = A726CCCD1FE4786D004DF51D /* Mixtape.swift */; };
 		A72B792E1F2231AF009FB389 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72B792D1F2231AF009FB389 /* AppDelegate.swift */; };
 		A72B79331F2231AF009FB389 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72B79311F2231AF009FB389 /* Main.storyboard */; };
 		A72B79361F2231AF009FB389 /* InRoZe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A72B79341F2231AF009FB389 /* InRoZe.xcdatamodeld */; };
@@ -66,6 +67,7 @@
 		025DA5AD4652E67328D77902 /* Pods_InRoZe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InRoZe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		434049AE2BF497F26E4FEE54 /* Pods-InRoZe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InRoZe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InRoZe/Pods-InRoZe.debug.xcconfig"; sourceTree = "<group>"; };
 		A71C7C811F2A55C400A0D5A8 /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
+		A726CCCD1FE4786D004DF51D /* Mixtape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mixtape.swift; sourceTree = "<group>"; };
 		A72B792A1F2231AF009FB389 /* InRoZe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InRoZe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72B792D1F2231AF009FB389 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A72B79321F2231AF009FB389 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				A7D4D2A51F51913C00546341 /* Artist.swift */,
 				A7F527231F4498540008080B /* Event.swift */,
 				A7A24D4F1F3B655E00EFB82E /* Place.swift */,
+				A726CCCD1FE4786D004DF51D /* Mixtape.swift */,
 				A72B79341F2231AF009FB389 /* InRoZe.xcdatamodeld */,
 			);
 			name = "Core Data";
@@ -560,6 +563,7 @@
 				A7D1CDC81F81D0CF003513F8 /* EventDeejayCell.swift in Sources */,
 				A76E72D21F75776C0023D47F /* FetchedResultsTableViewController.swift in Sources */,
 				A733850F1FBCA4BD00E0C4C2 /* EventInfoDJNameCell.swift in Sources */,
+				A726CCCE1FE4786D004DF51D /* Mixtape.swift in Sources */,
 				A7B3E76F1FC63D9B00170C95 /* DJsSearchCell.swift in Sources */,
 				A7E03D9B1F71D820000095BD /* UIDropDown.swift in Sources */,
 				A76E72C91F7518CB0023D47F /* DJsSearchViewController.swift in Sources */,

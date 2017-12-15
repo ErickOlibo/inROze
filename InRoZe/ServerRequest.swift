@@ -108,6 +108,29 @@ public class ServerRequest
         }
     }
     
+    private func updateMixtapesDatabase(with jsonDict: [String : Any], in context: NSManagedObjectContext) {
+        for (key, value) in jsonDict {
+            if (key == DBLabels.upToDateArtistsList),
+                let  artistsArray = value as? [Any] {
+                print("the size of DJ array: ", artistsArray.count)
+                //var loopCount = 1
+                for artistInfoArray in artistsArray {
+                    
+                    if let artistInfo = artistInfoArray as? [String : Any]{
+                        //print("Artist: ", loopCount)
+                        do {
+                            _ = try Artist.createOrUpdateArtist(with: artistInfo, in: context)
+                        } catch {
+                            print("[ServerRequest] - Error trying to createOrUpdateArtist")
+                        }
+                        //loopCount += 1
+                    }
+                }
+            }
+        }
+    }
+    
+    
     private func updateDatabase(with eventIDs: [String : Any]) {
         //print("[ServerRequest] - Starting updateDatabase from Server")
         container?.performBackgroundTask { context in
@@ -128,6 +151,9 @@ public class ServerRequest
                     }
                     // insert artists to database
                     self.updateArtistsDatabase(with: eventIDs, in: context)
+                    
+                    // **** Insert mixtapes to database ***
+                    //self.updateMixtapesDatabase(with: eventIDs, in: context)
                     
                     // insert performers for events
                     self.insertOrUpdateArtistsOfEvents(with: eventIDs, in: context)
