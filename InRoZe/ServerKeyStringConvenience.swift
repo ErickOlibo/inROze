@@ -24,9 +24,8 @@ public struct UrlFor {
     // URL for About in the Setting section
     static let aboutInroze = "https://www.pipedrive.com/en/about"
     static let aboutTerms = "https://www.meetagainapp.com/terms_and_conditions.html"
-    static let aboutPrivacy = "https://www.pipedrive.com/en/privacy"
-    static let aboutSources = "https://www.pipedrive.com/en/terms-of-service"
-    
+    static let aboutPrivacy = "https://www.mixcloud.com/ivonaries7/midsummer-bling-2017-landing-mix/"
+    static let aboutSources = "https://soundcloud.com/defkut/ice-cream-remix-defkut-feat-wu"
 }
 
 // Fields name from the Server Database Columns
