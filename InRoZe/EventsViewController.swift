@@ -72,7 +72,7 @@ class EventsViewController: FetchedResultsTableViewController {
         } else {
             UserDefaults().isLoggedIn = false
         }
-        
+        collectionView.reloadData()
         // set the labels with the correct Country name and City name
         setOriginLabel()
         

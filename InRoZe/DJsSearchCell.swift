@@ -159,9 +159,10 @@ class DJsSearchCell: UITableViewCell
         gigsMixesList.text = subtitle
         gigsMixesList.textColor = status ? .black : Colors.isNotFollowed
 
-        
-        
     }
+    
+    
+    
 
 
 }

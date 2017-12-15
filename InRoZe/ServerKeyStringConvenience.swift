@@ -49,6 +49,9 @@ public struct DBLabels {
     static let artistType = "type"
     static let artistCountry = "country"
     static let artistCountryCode = "country_code"
+    static let artistPicFbURL = "fbpic_url"
+    static let artistPicMixURL = "pic_url"
+    static let artistPicDefaultURL = "default_pic_url"
     
 }
 

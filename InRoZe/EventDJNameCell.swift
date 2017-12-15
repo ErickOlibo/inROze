@@ -22,7 +22,8 @@ class EventDJNameCell: UICollectionViewCell
     
     // Cell Outlets
     @IBOutlet weak var djName: UILabel!
-    @IBOutlet weak var backgroundProfileImage: UIImageView!
+    @IBOutlet weak var backgroundProfileImage: UIImageView! { didSet { updateProfileImage() } }
+    @IBOutlet weak var backgroundProfileView: UIView! { didSet { updateProfileView() } }
     
     
     private func updateUI() {
@@ -35,7 +36,32 @@ class EventDJNameCell: UICollectionViewCell
                 self.thisDJ!.isFollowed = currentState
             }
         }
-        backgroundProfileImage.image = UIImage(named: profileImageForDJ(with: thisDJ!.id!, when: thisDJ!.isFollowed))
+        //backgroundProfileImage.image = UIImage(named: profileImageForDJ(with: thisDJ!.id!, when: thisDJ!.isFollowed))
+        guard let dj = thisDJ else { return }
+        //print("the DJ is not nil")
+        guard let picURL = preferedProfilePictureURL(for: dj) else { return }
+        print("URL: ", picURL)
+        backgroundProfileImage.kf.setImage(with: URL(string: picURL), options: [.backgroundDecode])
+        
+        
+    }
+    
+    private func updateProfileImage () {
+        backgroundProfileImage.layer.masksToBounds = true
+        backgroundProfileImage.layer.cornerRadius = 25.0
+        backgroundProfileImage.layer.borderColor = UIColor.gray.cgColor
+        backgroundProfileImage.layer.borderWidth = 0.333
+        //backgroundProfileImage.image = nil
+    }
+    
+    private func updateProfileView () {
+        backgroundProfileView.backgroundColor = .white
+        backgroundProfileView.layer.masksToBounds = true
+        backgroundProfileView.layer.cornerRadius = 30.0
+        backgroundProfileView.layer.borderColor = Colors.logoRed.cgColor
+        backgroundProfileView.layer.borderWidth = 2.0
+        
+        
     }
     
     

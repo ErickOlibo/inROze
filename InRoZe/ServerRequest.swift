@@ -90,13 +90,18 @@ public class ServerRequest
         for (key, value) in jsonDict {
             if (key == DBLabels.upToDateArtistsList),
                 let  artistsArray = value as? [Any] {
+                print("the size of DJ array: ", artistsArray.count)
+                //var loopCount = 1
                 for artistInfoArray in artistsArray {
-                    if let artistInfo = artistInfoArray as? [String : String]{
+                    
+                    if let artistInfo = artistInfoArray as? [String : Any]{
+                        //print("Artist: ", loopCount)
                         do {
                             _ = try Artist.createOrUpdateArtist(with: artistInfo, in: context)
                         } catch {
                             print("[ServerRequest] - Error trying to createOrUpdateArtist")
                         }
+                        //loopCount += 1
                     }
                 }
             }

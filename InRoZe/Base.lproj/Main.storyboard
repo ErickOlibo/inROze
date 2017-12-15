@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bAg-N4-UsF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bAg-N4-UsF">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -74,13 +74,25 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="90"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jU5-yO-b55">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sZV-DU-eA0">
                                                         <rect key="frame" x="5" y="0.0" width="60" height="60"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jU5-yO-b55">
+                                                                <rect key="frame" x="5" y="5" width="50" height="50"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="50" id="GLc-9S-AQP"/>
+                                                                    <constraint firstAttribute="width" secondItem="jU5-yO-b55" secondAttribute="height" multiplier="1:1" id="nsi-qb-S04"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="60" id="0pg-OC-jMd"/>
-                                                            <constraint firstAttribute="width" secondItem="jU5-yO-b55" secondAttribute="height" multiplier="1:1" id="5iQ-ZI-hdm"/>
+                                                            <constraint firstAttribute="width" constant="60" id="YJF-Zy-BgZ"/>
+                                                            <constraint firstItem="jU5-yO-b55" firstAttribute="centerX" secondItem="sZV-DU-eA0" secondAttribute="centerX" id="eMF-mX-R37"/>
+                                                            <constraint firstAttribute="width" secondItem="sZV-DU-eA0" secondAttribute="height" multiplier="1:1" id="hMW-FN-6Io"/>
+                                                            <constraint firstItem="jU5-yO-b55" firstAttribute="centerY" secondItem="sZV-DU-eA0" secondAttribute="centerY" id="vt8-eB-qPY"/>
                                                         </constraints>
-                                                    </imageView>
+                                                    </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uY-4Y-J3c">
                                                         <rect key="frame" x="0.0" y="60" width="70" height="30"/>
                                                         <constraints>
@@ -93,14 +105,15 @@
                                                 </subviews>
                                             </view>
                                             <constraints>
-                                                <constraint firstItem="jU5-yO-b55" firstAttribute="centerX" secondItem="AYa-Rl-iHL" secondAttribute="centerX" id="7tq-UL-qlg"/>
+                                                <constraint firstItem="sZV-DU-eA0" firstAttribute="top" secondItem="AYa-Rl-iHL" secondAttribute="top" id="24P-wQ-xcJ"/>
                                                 <constraint firstItem="5uY-4Y-J3c" firstAttribute="width" secondItem="AYa-Rl-iHL" secondAttribute="width" id="AEw-lX-o1r"/>
                                                 <constraint firstAttribute="bottom" secondItem="5uY-4Y-J3c" secondAttribute="bottom" id="DOa-HG-D1m"/>
                                                 <constraint firstItem="5uY-4Y-J3c" firstAttribute="centerX" secondItem="AYa-Rl-iHL" secondAttribute="centerX" id="GIU-u6-Vgz"/>
-                                                <constraint firstItem="jU5-yO-b55" firstAttribute="top" secondItem="AYa-Rl-iHL" secondAttribute="top" id="KxX-zc-brs"/>
+                                                <constraint firstItem="sZV-DU-eA0" firstAttribute="centerX" secondItem="AYa-Rl-iHL" secondAttribute="centerX" id="Q9U-Fa-gsW"/>
                                             </constraints>
                                             <connections>
                                                 <outlet property="backgroundProfileImage" destination="jU5-yO-b55" id="Tb6-MQ-B8g"/>
+                                                <outlet property="backgroundProfileView" destination="sZV-DU-eA0" id="QMy-sO-AgV"/>
                                                 <outlet property="djName" destination="5uY-4Y-J3c" id="4Zv-8h-9US"/>
                                                 <segue destination="8yR-qp-x1Q" kind="show" identifier="Deejay Gigs List" id="Bwf-dD-zDu"/>
                                             </connections>
@@ -1641,6 +1654,6 @@ Mixtapes</string>
     <inferredMetricsTieBreakers>
         <segue reference="31V-VX-4wQ"/>
         <segue reference="amR-Kn-XsZ"/>
-        <segue reference="CCz-K1-KF9"/>
+        <segue reference="Bwf-dD-zDu"/>
     </inferredMetricsTieBreakers>
 </document>

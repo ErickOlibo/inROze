@@ -13,20 +13,24 @@ public class Artist: NSManagedObject
 {
     // Creates or Updates an Artist object with Dictionary
     // Returns a Boolean- > True: for Created | False: for Updated
-    class func createOrUpdateArtist(with artistInfo: [String : String], in context: NSManagedObjectContext) throws -> Bool
+    class func createOrUpdateArtist(with artistInfo: [String : Any], in context: NSManagedObjectContext) throws -> Bool
     {
         let request: NSFetchRequest<Artist> = Artist.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %@", artistInfo[DBLabels.artistID]!)
+        request.predicate = NSPredicate(format: "id = %@", artistInfo[DBLabels.artistID] as! String)
         do {
             let match = try context.fetch(request)
             if match.count > 0 {
                 assert(match.count == 1, "createOrUpdateArtist -- database inconsistency")
                 // update match
                 let artistMatch = match[0]
-                artistMatch.country = artistInfo[DBLabels.artistCountry]
-                artistMatch.countryCode = artistInfo[DBLabels.artistCountryCode]
-                artistMatch.name = artistInfo[DBLabels.artistName]
-                artistMatch.type = artistInfo[DBLabels.artistType]
+                artistMatch.country = artistInfo[DBLabels.artistCountry] as? String ?? nil
+                artistMatch.countryCode = artistInfo[DBLabels.artistCountryCode] as? String ?? nil
+                artistMatch.name = artistInfo[DBLabels.artistName] as? String ?? nil
+                artistMatch.type = artistInfo[DBLabels.artistType] as? String ?? nil
+                artistMatch.picDefaultURL = artistInfo[DBLabels.artistPicDefaultURL] as? String ?? nil
+                //print("Update URL Default: ", artistInfo[DBLabels.artistPicDefaultURL] ?? "NULL")
+                artistMatch.picFbURL = artistInfo[DBLabels.artistPicFbURL] as? String ?? nil
+                artistMatch.picMixURL = artistInfo[DBLabels.artistPicMixURL] as? String ?? nil
                 return false
             }
         } catch {
@@ -34,11 +38,15 @@ public class Artist: NSManagedObject
         }
         
         let artist = Artist(context: context)
-        artist.country = artistInfo[DBLabels.artistCountry]
-        artist.countryCode = artistInfo[DBLabels.artistCountryCode]
-        artist.id = artistInfo[DBLabels.artistID]
-        artist.name = artistInfo[DBLabels.artistName]
-        artist.type = artistInfo[DBLabels.artistType]
+        artist.country = artistInfo[DBLabels.artistCountry] as? String ?? nil
+        artist.countryCode = artistInfo[DBLabels.artistCountryCode] as? String ?? nil
+        artist.id = artistInfo[DBLabels.artistID] as? String ?? nil
+        artist.name = artistInfo[DBLabels.artistName] as? String ?? nil
+        artist.type = artistInfo[DBLabels.artistType] as? String ?? nil
+        artist.picDefaultURL = artistInfo[DBLabels.artistPicDefaultURL] as? String ?? nil
+        //print("Create URL Default: ", artistInfo[DBLabels.artistPicDefaultURL] ?? "NULL")
+        artist.picFbURL = artistInfo[DBLabels.artistPicFbURL] as? String ?? nil
+        artist.picMixURL = artistInfo[DBLabels.artistPicMixURL] as? String ?? nil
         return true
     }
 

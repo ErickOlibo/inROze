@@ -10,6 +10,22 @@ import Foundation
 import UIKit
 
 
+// This method return the right profile picture URL (as String) for an artist
+// depending on which URL is available by order of preference.
+// 1) The MixCloud URL if NOT NULL
+// 2) The FaceBook URL if NOT NULL
+// 3) The Default URL if above are null
+
+public func preferedProfilePictureURL(for artist: Artist) -> String? {
+    print("INSIDE preferedProfilePictureURL")
+
+    if let mixURL = artist.picMixURL { return mixURL }
+    if let fbURL = artist.picFbURL { return fbURL }
+    if let defaultURL = artist.picDefaultURL { return defaultURL }
+    return nil
+}
+
+
 // Format the event day, time, and location to Attributed text for cell subtitle
 // returns an Attributed string
 public func dateTimeLocationFormatter(with event: Event) -> NSAttributedString {

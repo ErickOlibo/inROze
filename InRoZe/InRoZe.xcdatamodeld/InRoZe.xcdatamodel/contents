@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="16G1036" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="16G1114" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Artist" representedClassName=".Artist" syncable="YES" codeGenerationType="category">
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="countryCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isFollowed" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picDefaultURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picFbURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picMixURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="gigs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="performers" inverseEntity="Event" syncable="YES"/>
     </entity>
@@ -43,7 +46,7 @@
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="location" inverseEntity="Event" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Artist" positionX="414" positionY="449" width="128" height="148"/>
+        <element name="Artist" positionX="414" positionY="449" width="128" height="193"/>
         <element name="Event" positionX="630" positionY="72" width="128" height="313"/>
         <element name="Place" positionX="259" positionY="9" width="128" height="210"/>
     </elements>
