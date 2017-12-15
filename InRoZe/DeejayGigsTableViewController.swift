@@ -19,10 +19,14 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     @IBOutlet weak var tableHeaderView: UIView!
     @IBOutlet weak var upcomingGigsView: UIView!
     @IBOutlet weak var upcomingGigsLabel: UILabel!
-    @IBOutlet weak var deejayPicture: UIImageView!
+    
+    @IBOutlet weak var djProfileImage: UIImageView! { didSet { updateProfileImage() } }
+    @IBOutlet weak var djProfileView: UIView! { didSet { updateProfileView() } }
+    
     @IBOutlet weak var deejayName: UILabel!
     @IBOutlet weak var countryName: UILabel!
     @IBOutlet weak var followButton: UIButton!
+    @IBOutlet weak var gigsMixes: UILabel!
     
     @IBAction func touchedFollow(_ sender: UIButton) {
         pressedFollowed()
@@ -36,6 +40,7 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
 
     private var gigsList: [Event]?
 
+    // ** View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -49,8 +54,48 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: (UIImage(named: "2_Follows")?.withRenderingMode(.alwaysTemplate))!, style: .plain, target: self, action: #selector(pressedFollowed))
         upcomingGigsView.backgroundColor = Colors.logoRed
+        setDeejayImage()
+        
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // set the status and color of rightButton
+        updateFollowedButton()
+        updateDJInfo()
+        //setDeejayImage()
+    }
+    
+    // ** Methods
+    private func updateGigsMixesCount() {
+        // count from the Core data the number of gigs and mixtapes by this DJ
+        // the format should be 12Gs / 61Ms
+    }
+    
+    
+    private func setDeejayImage() {
+        guard let dj = artist else { return }
+        guard let picURL = preferedProfilePictureURL(for: dj) else { return }
+        djProfileImage.kf.setImage(with: URL(string: picURL), options: [.backgroundDecode])
+        
+    }
+    
+    private func updateProfileImage () {
+        djProfileImage.layer.masksToBounds = true
+        djProfileImage.layer.cornerRadius = 25.0
+        djProfileImage.layer.borderColor = UIColor.gray.cgColor
+        djProfileImage.layer.borderWidth = 0.333
+    }
+    
+    private func updateProfileView () {
+        djProfileView.backgroundColor = .white
+        djProfileView.layer.masksToBounds = true
+        djProfileView.layer.cornerRadius = 30.0
+        djProfileView.layer.borderColor = Colors.logoRed.cgColor
+        djProfileView.layer.borderWidth = 2.0
+    }
+    
+    
     @objc private func pressedFollowed() {
         if let context = container?.viewContext {
             context.perform {
@@ -75,12 +120,7 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        // set the status and color of rightButton
-        updateFollowedButton()
-        updateDJInfo()
-    }
+
     
     private func updateDJInfo() {
         guard let artistName = artist?.name else { return }
@@ -92,7 +132,7 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     
     private func updateFollowedButton() {
         // Update profile
-        deejayPicture.image = UIImage(named: profileImageForDJ(with: artist!.id!, when: artist!.isFollowed))
+        //djProfileImage.image = UIImage(named: profileImageForDJ(with: artist!.id!, when: artist!.isFollowed))
         if (artist!.isFollowed) {
             navigationItem.rightBarButtonItem?.image = (UIImage(named: "2_FollowsFilled")?.withRenderingMode(.alwaysTemplate))!
             navigationItem.rightBarButtonItem?.tintColor = Colors.logoRed

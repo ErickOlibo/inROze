@@ -22,8 +22,8 @@ class EventDJNameCell: UICollectionViewCell
     
     // Cell Outlets
     @IBOutlet weak var djName: UILabel!
-    @IBOutlet weak var backgroundProfileImage: UIImageView! { didSet { updateProfileImage() } }
-    @IBOutlet weak var backgroundProfileView: UIView! { didSet { updateProfileView() } }
+    @IBOutlet weak var djProfileImage: UIImageView! { didSet { updateProfileImage() } }
+    @IBOutlet weak var djProfileView: UIView! { didSet { updateProfileView() } }
     
     
     private func updateUI() {
@@ -40,26 +40,26 @@ class EventDJNameCell: UICollectionViewCell
         guard let dj = thisDJ else { return }
         //print("the DJ is not nil")
         guard let picURL = preferedProfilePictureURL(for: dj) else { return }
-        print("URL: ", picURL)
-        backgroundProfileImage.kf.setImage(with: URL(string: picURL), options: [.backgroundDecode])
+        //print("URL: ", picURL)
+        djProfileImage.kf.setImage(with: URL(string: picURL), options: [.backgroundDecode])
         
         
     }
     
     private func updateProfileImage () {
-        backgroundProfileImage.layer.masksToBounds = true
-        backgroundProfileImage.layer.cornerRadius = 25.0
-        backgroundProfileImage.layer.borderColor = UIColor.gray.cgColor
-        backgroundProfileImage.layer.borderWidth = 0.333
-        //backgroundProfileImage.image = nil
+        djProfileImage.layer.masksToBounds = true
+        djProfileImage.layer.cornerRadius = 25.0
+        djProfileImage.layer.borderColor = UIColor.gray.cgColor
+        djProfileImage.layer.borderWidth = 0.333
+        //djProfileImage.image = nil
     }
     
     private func updateProfileView () {
-        backgroundProfileView.backgroundColor = .white
-        backgroundProfileView.layer.masksToBounds = true
-        backgroundProfileView.layer.cornerRadius = 30.0
-        backgroundProfileView.layer.borderColor = Colors.logoRed.cgColor
-        backgroundProfileView.layer.borderWidth = 2.0
+        djProfileView.backgroundColor = .white
+        djProfileView.layer.masksToBounds = true
+        djProfileView.layer.cornerRadius = 30.0
+        djProfileView.layer.borderColor = Colors.logoRed.cgColor
+        djProfileView.layer.borderWidth = 2.0
         
         
     }

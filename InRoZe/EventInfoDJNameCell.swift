@@ -22,14 +22,16 @@ class EventInfoDJNameCell: UICollectionViewCell
 
     // Cell Outlets
     @IBOutlet weak var djName: UILabel!
-    @IBOutlet weak var backgroundProfileImage: UIImageView!
+    @IBOutlet weak var djProfileImage: UIImageView! { didSet { updateProfileImage() } }
+    @IBOutlet weak var djProfileView: UIView! { didSet { updateProfileView() } }
     
     
     private func updateUI() {
         //print("EventInfoDJNameCell inside UPDATE")
+        updateProfileImage()
+        updateProfileView()
         guard let name = thisDJ?.name else { return }
         guard let djIsFollowed = thisDJ?.isFollowed else { return }
-        guard let thisDJiD = thisDJ?.id else { return }
         djName.text = name
         djName.textColor = djIsFollowed ? .black: Colors.isNotFollowed
         
@@ -38,7 +40,24 @@ class EventInfoDJNameCell: UICollectionViewCell
                 self.thisDJ!.isFollowed = currentState
             }
         }
-        backgroundProfileImage.image = UIImage(named: profileImageForDJ(with: thisDJiD, when: djIsFollowed))
+        guard let dj = thisDJ else { return }
+        guard let picURL = preferedProfilePictureURL(for: dj) else { return }
+        djProfileImage.kf.setImage(with: URL(string: picURL), options: [.backgroundDecode])
+    }
+    
+    private func updateProfileImage () {
+        djProfileImage.layer.masksToBounds = true
+        djProfileImage.layer.cornerRadius = 25.0
+        djProfileImage.layer.borderColor = UIColor.gray.cgColor
+        djProfileImage.layer.borderWidth = 0.333
+    }
+    
+    private func updateProfileView () {
+        djProfileView.backgroundColor = .white
+        djProfileView.layer.masksToBounds = true
+        djProfileView.layer.cornerRadius = 30.0
+        djProfileView.layer.borderColor = Colors.logoRed.cgColor
+        djProfileView.layer.borderWidth = 2.0
     }
     
     
