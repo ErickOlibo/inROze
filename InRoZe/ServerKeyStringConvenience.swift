@@ -42,6 +42,7 @@ public struct DBLabels {
     static let eventsToPlaces = "eventsToPlaces"
     static let artistsOfEvents = "artistsOfEvents"
     static let upToDateArtistsList = "upToDateArtistsList"
+    static let mixtapesList = "mixtapesList"
     
     // for the Artist info fields
     static let artistID = "artist_id"

@@ -110,20 +110,19 @@ public class ServerRequest
     
     private func updateMixtapesDatabase(with jsonDict: [String : Any], in context: NSManagedObjectContext) {
         for (key, value) in jsonDict {
-            if (key == DBLabels.upToDateArtistsList),
-                let  artistsArray = value as? [Any] {
-                print("the size of DJ array: ", artistsArray.count)
+            if (key == DBLabels.mixtapesList),
+                let  mixtapesArray = value as? [Any] {
+                print("the size of MIXTAPES array: ", mixtapesArray.count)
                 //var loopCount = 1
-                for artistInfoArray in artistsArray {
+                for mixtapeInfoArray in mixtapesArray {
                     
-                    if let artistInfo = artistInfoArray as? [String : Any]{
-                        //print("Artist: ", loopCount)
+                    if let mixtapeInfo = mixtapeInfoArray as? [String : Any]{
+                        
                         do {
-                            _ = try Artist.createOrUpdateArtist(with: artistInfo, in: context)
+                            _ = try Mixtape.createOrUpdateMixtape(with: mixtapeInfo, in: context)
                         } catch {
-                            print("[ServerRequest] - Error trying to createOrUpdateArtist")
+                            print("[ServerRequest] - Error trying to createOrUpdateMixtape")
                         }
-                        //loopCount += 1
                     }
                 }
             }
@@ -153,7 +152,7 @@ public class ServerRequest
                     self.updateArtistsDatabase(with: eventIDs, in: context)
                     
                     // **** Insert mixtapes to database ***
-                    //self.updateMixtapesDatabase(with: eventIDs, in: context)
+                    self.updateMixtapesDatabase(with: eventIDs, in: context)
                     
                     // insert performers for events
                     self.insertOrUpdateArtistsOfEvents(with: eventIDs, in: context)
@@ -221,6 +220,11 @@ public class ServerRequest
                     print("[printDatabaseStatistics] - \(artistsCount) Artists")
                 }
                 
+                // Better way to count number of element in entity (CoreData)
+                if let mixtapesCount = try? context.count(for: Mixtape.fetchRequest()) {
+                    print("[printDatabaseStatistics] - \(mixtapesCount) Mixtapes")
+                }
+                
                 // list events with artists > 0
                 request.predicate = NSPredicate(format: "performers.@count > 0")
                 do {
@@ -240,10 +244,22 @@ public class ServerRequest
                     let matches = try context.fetch(req)
                     if matches.count > 0 {
                         print("Number of Artists with gigs: \(matches.count)")
-                        
                     }
                 } catch {
-                    
+                    print("[printDatabaseStatistics] there was an error")
+                }
+                
+                
+                // list artist that have Mixtapes
+                let reqMix: NSFetchRequest<Artist> = Artist.fetchRequest()
+                reqMix.predicate = NSPredicate(format: "mixes.@count > 0")
+                do {
+                    let matches = try context.fetch(reqMix)
+                    if matches.count > 0 {
+                        print("Number of Artists with Mixtapes: \(matches.count)")
+                    }
+                } catch {
+                    print("[printDatabaseStatistics] there was an error")
                 }
             }
         }
