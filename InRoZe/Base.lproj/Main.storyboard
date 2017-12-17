@@ -18,7 +18,7 @@
         <array key="Bungee-Regular.ttf">
             <string>Bungee-Regular</string>
         </array>
-        <array key="FontAwesome.ttf">
+        <array key="FontAwesome.otf">
             <string>FontAwesome</string>
         </array>
         <array key="HelveticaNeue.ttc">
@@ -953,10 +953,10 @@ Cg
             </objects>
             <point key="canvasLocation" x="89.855072463768124" y="-632.60869565217399"/>
         </scene>
-        <!--Add Artist View Controller-->
+        <!--Mixtapes View Controller-->
         <scene sceneID="o2A-WI-quu">
             <objects>
-                <viewController id="TUo-e2-SLn" customClass="AddArtistViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="TUo-e2-SLn" customClass="MixtapesViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wet-Et-3eq"/>
                         <viewControllerLayoutGuide type="bottom" id="VDk-Q5-lcq"/>

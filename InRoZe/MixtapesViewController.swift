@@ -8,17 +8,18 @@
 
 import UIKit
 
-class AddArtistViewController: UIViewController {
+class MixtapesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
+        view.backgroundColor = .black
+        tabBarItem.selectedImage = UIImage(named: "3_AddaDJ")!.withRenderingMode(.alwaysOriginal)
 
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("Add Artist (a DJ)")
+        print("Mixtapes View Controller")
         
         
         
