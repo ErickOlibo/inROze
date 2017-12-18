@@ -47,6 +47,7 @@ public class Artist: NSManagedObject
         //print("Create URL Default: ", artistInfo[DBLabels.artistPicDefaultURL] ?? "NULL")
         artist.picFbURL = artistInfo[DBLabels.artistPicFbURL] as? String ?? nil
         artist.picMixURL = artistInfo[DBLabels.artistPicMixURL] as? String ?? nil
+        artist.isFollowed = false
         return true
     }
 

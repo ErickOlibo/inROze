@@ -19,10 +19,13 @@ class DeejaysViewController: FetchedResultsTableViewController {
 
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Artist> in
         let request: NSFetchRequest<Artist> = Artist.fetchRequest()
-        //let isFollowSort = NSSortDescriptor(key: "isFollowed", ascending: false, selector: nil)
+        let isFollowSort = NSSortDescriptor(key: "isFollowed", ascending: false, selector: nil)
         let nameSort = NSSortDescriptor(key: "name", ascending: true, selector: nil)
+        let nameSort2 = NSSortDescriptor(key: "name", ascending: true,
+                                         selector: #selector(NSString.localizedStandardCompare(_:)))
+        
         //request.sortDescriptors = [NSSortDescriptor(key: "isFollowed", ascending: false, selector: nil)]
-        request.sortDescriptors = [nameSort]
+        request.sortDescriptors = [isFollowSort, nameSort]
 
         request.predicate = NSPredicate(format: "name != nil")
         request.fetchBatchSize = 20

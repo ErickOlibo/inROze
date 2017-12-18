@@ -63,6 +63,7 @@ class DeejayGigsTableViewController: UITableViewController {
         // set the status and color of rightButton
         updateFollowedButton()
         updateDJInfo()
+        updateGigsMixesCount()
         //setDeejayImage()
     }
     
@@ -70,6 +71,11 @@ class DeejayGigsTableViewController: UITableViewController {
     private func updateGigsMixesCount() {
         // count from the Core data the number of gigs and mixtapes by this DJ
         // the format should be 12Gs / 61Ms
+        guard let gigs = artist?.gigs?.count else { return }
+        guard let mixes = artist?.mixes?.count else { return }
+        gigsMixes.text = "\(gigs)Gs / \(mixes)Ms"
+        
+        
     }
     
     

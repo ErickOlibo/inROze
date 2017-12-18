@@ -40,7 +40,6 @@ public class Mixtape: NSManagedObject
                 mix.tag5 = mixInfo[DBLabels.mixTag5] as?  String ?? nil
                 mix.isActive = mixInfo[DBLabels.mixIsActive] != nil ? true : false
                 
-                // Most likely will have issues with date
                 if let cTime = mixInfo[DBLabels.mixCreatedTime] as? String,
                     let createdTime = dateFormatter.date(from: cTime) {
                     mix.createdTime = createdTime
@@ -53,7 +52,7 @@ public class Mixtape: NSManagedObject
                         mix.deejay = deejay
                     }
                 } catch {
-                    print("[Mixtape] - MIXTAPE to DEEJAY Error")
+                    print("[Mixtape] - MIXTAPE to DEEJAY Update Error")
                 }
 
                 return false
@@ -77,8 +76,8 @@ public class Mixtape: NSManagedObject
         newMix.tag4 = mixInfo[DBLabels.mixTag4] as?  String ?? nil
         newMix.tag5 = mixInfo[DBLabels.mixTag5] as?  String ?? nil
         newMix.isActive = mixInfo[DBLabels.mixIsActive] != nil ? true : false
+        newMix.isFollowed = false
         
-        // Most likely will have issues with date
         if let cTime = mixInfo[DBLabels.mixCreatedTime] as? String,
             let createdTime = dateFormatter.date(from: cTime) {
             newMix.createdTime = createdTime
@@ -93,7 +92,7 @@ public class Mixtape: NSManagedObject
                 newMix.deejay = deejay
             }
         } catch {
-            print("[Mixtape] - MIXTAPE to DEEJAY Error")
+            print("[Mixtape] - MIXTAPE to DEEJAY Creation Error")
         }
         
         
