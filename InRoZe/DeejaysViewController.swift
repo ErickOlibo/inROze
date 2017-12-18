@@ -19,9 +19,10 @@ class DeejaysViewController: FetchedResultsTableViewController {
 
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Artist> in
         let request: NSFetchRequest<Artist> = Artist.fetchRequest()
-        let isFollowSort = NSSortDescriptor(key: "isFollowed", ascending: false, selector: nil)
+        //let isFollowSort = NSSortDescriptor(key: "isFollowed", ascending: false, selector: nil)
         let nameSort = NSSortDescriptor(key: "name", ascending: true, selector: nil)
-        request.sortDescriptors = [isFollowSort, nameSort]
+        //request.sortDescriptors = [NSSortDescriptor(key: "isFollowed", ascending: false, selector: nil)]
+        request.sortDescriptors = [nameSort]
 
         request.predicate = NSPredicate(format: "name != nil")
         request.fetchBatchSize = 20
@@ -57,6 +58,7 @@ class DeejaysViewController: FetchedResultsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
+        updateUI()
 
     }
     
@@ -84,7 +86,10 @@ extension DeejaysViewController: UISearchResultsUpdating {
         print("Here IN: updateSearchResults - ")
         guard searchController.searchBar.text!.count > 0 else {
             searchText = searchController.searchBar.text
-            //print("is search bar text nil: [\(searchController.searchBar.text ?? "NIL")]")
+            print("is search bar text nil: [\(searchController.searchBar.text ?? "NIL")]")
+            let descript = fetchResultsController.fetchRequest.sortDescriptors
+            let predic = fetchResultsController.fetchRequest.predicate
+            print("Description: \(String(describing: descript)) - Predicate: \(String(describing: predic))")
             fetchResultsController.fetchRequest.predicate = NSPredicate(format: "name != nil ")
             updateUI()
             return

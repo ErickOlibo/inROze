@@ -62,7 +62,7 @@ class DJsSearchCell: UITableViewCell
         //deejayName.textColor = currentIsFollow ? .black : Colors.isNotFollowed
         deejayNameAttributed()
         // define later the number of mixtapes
-        setSubtitleText(currentIsFollow, mixCount: 2)
+        setSubtitleText(currentIsFollow)
         
         if (currentIsFollow) {
             followButton.tintColor = Colors.isFollowed
@@ -119,7 +119,7 @@ class DJsSearchCell: UITableViewCell
         container?.performBackgroundTask{ context in
             let success = Artist.changeIsFollowed(for: djID, in: context)
             if (success) {
-                
+                print("Changed isFollowed State for id: ", djID)
             } else {
                 print("[pressedFollowed] in DJsSearchCell Failed")
             }
@@ -127,11 +127,12 @@ class DJsSearchCell: UITableViewCell
     }
     
     
-    private func setSubtitleText(_ status: Bool, mixCount: Int) {
+    private func setSubtitleText(_ status: Bool) {
         // set the number of gigs
         var subtitle = ""
         guard let gigs = deejay?.gigs?.count else { return }
-        let mixes = mixCount
+        guard let mixes = deejay?.mixes?.count else { return }
+        //let mixes = mixCount
         let combi = (gig: gigs, mix: mixes)
         
         switch combi {

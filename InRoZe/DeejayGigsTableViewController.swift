@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class DeejayGigsTableViewController: FetchedResultsTableViewController {
+class DeejayGigsTableViewController: UITableViewController {
     
     // Core Data model container and context
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
@@ -54,6 +54,7 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: (UIImage(named: "2_Follows")?.withRenderingMode(.alwaysTemplate))!, style: .plain, target: self, action: #selector(pressedFollowed))
         upcomingGigsView.backgroundColor = Colors.logoRed
         setDeejayImage()
+        
         
     }
 

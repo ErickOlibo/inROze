@@ -22,7 +22,7 @@ extension DeejaysViewController
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         if let sections = fetchResultsController.sections, sections.count > 0 {
-            //print("ALL. Row in section: [\(sections[section].numberOfObjects)]")
+            print("ALL. Row in section: [\(sections[section].numberOfObjects)]")
             return sections[section].numberOfObjects
             
         } else {
