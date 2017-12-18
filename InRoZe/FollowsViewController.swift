@@ -57,7 +57,7 @@ class FollowsViewController: FetchedResultsTableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateUI()
-        navigationItem.title = "Next in \(currentCity.name.rawValue)"
+        navigationItem.title = "Follows in \(currentCity.name.rawValue)"
         print("Follows")
     }
     
