@@ -163,6 +163,28 @@ public class Artist: NSManagedObject
     }
     
     
+    class func findPerformingMixtapes(for artist: Artist, in context: NSManagedObjectContext) -> [Mixtape]? {
+        let request: NSFetchRequest<Mixtape> = Mixtape.fetchRequest()
+        
+        // Add sort Descriptors and Predicate
+        request.sortDescriptors = [NSSortDescriptor(key: "createdTime", ascending: false, selector: nil)]
+        request.predicate = NSPredicate(format: "ANY deejay.id == %@", artist.id!)
+        do {
+            let match = try context.fetch(request)
+            //print("match for [findPerformingEvents]: \(match.count)")
+            if match.count > 0 {
+                return match
+            }
+        } catch {
+            print("[findPerformingEvents] - Error while searching for Artist: \(error)")
+        }
+        return nil
+    }
+    
+    
+    
+    
+    
     class func orderedPerformingDeejays(for event: Event, in context: NSManagedObjectContext) -> [Artist]? {
         let request: NSFetchRequest<Artist> = Artist.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true, selector: nil)]

@@ -409,6 +409,69 @@
                                     <segue destination="Stf-hx-wqg" kind="show" identifier="Gig Cell To Info" id="ekP-bR-cTf"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeejayMixesCell" rowHeight="120" id="AGZ-EQ-xWO" customClass="DeejayMixesCell" customModule="InRoZe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="218" width="414" height="120"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AGZ-EQ-xWO" id="sLX-t5-Yyc">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="119.66666666666667"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ctP-p5-hc2">
+                                            <rect key="frame" x="20" y="10" width="100" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="Q5w-Ab-gd7"/>
+                                                <constraint firstAttribute="width" secondItem="ctP-p5-hc2" secondAttribute="height" multiplier="1:1" id="jed-1P-xH7"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                    <real key="value" value="0.5"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                                    <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0JR-ZK-9OW">
+                                            <rect key="frame" x="130" y="8" width="264" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="YMc-tj-Qx7"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OpS-yL-h4U">
+                                            <rect key="frame" x="130" y="54" width="264" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="25" id="VsC-Ie-oER"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="OpS-yL-h4U" secondAttribute="bottom" constant="30" id="2bO-QI-dXu"/>
+                                        <constraint firstItem="ctP-p5-hc2" firstAttribute="leading" secondItem="sLX-t5-Yyc" secondAttribute="leadingMargin" id="EQo-3b-gOd"/>
+                                        <constraint firstItem="0JR-ZK-9OW" firstAttribute="leading" secondItem="ctP-p5-hc2" secondAttribute="leading" constant="110" id="IlR-Xb-oCV"/>
+                                        <constraint firstItem="0JR-ZK-9OW" firstAttribute="top" secondItem="sLX-t5-Yyc" secondAttribute="topMargin" constant="-3" id="Krc-o1-BF3"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="0JR-ZK-9OW" secondAttribute="trailing" id="NwQ-d2-iHF"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="OpS-yL-h4U" secondAttribute="trailing" id="OBM-BE-RVX"/>
+                                        <constraint firstItem="OpS-yL-h4U" firstAttribute="leading" secondItem="ctP-p5-hc2" secondAttribute="leading" constant="110" id="S1i-8X-N9a"/>
+                                        <constraint firstItem="ctP-p5-hc2" firstAttribute="centerY" secondItem="sLX-t5-Yyc" secondAttribute="centerY" id="zO7-aM-RLq"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="mixtapeCover" destination="ctP-p5-hc2" id="bP6-Tq-Nvp"/>
+                                    <outlet property="mixtapeName" destination="0JR-ZK-9OW" id="Ucw-cf-5zY"/>
+                                    <outlet property="mixtapeTags" destination="OpS-yL-h4U" id="gWa-5Q-o55"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="8yR-qp-x1Q" id="EyS-kN-Z06"/>
@@ -444,7 +507,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="onQ-AG-C6Y">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H4f-lw-L8s" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="686.33333333333337"/>
@@ -966,7 +1029,7 @@ Cg
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="3_AddaDJ" selectedImage="3_AddaDJFilled" id="2uI-A2-fWm">
+                    <tabBarItem key="tabBarItem" title="" image="3_Mixtapes" selectedImage="3_MixtapesFilled" id="2uI-A2-fWm">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                 </viewController>
@@ -1669,8 +1732,8 @@ Mixtapes</string>
         <image name="1_EventsFilled" width="25" height="25"/>
         <image name="2_Follows" width="25" height="25"/>
         <image name="2_FollowsFilled" width="25" height="25"/>
-        <image name="3_AddaDJ" width="32" height="32"/>
-        <image name="3_AddaDJFilled" width="32" height="32"/>
+        <image name="3_Mixtapes" width="32" height="32"/>
+        <image name="3_MixtapesFilled" width="32" height="32"/>
         <image name="4_DJs" width="25" height="25"/>
         <image name="4_DJsFilled" width="25" height="25"/>
         <image name="5_Settings" width="25" height="25"/>
@@ -1679,7 +1742,7 @@ Mixtapes</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="31V-VX-4wQ"/>
-        <segue reference="p5s-pF-ZfF"/>
-        <segue reference="Bwf-dD-zDu"/>
+        <segue reference="ekP-bR-cTf"/>
+        <segue reference="CCz-K1-KF9"/>
     </inferredMetricsTieBreakers>
 </document>

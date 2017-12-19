@@ -13,7 +13,7 @@ class MixtapesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-        tabBarItem.selectedImage = UIImage(named: "3_AddaDJ")!.withRenderingMode(.alwaysOriginal)
+        //tabBarItem.selectedImage = UIImage(named: "3_AddaDJ")!.withRenderingMode(.alwaysOriginal)
 
     }
 

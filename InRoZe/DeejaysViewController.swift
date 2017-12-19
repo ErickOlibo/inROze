@@ -54,7 +54,6 @@ class DeejaysViewController: FetchedResultsTableViewController {
         searchController.searchBar.returnKeyType = .done
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
-  
     }
     
     // ViewController Life Cycle
@@ -68,6 +67,7 @@ class DeejaysViewController: FetchedResultsTableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateUI()
+        navigationItem.title = "DJs in \(currentCity.countryName.rawValue)"
     }
     
     

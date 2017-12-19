@@ -38,6 +38,8 @@ class DeejayGigsTableViewController: UITableViewController {
     var artist: Artist? { didSet { updateUI() } }
 
     private var gigsList: [Event]?
+    private var mixesList: [Mixtape]?
+    //private var gigMixArr: [[Event]?, [Mixtape]?]
 
     // ** View Controller Life Cycle
     override func viewDidLoad() {
@@ -156,8 +158,10 @@ class DeejayGigsTableViewController: UITableViewController {
     }
     
     private func updateUI() {
+        print("Gigs Count: \(artist?.gigs?.count ?? -1) - Mixtapes count: \(artist?.mixes?.count ?? -1)")
         if let context = container?.viewContext {
             context.perform {
+                self.mixesList = Artist.findPerformingMixtapes(for: self.artist!, in: context)
                 self.gigsList = Artist.findPerformingEvents(for: self.artist!, in: context)
                 if let currentState = Artist.currentIsFollowedState(for: self.artist!.id!, in: context) {
                     self.artist!.isFollowed = currentState
@@ -171,11 +175,16 @@ class DeejayGigsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return gigsList?.count ?? 0
+        if (section == 0) {
+            return gigsList?.count ?? 0
+        } else {
+            return mixesList?.count ?? 0
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -183,12 +192,31 @@ class DeejayGigsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: DeejayGigsCell.identifier, for: indexPath) as! DeejayGigsCell
-        cell.selectionStyle = .none
-        if let event = gigsList?[indexPath.row]  {
-            cell.event = event
+        if (indexPath.section == 0) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: DeejayGigsCell.identifier, for: indexPath) as! DeejayGigsCell
+            cell.selectionStyle = .none
+            if let event = gigsList?[indexPath.row]  {
+                cell.event = event
+            }
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: DeejayMixesCell.identifier, for: indexPath) as! DeejayMixesCell
+            cell.selectionStyle = .none
+            if let mixtape = mixesList?[indexPath.row] {
+                cell.mixtape = mixtape
+            }
+            return cell
         }
-        return cell
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return (indexPath.section == 0) ?  60.0 :  120.0
+//        if (indexPath.section == 0) {
+//            return 60.0
+//        } else {
+//
+//        }
     }
  
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

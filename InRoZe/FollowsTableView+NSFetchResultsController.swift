@@ -62,6 +62,7 @@ extension FollowsViewController
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
+        print("IN viewForHeaderInSection what is the Section: ", section)
         let view = UIView()
         guard let sections = fetchResultsController.sections else { fatalError("ISSUE WITH SECTINOS")}
         let dayTitle = sections[section].name
