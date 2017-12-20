@@ -36,6 +36,7 @@ public struct DBLabels {
     static let artistsList = "artists_list"
     static let cityCode =  "cityCode"
     static let errorType = "error"
+    static let eventIsActive = "is_active"
     static let rows = "rows"
     static let profileURL = "profile_url"
     
@@ -89,7 +90,7 @@ public struct RequestDate {
 
 
 public struct IntervalBetweenRequest {
-    static let toFacebook = TimeInterval(20 * 60 ) // 5 mins before new update from Facebook Graph API
+    static let toFacebook = TimeInterval(10 * 60 ) // 5 mins before new update from Facebook Graph API
     static let toServer = TimeInterval(1 * 60) // 1 min before collecting new eventIDS / Artist from server
     //static let toServerArtist = TimeInterval(2 * 60 * 60) // (1 min for test) 8 hours
 }

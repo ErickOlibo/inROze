@@ -23,8 +23,14 @@ public class Event: NSManagedObject
             let match = try context.fetch(request)
             if match.count > 0 {
                 assert(match.count == 1, "findOrInsertEventID -- database inconsistency")
-                //update artists for eventID -> remove all then add new
-                return match[0]
+                let thisEvent = match[0]
+                thisEvent.isActive = eventDict[DBLabels.eventIsActive] != nil ? true : false
+                do {
+                    thisEvent.location = try Place.findOrInsertPlaceID(matching: eventDict, in: context)
+                } catch {
+                    print("[Event] - Error UPDATING findOrInsertEventID TO Location")
+                }
+                return thisEvent
             }
         } catch {
             throw error
@@ -32,10 +38,11 @@ public class Event: NSManagedObject
 
         let event = Event(context: context)
         event.id = eventDict[DBLabels.eventID]
+        event.isActive = eventDict[DBLabels.eventIsActive] != nil ? true : false
         do {
         event.location = try Place.findOrInsertPlaceID(matching: eventDict, in: context)
         } catch {
-            print("[Event] - Error findOrInsertEventID TO Location")
+            print("[Event] - Error CREATING findOrInsertEventID TO Location")
         }
         return event
     }
@@ -142,7 +149,7 @@ public class Event: NSManagedObject
                         // Formatting DateTime
                         let formatter = ISO8601DateFormatter()
                         
-                        // default time interval when endTime is nil or longer than X hours
+                        // default time interval when endTime is nil or longer than 10 hours (same as SERVER)
                         let defaultInterval: Double = 10 * 60 * 60
                         
                         let startTimeDate = formatter.date(from: sTime)!
@@ -281,6 +288,29 @@ public class Event: NSManagedObject
             }
         } catch {
             print("[Event] - deleteEventsWithoutPerformers Error")
+        }
+        return true
+    }
+    
+    
+    // Delete events that are isActive = false from the database
+    class func deleteNotActiveEvents(in context: NSManagedObjectContext) -> Bool
+    {
+        let request: NSFetchRequest<Event> = Event.fetchRequest()
+        request.predicate = NSPredicate(format: "isActive == NO OR isActive == nil")
+        do {
+            let matches = try context.fetch(request)
+            if matches.count > 0 {
+                for match in matches {
+                    if let id = match.id {
+                        print("DELETING Event with ID: [\(id)]")
+                    }
+                    context.delete(match)
+                }
+            }
+        } catch {
+            print("Error while attempting to delete events with isActive = false")
+            
         }
         return true
     }

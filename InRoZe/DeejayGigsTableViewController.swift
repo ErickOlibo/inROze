@@ -75,6 +75,11 @@ class DeejayGigsTableViewController: UITableViewController {
         // the format should be 12Gs / 61Ms
         guard let gigs = artist?.gigs?.count else { return }
         guard let mixes = artist?.mixes?.count else { return }
+        if gigs > 0 {
+            guard let first = (artist?.gigs?.allObjects as? [Event])?.first else { return }
+            
+            print("ID: [\(first.id ?? "NO id")] - Name: [\(first.name ?? "No name")] - Start: [\(first.startDay ?? "No day")] - Descr: [\(first.text ?? "NO Text description")]")
+        }
         gigsMixes.text = "\(gigs)Gs / \(mixes)Ms"
         
         
@@ -212,11 +217,6 @@ class DeejayGigsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return (indexPath.section == 0) ?  60.0 :  120.0
-//        if (indexPath.section == 0) {
-//            return 60.0
-//        } else {
-//
-//        }
     }
  
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

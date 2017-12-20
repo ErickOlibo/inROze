@@ -100,6 +100,29 @@ public class Mixtape: NSManagedObject
         return true
     }
     
+    
+    // Delete Mixtapes that are isActive = false from the database
+    class func deleteNotActiveMixtapes(in context: NSManagedObjectContext) -> Bool
+    {
+        let request: NSFetchRequest<Mixtape> = Mixtape.fetchRequest()
+        request.predicate = NSPredicate(format: "isActive == NO OR isActive == nil")
+        do {
+            let matches = try context.fetch(request)
+            if matches.count > 0 {
+                for match in matches {
+                    if let id = match.id {
+                        print("DELETING Mixtape with ID: [\(id)]")
+                    }
+                    context.delete(match)
+                }
+            }
+        } catch {
+            print("Error while attempting to delete Mixtapes with isActive = false")
+            
+        }
+        return true
+    }
+    
 
     
     

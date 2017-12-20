@@ -160,6 +160,13 @@ public class ServerRequest
                     // Save in CoreDatabase
                     do {
                         //print("[ServerRequest] -  Which thread is this Context at: \(Thread.current)")
+                        
+                        // DELETE EVENTS that are isActive = FALSE and isActive is nil
+                        _ = Event.deleteNotActiveEvents(in: context)
+                        
+                        // DELETE MIXTAPES that are isActive = FALSE and isActive is nil
+                        _ = Mixtape.deleteNotActiveMixtapes(in: context)
+                        
                         try context.save()
                         UserDefaults().setDateNow(for: RequestDate.toServer)
                         
