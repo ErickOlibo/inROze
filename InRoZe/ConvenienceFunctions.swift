@@ -18,9 +18,9 @@ import UIKit
 
 public func preferedProfilePictureURL(for artist: Artist) -> String? {
 
-    if let mixURL = artist.picMixURL { return mixURL }
-    if let fbURL = artist.picFbURL { return fbURL }
-    if let defaultURL = artist.picDefaultURL { return defaultURL }
+    if let mixURL = artist.mcPicURL { return mixURL }
+    if let fbURL = artist.fbPicURL { return fbURL }
+    if let defaultURL = artist.dfPicURL { return defaultURL }
     return nil
 }
 
@@ -68,6 +68,51 @@ public func twoLinesFormatter(withTwoString twoStrings: (first: String, second: 
     twoLinesFormatted.append(color(attributedString: attrLineTwo, color: fontColors.second))
     
     return twoLinesFormatted
+}
+
+public func mixtapesDayLengthLabelFormatter(for mixtape: Mixtape) -> MixtapeAttributedInfo {
+    var day = NSAttributedString(string: "")
+    var time = NSAttributedString(string: "")
+    let attributeOne = [ NSAttributedStringKey.font: UIFont(name: "FontAwesome", size: 18.0)! ]
+    
+    
+    // Format the Created Time of the mix
+    guard let createdTime = mixtape.createdTime else { return MixtapeAttributedInfo(mixDay: day, mixLength: time) }
+    let formatter = DateFormatter()
+    formatter.dateFormat = "d MMM, yyyy"
+    let separ = "  "
+    day = NSAttributedString(string: formatter.string(from: createdTime))
+    
+    let iconCal = FAType.FACalendar.text! + separ
+    let timeIcon = NSAttributedString(string: iconCal, attributes: attributeOne)
+    let combined = NSMutableAttributedString()
+    combined.append(color(attributedString: timeIcon, color: .black))
+    combined.append(color(attributedString: day, color: .black))
+    day = combined
+    
+    // format the length on the mix
+    guard let length = mixtape.length, let lengthInt = Int(length) else { return MixtapeAttributedInfo(mixDay: day, mixLength: time) }
+    let formatterL = DateComponentsFormatter()
+    formatterL.allowedUnits = [.hour, .minute, .second]
+    formatterL.unitsStyle = .abbreviated
+    time = NSAttributedString(string: formatterL.string(from: TimeInterval(lengthInt))!)
+    
+    let iconLength = FAType.FAHeadphones.text! + separ
+    let lengthIcon = NSAttributedString(string: iconLength, attributes: attributeOne)
+    let combinedTwo = NSMutableAttributedString()
+    combinedTwo.append(color(attributedString: lengthIcon, color: .black))
+    combinedTwo.append(color(attributedString: time, color: .black))
+    time = combinedTwo
+
+    return  MixtapeAttributedInfo(mixDay: day, mixLength: time)
+}
+
+
+
+public struct MixtapeAttributedInfo {
+    public var mixDay: NSAttributedString?
+    public var mixLength: NSAttributedString?
+
 }
 
 

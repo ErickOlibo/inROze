@@ -30,7 +30,7 @@ public class Mixtape: NSManagedObject
                 let mix = match[0]
                 mix.coverURL = mixInfo[DBLabels.mixCoverURL] as?  String ?? nil
                 mix.name = mixInfo[DBLabels.mixName] as?  String ?? nil
-                mix.length = mixInfo[DBLabels.mixLength] as?  Int16 ?? 0
+                mix.length = mixInfo[DBLabels.mixLength] as?  String ?? nil
                 
                 mix.mixURL = mixInfo[DBLabels.mixURL] as?  String ?? nil
                 mix.tag1 = mixInfo[DBLabels.mixTag1] as?  String ?? nil
@@ -67,7 +67,7 @@ public class Mixtape: NSManagedObject
         newMix.id = mixID
         newMix.coverURL = mixInfo[DBLabels.mixCoverURL] as?  String ?? nil
         newMix.name = mixInfo[DBLabels.mixName] as?  String ?? nil
-        newMix.length = mixInfo[DBLabels.mixLength] as?  Int16 ?? 0
+        newMix.length = mixInfo[DBLabels.mixLength] as?  String ?? nil
         
         newMix.mixURL = mixInfo[DBLabels.mixURL] as?  String ?? nil
         newMix.tag1 = mixInfo[DBLabels.mixTag1] as?  String ?? nil
@@ -94,11 +94,65 @@ public class Mixtape: NSManagedObject
         } catch {
             print("[Mixtape] - MIXTAPE to DEEJAY Creation Error")
         }
-        
-        
-        
         return true
     }
+    
+    
+    class func currentIsFollowedState(for mixID: String, in context: NSManagedObjectContext) -> Bool? {
+        let request: NSFetchRequest<Mixtape> = Mixtape.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", mixID)
+        do {
+            let match = try context.fetch(request)
+            if match.count > 0 {
+                assert(match.count == 1, "currentIsFollowedState -- database inconsistency")
+                return match[0].isFollowed
+            }
+        } catch {
+            print("[currentIsFollowedState] - Error while Saving Context: \(error)")
+        }
+        return nil
+    }
+    
+    
+    class func changeIsFollowed(for mixID: String, in context: NSManagedObjectContext) -> Bool {
+        let request: NSFetchRequest<Mixtape> = Mixtape.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", mixID)
+        do {
+            let match = try context.fetch(request)
+            if match.count > 0 {
+                assert(match.count == 1, "changeIsFollowed -- database inconsistency")
+                match[0].isFollowed = !match[0].isFollowed
+                
+                // save context
+                do {
+                    try context.save()
+                } catch {
+                    print("[changeIsFollowed] - Error while Saving Context: \(error)")
+                }
+                return true
+            }
+        } catch {
+            print("[changeIsFollowed] - Error while Saving Context: \(error)")
+        }
+        return false
+    }
+    
+    
+    class func listOfFollows(in context: NSManagedObjectContext) -> [Mixtape] {
+        var follows = [Mixtape]()
+        let request: NSFetchRequest<Mixtape> = Mixtape.fetchRequest()
+        request.predicate = NSPredicate(format: "isFollowed = true")
+        do {
+            follows = try context.fetch(request)
+            
+            return follows
+        } catch {
+            print("[printListOfFollows Mixtapes] - Error while getting Follows list: \(error)")
+        }
+        return follows
+    }
+    
+    
     
     
     // Delete Mixtapes that are isActive = false from the database

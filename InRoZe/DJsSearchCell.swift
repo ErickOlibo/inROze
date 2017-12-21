@@ -37,6 +37,7 @@ class DJsSearchCell: UITableViewCell
     private func configureCell() {
         selectionStyle = .none
         guard let name = deejay?.name else { return }
+        //print("[\(tag)] - \(name)")
         deejayName.text = name
         updateFollowedButton()
     }
@@ -107,9 +108,6 @@ class DJsSearchCell: UITableViewCell
             }
         }
         deejayName.attributedText = attrName
-        
-
-        
     }
     
     
@@ -128,38 +126,38 @@ class DJsSearchCell: UITableViewCell
     
     
     private func setSubtitleText(_ status: Bool) {
-        // set the number of gigs
-        var subtitle = ""
-        guard let gigs = deejay?.gigs?.count else { return }
-        guard let mixes = deejay?.mixes?.count else { return }
-        //let mixes = mixCount
-        let combi = (gig: gigs, mix: mixes)
-        
-        switch combi {
-        case (0, 0):
-            subtitle = ""
-        case (0, 1):
-            subtitle = "\(combi.mix) mixtape"
-        case (0, 2...):
-            subtitle = "\(combi.mix) mixtapes"
-        case (1, 0):
-            subtitle = "\(combi.gig) gig"
-        case (1, 1):
-            subtitle = "\(combi.gig) gig - \(combi.mix) mixtape"
-        case (1, 2...):
-            subtitle = "\(combi.gig) gig - \(combi.mix) mixtapes"
-        case (2..., 0):
-            subtitle = "\(combi.gig) gigs"
-        case (2..., 1):
-            subtitle = "\(combi.gig) gigs - \(combi.mix) mixtape"
-        case (2..., 2...):
-            subtitle = "\(combi.gig) gigs - \(combi.mix) mixtapes"
-        case (_, _):
-            subtitle = ""
-        }
-        gigsMixesList.text = subtitle
         gigsMixesList.textColor = status ? .black : Colors.isNotFollowed
-
+        if let context = container?.viewContext {
+            context.perform {
+                var subtitle = ""
+                let mixesList = Artist.findPerformingMixtapes(for: self.deejay!, in: context)
+                let gigsList = Artist.findPerformingEvents(for: self.deejay!, in: context)
+                let combi = (gig: gigsList?.count ?? 0, mix: mixesList?.count ?? 0)
+                switch combi {
+                case (0, 0):
+                    subtitle = ""
+                case (0, 1):
+                    subtitle = "\(combi.mix) mixtape"
+                case (0, 2...):
+                    subtitle = "\(combi.mix) mixtapes"
+                case (1, 0):
+                    subtitle = "\(combi.gig) gig"
+                case (1, 1):
+                    subtitle = "\(combi.gig) gig - \(combi.mix) mixtape"
+                case (1, 2...):
+                    subtitle = "\(combi.gig) gig - \(combi.mix) mixtapes"
+                case (2..., 0):
+                    subtitle = "\(combi.gig) gigs"
+                case (2..., 1):
+                    subtitle = "\(combi.gig) gigs - \(combi.mix) mixtape"
+                case (2..., 2...):
+                    subtitle = "\(combi.gig) gigs - \(combi.mix) mixtapes"
+                case (_, _):
+                    subtitle = ""
+                }
+                self.gigsMixesList.text = subtitle
+            }
+        }
     }
     
     

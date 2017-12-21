@@ -7,19 +7,75 @@
 //
 
 import UIKit
+import CoreData
 
 class DeejayMixesCell: UITableViewCell {
     
     static var identifier: String { return String(describing: self) }
     var mixtape: Mixtape? { didSet { configureCell() } }
     
+    // context & container
+    //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
+    
+    
     // outlets
     @IBOutlet weak var mixtapeCover: UIImageView!
     
     @IBOutlet weak var mixtapeName: UILabel!
     @IBOutlet weak var mixtapeTags: UILabel!
+    @IBOutlet weak var createdDay: UILabel!
+    @IBOutlet weak var mixLength: UILabel!
+    
+    @IBOutlet weak var mixIsFollowedView: UIView!
+    @IBOutlet weak var mixIsFollowedButton: UIButton!
+    @IBAction func mixIsFollowedTouched(_ sender: UIButton) {
+        print("mixIsFollowedTouched")
+        pressedFollowed()
+    }
     
     
+    @objc private func pressedFollowed() {
+        guard let mixtapeID = mixtape?.id else { return }
+        print("Cell [\(tag)] - preseed: [\(mixtape?.name ?? "No Name Mix")]")
+        if let context = container?.viewContext {
+            context.perform {
+                if let  mixState = Mixtape.currentIsFollowedState(for: mixtapeID, in: context) {
+                    self.mixtape!.isFollowed = !mixState
+                    self.updateFollowedButton()
+                    self.changeState()
+                    
+                }
+            }
+        }
+    }
+    
+    private func updateFollowedButton() {
+        guard let currentIsFollow = mixtape?.isFollowed else { return }
+        
+        if (currentIsFollow) {
+            mixIsFollowedButton.tintColor = Colors.isFollowed
+            mixIsFollowedButton.setImage((UIImage(named: "3_MixtapesFilled")?.withRenderingMode(.alwaysTemplate))!, for: .normal)
+            
+        } else {
+            mixIsFollowedButton.tintColor = Colors.isNotFollowed
+            mixIsFollowedButton.setImage((UIImage(named: "3_Mixtapes")?.withRenderingMode(.alwaysTemplate))!, for: .normal)
+        }
+    }
+    
+    
+    private func changeState() {
+        guard let mixtapeID = mixtape?.id else { return }
+        // Change state of isFollowed
+        container?.performBackgroundTask{ context in
+            let success = Mixtape.changeIsFollowed(for: mixtapeID, in: context)
+            if (success) {
+                print("Changed isFollowed State for id: ", mixtapeID)
+            } else {
+                print("[pressedFollowed] in DJsSearchCell Failed")
+            }
+        }
+    }
     
     
     
@@ -27,11 +83,20 @@ class DeejayMixesCell: UITableViewCell {
         guard let name = mixtape?.name else { return }
         mixtapeName.text = name
         mixtapeTags.text = tagsToString()
+        mixDayLengthUI()
+        updateFollowedButton()
         guard let url = mixtape?.coverURL else { return }
         guard let mixCoverURL = URL(string: url) else { return }
         mixtapeCover.kf.setImage(with: mixCoverURL, options: [.backgroundDecode])
 
         
+    }
+    
+    private func mixDayLengthUI() {
+        guard let mix = mixtape else { return }
+        let dayLength = mixtapesDayLengthLabelFormatter(for: mix)
+        createdDay.attributedText = dayLength.mixDay
+        mixLength.attributedText = dayLength.mixLength
     }
     
     

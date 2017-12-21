@@ -51,9 +51,12 @@ public struct DBLabels {
     static let artistType = "type"
     static let artistCountry = "country"
     static let artistCountryCode = "country_code"
-    static let artistPicFbURL = "fbpic_url"
-    static let artistPicMixURL = "pic_url"
-    static let artistPicDefaultURL = "default_pic_url"
+    static let artistFbPicURL = "fbpic_url"
+    static let artistMcPicURL = "mcpic_url"
+    static let artistDfPicURL = "dfpic_url"
+    static let artistFbCoverURL = "fbcover_url"
+    static let artistMcCoverURL = "mccover_url"
+    static let artistDfCoverURL = "dfcover_url"
     
     // for the Mixtape fields from Server
     static let mixID = "mix_id"
@@ -91,7 +94,7 @@ public struct RequestDate {
 
 public struct IntervalBetweenRequest {
     static let toFacebook = TimeInterval(10 * 60 ) // 5 mins before new update from Facebook Graph API
-    static let toServer = TimeInterval(1 * 60) // 1 min before collecting new eventIDS / Artist from server
+    static let toServer = TimeInterval(1 * 10) // 1 min before collecting new eventIDS / Artist from server
     //static let toServerArtist = TimeInterval(2 * 60 * 60) // (1 min for test) 8 hours
 }
 

@@ -16,8 +16,8 @@ class DeejayGigsTableViewController: UITableViewController {
     
     // outlets
     @IBOutlet weak var tableHeaderView: UIView!
-    @IBOutlet weak var upcomingGigsView: UIView!
-    @IBOutlet weak var upcomingGigsLabel: UILabel!
+    //@IBOutlet weak var upcomingGigsView: UIView!
+    //@IBOutlet weak var upcomingGigsLabel: UILabel!
     
     @IBOutlet weak var djProfileImage: UIImageView! { didSet { updateProfileImage() } }
     @IBOutlet weak var djProfileView: UIView! { didSet { updateProfileView() } }
@@ -54,7 +54,7 @@ class DeejayGigsTableViewController: UITableViewController {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: (UIImage(named: "2_Follows")?.withRenderingMode(.alwaysTemplate))!, style: .plain, target: self, action: #selector(pressedFollowed))
-        upcomingGigsView.backgroundColor = Colors.logoRed
+        //upcomingGigsView.backgroundColor = Colors.logoRed
         setDeejayImage()
         
         
@@ -73,16 +73,13 @@ class DeejayGigsTableViewController: UITableViewController {
     private func updateGigsMixesCount() {
         // count from the Core data the number of gigs and mixtapes by this DJ
         // the format should be 12Gs / 61Ms
-        guard let gigs = artist?.gigs?.count else { return }
-        guard let mixes = artist?.mixes?.count else { return }
-        if gigs > 0 {
-            guard let first = (artist?.gigs?.allObjects as? [Event])?.first else { return }
-            
-            print("ID: [\(first.id ?? "NO id")] - Name: [\(first.name ?? "No name")] - Start: [\(first.startDay ?? "No day")] - Descr: [\(first.text ?? "NO Text description")]")
-        }
-        gigsMixes.text = "\(gigs)Gs / \(mixes)Ms"
-        
-        
+        //guard let gigs = artist?.gigs?.count else { return }
+        //guard let mixes = artist?.mixes?.count else { return }
+
+        //gigsMixes.text = "\(gigs)Gs / \(mixes)Ms"
+        gigsMixes.text = "\(gigsList?.count ?? 0)Gs / \(mixesList?.count ?? 0)Ms"
+
+
     }
     
     
@@ -163,7 +160,6 @@ class DeejayGigsTableViewController: UITableViewController {
     }
     
     private func updateUI() {
-        print("Gigs Count: \(artist?.gigs?.count ?? -1) - Mixtapes count: \(artist?.mixes?.count ?? -1)")
         if let context = container?.viewContext {
             context.perform {
                 self.mixesList = Artist.findPerformingMixtapes(for: self.artist!, in: context)
@@ -172,6 +168,7 @@ class DeejayGigsTableViewController: UITableViewController {
                     self.artist!.isFollowed = currentState
                 }
                 self.tableView.reloadData()
+                self.gigsMixes.text = "\(self.gigsList?.count ?? 0)Gs / \(self.mixesList?.count ?? 0)Ms"
             }
         }
     }
@@ -199,6 +196,7 @@ class DeejayGigsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: DeejayGigsCell.identifier, for: indexPath) as! DeejayGigsCell
+            cell.tag = indexPath.row
             cell.selectionStyle = .none
             if let event = gigsList?[indexPath.row]  {
                 cell.event = event
@@ -206,6 +204,7 @@ class DeejayGigsTableViewController: UITableViewController {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: DeejayMixesCell.identifier, for: indexPath) as! DeejayMixesCell
+            cell.tag = indexPath.row
             cell.selectionStyle = .none
             if let mixtape = mixesList?[indexPath.row] {
                 cell.mixtape = mixtape
@@ -214,6 +213,44 @@ class DeejayGigsTableViewController: UITableViewController {
         }
         
     }
+    
+    // Views for section
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = Colors.logoRed
+        var text = ""
+        let textLabel = UILabel()
+        let attributeOne =  [ NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Bold", size: 18.0)!, NSAttributedStringKey.foregroundColor: UIColor.white ]
+        
+        if (section == 0) {
+            text = "GIGS"
+        } else {
+            text = "MIXTAPES"
+        }
+        let attrText = NSAttributedString(string: text, attributes: attributeOne)
+        textLabel.attributedText = attrText
+        textLabel.frame = CGRect(x: 0, y: 0, width: CellSize.phoneSizeWidth, height: 30)
+        textLabel.textAlignment = .center
+        view.addSubview(textLabel)
+        
+        if self.tableView(tableView, numberOfRowsInSection: section) > 0 {
+            return view
+        } else {
+            textLabel.text = nil
+            view.backgroundColor = .lightGray
+            return view
+        }
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if self.tableView(tableView, numberOfRowsInSection: section) > 0 {
+            return 30.0
+        } else {
+            return 0.333
+        }
+    }
+    
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return (indexPath.section == 0) ?  60.0 :  120.0

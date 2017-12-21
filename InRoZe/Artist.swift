@@ -27,10 +27,10 @@ public class Artist: NSManagedObject
                 artistMatch.countryCode = artistInfo[DBLabels.artistCountryCode] as? String ?? nil
                 artistMatch.name = artistInfo[DBLabels.artistName] as? String ?? nil
                 artistMatch.type = artistInfo[DBLabels.artistType] as? String ?? nil
-                artistMatch.picDefaultURL = artistInfo[DBLabels.artistPicDefaultURL] as? String ?? nil
+                artistMatch.dfPicURL = artistInfo[DBLabels.artistDfPicURL] as? String ?? nil
                 //print("Update URL Default: ", artistInfo[DBLabels.artistPicDefaultURL] ?? "NULL")
-                artistMatch.picFbURL = artistInfo[DBLabels.artistPicFbURL] as? String ?? nil
-                artistMatch.picMixURL = artistInfo[DBLabels.artistPicMixURL] as? String ?? nil
+                artistMatch.fbPicURL = artistInfo[DBLabels.artistFbPicURL] as? String ?? nil
+                artistMatch.mcPicURL = artistInfo[DBLabels.artistMcPicURL] as? String ?? nil
                 return false
             }
         } catch {
@@ -43,10 +43,10 @@ public class Artist: NSManagedObject
         artist.id = artistInfo[DBLabels.artistID] as? String ?? nil
         artist.name = artistInfo[DBLabels.artistName] as? String ?? nil
         artist.type = artistInfo[DBLabels.artistType] as? String ?? nil
-        artist.picDefaultURL = artistInfo[DBLabels.artistPicDefaultURL] as? String ?? nil
+        artist.dfPicURL = artistInfo[DBLabels.artistDfPicURL] as? String ?? nil
         //print("Create URL Default: ", artistInfo[DBLabels.artistPicDefaultURL] ?? "NULL")
-        artist.picFbURL = artistInfo[DBLabels.artistPicFbURL] as? String ?? nil
-        artist.picMixURL = artistInfo[DBLabels.artistPicMixURL] as? String ?? nil
+        artist.fbPicURL = artistInfo[DBLabels.artistFbPicURL] as? String ?? nil
+        artist.mcPicURL = artistInfo[DBLabels.artistMcPicURL] as? String ?? nil
         artist.isFollowed = false
         return true
     }
@@ -118,7 +118,7 @@ public class Artist: NSManagedObject
             
             return follows
         } catch {
-            print("[printListOfFollows] - Error while getting Follows list: \(error)")
+            print("[printListOfFollows Artists] - Error while getting Follows list: \(error)")
         }
         return follows
     }
@@ -149,7 +149,7 @@ public class Artist: NSManagedObject
         // Add sort Descriptors and Predicate
         let nowTime = NSDate()
         request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
-        request.predicate = NSPredicate(format: "ANY performers.id == %@ AND endTime > %@", artist.id!, nowTime)
+        request.predicate = NSPredicate(format: "ANY performers.id == %@ AND endTime > %@ AND imageURL != nil AND name != nil AND text != nil", artist.id!, nowTime)
         do {
             let match = try context.fetch(request)
             //print("match for [findPerformingEvents]: \(match.count)")

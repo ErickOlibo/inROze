@@ -79,7 +79,7 @@ class SettingsViewController: UITableViewController {
     private func setFollowsMix() {
         // From Core data later
         let numFollows = String(numbersFollowsAndMixtapes().0)
-        let numMix = "999+"
+        let numMix = String(numbersFollowsAndMixtapes().1)
         
         let followStr = (numFollows, "follows")
         let mixtapesStr = (numMix, "mixtapes")
@@ -104,9 +104,9 @@ class SettingsViewController: UITableViewController {
         let followsNumb = Artist.listOfFollows(in: container!.viewContext).count
 
         // from Core Data numberOfFollowedMixtapes
-        // let numberOfMixtapesFollowed = ?????
-        
-        return (followsNumb, 24)
+        let mixtapesNumb = Mixtape.listOfFollows(in: container!.viewContext).count
+        print("Mixtapes followed: \(mixtapesNumb)")
+        return (followsNumb, mixtapesNumb)
     }
     
     
