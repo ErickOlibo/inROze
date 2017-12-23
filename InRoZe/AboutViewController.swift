@@ -39,7 +39,6 @@ class AboutViewController: UIViewController {
         spinner.startAnimating()
         webView.backgroundColor = UIColor.black.withAlphaComponent(0.2)
         let request = URLRequest(url: _aboutURL)
-        print("Load: [\(Date())]")
         webView.load(request)
     }
 
@@ -50,6 +49,7 @@ extension AboutViewController: WKNavigationDelegate{
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         //print("Loading Done: [\(Date())]")
+        
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {

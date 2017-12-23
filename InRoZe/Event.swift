@@ -25,6 +25,7 @@ public class Event: NSManagedObject
                 assert(match.count == 1, "findOrInsertEventID -- database inconsistency")
                 let thisEvent = match[0]
                 thisEvent.isActive = eventDict[DBLabels.eventIsActive] != nil ? true : false
+                //print("ID: [\(thisEvent.id!)] - EVENT ACTIVE: [\(thisEvent.isActive)]")
                 do {
                     thisEvent.location = try Place.findOrInsertPlaceID(matching: eventDict, in: context)
                 } catch {
@@ -39,6 +40,7 @@ public class Event: NSManagedObject
         let event = Event(context: context)
         event.id = eventDict[DBLabels.eventID]
         event.isActive = eventDict[DBLabels.eventIsActive] != nil ? true : false
+        //print("ID: [\(event.id!)] - EVENT ACTIVE: [\(event.isActive)]")
         do {
         event.location = try Place.findOrInsertPlaceID(matching: eventDict, in: context)
         } catch {
@@ -149,8 +151,8 @@ public class Event: NSManagedObject
                         // Formatting DateTime
                         let formatter = ISO8601DateFormatter()
                         
-                        // default time interval when endTime is nil or longer than 10 hours (same as SERVER)
-                        let defaultInterval: Double = 10 * 60 * 60
+                        // default time interval when endTime is nil or longer than 12 hours (same as SERVER)
+                        let defaultInterval: Double = 12 * 60 * 60
                         
                         let startTimeDate = formatter.date(from: sTime)!
                         event.startTime = startTimeDate

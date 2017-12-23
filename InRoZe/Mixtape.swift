@@ -38,8 +38,8 @@ public class Mixtape: NSManagedObject
                 mix.tag3 = mixInfo[DBLabels.mixTag3] as?  String ?? nil
                 mix.tag4 = mixInfo[DBLabels.mixTag4] as?  String ?? nil
                 mix.tag5 = mixInfo[DBLabels.mixTag5] as?  String ?? nil
-                mix.isActive = mixInfo[DBLabels.mixIsActive] != nil ? true : false
-                
+                mix.isActive = mixInfo[DBLabels.mixIsActive] as? String != nil ? true : false
+                //print("ID: [\(mix.id!)] - MIX ACTIVE: [\(mix.isActive)]")
                 if let cTime = mixInfo[DBLabels.mixCreatedTime] as? String,
                     let createdTime = dateFormatter.date(from: cTime) {
                     mix.createdTime = createdTime
@@ -54,6 +54,7 @@ public class Mixtape: NSManagedObject
                 } catch {
                     print("[Mixtape] - MIXTAPE to DEEJAY Update Error")
                 }
+                
 
                 return false
                 
@@ -75,7 +76,8 @@ public class Mixtape: NSManagedObject
         newMix.tag3 = mixInfo[DBLabels.mixTag3] as?  String ?? nil
         newMix.tag4 = mixInfo[DBLabels.mixTag4] as?  String ?? nil
         newMix.tag5 = mixInfo[DBLabels.mixTag5] as?  String ?? nil
-        newMix.isActive = mixInfo[DBLabels.mixIsActive] != nil ? true : false
+        newMix.isActive = mixInfo[DBLabels.mixIsActive] as? String != nil ? true : false
+        //print("ID: [\(newMix.id!)] - MIX ACTIVE: [\(newMix.isActive)]")
         newMix.isFollowed = false
         
         if let cTime = mixInfo[DBLabels.mixCreatedTime] as? String,

@@ -24,8 +24,13 @@ public struct UrlFor {
     // URL for About in the Setting section
     static let aboutInroze = "https://www.pipedrive.com/en/about"
     static let aboutTerms = "https://www.meetagainapp.com/terms_and_conditions.html"
-    static let aboutPrivacy = "https://www.mixcloud.com/ivonaries7/midsummer-bling-2017-landing-mix/"
-    static let aboutSources = "https://soundcloud.com/defkut/ice-cream-remix-defkut-feat-wu"
+    static let aboutPrivacy = "https://www.mixcloud.com/hurmet/makmorr-januar-2010-mix/"
+    
+    //"https://www.mixcloud.com/ivonaries7/midsummer-bling-2017-landing-mix/"
+    static let aboutSources = "https://api.mixcloud.com/hurmet/makmorr-januar-2010-mix/embed-html/?height=600&color=D23900"
+    
+    
+    //"https://soundcloud.com/defkut/ice-cream-remix-defkut-feat-wu"
 }
 
 // Fields name from the Server Database Columns
@@ -99,7 +104,7 @@ public struct IntervalBetweenRequest {
 }
 
 
-//********************************************* BELOW MUST BE ERRASE
+//********************************************* BELOW MUST BE ERASE
 
 //// List of cities available
 //private struct AvailableCities {

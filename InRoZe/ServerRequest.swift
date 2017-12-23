@@ -90,7 +90,7 @@ public class ServerRequest
         for (key, value) in jsonDict {
             if (key == DBLabels.upToDateArtistsList),
                 let  artistsArray = value as? [Any] {
-                print("the size of DJ array: ", artistsArray.count)
+                print("[FROM SERVER]the size of DJ array: ", artistsArray.count)
                 //var loopCount = 1
                 for artistInfoArray in artistsArray {
                     
@@ -112,7 +112,7 @@ public class ServerRequest
         for (key, value) in jsonDict {
             if (key == DBLabels.mixtapesList),
                 let  mixtapesArray = value as? [Any] {
-                print("the size of MIXTAPES array: ", mixtapesArray.count)
+                print("[FROM SERVER] the size of MIXTAPES array: ", mixtapesArray.count)
                 //var loopCount = 1
                 for mixtapeInfoArray in mixtapesArray {
                     
@@ -148,25 +148,21 @@ public class ServerRequest
                             }
                         }
                     }
-                    // insert artists to database
+                    // Core Data updates for Artist, Mixtapes, Artists of Events
                     self.updateArtistsDatabase(with: eventIDs, in: context)
-                    
-                    // **** Insert mixtapes to database ***
                     self.updateMixtapesDatabase(with: eventIDs, in: context)
-                    
-                    // insert performers for events
                     self.insertOrUpdateArtistsOfEvents(with: eventIDs, in: context)
+                    
+                    // Delete Outdated entries from Core Data (events and mixtapes)
+                    print("[updateDatabase] - deleteNotActiveEvents")
+                    _ = Event.deleteNotActiveEvents(in: context)
+                    print("[updateDatabase] - deleteNotActiveMixtapes")
+                    _ = Mixtape.deleteNotActiveMixtapes(in: context)
                     
                     // Save in CoreDatabase
                     do {
                         //print("[ServerRequest] -  Which thread is this Context at: \(Thread.current)")
-                        
-                        // DELETE EVENTS that are isActive = FALSE and isActive is nil
-                        _ = Event.deleteNotActiveEvents(in: context)
-                        
-                        // DELETE MIXTAPES that are isActive = FALSE and isActive is nil
-                        _ = Mixtape.deleteNotActiveMixtapes(in: context)
-                        
+
                         try context.save()
                         UserDefaults().setDateNow(for: RequestDate.toServer)
                         
