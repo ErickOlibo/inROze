@@ -200,12 +200,6 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         }
     }
 
-    // Unwinded from Modal
-    @IBAction func unwindToDeejayGigsTVC(segue: UIStoryboardSegue) {
-        print("UNWIND MODAL PLAYER")
-        //updateUI()
-        
-    }
     
 }
 

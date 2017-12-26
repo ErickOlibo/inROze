@@ -41,8 +41,8 @@ extension DeejayGigsTableViewController {
             cell.tag = indexPath.row
             cell.selectionStyle = .none
             cell.event = eventsFRC.object(at: thisIndexPath)
-            
             return cell
+            
         } else {
             let thisIndexPath = IndexPath(row: indexPath.row, section: 0)
             let cell = tableView.dequeueReusableCell(withIdentifier: DeejayMixesCell.identifier, for: indexPath) as! DeejayMixesCell

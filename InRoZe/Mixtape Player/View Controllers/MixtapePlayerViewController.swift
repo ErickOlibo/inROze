@@ -17,23 +17,18 @@ class MixtapePlayerViewController: UIViewController {
     
     // properties
     var mixtape: Mixtape?
-    var colors: UIImageColors?
-//    var colorsInDB: ColorsInHexString? {
-//        didSet {
-//            print("didSet ColorsInDB: \(colorsInDB?.background ?? "nil") - \(colorsInDB?.detail ?? "nil") - \(colorsInDB?.primary ?? "nil") - \(colorsInDB?.secondary ?? "nil")")
-//        }
-//    }
+    var colors: UIImageColors? { didSet { colorsFromCover() }}
+
     
     // Outlets
     @IBOutlet weak var mixtapeCover: UIImageView!
     
     // Actions
     @IBAction func dismissViewOnSwipeDown(_ sender: UISwipeGestureRecognizer) {
-        print ("Swipe down for dismiss recognized")
-        //self.dismiss(animated: true, completion: nil)
-        performSegue(withIdentifier: "unwindToDeejayGigs", sender: self)
+        //print ("Swipe down for dismiss recognized")
+        self.dismiss(animated: true, completion: nil)
+
     }
-    
     
     
     // View controller life cycle
@@ -49,20 +44,25 @@ class MixtapePlayerViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    
+    private func setupNavBar() {
+        navigationItem.largeTitleDisplayMode = .never
+        //navigationController?.navigationBar.prefersLargeTitles = false
+    }
 
     
-    private func colorsForCover() {
+    private func colorsFromCover() {
         // Get and/or Set colors for this cover after isFollowed set to true
         // CODE HERE
+        print("Colors are SET and READY to USE")
         
     }
     
     
     private func setupMixtapeCover () {
-        //guard let mix = mixtape else {return }
+        guard let mix = mixtape else {return }
         guard let coverURL = mixtape?.cover768URL else { return }
-        guard let mixID = mixtape?.id else { return }
-        print("AGAIN IN PLAYER - Thread: [\(Thread.current)]")
+        //print("AGAIN IN PLAYER - Thread: [\(Thread.current)]")
         mixtapeCover.layer.masksToBounds = true
         mixtapeCover.layer.cornerRadius = 10.0
         mixtapeCover.layer.borderColor = UIColor.black.cgColor
@@ -71,73 +71,40 @@ class MixtapePlayerViewController: UIViewController {
             (image, error, cacheType, imageUrl) in
             
             if (image != nil) {
-                /////
-                if let context = self.container?.viewContext {
-                    context.perform {
-                        let colorsInDB = Mixtape.getMixtapesColors(with: mixID, in: context)
-                        if (colorsInDB != nil) {
-                            print("COLORS already in CORE DATA - Get them with getMixtapesColors()")
-                            // colors in database,
-                            // made additional set up here
-                            
-                        } else {
-                            print(" NOT COLORS in core data - Create them")
-                            // colors absent from database. generate them and save the context.
-                            image?.getColors(scaleDownSize: CGSize(width: 100, height: 100)){ [weak self] colors in
-                                self?.container?.performBackgroundTask { context in
-                                    let colorsInHex = colorsToHexString(with: colors)
-                                    _ = Mixtape.updateMixtapeImageColors(with: mixID, and: colorsInHex, in: context)
-                                    // Save Context
-                                    do {
-                                        print("are you SAVING??")
-                                        try context.save()
-                                    } catch {
-                                        print("MixtapePlayerViewController -> Error while trying yo save the cover image Colors to Database: \(error)")
-                                    }
-                                    
-                                }
-                                
-                            }
-                        }
-                        
+                if (mix.colorBackground != nil && mix.colorDetail != nil && mix.colorPrimary != nil && mix.colorSecondary != nil) {
+                    //print("COLORS already in CORE DATA - Get them with getMixtapesColors()")
+                    // made additional set up here
+                    let colorsDBInHex = ColorsInHexString(background: mix.colorBackground!, primary: mix.colorPrimary!, secondary: mix.colorSecondary!, detail: mix.colorDetail!)
+                    self.colors = colorsFromHexString(with: colorsDBInHex)
+
+                } else {
+                    //print(" NOT COLORS in core data - Create them")
+                    image?.getColors(scaleDownSize: CGSize(width: 100, height: 100)){ [weak self] colors in
+                        self?.colors = colors
                     }
                 }
-                
-//                if (self.colorsInDB != nil) {
-//                    print("COLORS already in CORE DATA - Get them with getMixtapesColors()")
-//                    // colors in database,
-//                    // made additional set up here
-//
-//                } else {
-//                    print(" NOT COLORS in core data - Create them")
-//                    // colors absent from database. generate them and save the context.
-//                    image?.getColors(scaleDownSize: CGSize(width: 100, height: 100)){ [weak self] colors in
-//                        self?.container?.performBackgroundTask { context in
-//                            let colorsInHex = colorsToHexString(with: colors)
-//                            _ = Mixtape.updateMixtapeImageColors(with: mixID, and: colorsInHex, in: context)
-//                            // Save Context
-//                            do {
-//                                print("are you SAVING??")
-//                                try context.save()
-//                            } catch {
-//                                print("MixtapePlayerViewController -> Error while trying yo save the cover image Colors to Database: \(error)")
-//                            }
-//
-//                        }
-//
-//                    }
-//                }
-                
-                /////
-                
             }
-            // set the colors or get Colors from core data
         })
     }
-    private func setupNavBar() {
-        navigationItem.largeTitleDisplayMode = .never
-        //navigationController?.navigationBar.prefersLargeTitles = false
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let colorsDB = colors else { return }
+        guard let mixID = mixtape?.id else { return }
+        container?.performBackgroundTask { context in
+            let colorsInHex = colorsToHexString(with: colorsDB)
+            _ = Mixtape.updateMixtapeImageColors(with: mixID, and: colorsInHex, in: context)
+            do {
+                try context.save()
+                print("DONE SAVING")
+            } catch {
+                print("MixtapePlayerViewController -> Error while trying yo save the cover image Colors to Database: \(error)")
+            }
+            
+        }
     }
+    
     
 
     /*

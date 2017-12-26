@@ -284,10 +284,6 @@ class SettingsViewController: UITableViewController {
             self.navigationController?.popToRootViewController(animated: true)
             
         }
-        
-        if (segue.identifier == "unwindToLoginVC") {
-            print("preparing for unwindToLoginVC")
-        }
 
     }
     
