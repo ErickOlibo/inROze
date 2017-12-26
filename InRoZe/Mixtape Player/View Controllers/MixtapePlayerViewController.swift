@@ -22,6 +22,11 @@ class MixtapePlayerViewController: UIViewController {
     
     // Outlets
     @IBOutlet weak var mixtapeCover: UIImageView!
+    @IBOutlet weak var mixProgressView: UIProgressView! //{ didSet { progressBarUI() }}
+    @IBOutlet weak var elapsedTime: UILabel!
+    @IBOutlet weak var remainingTime: UILabel!
+    
+    
     
     // Actions
     @IBAction func dismissViewOnSwipeDown(_ sender: UISwipeGestureRecognizer) {
@@ -37,6 +42,7 @@ class MixtapePlayerViewController: UIViewController {
         //view.backgroundColor = .black
         setupNavBar()
         setupMixtapeCover()
+        //tryTimer()
 
         // Do any additional setup after loading the view.
     }
@@ -50,10 +56,50 @@ class MixtapePlayerViewController: UIViewController {
         //navigationController?.navigationBar.prefersLargeTitles = false
     }
 
+    private func progressBarUI() {
+        mixProgressView.transform = mixProgressView.transform.scaledBy(x: 1.0, y: 4.0)
+        guard let setColors = colors else { return }
+        
+        // Conditional color
+        if (setColors.background.isWhiteColor) {
+            elapsedTime.textColor = setColors.background
+            remainingTime.textColor = setColors.background
+            mixProgressView.progressTintColor = setColors.background
+            view.backgroundColor = setColors.secondary
+            mixProgressView.trackTintColor = setColors.primary
+            mixtapeCover.layer.borderColor = setColors.primary.cgColor
+            //elapsedTime.textColor = .black
+        } else {
+            elapsedTime.textColor = setColors.primary
+            remainingTime.textColor = setColors.primary
+            mixProgressView.progressTintColor = setColors.primary
+            view.backgroundColor = setColors.background
+            mixProgressView.trackTintColor = setColors.secondary
+            mixtapeCover.layer.borderColor = setColors.secondary.cgColor
+            //elapsedTime.textColor = .white
+        }
+//        elapsedTime.textColor = setColors.detail
+//        remainingTime.textColor = setColors.detail
+        
+//        mixProgressView.progressTintColor = setColors.background
+//        mixProgressView.trackTintColor = setColors.detail
+        tryTimer()
+    }
+    
+    private func tryTimer () {
+        let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer: Timer) in
+            self.mixProgressView.setProgress(self.mixProgressView.progress + 0.01, animated: true)
+            if self.mixProgressView.progress >= 1 {
+                timer.invalidate()
+            }
+        }
+        timer.fire()
+    }
     
     private func colorsFromCover() {
         // Get and/or Set colors for this cover after isFollowed set to true
         // CODE HERE
+        progressBarUI()
         print("Colors are SET and READY to USE")
         
     }
@@ -64,7 +110,7 @@ class MixtapePlayerViewController: UIViewController {
         guard let coverURL = mixtape?.cover768URL else { return }
         //print("AGAIN IN PLAYER - Thread: [\(Thread.current)]")
         mixtapeCover.layer.masksToBounds = true
-        mixtapeCover.layer.cornerRadius = 10.0
+        mixtapeCover.layer.cornerRadius = 5.0
         mixtapeCover.layer.borderColor = UIColor.black.cgColor
         mixtapeCover.layer.borderWidth = 1.0
         mixtapeCover.kf.setImage(with: URL(string: coverURL), options: [.backgroundDecode], completionHandler: {

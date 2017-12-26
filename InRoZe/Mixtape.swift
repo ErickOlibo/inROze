@@ -168,14 +168,12 @@ public class Mixtape: NSManagedObject
         do {
             let match = try context.fetch(request)
             if match.count > 0 {
-                print("Match in updateColors B: [\(colors.background!)] - D: [\(colors.detail!)] - P: [\(colors.primary!)] - S: [\(colors.secondary!)]")
                 assert(match.count == 1, "MixtapeID is not unique in the database")
                 let mix = match[0]
                 mix.colorBackground = colors.background
                 mix.colorPrimary = colors.primary
                 mix.colorSecondary = colors.secondary
                 mix.colorDetail = colors.detail
-                print("Match AFTER UPDATE B: [\(mix.colorBackground!)] - D: [\(mix.colorDetail!)] - P: [\(mix.colorPrimary!)] - S: [\(mix.colorSecondary!)]")
             }
         } catch {
             print("[Mixtape] - UpdateMixtapeImageColors failed with error")
@@ -194,22 +192,18 @@ public class Mixtape: NSManagedObject
             if match.count > 0 {
                 assert(match.count == 1, "MixtapeID is not unique in the database")
                 let mix = match[0]
-                print("insidegetMixtapesColors - [\(Thread.current)] ")
                 if (mix.colorBackground != nil && mix.colorDetail != nil && mix.colorPrimary != nil && mix.colorSecondary != nil) {
-                    print("getMixtapesColors ARE ALL SET")
                     return ColorsInHexString(background: mix.colorBackground,
                                              primary: mix.colorPrimary,
                                              secondary: mix.colorSecondary,
                                              detail: mix.colorDetail)
                 } else {
-                    print("getMixtapesColors colors are nil")
                     return nil
                 }
             }
         } catch {
             print("[Mixtape] - getMixtapesColors failed with error")
         }
-        print("mixID doesnt match anything")
         return nil
     }
     

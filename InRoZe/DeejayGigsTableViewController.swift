@@ -69,7 +69,6 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     // ** View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("VIEW DID LOAD DeejayGigsTVC")
         view.backgroundColor = .white
 
         // navigation bar see Extension below

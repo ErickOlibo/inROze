@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -542,20 +541,55 @@
                                     <constraint firstAttribute="width" secondItem="Kcn-cI-AsN" secondAttribute="height" multiplier="1:1" id="CzF-25-2Pf"/>
                                 </constraints>
                             </imageView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W9m-BB-u9M">
+                                <rect key="frame" x="20" y="426" width="374" height="2"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123:45" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3m1-kr-fcN">
+                                <rect key="frame" x="20" y="436" width="60" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3m1-kr-fcN" secondAttribute="height" multiplier="3:1" id="TZb-la-ekq"/>
+                                    <constraint firstAttribute="height" constant="20" id="dx0-6F-bQZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-234:45" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6S-Y0-PxN">
+                                <rect key="frame" x="334" y="436" width="60" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="LMH-EE-cOM"/>
+                                    <constraint firstAttribute="width" secondItem="u6S-Y0-PxN" secondAttribute="height" multiplier="3:1" id="jGI-DM-4yj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="W9m-BB-u9M" firstAttribute="centerX" secondItem="rug-4L-0Ot" secondAttribute="centerX" id="5Ki-bO-nRj"/>
+                            <constraint firstAttribute="trailing" secondItem="u6S-Y0-PxN" secondAttribute="trailing" constant="20" id="GaS-1P-oEB"/>
+                            <constraint firstItem="W9m-BB-u9M" firstAttribute="top" secondItem="Kcn-cI-AsN" secondAttribute="bottom" constant="12" id="Jep-5r-leb"/>
+                            <constraint firstItem="u6S-Y0-PxN" firstAttribute="top" secondItem="W9m-BB-u9M" secondAttribute="bottom" constant="8" id="OYy-M5-ucG"/>
                             <constraint firstItem="Kcn-cI-AsN" firstAttribute="width" secondItem="rug-4L-0Ot" secondAttribute="width" constant="-40" id="TJ1-bv-EXa"/>
                             <constraint firstItem="Kcn-cI-AsN" firstAttribute="top" secondItem="B8z-jo-DCU" secondAttribute="bottom" constant="20" id="Wm3-Q8-pK6"/>
+                            <constraint firstItem="3m1-kr-fcN" firstAttribute="leading" secondItem="W9m-BB-u9M" secondAttribute="leading" id="ZIZ-Io-iOa"/>
+                            <constraint firstItem="3m1-kr-fcN" firstAttribute="top" secondItem="W9m-BB-u9M" secondAttribute="bottom" constant="8" id="kuX-Rs-Zpa"/>
                             <constraint firstItem="Kcn-cI-AsN" firstAttribute="centerX" secondItem="rug-4L-0Ot" secondAttribute="centerX" id="m4Z-G9-xsK"/>
+                            <constraint firstItem="W9m-BB-u9M" firstAttribute="width" secondItem="Kcn-cI-AsN" secondAttribute="width" id="rV8-zd-T7r"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3m1-kr-fcN" secondAttribute="trailing" constant="20" symbolic="YES" id="te2-Cm-dUn"/>
+                            <constraint firstItem="u6S-Y0-PxN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rug-4L-0Ot" secondAttribute="leading" constant="20" symbolic="YES" id="vRc-2v-Paa"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="9bS-8t-5K0" appends="YES" id="ebG-pa-Fnk"/>
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="elapsedTime" destination="3m1-kr-fcN" id="Y9V-8T-8h5"/>
+                        <outlet property="mixProgressView" destination="W9m-BB-u9M" id="78X-Gt-tjl"/>
                         <outlet property="mixtapeCover" destination="Kcn-cI-AsN" id="JlV-zA-xub"/>
+                        <outlet property="remainingTime" destination="u6S-Y0-PxN" id="qLd-SX-Ytw"/>
                         <segue destination="YFb-FQ-QAe" kind="unwind" identifier="unwindToDeejayGigs" unwindAction="unwindToDeejayGigsTVCWithSegue:" id="QHD-mM-QHb"/>
                     </connections>
                 </viewController>
@@ -567,7 +601,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2184" y="-2045"/>
+            <point key="canvasLocation" x="2182.608695652174" y="-2045.3804347826087"/>
         </scene>
         <!--Event Info View Controller-->
         <scene sceneID="ifn-sa-AFn">
