@@ -556,9 +556,11 @@
                     </view>
                     <connections>
                         <outlet property="mixtapeCover" destination="Kcn-cI-AsN" id="JlV-zA-xub"/>
+                        <segue destination="YFb-FQ-QAe" kind="unwind" identifier="unwindToDeejayGigs" unwindAction="unwindToDeejayGigsTVCWithSegue:" id="QHD-mM-QHb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pMd-KK-pkq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="YFb-FQ-QAe" userLabel="Exit" sceneMemberID="exit"/>
                 <swipeGestureRecognizer cancelsTouchesInView="NO" direction="down" id="9bS-8t-5K0">
                     <connections>
                         <action selector="dismissViewOnSwipeDown:" destination="vXz-br-gFn" id="Pyi-3t-4st"/>
@@ -1123,13 +1125,13 @@ Cg
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xFy-kx-hGn">
-                                <rect key="frame" x="0.0" y="496.33333333333331" width="414" height="190.66666666666669"/>
+                                <rect key="frame" x="0.0" y="545.33333333333337" width="414" height="190.66666666666663"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="xFy-kx-hGn" secondAttribute="height" multiplier="13:6" id="POS-IS-hhE"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rG3-h1-OYi">
-                                <rect key="frame" x="82.666666666666671" y="452.33333333333331" width="248.66666666666663" height="44"/>
+                                <rect key="frame" x="82.666666666666671" y="501.33333333333326" width="248.66666666666663" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="nxb-ds-3g2"/>
                                 </constraints>
@@ -1139,7 +1141,7 @@ Cg
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo_Inroze_2017" translatesAutoresizingMaskIntoConstraints="NO" id="aHa-EQ-von">
-                                <rect key="frame" x="82.666666666666671" y="164" width="248.66666666666663" height="82.666666666666686"/>
+                                <rect key="frame" x="82.666666666666671" y="120" width="248.66666666666663" height="82.666666666666686"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="aHa-EQ-von" secondAttribute="height" multiplier="3:1" id="Nze-i0-jnk"/>
                                 </constraints>
@@ -1485,7 +1487,6 @@ Mixtapes</string>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="signOutButton:" destination="WEo-Uf-ZET" eventType="touchUpInside" id="hmL-PC-9jK"/>
-                                        <segue destination="bAg-N4-UsF" kind="show" identifier="Settings To Login" id="8e5-k8-eTr"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qsm-V1-RXY">
@@ -1721,9 +1722,11 @@ Mixtapes</string>
                         <outlet property="profileImage" destination="bx8-iO-7L7" id="cId-gb-Wjk"/>
                         <outlet property="profileName" destination="qsm-V1-RXY" id="7Yw-ZH-6Tc"/>
                         <outlet property="signOutButton" destination="ESu-kT-sz3" id="LEp-1H-eVz"/>
+                        <segue destination="xtq-8E-iId" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLoginVCWithSegue:" id="Gz2-rH-WdG"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cln-UC-jIu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="xtq-8E-iId" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="90" y="2004"/>
         </scene>

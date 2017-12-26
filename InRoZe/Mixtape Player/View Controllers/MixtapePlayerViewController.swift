@@ -18,6 +18,11 @@ class MixtapePlayerViewController: UIViewController {
     // properties
     var mixtape: Mixtape?
     var colors: UIImageColors?
+//    var colorsInDB: ColorsInHexString? {
+//        didSet {
+//            print("didSet ColorsInDB: \(colorsInDB?.background ?? "nil") - \(colorsInDB?.detail ?? "nil") - \(colorsInDB?.primary ?? "nil") - \(colorsInDB?.secondary ?? "nil")")
+//        }
+//    }
     
     // Outlets
     @IBOutlet weak var mixtapeCover: UIImageView!
@@ -25,7 +30,8 @@ class MixtapePlayerViewController: UIViewController {
     // Actions
     @IBAction func dismissViewOnSwipeDown(_ sender: UISwipeGestureRecognizer) {
         print ("Swipe down for dismiss recognized")
-        self.dismiss(animated: true, completion: nil)
+        //self.dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "unwindToDeejayGigs", sender: self)
     }
     
     
@@ -53,10 +59,10 @@ class MixtapePlayerViewController: UIViewController {
     
     
     private func setupMixtapeCover () {
-        guard let mix = mixtape else {return }
+        //guard let mix = mixtape else {return }
         guard let coverURL = mixtape?.cover768URL else { return }
         guard let mixID = mixtape?.id else { return }
-        
+        print("AGAIN IN PLAYER - Thread: [\(Thread.current)]")
         mixtapeCover.layer.masksToBounds = true
         mixtapeCover.layer.cornerRadius = 10.0
         mixtapeCover.layer.borderColor = UIColor.black.cgColor
@@ -65,31 +71,64 @@ class MixtapePlayerViewController: UIViewController {
             (image, error, cacheType, imageUrl) in
             
             if (image != nil) {
-                
-                if (mix.colorBackground != nil && mix.colorDetail != nil && mix.colorPrimary != nil && mix.colorSecondary != nil) {
-                    print("COLORS already in CORE DATA")
-                    // colors in database,
-                    // made additional set up here
-                    
-                } else {
-                    print(" NOT COLORS in core data")
-                    // colors absent from database. generate them and save the context.
-                    image?.getColors(scaleDownSize: CGSize(width: 100, height: 100)){ [weak self] colors in
-                        self?.container?.performBackgroundTask { context in
-                            let colorsInHex = colorsToHexString(with: colors)
-                            _ = Mixtape.updateMixtapeImageColors(with: mixID, and: colorsInHex, in: context)
-                            // Save Context
-                            do {
-                                print("are you SAVING??")
-                                try context.save()
-                            } catch {
-                                print("MixtapePlayerViewController -> Error while trying yo save the cover image Colors to Database: \(error)")
-                            }
+                /////
+                if let context = self.container?.viewContext {
+                    context.perform {
+                        let colorsInDB = Mixtape.getMixtapesColors(with: mixID, in: context)
+                        if (colorsInDB != nil) {
+                            print("COLORS already in CORE DATA - Get them with getMixtapesColors()")
+                            // colors in database,
+                            // made additional set up here
                             
+                        } else {
+                            print(" NOT COLORS in core data - Create them")
+                            // colors absent from database. generate them and save the context.
+                            image?.getColors(scaleDownSize: CGSize(width: 100, height: 100)){ [weak self] colors in
+                                self?.container?.performBackgroundTask { context in
+                                    let colorsInHex = colorsToHexString(with: colors)
+                                    _ = Mixtape.updateMixtapeImageColors(with: mixID, and: colorsInHex, in: context)
+                                    // Save Context
+                                    do {
+                                        print("are you SAVING??")
+                                        try context.save()
+                                    } catch {
+                                        print("MixtapePlayerViewController -> Error while trying yo save the cover image Colors to Database: \(error)")
+                                    }
+                                    
+                                }
+                                
+                            }
                         }
                         
                     }
                 }
+                
+//                if (self.colorsInDB != nil) {
+//                    print("COLORS already in CORE DATA - Get them with getMixtapesColors()")
+//                    // colors in database,
+//                    // made additional set up here
+//
+//                } else {
+//                    print(" NOT COLORS in core data - Create them")
+//                    // colors absent from database. generate them and save the context.
+//                    image?.getColors(scaleDownSize: CGSize(width: 100, height: 100)){ [weak self] colors in
+//                        self?.container?.performBackgroundTask { context in
+//                            let colorsInHex = colorsToHexString(with: colors)
+//                            _ = Mixtape.updateMixtapeImageColors(with: mixID, and: colorsInHex, in: context)
+//                            // Save Context
+//                            do {
+//                                print("are you SAVING??")
+//                                try context.save()
+//                            } catch {
+//                                print("MixtapePlayerViewController -> Error while trying yo save the cover image Colors to Database: \(error)")
+//                            }
+//
+//                        }
+//
+//                    }
+//                }
+                
+                /////
                 
             }
             // set the colors or get Colors from core data

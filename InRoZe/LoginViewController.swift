@@ -206,6 +206,15 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationFor.initialLoginRequestIsDone), object: nil)
     }
     
+    
+    // Unwinded from Modal
+    @IBAction func unwindToLoginVC(segue: UIStoryboardSegue) {
+        print("UNWIND To LOGIN VC")
+        //updateUI()
+        
+    }
+    
+    
    
 }
 

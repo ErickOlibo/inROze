@@ -145,6 +145,7 @@ class SettingsViewController: UITableViewController {
     
     // Button touch inside handler
     private func handleSignOut() {
+        print("SIGN OUT TOUCH")
         //signOutTouched()
         if (profile != nil) {
             let id = profile?.userId
@@ -154,6 +155,8 @@ class SettingsViewController: UITableViewController {
         }
         let loginManager = LoginManager()
         loginManager.logOut()
+        
+        performSegue(withIdentifier: "unwindToLogin", sender: self)
 //        self.dismiss(animated: true, completion: nil)
 //        // Animated: true might cause issues. if it does, change to false
 //        self.navigationController?.popToRootViewController(animated: true)
