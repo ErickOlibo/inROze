@@ -9,16 +9,14 @@
 import UIKit
 import CoreData
 
-class DeejayGigsTableViewController: UITableViewController {
+class DeejayGigsTableViewController: FetchedResultsTableViewController {
     
     // Core Data model container and context
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
+    let mainContext = AppDelegate.viewContext
     
     // outlets
     @IBOutlet weak var tableHeaderView: UIView!
-    //@IBOutlet weak var upcomingGigsView: UIView!
-    //@IBOutlet weak var upcomingGigsLabel: UILabel!
-    
     @IBOutlet weak var djProfileImage: UIImageView! { didSet { updateProfileImage() } }
     @IBOutlet weak var djProfileView: UIView! { didSet { updateProfileView() } }
     
@@ -36,14 +34,42 @@ class DeejayGigsTableViewController: UITableViewController {
     // properties
     let followedRightButton = UIBarButtonItem()
     var artist: Artist? { didSet { updateUI() } }
+    
+    // LAZY FetchResultsControllers
+    lazy var eventsFRC: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
+        let id = artist!.id!
+        let request: NSFetchRequest<Event> = Event.fetchRequest()
+        let nowTime = NSDate()
+        request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
+        request.predicate = NSPredicate(format: "ANY performers.id == %@ AND endTime > %@ AND imageURL != nil AND name != nil AND text != nil", id, nowTime)
+        request.fetchBatchSize = 20
+        let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedRC.delegate = self
+        return fetchedRC
+    }()
+    
+    lazy var mixtapesFRC: NSFetchedResultsController = { () -> NSFetchedResultsController<Mixtape> in
+        let id = artist!.id!
+        let request: NSFetchRequest<Mixtape> = Mixtape.fetchRequest()
+        let nowTime = NSDate()
+        request.sortDescriptors = [NSSortDescriptor(key: "createdTime", ascending: false, selector: nil)]
+        request.predicate = NSPredicate(format: "ANY deejay.id == %@", id)
+        request.fetchBatchSize = 20
+        let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedRC.delegate = self
+        return fetchedRC
+    }()
+    
+    
 
-    private var gigsList: [Event]?
-    private var mixesList: [Mixtape]?
+    //private var gigsList: [Event]?
+    //private var mixesList: [Mixtape]?
     //private var gigMixArr: [[Event]?, [Mixtape]?]
 
     // ** View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("VIEW DID LOAD DeejayGigsTVC")
         view.backgroundColor = .white
 
         // navigation bar see Extension below
@@ -54,9 +80,7 @@ class DeejayGigsTableViewController: UITableViewController {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: (UIImage(named: "2_Follows")?.withRenderingMode(.alwaysTemplate))!, style: .plain, target: self, action: #selector(pressedFollowed))
-        //upcomingGigsView.backgroundColor = Colors.logoRed
         setDeejayImage()
-        
         
     }
 
@@ -66,20 +90,14 @@ class DeejayGigsTableViewController: UITableViewController {
         updateFollowedButton()
         updateDJInfo()
         updateGigsMixesCount()
-        //setDeejayImage()
+        updateUI()
     }
     
     // ** Methods
     private func updateGigsMixesCount() {
-        // count from the Core data the number of gigs and mixtapes by this DJ
-        // the format should be 12Gs / 61Ms
-        //guard let gigs = artist?.gigs?.count else { return }
-        //guard let mixes = artist?.mixes?.count else { return }
-
-        //gigsMixes.text = "\(gigs)Gs / \(mixes)Ms"
-        gigsMixes.text = "\(gigsList?.count ?? 0)Gs / \(mixesList?.count ?? 0)Ms"
-
-
+        let gigsCount = eventsFRC.fetchedObjects?.count ?? 0
+        let mixtapesCount = mixtapesFRC.fetchedObjects?.count ?? 0
+        gigsMixes.text = "\(gigsCount)Gs / \(mixtapesCount)Ms"
     }
     
     
@@ -87,7 +105,6 @@ class DeejayGigsTableViewController: UITableViewController {
         guard let dj = artist else { return }
         guard let picURL = preferedProfilePictureURL(for: dj) else { return }
         djProfileImage.kf.setImage(with: URL(string: picURL), options: [.backgroundDecode])
-        
     }
     
     private func updateProfileImage () {
@@ -160,15 +177,25 @@ class DeejayGigsTableViewController: UITableViewController {
     }
     
     private func updateUI() {
+        //print("ARTIST SET: updating the UI and specially the count for event and mixtapes")
+        do {
+            try self.eventsFRC.performFetch()
+        } catch {
+            print("updateUI performFetch on EventFRC failed: \(error)")
+        }
+        do {
+            try self.mixtapesFRC.performFetch()
+        } catch {
+            print("updateUI performFetch on mixtapesFRC failed: \(error)")
+        }
+
         if let context = container?.viewContext {
             context.perform {
-                self.mixesList = Artist.findPerformingMixtapes(for: self.artist!, in: context)
-                self.gigsList = Artist.findPerformingEvents(for: self.artist!, in: context)
+
                 if let currentState = Artist.currentIsFollowedState(for: self.artist!.id!, in: context) {
                     self.artist!.isFollowed = currentState
                 }
                 self.tableView.reloadData()
-                self.gigsMixes.text = "\(self.gigsList?.count ?? 0)Gs / \(self.mixesList?.count ?? 0)Ms"
             }
         }
     }
@@ -182,9 +209,9 @@ class DeejayGigsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 0) {
-            return gigsList?.count ?? 0
+            return eventsFRC.fetchedObjects?.count ?? 0
         } else {
-            return mixesList?.count ?? 0
+            return  mixtapesFRC.fetchedObjects?.count ?? 0
         }
         
     }
@@ -195,20 +222,19 @@ class DeejayGigsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
+            let thisIndexPath = IndexPath(row: indexPath.row, section: 0)
             let cell = tableView.dequeueReusableCell(withIdentifier: DeejayGigsCell.identifier, for: indexPath) as! DeejayGigsCell
             cell.tag = indexPath.row
             cell.selectionStyle = .none
-            if let event = gigsList?[indexPath.row]  {
-                cell.event = event
-            }
+            cell.event = eventsFRC.object(at: thisIndexPath)
+
             return cell
         } else {
+            let thisIndexPath = IndexPath(row: indexPath.row, section: 0)
             let cell = tableView.dequeueReusableCell(withIdentifier: DeejayMixesCell.identifier, for: indexPath) as! DeejayMixesCell
             cell.tag = indexPath.row
             cell.selectionStyle = .none
-            if let mixtape = mixesList?[indexPath.row] {
-                cell.mixtape = mixtape
-            }
+            cell.mixtape = mixtapesFRC.object(at: thisIndexPath)
             return cell
         }
         
@@ -268,6 +294,15 @@ class DeejayGigsTableViewController: UITableViewController {
             destination.event = gigCell.event
             destination.navigationItem.title = gigCell.event?.location?.name ?? ""
         }
+        //Mixtape Cell to Info
+        if (segue.identifier == "Mixtape Cell To Player") {
+            guard let mixCell = sender as? DeejayMixesCell else { return }
+            guard let destination = segue.destination as? MixtapePlayerViewController else { return }
+            destination.mixtape = mixCell.mixtape
+            //destination.navigationItem.title = gigCell.event?.location?.name ?? ""
+        }
+        
+        
     }
 
 }

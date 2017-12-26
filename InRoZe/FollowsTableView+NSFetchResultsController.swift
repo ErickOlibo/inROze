@@ -41,8 +41,8 @@ extension FollowsViewController
             (image, error, cachetype, imageUrl) in
             
             if (image != nil) {
-                if (event.primary != nil && event.secondary != nil && event.detail != nil && event.background != nil) {
-                    let colorsInHex = ColorsInHexString(background: event.background!, primary: event.primary!, secondary: event.secondary!, detail: event.detail!)
+                if (event.colorPrimary != nil && event.colorSecondary != nil && event.colorDetail != nil && event.colorBackground != nil) {
+                    let colorsInHex = ColorsInHexString(background: event.colorBackground!, primary: event.colorPrimary!, secondary: event.colorSecondary!, detail: event.colorDetail!)
                     let colors = colorsFromHexString(with: colorsInHex)
                     cell.colors = colors
                     

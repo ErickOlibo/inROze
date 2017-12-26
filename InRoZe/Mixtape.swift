@@ -28,7 +28,10 @@ public class Mixtape: NSManagedObject
                 
                 // update match with mixtape info
                 let mix = match[0]
-                mix.coverURL = mixInfo[DBLabels.mixCoverURL] as?  String ?? nil
+                mix.cover320URL = mixInfo[DBLabels.mixC320URL] as?  String ?? nil
+                mix.cover640URL = mixInfo[DBLabels.mixC640URL] as?  String ?? nil
+                mix.cover768URL = mixInfo[DBLabels.mixC768URL] as?  String ?? nil
+                mix.cover1024URL = mixInfo[DBLabels.mixC1024URL] as?  String ?? nil
                 mix.name = mixInfo[DBLabels.mixName] as?  String ?? nil
                 mix.length = mixInfo[DBLabels.mixLength] as?  String ?? nil
                 
@@ -66,7 +69,10 @@ public class Mixtape: NSManagedObject
         guard let mixID = mixInfo[DBLabels.mixID] as? String else { return nil }
         let newMix = Mixtape(context: context)
         newMix.id = mixID
-        newMix.coverURL = mixInfo[DBLabels.mixCoverURL] as?  String ?? nil
+        newMix.cover320URL = mixInfo[DBLabels.mixC320URL] as?  String ?? nil
+        newMix.cover640URL = mixInfo[DBLabels.mixC640URL] as?  String ?? nil
+        newMix.cover768URL = mixInfo[DBLabels.mixC768URL] as?  String ?? nil
+        newMix.cover1024URL = mixInfo[DBLabels.mixC1024URL] as?  String ?? nil
         newMix.name = mixInfo[DBLabels.mixName] as?  String ?? nil
         newMix.length = mixInfo[DBLabels.mixLength] as?  String ?? nil
         
@@ -154,6 +160,28 @@ public class Mixtape: NSManagedObject
         return follows
     }
     
+    // update Mixtape cover with ImageColors
+    class func updateMixtapeImageColors(with id: String, and colors: ColorsInHexString, in context: NSManagedObjectContext) -> Bool
+    {
+        let request: NSFetchRequest<Mixtape> = Mixtape.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", id)
+        do {
+            let match = try context.fetch(request)
+            if match.count > 0 {
+                print("Match in updateColors B: [\(colors.background!)] - D: [\(colors.detail!)] - P: [\(colors.primary!)] - S: [\(colors.secondary!)]")
+                assert(match.count == 1, "MixtapeID is not unique in the database")
+                let mix = match[0]
+                mix.colorBackground = colors.background
+                mix.colorPrimary = colors.primary
+                mix.colorSecondary = colors.secondary
+                mix.colorDetail = colors.detail
+                
+            }
+        } catch {
+            print("[Mixtape] - UpdateMixtapeImageColors failed with error")
+        }
+        return true
+    }
     
     
     

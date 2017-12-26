@@ -152,9 +152,9 @@ class EventInfoViewController: UIViewController {
             
             if (image != nil) {
                 // conditional Settings for Colors
-                if (thisEvent.primary != nil && thisEvent.secondary != nil && thisEvent.detail != nil && thisEvent.background != nil) {
+                if (thisEvent.colorPrimary != nil && thisEvent.colorSecondary != nil && thisEvent.colorDetail != nil && thisEvent.colorBackground != nil) {
                     // In Database
-                    let colorsInHex = ColorsInHexString(background: thisEvent.background!, primary: thisEvent.primary!, secondary: thisEvent.secondary!, detail: thisEvent.detail!)
+                    let colorsInHex = ColorsInHexString(background: thisEvent.colorBackground!, primary: thisEvent.colorPrimary!, secondary: thisEvent.colorSecondary!, detail: thisEvent.colorDetail!)
                     let colors = colorsFromHexString(with: colorsInHex)
                     self.colors = colors
                 } else {

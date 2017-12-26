@@ -64,7 +64,7 @@ class FollowsViewController: FetchedResultsTableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        // Save the dictionary colorsOfEventCovers to care data
+        // Save the dictionary colorsOfEventCovers to core data
         print("Save Colors Covers on WillDisappear")
         container?.performBackgroundTask { context in
             for event in self.colorsOfEventCovers {

@@ -64,6 +64,12 @@ class DeejayMixesCell: UITableViewCell {
     }
     
     
+    private func colorsForCover() {
+        // Get and/or Set colors for this cover after isFollowed set to true
+        // CODE HERE
+    
+    }
+    
     private func changeState() {
         guard let mixtapeID = mixtape?.id else { return }
         // Change state of isFollowed
@@ -78,19 +84,23 @@ class DeejayMixesCell: UITableViewCell {
     }
     
     
-    
     private func configureCell() {
+        mixIsFollowedButton.isHidden = true
         guard let name = mixtape?.name else { return }
         mixtapeName.text = name
         mixtapeTags.text = tagsToString()
         mixDayLengthUI()
         updateFollowedButton()
-        guard let url = mixtape?.coverURL else { return }
+        guard let url = mixtape?.cover768URL else { return }
         guard let mixCoverURL = URL(string: url) else { return }
-        mixtapeCover.kf.setImage(with: mixCoverURL, options: [.backgroundDecode])
-
-        
+        mixtapeCover.kf.setImage(with: mixCoverURL, options: [.backgroundDecode], completionHandler: {
+            (img, err, cache, url) in
+            self.mixIsFollowedButton.isHidden = false
+        })
+   
     }
+    
+    
     
     private func mixDayLengthUI() {
         guard let mix = mixtape else { return }

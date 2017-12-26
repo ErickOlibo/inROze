@@ -66,6 +66,10 @@ public struct DBLabels {
     // for the Mixtape fields from Server
     static let mixID = "mix_id"
     static let mixCoverURL = "cover_url"
+    static let mixC320URL = "cover320_url"
+    static let mixC640URL = "cover640_url"
+    static let mixC768URL = "cover768_url"
+    static let mixC1024URL = "cover1024_url"
     static let mixName = "name"
     static let mixLength = "length"
     static let mixCreatedTime = "created_time"

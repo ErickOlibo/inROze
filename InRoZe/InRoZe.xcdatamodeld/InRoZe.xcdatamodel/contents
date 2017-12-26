@@ -17,8 +17,10 @@
         <relationship name="mixes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Mixtape" inverseName="deejay" inverseEntity="Mixtape" syncable="YES"/>
     </entity>
     <entity name="Event" representedClassName=".Event" syncable="YES" codeGenerationType="category">
-        <attribute name="background" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="detail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="colorBackground" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="colorDetail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="colorPrimary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="colorSecondary" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageID" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,8 +30,6 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="offsetX" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="offsetY" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="primary" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="secondary" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDay" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
@@ -38,7 +38,14 @@
         <relationship name="performers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Artist" inverseName="gigs" inverseEntity="Artist" syncable="YES"/>
     </entity>
     <entity name="Mixtape" representedClassName=".Mixtape" syncable="YES" codeGenerationType="category">
-        <attribute name="coverURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="colorBackground" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="colorDetail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="colorPrimary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="colorSecondary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cover320URL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cover640URL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cover768URL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cover1024URL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isActive" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -69,7 +76,7 @@
     <elements>
         <element name="Artist" positionX="414" positionY="449" width="128" height="253"/>
         <element name="Event" positionX="630" positionY="72" width="128" height="328"/>
-        <element name="Mixtape" positionX="216" positionY="324" width="128" height="255"/>
+        <element name="Mixtape" positionX="216" positionY="324" width="128" height="358"/>
         <element name="Place" positionX="259" positionY="9" width="128" height="210"/>
     </elements>
 </model>

@@ -64,6 +64,7 @@
 		A7F527221F4496E50008080B /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F527211F4496E50008080B /* RequestHandler.swift */; };
 		A7F527241F4498540008080B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F527231F4498540008080B /* Event.swift */; };
 		A7F527281F472ED90008080B /* ConvenienceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F527271F472ED90008080B /* ConvenienceExtensions.swift */; };
+		A7F635D91FF148DB0036D720 /* MixtapePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F635D81FF148DB0036D720 /* MixtapePlayerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +129,7 @@
 		A7F527231F4498540008080B /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A7F527271F472ED90008080B /* ConvenienceExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvenienceExtensions.swift; sourceTree = "<group>"; };
 		A7F5274E1F479ED70008080B /* InRoZe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InRoZe-Bridging-Header.h"; sourceTree = "<group>"; };
+		A7F635D81FF148DB0036D720 /* MixtapePlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixtapePlayerViewController.swift; sourceTree = "<group>"; };
 		AB83D2E3F35B2A53E9FA9FFF /* Pods-InRoZe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InRoZe.release.xcconfig"; path = "Pods/Target Support Files/Pods-InRoZe/Pods-InRoZe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -397,6 +399,7 @@
 		A7ACD44C1FE8092200DEFDC5 /* Other MVC */ = {
 			isa = PBXGroup;
 			children = (
+				A7F635DA1FF148FD0036D720 /* Mixtape Player */,
 				A7ACD4501FE8363800DEFDC5 /* Event Info */,
 				A7ACD44D1FE8095600DEFDC5 /* DeeJay Profile */,
 			);
@@ -497,6 +500,22 @@
 				A7F4BADA1F83C9B5001279F3 /* EventDJNameCell.swift */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		A7F635DA1FF148FD0036D720 /* Mixtape Player */ = {
+			isa = PBXGroup;
+			children = (
+				A7F635DB1FF149190036D720 /* View Controllers */,
+			);
+			path = "Mixtape Player";
+			sourceTree = "<group>";
+		};
+		A7F635DB1FF149190036D720 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A7F635D81FF148DB0036D720 /* MixtapePlayerViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -688,6 +707,7 @@
 				A7AA5B7C1F7D593300BB2B8A /* ConvenienceFunctions.swift in Sources */,
 				A7E644921FCC76A300816FCF /* ChangeCityViewController.swift in Sources */,
 				A7DDF2161FC47DDE001F8418 /* FollowsHeaderCell.swift in Sources */,
+				A7F635D91FF148DB0036D720 /* MixtapePlayerViewController.swift in Sources */,
 				A73385161FBE506900E0C4C2 /* FollowsCell.swift in Sources */,
 				A7F527221F4496E50008080B /* RequestHandler.swift in Sources */,
 				A77676141F26D49E00F1FA52 /* UIColorExtensions.swift in Sources */,

@@ -501,6 +501,7 @@
                                     <outlet property="mixtapeCover" destination="ctP-p5-hc2" id="bP6-Tq-Nvp"/>
                                     <outlet property="mixtapeName" destination="0JR-ZK-9OW" id="Ucw-cf-5zY"/>
                                     <outlet property="mixtapeTags" destination="OpS-yL-h4U" id="gWa-5Q-o55"/>
+                                    <segue destination="vXz-br-gFn" kind="presentation" identifier="Mixtape Cell To Player" id="KbC-7n-EQt"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -523,6 +524,49 @@
             </objects>
             <point key="canvasLocation" x="1348" y="-2047"/>
         </scene>
+        <!--Mixtape Player View Controller-->
+        <scene sceneID="OEO-G1-Tmv">
+            <objects>
+                <viewController id="vXz-br-gFn" customClass="MixtapePlayerViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B8z-jo-DCU"/>
+                        <viewControllerLayoutGuide type="bottom" id="6NS-db-Ecu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rug-4L-0Ot">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kcn-cI-AsN">
+                                <rect key="frame" x="20" y="40" width="374" height="374"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Kcn-cI-AsN" secondAttribute="height" multiplier="1:1" id="CzF-25-2Pf"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Kcn-cI-AsN" firstAttribute="width" secondItem="rug-4L-0Ot" secondAttribute="width" constant="-40" id="TJ1-bv-EXa"/>
+                            <constraint firstItem="Kcn-cI-AsN" firstAttribute="top" secondItem="B8z-jo-DCU" secondAttribute="bottom" constant="20" id="Wm3-Q8-pK6"/>
+                            <constraint firstItem="Kcn-cI-AsN" firstAttribute="centerX" secondItem="rug-4L-0Ot" secondAttribute="centerX" id="m4Z-G9-xsK"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="9bS-8t-5K0" appends="YES" id="ebG-pa-Fnk"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="mixtapeCover" destination="Kcn-cI-AsN" id="JlV-zA-xub"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pMd-KK-pkq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer cancelsTouchesInView="NO" direction="down" id="9bS-8t-5K0">
+                    <connections>
+                        <action selector="dismissViewOnSwipeDown:" destination="vXz-br-gFn" id="Pyi-3t-4st"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2184" y="-2045"/>
+        </scene>
         <!--Event Info View Controller-->
         <scene sceneID="ifn-sa-AFn">
             <objects>
@@ -536,7 +580,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="onQ-AG-C6Y">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H4f-lw-L8s" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="686.33333333333337"/>
@@ -1771,7 +1815,7 @@ Mixtapes</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="31V-VX-4wQ"/>
-        <segue reference="ekP-bR-cTf"/>
-        <segue reference="CCz-K1-KF9"/>
+        <segue reference="amR-Kn-XsZ"/>
+        <segue reference="Bwf-dD-zDu"/>
     </inferredMetricsTieBreakers>
 </document>

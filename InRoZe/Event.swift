@@ -238,10 +238,10 @@ public class Event: NSManagedObject
             if match.count > 0 {
                 assert(match.count == 1, "EventID is not unique in the database")
                 let event = match[0]
-                event.background = colors.background
-                event.primary = colors.primary
-                event.secondary = colors.secondary
-                event.detail = colors.detail
+                event.colorBackground = colors.background
+                event.colorPrimary = colors.primary
+                event.colorSecondary = colors.secondary
+                event.colorDetail = colors.detail
                 
             }
         } catch {
