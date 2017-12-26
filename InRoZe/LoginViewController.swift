@@ -208,7 +208,7 @@ class LoginViewController: UIViewController {
     
     
     // Unwinded from Modal
-    @IBAction func unwindToLoginVC(segue: UIStoryboardSegue) {
+    @IBAction func unwindToLoginVC(_ segue: UIStoryboardSegue) {
         print("UNWIND To LOGIN VC")
         //updateUI()
         

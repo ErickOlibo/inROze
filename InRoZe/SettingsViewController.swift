@@ -58,7 +58,6 @@ class SettingsViewController: UITableViewController {
         navigationItem.title = profile?.fullName ?? "Settings"
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -146,7 +145,8 @@ class SettingsViewController: UITableViewController {
     // Button touch inside handler
     private func handleSignOut() {
         print("SIGN OUT TOUCH")
-        //signOutTouched()
+        
+        // Sign the user out
         if (profile != nil) {
             let id = profile?.userId
             let parameter = "id=\(id!)"
@@ -155,11 +155,19 @@ class SettingsViewController: UITableViewController {
         }
         let loginManager = LoginManager()
         loginManager.logOut()
-        
-        performSegue(withIdentifier: "unwindToLogin", sender: self)
-//        self.dismiss(animated: true, completion: nil)
-//        // Animated: true might cause issues. if it does, change to false
-//        self.navigationController?.popToRootViewController(animated: true)
+        setRootViewControllerToLoginVC()
+        performSegue(withIdentifier: "unwindToLoginVC", sender: self)
+
+    }
+    
+    
+    private func setRootViewControllerToLoginVC () {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if (AccessToken.current == nil) {
+            if let initViewController = storyboard.instantiateViewController(withIdentifier: "LoginIdentifier") as? LoginViewController {
+                UIApplication.shared.keyWindow?.rootViewController = initViewController
+            }
+        }
     }
     
     private func handleMixtapes() {
@@ -275,6 +283,10 @@ class SettingsViewController: UITableViewController {
             self.dismiss(animated: true, completion: nil)
             self.navigationController?.popToRootViewController(animated: true)
             
+        }
+        
+        if (segue.identifier == "unwindToLoginVC") {
+            print("preparing for unwindToLoginVC")
         }
 
     }

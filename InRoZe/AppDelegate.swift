@@ -37,8 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Added FACEBOOK Stuff
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
+        // Change RootViewController depending on the current Login status
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
         if (AccessToken.current != nil) {
             if let initViewController = storyboard.instantiateViewController(withIdentifier: "TabBarIdentifier") as? TabBarViewController {
                 window?.rootViewController = initViewController

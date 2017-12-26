@@ -1722,7 +1722,7 @@ Mixtapes</string>
                         <outlet property="profileImage" destination="bx8-iO-7L7" id="cId-gb-Wjk"/>
                         <outlet property="profileName" destination="qsm-V1-RXY" id="7Yw-ZH-6Tc"/>
                         <outlet property="signOutButton" destination="ESu-kT-sz3" id="LEp-1H-eVz"/>
-                        <segue destination="xtq-8E-iId" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLoginVCWithSegue:" id="Gz2-rH-WdG"/>
+                        <segue destination="xtq-8E-iId" kind="unwind" identifier="unwindToLoginVC" unwindAction="unwindToLoginVC:" id="bai-zP-sdf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cln-UC-jIu" userLabel="First Responder" sceneMemberID="firstResponder"/>
