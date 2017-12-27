@@ -25,17 +25,36 @@ class MixtapePlayerViewController: UIViewController {
     @IBOutlet weak var mixProgressView: UIProgressView! //{ didSet { progressBarUI() }}
     @IBOutlet weak var elapsedTime: UILabel!
     @IBOutlet weak var remainingTime: UILabel!
+    @IBOutlet weak var playPauseButton: UIButton!
+    @IBOutlet weak var skipForwardButton: UIButton!
+    @IBOutlet weak var skipBackwardButton: UIButton!
+    @IBOutlet weak var deejayName: UILabel!
+    @IBOutlet weak var mixtapeName: UILabel!
     
     
     
     // Actions
-    @IBAction func dismissViewOnSwipeDown(_ sender: UISwipeGestureRecognizer) {
-        //print ("Swipe down for dismiss recognized")
-        self.dismiss(animated: true, completion: nil)
-
+    @IBAction func touchedPlayPause(_ sender: UIButton) {
+        print("touchedPlayPause")
+    }
+    
+    @IBAction func touchedSkipForward(_ sender: UIButton) {
+        print("touchedSkipForward")
+    }
+    
+    @IBAction func touchedSkipBackward(_ sender: UIButton) {
+        print("touchedSkipBackward")
     }
     
     
+    
+    @IBAction func dismissViewOnSwipeDown(_ sender: UISwipeGestureRecognizer) {
+        //print ("Swipe down for dismiss recognized")
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+
     // View controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +64,12 @@ class MixtapePlayerViewController: UIViewController {
         //tryTimer()
 
         // Do any additional setup after loading the view.
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
 
     override var prefersStatusBarHidden: Bool {
@@ -68,7 +93,8 @@ class MixtapePlayerViewController: UIViewController {
             view.backgroundColor = setColors.secondary
             mixProgressView.trackTintColor = setColors.primary
             mixtapeCover.layer.borderColor = setColors.primary.cgColor
-            //elapsedTime.textColor = .black
+            deejayName.textColor = setColors.background
+            mixtapeName.textColor = setColors.background
         } else {
             elapsedTime.textColor = setColors.primary
             remainingTime.textColor = setColors.primary
@@ -76,13 +102,9 @@ class MixtapePlayerViewController: UIViewController {
             view.backgroundColor = setColors.background
             mixProgressView.trackTintColor = setColors.secondary
             mixtapeCover.layer.borderColor = setColors.secondary.cgColor
-            //elapsedTime.textColor = .white
+            deejayName.textColor = setColors.primary
+            mixtapeName.textColor = setColors.primary
         }
-//        elapsedTime.textColor = setColors.detail
-//        remainingTime.textColor = setColors.detail
-        
-//        mixProgressView.progressTintColor = setColors.background
-//        mixProgressView.trackTintColor = setColors.detail
         tryTimer()
     }
     
@@ -98,15 +120,23 @@ class MixtapePlayerViewController: UIViewController {
     
     private func colorsFromCover() {
         // Get and/or Set colors for this cover after isFollowed set to true
-        // CODE HERE
-        progressBarUI()
         print("Colors are SET and READY to USE")
+        progressBarUI()
+        setupMixtapeInfo()
+        
         
     }
     
+    private func setupMixtapeInfo () {
+        guard let mixTitle = mixtape?.name else { return }
+        guard let mixDJ = mixtape?.deejay?.name else { return }
+        deejayName.text = mixDJ
+        mixtapeName.text = mixTitle
+        
+    }
     
     private func setupMixtapeCover () {
-        guard let mix = mixtape else {return }
+        guard let mix = mixtape else { return }
         guard let coverURL = mixtape?.cover768URL else { return }
         //print("AGAIN IN PLAYER - Thread: [\(Thread.current)]")
         mixtapeCover.layer.masksToBounds = true
