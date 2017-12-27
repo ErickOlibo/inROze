@@ -566,7 +566,6 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUQ-c3-IAh">
                                 <rect key="frame" x="162" y="456" width="90" height="90"/>
-                                <color key="backgroundColor" red="0.82352941180000006" green="0.22352941179999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="WzM-17-Vs3"/>
                                     <constraint firstAttribute="width" secondItem="EUQ-c3-IAh" secondAttribute="height" multiplier="1:1" id="cUL-6R-y2d"/>
@@ -579,7 +578,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w3C-Uc-71f">
                                 <rect key="frame" x="334" y="471" width="60" height="60"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="60" id="jsP-3C-12a"/>
                                     <constraint firstAttribute="height" constant="60" id="zfJ-tr-ULm"/>
@@ -592,7 +590,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nl9-OM-D0t">
                                 <rect key="frame" x="20" y="471" width="60" height="60"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="l8d-MK-P3W"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="60" id="plc-mC-fhn"/>
@@ -633,7 +630,7 @@
                             <constraint firstItem="Nl9-OM-D0t" firstAttribute="top" secondItem="3m1-kr-fcN" secondAttribute="bottom" constant="15" id="O3g-OB-qTk"/>
                             <constraint firstItem="u6S-Y0-PxN" firstAttribute="top" secondItem="W9m-BB-u9M" secondAttribute="bottom" constant="8" id="OYy-M5-ucG"/>
                             <constraint firstItem="w3C-Uc-71f" firstAttribute="leading" secondItem="u6S-Y0-PxN" secondAttribute="leading" id="P4A-WQ-nDp"/>
-                            <constraint firstItem="234-Hy-Ja5" firstAttribute="leading" secondItem="rug-4L-0Ot" secondAttribute="leading" constant="50" id="Qym-uL-BiK"/>
+                            <constraint firstItem="234-Hy-Ja5" firstAttribute="leading" relation="lessThanOrEqual" secondItem="rug-4L-0Ot" secondAttribute="leading" constant="50" id="Qym-uL-BiK"/>
                             <constraint firstItem="Kcn-cI-AsN" firstAttribute="width" secondItem="rug-4L-0Ot" secondAttribute="width" constant="-40" id="TJ1-bv-EXa"/>
                             <constraint firstItem="w3C-Uc-71f" firstAttribute="top" secondItem="u6S-Y0-PxN" secondAttribute="bottom" constant="15" id="WIJ-fc-yI3"/>
                             <constraint firstItem="Kcn-cI-AsN" firstAttribute="top" secondItem="B8z-jo-DCU" secondAttribute="bottom" constant="20" id="Wm3-Q8-pK6"/>
@@ -648,7 +645,7 @@
                             <constraint firstItem="Kcn-cI-AsN" firstAttribute="centerX" secondItem="rug-4L-0Ot" secondAttribute="centerX" id="m4Z-G9-xsK"/>
                             <constraint firstItem="234-Hy-Ja5" firstAttribute="top" secondItem="EUQ-c3-IAh" secondAttribute="bottom" constant="20" id="mbg-iw-XUj"/>
                             <constraint firstItem="W9m-BB-u9M" firstAttribute="width" secondItem="Kcn-cI-AsN" secondAttribute="width" id="rV8-zd-T7r"/>
-                            <constraint firstAttribute="trailing" secondItem="234-Hy-Ja5" secondAttribute="trailing" constant="50" id="rgV-fF-b5a"/>
+                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="234-Hy-Ja5" secondAttribute="trailing" constant="50" id="rgV-fF-b5a"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3m1-kr-fcN" secondAttribute="trailing" constant="20" symbolic="YES" id="te2-Cm-dUn"/>
                             <constraint firstItem="u6S-Y0-PxN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rug-4L-0Ot" secondAttribute="leading" constant="20" symbolic="YES" id="vRc-2v-Paa"/>
                         </constraints>
@@ -666,11 +663,9 @@
                         <outlet property="remainingTime" destination="u6S-Y0-PxN" id="qLd-SX-Ytw"/>
                         <outlet property="skipBackwardButton" destination="Nl9-OM-D0t" id="xSa-3x-DB4"/>
                         <outlet property="skipForwardButton" destination="w3C-Uc-71f" id="A8A-u1-8iK"/>
-                        <segue destination="YFb-FQ-QAe" kind="unwind" identifier="unwindToDeejayGigs" unwindAction="unwindToDeejayGigsTVCWithSegue:" id="QHD-mM-QHb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pMd-KK-pkq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="YFb-FQ-QAe" userLabel="Exit" sceneMemberID="exit"/>
                 <swipeGestureRecognizer cancelsTouchesInView="NO" direction="down" id="9bS-8t-5K0">
                     <connections>
                         <action selector="dismissViewOnSwipeDown:" destination="vXz-br-gFn" id="Pyi-3t-4st"/>

@@ -124,6 +124,8 @@ extension String {
         if (charsNum == 7 && self.hasPrefix("#")) && uppercased().rangeOfCharacter(from: chars) != nil { return false }
         return true
     }
+    
+    
 }
 
 

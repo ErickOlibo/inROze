@@ -158,6 +158,23 @@ public func deejaysListAttributed(for event: Event) -> NSAttributedString {
 }
 
 
+// Get a string like integer and format it to a time like string
+public func timeDuration(from length: String) -> String? {
+    guard let lengthInt = Int(length) else { return nil }
+    var str: String?
+    let formatter = DateComponentsFormatter()
+    formatter.allowedUnits = [.hour, .minute, .second]
+    formatter.unitsStyle = .positional
+    if (lengthInt < 60) {
+        if (lengthInt < 10) {
+           str = "0:0" + formatter.string(from: TimeInterval(lengthInt))!
+            return str
+        }
+        str = "0:" + formatter.string(from: TimeInterval(lengthInt))!
+        return str
+    }
+    return formatter.string(from: TimeInterval(lengthInt))
+}
 
 
 

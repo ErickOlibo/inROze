@@ -108,12 +108,11 @@ extension DeejayGigsTableViewController {
             destination.event = gigCell.event
             destination.navigationItem.title = gigCell.event?.location?.name ?? ""
         }
-        //Mixtape Cell to Info
+        //Mixtape Cell to PlayerView
         if (segue.identifier == "Mixtape Cell To Player") {
             guard let mixCell = sender as? DeejayMixesCell else { return }
             guard let destination = segue.destination as? MixtapePlayerViewController else { return }
             destination.mixtape = mixCell.mixtape
-            //destination.navigationItem.title = gigCell.event?.location?.name ?? ""
         }
     }
     

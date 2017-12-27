@@ -64,11 +64,7 @@ class DeejayMixesCell: UITableViewCell {
     }
     
     
-    private func colorsForCover() {
-        // Get and/or Set colors for this cover after isFollowed set to true
-        // CODE HERE
-    
-    }
+
     
     private func changeState() {
         guard let mixtapeID = mixtape?.id else { return }
