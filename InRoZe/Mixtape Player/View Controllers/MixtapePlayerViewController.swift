@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import AVFoundation
 
 class MixtapePlayerViewController: UIViewController {
     
@@ -17,12 +18,16 @@ class MixtapePlayerViewController: UIViewController {
     
     // properties
     override var prefersStatusBarHidden: Bool { return true }
+    private var player: AVPlayer! { didSet {print("AVPlayer is SET")}}
+    //private var playerItem: AVPlayerItem!
+    //private var playerLayer: AVPlayerLayer!
     var mixtape: Mixtape?
     var colors: UIImageColors? { didSet { updateUI() }}
-    var isPlaying: Bool = false
+    //var isPlaying: Bool = false
     private var colorOne: UIColor = .black // Defines the view background color
     private var colorTwo: UIColor = .black // Defines the text labels, play/pause button color
     private var colorThree: UIColor = .black // Defines the skip back and front button color
+    
 
     
     // Outlets
@@ -41,9 +46,7 @@ class MixtapePlayerViewController: UIViewController {
     // Actions
     @IBAction func touchedPlayPause(_ sender: UIButton) {
         print("touchedPlayPause")
-        updatePlayPauseIcon()
-        isPlaying = !isPlaying
-        updatePlayPauseIcon()
+        playPauseAudio()
     }
     
     @IBAction func touchedSkipForward(_ sender: UIButton) {
@@ -71,17 +74,17 @@ class MixtapePlayerViewController: UIViewController {
         
         // Basic UI Setting
         mixProgressView.transform = mixProgressView.transform.scaledBy(x: 1.0, y: 4.0)
-        
+        setAudioStreamFromMixCloud()
         setMixtapeCoverUI()
         setMixtapeInfoUI()
         setMixtapeCoverAndColors()
-        setAudioStreamFromMixCloud()
 
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -103,6 +106,34 @@ class MixtapePlayerViewController: UIViewController {
   
     
     // METHODS
+    private func setAudioStreamFromMixCloud() {
+        guard let strURL = mixtape?.streamURL else { return }
+        guard let length = mixtape?.length else { return }
+        guard let audioURL = URL(string: strURL) else { return }
+        print("streamURL: \(audioURL)")
+        player = AVPlayer(url: audioURL)
+
+        print("Duration From server: \(length)")
+
+    }
+    
+    
+    private func playPauseAudio() {
+
+        if (player.rate != 0) {
+            // Already playing So pause Audio
+            player.pause()
+            updatePlayPauseIcon()
+            
+        }  else {
+            // not playing so Start Audio
+            player.play()
+            updatePlayPauseIcon()
+            
+        }
+        
+    }
+    
     private func setMixtapeCoverUI() {
         mixtapeCover.layer.masksToBounds = true
         mixtapeCover.layer.cornerRadius = 5.0
@@ -146,9 +177,7 @@ class MixtapePlayerViewController: UIViewController {
         })
     }
     
-    private func setAudioStreamFromMixCloud() {
-        
-    }
+
     
     
     private func updateUI () {
@@ -187,8 +216,8 @@ class MixtapePlayerViewController: UIViewController {
         guard let iconPause = FAType.FAPause.text else { return }
         let attrPlay = fontAwesomeAttributedString(forString: iconPlay, withColor: colorTwo, andFontSize: 60.0)
         let attrPause = fontAwesomeAttributedString(forString: iconPause, withColor: colorTwo, andFontSize: 55.0)
-        
-        if (isPlaying) {
+
+        if (player.rate != 0) {
             print("Track is Playing - Show pause icon")
             playPauseButton.contentEdgeInsets.left = 0
             playPauseButton.setAttributedTitle(attrPause, for: .normal)

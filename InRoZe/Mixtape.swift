@@ -34,7 +34,7 @@ public class Mixtape: NSManagedObject
                 mix.cover1024URL = mixInfo[DBLabels.mixC1024URL] as?  String ?? nil
                 mix.name = mixInfo[DBLabels.mixName] as?  String ?? nil
                 mix.length = mixInfo[DBLabels.mixLength] as?  String ?? nil
-                
+                mix.streamURL = mixInfo[DBLabels.mixStreamURL] as?  String ?? nil
                 mix.mixURL = mixInfo[DBLabels.mixURL] as?  String ?? nil
                 mix.tag1 = mixInfo[DBLabels.mixTag1] as?  String ?? nil
                 mix.tag2 = mixInfo[DBLabels.mixTag2] as?  String ?? nil
@@ -75,7 +75,7 @@ public class Mixtape: NSManagedObject
         newMix.cover1024URL = mixInfo[DBLabels.mixC1024URL] as?  String ?? nil
         newMix.name = mixInfo[DBLabels.mixName] as?  String ?? nil
         newMix.length = mixInfo[DBLabels.mixLength] as?  String ?? nil
-        
+        newMix.streamURL = mixInfo[DBLabels.mixStreamURL] as?  String ?? nil
         newMix.mixURL = mixInfo[DBLabels.mixURL] as?  String ?? nil
         newMix.tag1 = mixInfo[DBLabels.mixTag1] as?  String ?? nil
         newMix.tag2 = mixInfo[DBLabels.mixTag2] as?  String ?? nil

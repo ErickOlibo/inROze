@@ -60,6 +60,7 @@
 		A7EC36651F33954600548C11 /* NSDictionary+KeyPathConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */; };
 		A7EC36851F36553B00548C11 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36841F36553B00548C11 /* LoginViewController.swift */; };
 		A7EC36871F365AA900548C11 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC36861F365AA900548C11 /* TabBarViewController.swift */; };
+		A7F493C91FF4541100BA5E9A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F493C81FF4541100BA5E9A /* AVFoundation.framework */; };
 		A7F4BADB1F83C9B5001279F3 /* EventDJNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F4BADA1F83C9B5001279F3 /* EventDJNameCell.swift */; };
 		A7F527221F4496E50008080B /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F527211F4496E50008080B /* RequestHandler.swift */; };
 		A7F527241F4498540008080B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F527231F4498540008080B /* Event.swift */; };
@@ -125,6 +126,7 @@
 		A7EC36641F33954600548C11 /* NSDictionary+KeyPathConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+KeyPathConvenience.swift"; sourceTree = "<group>"; };
 		A7EC36841F36553B00548C11 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A7EC36861F365AA900548C11 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		A7F493C81FF4541100BA5E9A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A7F4BADA1F83C9B5001279F3 /* EventDJNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDJNameCell.swift; sourceTree = "<group>"; };
 		A7F527211F4496E50008080B /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		A7F527231F4498540008080B /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7F493C91FF4541100BA5E9A /* AVFoundation.framework in Frameworks */,
 				297B48270458BA2567535BBB /* Pods_InRoZe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -159,6 +162,7 @@
 		937A662A2ECE75214D33432F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A7F493C81FF4541100BA5E9A /* AVFoundation.framework */,
 				025DA5AD4652E67328D77902 /* Pods_InRoZe.framework */,
 			);
 			name = Frameworks;

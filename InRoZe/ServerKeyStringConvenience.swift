@@ -80,6 +80,7 @@ public struct DBLabels {
     static let mixTag4 = "tag_4"
     static let mixTag5 = "tag_5"
     static let mixIsActive = "is_active"
+    static let mixStreamURL = "stream_url"
     
 }
 
