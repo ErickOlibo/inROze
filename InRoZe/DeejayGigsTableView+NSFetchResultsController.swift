@@ -102,6 +102,7 @@ extension DeejayGigsTableViewController {
     
     // List of segue to be done here
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let deejay = artist else { return }
         if (segue.identifier == "Gig Cell To Info") {
             guard let gigCell = sender as? DeejayGigsCell else { return }
             guard let destination = segue.destination as? EventInfoViewController else { return }
@@ -114,6 +115,24 @@ extension DeejayGigsTableViewController {
             guard let destination = segue.destination as? MixtapePlayerViewController else { return }
             destination.mixtape = mixCell.mixtape
         }
+        
+        // DJ Profile to Mixcloud DeeJay page
+        if (segue.identifier == "DJ Profile To Mixcloud") {
+            guard let destination = segue.destination as? AboutViewController else { return }
+            guard let mcURL = deejay.mcPageURL else { return }
+            destination.aboutURL = URL(string: mcURL)
+            destination.navigationItem.title = "Mixcloud Page"
+        }
+        
+        // DJ Profile to Facebook DeeJay page
+        if (segue.identifier == "DJ Profile To Facebook") {
+            guard let destination = segue.destination as? AboutViewController else { return }
+            guard let fbURL = deejay.fbPageURL else { return }
+            destination.aboutURL = URL(string: fbURL)
+            destination.navigationItem.title = "Facebook Page"
+        }
+        
+        
     }
     
 }

@@ -28,9 +28,17 @@ public class Artist: NSManagedObject
                 artistMatch.name = artistInfo[DBLabels.artistName] as? String ?? nil
                 artistMatch.type = artistInfo[DBLabels.artistType] as? String ?? nil
                 artistMatch.dfPicURL = artistInfo[DBLabels.artistDfPicURL] as? String ?? nil
-                //print("Update URL Default: ", artistInfo[DBLabels.artistPicDefaultURL] ?? "NULL")
                 artistMatch.fbPicURL = artistInfo[DBLabels.artistFbPicURL] as? String ?? nil
                 artistMatch.mcPicURL = artistInfo[DBLabels.artistMcPicURL] as? String ?? nil
+                
+                if let nameMC = artistInfo[DBLabels.artistNameMC] as? String {
+                    artistMatch.mcPageURL = UrlFor.mixcloud + nameMC
+                } else { artistMatch.mcPageURL = nil }
+                
+                if let fbPageID = artistInfo[DBLabels.artistFbPageID] as? String {
+                    artistMatch.fbPageURL = UrlFor.facebook + fbPageID
+                } else { artistMatch.fbPageURL = nil }
+                
                 return false
             }
         } catch {
@@ -44,10 +52,18 @@ public class Artist: NSManagedObject
         artist.name = artistInfo[DBLabels.artistName] as? String ?? nil
         artist.type = artistInfo[DBLabels.artistType] as? String ?? nil
         artist.dfPicURL = artistInfo[DBLabels.artistDfPicURL] as? String ?? nil
-        //print("Create URL Default: ", artistInfo[DBLabels.artistPicDefaultURL] ?? "NULL")
         artist.fbPicURL = artistInfo[DBLabels.artistFbPicURL] as? String ?? nil
         artist.mcPicURL = artistInfo[DBLabels.artistMcPicURL] as? String ?? nil
         artist.isFollowed = false
+        
+        if let nameMC = artistInfo[DBLabels.artistNameMC] as? String {
+            artist.mcPageURL = UrlFor.mixcloud + nameMC
+        } else { artist.mcPageURL = nil }
+        
+        if let fbPageID = artistInfo[DBLabels.artistFbPageID] as? String {
+            artist.fbPageURL = UrlFor.facebook + fbPageID
+        } else { artist.fbPageURL = nil }
+        
         return true
     }
 

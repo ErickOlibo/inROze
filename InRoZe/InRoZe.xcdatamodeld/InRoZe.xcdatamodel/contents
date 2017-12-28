@@ -6,10 +6,12 @@
         <attribute name="dfCoverURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dfPicURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fbCoverURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fbPageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fbPicURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isFollowed" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="mcCoverURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mcPageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mcPicURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
@@ -75,7 +77,7 @@
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="location" inverseEntity="Event" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Artist" positionX="414" positionY="449" width="128" height="253"/>
+        <element name="Artist" positionX="414" positionY="449" width="128" height="283"/>
         <element name="Event" positionX="630" positionY="72" width="128" height="328"/>
         <element name="Mixtape" positionX="216" positionY="324" width="128" height="373"/>
         <element name="Place" positionX="259" positionY="9" width="128" height="210"/>

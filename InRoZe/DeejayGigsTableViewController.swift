@@ -21,14 +21,16 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     @IBOutlet weak var djProfileView: UIView! { didSet { updateProfileView() } }
     
     @IBOutlet weak var deejayName: UILabel!
-    @IBOutlet weak var countryName: UILabel!
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var gigsMixes: UILabel!
+    @IBOutlet weak var mixcloudButton: UIButton!
+    @IBOutlet weak var facebookButton: UIButton!
     
+
+    // Actions
     @IBAction func touchedFollow(_ sender: UIButton) {
         pressedFollowed()
     }
-    
     
     
     // properties
@@ -60,11 +62,7 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         return fetchedRC
     }()
     
-    
 
-    //private var gigsList: [Event]?
-    //private var mixesList: [Mixtape]?
-    //private var gigMixArr: [[Event]?, [Mixtape]?]
 
     // ** View Controller Life Cycle
     override func viewDidLoad() {
@@ -150,9 +148,9 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     
     private func updateDJInfo() {
         guard let artistName = artist?.name else { return }
-        guard let artistCountry = artist?.country else { return }
+        //guard let artistCountry = artist?.country else { return }
         deejayName.text = artistName
-        countryName.text = artistCountry
+        //countryName.text = artistCountry
     }
     
     
@@ -161,14 +159,14 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         if (artist!.isFollowed) {
             navigationItem.rightBarButtonItem?.image = (UIImage(named: "2_FollowsFilled")?.withRenderingMode(.alwaysTemplate))!
             navigationItem.rightBarButtonItem?.tintColor = Colors.logoRed
-            followButton.setTitle("Followed", for: .normal)
+            followButton.setTitle("  Followed  ", for: .normal)
             followButton.backgroundColor = Colors.logoRed
             followButton.setTitleColor(.white, for: .normal)
             followButton.layer.borderColor = Colors.logoRed.cgColor
         } else {
             navigationItem.rightBarButtonItem?.image = (UIImage(named: "2_Follows")?.withRenderingMode(.alwaysTemplate))!
             navigationItem.rightBarButtonItem?.tintColor = .lightGray
-            followButton.setTitle("Follow", for: .normal)
+            followButton.setTitle("   Follow   ", for: .normal)
             followButton.backgroundColor = .clear
             followButton.setTitleColor(.gray, for: .normal)
             followButton.layer.borderColor = UIColor.gray.cgColor
