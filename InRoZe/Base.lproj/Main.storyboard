@@ -297,7 +297,6 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rc1-lB-9n9">
                                     <rect key="frame" x="157" y="45" width="40" height="40"/>
-                                    <color key="backgroundColor" red="0.92946392300000003" green="0.60142088069999999" blue="0.044391806460000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="rc1-lB-9n9" secondAttribute="height" multiplier="1:1" id="CmD-tY-KH8"/>
                                         <constraint firstAttribute="height" constant="40" id="H3m-4g-4fy"/>
@@ -310,7 +309,6 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cGh-Xq-OhX">
                                     <rect key="frame" x="217" y="45" width="40" height="40"/>
-                                    <color key="backgroundColor" red="0.92946392300000003" green="0.60142088069999999" blue="0.044391806460000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="PFW-uc-J6V"/>
                                         <constraint firstAttribute="width" secondItem="cGh-Xq-OhX" secondAttribute="height" multiplier="1:1" id="isi-BK-G5d"/>

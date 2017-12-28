@@ -87,10 +87,45 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         updateFollowedButton()
         updateDJInfo()
         updateGigsMixesCount()
+        updateSocialPageIcon()
         updateUI()
     }
     
     // ** Methods
+    private func updateSocialPageIcon() {
+        // set Social icons to right colors
+        guard let dj = artist else { return }
+        //let fontSize = CGFloat(30.0)
+        var mcColor = UIColor.black
+        var fbColor = UIColor.black
+        guard let iconMixcloud = FAType.FAMixcloud.text else { return }
+        guard let iconFacebook = FAType.FAFacebookOfficial.text else { return }
+        let mixcloudPageURL = dj.mcPageURL
+        let facebookPageURL = dj.fbPageURL
+        if (mixcloudPageURL != nil) {
+            mixcloudButton.isEnabled = true
+            mcColor = Colors.mixcloud
+        } else {
+            mixcloudButton.isEnabled = false
+            mcColor = Colors.hasNoSocialPage
+        }
+        if (facebookPageURL != nil) {
+            facebookButton.isEnabled = true
+            fbColor = Colors.facebook
+        } else {
+            facebookButton.isEnabled = false
+            fbColor = Colors.hasNoSocialPage
+        }
+        
+        let attrMixIcon = fontAwesomeAttributedString(forString: iconMixcloud, withColor: mcColor, andFontSize: 30.0)
+        mixcloudButton.setAttributedTitle(attrMixIcon, for: .normal)
+        let attrFaceIcon = fontAwesomeAttributedString(forString: iconFacebook, withColor: fbColor, andFontSize: 33.0)
+        facebookButton.setAttributedTitle(attrFaceIcon, for: .normal)
+        
+        
+        
+    }
+    
     private func updateGigsMixesCount() {
         let gigsCount = eventsFRC.fetchedObjects?.count ?? 0
         let mixtapesCount = mixtapesFRC.fetchedObjects?.count ?? 0

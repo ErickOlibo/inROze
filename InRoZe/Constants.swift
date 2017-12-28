@@ -16,6 +16,7 @@ public struct Colors {
     // UI Colors for Deejays "isFollowed" boolean status
     static let isFollowed = UIColor.convertToUIColor(fromHexColor: ColorsInHex.logoRed)
     static let isNotFollowed =  UIColor.lightGray
+    static let hasNoSocialPage = UIColor.lightGray
     
     // New Logo colors
     static let logoRed = UIColor.convertToUIColor(fromHexColor: ColorsInHex.logoRed)
@@ -28,6 +29,8 @@ public struct Colors {
     static let facebook = UIColor.convertToUIColor(fromHexColor: ColorsInHex.facebook)
     static let instagram = UIColor.convertToUIColor(fromHexColor: ColorsInHex.instagram)
     static let twitter = UIColor.convertToUIColor(fromHexColor: ColorsInHex.twitter)
+    static let mixcloud = UIColor.convertToUIColor(fromHexColor: ColorsInHex.mixcloud)
+    static let facebookOld = UIColor.convertToUIColor(fromHexColor: ColorsInHex.facebookOld)
     
 }
 
@@ -37,9 +40,11 @@ public struct ColorsInHex {
     static let sepal = "#D23900"
     
     // Social Media Colors
-    static let facebook = "#3B5998"
+    static let facebook = "#4267B2"
     static let instagram = "#BC2A8D"
     static let twitter = "#00ACED"
+    static let mixcloud = "#52AAD8"
+    static let facebookOld = "#3B5998"
     
     // New logo colors
     static let logoOrange = "#FFA700"
