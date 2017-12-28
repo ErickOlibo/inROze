@@ -15,12 +15,11 @@ class MixtapePlayerViewController: UIViewController {
     // context & container
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     
-    
+
     // properties
     override var prefersStatusBarHidden: Bool { return true }
-    private var player: AVPlayer! { didSet {print("AVPlayer is SET")}}
-    //private var playerItem: AVPlayerItem!
-    //private var playerLayer: AVPlayerLayer!
+    private var player: AVPlayer!
+    private var duration: CMTime!
     var mixtape: Mixtape?
     var colors: UIImageColors? { didSet { updateUI() }}
     //var isPlaying: Bool = false
@@ -51,10 +50,13 @@ class MixtapePlayerViewController: UIViewController {
     
     @IBAction func touchedSkipForward(_ sender: UIButton) {
         print("touchedSkipForward")
+        seekNewCurrentTime(byLookForward: true)
+        
     }
     
     @IBAction func touchedSkipBackward(_ sender: UIButton) {
         print("touchedSkipBackward")
+        seekNewCurrentTime(byLookForward: false)
     }
     
     
@@ -101,19 +103,50 @@ class MixtapePlayerViewController: UIViewController {
                 print("MixtapePlayerViewController -> Error while trying yo save the cover image Colors to Database: \(error)")
             }
         }
+        // for the moment STOP MUSIC
+        player.pause()
     }
 
   
     
     // METHODS
     private func setAudioStreamFromMixCloud() {
+
         guard let strURL = mixtape?.streamURL else { return }
         guard let length = mixtape?.length else { return }
-        guard let audioURL = URL(string: strURL) else { return }
-        print("streamURL: \(audioURL)")
-        player = AVPlayer(url: audioURL)
+        guard let streamURL = URL(string: strURL) else { return }
+        print("streamURL: \(streamURL)")
+        let playerItem = AVPlayerItem(url: streamURL)
+        player = AVPlayer(playerItem: playerItem)
+        duration = playerItem.asset.duration
+        let durationInt = Int(CMTimeGetSeconds(duration))
+        
 
         print("Duration From server: \(length)")
+        
+        // TRACK PLAYER PROGRESS -> Not sure it should not be here
+        let interval = CMTime(value: 1, timescale: 1)
+        player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main) { (progressTime) in
+            let progress = CMTimeGetSeconds(progressTime)
+            let totalLength = CMTimeGetSeconds(self.duration)
+            let ratio = Float(progress / totalLength)
+            print(" Total: \(totalLength) | current: \(progress) | RATIO: \(ratio)")
+            self.mixProgressView.setProgress(ratio, animated: true)
+            
+            // Update Elapsed and Remaining Label
+            let progressSecs = Int(CMTimeGetSeconds(progressTime))
+            guard let elapsed = timeDuration(from: String(progressSecs)) else { return }
+            self.elapsedTime.text = elapsed
+
+            let leftTime = String(durationInt - progressSecs)
+            guard let remaining = timeDuration(from: leftTime) else { return }
+            self.remainingTime.text = "-" + remaining
+            
+            // pause/ Stop when progress is duration
+            if (progress >= totalLength) {
+                self.player.pause()
+            }
+        }
 
     }
     
@@ -187,7 +220,7 @@ class MixtapePlayerViewController: UIViewController {
         updatePlayerNavButtonUI()
         updatePlayerColorsUI()
         updatePlayPauseIcon()
-        tryTimer()
+        //tryTimer()
         // STOP Spinner and hide frontView
         
     }
@@ -254,14 +287,25 @@ class MixtapePlayerViewController: UIViewController {
     }
     
 
-    private func tryTimer () {
-        let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer: Timer) in
-            self.mixProgressView.setProgress(self.mixProgressView.progress + 0.01, animated: true)
-            if self.mixProgressView.progress >= 1 {
-                timer.invalidate()
-            }
+    private func seekNewCurrentTime(byLookForward isForward: Bool) {
+        let length = Int64(CMTimeGetSeconds(duration))
+        let currentTime = player.currentTime()
+        let currentSeconds = Int64(CMTimeGetSeconds(currentTime))
+        let fiveMinutes: Int64 = 300
+        let zeroTime = Int64(0.0)
+        
+        
+        
+        if (isForward) {
+            let seekedTime = (currentSeconds + fiveMinutes >= length) ? length : (currentSeconds + fiveMinutes)
+            let targetTime = CMTimeMake(seekedTime, 1)
+            player.seek(to: targetTime)
+            
+        } else {
+            let seekedTime = (currentSeconds - fiveMinutes <= zeroTime) ? zeroTime : (currentSeconds - fiveMinutes)
+            let targetTime = CMTimeMake(seekedTime, 1)
+            player.seek(to: targetTime)
         }
-        timer.fire()
    
     }
     
