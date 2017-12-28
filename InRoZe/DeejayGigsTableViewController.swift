@@ -95,11 +95,11 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     private func updateSocialPageIcon() {
         // set Social icons to right colors
         guard let dj = artist else { return }
-        //let fontSize = CGFloat(30.0)
+        let fontSize = CGFloat(35.0)
         var mcColor = UIColor.black
         var fbColor = UIColor.black
         guard let iconMixcloud = FAType.FAMixcloud.text else { return }
-        guard let iconFacebook = FAType.FAFacebookOfficial.text else { return }
+        guard let iconFacebook = FAType.FAFacebookSquare.text else { return }
         let mixcloudPageURL = dj.mcPageURL
         let facebookPageURL = dj.fbPageURL
         if (mixcloudPageURL != nil) {
@@ -117,9 +117,9 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
             fbColor = Colors.hasNoSocialPage
         }
         
-        let attrMixIcon = fontAwesomeAttributedString(forString: iconMixcloud, withColor: mcColor, andFontSize: 30.0)
+        let attrMixIcon = fontAwesomeAttributedString(forString: iconMixcloud, withColor: mcColor, andFontSize: fontSize)
         mixcloudButton.setAttributedTitle(attrMixIcon, for: .normal)
-        let attrFaceIcon = fontAwesomeAttributedString(forString: iconFacebook, withColor: fbColor, andFontSize: 33.0)
+        let attrFaceIcon = fontAwesomeAttributedString(forString: iconFacebook, withColor: fbColor, andFontSize: fontSize)
         facebookButton.setAttributedTitle(attrFaceIcon, for: .normal)
         
         
