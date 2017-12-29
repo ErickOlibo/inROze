@@ -230,10 +230,10 @@
         <scene sceneID="8KM-Nb-VCN">
             <objects>
                 <tableViewController id="8yR-qp-x1Q" customClass="DeejayGigsTableViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="hGD-nm-KfD">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="60" sectionHeaderHeight="18" sectionFooterHeight="18" id="hGD-nm-KfD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="uza-dh-gn6">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -340,7 +340,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="DeejayGigsCell" rowHeight="60" id="GEV-js-GQI" customClass="DeejayGigsCell" customModule="InRoZe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="128" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="155.33333333333334" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GEV-js-GQI" id="1lw-ja-f5i">
                                     <rect key="frame" x="0.0" y="0.0" width="376" height="59.666666666666664"/>
@@ -404,7 +404,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeejayMixesCell" rowHeight="120" id="AGZ-EQ-xWO" customClass="DeejayMixesCell" customModule="InRoZe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="188" width="414" height="120"/>
+                                <rect key="frame" x="0.0" y="215.33333333333334" width="414" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AGZ-EQ-xWO" id="sLX-t5-Yyc">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="119.66666666666667"/>

@@ -36,6 +36,10 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     // properties
     let followedRightButton = UIBarButtonItem()
     var artist: Artist? { didSet { updateUI() } }
+    let sepaColor = UIColor.lightGray.cgColor
+    let sepaThick: CGFloat = 0.333
+    var eventsCount = 0
+    var mixtapesCount = 0
     
     // LAZY FetchResultsControllers
     lazy var eventsFRC: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
@@ -68,6 +72,8 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        tableView.separatorColor = .clear
+        
 
         // navigation bar see Extension below
         navigationController?.delegate = self
@@ -89,6 +95,8 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         updateGigsMixesCount()
         updateSocialPageIcon()
         updateUI()
+        print("HeaderView size: \(tableHeaderView.frame)")
+        tableHeaderView.addBorder(toSide: .Bottom, withColor: sepaColor, andThickness: sepaThick)
     }
     
     // ** Methods
