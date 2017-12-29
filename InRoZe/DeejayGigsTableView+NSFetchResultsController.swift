@@ -42,11 +42,6 @@ extension DeejayGigsTableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: DeejayGigsCell.identifier, for: indexPath) as! DeejayGigsCell
             cell.tag = indexPath.row
             cell.selectionStyle = .none
-//            if (thisIndexPath.row == eventsCount - 1) {
-//                cell.addBorder(toSide: .Bottom, withColor: sepaColor, andThickness: sepaThick)
-//                print("LAST EVENT cell indexPathRow: [\(thisIndexPath.row)] - eventsCount: [\(eventsCount)]")
-//            }
-            
             cell.event = eventsFRC.object(at: thisIndexPath)
             return cell
             
@@ -55,11 +50,6 @@ extension DeejayGigsTableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: DeejayMixesCell.identifier, for: indexPath) as! DeejayMixesCell
             cell.tag = indexPath.row
             cell.selectionStyle = .none
-//            if (thisIndexPath.row == mixtapesCount - 1) {
-//                cell.addBorder(toSide: .Bottom, withColor: sepaColor, andThickness: sepaThick)
-//                print("LAST MIXTAPE cell indexPathRow: [\(thisIndexPath.row)] - MixtapesCount: [\(mixtapesCount)]")
-//            }
-            
             cell.mixtape = mixtapesFRC.object(at: thisIndexPath)
             return cell
         }
@@ -89,14 +79,6 @@ extension DeejayGigsTableViewController {
         textLabel.frame = CGRect(x: 36, y: 30, width: CellSize.phoneSizeWidth, height: 50)
         textLabel.textAlignment = .left
         view.addSubview(textLabel)
-        
-//        if self.tableView(tableView, numberOfRowsInSection: section) > 0 {
-//            return view
-//        } else {
-//            textLabel.text = nil
-//            redLine.removeFromSuperview()
-//            return view
-//        }
         return view
     }
     

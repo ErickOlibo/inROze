@@ -25,6 +25,7 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     @IBOutlet weak var gigsMixes: UILabel!
     @IBOutlet weak var mixcloudButton: UIButton!
     @IBOutlet weak var facebookButton: UIButton!
+    @IBOutlet weak var profileCoverImage: UIImageView!
     
 
     // Actions
@@ -73,7 +74,6 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         tableView.separatorColor = .clear
-        
 
         // navigation bar see Extension below
         navigationController?.delegate = self
@@ -149,7 +149,7 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     
     private func updateProfileImage () {
         djProfileImage.layer.masksToBounds = true
-        djProfileImage.layer.cornerRadius = 25.0
+        djProfileImage.layer.cornerRadius = 35.0
         djProfileImage.layer.borderColor = UIColor.gray.cgColor
         djProfileImage.layer.borderWidth = 0.333
     }
@@ -157,7 +157,7 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     private func updateProfileView () {
         djProfileView.backgroundColor = .white
         djProfileView.layer.masksToBounds = true
-        djProfileView.layer.cornerRadius = 30.0
+        djProfileView.layer.cornerRadius = 40.0
         djProfileView.layer.borderColor = Colors.logoRed.cgColor
         djProfileView.layer.borderWidth = 2.0
     }
