@@ -69,9 +69,11 @@ extension DeejayGigsTableViewController {
     // Views for section
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
-        //view.backgroundColor = .white
-        //view.addBorder(toSide: .Top, withColor: sepaColor, andThickness: sepaThick)
-        //view.addBorder(toSide: .Bottom, withColor: sepaColor, andThickness: sepaThick)
+        
+        let RedLine = UIView(frame: CGRect(x: 16, y: 41, width: 10, height: 25))
+        RedLine.backgroundColor = Colors.logoRed
+        view.addSubview(RedLine)
+
         var text = ""
         let textLabel = UILabel()
         let attributeOne =  [ NSAttributedStringKey.font: UIFont(name: "AvenirNext-Bold", size: 35.0)!, NSAttributedStringKey.foregroundColor: UIColor.black ]
@@ -83,7 +85,7 @@ extension DeejayGigsTableViewController {
         }
         let attrText = NSAttributedString(string: text, attributes: attributeOne)
         textLabel.attributedText = attrText
-        textLabel.frame = CGRect(x: 16, y: 30, width: CellSize.phoneSizeWidth, height: 50)
+        textLabel.frame = CGRect(x: 36, y: 30, width: CellSize.phoneSizeWidth, height: 50)
         textLabel.textAlignment = .left
         view.addSubview(textLabel)
         
@@ -91,7 +93,6 @@ extension DeejayGigsTableViewController {
             return view
         } else {
             textLabel.text = nil
-            //view.backgroundColor = .lightGray
             return view
         }
         
