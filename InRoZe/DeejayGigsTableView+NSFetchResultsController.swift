@@ -69,10 +69,11 @@ extension DeejayGigsTableViewController {
     // Views for section
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
+        guard self.tableView(tableView, numberOfRowsInSection: section) > 0 else { return view }
         
-        let RedLine = UIView(frame: CGRect(x: 16, y: 41, width: 10, height: 25))
-        RedLine.backgroundColor = Colors.logoRed
-        view.addSubview(RedLine)
+        let redLine = UIView(frame: CGRect(x: 16, y: 41, width: 10, height: 25))
+        redLine.backgroundColor = Colors.logoRed
+        view.addSubview(redLine)
 
         var text = ""
         let textLabel = UILabel()
@@ -89,13 +90,14 @@ extension DeejayGigsTableViewController {
         textLabel.textAlignment = .left
         view.addSubview(textLabel)
         
-        if self.tableView(tableView, numberOfRowsInSection: section) > 0 {
-            return view
-        } else {
-            textLabel.text = nil
-            return view
-        }
-        
+//        if self.tableView(tableView, numberOfRowsInSection: section) > 0 {
+//            return view
+//        } else {
+//            textLabel.text = nil
+//            redLine.removeFromSuperview()
+//            return view
+//        }
+        return view
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
