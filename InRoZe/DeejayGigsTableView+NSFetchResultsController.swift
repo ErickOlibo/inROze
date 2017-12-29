@@ -74,16 +74,16 @@ extension DeejayGigsTableViewController {
         //view.addBorder(toSide: .Bottom, withColor: sepaColor, andThickness: sepaThick)
         var text = ""
         let textLabel = UILabel()
-        let attributeOne =  [ NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Bold", size: 18.0)!, NSAttributedStringKey.foregroundColor: UIColor.black ]
+        let attributeOne =  [ NSAttributedStringKey.font: UIFont(name: "AvenirNext-Bold", size: 35.0)!, NSAttributedStringKey.foregroundColor: UIColor.black ]
         
         if (section == 0) {
-            text = "GIGS"
+            text = "Gigs"
         } else {
-            text = "MIXTAPES"
+            text = "Mixtapes"
         }
         let attrText = NSAttributedString(string: text, attributes: attributeOne)
         textLabel.attributedText = attrText
-        textLabel.frame = CGRect(x: 20, y: 30, width: CellSize.phoneSizeWidth, height: 20)
+        textLabel.frame = CGRect(x: 16, y: 30, width: CellSize.phoneSizeWidth, height: 50)
         textLabel.textAlignment = .left
         view.addSubview(textLabel)
         
@@ -99,7 +99,7 @@ extension DeejayGigsTableViewController {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if self.tableView(tableView, numberOfRowsInSection: section) > 0 {
-            return 50.0
+            return 80.0
         } else {
             return 0.333
         }
