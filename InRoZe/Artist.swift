@@ -30,6 +30,9 @@ public class Artist: NSManagedObject
                 artistMatch.dfPicURL = artistInfo[DBLabels.artistDfPicURL] as? String ?? nil
                 artistMatch.fbPicURL = artistInfo[DBLabels.artistFbPicURL] as? String ?? nil
                 artistMatch.mcPicURL = artistInfo[DBLabels.artistMcPicURL] as? String ?? nil
+                artistMatch.dfCoverURL = artistInfo[DBLabels.artistDfCoverURL] as? String ?? nil
+                artistMatch.fbCoverURL = artistInfo[DBLabels.artistFbCoverURL] as? String ?? nil
+                artistMatch.mcCoverURL = artistInfo[DBLabels.artistMcCoverURL] as? String ?? nil
                 
                 if let nameMC = artistInfo[DBLabels.artistNameMC] as? String {
                     artistMatch.mcPageURL = UrlFor.mixcloud + nameMC
@@ -46,14 +49,17 @@ public class Artist: NSManagedObject
         }
         
         let artist = Artist(context: context)
+        artist.id = artistInfo[DBLabels.artistID] as? String ?? nil
         artist.country = artistInfo[DBLabels.artistCountry] as? String ?? nil
         artist.countryCode = artistInfo[DBLabels.artistCountryCode] as? String ?? nil
-        artist.id = artistInfo[DBLabels.artistID] as? String ?? nil
         artist.name = artistInfo[DBLabels.artistName] as? String ?? nil
         artist.type = artistInfo[DBLabels.artistType] as? String ?? nil
         artist.dfPicURL = artistInfo[DBLabels.artistDfPicURL] as? String ?? nil
         artist.fbPicURL = artistInfo[DBLabels.artistFbPicURL] as? String ?? nil
         artist.mcPicURL = artistInfo[DBLabels.artistMcPicURL] as? String ?? nil
+        artist.dfCoverURL = artistInfo[DBLabels.artistDfCoverURL] as? String ?? nil
+        artist.fbCoverURL = artistInfo[DBLabels.artistFbCoverURL] as? String ?? nil
+        artist.mcCoverURL = artistInfo[DBLabels.artistMcCoverURL] as? String ?? nil
         artist.isFollowed = false
         
         if let nameMC = artistInfo[DBLabels.artistNameMC] as? String {

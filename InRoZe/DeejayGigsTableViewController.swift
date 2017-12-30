@@ -41,6 +41,7 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     let sepaThick: CGFloat = 0.333
     var eventsCount = 0
     var mixtapesCount = 0
+    var gradientLayer: CAGradientLayer!
     
     // LAZY FetchResultsControllers
     lazy var eventsFRC: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
@@ -97,9 +98,28 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         updateUI()
         print("HeaderView size: \(tableHeaderView.frame)")
         tableHeaderView.addBorder(toSide: .Bottom, withColor: sepaColor, andThickness: sepaThick)
+        setCoverProfileImage()
+        //createGradientLayer()
+        
     }
     
     // ** Methods
+    
+    private func setCoverProfileImage() {
+        guard let dj = artist else { return }
+        guard let coverURL = preferedProfileCoverURL(for: dj) else { return }
+        profileCoverImage.kf.setImage(with: URL(string: coverURL), options: [.backgroundDecode])
+    }
+    
+    
+    private func createGradientLayer() {
+        gradientLayer = CAGradientLayer()
+        gradientLayer.frame = profileCoverImage.bounds
+        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.white.cgColor]
+        gradientLayer.locations = [0.0, 1.0]
+        profileCoverImage.layer.addSublayer(gradientLayer)
+        
+    }
     private func updateSocialPageIcon() {
         // set Social icons to right colors
         guard let dj = artist else { return }

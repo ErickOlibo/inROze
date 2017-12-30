@@ -24,6 +24,22 @@ public func preferedProfilePictureURL(for artist: Artist) -> String? {
     return nil
 }
 
+// This method return the right profile Cover URL (as String) for an artist
+// depending on which URL is available by order of preference.
+// 1) The FaceBook URL if NOT NULL
+// 2) The MixCloud URL if NOT NULL
+// 3) The Default URL if above are null
+
+public func preferedProfileCoverURL(for artist: Artist) -> String? {
+    
+    if let fbURL = artist.fbCoverURL { return fbURL }
+    if let mcURL = artist.mcCoverURL { return mcURL }
+    if let dfURL = artist.dfCoverURL { return dfURL }
+    return nil
+}
+
+
+
 
 // Format the event day, time, and location to Attributed text for cell subtitle
 // returns an Attributed string

@@ -235,10 +235,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="uza-dh-gn6">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="220"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewCity2" translatesAutoresizingMaskIntoConstraints="NO" id="aPN-2b-6YU">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aPN-2b-6YU">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="140" id="PxY-RS-ER8"/>
@@ -264,7 +264,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OM3-e6-53J">
-                                    <rect key="frame" x="100" y="110" width="294" height="30"/>
+                                    <rect key="frame" x="100" y="140" width="294" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="fDc-0o-aCr"/>
                                     </constraints>
@@ -273,7 +273,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UWO-8L-hF7">
-                                    <rect key="frame" x="10" y="180" width="80" height="20"/>
+                                    <rect key="frame" x="10" y="185" width="80" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="qK3-7B-3ZA"/>
                                     </constraints>
@@ -282,7 +282,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKA-Qv-cPk">
-                                    <rect key="frame" x="347" y="150" width="52" height="30"/>
+                                    <rect key="frame" x="347" y="175" width="52" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="DpF-dn-wYS"/>
                                         <constraint firstAttribute="height" constant="30" id="iN0-Qg-p1w"/>
@@ -302,7 +302,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rc1-lB-9n9">
-                                    <rect key="frame" x="100" y="145" width="50" height="40"/>
+                                    <rect key="frame" x="100" y="170" width="50" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="rc1-lB-9n9" secondAttribute="height" multiplier="5:4" id="CmD-tY-KH8"/>
                                         <constraint firstAttribute="height" constant="40" id="H3m-4g-4fy"/>
@@ -314,7 +314,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cGh-Xq-OhX">
-                                    <rect key="frame" x="170" y="145" width="40" height="40"/>
+                                    <rect key="frame" x="170" y="170" width="40" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="PFW-uc-J6V"/>
                                         <constraint firstAttribute="width" secondItem="cGh-Xq-OhX" secondAttribute="height" multiplier="1:1" id="isi-BK-G5d"/>
@@ -327,9 +327,9 @@
                                 </button>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="rc1-lB-9n9" firstAttribute="top" secondItem="uza-dh-gn6" secondAttribute="top" constant="145" id="1Lt-5e-XbV"/>
+                                <constraint firstItem="rc1-lB-9n9" firstAttribute="top" secondItem="uza-dh-gn6" secondAttribute="top" constant="170" id="1Lt-5e-XbV"/>
                                 <constraint firstItem="rc1-lB-9n9" firstAttribute="leading" secondItem="OM3-e6-53J" secondAttribute="leading" id="5wY-Ta-Qba"/>
-                                <constraint firstItem="OM3-e6-53J" firstAttribute="top" secondItem="uza-dh-gn6" secondAttribute="top" constant="110" id="8Ep-31-CoI"/>
+                                <constraint firstItem="OM3-e6-53J" firstAttribute="top" secondItem="uza-dh-gn6" secondAttribute="top" constant="140" id="8Ep-31-CoI"/>
                                 <constraint firstItem="aPN-2b-6YU" firstAttribute="width" secondItem="uza-dh-gn6" secondAttribute="width" id="AtE-nv-CdX"/>
                                 <constraint firstItem="6OJ-3z-zoV" firstAttribute="width" secondItem="UWO-8L-hF7" secondAttribute="width" id="Atq-y3-IA8"/>
                                 <constraint firstItem="6OJ-3z-zoV" firstAttribute="top" secondItem="uza-dh-gn6" secondAttribute="top" constant="100" id="CP0-DC-edm"/>
@@ -337,19 +337,19 @@
                                 <constraint firstAttribute="trailing" secondItem="OM3-e6-53J" secondAttribute="trailing" constant="20" id="I1u-5U-tjI"/>
                                 <constraint firstItem="cGh-Xq-OhX" firstAttribute="leading" secondItem="OM3-e6-53J" secondAttribute="leading" constant="70" id="IZS-sn-Qmu"/>
                                 <constraint firstItem="6OJ-3z-zoV" firstAttribute="leading" secondItem="OM3-e6-53J" secondAttribute="leading" constant="-90" id="PG9-ry-kym"/>
-                                <constraint firstItem="dKA-Qv-cPk" firstAttribute="top" secondItem="uza-dh-gn6" secondAttribute="top" constant="150" id="a4U-cn-hVS"/>
-                                <constraint firstItem="cGh-Xq-OhX" firstAttribute="top" secondItem="uza-dh-gn6" secondAttribute="top" constant="145" id="av5-ar-4cK"/>
+                                <constraint firstItem="dKA-Qv-cPk" firstAttribute="top" secondItem="uza-dh-gn6" secondAttribute="top" constant="175" id="a4U-cn-hVS"/>
+                                <constraint firstItem="cGh-Xq-OhX" firstAttribute="top" secondItem="uza-dh-gn6" secondAttribute="top" constant="170" id="av5-ar-4cK"/>
                                 <constraint firstItem="6OJ-3z-zoV" firstAttribute="leading" secondItem="uza-dh-gn6" secondAttribute="leading" constant="10" id="ay2-7K-zfC"/>
                                 <constraint firstAttribute="trailing" secondItem="dKA-Qv-cPk" secondAttribute="trailing" constant="15" id="d18-Wr-mwH"/>
                                 <constraint firstItem="aPN-2b-6YU" firstAttribute="top" secondItem="uza-dh-gn6" secondAttribute="top" id="ebd-uZ-gTB"/>
-                                <constraint firstItem="UWO-8L-hF7" firstAttribute="top" secondItem="uza-dh-gn6" secondAttribute="top" constant="180" id="kHC-2s-f9L"/>
+                                <constraint firstItem="UWO-8L-hF7" firstAttribute="top" secondItem="uza-dh-gn6" secondAttribute="top" constant="185" id="kHC-2s-f9L"/>
                                 <constraint firstItem="dKA-Qv-cPk" firstAttribute="leading" relation="lessThanOrEqual" secondItem="cGh-Xq-OhX" secondAttribute="trailing" constant="157" id="oSw-Q8-9IV"/>
                                 <constraint firstItem="6OJ-3z-zoV" firstAttribute="centerX" secondItem="UWO-8L-hF7" secondAttribute="centerX" id="pCl-3o-Lqq"/>
                             </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="DeejayGigsCell" rowHeight="60" id="GEV-js-GQI" customClass="DeejayGigsCell" customModule="InRoZe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="255.33333333333334" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="275.33333333333331" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GEV-js-GQI" id="1lw-ja-f5i">
                                     <rect key="frame" x="0.0" y="0.0" width="376" height="59.666666666666664"/>
@@ -413,7 +413,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeejayMixesCell" rowHeight="120" id="AGZ-EQ-xWO" customClass="DeejayMixesCell" customModule="InRoZe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="315.33333333333337" width="414" height="120"/>
+                                <rect key="frame" x="0.0" y="335.33333333333337" width="414" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AGZ-EQ-xWO" id="sLX-t5-Yyc">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="119.66666666666667"/>
@@ -715,7 +715,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="onQ-AG-C6Y">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H4f-lw-L8s" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="686.33333333333337"/>
@@ -1948,11 +1948,10 @@ Mixtapes</string>
         <image name="5_Settings" width="25" height="25"/>
         <image name="5_SettingsFilled" width="25" height="25"/>
         <image name="Logo_Inroze_2017" width="990" height="330"/>
-        <image name="NewCity2" width="1300" height="600"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="U8r-Et-0uN"/>
         <segue reference="ekP-bR-cTf"/>
-        <segue reference="Bwf-dD-zDu"/>
+        <segue reference="CCz-K1-KF9"/>
     </inferredMetricsTieBreakers>
 </document>
