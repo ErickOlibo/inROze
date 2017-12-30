@@ -108,13 +108,13 @@ extension FollowsViewController
         numLabel.attributedText = attrNumMonth
 
         // Day of Week
-        dayLabel.frame = CGRect(x: 55, y: 50, width: CellSize.phoneSizeWidth, height: 50)
+        dayLabel.frame = CGRect(x: 35, y: 50, width: CellSize.phoneSizeWidth, height: 50)
         dayLabel.textAlignment = .left
         
-        numLabel.frame = CGRect(x: 55, y: 35, width: CellSize.phoneSizeWidth, height: 25)
+        numLabel.frame = CGRect(x: 35, y: 35, width: CellSize.phoneSizeWidth, height: 25)
         numLabel.textAlignment = .left
         
-        let redLine = UIView(frame: CGRect(x: 35, y: 61, width: 10, height: 25))
+        let redLine = UIView(frame: CGRect(x: 15, y: 61, width: 10, height: 25))
         redLine.backgroundColor = Colors.logoRed
         
         view.addSubview(dayLabel)

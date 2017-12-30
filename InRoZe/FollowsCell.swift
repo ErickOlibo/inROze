@@ -17,8 +17,8 @@ class FollowsCell: UITableViewCell
     // properties
     static var identifier: String { return String(describing: self) }
     var event: Event? { didSet { configureCell() } }
-    var lastCell: Bool = false { didSet {print("Last Cell Set to [\(lastCell)]")}}
-    var firstCell: Bool = false { didSet {print("First Cell Set to [\(firstCell)]")}}
+    var lastCell: Bool = false
+    var firstCell: Bool = false
     var colors: UIImageColors? { didSet { configureCellForColors() } }
 
 //    // for last Cell vertical separator
@@ -36,9 +36,11 @@ class FollowsCell: UITableViewCell
     @IBOutlet weak var BottomVerticalSeparator: UIView!
     @IBOutlet weak var dashedSeparator: UIView!
     @IBOutlet weak var dateCircle: UIView!
+    
+    
     @IBOutlet weak var deejaysTitleBar: UIView!
     @IBOutlet weak var eventCover: UIImageView!
-    @IBOutlet weak var eventDate: UILabel!
+    //@IBOutlet weak var eventDate: UILabel!
     @IBOutlet weak var deejaysList: UILabel!
     @IBOutlet weak var eventLocation: UILabel!
     @IBOutlet weak var eventTime: UILabel!
@@ -64,7 +66,7 @@ class FollowsCell: UITableViewCell
     private func configureCell() {
         updateSeparatorsUI()
 
-        setTimeDate()
+        //setTimeDate()
         
         guard let locationName = event?.location?.name else { return }
         eventCover.layoutIfNeeded()
@@ -74,8 +76,8 @@ class FollowsCell: UITableViewCell
     }
     
     private func circleDashBandColor(withColor color: UIColor) {
-        dateCircle.layer.borderColor = color.cgColor
-        dashedSeparator.backgroundColor = color
+        dateCircle.layer.borderColor = UIColor.white.cgColor
+        //dashedSeparator.backgroundColor = color
         deejaysTitleBar.backgroundColor = color
         
     }
@@ -134,15 +136,15 @@ class FollowsCell: UITableViewCell
         //dateAttributed.append(dayAttributed)
         dateAttributed.append(attrNumber)
         dateAttributed.append(monthAttributed)
-        eventDate.text = ""
+        //eventDate.text = ""
         //eventDate.attributedText = dateAttributed
     
     }
     
     // Set the separators UI
     private func updateSeparatorsUI() {
-        topVerticalSeparator.backgroundColor = firstCell ? .white : Colors.logoRed
-        BottomVerticalSeparator.backgroundColor = lastCell ? .white : Colors.logoRed
+        //topVerticalSeparator.backgroundColor = firstCell ? .white : Colors.logoRed
+        //BottomVerticalSeparator.backgroundColor = lastCell ? .white : Colors.logoRed
     }
 
     // Vertical separator constructor
