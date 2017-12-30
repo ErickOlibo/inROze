@@ -16,9 +16,11 @@ class FollowsCell: UITableViewCell
 
     // properties
     static var identifier: String { return String(describing: self) }
-    var event: Event? { didSet { configureCell() } }
+    var event: Event?
     var colors: UIImageColors? { didSet { configureCellForColors() } }
-    var cleanCell: Bool = false
+    var cleanCell: Bool = false { didSet { cleanCellBeforeUse()}}
+    var coverImage: UIImage?
+    private let defaultColor = UIColor.white
 
     // context & container
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
@@ -32,8 +34,56 @@ class FollowsCell: UITableViewCell
     @IBOutlet weak var eventTime: UILabel!
     
     // Methods
+    private func cleanCellBeforeUse() {
+        if (cleanCell) {
+            deejaysTitleBar.backgroundColor = defaultColor
+            eventCover.backgroundColor = defaultColor
+            deejaysList.backgroundColor = defaultColor
+            eventLocation.backgroundColor = defaultColor
+            eventTime.backgroundColor = defaultColor
+            
+            deejaysList.textColor = defaultColor
+            eventLocation.textColor = defaultColor
+            eventTime.textColor = defaultColor
+            //eventCover.image = nil
+        }
+    }
+    
+    private func removeDefaultColor() {
+        deejaysTitleBar.backgroundColor = .clear
+        eventCover.backgroundColor = .clear
+        deejaysList.backgroundColor = .clear
+        eventLocation.backgroundColor = .clear
+        eventTime.backgroundColor = .clear
+        
+    }
+    
+    // no COLORS needed
+    private func setLocation() {
+        guard let locationName = event?.location?.name else { return }
+        eventLocation.textColor = .black
+        eventLocation.text = locationName
+        //eventCover.layoutIfNeeded()
+    }
+    
+    private func setStartEndTime() {
+        guard let event = event else { return }
+        guard let startDate = event.startTime else { return }
+        guard let endDate = event.endTime else { return }
+        let splitStart = Date().split(this: startDate)
+        let splitEnd = Date().split(this: endDate)
+        eventTime.textColor = .black
+        eventTime.text = splitStart.hour + " - " + splitEnd.hour
+    }
+    
+    
+    // COLORS Needed
     private func configureCellForColors() {
-        print("COLORS ARE SET - configureCellForColors")
+        removeDefaultColor()
+        setLocation()
+        setStartEndTime()
+        eventCover.image = coverImage
+        
         guard let background = colors?.background else { return }
         guard let primary = colors?.primary else { return }
         guard let secondary = colors?.secondary else { return }
@@ -41,27 +91,13 @@ class FollowsCell: UITableViewCell
         // here for the cell design color
         if (background.isWhiteColor) {
             setDeejaysText(withColor: background)
-            circleDashBandColor(withColor: secondary)
+            deejaysTitleBar.backgroundColor = secondary
         } else {
             setDeejaysText(withColor: primary)
-            circleDashBandColor(withColor: background)
+            deejaysTitleBar.backgroundColor = background
         }
     }
-    
-    private func configureCell() {
-        print("EVENT IS SET - configureCell")
-        setTimeDate()
-        guard let locationName = event?.location?.name else { return }
-        eventCover.layoutIfNeeded()
-        selectionStyle = .none
-        eventLocation.text = locationName
-    }
-    
-    
-    private func circleDashBandColor(withColor color: UIColor) {
-        deejaysTitleBar.backgroundColor = color
-    }
-    
+
     
     private func setDeejaysText(withColor color: UIColor) {
         guard let deejays = event?.performers?.allObjects as? [Artist] else { return }
@@ -81,22 +117,7 @@ class FollowsCell: UITableViewCell
         deejaysList.attributedText = coloredString(list, color: color)
     }
     
-    private func setTimeDate() {
-        guard let event = event else { return }
-        guard let startDate = event.startTime else { return }
-        guard let endDate = event.endTime else { return }
-        let splitStart = Date().split(this: startDate)
-        let splitEnd = Date().split(this: endDate)
-        let startTimeAttributed = coloredString(splitStart.hour, color: .black)
-        let endTimeAttributed = coloredString(splitEnd.hour, color: .black)
-        let spacingTimeAttributed = coloredString(" - ", color: .black)
-        let timeAttributed = NSMutableAttributedString()
-        timeAttributed.append(startTimeAttributed)
-        timeAttributed.append(spacingTimeAttributed)
-        timeAttributed.append(endTimeAttributed)
-        eventTime.attributedText = timeAttributed
-        
-    }
+    
     
  
     

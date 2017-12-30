@@ -30,49 +30,30 @@ extension FollowsViewController
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FollowsCell.identifier, for: indexPath) as! FollowsCell
+        cell.cleanCell = true
+        cell.selectionStyle = .none
         cell.tag = indexPath.row
-//        let sectionCount = fetchResultsController.sections?[indexPath.section].numberOfObjects ?? 0
-//
-//        // UI setting of cell
-//        if (sectionCount > 0) {
-//
-//            cell.firstCell = (indexPath.row == 0)
-//            cell.lastCell = (sectionCount == (indexPath.row + 1))
-////            // if First cell
-////            if (indexPath.row == 0) {
-////                //
-////            }
-////
-////            // if last cell
-////            if (sectionCount == (indexPath.row + 1)) {
-////
-////            }
-//
-//
-//        }
-        
-        
-        //print("SecCount [\(sectionCount)] - Path [\(indexPath)]")
         let event = fetchResultsController.object(at: indexPath)
         cell.event = event
         
         guard let imageURL = event.imageURL else { return cell }
         cell.eventCover.kf.setImage(with: URL(string: imageURL), options: [.backgroundDecode]) {
             (image, error, cachetype, imageUrl) in
-            
+            cell.eventCover.image = nil
             if (image != nil) {
                 if (event.colorPrimary != nil && event.colorSecondary != nil && event.colorDetail != nil && event.colorBackground != nil) {
                     let colorsInHex = ColorsInHexString(background: event.colorBackground!, primary: event.colorPrimary!, secondary: event.colorSecondary!, detail: event.colorDetail!)
                     let colors = colorsFromHexString(with: colorsInHex)
-                    print("ALREADY IN DATABASE -> COLORS Will Get Set To Cell")
+                    cell.coverImage = image
                     cell.colors = colors
                     
+                    
                 } else if let colors = self.colorsOfEventCovers[event.id!]{
-                    print("ALREADY IN TEMP-ARRAY -> COLORS Will Get Set To Cell")
+                    cell.coverImage = image
                     cell.colors = colors
                 } else {
                     image?.getColors(scaleDownSize: CGSize(width: 100, height: 100)){ [weak self] colors in
-                        print("PROCESSING COLORS -> COLORS Will Get Set To Cell")
+                        cell.coverImage = image
                         cell.colors = colors
                         self?.colorsOfEventCovers[event.id!] = colors
                     }
@@ -85,7 +66,6 @@ extension FollowsViewController
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        //print("IN viewForHeaderInSection what is the Section: ", section)
         let view = UIView()
         guard let sections = fetchResultsController.sections else { fatalError("ISSUE WITH SECTIONS")}
         let dayTitle = sections[section].name
