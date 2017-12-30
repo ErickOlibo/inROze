@@ -52,7 +52,6 @@
 		A7B3E76F1FC63D9B00170C95 /* DJsSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B3E76E1FC63D9B00170C95 /* DJsSearchCell.swift */; };
 		A7D1CDC81F81D0CF003513F8 /* EventDeejayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */; };
 		A7D4D2A61F51913C00546341 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4D2A51F51913C00546341 /* Artist.swift */; };
-		A7DDF2161FC47DDE001F8418 /* FollowsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DDF2151FC47DDE001F8418 /* FollowsHeaderCell.swift */; };
 		A7E03D9B1F71D820000095BD /* UIDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E03D9A1F71D820000095BD /* UIDropDown.swift */; };
 		A7E644901FCB7F4D00816FCF /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E6448F1FCB7F4D00816FCF /* AboutViewController.swift */; };
 		A7E644921FCC76A300816FCF /* ChangeCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E644911FCC76A300816FCF /* ChangeCityViewController.swift */; };
@@ -118,7 +117,6 @@
 		A7B3E76E1FC63D9B00170C95 /* DJsSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJsSearchCell.swift; sourceTree = "<group>"; };
 		A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDeejayCell.swift; sourceTree = "<group>"; };
 		A7D4D2A51F51913C00546341 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
-		A7DDF2151FC47DDE001F8418 /* FollowsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowsHeaderCell.swift; sourceTree = "<group>"; };
 		A7E03D9A1F71D820000095BD /* UIDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDropDown.swift; sourceTree = "<group>"; };
 		A7E6448F1FCB7F4D00816FCF /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		A7E644911FCC76A300816FCF /* ChangeCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCityViewController.swift; sourceTree = "<group>"; };
@@ -268,7 +266,6 @@
 		A73385171FBE508000E0C4C2 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				A7DDF2151FC47DDE001F8418 /* FollowsHeaderCell.swift */,
 				A73385151FBE506900E0C4C2 /* FollowsCell.swift */,
 			);
 			name = Cells;
@@ -714,7 +711,6 @@
 				A7EC36651F33954600548C11 /* NSDictionary+KeyPathConvenience.swift in Sources */,
 				A7AA5B7C1F7D593300BB2B8A /* ConvenienceFunctions.swift in Sources */,
 				A7E644921FCC76A300816FCF /* ChangeCityViewController.swift in Sources */,
-				A7DDF2161FC47DDE001F8418 /* FollowsHeaderCell.swift in Sources */,
 				A7F635D91FF148DB0036D720 /* MixtapePlayerViewController.swift in Sources */,
 				A73385161FBE506900E0C4C2 /* FollowsCell.swift in Sources */,
 				A7F527221F4496E50008080B /* RequestHandler.swift in Sources */,
