@@ -22,7 +22,7 @@ extension FollowsViewController
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = fetchResultsController.sections, sections.count > 0 {
-            //print("Sections Count: [\(sections.count)] -- This Section objects Count: [\(sections[section].numberOfObjects)]")
+
             return sections[section].numberOfObjects
             
         } else {
@@ -33,6 +33,28 @@ extension FollowsViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FollowsCell.identifier, for: indexPath) as! FollowsCell
         cell.tag = indexPath.row
+        let sectionCount = fetchResultsController.sections?[indexPath.section].numberOfObjects ?? 0
+        
+        // UI setting of cell
+        if (sectionCount > 0) {
+            
+            cell.firstCell = (indexPath.row == 0)
+            cell.lastCell = (sectionCount == (indexPath.row + 1))
+//            // if First cell
+//            if (indexPath.row == 0) {
+//                // 
+//            }
+//            
+//            // if last cell
+//            if (sectionCount == (indexPath.row + 1)) {
+//                
+//            }
+            
+            
+        }
+        
+        
+        print("SecCount [\(sectionCount)] - Path [\(indexPath)]")
         let event = fetchResultsController.object(at: indexPath)
         cell.event = event
         
@@ -62,41 +84,62 @@ extension FollowsViewController
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        print("IN viewForHeaderInSection what is the Section: ", section)
+        //print("IN viewForHeaderInSection what is the Section: ", section)
         let view = UIView()
-        guard let sections = fetchResultsController.sections else { fatalError("ISSUE WITH SECTINOS")}
+        guard let sections = fetchResultsController.sections else { fatalError("ISSUE WITH SECTIONS")}
         let dayTitle = sections[section].name
+        
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYYMMdd"
         guard let startDay = formatter.date(from: dayTitle) else { fatalError("CANT FORMAT DATE") }
         formatter.dateFormat = "EEEE"
         let weekDay = formatter.string(from: startDay)
-        let splitDate = Date().split(this: startDay)
-        
+
+        formatter.dateFormat = "d MMMM"
+        let dayNumMonth = formatter.string(from: startDay).uppercased()
         let dayLabel = UILabel()
         let numLabel =  UILabel()
-        //dayLabel.text = weekDay
-        let numMonth = splitDate.num + ". " + splitDate.month
-        let attributeOne =  [ NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Bold", size: 18.0)!, NSAttributedStringKey.foregroundColor: UIColor.white ]
+
+        let attributeOne =  [ NSAttributedStringKey.font: UIFont(name: "AvenirNext-Bold", size: 35.0)!, NSAttributedStringKey.foregroundColor: UIColor.black ]
+        let attributeTwo =  [ NSAttributedStringKey.font: UIFont(name: "AvenirNext-medium", size: 15.0)!, NSAttributedStringKey.foregroundColor: UIColor.gray ]
         let attrWeekDay = NSAttributedString(string: weekDay, attributes: attributeOne)
-        let attrNumMonth = NSAttributedString(string: numMonth, attributes: attributeOne)
+        let attrNumMonth = NSAttributedString(string: dayNumMonth, attributes: attributeTwo)
         dayLabel.attributedText = attrWeekDay
         numLabel.attributedText = attrNumMonth
-        //dayLabel.text = splitDate.day + " " + splitDate.num + " " + splitDate.month
-        //dayLabel.textColor = .white
-        numLabel.frame = CGRect(x: CellSize.phoneSizeWidth - 110, y: 0, width: 100, height: 30)
-        numLabel.textAlignment = .right
-        dayLabel.frame = CGRect(x: 10, y: 0, width: 200, height: 30)
+
+        // Day of Week
+        dayLabel.frame = CGRect(x: 55, y: 50, width: CellSize.phoneSizeWidth, height: 50)
+        dayLabel.textAlignment = .left
+        
+        numLabel.frame = CGRect(x: 55, y: 35, width: CellSize.phoneSizeWidth, height: 25)
+        numLabel.textAlignment = .left
+        
+        let redLine = UIView(frame: CGRect(x: 35, y: 61, width: 10, height: 25))
+        redLine.backgroundColor = Colors.logoRed
+        
         view.addSubview(dayLabel)
         view.addSubview(numLabel)
-        view.backgroundColor = Colors.logoRed
+        view.addSubview(redLine)
+        view.backgroundColor = .white
         return view
         
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        return 100
     }
+    
+    // Just Added
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.5
+    }
+    
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

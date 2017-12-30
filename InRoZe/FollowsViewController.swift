@@ -46,11 +46,14 @@ class FollowsViewController: FetchedResultsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
+        view.backgroundColor = .white
+        tableView.separatorColor = .clear
         navigationController?.navigationBar.isTranslucent = false
         tableView.rowHeight = cellHeightForFollows
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.separatorInset = UIEdgeInsetsMake(0, 70, 0, 30)
+        //tableView.separatorInset = UIEdgeInsetsMake(0, 70, 0, 30)
         tableView.reloadData()
+        tableView.backgroundColor = .white
 
     }
     

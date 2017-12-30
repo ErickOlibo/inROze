@@ -17,13 +17,14 @@ class FollowsCell: UITableViewCell
     // properties
     static var identifier: String { return String(describing: self) }
     var event: Event? { didSet { configureCell() } }
-    var lastCell: Bool = false
+    var lastCell: Bool = false { didSet {print("Last Cell Set to [\(lastCell)]")}}
+    var firstCell: Bool = false { didSet {print("First Cell Set to [\(firstCell)]")}}
     var colors: UIImageColors? { didSet { configureCellForColors() } }
 
-    // for last Cell vertical separator
-    let thick: CGFloat = 4.0
-    let color = Colors.logoRed.cgColor
-    let lengthFromTop: CGFloat = 25.0
+//    // for last Cell vertical separator
+//    let thick: CGFloat = 4.0
+//    let color = Colors.logoRed.cgColor
+//    let lengthFromTop: CGFloat = 25.0
     
     // context & container
     //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
@@ -31,7 +32,8 @@ class FollowsCell: UITableViewCell
     
     
     // OUtlets
-    @IBOutlet weak var verticalSeparator: UIView!
+    @IBOutlet weak var topVerticalSeparator: UIView!
+    @IBOutlet weak var BottomVerticalSeparator: UIView!
     @IBOutlet weak var dashedSeparator: UIView!
     @IBOutlet weak var dateCircle: UIView!
     @IBOutlet weak var deejaysTitleBar: UIView!
@@ -60,18 +62,15 @@ class FollowsCell: UITableViewCell
     }
     
     private func configureCell() {
-        cellSeparator(isLast: false)
-        //guard let event = event else { return }
+        updateSeparatorsUI()
+
         setTimeDate()
         
         guard let locationName = event?.location?.name else { return }
         eventCover.layoutIfNeeded()
         selectionStyle = .none
         eventLocation.text = locationName
-        
-        //setStartDay()
-        //guard let imageURL = event.imageURL else { return }
-        //eventCover.kf.setImage(with: URL(string: imageURL), options: [.backgroundDecode])
+
     }
     
     private func circleDashBandColor(withColor color: UIColor) {
@@ -140,17 +139,22 @@ class FollowsCell: UITableViewCell
     
     }
     
-    
+    // Set the separators UI
+    private func updateSeparatorsUI() {
+        topVerticalSeparator.backgroundColor = firstCell ? .white : Colors.logoRed
+        BottomVerticalSeparator.backgroundColor = lastCell ? .white : Colors.logoRed
+    }
 
     // Vertical separator constructor
-    private func cellSeparator(isLast last: Bool) {
-        if (last) {
-            verticalSeparator.backgroundColor = .white
-            verticalSeparator.addBorder(lengthFromStart:lengthFromTop, toSide: .Left, withColor: color, andThickness: thick)
-        } else {
-            verticalSeparator.backgroundColor = Colors.logoRed
-        }
-    }
+//    private func cellSeparator(isLast last: Bool) {
+//        if (last) {
+//            BottomVerticalSeparator.backgroundColor = .white
+//            BottomVerticalSeparator.addBorder(lengthFromStart:lengthFromTop, toSide: .Left, withColor: color, andThickness: thick)
+//        } else {
+//            BottomVerticalSeparator.backgroundColor = .white
+//            BottomVerticalSeparator.addBorder(lengthFromStart:lengthFromTop, toSide: .Left, withColor: UIColor.white.cgColor, andThickness: thick)
+//        }
+//    }
 
     
 }
