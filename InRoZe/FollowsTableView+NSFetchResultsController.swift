@@ -22,9 +22,7 @@ extension FollowsViewController
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = fetchResultsController.sections, sections.count > 0 {
-
             return sections[section].numberOfObjects
-            
         } else {
             return 0
         }
@@ -33,28 +31,28 @@ extension FollowsViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FollowsCell.identifier, for: indexPath) as! FollowsCell
         cell.tag = indexPath.row
-        let sectionCount = fetchResultsController.sections?[indexPath.section].numberOfObjects ?? 0
+//        let sectionCount = fetchResultsController.sections?[indexPath.section].numberOfObjects ?? 0
+//
+//        // UI setting of cell
+//        if (sectionCount > 0) {
+//
+//            cell.firstCell = (indexPath.row == 0)
+//            cell.lastCell = (sectionCount == (indexPath.row + 1))
+////            // if First cell
+////            if (indexPath.row == 0) {
+////                //
+////            }
+////
+////            // if last cell
+////            if (sectionCount == (indexPath.row + 1)) {
+////
+////            }
+//
+//
+//        }
         
-        // UI setting of cell
-        if (sectionCount > 0) {
-            
-            cell.firstCell = (indexPath.row == 0)
-            cell.lastCell = (sectionCount == (indexPath.row + 1))
-//            // if First cell
-//            if (indexPath.row == 0) {
-//                // 
-//            }
-//            
-//            // if last cell
-//            if (sectionCount == (indexPath.row + 1)) {
-//                
-//            }
-            
-            
-        }
         
-        
-        print("SecCount [\(sectionCount)] - Path [\(indexPath)]")
+        //print("SecCount [\(sectionCount)] - Path [\(indexPath)]")
         let event = fetchResultsController.object(at: indexPath)
         cell.event = event
         
@@ -66,12 +64,15 @@ extension FollowsViewController
                 if (event.colorPrimary != nil && event.colorSecondary != nil && event.colorDetail != nil && event.colorBackground != nil) {
                     let colorsInHex = ColorsInHexString(background: event.colorBackground!, primary: event.colorPrimary!, secondary: event.colorSecondary!, detail: event.colorDetail!)
                     let colors = colorsFromHexString(with: colorsInHex)
+                    print("ALREADY IN DATABASE -> COLORS Will Get Set To Cell")
                     cell.colors = colors
                     
                 } else if let colors = self.colorsOfEventCovers[event.id!]{
+                    print("ALREADY IN TEMP-ARRAY -> COLORS Will Get Set To Cell")
                     cell.colors = colors
                 } else {
                     image?.getColors(scaleDownSize: CGSize(width: 100, height: 100)){ [weak self] colors in
+                        print("PROCESSING COLORS -> COLORS Will Get Set To Cell")
                         cell.colors = colors
                         self?.colorsOfEventCovers[event.id!] = colors
                     }

@@ -17,38 +17,23 @@ class FollowsCell: UITableViewCell
     // properties
     static var identifier: String { return String(describing: self) }
     var event: Event? { didSet { configureCell() } }
-    var lastCell: Bool = false
-    var firstCell: Bool = false
     var colors: UIImageColors? { didSet { configureCellForColors() } }
+    var cleanCell: Bool = false
 
-//    // for last Cell vertical separator
-//    let thick: CGFloat = 4.0
-//    let color = Colors.logoRed.cgColor
-//    let lengthFromTop: CGFloat = 25.0
-    
     // context & container
-    //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     
     
     // OUtlets
-    @IBOutlet weak var topVerticalSeparator: UIView!
-    @IBOutlet weak var BottomVerticalSeparator: UIView!
-    @IBOutlet weak var dashedSeparator: UIView!
-    @IBOutlet weak var dateCircle: UIView!
-    
-    
     @IBOutlet weak var deejaysTitleBar: UIView!
     @IBOutlet weak var eventCover: UIImageView!
-    //@IBOutlet weak var eventDate: UILabel!
     @IBOutlet weak var deejaysList: UILabel!
     @IBOutlet weak var eventLocation: UILabel!
     @IBOutlet weak var eventTime: UILabel!
     
-    
-
+    // Methods
     private func configureCellForColors() {
-        
+        print("COLORS ARE SET - configureCellForColors")
         guard let background = colors?.background else { return }
         guard let primary = colors?.primary else { return }
         guard let secondary = colors?.secondary else { return }
@@ -64,31 +49,19 @@ class FollowsCell: UITableViewCell
     }
     
     private func configureCell() {
-        updateSeparatorsUI()
-
-        //setTimeDate()
-        
+        print("EVENT IS SET - configureCell")
+        setTimeDate()
         guard let locationName = event?.location?.name else { return }
         eventCover.layoutIfNeeded()
         selectionStyle = .none
         eventLocation.text = locationName
-
     }
+    
     
     private func circleDashBandColor(withColor color: UIColor) {
-        dateCircle.layer.borderColor = UIColor.white.cgColor
-        //dashedSeparator.backgroundColor = color
         deejaysTitleBar.backgroundColor = color
-        
     }
     
-    
-    // set startDay for future implementation
-    private func setStartDay() {
-        guard let event = event else { return }
-        let startDay = event.startDay ?? "NOTHING"
-        print("*******  [\(startDay)]********")
-    }
     
     private func setDeejaysText(withColor color: UIColor) {
         guard let deejays = event?.performers?.allObjects as? [Artist] else { return }
@@ -108,7 +81,6 @@ class FollowsCell: UITableViewCell
         deejaysList.attributedText = coloredString(list, color: color)
     }
     
-    
     private func setTimeDate() {
         guard let event = event else { return }
         guard let startDate = event.startTime else { return }
@@ -124,40 +96,9 @@ class FollowsCell: UITableViewCell
         timeAttributed.append(endTimeAttributed)
         eventTime.attributedText = timeAttributed
         
-        let monthAttributed = coloredString(splitStart.month.uppercased(), color: .black)
-        //let dayAttributed = coloredString(splitStart.day.uppercased(), color: .black)
-        
-        let attributeOne =  [ NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Bold", size: 18.0)!, NSAttributedStringKey.foregroundColor: Colors.logoRed ]
-        
-        let number = "\(splitStart.num)\n"
-        let attrNumber = NSAttributedString(string: number, attributes: attributeOne)
-        
-        let dateAttributed = NSMutableAttributedString()
-        //dateAttributed.append(dayAttributed)
-        dateAttributed.append(attrNumber)
-        dateAttributed.append(monthAttributed)
-        //eventDate.text = ""
-        //eventDate.attributedText = dateAttributed
-    
     }
     
-    // Set the separators UI
-    private func updateSeparatorsUI() {
-        //topVerticalSeparator.backgroundColor = firstCell ? .white : Colors.logoRed
-        //BottomVerticalSeparator.backgroundColor = lastCell ? .white : Colors.logoRed
-    }
-
-    // Vertical separator constructor
-//    private func cellSeparator(isLast last: Bool) {
-//        if (last) {
-//            BottomVerticalSeparator.backgroundColor = .white
-//            BottomVerticalSeparator.addBorder(lengthFromStart:lengthFromTop, toSide: .Left, withColor: color, andThickness: thick)
-//        } else {
-//            BottomVerticalSeparator.backgroundColor = .white
-//            BottomVerticalSeparator.addBorder(lengthFromStart:lengthFromTop, toSide: .Left, withColor: UIColor.white.cgColor, andThickness: thick)
-//        }
-//    }
-
+ 
     
 }
 
