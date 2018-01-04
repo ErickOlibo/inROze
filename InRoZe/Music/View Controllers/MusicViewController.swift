@@ -12,6 +12,8 @@ import UIKit
 
 class MusicViewController: UICollectionViewController {
 
+    
+    // VIEW life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,6 +24,23 @@ class MusicViewController: UICollectionViewController {
         //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
+        
+        collectionView?.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        let sizeH = collectionView?.frame.height
+        let sizeW = collectionView?.frame.width
+        print("CollectionView Size: WxH [\(sizeW ?? 0) x \(sizeH ?? 0)]")
+        setupNavBar()
+    }
+    
+    
+    
+    // Methods
+    
+    private func setupNavBar() {
+        navigationController?.navigationBar.isTranslucent = false
+        //navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.view.backgroundColor = .white
+        navigationItem.title = "Mixtapes"
     }
  
 
@@ -37,7 +56,7 @@ extension MusicViewController: UICollectionViewDelegateFlowLayout
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 200
+        return 20
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -48,6 +67,11 @@ extension MusicViewController: UICollectionViewDelegateFlowLayout
         // Configure the cell
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 10)) / 2
+        return CGSize(width: itemSize, height: itemSize)
     }
     
     

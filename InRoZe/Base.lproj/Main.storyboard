@@ -17,7 +17,7 @@
         <array key="Bungee-Regular.ttf">
             <string>Bungee-Regular</string>
         </array>
-        <array key="FontAwesome.otf">
+        <array key="FontAwesome.ttf">
             <string>FontAwesome</string>
         </array>
         <array key="HelveticaNeue.ttc">
@@ -1141,13 +1141,11 @@
                             <outlet property="delegate" destination="x9u-rO-ZmW" id="5Ia-25-7Pw"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="" image="3_Mixtapes" selectedImage="3_MixtapesFilled" id="CVE-Bi-0MO">
-                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
-                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="cws-t8-UOA"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uDP-8u-H67" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-743.47826086956525" y="159.78260869565219"/>
+            <point key="canvasLocation" x="90" y="160"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="ueb-7Y-CSx">
@@ -1243,7 +1241,7 @@
                     <connections>
                         <segue destination="nhS-2i-wgI" kind="relationship" relationship="viewControllers" id="czr-Qo-XFF"/>
                         <segue destination="Vyu-cK-2pi" kind="relationship" relationship="viewControllers" id="I6j-GU-CW7"/>
-                        <segue destination="x9u-rO-ZmW" kind="relationship" relationship="viewControllers" id="bOq-h9-8lf"/>
+                        <segue destination="3XL-Ym-5ol" kind="relationship" relationship="viewControllers" id="bOq-h9-8lf"/>
                         <segue destination="rbl-sh-73M" kind="relationship" relationship="viewControllers" id="4C3-M5-pQn"/>
                         <segue destination="zcn-5T-nlH" kind="relationship" relationship="viewControllers" id="69g-eK-CRx"/>
                     </connections>
@@ -1838,6 +1836,27 @@ Mixtapes</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S91-c6-KD2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1412" y="2711"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qJv-iI-w9e">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3XL-Ym-5ol" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="3_Mixtapes" selectedImage="3_MixtapesFilled" id="CVE-Bi-0MO">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5P9-xy-X5N">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="x9u-rO-ZmW" kind="relationship" relationship="rootViewController" id="Ttt-em-s5r"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7KJ-Tu-iCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-743.47826086956525" y="159.78260869565219"/>
         </scene>
     </scenes>
     <resources>

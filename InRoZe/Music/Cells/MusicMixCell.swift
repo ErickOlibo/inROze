@@ -22,7 +22,9 @@ class MusicMixCell: UICollectionViewCell
     override func awakeFromNib() {
         super.awakeFromNib()
         //print("[\(tag)] - MusicMixCell woke from Nib")
-        
+        self.backgroundColor = .red
+        self.layer.cornerRadius = 6
+        self.layer.masksToBounds = true
         
 
     }
