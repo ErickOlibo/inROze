@@ -19,6 +19,8 @@
 		A733850F1FBCA4BD00E0C4C2 /* EventInfoDJNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A733850E1FBCA4BD00E0C4C2 /* EventInfoDJNameCell.swift */; };
 		A73385131FBE4FF700E0C4C2 /* FollowsTableView+NSFetchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73385121FBE4FF700E0C4C2 /* FollowsTableView+NSFetchResultsController.swift */; };
 		A73385161FBE506900E0C4C2 /* FollowsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73385151FBE506900E0C4C2 /* FollowsCell.swift */; };
+		A737A7191FFE6AB000D7DB1D /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A737A7181FFE6AB000D7DB1D /* MusicViewController.swift */; };
+		A737A71B1FFE6C8700D7DB1D /* MusicMixCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A737A71A1FFE6C8700D7DB1D /* MusicMixCell.swift */; };
 		A73E1FA01FBA3935001E31D3 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = A73E1F9F1FBA38DB001E31D3 /* FontAwesome.otf */; };
 		A73E1FA21FBA3BAF001E31D3 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E1FA11FBA3BAF001E31D3 /* FontAwesome.swift */; };
 		A748668A1FCA7D2400674677 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74866891FCA7D2400674677 /* SettingsCell.swift */; };
@@ -82,6 +84,8 @@
 		A733850E1FBCA4BD00E0C4C2 /* EventInfoDJNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoDJNameCell.swift; sourceTree = "<group>"; };
 		A73385121FBE4FF700E0C4C2 /* FollowsTableView+NSFetchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FollowsTableView+NSFetchResultsController.swift"; sourceTree = "<group>"; };
 		A73385151FBE506900E0C4C2 /* FollowsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowsCell.swift; sourceTree = "<group>"; };
+		A737A7181FFE6AB000D7DB1D /* MusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
+		A737A71A1FFE6C8700D7DB1D /* MusicMixCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicMixCell.swift; sourceTree = "<group>"; };
 		A73E1F9F1FBA38DB001E31D3 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		A73E1FA11FBA3BAF001E31D3 /* FontAwesome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAwesome.swift; sourceTree = "<group>"; };
 		A74866891FCA7D2400674677 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
@@ -199,7 +203,7 @@
 				A7ACD44C1FE8092200DEFDC5 /* Other MVC */,
 				A733850D1FBB954C00E0C4C2 /* Events */,
 				A73385111FBE49C800E0C4C2 /* Follows */,
-				A7ACD4481FE7FD4000DEFDC5 /* Mixtapes */,
+				A7ACD4481FE7FD4000DEFDC5 /* Music */,
 				A7B3E76B1FC6343300170C95 /* DJs */,
 				A74866871FC9CB7E00674677 /* Settings */,
 				A7A24D511F3C405C00EFB82E /* Core Data */,
@@ -363,18 +367,19 @@
 			name = "Core Data";
 			sourceTree = "<group>";
 		};
-		A7ACD4481FE7FD4000DEFDC5 /* Mixtapes */ = {
+		A7ACD4481FE7FD4000DEFDC5 /* Music */ = {
 			isa = PBXGroup;
 			children = (
 				A7ACD44A1FE7FD8100DEFDC5 /* Cells */,
 				A7ACD4491FE7FD6E00DEFDC5 /* View Controllers */,
 			);
-			path = Mixtapes;
+			path = Music;
 			sourceTree = "<group>";
 		};
 		A7ACD4491FE7FD6E00DEFDC5 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A737A7181FFE6AB000D7DB1D /* MusicViewController.swift */,
 				A76E72C61F7518700023D47F /* MixtapesViewController.swift */,
 			);
 			path = "View Controllers";
@@ -383,6 +388,7 @@
 		A7ACD44A1FE7FD8100DEFDC5 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				A737A71A1FFE6C8700D7DB1D /* MusicMixCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -665,6 +671,7 @@
 				A7ACD4541FE84DE000DEFDC5 /* DeejayMixesCell.swift in Sources */,
 				A7B3E76A1FC633E400170C95 /* DeejaysTableView+NSFetchResultsController.swift in Sources */,
 				A7A4BECC1F4363C5000A5047 /* UserDefaultsExtensions.swift in Sources */,
+				A737A71B1FFE6C8700D7DB1D /* MusicMixCell.swift in Sources */,
 				A76E72D81F7BFA820023D47F /* DeejayGigsTableViewController.swift in Sources */,
 				A7D4D2A61F51913C00546341 /* Artist.swift in Sources */,
 				A7F527241F4498540008080B /* Event.swift in Sources */,
@@ -693,6 +700,7 @@
 				A72B79361F2231AF009FB389 /* InRoZe.xcdatamodeld in Sources */,
 				A775C3B21F3C7F8B00A3449F /* ServerKeyStringConvenience.swift in Sources */,
 				A7F527281F472ED90008080B /* ConvenienceExtensions.swift in Sources */,
+				A737A7191FFE6AB000D7DB1D /* MusicViewController.swift in Sources */,
 				A776760D1F26BE8200F1FA52 /* StickyCollectionViewFlowLayout.swift in Sources */,
 				A748668A1FCA7D2400674677 /* SettingsCell.swift in Sources */,
 				A72B792E1F2231AF009FB389 /* AppDelegate.swift in Sources */,

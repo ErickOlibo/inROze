@@ -17,7 +17,7 @@
         <array key="Bungee-Regular.ttf">
             <string>Bungee-Regular</string>
         </array>
-        <array key="FontAwesome.ttf">
+        <array key="FontAwesome.otf">
             <string>FontAwesome</string>
         </array>
         <array key="HelveticaNeue.ttc">
@@ -1095,26 +1095,59 @@
             </objects>
             <point key="canvasLocation" x="89.855072463768124" y="-632.60869565217399"/>
         </scene>
-        <!--Mixtapes View Controller-->
-        <scene sceneID="o2A-WI-quu">
+        <!--Music View Controller-->
+        <scene sceneID="FVp-jd-CYr">
             <objects>
-                <viewController id="TUo-e2-SLn" customClass="MixtapesViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Wet-Et-3eq"/>
-                        <viewControllerLayoutGuide type="bottom" id="VDk-Q5-lcq"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="GlF-nY-L3T">
+                <collectionViewController id="x9u-rO-ZmW" customClass="MusicViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="LFR-hm-kPq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="" image="3_Mixtapes" selectedImage="3_MixtapesFilled" id="2uI-A2-fWm">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CMQ-nI-D7m">
+                            <size key="itemSize" width="100" height="100"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MusicMixCell" id="P28-50-efh" customClass="MusicMixCell" customModule="InRoZe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="71w-aq-pEX">
+                                            <rect key="frame" x="0.0" y="0.6666666666666643" width="100" height="100"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="71w-aq-pEX" firstAttribute="centerY" secondItem="P28-50-efh" secondAttribute="centerY" id="KjK-RT-f5t"/>
+                                    <constraint firstItem="71w-aq-pEX" firstAttribute="height" secondItem="P28-50-efh" secondAttribute="height" id="PDO-tF-Aki"/>
+                                    <constraint firstItem="71w-aq-pEX" firstAttribute="centerX" secondItem="P28-50-efh" secondAttribute="centerX" id="SMs-Rf-aG3"/>
+                                    <constraint firstItem="71w-aq-pEX" firstAttribute="width" secondItem="P28-50-efh" secondAttribute="width" id="zk0-cZ-OhX"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="thisLabel" destination="71w-aq-pEX" id="u9V-08-CtC"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="x9u-rO-ZmW" id="dtU-02-r0V"/>
+                            <outlet property="delegate" destination="x9u-rO-ZmW" id="5Ia-25-7Pw"/>
+                        </connections>
+                    </collectionView>
+                    <tabBarItem key="tabBarItem" title="" image="3_Mixtapes" selectedImage="3_MixtapesFilled" id="CVE-Bi-0MO">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Dr0-RP-eZq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uDP-8u-H67" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-743" y="218"/>
+            <point key="canvasLocation" x="-743.47826086956525" y="159.78260869565219"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="ueb-7Y-CSx">
@@ -1210,7 +1243,7 @@
                     <connections>
                         <segue destination="nhS-2i-wgI" kind="relationship" relationship="viewControllers" id="czr-Qo-XFF"/>
                         <segue destination="Vyu-cK-2pi" kind="relationship" relationship="viewControllers" id="I6j-GU-CW7"/>
-                        <segue destination="TUo-e2-SLn" kind="relationship" relationship="viewControllers" id="EBu-Np-agl"/>
+                        <segue destination="x9u-rO-ZmW" kind="relationship" relationship="viewControllers" id="bOq-h9-8lf"/>
                         <segue destination="rbl-sh-73M" kind="relationship" relationship="viewControllers" id="4C3-M5-pQn"/>
                         <segue destination="zcn-5T-nlH" kind="relationship" relationship="viewControllers" id="69g-eK-CRx"/>
                     </connections>
@@ -1821,8 +1854,8 @@ Mixtapes</string>
         <image name="Logo_Inroze_2017" width="990" height="330"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="U8r-Et-0uN"/>
-        <segue reference="p5s-pF-ZfF"/>
-        <segue reference="CCz-K1-KF9"/>
+        <segue reference="ZbF-td-soA"/>
+        <segue reference="amR-Kn-XsZ"/>
+        <segue reference="Bwf-dD-zDu"/>
     </inferredMetricsTieBreakers>
 </document>
