@@ -98,7 +98,7 @@ class MixtapePlayerViewController: UIViewController {
             _ = Mixtape.updateMixtapeImageColors(with: mixID, and: colorsInHex, in: context)
             do {
                 try context.save()
-                print("DONE SAVING")
+                //print("DONE SAVING")
             } catch {
                 print("MixtapePlayerViewController -> Error while trying yo save the cover image Colors to Database: \(error)")
             }
@@ -113,16 +113,16 @@ class MixtapePlayerViewController: UIViewController {
     private func setAudioStreamFromMixCloud() {
 
         guard let strURL = mixtape?.streamURL else { return }
-        guard let length = mixtape?.length else { return }
+        //guard let length = mixtape?.length else { return }
         guard let streamURL = URL(string: strURL) else { return }
-        print("streamURL: \(streamURL)")
+        //print("streamURL: \(streamURL)")
         let playerItem = AVPlayerItem(url: streamURL)
         player = AVPlayer(playerItem: playerItem)
         duration = playerItem.asset.duration
         let durationInt = Int(CMTimeGetSeconds(duration))
         
 
-        print("Duration From server: \(length)")
+        //print("Duration From server: \(length)")
         
         // TRACK PLAYER PROGRESS -> Not sure it should not be here
         let interval = CMTime(value: 1, timescale: 1)
@@ -130,7 +130,7 @@ class MixtapePlayerViewController: UIViewController {
             let progress = CMTimeGetSeconds(progressTime)
             let totalLength = CMTimeGetSeconds(self.duration)
             let ratio = Float(progress / totalLength)
-            print(" Total: \(totalLength) | current: \(progress) | RATIO: \(ratio)")
+            //print(" Total: \(totalLength) | current: \(progress) | RATIO: \(ratio)")
             self.mixProgressView.setProgress(ratio, animated: true)
             
             // Update Elapsed and Remaining Label
@@ -214,7 +214,7 @@ class MixtapePlayerViewController: UIViewController {
     
     
     private func updateUI () {
-        print("Colors are SET and READY to be USED")
+        //print("Colors are SET and READY to be USED")
         updatesTheThreeColors()
 
         updatePlayerNavButtonUI()
@@ -251,13 +251,13 @@ class MixtapePlayerViewController: UIViewController {
         let attrPause = fontAwesomeAttributedString(forString: iconPause, withColor: colorTwo, andFontSize: 55.0)
 
         if (player.rate != 0) {
-            print("Track is Playing - Show pause icon")
+            //print("Track is Playing - Show pause icon")
             playPauseButton.contentEdgeInsets.left = 0
             playPauseButton.setAttributedTitle(attrPause, for: .normal)
             playPauseButton.layer.borderColor = colorThree.cgColor
             
         } else {
-            print("Track is Paused - Show play icon")
+            //print("Track is Paused - Show play icon")
             
             playPauseButton.contentEdgeInsets.left = 12
             playPauseButton.setAttributedTitle(attrPlay, for: .normal)

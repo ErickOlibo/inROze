@@ -190,7 +190,7 @@ public class Artist: NSManagedObject
         
         // Add sort Descriptors and Predicate
         request.sortDescriptors = [NSSortDescriptor(key: "createdTime", ascending: false, selector: nil)]
-        request.predicate = NSPredicate(format: "ANY deejay.id == %@", artist.id!)
+        request.predicate = NSPredicate(format: "deejay.id == %@", artist.id!)
         do {
             let match = try context.fetch(request)
             //print("match for [findPerformingEvents]: \(match.count)")

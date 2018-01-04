@@ -36,38 +36,15 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     
     // properties
     let followedRightButton = UIBarButtonItem()
-    var artist: Artist? { didSet { updateUI() } }
+    var artist: Artist? { didSet { updateEventsMixtapes() } }
     let sepaColor = UIColor.lightGray.cgColor
     let sepaThick: CGFloat = 0.333
-    var eventsCount = 0
-    var mixtapesCount = 0
-    var gradientLayer: CAGradientLayer!
-    
-    // LAZY FetchResultsControllers
-    lazy var eventsFRC: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
-        let id = artist!.id!
-        let request: NSFetchRequest<Event> = Event.fetchRequest()
-        let nowTime = NSDate()
-        request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
-        request.predicate = NSPredicate(format: "ANY performers.id == %@ AND endTime > %@ AND imageURL != nil AND name != nil AND text != nil", id, nowTime)
-        request.fetchBatchSize = 20
-        let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
-        fetchedRC.delegate = self
-        return fetchedRC
-    }()
-    
-    lazy var mixtapesFRC: NSFetchedResultsController = { () -> NSFetchedResultsController<Mixtape> in
-        let id = artist!.id!
-        let request: NSFetchRequest<Mixtape> = Mixtape.fetchRequest()
-        let nowTime = NSDate()
-        request.sortDescriptors = [NSSortDescriptor(key: "createdTime", ascending: false, selector: nil)]
-        request.predicate = NSPredicate(format: "ANY deejay.id == %@", id)
-        request.fetchBatchSize = 20
-        let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
-        fetchedRC.delegate = self
-        return fetchedRC
-    }()
-    
+    //var eventsCount = 0
+    //var mixtapesCount = 0
+    //var gradientLayer: CAGradientLayer!
+    var eventsOfDJ: [Event]?
+    var mixtapesOfDJ: [Mixtape]?
+
 
 
     // ** View Controller Life Cycle
@@ -85,25 +62,46 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: (UIImage(named: "2_Follows")?.withRenderingMode(.alwaysTemplate))!, style: .plain, target: self, action: #selector(pressedFollowed))
         setDeejayImage()
+        updateEventsMixtapes()
         
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // set the status and color of rightButton
         updateFollowedButton()
         updateDJInfo()
         updateGigsMixesCount()
         updateSocialPageIcon()
-        updateUI()
-        print("HeaderView size: \(tableHeaderView.frame)")
+        updateEventsMixtapes()
         tableHeaderView.addBorder(toSide: .Bottom, withColor: sepaColor, andThickness: sepaThick)
         setCoverProfileImage()
-        //createGradientLayer()
-        
     }
     
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //print("[DeejayGigsTableViewController] ->  viewWillDisappear")
+    }
+    
+    
     // ** Methods
+    
+    private func updateEventsMixtapes() {
+        // set or updates data source for Table
+        guard let deejay = artist else { return }
+        
+        if let context = container?.viewContext {
+            context.perform {
+                self.mixtapesOfDJ = Artist.findPerformingMixtapes(for: deejay, in: context)
+                self.eventsOfDJ = Artist.findPerformingEvents(for: deejay, in: context)
+                if let currentState = Artist.currentIsFollowedState(for: self.artist!.id!, in: context) {
+                    self.artist!.isFollowed = currentState
+                }
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     
     private func setCoverProfileImage() {
         guard let dj = artist else { return }
@@ -112,14 +110,6 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     }
     
     
-    private func createGradientLayer() {
-        gradientLayer = CAGradientLayer()
-        gradientLayer.frame = profileCoverImage.bounds
-        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.white.cgColor]
-        gradientLayer.locations = [0.0, 1.0]
-        profileCoverImage.layer.addSublayer(gradientLayer)
-        
-    }
     private func updateSocialPageIcon() {
         // set Social icons to right colors
         guard let dj = artist else { return }
@@ -149,14 +139,12 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         mixcloudButton.setAttributedTitle(attrMixIcon, for: .normal)
         let attrFaceIcon = fontAwesomeAttributedString(forString: iconFacebook, withColor: fbColor, andFontSize: fontSize)
         facebookButton.setAttributedTitle(attrFaceIcon, for: .normal)
-        
-        
-        
     }
     
+    
     private func updateGigsMixesCount() {
-        let gigsCount = eventsFRC.fetchedObjects?.count ?? 0
-        let mixtapesCount = mixtapesFRC.fetchedObjects?.count ?? 0
+        let gigsCount = eventsOfDJ?.count  ?? 0
+        let mixtapesCount = mixtapesOfDJ?.count ?? 0
         gigsMixes.text = "\(gigsCount)Gs / \(mixtapesCount)Ms"
     }
     
@@ -196,29 +184,19 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     }
     
     private func changeState() {
-        // change state of isFollowed
         container?.performBackgroundTask{ context in
-            let success = Artist.changeIsFollowed(for: self.artist!.id!, in: context)
-            if (success) {
-                //print("[DeejayGigsTableViewController in pressedFollowed] - isFollowed CHANGED")
-            } else {
-                print("[pressedFollowed] - FAILED")
-            }
+            _ = Artist.changeIsFollowed(for: self.artist!.id!, in: context)
         }
     }
     
 
-    
     private func updateDJInfo() {
         guard let artistName = artist?.name else { return }
-        //guard let artistCountry = artist?.country else { return }
         deejayName.text = artistName
-        //countryName.text = artistCountry
     }
     
     
     private func updateFollowedButton() {
-        // Update profile
         if (artist!.isFollowed) {
             navigationItem.rightBarButtonItem?.image = (UIImage(named: "2_FollowsFilled")?.withRenderingMode(.alwaysTemplate))!
             navigationItem.rightBarButtonItem?.tintColor = Colors.logoRed
@@ -236,29 +214,6 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         }
     }
     
-    private func updateUI() {
-        //print("ARTIST SET: updating the UI and specially the count for event and mixtapes")
-        do {
-            try self.eventsFRC.performFetch()
-        } catch {
-            print("updateUI performFetch on EventFRC failed: \(error)")
-        }
-        do {
-            try self.mixtapesFRC.performFetch()
-        } catch {
-            print("updateUI performFetch on mixtapesFRC failed: \(error)")
-        }
-
-        if let context = container?.viewContext {
-            context.perform {
-
-                if let currentState = Artist.currentIsFollowedState(for: self.artist!.id!, in: context) {
-                    self.artist!.isFollowed = currentState
-                }
-                self.tableView.reloadData()
-            }
-        }
-    }
 
     
 }

@@ -17,11 +17,13 @@ extension FollowsViewController
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
+        //print("FOLLOWS: Sections: ", fetchResultsController.sections?.count ?? 0 )
         return fetchResultsController.sections?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = fetchResultsController.sections, sections.count > 0 {
+            //print("FOLLOWS -> Row in section [\(section)]: [\(sections[section].numberOfObjects)]")
             return sections[section].numberOfObjects
         } else {
             return 0

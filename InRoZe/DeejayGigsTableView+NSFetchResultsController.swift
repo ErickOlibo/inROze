@@ -23,34 +23,30 @@ extension DeejayGigsTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 0) {
-            eventsCount = eventsFRC.fetchedObjects?.count ?? 0
-            return eventsCount
+            return eventsOfDJ?.count ?? 0
         } else {
-            mixtapesCount = mixtapesFRC.fetchedObjects?.count ?? 0
-            return  mixtapesCount
+            return  mixtapesOfDJ?.count ?? 0
         }
-        
     }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-    }
+
+
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
-            let thisIndexPath = IndexPath(row: indexPath.row, section: 0)
             let cell = tableView.dequeueReusableCell(withIdentifier: DeejayGigsCell.identifier, for: indexPath) as! DeejayGigsCell
             cell.tag = indexPath.row
             cell.selectionStyle = .none
-            cell.event = eventsFRC.object(at: thisIndexPath)
+            guard let event = eventsOfDJ?[indexPath.row] else { return cell }
+            cell.event = event
             return cell
             
         } else {
-            let thisIndexPath = IndexPath(row: indexPath.row, section: 0)
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: DeejayMixesCell.identifier, for: indexPath) as! DeejayMixesCell
             cell.tag = indexPath.row
             cell.selectionStyle = .none
-            cell.mixtape = mixtapesFRC.object(at: thisIndexPath)
+            guard let mixtape = mixtapesOfDJ?[indexPath.row] else { return cell }
+            cell.mixtape = mixtape
             return cell
         }
         
@@ -94,11 +90,12 @@ extension DeejayGigsTableViewController {
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let view = UIView()
         view.backgroundColor = .lightGray
+        
 
-        if (section == 0 && eventsCount == 0) {
+        if (section == 0 && (eventsOfDJ?.count ?? 0) == 0) {
             view.backgroundColor = .white
         }
-        if (section == 1 && mixtapesCount == 0) {
+        if (section == 1 && (mixtapesOfDJ?.count ?? 0) == 0) {
             view.backgroundColor = .white
         }
         

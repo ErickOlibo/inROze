@@ -13,6 +13,7 @@ class DeejayMixesCell: UITableViewCell {
     
     static var identifier: String { return String(describing: self) }
     var mixtape: Mixtape? { didSet { configureCell() } }
+    //var isFollowHolder: Bool = false
     
     // context & container
     //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
@@ -36,15 +37,20 @@ class DeejayMixesCell: UITableViewCell {
     
     
     @objc private func pressedFollowed() {
+        
+        
         guard let mixtapeID = mixtape?.id else { return }
-        print("Cell [\(tag)] - preseed: [\(mixtape?.name ?? "No Name Mix")]")
+        guard let isFollow = mixtape?.isFollowed else { return }
+        
+        print("Pressed: [\(tag)] - [\(mixtapeID)] - [\(isFollow)]")
         if let context = container?.viewContext {
             context.perform {
                 if let  mixState = Mixtape.currentIsFollowedState(for: mixtapeID, in: context) {
+                    // Fixing issue with isFollow
                     self.mixtape!.isFollowed = !mixState
                     self.updateFollowedButton()
                     self.changeState()
-                    
+
                 }
             }
         }
@@ -52,6 +58,8 @@ class DeejayMixesCell: UITableViewCell {
     
     private func updateFollowedButton() {
         guard let currentIsFollow = mixtape?.isFollowed else { return }
+        print("updateFollowedButton -> currentIsFollow: ", currentIsFollow)
+
         
         if (currentIsFollow) {
             mixIsFollowedButton.tintColor = Colors.isFollowed
@@ -68,6 +76,8 @@ class DeejayMixesCell: UITableViewCell {
     
     private func changeState() {
         guard let mixtapeID = mixtape?.id else { return }
+        guard let currentIsFollow = mixtape?.isFollowed else { return }
+        print("changeState -> curentIsFollow: ", currentIsFollow)
         // Change state of isFollowed
         container?.performBackgroundTask{ context in
             let success = Mixtape.changeIsFollowed(for: mixtapeID, in: context)
@@ -81,6 +91,7 @@ class DeejayMixesCell: UITableViewCell {
     
     
     private func configureCell() {
+        print("****** IN configureCell")
         mixIsFollowedButton.isHidden = true
         guard let name = mixtape?.name else { return }
         mixtapeName.text = name
