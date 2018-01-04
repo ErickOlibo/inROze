@@ -191,7 +191,7 @@ class MixtapePlayerViewController: UIViewController {
         guard let mix = mixtape else { return }
         guard let coverURL = mixtape?.cover768URL else { return }
         
-        mixtapeCover.kf.setImage(with: URL(string: coverURL), options: [.backgroundDecode], completionHandler: {
+        mixtapeCover.kf.setImage(with: URL(string: coverURL), options: [.backgroundDecode, .transition(.fade(0.2))], completionHandler: {
             (image, error, cacheType, imageUrl) in
             if (image != nil) {
                 if (mix.colorBackground != nil && mix.colorDetail != nil && mix.colorPrimary != nil && mix.colorSecondary != nil) {

@@ -42,7 +42,7 @@ class EventInfoDJNameCell: UICollectionViewCell
         }
         guard let dj = thisDJ else { return }
         guard let picURL = preferedProfilePictureURL(for: dj) else { return }
-        djProfileImage.kf.setImage(with: URL(string: picURL), options: [.backgroundDecode])
+        djProfileImage.kf.setImage(with: URL(string: picURL), options: [.backgroundDecode, .transition(.fade(0.2))])
     }
     
     private func updateProfileImage () {

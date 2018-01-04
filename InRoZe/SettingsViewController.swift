@@ -137,7 +137,7 @@ class SettingsViewController: UITableViewController {
         let screenScale = UIScreen.main.scale
         let pictureDimension = 80.0 * screenScale
         guard let userImageURL = profile?.imageURLWith(.square, size: CGSize(width: pictureDimension, height: pictureDimension)) else { return }
-        profileImage.kf.setImage(with: userImageURL, options: [.backgroundDecode])
+        profileImage.kf.setImage(with: userImageURL, options: [.backgroundDecode, .transition(.fade(0.2))])
         profileName.text = user.fullName
     }
     

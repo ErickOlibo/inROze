@@ -26,7 +26,7 @@ class DeejayGigsCell: UITableViewCell {
         eventDateTimeLocation.attributedText = dateTimeLocationFormatter(with: thisEvent)
         guard let thisURL = thisEvent.imageURL else { return }
         guard let eventURL = URL(string: thisURL) else { return }
-        eventCover.kf.setImage(with: eventURL, options: [.backgroundDecode])
+        eventCover.kf.setImage(with: eventURL, options: [.backgroundDecode, .transition(.fade(0.2))])
         
     }
 

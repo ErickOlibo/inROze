@@ -147,7 +147,7 @@ class EventInfoViewController: UIViewController {
         
         // Set the Colors and update the UI
         guard let imageURL = thisEvent.imageURL else { return }
-        eventCover.kf.setImage(with: URL(string: imageURL), options: [.backgroundDecode]) {
+        eventCover.kf.setImage(with: URL(string: imageURL), options: [.backgroundDecode, .transition(.fade(0.2))]) {
             (image, error, cachetype, imageUrl) in
             
             if (image != nil) {

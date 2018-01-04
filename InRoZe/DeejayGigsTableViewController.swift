@@ -105,7 +105,7 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     private func setCoverProfileImage() {
         guard let dj = artist else { return }
         guard let coverURL = preferedProfileCoverURL(for: dj) else { return }
-        profileCoverImage.kf.setImage(with: URL(string: coverURL), options: [.backgroundDecode])
+        profileCoverImage.kf.setImage(with: URL(string: coverURL), options: [.backgroundDecode, .transition(.fade(0.2))])
     }
     
     
@@ -151,7 +151,7 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     private func setDeejayImage() {
         guard let dj = artist else { return }
         guard let picURL = preferedProfilePictureURL(for: dj) else { return }
-        djProfileImage.kf.setImage(with: URL(string: picURL), options: [.backgroundDecode])
+        djProfileImage.kf.setImage(with: URL(string: picURL), options: [.backgroundDecode, .transition(.fade(0.2))])
     }
     
     private func updateProfileImage () {

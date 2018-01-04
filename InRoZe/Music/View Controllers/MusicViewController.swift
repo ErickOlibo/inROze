@@ -7,11 +7,23 @@
 //
 
 import UIKit
+import CoreData
 
 //private let reuseIdentifier = "Cell"
 
 class MusicViewController: UICollectionViewController {
+    
+    
+    // Core Data model container and context
+    //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
+    let mainContext = AppDelegate.viewContext
 
+    
+    // properties
+    var mixtapes: [Mixtape]? { didSet { print("Total Mixtapes: \(mixtapes?.count ?? 0)") } }
+    
+    
     
     // VIEW life cycle
     override func viewDidLoad() {
@@ -30,8 +42,14 @@ class MusicViewController: UICollectionViewController {
         let sizeW = collectionView?.frame.width
         print("CollectionView Size: WxH [\(sizeW ?? 0) x \(sizeH ?? 0)]")
         setupNavBar()
+        getAllMixtapes()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getAllMixtapes()
+    }
     
     
     // Methods
@@ -42,9 +60,30 @@ class MusicViewController: UICollectionViewController {
         navigationController?.view.backgroundColor = .white
         navigationItem.title = "Mixtapes"
     }
+    
+    
+    private func getAllMixtapes() {
+        if let context = container?.viewContext {
+            context.perform {
+                let request: NSFetchRequest<Mixtape> = Mixtape.fetchRequest()
+                //let sort = NSSortDescriptor(key: "length", ascending: true, selector: nil)
+                //request.sortDescriptors = [sort]
+                request.predicate = NSPredicate(format: "isActive == YES")
+                do {
+                    let matches = try context.fetch(request)
+                    self.mixtapes = matches
+                } catch {
+                    print("[MusicViewController] - There was an Error")
+                }
+                self.collectionView?.reloadData()
+            }
+        }
+    }
  
 
 }
+
+
 
 extension MusicViewController: UICollectionViewDelegateFlowLayout
 {
@@ -56,22 +95,24 @@ extension MusicViewController: UICollectionViewDelegateFlowLayout
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 20
+        return mixtapes?.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MusicMixCell.identifier, for: indexPath) as! MusicMixCell
         cell.tag = indexPath.row
-        cell.thisLabel.text = String(indexPath.row)
-        print("cellForItemAt indexPath [\(indexPath)]")
-        // Configure the cell
+        cell.mixtape = mixtapes?[indexPath.row]
         
         return cell
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Cell: \(indexPath.row)")
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 10)) / 2
-        return CGSize(width: itemSize, height: itemSize)
+        let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 20)) / 2
+        return CGSize(width: itemSize, height: itemSize + 50)
     }
     
     

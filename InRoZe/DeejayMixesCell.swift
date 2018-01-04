@@ -80,7 +80,7 @@ class DeejayMixesCell: UITableViewCell {
         updateFollowedButton()
         guard let url = mixtape?.cover768URL else { return }
         guard let mixCoverURL = URL(string: url) else { return }
-        mixtapeCover.kf.setImage(with: mixCoverURL, options: [.backgroundDecode], completionHandler: {
+        mixtapeCover.kf.setImage(with: mixCoverURL, options: [.backgroundDecode, .transition(.fade(0.2))], completionHandler: {
             (img, err, cache, url) in
             self.mixIsFollowedButton.isHidden = false
         })
