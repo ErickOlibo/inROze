@@ -39,9 +39,6 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     var artist: Artist? { didSet { updateEventsMixtapes() } }
     let sepaColor = UIColor.lightGray.cgColor
     let sepaThick: CGFloat = 0.333
-    //var eventsCount = 0
-    //var mixtapesCount = 0
-    //var gradientLayer: CAGradientLayer!
     var eventsOfDJ: [Event]?
     var mixtapesOfDJ: [Mixtape]?
 
@@ -70,9 +67,10 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         super.viewWillAppear(animated)
         updateFollowedButton()
         updateDJInfo()
-        updateGigsMixesCount()
+        
         updateSocialPageIcon()
         updateEventsMixtapes()
+        updateGigsMixesCount()
         tableHeaderView.addBorder(toSide: .Bottom, withColor: sepaColor, andThickness: sepaThick)
         setCoverProfileImage()
     }
