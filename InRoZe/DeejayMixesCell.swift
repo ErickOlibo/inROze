@@ -31,18 +31,12 @@ class DeejayMixesCell: UITableViewCell {
     @IBOutlet weak var mixIsFollowedView: UIView!
     @IBOutlet weak var mixIsFollowedButton: UIButton!
     @IBAction func mixIsFollowedTouched(_ sender: UIButton) {
-        print("mixIsFollowedTouched")
         pressedFollowed()
     }
     
     
     @objc private func pressedFollowed() {
-        
-        
         guard let mixtapeID = mixtape?.id else { return }
-        guard let isFollow = mixtape?.isFollowed else { return }
-        
-        print("Pressed: [\(tag)] - [\(mixtapeID)] - [\(isFollow)]")
         if let context = container?.viewContext {
             context.perform {
                 if let  mixState = Mixtape.currentIsFollowedState(for: mixtapeID, in: context) {
@@ -50,7 +44,6 @@ class DeejayMixesCell: UITableViewCell {
                     self.mixtape!.isFollowed = !mixState
                     self.updateFollowedButton()
                     self.changeState()
-
                 }
             }
         }
@@ -58,13 +51,9 @@ class DeejayMixesCell: UITableViewCell {
     
     private func updateFollowedButton() {
         guard let currentIsFollow = mixtape?.isFollowed else { return }
-        print("updateFollowedButton -> currentIsFollow: ", currentIsFollow)
-
-        
         if (currentIsFollow) {
             mixIsFollowedButton.tintColor = Colors.isFollowed
             mixIsFollowedButton.setImage((UIImage(named: "3_MixtapesFilled")?.withRenderingMode(.alwaysTemplate))!, for: .normal)
-            
         } else {
             mixIsFollowedButton.tintColor = Colors.isNotFollowed
             mixIsFollowedButton.setImage((UIImage(named: "3_Mixtapes")?.withRenderingMode(.alwaysTemplate))!, for: .normal)
@@ -76,22 +65,13 @@ class DeejayMixesCell: UITableViewCell {
     
     private func changeState() {
         guard let mixtapeID = mixtape?.id else { return }
-        guard let currentIsFollow = mixtape?.isFollowed else { return }
-        print("changeState -> curentIsFollow: ", currentIsFollow)
-        // Change state of isFollowed
         container?.performBackgroundTask{ context in
-            let success = Mixtape.changeIsFollowed(for: mixtapeID, in: context)
-            if (success) {
-                print("Changed isFollowed State for id: ", mixtapeID)
-            } else {
-                print("[pressedFollowed] in DJsSearchCell Failed")
-            }
+            _ = Mixtape.changeIsFollowed(for: mixtapeID, in: context)
         }
     }
     
     
     private func configureCell() {
-        print("****** IN configureCell")
         mixIsFollowedButton.isHidden = true
         guard let name = mixtape?.name else { return }
         mixtapeName.text = name
@@ -104,7 +84,6 @@ class DeejayMixesCell: UITableViewCell {
             (img, err, cache, url) in
             self.mixIsFollowedButton.isHidden = false
         })
-   
     }
     
     

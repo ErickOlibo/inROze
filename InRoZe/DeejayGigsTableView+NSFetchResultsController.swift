@@ -49,8 +49,8 @@ extension DeejayGigsTableViewController {
             cell.mixtape = mixtape
             return cell
         }
-        
     }
+    
     
     // Views for section
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

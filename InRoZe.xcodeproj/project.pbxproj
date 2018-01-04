@@ -45,8 +45,6 @@
 		A7A4BECC1F4363C5000A5047 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A4BECB1F4363C5000A5047 /* UserDefaultsExtensions.swift */; };
 		A7AA5B7C1F7D593300BB2B8A /* ConvenienceFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AA5B7B1F7D593300BB2B8A /* ConvenienceFunctions.swift */; };
 		A7ACD4541FE84DE000DEFDC5 /* DeejayMixesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ACD4531FE84DE000DEFDC5 /* DeejayMixesCell.swift */; };
-		A7ACD4561FE84E0A00DEFDC5 /* DeejayHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ACD4551FE84E0A00DEFDC5 /* DeejayHeaderCell.swift */; };
-		A7ACD4581FE84E1900DEFDC5 /* DeejayFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ACD4571FE84E1900DEFDC5 /* DeejayFooterCell.swift */; };
 		A7B3E7681FC6334F00170C95 /* DeejaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B3E7671FC6334F00170C95 /* DeejaysViewController.swift */; };
 		A7B3E76A1FC633E400170C95 /* DeejaysTableView+NSFetchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B3E7691FC633E400170C95 /* DeejaysTableView+NSFetchResultsController.swift */; };
 		A7B3E76F1FC63D9B00170C95 /* DJsSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B3E76E1FC63D9B00170C95 /* DJsSearchCell.swift */; };
@@ -110,8 +108,6 @@
 		A7A4BECB1F4363C5000A5047 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		A7AA5B7B1F7D593300BB2B8A /* ConvenienceFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvenienceFunctions.swift; sourceTree = "<group>"; };
 		A7ACD4531FE84DE000DEFDC5 /* DeejayMixesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeejayMixesCell.swift; sourceTree = "<group>"; };
-		A7ACD4551FE84E0A00DEFDC5 /* DeejayHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeejayHeaderCell.swift; sourceTree = "<group>"; };
-		A7ACD4571FE84E1900DEFDC5 /* DeejayFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeejayFooterCell.swift; sourceTree = "<group>"; };
 		A7B3E7671FC6334F00170C95 /* DeejaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeejaysViewController.swift; sourceTree = "<group>"; };
 		A7B3E7691FC633E400170C95 /* DeejaysTableView+NSFetchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeejaysTableView+NSFetchResultsController.swift"; sourceTree = "<group>"; };
 		A7B3E76E1FC63D9B00170C95 /* DJsSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJsSearchCell.swift; sourceTree = "<group>"; };
@@ -423,8 +419,6 @@
 			children = (
 				A76E72D91F7C08650023D47F /* DeejayGigsCell.swift */,
 				A7ACD4531FE84DE000DEFDC5 /* DeejayMixesCell.swift */,
-				A7ACD4551FE84E0A00DEFDC5 /* DeejayHeaderCell.swift */,
-				A7ACD4571FE84E1900DEFDC5 /* DeejayFooterCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -669,7 +663,6 @@
 			files = (
 				A77676181F28CCE400F1FA52 /* Constants.swift in Sources */,
 				A7ACD4541FE84DE000DEFDC5 /* DeejayMixesCell.swift in Sources */,
-				A7ACD4561FE84E0A00DEFDC5 /* DeejayHeaderCell.swift in Sources */,
 				A7B3E76A1FC633E400170C95 /* DeejaysTableView+NSFetchResultsController.swift in Sources */,
 				A7A4BECC1F4363C5000A5047 /* UserDefaultsExtensions.swift in Sources */,
 				A76E72D81F7BFA820023D47F /* DeejayGigsTableViewController.swift in Sources */,
@@ -680,7 +673,6 @@
 				A7A24D501F3B655E00EFB82E /* Place.swift in Sources */,
 				A7EC36851F36553B00548C11 /* LoginViewController.swift in Sources */,
 				A7F635DD1FF1D86F0036D720 /* DeejayGigsTableView+NSFetchResultsController.swift in Sources */,
-				A7ACD4581FE84E1900DEFDC5 /* DeejayFooterCell.swift in Sources */,
 				A76E72CC1F7541370023D47F /* EventsViewController.swift in Sources */,
 				A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */,
 				A73385131FBE4FF700E0C4C2 /* FollowsTableView+NSFetchResultsController.swift in Sources */,

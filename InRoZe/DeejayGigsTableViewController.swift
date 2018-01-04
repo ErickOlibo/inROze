@@ -67,10 +67,8 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         super.viewWillAppear(animated)
         updateFollowedButton()
         updateDJInfo()
-        
         updateSocialPageIcon()
         updateEventsMixtapes()
-        updateGigsMixesCount()
         tableHeaderView.addBorder(toSide: .Bottom, withColor: sepaColor, andThickness: sepaThick)
         setCoverProfileImage()
     }
@@ -92,6 +90,9 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
             context.perform {
                 self.mixtapesOfDJ = Artist.findPerformingMixtapes(for: deejay, in: context)
                 self.eventsOfDJ = Artist.findPerformingEvents(for: deejay, in: context)
+                if self.gigsMixes != nil {
+                    self.updateGigsMixesCount()
+                }
                 if let currentState = Artist.currentIsFollowedState(for: self.artist!.id!, in: context) {
                     self.artist!.isFollowed = currentState
                 }

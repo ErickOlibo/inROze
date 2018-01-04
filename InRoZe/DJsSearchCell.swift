@@ -115,12 +115,12 @@ class DJsSearchCell: UITableViewCell
         guard let djID = deejay?.id else { return }
         // Change state of isFollowed
         container?.performBackgroundTask{ context in
-            let success = Artist.changeIsFollowed(for: djID, in: context)
-            if (success) {
-                print("Changed isFollowed State for id: ", djID)
-            } else {
-                print("[pressedFollowed] in DJsSearchCell Failed")
-            }
+            _ = Artist.changeIsFollowed(for: djID, in: context)
+//            if (success) {
+//                print("Changed isFollowed State for id: ", djID)
+//            } else {
+//                print("[pressedFollowed] in DJsSearchCell Failed")
+//            }
         }
     }
     
