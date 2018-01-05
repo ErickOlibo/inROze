@@ -21,6 +21,8 @@ class MusicCollectionHeader: UICollectionReusableView {
     var recentlyPlayedMix: [Mixtape]?
     var newReleasesMix: [Mixtape]?
     var yourListMix: [Mixtape]?
+    var numberOfCell: Int = 0
+    var cellsTitleList = [String]()
     
     // Outlets
     @IBOutlet weak var catalogueLbl: UILabel!
@@ -40,7 +42,9 @@ class MusicCollectionHeader: UICollectionReusableView {
     }
     
     
-    
+    func reloadAllData() {
+        tableView.reloadData()
+    }
     
     private func updateSeparator() {
         separator.backgroundColor = Colors.logoRed
@@ -93,9 +97,11 @@ extension MusicCollectionHeader: UITableViewDataSource, UITableViewDelegate
         cell.sectionTitle.text = name
         cell.viewAllList.isHidden = name != MixSection.yourList ? true : false
         if (name == MixSection.yourList) {
+            print("YOUR LIST Mix: [\(yourListMix?.count ?? 0)]")
             cell.mixtapes = yourListMix
         }
-
+        cell.collectionView.reloadData()
+        cell.collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         return cell
     }
     

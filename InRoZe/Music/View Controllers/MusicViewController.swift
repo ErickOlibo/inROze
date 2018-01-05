@@ -26,6 +26,7 @@ class MusicViewController: UICollectionViewController {
     var recentlyPlayedMix: [Mixtape]?
     var newReleasesMix: [Mixtape]?
     var yourListMix: [Mixtape]?
+    var numberOfCells: Int = 0
     
     //private let sectionNames = ["New Releases", "Your List", "Recently Played"]
     private let sectionNames = ["Your List"]
@@ -47,12 +48,20 @@ class MusicViewController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        yourListMix = Mixtape.listOfFollows(in: mainContext)
         getAllMixtapes()
     }
     
     
     // Methods
+    
+    // Get info for Recently Played, Your List and New Releases
+    private func otherMixtapes() {
+        yourListMix = Mixtape.listOfFollows(in: mainContext)
+    }
+    
+    
+    
     private func getAllMixtapes() {
         if let context = container?.viewContext {
             context.perform {
@@ -103,7 +112,7 @@ extension MusicViewController: UICollectionViewDelegateFlowLayout
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MusicMixCell.identifier, for: indexPath) as! MusicMixCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MusicCatalogueCell.identifier, for: indexPath) as! MusicCatalogueCell
         cell.tag = indexPath.row
         cell.mixtape = mixtapes?[indexPath.row]
         
@@ -120,6 +129,9 @@ extension MusicViewController: UICollectionViewDelegateFlowLayout
         //header.sectionNames = sectionNames
         print("IN HEADER: Count: ", yourListMix?.count ?? 0)
         header.yourListMix = yourListMix
+        
+        // Here we must realod all the Header Lists and Cell
+        header.reloadAllData()
         return header
     }
     

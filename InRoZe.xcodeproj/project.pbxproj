@@ -20,7 +20,7 @@
 		A73385131FBE4FF700E0C4C2 /* FollowsTableView+NSFetchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73385121FBE4FF700E0C4C2 /* FollowsTableView+NSFetchResultsController.swift */; };
 		A73385161FBE506900E0C4C2 /* FollowsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73385151FBE506900E0C4C2 /* FollowsCell.swift */; };
 		A737A7191FFE6AB000D7DB1D /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A737A7181FFE6AB000D7DB1D /* MusicViewController.swift */; };
-		A737A71B1FFE6C8700D7DB1D /* MusicMixCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A737A71A1FFE6C8700D7DB1D /* MusicMixCell.swift */; };
+		A737A71B1FFE6C8700D7DB1D /* MusicCatalogueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A737A71A1FFE6C8700D7DB1D /* MusicCatalogueCell.swift */; };
 		A73E1FA01FBA3935001E31D3 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = A73E1F9F1FBA38DB001E31D3 /* FontAwesome.otf */; };
 		A73E1FA21FBA3BAF001E31D3 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E1FA11FBA3BAF001E31D3 /* FontAwesome.swift */; };
 		A748668A1FCA7D2400674677 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74866891FCA7D2400674677 /* SettingsCell.swift */; };
@@ -87,7 +87,7 @@
 		A73385121FBE4FF700E0C4C2 /* FollowsTableView+NSFetchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FollowsTableView+NSFetchResultsController.swift"; sourceTree = "<group>"; };
 		A73385151FBE506900E0C4C2 /* FollowsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowsCell.swift; sourceTree = "<group>"; };
 		A737A7181FFE6AB000D7DB1D /* MusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
-		A737A71A1FFE6C8700D7DB1D /* MusicMixCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicMixCell.swift; sourceTree = "<group>"; };
+		A737A71A1FFE6C8700D7DB1D /* MusicCatalogueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCatalogueCell.swift; sourceTree = "<group>"; };
 		A73E1F9F1FBA38DB001E31D3 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		A73E1FA11FBA3BAF001E31D3 /* FontAwesome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAwesome.swift; sourceTree = "<group>"; };
 		A74866891FCA7D2400674677 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
@@ -204,10 +204,10 @@
 				A7EC36861F365AA900548C11 /* TabBarViewController.swift */,
 				A72B79311F2231AF009FB389 /* Main.storyboard */,
 				A76E72D11F75776C0023D47F /* FetchedResultsTableViewController.swift */,
+				A7ACD4481FE7FD4000DEFDC5 /* Music */,
 				A7ACD44C1FE8092200DEFDC5 /* Other MVC */,
 				A733850D1FBB954C00E0C4C2 /* Events */,
 				A73385111FBE49C800E0C4C2 /* Follows */,
-				A7ACD4481FE7FD4000DEFDC5 /* Music */,
 				A7B3E76B1FC6343300170C95 /* DJs */,
 				A74866871FC9CB7E00674677 /* Settings */,
 				A7A24D511F3C405C00EFB82E /* Core Data */,
@@ -394,7 +394,7 @@
 			children = (
 				A7C556701FFF26B100B277EB /* MusicListCollectionCell.swift */,
 				A7C5566E1FFF076E00B277EB /* OtherMusicListCell.swift */,
-				A737A71A1FFE6C8700D7DB1D /* MusicMixCell.swift */,
+				A737A71A1FFE6C8700D7DB1D /* MusicCatalogueCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -677,7 +677,7 @@
 				A7ACD4541FE84DE000DEFDC5 /* DeejayMixesCell.swift in Sources */,
 				A7B3E76A1FC633E400170C95 /* DeejaysTableView+NSFetchResultsController.swift in Sources */,
 				A7A4BECC1F4363C5000A5047 /* UserDefaultsExtensions.swift in Sources */,
-				A737A71B1FFE6C8700D7DB1D /* MusicMixCell.swift in Sources */,
+				A737A71B1FFE6C8700D7DB1D /* MusicCatalogueCell.swift in Sources */,
 				A76E72D81F7BFA820023D47F /* DeejayGigsTableViewController.swift in Sources */,
 				A7D4D2A61F51913C00546341 /* Artist.swift in Sources */,
 				A7F527241F4498540008080B /* Event.swift in Sources */,

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class MusicMixCell: UICollectionViewCell
+class MusicCatalogueCell: UICollectionViewCell
 {
     
     // properties
