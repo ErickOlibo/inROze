@@ -37,7 +37,7 @@ class MusicViewController: UICollectionViewController {
 
         // Do any additional setup after loading the view.
         
-        collectionView?.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        collectionView?.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         let sizeH = collectionView?.frame.height
         let sizeW = collectionView?.frame.width
         print("CollectionView Size: WxH [\(sizeW ?? 0) x \(sizeH ?? 0)]")
@@ -110,10 +110,33 @@ extension MusicViewController: UICollectionViewDelegateFlowLayout
         print("Cell: \(indexPath.row)")
     }
     
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: MusicCollectionHeader.identifier, for: indexPath) as! MusicCollectionHeader
+        
+        
+        return header
+    }
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 20)) / 2
-        return CGSize(width: itemSize, height: itemSize + 50)
+        //let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 20)) / 2
+        let itemSize2 = (collectionView.frame.width) / 2
+        return CGSize(width: itemSize2, height: itemSize2 + 50)
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 80.0)
     }
     
     
 }
+
+
+
+
+
+
+

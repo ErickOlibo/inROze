@@ -50,6 +50,7 @@
 		A7B3E7681FC6334F00170C95 /* DeejaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B3E7671FC6334F00170C95 /* DeejaysViewController.swift */; };
 		A7B3E76A1FC633E400170C95 /* DeejaysTableView+NSFetchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B3E7691FC633E400170C95 /* DeejaysTableView+NSFetchResultsController.swift */; };
 		A7B3E76F1FC63D9B00170C95 /* DJsSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B3E76E1FC63D9B00170C95 /* DJsSearchCell.swift */; };
+		A7C5566D1FFEB99D00B277EB /* MusicCollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5566C1FFEB99D00B277EB /* MusicCollectionHeader.swift */; };
 		A7D1CDC81F81D0CF003513F8 /* EventDeejayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */; };
 		A7D4D2A61F51913C00546341 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4D2A51F51913C00546341 /* Artist.swift */; };
 		A7E03D9B1F71D820000095BD /* UIDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E03D9A1F71D820000095BD /* UIDropDown.swift */; };
@@ -115,6 +116,7 @@
 		A7B3E7671FC6334F00170C95 /* DeejaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeejaysViewController.swift; sourceTree = "<group>"; };
 		A7B3E7691FC633E400170C95 /* DeejaysTableView+NSFetchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeejaysTableView+NSFetchResultsController.swift"; sourceTree = "<group>"; };
 		A7B3E76E1FC63D9B00170C95 /* DJsSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJsSearchCell.swift; sourceTree = "<group>"; };
+		A7C5566C1FFEB99D00B277EB /* MusicCollectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCollectionHeader.swift; sourceTree = "<group>"; };
 		A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDeejayCell.swift; sourceTree = "<group>"; };
 		A7D4D2A51F51913C00546341 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		A7E03D9A1F71D820000095BD /* UIDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDropDown.swift; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 		A7ACD4491FE7FD6E00DEFDC5 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A7C5566C1FFEB99D00B277EB /* MusicCollectionHeader.swift */,
 				A737A7181FFE6AB000D7DB1D /* MusicViewController.swift */,
 				A76E72C61F7518700023D47F /* MixtapesViewController.swift */,
 			);
@@ -716,6 +719,7 @@
 				A7F527221F4496E50008080B /* RequestHandler.swift in Sources */,
 				A77676141F26D49E00F1FA52 /* UIColorExtensions.swift in Sources */,
 				A7B3E7681FC6334F00170C95 /* DeejaysViewController.swift in Sources */,
+				A7C5566D1FFEB99D00B277EB /* MusicCollectionHeader.swift in Sources */,
 				A76E72DA1F7C08650023D47F /* DeejayGigsCell.swift in Sources */,
 				A7A24D4C1F3A4F0000EFB82E /* ServerRequest.swift in Sources */,
 				A776760B1F26B9F600F1FA52 /* SettingsViewController.swift in Sources */,
