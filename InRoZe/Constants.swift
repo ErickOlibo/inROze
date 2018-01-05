@@ -55,6 +55,13 @@ public struct ColorsInHex {
 }
 
 
+public struct MixSection {
+    static let recentlyPlayed = "Recently Played"
+    static let newReleases = "New Releases"
+    static let yourList = "Your List"
+}
+
+
 // height of the cell depending on the device size and resolution
 public struct CellSize {
     static let topAreaHeight: CGFloat = 63 // from 70

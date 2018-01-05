@@ -66,13 +66,14 @@ extension OtherMusicListCell: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return 1
+        return mixtapes?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MusicListCollectionCell.identifier, for: indexPath) as! MusicListCollectionCell
-        
+        guard let mix = mixtapes?[indexPath.row] else { return cell }
+        cell.mixtape = mix
         return cell
     }
     

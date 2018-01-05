@@ -1184,7 +1184,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="180" id="zVl-A2-OqP"/>
                                                         </constraints>
-                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7YA-Lk-RMa">
+                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="20" id="7YA-Lk-RMa">
                                                             <size key="itemSize" width="140" height="180"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>

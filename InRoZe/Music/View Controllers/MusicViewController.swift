@@ -22,27 +22,26 @@ class MusicViewController: UICollectionViewController {
     
     // properties
     var mixtapes: [Mixtape]? { didSet { print("Total Mixtapes: \(mixtapes?.count ?? 0)") } }
-    private let sectionNames = ["New Releases", "Your List", "Recently Played"]
     
+    var recentlyPlayedMix: [Mixtape]?
+    var newReleasesMix: [Mixtape]?
+    var yourListMix: [Mixtape]?
+    
+    //private let sectionNames = ["New Releases", "Your List", "Recently Played"]
+    private let sectionNames = ["Your List"]
     
     
     // VIEW life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
         
         collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         let sizeH = collectionView?.frame.height
         let sizeW = collectionView?.frame.width
         print("CollectionView Size: WxH [\(sizeW ?? 0) x \(sizeH ?? 0)]")
         setupNavBar()
+        yourListMix = Mixtape.listOfFollows(in: mainContext)
         getAllMixtapes()
     }
     
@@ -54,21 +53,12 @@ class MusicViewController: UICollectionViewController {
     
     
     // Methods
-    
-    private func setupNavBar() {
-        navigationController?.navigationBar.isTranslucent = false
-        //navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.view.backgroundColor = .white
-        navigationItem.title = "Mixtapes"
-    }
-    
-    
     private func getAllMixtapes() {
         if let context = container?.viewContext {
             context.perform {
                 let request: NSFetchRequest<Mixtape> = Mixtape.fetchRequest()
-                //let sort = NSSortDescriptor(key: "length", ascending: true, selector: nil)
-                //request.sortDescriptors = [sort]
+                
+                //Get full list of Active mixtapes
                 request.predicate = NSPredicate(format: "isActive == YES")
                 do {
                     let matches = try context.fetch(request)
@@ -80,6 +70,19 @@ class MusicViewController: UICollectionViewController {
             }
         }
     }
+    
+    
+    private func setupNavBar() {
+        navigationController?.navigationBar.isTranslucent = false
+        //navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.view.backgroundColor = .white
+        navigationItem.title = "Mixtapes"
+    }
+    
+    
+    
+    
+
  
 
 }
@@ -114,8 +117,9 @@ extension MusicViewController: UICollectionViewDelegateFlowLayout
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: MusicCollectionHeader.identifier, for: indexPath) as! MusicCollectionHeader
-        header.sectionNames = sectionNames
-        
+        //header.sectionNames = sectionNames
+        print("IN HEADER: Count: ", yourListMix?.count ?? 0)
+        header.yourListMix = yourListMix
         return header
     }
     

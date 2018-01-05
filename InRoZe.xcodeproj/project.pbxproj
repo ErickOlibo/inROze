@@ -25,7 +25,6 @@
 		A73E1FA21FBA3BAF001E31D3 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E1FA11FBA3BAF001E31D3 /* FontAwesome.swift */; };
 		A748668A1FCA7D2400674677 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74866891FCA7D2400674677 /* SettingsCell.swift */; };
 		A76E72C51F7517FB0023D47F /* FollowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72C41F7517FB0023D47F /* FollowsViewController.swift */; };
-		A76E72C71F7518700023D47F /* MixtapesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72C61F7518700023D47F /* MixtapesViewController.swift */; };
 		A76E72C91F7518CB0023D47F /* DJsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72C81F7518CB0023D47F /* DJsSearchViewController.swift */; };
 		A76E72CC1F7541370023D47F /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72CB1F7541370023D47F /* EventsViewController.swift */; };
 		A76E72D01F7576580023D47F /* EventsTableView+NSFetchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72CF1F7576580023D47F /* EventsTableView+NSFetchResultsController.swift */; };
@@ -93,7 +92,6 @@
 		A73E1FA11FBA3BAF001E31D3 /* FontAwesome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAwesome.swift; sourceTree = "<group>"; };
 		A74866891FCA7D2400674677 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		A76E72C41F7517FB0023D47F /* FollowsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowsViewController.swift; sourceTree = "<group>"; };
-		A76E72C61F7518700023D47F /* MixtapesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixtapesViewController.swift; sourceTree = "<group>"; };
 		A76E72C81F7518CB0023D47F /* DJsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJsSearchViewController.swift; sourceTree = "<group>"; };
 		A76E72CB1F7541370023D47F /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		A76E72CF1F7576580023D47F /* EventsTableView+NSFetchResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EventsTableView+NSFetchResultsController.swift"; sourceTree = "<group>"; };
@@ -387,7 +385,6 @@
 			children = (
 				A7C5566C1FFEB99D00B277EB /* MusicCollectionHeader.swift */,
 				A737A7181FFE6AB000D7DB1D /* MusicViewController.swift */,
-				A76E72C61F7518700023D47F /* MixtapesViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -716,7 +713,6 @@
 				A748668A1FCA7D2400674677 /* SettingsCell.swift in Sources */,
 				A72B792E1F2231AF009FB389 /* AppDelegate.swift in Sources */,
 				A79349C91F7FCC9100BC77AD /* CustomViewConvenience.swift in Sources */,
-				A76E72C71F7518700023D47F /* MixtapesViewController.swift in Sources */,
 				A76E72C51F7517FB0023D47F /* FollowsViewController.swift in Sources */,
 				A78979F41F3C687C00467AA6 /* FacebookKeyStringConvenience.swift in Sources */,
 				A7EC36651F33954600548C11 /* NSDictionary+KeyPathConvenience.swift in Sources */,
