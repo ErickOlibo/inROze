@@ -51,6 +51,8 @@
 		A7B3E76A1FC633E400170C95 /* DeejaysTableView+NSFetchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B3E7691FC633E400170C95 /* DeejaysTableView+NSFetchResultsController.swift */; };
 		A7B3E76F1FC63D9B00170C95 /* DJsSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B3E76E1FC63D9B00170C95 /* DJsSearchCell.swift */; };
 		A7C5566D1FFEB99D00B277EB /* MusicCollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5566C1FFEB99D00B277EB /* MusicCollectionHeader.swift */; };
+		A7C5566F1FFF076E00B277EB /* OtherMusicListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5566E1FFF076E00B277EB /* OtherMusicListCell.swift */; };
+		A7C556711FFF26B100B277EB /* MusicListCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C556701FFF26B100B277EB /* MusicListCollectionCell.swift */; };
 		A7D1CDC81F81D0CF003513F8 /* EventDeejayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */; };
 		A7D4D2A61F51913C00546341 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4D2A51F51913C00546341 /* Artist.swift */; };
 		A7E03D9B1F71D820000095BD /* UIDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E03D9A1F71D820000095BD /* UIDropDown.swift */; };
@@ -117,6 +119,8 @@
 		A7B3E7691FC633E400170C95 /* DeejaysTableView+NSFetchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeejaysTableView+NSFetchResultsController.swift"; sourceTree = "<group>"; };
 		A7B3E76E1FC63D9B00170C95 /* DJsSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJsSearchCell.swift; sourceTree = "<group>"; };
 		A7C5566C1FFEB99D00B277EB /* MusicCollectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCollectionHeader.swift; sourceTree = "<group>"; };
+		A7C5566E1FFF076E00B277EB /* OtherMusicListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMusicListCell.swift; sourceTree = "<group>"; };
+		A7C556701FFF26B100B277EB /* MusicListCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicListCollectionCell.swift; sourceTree = "<group>"; };
 		A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDeejayCell.swift; sourceTree = "<group>"; };
 		A7D4D2A51F51913C00546341 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		A7E03D9A1F71D820000095BD /* UIDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDropDown.swift; sourceTree = "<group>"; };
@@ -391,6 +395,8 @@
 		A7ACD44A1FE7FD8100DEFDC5 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				A7C556701FFF26B100B277EB /* MusicListCollectionCell.swift */,
+				A7C5566E1FFF076E00B277EB /* OtherMusicListCell.swift */,
 				A737A71A1FFE6C8700D7DB1D /* MusicMixCell.swift */,
 			);
 			path = Cells;
@@ -696,6 +702,7 @@
 				A76E72D01F7576580023D47F /* EventsTableView+NSFetchResultsController.swift in Sources */,
 				A733850C1FBB94AD00E0C4C2 /* EventInfoViewController.swift in Sources */,
 				A7E644901FCB7F4D00816FCF /* AboutViewController.swift in Sources */,
+				A7C556711FFF26B100B277EB /* MusicListCollectionCell.swift in Sources */,
 				A73E1FA21FBA3BAF001E31D3 /* FontAwesome.swift in Sources */,
 				A7E644941FCECD8B00816FCF /* Cities.swift in Sources */,
 				A7EC36871F365AA900548C11 /* TabBarViewController.swift in Sources */,
@@ -704,6 +711,7 @@
 				A775C3B21F3C7F8B00A3449F /* ServerKeyStringConvenience.swift in Sources */,
 				A7F527281F472ED90008080B /* ConvenienceExtensions.swift in Sources */,
 				A737A7191FFE6AB000D7DB1D /* MusicViewController.swift in Sources */,
+				A7C5566F1FFF076E00B277EB /* OtherMusicListCell.swift in Sources */,
 				A776760D1F26BE8200F1FA52 /* StickyCollectionViewFlowLayout.swift in Sources */,
 				A748668A1FCA7D2400674677 /* SettingsCell.swift in Sources */,
 				A72B792E1F2231AF009FB389 /* AppDelegate.swift in Sources */,

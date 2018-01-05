@@ -22,6 +22,7 @@ class MusicViewController: UICollectionViewController {
     
     // properties
     var mixtapes: [Mixtape]? { didSet { print("Total Mixtapes: \(mixtapes?.count ?? 0)") } }
+    private let sectionNames = ["New Releases", "Your List", "Recently Played"]
     
     
     
@@ -37,7 +38,7 @@ class MusicViewController: UICollectionViewController {
 
         // Do any additional setup after loading the view.
         
-        collectionView?.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         let sizeH = collectionView?.frame.height
         let sizeW = collectionView?.frame.width
         print("CollectionView Size: WxH [\(sizeW ?? 0) x \(sizeH ?? 0)]")
@@ -113,7 +114,7 @@ extension MusicViewController: UICollectionViewDelegateFlowLayout
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: MusicCollectionHeader.identifier, for: indexPath) as! MusicCollectionHeader
-        
+        header.sectionNames = sectionNames
         
         return header
     }
@@ -128,7 +129,8 @@ extension MusicViewController: UICollectionViewDelegateFlowLayout
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 80.0)
+        let currentHeight = CGFloat(260 * sectionNames.count + 80)
+        return CGSize(width: collectionView.frame.width, height: currentHeight)
     }
     
     
