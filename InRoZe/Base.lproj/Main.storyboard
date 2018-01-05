@@ -1178,54 +1178,54 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="259.66666666666669"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="omV-91-jmw">
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="omV-91-jmw">
                                                         <rect key="frame" x="0.0" y="80" width="414" height="180"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="180" id="zVl-A2-OqP"/>
                                                         </constraints>
-                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="20" id="7YA-Lk-RMa">
-                                                            <size key="itemSize" width="140" height="180"/>
+                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="7YA-Lk-RMa">
+                                                            <size key="itemSize" width="130" height="180"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MusicListCollectionCell" id="wbv-oC-5BY" customClass="MusicListCollectionCell" customModule="InRoZe" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="140" height="180"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="130" height="180"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="140" height="180"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="130" height="180"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LNJ-sI-NAt">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" secondItem="LNJ-sI-NAt" secondAttribute="height" multiplier="1:1" id="zH0-XI-IJE"/>
                                                                             </constraints>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7t-Ph-tZW">
-                                                                            <rect key="frame" x="0.0" y="140" width="140" height="20"/>
+                                                                            <rect key="frame" x="0.0" y="135" width="130" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="20" id="Svm-ba-NJq"/>
                                                                             </constraints>
-                                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymN-hz-n8N">
-                                                                            <rect key="frame" x="0.0" y="160" width="140" height="20"/>
+                                                                            <rect key="frame" x="0.0" y="155" width="130" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="20" id="xeP-Om-H3L"/>
                                                                             </constraints>
-                                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
+                                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
                                                                 </view>
                                                                 <constraints>
-                                                                    <constraint firstItem="z7t-Ph-tZW" firstAttribute="top" secondItem="LNJ-sI-NAt" secondAttribute="bottom" id="CpO-ct-cII"/>
+                                                                    <constraint firstItem="z7t-Ph-tZW" firstAttribute="top" secondItem="LNJ-sI-NAt" secondAttribute="bottom" constant="5" id="CpO-ct-cII"/>
                                                                     <constraint firstItem="ymN-hz-n8N" firstAttribute="top" secondItem="z7t-Ph-tZW" secondAttribute="bottom" id="ZGK-TE-q6e"/>
                                                                     <constraint firstItem="ymN-hz-n8N" firstAttribute="width" secondItem="LNJ-sI-NAt" secondAttribute="width" id="aeF-5m-gtQ"/>
                                                                     <constraint firstItem="z7t-Ph-tZW" firstAttribute="width" secondItem="LNJ-sI-NAt" secondAttribute="width" id="dOg-R0-pll"/>
