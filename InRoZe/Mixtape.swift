@@ -145,7 +145,7 @@ public class Mixtape: NSManagedObject
         return false
     }
     
-    
+    // your list for Mixtape view
     class func listOfFollows(in context: NSManagedObjectContext) -> [Mixtape] {
         var follows = [Mixtape]()
         let request: NSFetchRequest<Mixtape> = Mixtape.fetchRequest()
@@ -159,6 +159,74 @@ public class Mixtape: NSManagedObject
         }
         return follows
     }
+    
+    
+    // New Release for Mixtape View
+    class func newReleases(in context: NSManagedObjectContext) -> [Mixtape] {
+        var newMixes = [Mixtape]()
+        let nowTime = NSDate()
+        let twoWeeksAgo: Double = -14 * 24 * 60 * 60
+        let afterThisDate = nowTime.addingTimeInterval(twoWeeksAgo)
+        
+        let request: NSFetchRequest<Mixtape> = Mixtape.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "createdTime", ascending: false, selector: nil)]
+        request.fetchLimit = 20
+        request.predicate = NSPredicate(format: "createdTime > %@", afterThisDate)
+        do {
+            newMixes = try context.fetch(request)
+            return newMixes
+        } catch {
+            print("[newReleases] - Error while fetching new releases: \(error)")
+        }
+        return newMixes
+    }
+    
+    
+    // Recently Played for Mixtape View
+    class func recentlyPlayed(in context: NSManagedObjectContext) -> [Mixtape] {
+        var recentlyPlayedMixes = [Mixtape]()
+        let request: NSFetchRequest<Mixtape> = Mixtape.fetchRequest()
+        
+        // check how the order is
+        request.sortDescriptors = [NSSortDescriptor(key: "playedTime", ascending: false, selector: nil)]
+        request.fetchLimit = 20
+        request.predicate = NSPredicate(format: "playedTime != nil")
+        do {
+            recentlyPlayedMixes = try context.fetch(request)
+            return recentlyPlayedMixes
+        } catch {
+            print("[recentlyPlayed] - Error while fetching recently played: \(error)")
+        }
+        return recentlyPlayedMixes
+    }
+    
+    
+    
+    // SET PLAYED TIME AND DATE HERE from Mixtape ID
+    class func setPlayedTime(with id: String, in context: NSManagedObjectContext) -> Bool {
+        let request: NSFetchRequest<Mixtape> = Mixtape.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", id)
+        do {
+            let match = try context.fetch(request)
+            if match.count > 0 {
+                assert(match.count == 1, "setPlayedTime - Database inconsistency")
+                let mixtape = match[0]
+                mixtape.playedTime = Date()
+                do {
+                    try context.save()
+                } catch {
+                    print("[setPlayedTime] - Error while Saving Context: \(error)")
+                }
+                return true
+            }
+        } catch {
+            print("[setPlayedTime] - Error while setting played Time - \(error)")
+        }
+        return false
+    }
+    
+    
+    
     
     // update Mixtape cover with ImageColors
     class func updateMixtapeImageColors(with id: String, and colors: ColorsInHexString, in context: NSManagedObjectContext) -> Bool

@@ -14,7 +14,7 @@ class MixtapePlayerViewController: UIViewController {
     
     // context & container
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
-    
+    let mainContext = AppDelegate.viewContext
 
     // properties
     override var prefersStatusBarHidden: Bool { return true }
@@ -152,19 +152,24 @@ class MixtapePlayerViewController: UIViewController {
     
     
     private func playPauseAudio() {
-
         if (player.rate != 0) {
             // Already playing So pause Audio
             player.pause()
             updatePlayPauseIcon()
-            
         }  else {
             // not playing so Start Audio
             player.play()
             updatePlayPauseIcon()
-            
+            setPlayedTime()
         }
-        
+    }
+    
+    
+    private func setPlayedTime() {
+        guard let mixID = mixtape?.id else { return }
+        container?.performBackgroundTask{ context in
+            _ = Mixtape.setPlayedTime(with: mixID, in: context)
+        }
     }
     
     private func setMixtapeCoverUI() {

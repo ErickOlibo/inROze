@@ -55,22 +55,26 @@ class MusicCollectionHeader: UICollectionReusableView {
     }
     
     private func countNumberOfRows () -> Int {
+        var titlesName = [String]()
         var numb = 0
+        if let released = newReleasesMix?.count, released > 0 {
+            titlesName.append(MixSection.newReleases)
+            numb += 1
+        }
         if let played = recentlyPlayedMix?.count, played > 0 {
-            sectionNames.append(MixSection.recentlyPlayed)
+            titlesName.append(MixSection.recentlyPlayed)
             numb += 1
         }
         if let yourList = yourListMix?.count, yourList > 0 {
-            sectionNames.append(MixSection.yourList)
-            numb += 1
-        }
-        if let released = newReleasesMix?.count, released > 0 {
-            sectionNames.append(MixSection.newReleases)
+            titlesName.append(MixSection.yourList)
             numb += 1
         }
         
+        cellsTitleList = titlesName
         print("Number of Section: ", numb)
-        
+        for name in titlesName {
+            print("title Name: ", name)
+        }
         return numb
     }
     
@@ -92,14 +96,28 @@ extension MusicCollectionHeader: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: OtherMusicListCell.identifier, for: indexPath) as! OtherMusicListCell
-        let name = sectionNames[indexPath.row]
+        let name = cellsTitleList[indexPath.row]
+        print("Name: [\(name)] - Row: [\(indexPath.row)]")
         cell.selectionStyle = .none
         cell.sectionTitle.text = name
         cell.viewAllList.isHidden = name != MixSection.yourList ? true : false
-        if (name == MixSection.yourList) {
-            print("YOUR LIST Mix: [\(yourListMix?.count ?? 0)]")
+        
+        // Switch Name Cell
+        switch name {
+        case MixSection.newReleases:
+            cell.mixtapes = newReleasesMix
+        case MixSection.recentlyPlayed:
+            cell.mixtapes = recentlyPlayedMix
+        case MixSection.yourList:
             cell.mixtapes = yourListMix
+        default:
+            print("name of the cell is not conform")
         }
+//        if (name == MixSection.yourList) {
+//            print("YOUR LIST Mix: [\(yourListMix?.count ?? 0)]")
+//            cell.mixtapes = yourListMix
+//        }
+        
         cell.collectionView.reloadData()
         cell.collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         return cell

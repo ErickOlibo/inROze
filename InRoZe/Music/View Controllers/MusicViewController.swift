@@ -42,13 +42,14 @@ class MusicViewController: UICollectionViewController {
         let sizeW = collectionView?.frame.width
         print("CollectionView Size: WxH [\(sizeW ?? 0) x \(sizeH ?? 0)]")
         setupNavBar()
-        yourListMix = Mixtape.listOfFollows(in: mainContext)
+        otherMixtapes()
         getAllMixtapes()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        yourListMix = Mixtape.listOfFollows(in: mainContext)
+        otherMixtapes()
+        print("yourList [\(yourListMix?.count ?? 0)] - New [\(newReleasesMix?.count ?? 0)] - Recent [\(recentlyPlayedMix?.count ?? 0)]")
         getAllMixtapes()
     }
     
@@ -58,8 +59,26 @@ class MusicViewController: UICollectionViewController {
     // Get info for Recently Played, Your List and New Releases
     private func otherMixtapes() {
         yourListMix = Mixtape.listOfFollows(in: mainContext)
+        newReleasesMix = Mixtape.newReleases(in: mainContext)
+        recentlyPlayedMix = Mixtape.recentlyPlayed(in: mainContext)
+        getNumberCells()
+        
     }
     
+    
+    private func getNumberCells() {
+        var numb = 0
+        if let released = newReleasesMix?.count, released > 0 {
+            numb += 1
+        }
+        if let played = recentlyPlayedMix?.count, played > 0 {
+            numb += 1
+        }
+        if let yourList = yourListMix?.count, yourList > 0 {
+            numb += 1
+        }
+        numberOfCells = numb
+    }
     
     
     private func getAllMixtapes() {
@@ -128,6 +147,10 @@ extension MusicViewController: UICollectionViewDelegateFlowLayout
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: MusicCollectionHeader.identifier, for: indexPath) as! MusicCollectionHeader
         //header.sectionNames = sectionNames
         print("IN HEADER: Count: ", yourListMix?.count ?? 0)
+        
+        // Send all 3 array of mixtapes (New Releases, Recently Played, Your list)
+        header.newReleasesMix = newReleasesMix
+        header.recentlyPlayedMix = recentlyPlayedMix
         header.yourListMix = yourListMix
         
         // Here we must realod all the Header Lists and Cell
@@ -145,7 +168,7 @@ extension MusicViewController: UICollectionViewDelegateFlowLayout
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let currentHeight = CGFloat(260 * sectionNames.count + 80)
+        let currentHeight = CGFloat(260 * numberOfCells + 80)
         return CGSize(width: collectionView.frame.width, height: currentHeight)
     }
     

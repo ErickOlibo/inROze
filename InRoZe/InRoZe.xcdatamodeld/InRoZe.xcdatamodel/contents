@@ -55,6 +55,7 @@
         <attribute name="length" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mixURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="playedTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="streamURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tag1" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tag2" optional="YES" attributeType="String" syncable="YES"/>
@@ -79,7 +80,7 @@
     <elements>
         <element name="Artist" positionX="414" positionY="449" width="128" height="283"/>
         <element name="Event" positionX="630" positionY="72" width="128" height="328"/>
-        <element name="Mixtape" positionX="216" positionY="324" width="128" height="373"/>
+        <element name="Mixtape" positionX="216" positionY="324" width="128" height="390"/>
         <element name="Place" positionX="259" positionY="9" width="128" height="210"/>
     </elements>
 </model>
