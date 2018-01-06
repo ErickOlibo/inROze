@@ -52,6 +52,9 @@
 		A7C5566D1FFEB99D00B277EB /* MusicCollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5566C1FFEB99D00B277EB /* MusicCollectionHeader.swift */; };
 		A7C5566F1FFF076E00B277EB /* OtherMusicListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5566E1FFF076E00B277EB /* OtherMusicListCell.swift */; };
 		A7C556711FFF26B100B277EB /* MusicListCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C556701FFF26B100B277EB /* MusicListCollectionCell.swift */; };
+		A7C5567320005DE400B277EB /* SearchCatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5567220005DE400B277EB /* SearchCatalogueViewController.swift */; };
+		A7C556782000602100B277EB /* SearchCatalogueTableView+NSFethResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C556772000602100B277EB /* SearchCatalogueTableView+NSFethResultsController.swift */; };
+		A7C5567A2000608C00B277EB /* SearchCatalogueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C556792000608C00B277EB /* SearchCatalogueCell.swift */; };
 		A7D1CDC81F81D0CF003513F8 /* EventDeejayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */; };
 		A7D4D2A61F51913C00546341 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4D2A51F51913C00546341 /* Artist.swift */; };
 		A7E03D9B1F71D820000095BD /* UIDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E03D9A1F71D820000095BD /* UIDropDown.swift */; };
@@ -119,6 +122,9 @@
 		A7C5566C1FFEB99D00B277EB /* MusicCollectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCollectionHeader.swift; sourceTree = "<group>"; };
 		A7C5566E1FFF076E00B277EB /* OtherMusicListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMusicListCell.swift; sourceTree = "<group>"; };
 		A7C556701FFF26B100B277EB /* MusicListCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicListCollectionCell.swift; sourceTree = "<group>"; };
+		A7C5567220005DE400B277EB /* SearchCatalogueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCatalogueViewController.swift; sourceTree = "<group>"; };
+		A7C556772000602100B277EB /* SearchCatalogueTableView+NSFethResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchCatalogueTableView+NSFethResultsController.swift"; sourceTree = "<group>"; };
+		A7C556792000608C00B277EB /* SearchCatalogueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCatalogueCell.swift; sourceTree = "<group>"; };
 		A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDeejayCell.swift; sourceTree = "<group>"; };
 		A7D4D2A51F51913C00546341 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		A7E03D9A1F71D820000095BD /* UIDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDropDown.swift; sourceTree = "<group>"; };
@@ -205,10 +211,11 @@
 				A72B79311F2231AF009FB389 /* Main.storyboard */,
 				A76E72D11F75776C0023D47F /* FetchedResultsTableViewController.swift */,
 				A7ACD4481FE7FD4000DEFDC5 /* Music */,
+				A7C5567420005DF100B277EB /* Search Catalogue */,
+				A7B3E76B1FC6343300170C95 /* DJs */,
 				A7ACD44C1FE8092200DEFDC5 /* Other MVC */,
 				A733850D1FBB954C00E0C4C2 /* Events */,
 				A73385111FBE49C800E0C4C2 /* Follows */,
-				A7B3E76B1FC6343300170C95 /* DJs */,
 				A74866871FC9CB7E00674677 /* Settings */,
 				A7A24D511F3C405C00EFB82E /* Core Data */,
 				A77676121F26BF3100F1FA52 /* Helpers */,
@@ -495,6 +502,32 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
+		A7C5567420005DF100B277EB /* Search Catalogue */ = {
+			isa = PBXGroup;
+			children = (
+				A7C5567620005E1600B277EB /* View Controllers */,
+				A7C5567520005E0D00B277EB /* Cells */,
+			);
+			name = "Search Catalogue";
+			sourceTree = "<group>";
+		};
+		A7C5567520005E0D00B277EB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A7C556792000608C00B277EB /* SearchCatalogueCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		A7C5567620005E1600B277EB /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A7C5567220005DE400B277EB /* SearchCatalogueViewController.swift */,
+				A7C556772000602100B277EB /* SearchCatalogueTableView+NSFethResultsController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		A7E03D9C1F71D835000095BD /* UIDropDown */ = {
 			isa = PBXGroup;
 			children = (
@@ -689,6 +722,7 @@
 				A76E72CC1F7541370023D47F /* EventsViewController.swift in Sources */,
 				A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */,
 				A73385131FBE4FF700E0C4C2 /* FollowsTableView+NSFetchResultsController.swift in Sources */,
+				A7C556782000602100B277EB /* SearchCatalogueTableView+NSFethResultsController.swift in Sources */,
 				A7D1CDC81F81D0CF003513F8 /* EventDeejayCell.swift in Sources */,
 				A76E72D21F75776C0023D47F /* FetchedResultsTableViewController.swift in Sources */,
 				A733850F1FBCA4BD00E0C4C2 /* EventInfoDJNameCell.swift in Sources */,
@@ -711,6 +745,8 @@
 				A7C5566F1FFF076E00B277EB /* OtherMusicListCell.swift in Sources */,
 				A776760D1F26BE8200F1FA52 /* StickyCollectionViewFlowLayout.swift in Sources */,
 				A748668A1FCA7D2400674677 /* SettingsCell.swift in Sources */,
+				A7C5567320005DE400B277EB /* SearchCatalogueViewController.swift in Sources */,
+				A7C5567A2000608C00B277EB /* SearchCatalogueCell.swift in Sources */,
 				A72B792E1F2231AF009FB389 /* AppDelegate.swift in Sources */,
 				A79349C91F7FCC9100BC77AD /* CustomViewConvenience.swift in Sources */,
 				A76E72C51F7517FB0023D47F /* FollowsViewController.swift in Sources */,

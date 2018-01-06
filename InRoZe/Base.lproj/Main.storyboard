@@ -1335,11 +1335,49 @@
                             <outlet property="delegate" destination="x9u-rO-ZmW" id="5Ia-25-7Pw"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="cws-t8-UOA"/>
+                    <navigationItem key="navigationItem" id="cws-t8-UOA">
+                        <barButtonItem key="rightBarButtonItem" image="SearchCatalogue" id="Y7p-vV-MVx">
+                            <connections>
+                                <action selector="searchCatalogueTouched:" destination="x9u-rO-ZmW" id="NxW-1d-KIF"/>
+                                <segue destination="ALj-SZ-P0E" kind="show" identifier="Music To Search Catalogue" id="Dmb-S9-efK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="searchCatalogueButton" destination="Y7p-vV-MVx" id="taI-yx-TEq"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uDP-8u-H67" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="89.855072463768124" y="159.78260869565219"/>
+        </scene>
+        <!--Search Catalogue View Controller-->
+        <scene sceneID="3gg-0F-7bA">
+            <objects>
+                <tableViewController id="ALj-SZ-P0E" customClass="SearchCatalogueViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="JBX-8B-bBo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCatalogueCell" id="ko6-DH-vun" customClass="SearchCatalogueCell" customModule="InRoZe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ko6-DH-vun" id="A75-pD-XEn">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ALj-SZ-P0E" id="9Ug-Gx-HqX"/>
+                            <outlet property="delegate" destination="ALj-SZ-P0E" id="hr2-w7-hDb"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vjQ-GT-Lkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1001" y="155"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="ueb-7Y-CSx">
@@ -2065,10 +2103,11 @@ Mixtapes</string>
         <image name="5_Settings" width="25" height="25"/>
         <image name="5_SettingsFilled" width="25" height="25"/>
         <image name="Logo_Inroze_2017" width="990" height="330"/>
+        <image name="SearchCatalogue" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ZbF-td-soA"/>
-        <segue reference="amR-Kn-XsZ"/>
-        <segue reference="Bwf-dD-zDu"/>
+        <segue reference="ekP-bR-cTf"/>
+        <segue reference="fqI-E3-pH5"/>
     </inferredMetricsTieBreakers>
 </document>

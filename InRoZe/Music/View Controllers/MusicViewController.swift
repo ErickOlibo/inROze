@@ -18,6 +18,16 @@ class MusicViewController: UICollectionViewController {
     //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     let mainContext = AppDelegate.viewContext
+    
+    
+    // Outlets
+    @IBOutlet weak var searchCatalogueButton: UIBarButtonItem!
+    
+    // Actions
+    @IBAction func searchCatalogueTouched(_ sender: UIBarButtonItem) {
+        print("searchCatalogueTouched")
+    }
+    
 
     
     // properties
@@ -29,12 +39,13 @@ class MusicViewController: UICollectionViewController {
     var numberOfCells: Int = 0
     
     //private let sectionNames = ["New Releases", "Your List", "Recently Played"]
-    private let sectionNames = ["Your List"]
+    //private let sectionNames = ["Your List"]
     
     
     // VIEW life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchCatalogueButton.tintColor = Colors.logoRed
 
         
         collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -55,6 +66,8 @@ class MusicViewController: UICollectionViewController {
     
     
     // Methods
+    
+    
     
     // Get info for Recently Played, Your List and New Releases
     private func otherMixtapes() {
@@ -107,12 +120,6 @@ class MusicViewController: UICollectionViewController {
         navigationItem.title = "Mixtapes"
     }
     
-    
-    
-    
-
- 
-
 }
 
 
