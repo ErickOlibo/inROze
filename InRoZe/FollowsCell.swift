@@ -45,6 +45,7 @@ class FollowsCell: UITableViewCell
             deejaysList.textColor = defaultColor
             eventLocation.textColor = defaultColor
             eventTime.textColor = defaultColor
+            eventCover.layer.borderColor = defaultColor.cgColor
             //eventCover.image = nil
         }
     }
@@ -55,6 +56,7 @@ class FollowsCell: UITableViewCell
         deejaysList.backgroundColor = .clear
         eventLocation.backgroundColor = .clear
         eventTime.backgroundColor = .clear
+        eventCover.layer.borderColor = UIColor.clear.cgColor
         
     }
     
@@ -77,10 +79,16 @@ class FollowsCell: UITableViewCell
     }
     
     
+    // Set the image frame
+    private func setCoverFrame() {
+        eventCover.layer.borderColor = UIColor.black.cgColor
+    }
+    
     // COLORS Needed
     private func configureCellForColors() {
         removeDefaultColor()
         setLocation()
+        setCoverFrame()
         setStartEndTime()
         eventCover.image = coverImage
         
