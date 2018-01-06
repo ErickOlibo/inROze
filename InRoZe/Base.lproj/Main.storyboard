@@ -1244,7 +1244,7 @@
                                                         </cells>
                                                     </collectionView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q88-oF-Xuf">
-                                                        <rect key="frame" x="30" y="20" width="368" height="50"/>
+                                                        <rect key="frame" x="30" y="25" width="368" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="BPb-1a-8mo"/>
                                                         </constraints>
@@ -1253,7 +1253,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UU2-CV-zLo">
-                                                        <rect key="frame" x="10" y="31" width="10" height="25"/>
+                                                        <rect key="frame" x="10" y="36" width="10" height="25"/>
                                                         <color key="backgroundColor" red="0.82352941180000006" green="0.22352941179999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="wsC-ql-qiI"/>
@@ -1261,7 +1261,7 @@
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3y-aJ-J5I">
-                                                        <rect key="frame" x="344" y="36" width="50" height="30"/>
+                                                        <rect key="frame" x="344" y="41" width="50" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="bLf-Ig-LY0"/>
                                                         </constraints>
@@ -1275,9 +1275,9 @@
                                                 <constraints>
                                                     <constraint firstItem="omV-91-jmw" firstAttribute="top" secondItem="u9Y-C8-BaX" secondAttribute="top" constant="80" id="5CB-On-XgT"/>
                                                     <constraint firstAttribute="trailing" secondItem="d3y-aJ-J5I" secondAttribute="trailing" constant="20" id="7E2-OI-rqh"/>
-                                                    <constraint firstItem="q88-oF-Xuf" firstAttribute="top" secondItem="u9Y-C8-BaX" secondAttribute="top" constant="20" id="D4D-Mt-IWn"/>
-                                                    <constraint firstItem="UU2-CV-zLo" firstAttribute="top" secondItem="u9Y-C8-BaX" secondAttribute="top" constant="31" id="D5e-B1-abg"/>
-                                                    <constraint firstItem="d3y-aJ-J5I" firstAttribute="top" secondItem="u9Y-C8-BaX" secondAttribute="top" constant="36" id="KCS-Cz-JLn"/>
+                                                    <constraint firstItem="q88-oF-Xuf" firstAttribute="top" secondItem="u9Y-C8-BaX" secondAttribute="top" constant="25" id="D4D-Mt-IWn"/>
+                                                    <constraint firstItem="UU2-CV-zLo" firstAttribute="top" secondItem="u9Y-C8-BaX" secondAttribute="top" constant="36" id="D5e-B1-abg"/>
+                                                    <constraint firstItem="d3y-aJ-J5I" firstAttribute="top" secondItem="u9Y-C8-BaX" secondAttribute="top" constant="41" id="KCS-Cz-JLn"/>
                                                     <constraint firstItem="omV-91-jmw" firstAttribute="width" secondItem="u9Y-C8-BaX" secondAttribute="width" id="TQy-uv-83S"/>
                                                     <constraint firstItem="q88-oF-Xuf" firstAttribute="leading" secondItem="u9Y-C8-BaX" secondAttribute="leading" constant="30" id="Vcz-pi-Toh"/>
                                                     <constraint firstItem="omV-91-jmw" firstAttribute="centerX" secondItem="u9Y-C8-BaX" secondAttribute="centerX" id="WCJ-XE-DKR"/>
@@ -1296,7 +1296,7 @@
                                     </prototypes>
                                 </tableView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catalogue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T39-hp-DmN">
-                                    <rect key="frame" x="30" y="340" width="368" height="50"/>
+                                    <rect key="frame" x="30" y="345" width="368" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="Oc6-wv-YkL"/>
                                     </constraints>
@@ -1305,7 +1305,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gom-t1-HIU">
-                                    <rect key="frame" x="10" y="351" width="10" height="25"/>
+                                    <rect key="frame" x="10" y="356" width="10" height="25"/>
                                     <color key="backgroundColor" red="0.82352941180000006" green="0.22352941179999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="25" id="MW2-kU-hTc"/>
@@ -1314,14 +1314,14 @@
                                 </view>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="T39-hp-DmN" secondAttribute="bottom" constant="10" id="Bsz-oz-e01"/>
+                                <constraint firstAttribute="bottom" secondItem="T39-hp-DmN" secondAttribute="bottom" constant="5" id="Bsz-oz-e01"/>
                                 <constraint firstAttribute="bottom" secondItem="wAs-dY-xZ0" secondAttribute="bottom" constant="80" id="Een-FA-II2"/>
                                 <constraint firstItem="wAs-dY-xZ0" firstAttribute="top" secondItem="knA-dC-fBL" secondAttribute="top" id="HGY-Sk-qdY"/>
                                 <constraint firstItem="wAs-dY-xZ0" firstAttribute="centerX" secondItem="knA-dC-fBL" secondAttribute="centerX" id="QFp-39-Vd1"/>
                                 <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="T39-hp-DmN" secondAttribute="trailing" constant="16" id="SL3-iv-j5s"/>
                                 <constraint firstItem="wAs-dY-xZ0" firstAttribute="width" secondItem="knA-dC-fBL" secondAttribute="width" id="duz-Xo-Cb8"/>
                                 <constraint firstItem="gom-t1-HIU" firstAttribute="leading" secondItem="knA-dC-fBL" secondAttribute="leading" constant="10" id="gbh-UZ-ckf"/>
-                                <constraint firstAttribute="bottom" secondItem="gom-t1-HIU" secondAttribute="bottom" constant="24" id="lLl-dv-9f4"/>
+                                <constraint firstAttribute="bottom" secondItem="gom-t1-HIU" secondAttribute="bottom" constant="19" id="lLl-dv-9f4"/>
                                 <constraint firstItem="T39-hp-DmN" firstAttribute="leading" secondItem="knA-dC-fBL" secondAttribute="leading" constant="30" id="x4z-gU-cnV"/>
                             </constraints>
                             <connections>

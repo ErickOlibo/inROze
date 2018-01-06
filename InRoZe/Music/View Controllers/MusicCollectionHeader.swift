@@ -37,6 +37,7 @@ class MusicCollectionHeader: UICollectionReusableView {
         tableView.delegate = self
         tableView.dataSource = self
         // Fetch all the sections and mixtapes for each section
+        tableView.separatorColor = .clear
         tableView.reloadData()
         
     }
