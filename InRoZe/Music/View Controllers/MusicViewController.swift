@@ -31,7 +31,7 @@ class MusicViewController: UICollectionViewController {
 
     
     // properties
-    var mixtapes: [Mixtape]? { didSet { print("Total Mixtapes: \(mixtapes?.count ?? 0)") } }
+    var mixtapes: [Mixtape]? //{ didSet { print("Total Mixtapes: \(mixtapes?.count ?? 0)") } }
     
     var recentlyPlayedMix: [Mixtape]?
     var newReleasesMix: [Mixtape]?
@@ -49,9 +49,9 @@ class MusicViewController: UICollectionViewController {
 
         
         collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        let sizeH = collectionView?.frame.height
-        let sizeW = collectionView?.frame.width
-        print("CollectionView Size: WxH [\(sizeW ?? 0) x \(sizeH ?? 0)]")
+//        let sizeH = collectionView?.frame.height
+//        let sizeW = collectionView?.frame.width
+//        print("CollectionView Size: WxH [\(sizeW ?? 0) x \(sizeH ?? 0)]")
         setupNavBar()
         otherMixtapes()
         getAllMixtapes()
@@ -153,7 +153,7 @@ extension MusicViewController: UICollectionViewDelegateFlowLayout
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: MusicCollectionHeader.identifier, for: indexPath) as! MusicCollectionHeader
         //header.sectionNames = sectionNames
-        print("IN HEADER: Count: ", yourListMix?.count ?? 0)
+        //print("IN HEADER: Count: ", yourListMix?.count ?? 0)
         
         // Send all 3 array of mixtapes (New Releases, Recently Played, Your list)
         header.newReleasesMix = newReleasesMix

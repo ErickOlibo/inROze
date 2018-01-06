@@ -40,7 +40,6 @@ class DeejayMixesCell: UITableViewCell {
         if let context = container?.viewContext {
             context.perform {
                 if let  mixState = Mixtape.currentIsFollowedState(for: mixtapeID, in: context) {
-                    // Fixing issue with isFollow
                     self.mixtape!.isFollowed = !mixState
                     self.updateFollowedButton()
                     self.changeState()

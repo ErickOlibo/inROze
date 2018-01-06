@@ -76,7 +76,7 @@ class DeejaysViewController: FetchedResultsTableViewController {
         do {
             try self.fetchResultsController.performFetch()
         } catch {
-            print("UpdateUI in FolowVC -> Error while fetching: \(error)")
+            print("UpdateUI in DeejaysViewController -> Error while fetching: \(error)")
         }
         tableView.reloadData()
     }
@@ -86,13 +86,13 @@ class DeejaysViewController: FetchedResultsTableViewController {
 
 extension DeejaysViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        print("Here IN: updateSearchResults - ")
+        //print("Here IN: updateSearchResults - ")
         guard searchController.searchBar.text!.count > 0 else {
             searchText = searchController.searchBar.text
-            print("is search bar text nil: [\(searchController.searchBar.text ?? "NIL")]")
-            let descript = fetchResultsController.fetchRequest.sortDescriptors
-            let predic = fetchResultsController.fetchRequest.predicate
-            print("Description: \(String(describing: descript)) - Predicate: \(String(describing: predic))")
+            //print("is search bar text nil: [\(searchController.searchBar.text ?? "NIL")]")
+//            let descript = fetchResultsController.fetchRequest.sortDescriptors
+//            let predic = fetchResultsController.fetchRequest.predicate
+//            print("Description: \(String(describing: descript)) - Predicate: \(String(describing: predic))")
             fetchResultsController.fetchRequest.predicate = NSPredicate(format: "name != nil ")
             updateUI()
             return

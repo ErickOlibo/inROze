@@ -18,7 +18,7 @@
         <array key="Bungee-Regular.ttf">
             <string>Bungee-Regular</string>
         </array>
-        <array key="FontAwesome.ttf">
+        <array key="FontAwesome.otf">
             <string>FontAwesome</string>
         </array>
         <array key="HelveticaNeue.ttc">
@@ -1355,18 +1355,100 @@
         <scene sceneID="3gg-0F-7bA">
             <objects>
                 <tableViewController id="ALj-SZ-P0E" customClass="SearchCatalogueViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="JBX-8B-bBo">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="JBX-8B-bBo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCatalogueCell" id="ko6-DH-vun" customClass="SearchCatalogueCell" customModule="InRoZe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ko6-DH-vun" id="A75-pD-XEn">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="79.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DP2-B4-pKP">
+                                            <rect key="frame" x="20" y="10" width="60" height="60"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="60" id="n0B-fd-e4P"/>
+                                                <constraint firstAttribute="width" secondItem="DP2-B4-pKP" secondAttribute="height" multiplier="1:1" id="yq8-gO-fLH"/>
+                                            </constraints>
+                                        </imageView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mps-CQ-oKT">
+                                            <rect key="frame" x="354" y="20" width="40" height="40"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zje-AE-4YT">
+                                                    <rect key="frame" x="4" y="4" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Zje-AE-4YT" secondAttribute="height" multiplier="1:1" id="KnI-aA-5wT"/>
+                                                        <constraint firstAttribute="height" constant="32" id="n8V-S3-H43"/>
+                                                    </constraints>
+                                                    <state key="normal" image="3_Mixtapes"/>
+                                                    <connections>
+                                                        <action selector="followTouched:" destination="ko6-DH-vun" eventType="touchUpInside" id="2x1-YP-1wd"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="mfw-g5-U3D"/>
+                                                <constraint firstAttribute="width" secondItem="Mps-CQ-oKT" secondAttribute="height" multiplier="1:1" id="ocr-fe-cRG"/>
+                                                <constraint firstItem="Zje-AE-4YT" firstAttribute="centerY" secondItem="Mps-CQ-oKT" secondAttribute="centerY" id="rbA-Pd-BwN"/>
+                                                <constraint firstItem="Zje-AE-4YT" firstAttribute="centerX" secondItem="Mps-CQ-oKT" secondAttribute="centerX" id="uDW-OT-5BZ"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mixtape Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vA8-NO-yf7">
+                                            <rect key="frame" x="90" y="8" width="254" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="EZc-ET-MQx"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DJ name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8b-Tm-a0n">
+                                            <rect key="frame" x="90" y="30.666666666666671" width="254" height="19"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="19" id="Cz6-Du-bqz"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tags List" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHf-Uj-wYh">
+                                            <rect key="frame" x="90" y="54" width="254" height="14"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="14" id="UxI-PH-p3o"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstItem="vA8-NO-yf7" firstAttribute="leading" secondItem="ko6-DH-vun" secondAttribute="leading" constant="90" id="0hn-Dq-RfB"/>
+                                    <constraint firstItem="h8b-Tm-a0n" firstAttribute="leading" secondItem="ko6-DH-vun" secondAttribute="leading" constant="90" id="7eR-A8-iu7"/>
+                                    <constraint firstItem="h8b-Tm-a0n" firstAttribute="centerY" secondItem="ko6-DH-vun" secondAttribute="centerY" id="GUk-Zq-WNf"/>
+                                    <constraint firstAttribute="trailing" secondItem="EHf-Uj-wYh" secondAttribute="trailing" constant="70" id="IIk-FO-x9I"/>
+                                    <constraint firstItem="DP2-B4-pKP" firstAttribute="leading" secondItem="ko6-DH-vun" secondAttribute="leading" constant="20" id="KFB-yG-cx3"/>
+                                    <constraint firstAttribute="trailing" secondItem="vA8-NO-yf7" secondAttribute="trailing" constant="70" id="QZO-qw-Gys"/>
+                                    <constraint firstAttribute="trailing" secondItem="Mps-CQ-oKT" secondAttribute="trailing" constant="20" id="Twu-Jy-Uwd"/>
+                                    <constraint firstAttribute="trailing" secondItem="h8b-Tm-a0n" secondAttribute="trailing" constant="70" id="YGF-oT-0d5"/>
+                                    <constraint firstItem="vA8-NO-yf7" firstAttribute="top" secondItem="ko6-DH-vun" secondAttribute="top" constant="8" id="YdB-S7-i1l"/>
+                                    <constraint firstItem="Mps-CQ-oKT" firstAttribute="top" secondItem="ko6-DH-vun" secondAttribute="top" constant="20" id="jfe-IR-8Zm"/>
+                                    <constraint firstItem="EHf-Uj-wYh" firstAttribute="leading" secondItem="ko6-DH-vun" secondAttribute="leading" constant="90" id="lDS-QQ-Ysg"/>
+                                    <constraint firstItem="DP2-B4-pKP" firstAttribute="centerY" secondItem="ko6-DH-vun" secondAttribute="centerY" id="mIh-m4-ULY"/>
+                                    <constraint firstAttribute="bottom" secondItem="EHf-Uj-wYh" secondAttribute="bottom" constant="12" id="pVl-zW-Mpz"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="deejayName" destination="h8b-Tm-a0n" id="DR8-B4-sDt"/>
+                                    <outlet property="followButton" destination="Zje-AE-4YT" id="cxd-1K-Je1"/>
+                                    <outlet property="followButtonView" destination="Mps-CQ-oKT" id="uWc-Ih-vX6"/>
+                                    <outlet property="mixtapeCover" destination="DP2-B4-pKP" id="9ic-fN-Q7c"/>
+                                    <outlet property="mixtapeName" destination="vA8-NO-yf7" id="oWF-nh-sWa"/>
+                                    <outlet property="tagsList" destination="EHf-Uj-wYh" id="zvj-Qh-X4i"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

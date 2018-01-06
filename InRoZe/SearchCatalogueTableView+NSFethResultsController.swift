@@ -14,16 +14,24 @@ extension SearchCatalogueViewController
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return fetchResultsController.sections?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        if let sections = fetchResultsController.sections, sections.count > 0 {
+            return sections[section].numberOfObjects
+        } else {
+            return 0
+        }
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchCatalogueCell.identifier, for: indexPath) as! SearchCatalogueCell
+        
+        cell.tag = indexPath.row
+        cell.selectionStyle = .none
+        cell.mixtape = fetchResultsController.object(at: indexPath)
         
         return cell
     }

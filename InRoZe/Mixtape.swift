@@ -57,7 +57,8 @@ public class Mixtape: NSManagedObject
                 } catch {
                     print("[Mixtape] - MIXTAPE to DEEJAY Update Error")
                 }
-                
+                mix.haystack = createHaystack(for: mix)
+                //print("Update Haystack: \(mix.haystack ?? "NIL")")
 
                 return false
                 
@@ -102,7 +103,37 @@ public class Mixtape: NSManagedObject
         } catch {
             print("[Mixtape] - MIXTAPE to DEEJAY Creation Error")
         }
+        // Create haystack
+        newMix.haystack = createHaystack(for: newMix)
+        //print("Create Haystack: \(newMix.haystack ?? "NIL")")
         return true
+    }
+    
+    
+    
+    // Create haystack
+    class func createHaystack(for mixtape: Mixtape) -> String {
+        var haystack = ""
+        let sepa = " | "
+        if let djname = mixtape.deejay?.name {
+            haystack += djname + sepa
+        }
+        if let mixName = mixtape.name {
+            haystack += mixName
+        }
+        
+        guard let tag1 = mixtape.tag1, tag1 != "" else { return haystack}
+        haystack +=  sepa + tag1
+        guard let tag2 = mixtape.tag2, tag2 != "" else { return haystack}
+        haystack +=  sepa + tag2
+        guard let tag3 = mixtape.tag3, tag3 != "" else { return haystack}
+        haystack +=  sepa + tag3
+        guard let tag4 = mixtape.tag4, tag4 != "" else { return haystack}
+        haystack +=  sepa + tag4
+        guard let tag5 = mixtape.tag5, tag5 != "" else { return haystack}
+        haystack +=  sepa + tag5
+        
+        return haystack
     }
     
     

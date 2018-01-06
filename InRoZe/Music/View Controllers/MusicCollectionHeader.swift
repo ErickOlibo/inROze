@@ -72,10 +72,10 @@ class MusicCollectionHeader: UICollectionReusableView {
         }
         
         cellsTitleList = titlesName
-        print("Number of Section: ", numb)
-        for name in titlesName {
-            print("title Name: ", name)
-        }
+//        print("Number of Section: ", numb)
+//        for name in titlesName {
+//            print("title Name: ", name)
+//        }
         return numb
     }
     
@@ -98,7 +98,7 @@ extension MusicCollectionHeader: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: OtherMusicListCell.identifier, for: indexPath) as! OtherMusicListCell
         let name = cellsTitleList[indexPath.row]
-        print("Name: [\(name)] - Row: [\(indexPath.row)]")
+        //print("Name: [\(name)] - Row: [\(indexPath.row)]")
         cell.selectionStyle = .none
         cell.sectionTitle.text = name
         cell.viewAllList.isHidden = name != MixSection.yourList ? true : false
