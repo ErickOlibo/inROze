@@ -1,5 +1,5 @@
 //
-//  FollowsFeed.swift
+//  FollowsItem.swift
 //  InRoZe
 //
 //  Created by Erick Olibo on 07/01/2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class FollowsFeed
+public class FollowsItem
 {
     let event: Event?
     let mixtape: Mixtape?
