@@ -23,6 +23,7 @@
         <attribute name="colorDetail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="colorPrimary" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="colorSecondary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="endTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageID" optional="YES" attributeType="String" syncable="YES"/>
@@ -80,7 +81,7 @@
     </entity>
     <elements>
         <element name="Artist" positionX="414" positionY="449" width="128" height="283"/>
-        <element name="Event" positionX="630" positionY="72" width="128" height="328"/>
+        <element name="Event" positionX="630" positionY="72" width="128" height="345"/>
         <element name="Mixtape" positionX="216" positionY="324" width="128" height="405"/>
         <element name="Place" positionX="259" positionY="9" width="128" height="210"/>
     </elements>

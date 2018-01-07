@@ -24,6 +24,7 @@
 		A73E1FA01FBA3935001E31D3 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = A73E1F9F1FBA38DB001E31D3 /* FontAwesome.otf */; };
 		A73E1FA21FBA3BAF001E31D3 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E1FA11FBA3BAF001E31D3 /* FontAwesome.swift */; };
 		A748668A1FCA7D2400674677 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74866891FCA7D2400674677 /* SettingsCell.swift */; };
+		A75E30D02001A9470020E580 /* FollowsFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E30CF2001A9470020E580 /* FollowsFeed.swift */; };
 		A76E72C51F7517FB0023D47F /* FollowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72C41F7517FB0023D47F /* FollowsViewController.swift */; };
 		A76E72C91F7518CB0023D47F /* DJsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72C81F7518CB0023D47F /* DJsSearchViewController.swift */; };
 		A76E72CC1F7541370023D47F /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72CB1F7541370023D47F /* EventsViewController.swift */; };
@@ -94,6 +95,7 @@
 		A73E1F9F1FBA38DB001E31D3 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		A73E1FA11FBA3BAF001E31D3 /* FontAwesome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAwesome.swift; sourceTree = "<group>"; };
 		A74866891FCA7D2400674677 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		A75E30CF2001A9470020E580 /* FollowsFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowsFeed.swift; sourceTree = "<group>"; };
 		A76E72C41F7517FB0023D47F /* FollowsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowsViewController.swift; sourceTree = "<group>"; };
 		A76E72C81F7518CB0023D47F /* DJsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJsSearchViewController.swift; sourceTree = "<group>"; };
 		A76E72CB1F7541370023D47F /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 		A77676121F26BF3100F1FA52 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A75E30CF2001A9470020E580 /* FollowsFeed.swift */,
 				A7E644931FCECD8B00816FCF /* Cities.swift */,
 				A73E1FA11FBA3BAF001E31D3 /* FontAwesome.swift */,
 				A79349C81F7FCC9100BC77AD /* CustomViewConvenience.swift */,
@@ -710,6 +713,7 @@
 				A7ACD4541FE84DE000DEFDC5 /* DeejayMixesCell.swift in Sources */,
 				A7B3E76A1FC633E400170C95 /* DeejaysTableView+NSFetchResultsController.swift in Sources */,
 				A7A4BECC1F4363C5000A5047 /* UserDefaultsExtensions.swift in Sources */,
+				A75E30D02001A9470020E580 /* FollowsFeed.swift in Sources */,
 				A737A71B1FFE6C8700D7DB1D /* MusicCatalogueCell.swift in Sources */,
 				A76E72D81F7BFA820023D47F /* DeejayGigsTableViewController.swift in Sources */,
 				A7D4D2A61F51913C00546341 /* Artist.swift in Sources */,

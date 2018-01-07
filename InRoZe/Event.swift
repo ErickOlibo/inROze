@@ -16,16 +16,21 @@ public class Event: NSManagedObject
     // update placeID if eventID already present
     class func findOrInsertEventID(matching eventDict: [String : String], in context: NSManagedObjectContext) throws -> Event
     {
+        // Formatting DateTime
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         request.predicate = NSPredicate(format: "id = %@", eventDict[DBLabels.eventID]!)
         do {
-            
             let match = try context.fetch(request)
             if match.count > 0 {
                 assert(match.count == 1, "findOrInsertEventID -- database inconsistency")
                 let thisEvent = match[0]
+                
+                let createdTime = eventDict[DBLabels.createdTime]
+                thisEvent.createdTime = formatter.date(from: createdTime!)
                 thisEvent.isActive = eventDict[DBLabels.eventIsActive] != nil ? true : false
-                //print("ID: [\(thisEvent.id!)] - EVENT ACTIVE: [\(thisEvent.isActive)]")
                 do {
                     thisEvent.location = try Place.findOrInsertPlaceID(matching: eventDict, in: context)
                 } catch {
@@ -39,8 +44,11 @@ public class Event: NSManagedObject
 
         let event = Event(context: context)
         event.id = eventDict[DBLabels.eventID]
+        
+        // Formatting DateTime
+        let createdTime = eventDict[DBLabels.createdTime]
+        event.createdTime = formatter.date(from: createdTime!)
         event.isActive = eventDict[DBLabels.eventIsActive] != nil ? true : false
-        //print("ID: [\(event.id!)] - EVENT ACTIVE: [\(event.isActive)]")
         do {
         event.location = try Place.findOrInsertPlaceID(matching: eventDict, in: context)
         } catch {
@@ -157,6 +165,7 @@ public class Event: NSManagedObject
                         let startTimeDate = formatter.date(from: sTime)!
                         event.startTime = startTimeDate
                         event.updatedTime = formatter.date(from: uTime)!
+                        //event.createdTime = event.updatedTime // TO ERASE AFTER
                         
                         // Set startDate as a time in string "YYYYMMdd" eample: 20171120 (2017 11 20 -> 2017 Nov 20)
                         let dayFormatter = DateFormatter()
