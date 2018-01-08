@@ -284,6 +284,12 @@ class SettingsViewController: UITableViewController {
             self.navigationController?.popToRootViewController(animated: true)
             
         }
+        
+        if (segue.identifier == "Settings To View Your List") {
+            guard let destination = segue.destination as? SearchCatalogueViewController else { return }
+            destination.isForCatalogue = false
+            destination.navigationItem.title = "Your List"
+        }
 
     }
     

@@ -25,7 +25,7 @@ class MusicViewController: UICollectionViewController {
     
     // Actions
     @IBAction func searchCatalogueTouched(_ sender: UIBarButtonItem) {
-        print("searchCatalogueTouched")
+        searchIconPressed()
     }
     
 
@@ -66,7 +66,9 @@ class MusicViewController: UICollectionViewController {
     
     
     // Methods
-    
+    @objc private func searchIconPressed() {
+        print("searchCatalogueTouched")
+    }
     
     
     // Get info for Recently Played, Your List and New Releases
@@ -121,6 +123,31 @@ class MusicViewController: UICollectionViewController {
     }
     
 }
+
+// PREPARE FOR SEQUE
+extension MusicViewController
+{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "Music To Search Catalogue") {
+            guard let destination = segue.destination as? SearchCatalogueViewController else { return }
+            destination.isForCatalogue = true
+            destination.navigationItem.title = "Catalogue"
+        }
+        
+        if (segue.identifier == "Music To View Your List") {
+            guard let destination = segue.destination as? SearchCatalogueViewController else { return }
+            destination.isForCatalogue = false
+            destination.navigationItem.title = "Your List"
+        }
+        
+        
+        
+    }
+    
+    
+}
+
+
 
 
 

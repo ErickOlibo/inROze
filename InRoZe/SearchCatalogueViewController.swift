@@ -17,13 +17,21 @@ class SearchCatalogueViewController: FetchedResultsTableViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     var searchText: String?
+    var isForCatalogue: Bool = true
 
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Mixtape> in
         let request: NSFetchRequest<Mixtape> = Mixtape.fetchRequest()
         let isFollowSort = NSSortDescriptor(key: "isFollowed", ascending: false, selector: nil)
         let nameSort = NSSortDescriptor(key: "name", ascending: true, selector: nil)
+        let status = isForCatalogue
         request.sortDescriptors = [isFollowSort, nameSort]
-        request.predicate = NSPredicate(format: "name != nil AND isActive == YES")
+        
+        // conditional predicate
+        let cataloguePredicate = NSPredicate(format: "name != nil AND isActive == YES")
+        let yourListPredicate = NSPredicate(format: "name != nil AND isActive == YES AND isFollowed == YES")
+        request.predicate = isForCatalogue ? cataloguePredicate : yourListPredicate
+        
+        //request.predicate = NSPredicate(format: "name != nil AND isActive == YES")
         request.fetchBatchSize = 20
         let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedRC.delegate = self
@@ -68,7 +76,7 @@ class SearchCatalogueViewController: FetchedResultsTableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateUI()
-        navigationItem.title = "Catalogue"
+        //navigationItem.title = isForCatalogue ? "Catalogue" : "Your List"
     }
 
     override func didReceiveMemoryWarning() {
@@ -98,13 +106,19 @@ extension SearchCatalogueViewController: UISearchResultsUpdating {
         guard let tempSearchText = searchController.searchBar.text, tempSearchText.count > 0 else {
             searchText = searchController.searchBar.text
             //print("search text is nil")
-            fetchResultsController.fetchRequest.predicate = NSPredicate(format: "name != nil AND isActive == YES")
+            let cataloguePredicate = NSPredicate(format: "name != nil AND isActive == YES")
+            let yourListPredicate = NSPredicate(format: "name != nil AND isActive == YES AND isFollowed == YES")
+            fetchResultsController.fetchRequest.predicate = isForCatalogue ? cataloguePredicate : yourListPredicate
+            //fetchResultsController.fetchRequest.predicate = NSPredicate(format: "name != nil AND isActive == YES")
             updateUI()
             return
         }
         //print("passed the Guard")
         searchText = tempSearchText
-        fetchResultsController.fetchRequest.predicate = NSPredicate(format: "name != nil AND isActive == YES AND haystack contains[c] %@", tempSearchText)
+        let cataloguePredicate = NSPredicate(format: "name != nil AND isActive == YES AND haystack contains[c] %@", tempSearchText)
+        let yourListPredicate = NSPredicate(format: "name != nil AND isActive == YES AND isFollowed == YES AND haystack contains[c] %@", tempSearchText)
+        fetchResultsController.fetchRequest.predicate = isForCatalogue ? cataloguePredicate : yourListPredicate
+        //fetchResultsController.fetchRequest.predicate = NSPredicate(format: "name != nil AND isActive == YES AND haystack contains[c] %@", tempSearchText)
         updateUI()
     }
     
