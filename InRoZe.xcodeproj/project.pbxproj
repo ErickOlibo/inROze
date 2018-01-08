@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		297B48270458BA2567535BBB /* Pods_InRoZe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 025DA5AD4652E67328D77902 /* Pods_InRoZe.framework */; };
+		A704947D2003A09100D9ADC3 /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A704947C2003A09100D9ADC3 /* LNPopupController.framework */; };
+		A704947E2003A09100D9ADC3 /* LNPopupController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A704947C2003A09100D9ADC3 /* LNPopupController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C7C811F2A55C400A0D5A8 /* UIImageColors.swift */; };
 		A726CCCE1FE4786D004DF51D /* Mixtape.swift in Sources */ = {isa = PBXBuildFile; fileRef = A726CCCD1FE4786D004DF51D /* Mixtape.swift */; };
 		A72B792E1F2231AF009FB389 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72B792D1F2231AF009FB389 /* AppDelegate.swift */; };
@@ -74,9 +76,24 @@
 		A7F635DD1FF1D86F0036D720 /* DeejayGigsTableView+NSFetchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F635DC1FF1D86F0036D720 /* DeejayGigsTableView+NSFetchResultsController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A704947F2003A09200D9ADC3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A704947E2003A09100D9ADC3 /* LNPopupController.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		025DA5AD4652E67328D77902 /* Pods_InRoZe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InRoZe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		434049AE2BF497F26E4FEE54 /* Pods-InRoZe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InRoZe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InRoZe/Pods-InRoZe.debug.xcconfig"; sourceTree = "<group>"; };
+		A704947C2003A09100D9ADC3 /* LNPopupController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LNPopupController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71C7C811F2A55C400A0D5A8 /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
 		A726CCCD1FE4786D004DF51D /* Mixtape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mixtape.swift; sourceTree = "<group>"; };
 		A72B792A1F2231AF009FB389 /* InRoZe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InRoZe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +171,7 @@
 			files = (
 				A7F493C91FF4541100BA5E9A /* AVFoundation.framework in Frameworks */,
 				297B48270458BA2567535BBB /* Pods_InRoZe.framework in Frameworks */,
+				A704947D2003A09100D9ADC3 /* LNPopupController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +207,7 @@
 		A72B79211F2231AF009FB389 = {
 			isa = PBXGroup;
 			children = (
+				A704947C2003A09100D9ADC3 /* LNPopupController.framework */,
 				A72B792C1F2231AF009FB389 /* InRoZe */,
 				A72B792B1F2231AF009FB389 /* Products */,
 				4E73017E964B5423D0EC3497 /* Pods */,
@@ -577,6 +596,7 @@
 				A72B79281F2231AF009FB389 /* Resources */,
 				4A98FD31EE395221222B8AC1 /* [CP] Embed Pods Frameworks */,
 				71CEE18FDE0F823AF9413D66 /* [CP] Copy Pods Resources */,
+				A704947F2003A09200D9ADC3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
