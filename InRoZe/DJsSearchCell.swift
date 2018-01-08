@@ -36,6 +36,7 @@ class DJsSearchCell: UITableViewCell
     
     private func configureCell() {
         selectionStyle = .none
+        clearText()
         guard let name = deejay?.name else { return }
         //print("[\(tag)] - \(name)")
         deejayName.text = name
@@ -55,6 +56,13 @@ class DJsSearchCell: UITableViewCell
             }
         }
     }
+    
+    
+    private func clearText() {
+        deejayName.text = ""
+        gigsMixesList.text = ""
+    }
+    
     
     private func updateFollowedButton() {
         guard let currentIsFollow = deejay?.isFollowed else { return }
