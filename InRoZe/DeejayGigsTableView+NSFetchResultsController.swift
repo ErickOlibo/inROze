@@ -127,7 +127,7 @@ extension DeejayGigsTableViewController {
         tabBarController?.popupBar.imageView.layer.borderColor = UIColor.black.cgColor
         tabBarController?.popupBar.progressViewStyle = .top
         tabBarController?.popupBar.tintColor = Colors.logoRed
-
+        
         //tableView.deselectRow(at: indexPath, animated: true)
         
     }

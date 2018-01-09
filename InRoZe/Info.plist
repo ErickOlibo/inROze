@@ -47,6 +47,10 @@
 		<string>Bungee-Regular.ttf</string>
 		<string>FontAwesome.otf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

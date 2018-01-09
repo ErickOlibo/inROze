@@ -167,6 +167,7 @@ class MixtapePlayerViewController: UIViewController {
         //print("streamURL: \(streamURL)")
         let playerItem = AVPlayerItem(url: streamURL)
         player = AVPlayer(playerItem: playerItem)
+        
         duration = playerItem.asset.duration
         let durationInt = Int(CMTimeGetSeconds(duration))
         

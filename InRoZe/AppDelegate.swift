@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import FacebookCore
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,6 +27,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        
+        // Audio Seesion throughout App life Cycle
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+        } catch {
+            print("Setting category to AVAudioSessionCategoryPlayback failed in [didFinishLaunchingWithOptions]")
+        }
+        
         
         // to print out for simulator only where the app sandbox is
 //        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)

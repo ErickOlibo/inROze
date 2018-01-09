@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import AVFoundation
 
 
 class TabBarViewController: UITabBarController {
-
+    
+    public var sharedPlayer = AVPlayer()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //view.backgroundColor = .black
@@ -23,26 +27,26 @@ class TabBarViewController: UITabBarController {
 
     }
 
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        print("[TabBarViewController] -- View WILL Appear")
-//    }
-//    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        print("[TabBarViewController] -- View DID Appear")
-//    }
-//    
-//    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        print("[TabBarViewController] -- View WILL Disappear")
-//    }
-//    
-//    override func viewDidDisappear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        print("[TabBarViewController] -- View DID Disappear")
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("[TabBarViewController] -- View WILL Appear")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("[TabBarViewController] -- View DID Appear")
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("[TabBarViewController] -- View WILL Disappear")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("[TabBarViewController] -- View DID Disappear")
+    }
     
     
     private func listFonts() {
