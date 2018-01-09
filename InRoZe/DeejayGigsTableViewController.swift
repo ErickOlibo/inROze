@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import AVFoundation
 
 class DeejayGigsTableViewController: FetchedResultsTableViewController {
     

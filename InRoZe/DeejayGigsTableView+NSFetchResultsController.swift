@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Kingfisher
+import LNPopupController
 
 
 extension DeejayGigsTableViewController {
@@ -113,8 +114,26 @@ extension DeejayGigsTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //print("Event in Deejay list nr: [\(indexPath.row)]")
+        guard indexPath.section == 1 else { return }
+
+        
+        let popupContentController = storyboard?.instantiateViewController(withIdentifier: "MixtapePlayerViewController") as! MixtapePlayerViewController
+        guard let mixtape = mixtapesOfDJ?[indexPath.row] else { return }
+        popupContentController.mixtape = mixtape
+        tabBarController?.presentPopupBar(withContentViewController: popupContentController, animated: true, completion: nil)
+        tabBarController?.popupBar.tintColor = UIColor(white: 38.0 / 255.0, alpha: 1.0)
+        tabBarController?.popupBar.imageView.layer.cornerRadius = 5
+        tabBarController?.popupBar.imageView.layer.borderWidth = 0.333
+        tabBarController?.popupBar.imageView.layer.borderColor = UIColor.black.cgColor
+        tabBarController?.popupBar.progressViewStyle = .top
+        tabBarController?.popupBar.tintColor = Colors.logoRed
+
+        //tableView.deselectRow(at: indexPath, animated: true)
+        
     }
+    
+    
+    
     
     // List of segue to be done here
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -60,39 +60,56 @@ class MixtapePlayerViewController: UIViewController {
     }
     
     
-    @IBAction func dismissViewOnSwipeDown(_ sender: UISwipeGestureRecognizer) {
-        self.dismiss(animated: true, completion: nil)
-    }
+//    @IBAction func dismissViewOnSwipeDown(_ sender: UISwipeGestureRecognizer) {
+//        self.dismiss(animated: true, completion: nil)
+//    }
     
+    // Try this. Not sure what it does
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//        setMiniPlayerControls()
+//
+//    }
     
 
     // VIEW CONTROLLER LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
-        // START Spinner and show frontView
-        // CODE HERE
+        //popupBar.progressViewStyle = .top
+        //popupBar.barTintColor = Colors.logoRed
         
+        
+
         
         // Basic UI Setting
         mixProgressView.transform = mixProgressView.transform.scaledBy(x: 1.0, y: 4.0)
         setAudioStreamFromMixCloud()
         setMixtapeCoverUI()
         setMixtapeInfoUI()
+        // The AUTO PLAY at view did load
+        guard let mixID = mixtape?.id else { return }
+        print("*** [\(mixID)] - [\(player.description)] - DID LOAD")
+        player.play()
+        updateMiniPlayPauseIcon()
+        
         setMixtapeCoverAndColors()
-
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        guard let mixID = mixtape?.id else { return }
+        print("*** [\(mixID)] - [\(player.description)] - WILL APPEAR")
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
         guard let colorsDB = colors else { return }
         guard let mixID = mixtape?.id else { return }
+        print("*** [\(mixID)] - [\(player.description)] - WILL DISAPPEAR")
+        
         container?.performBackgroundTask { context in
             let colorsInHex = colorsToHexString(with: colorsDB)
             _ = Mixtape.updateMixtapeImageColors(with: mixID, and: colorsInHex, in: context)
@@ -103,15 +120,47 @@ class MixtapePlayerViewController: UIViewController {
                 print("MixtapePlayerViewController -> Error while trying yo save the cover image Colors to Database: \(error)")
             }
         }
-        // for the moment STOP MUSIC
-        player.pause()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        guard let mixID = mixtape?.id else { return }
+        print("*** [\(mixID)] - [\(player.description)] - DID DISAPPEAR")
     }
 
   
     
     // METHODS
-    private func setAudioStreamFromMixCloud() {
+    private func miniPlayPauseAudio() {
+        if (player.rate != 0) {
+            player.pause()
+            updateMiniPlayPauseIcon()
+        }  else {
+            player.play()
+            updateMiniPlayPauseIcon()
+            setPlayedTime()
+        }
+    }
+    
+    private func updateMiniPlayPauseIcon() {
+        let pause = UIBarButtonItem(image: UIImage(named: "Pause_mini"), style: .plain, target: self, action: #selector(playPauseTapped))
+        let play = UIBarButtonItem(image: UIImage(named: "Play_mini"), style: .plain, target: self, action: #selector(playPauseTapped))
+        
+        if (player.rate != 0) {
+            popupItem.leftBarButtonItems = [pause]
+        }  else {
+            popupItem.leftBarButtonItems = [play]
+        }
+    }
 
+
+    @objc private func playPauseTapped() {
+        print("PLAY / PAUSE Button tapped")
+        miniPlayPauseAudio()
+    }
+    
+    
+    private func setAudioStreamFromMixCloud() {
         guard let strURL = mixtape?.streamURL else { return }
         //guard let length = mixtape?.length else { return }
         guard let streamURL = URL(string: strURL) else { return }
@@ -132,6 +181,7 @@ class MixtapePlayerViewController: UIViewController {
             let ratio = Float(progress / totalLength)
             //print(" Total: \(totalLength) | current: \(progress) | RATIO: \(ratio)")
             self.mixProgressView.setProgress(ratio, animated: true)
+            self.popupItem.progress = ratio
             
             // Update Elapsed and Remaining Label
             let progressSecs = Int(CMTimeGetSeconds(progressTime))
@@ -149,6 +199,7 @@ class MixtapePlayerViewController: UIViewController {
         }
 
     }
+    
     
     
     private func playPauseAudio() {
@@ -190,7 +241,18 @@ class MixtapePlayerViewController: UIViewController {
         remainingTime.text = "-" + duration
         deejayName.text = mixDJ
         mixtapeName.text = mixTitle
+        //updateMiniPlayerUI()
     }
+    
+    private func updateMiniPlayerUI(image: UIImage) {
+        guard let mixTitle = mixtape?.name else { return }
+        guard let mixDJ = mixtape?.deejay?.name else { return }
+        popupItem.title = mixDJ
+        popupItem.subtitle = mixTitle
+        popupItem.image = image
+        
+    }
+    
     
     private func setMixtapeCoverAndColors () {
         guard let mix = mixtape else { return }
@@ -199,6 +261,7 @@ class MixtapePlayerViewController: UIViewController {
         mixtapeCover.kf.setImage(with: URL(string: coverURL), options: [.backgroundDecode, .transition(.fade(0.2))], completionHandler: {
             (image, error, cacheType, imageUrl) in
             if (image != nil) {
+                self.updateMiniPlayerUI(image: image!)
                 if (mix.colorBackground != nil && mix.colorDetail != nil && mix.colorPrimary != nil && mix.colorSecondary != nil) {
                     let colorsDBInHex = ColorsInHexString(background: mix.colorBackground!, primary: mix.colorPrimary!, secondary: mix.colorSecondary!, detail: mix.colorDetail!)
                     self.colors = colorsFromHexString(with: colorsDBInHex)

@@ -82,7 +82,7 @@ class EventsViewController: FetchedResultsTableViewController {
     // Convenience Functions
     private func setOriginLabel() {
         let eventsInCity = "Events in \(currentCity.name.rawValue)"
-        let myNationalityFollows = "My \(currentCity.nationality.rawValue) Follows"
+        let myNationalityFollows = "Your \(currentCity.nationality.rawValue) Follows"
         navigationItem.title = eventsInCity
         myFollows.text = myNationalityFollows
     }
