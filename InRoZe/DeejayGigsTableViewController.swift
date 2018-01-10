@@ -74,11 +74,11 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         print("inset SafeArea: \(view.safeAreaInsets)")
         print("Inset AdditionalSafeAreaInsets: \(additionalSafeAreaInsets)")
 
-        additionalSafeAreaInsets.bottom = isShowingMiniPlayer ? 17.0 : 0.0
+        //additionalSafeAreaInsets.bottom = isShowingMiniPlayer ? 17.0 : 0.0
         //let viewInsets = view.safeAreaInsets
         //let insets = UIEdgeInsetsMake(viewInsets.top, viewInsets.left, additionalSafeAreaInsets.bottom, viewInsets.right)
-        tableView.contentInset = view.safeAreaInsets
-        tableView.scrollIndicatorInsets = view.safeAreaInsets
+        //tableView.contentInset = view.safeAreaInsets
+        //tableView.scrollIndicatorInsets = view.safeAreaInsets
 
     }
 

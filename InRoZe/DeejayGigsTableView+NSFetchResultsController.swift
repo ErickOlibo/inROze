@@ -128,7 +128,7 @@ extension DeejayGigsTableViewController {
         print("BEFORE -> TABLEVIEW OFFSET -> \(tableView.contentOffset)")
         tabBarController?.presentPopupBar(withContentViewController: popupContentController, animated: true, completion: nil)
         print("AFTER -> TABLEVIEW OFFSET -> \(tableView.contentOffset)")
-        isShowingMiniPlayer = tabBarController?.popupBar.frame.height != 0
+        //isShowingMiniPlayer = tabBarController?.popupBar.frame.height != 0
         tabBarController?.popupBar.imageView.layer.cornerRadius = 5
         tabBarController?.popupBar.imageView.layer.borderWidth = 0.333
         tabBarController?.popupBar.imageView.layer.borderColor = UIColor.black.cgColor

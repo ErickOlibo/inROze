@@ -21,7 +21,7 @@ class TabBarViewController: UITabBarController {
         //view.backgroundColor = .black
         print("[TabBarViewController] -- View DID Load")
 
-        self.tabBar.isTranslucent = false
+        self.tabBar.isTranslucent = true
         self.tabBar.tintColor = Colors.logoRed
         //listFonts()
 
