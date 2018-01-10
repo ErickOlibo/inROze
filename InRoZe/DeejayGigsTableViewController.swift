@@ -42,6 +42,8 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     let sepaThick: CGFloat = 0.333
     var eventsOfDJ: [Event]?
     var mixtapesOfDJ: [Mixtape]?
+    var isShowingMiniPlayer: Bool = false
+
 
 
 
@@ -62,6 +64,22 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         setDeejayImage()
         updateEventsMixtapes()
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        //let guide = view.safeAreaLayoutGuide
+        //let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
+        //print("[DemoAlbumTableViewController] -> viewDidLayoutSubviews \(insets)")
+        print("inset SafeArea: \(view.safeAreaInsets)")
+        print("Inset AdditionalSafeAreaInsets: \(additionalSafeAreaInsets)")
+
+        additionalSafeAreaInsets.bottom = isShowingMiniPlayer ? 17.0 : 0.0
+        //let viewInsets = view.safeAreaInsets
+        //let insets = UIEdgeInsetsMake(viewInsets.top, viewInsets.left, additionalSafeAreaInsets.bottom, viewInsets.right)
+        tableView.contentInset = view.safeAreaInsets
+        tableView.scrollIndicatorInsets = view.safeAreaInsets
+
     }
 
     override func viewWillAppear(_ animated: Bool) {

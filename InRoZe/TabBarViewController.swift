@@ -13,6 +13,7 @@ import AVFoundation
 class TabBarViewController: UITabBarController {
     
     public var sharedPlayer = AVPlayer()
+    public var isShowingMiniPlayer: Bool = false
     
     
     override func viewDidLoad() {
