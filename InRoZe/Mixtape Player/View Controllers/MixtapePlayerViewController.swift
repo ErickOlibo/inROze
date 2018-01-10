@@ -14,21 +14,18 @@ class MixtapePlayerViewController: UIViewController {
     
     // context & container
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
-    let mainContext = AppDelegate.viewContext
 
     // properties
     override var prefersStatusBarHidden: Bool { return true }
-    private var player: AVPlayer!
+    var player: AVPlayer! //{ didSet { print("Player in MusicVC SET: \(player.description)") } }
+    
     private var duration: CMTime!
     var mixtape: Mixtape?
     var colors: UIImageColors? { didSet { updateUI() }}
-    //var isPlaying: Bool = false
     private var colorOne: UIColor = .black // Defines the view background color
     private var colorTwo: UIColor = .black // Defines the text labels, play/pause button color
     private var colorThree: UIColor = .black // Defines the skip back and front button color
-    
 
-    
     // Outlets
     @IBOutlet weak var mixtapeCover: UIImageView!
     @IBOutlet weak var mixProgressView: UIProgressView!
@@ -40,18 +37,16 @@ class MixtapePlayerViewController: UIViewController {
     @IBOutlet weak var deejayName: UILabel!
     @IBOutlet weak var mixtapeName: UILabel!
     
-    
-    
+
     // Actions
     @IBAction func touchedPlayPause(_ sender: UIButton) {
-        print("touchedPlayPause")
-        playPauseAudio()
+        print("PLAYER VIEW -> touchedPlayPause")
+        toggleBetweenPlayPause()
     }
     
     @IBAction func touchedSkipForward(_ sender: UIButton) {
         print("touchedSkipForward")
         seekNewCurrentTime(byLookForward: true)
-        
     }
     
     @IBAction func touchedSkipBackward(_ sender: UIButton) {
@@ -59,40 +54,23 @@ class MixtapePlayerViewController: UIViewController {
         seekNewCurrentTime(byLookForward: false)
     }
     
-    
-//    @IBAction func dismissViewOnSwipeDown(_ sender: UISwipeGestureRecognizer) {
-//        self.dismiss(animated: true, completion: nil)
-//    }
-    
-    // Try this. Not sure what it does
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//        setMiniPlayerControls()
-//
-//    }
+    @objc private func miniPlayPauseTapped() {
+        print("MINI Player --> PLAY / PAUSE Button tapped")
+        toggleBetweenPlayPause()
+    }
     
 
     // VIEW CONTROLLER LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
-        //popupBar.progressViewStyle = .top
-        //popupBar.barTintColor = Colors.logoRed
-        
-        
-
-        
-        // Basic UI Setting
         mixProgressView.transform = mixProgressView.transform.scaledBy(x: 1.0, y: 4.0)
         setAudioStreamFromMixCloud()
+        player.play()
+        setPlayedTime()
+        updatePlayPauseIcons()
         setMixtapeCoverUI()
         setMixtapeInfoUI()
-        // The AUTO PLAY at view did load
-        guard let mixID = mixtape?.id else { return }
-        print("*** [\(mixID)] - [\(player.description)] - DID LOAD")
-        player.play()
-        updateMiniPlayPauseIcon()
-        
         setMixtapeCoverAndColors()
     }
     
@@ -100,7 +78,6 @@ class MixtapePlayerViewController: UIViewController {
         super.viewWillAppear(animated)
         guard let mixID = mixtape?.id else { return }
         print("*** [\(mixID)] - [\(player.description)] - WILL APPEAR")
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -109,70 +86,76 @@ class MixtapePlayerViewController: UIViewController {
         guard let colorsDB = colors else { return }
         guard let mixID = mixtape?.id else { return }
         print("*** [\(mixID)] - [\(player.description)] - WILL DISAPPEAR")
-        
         container?.performBackgroundTask { context in
             let colorsInHex = colorsToHexString(with: colorsDB)
             _ = Mixtape.updateMixtapeImageColors(with: mixID, and: colorsInHex, in: context)
             do {
                 try context.save()
-                //print("DONE SAVING")
             } catch {
                 print("MixtapePlayerViewController -> Error while trying yo save the cover image Colors to Database: \(error)")
             }
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        guard let mixID = mixtape?.id else { return }
-        print("*** [\(mixID)] - [\(player.description)] - DID DISAPPEAR")
-    }
 
   
     
     // METHODS
-    private func miniPlayPauseAudio() {
-        if (player.rate != 0) {
-            player.pause()
-            updateMiniPlayPauseIcon()
-        }  else {
-            player.play()
-            updateMiniPlayPauseIcon()
-            setPlayedTime()
-        }
+    private func updatePlayPauseIcons() {
+        updateIconForMiniPlayer()
+        updateIconForPlayerView()
     }
     
-    private func updateMiniPlayPauseIcon() {
-        let pause = UIBarButtonItem(image: UIImage(named: "Pause_mini"), style: .plain, target: self, action: #selector(playPauseTapped))
-        let play = UIBarButtonItem(image: UIImage(named: "Play_mini"), style: .plain, target: self, action: #selector(playPauseTapped))
+    private func updateIconForPlayerView() {
+        playPauseButton.layer.masksToBounds = true
+        playPauseButton.layer.cornerRadius = 45.0
+        playPauseButton.layer.borderWidth = 4.0
         
+        guard let iconPlay = FAType.FAPlay.text else { return }
+        guard let iconPause = FAType.FAPause.text else { return }
+        let attrPlay = fontAwesomeAttributedString(forString: iconPlay, withColor: colorTwo, andFontSize: 60.0)
+        let attrPause = fontAwesomeAttributedString(forString: iconPause, withColor: colorTwo, andFontSize: 55.0)
         if (player.rate != 0) {
-            popupItem.leftBarButtonItems = [pause]
-        }  else {
-            popupItem.leftBarButtonItems = [play]
+            playPauseButton.contentEdgeInsets.left = 0
+            playPauseButton.setAttributedTitle(attrPause, for: .normal)
+            playPauseButton.layer.borderColor = colorThree.cgColor
+            
+        } else {
+            playPauseButton.contentEdgeInsets.left = 12
+            playPauseButton.setAttributedTitle(attrPlay, for: .normal)
+            playPauseButton.layer.borderColor = colorTwo.cgColor
+        }
+    }
+    
+    private func updateIconForMiniPlayer() {
+        let pause = UIBarButtonItem(image: UIImage(named: "Pause_mini"), style: .plain, target: self, action: #selector(miniPlayPauseTapped))
+        let play = UIBarButtonItem(image: UIImage(named: "Play_mini"), style: .plain, target: self, action: #selector(miniPlayPauseTapped))
+        popupItem.leftBarButtonItems = player.rate != 0 ? [pause] : [play]
+    }
+    
+
+    private func setPlayedTime() {
+        guard let mixID = mixtape?.id else { return }
+        guard player.rate != 0 else { return }
+        container?.performBackgroundTask{ context in
+            _ = Mixtape.setPlayedTime(with: mixID, in: context)
         }
     }
 
-
-    @objc private func playPauseTapped() {
-        print("PLAY / PAUSE Button tapped")
-        miniPlayPauseAudio()
+    private func toggleBetweenPlayPause() {
+        player.rate != 0 ? player.pause() : player.play()
+        setPlayedTime()
+        updatePlayPauseIcons()
     }
     
-    
+
     private func setAudioStreamFromMixCloud() {
         guard let strURL = mixtape?.streamURL else { return }
-        //guard let length = mixtape?.length else { return }
         guard let streamURL = URL(string: strURL) else { return }
-        //print("streamURL: \(streamURL)")
         let playerItem = AVPlayerItem(url: streamURL)
-        player = AVPlayer(playerItem: playerItem)
-        
+        player.replaceCurrentItem(with: playerItem)
         duration = playerItem.asset.duration
         let durationInt = Int(CMTimeGetSeconds(duration))
-        
-
-        //print("Duration From server: \(length)")
         
         // TRACK PLAYER PROGRESS -> Not sure it should not be here
         let interval = CMTime(value: 1, timescale: 1)
@@ -180,11 +163,9 @@ class MixtapePlayerViewController: UIViewController {
             let progress = CMTimeGetSeconds(progressTime)
             let totalLength = CMTimeGetSeconds(self.duration)
             let ratio = Float(progress / totalLength)
-            //print(" Total: \(totalLength) | current: \(progress) | RATIO: \(ratio)")
             self.mixProgressView.setProgress(ratio, animated: true)
             self.popupItem.progress = ratio
             
-            // Update Elapsed and Remaining Label
             let progressSecs = Int(CMTimeGetSeconds(progressTime))
             guard let elapsed = timeDuration(from: String(progressSecs)) else { return }
             self.elapsedTime.text = elapsed
@@ -193,34 +174,12 @@ class MixtapePlayerViewController: UIViewController {
             guard let remaining = timeDuration(from: leftTime) else { return }
             self.remainingTime.text = "-" + remaining
             
-            // pause/ Stop when progress is duration
             if (progress >= totalLength) {
                 self.player.pause()
+                self.mixProgressView.setProgress(0.0, animated: true)
+                self.popupItem.progress = 0.0
+                self.updatePlayPauseIcons()
             }
-        }
-
-    }
-    
-    
-    
-    private func playPauseAudio() {
-        if (player.rate != 0) {
-            // Already playing So pause Audio
-            player.pause()
-            updatePlayPauseIcon()
-        }  else {
-            // not playing so Start Audio
-            player.play()
-            updatePlayPauseIcon()
-            setPlayedTime()
-        }
-    }
-    
-    
-    private func setPlayedTime() {
-        guard let mixID = mixtape?.id else { return }
-        container?.performBackgroundTask{ context in
-            _ = Mixtape.setPlayedTime(with: mixID, in: context)
         }
     }
     
@@ -237,12 +196,10 @@ class MixtapePlayerViewController: UIViewController {
         guard let length = mixtape?.length else { return }
         guard let duration = timeDuration(from: length) else { return }
         guard let startTime = timeDuration(from: "0") else { return }
-        
         elapsedTime.text = startTime
         remainingTime.text = "-" + duration
         deejayName.text = mixDJ
         mixtapeName.text = mixTitle
-        //updateMiniPlayerUI()
     }
     
     private func updateMiniPlayerUI(image: UIImage) {
@@ -278,20 +235,12 @@ class MixtapePlayerViewController: UIViewController {
             }
         })
     }
-    
 
-    
-    
     private func updateUI () {
-        //print("Colors are SET and READY to be USED")
         updatesTheThreeColors()
-
         updatePlayerNavButtonUI()
         updatePlayerColorsUI()
-        updatePlayPauseIcon()
-        //tryTimer()
-        // STOP Spinner and hide frontView
-        
+        updatePlayPauseIcons()
     }
     
     private func updatesTheThreeColors() {
@@ -304,33 +253,6 @@ class MixtapePlayerViewController: UIViewController {
             colorOne = setColors.background
             colorTwo = setColors.primary
             colorThree = setColors.secondary
-        }
-    }
-    
-    
-    
-    private func updatePlayPauseIcon() {
-        playPauseButton.layer.masksToBounds = true
-        playPauseButton.layer.cornerRadius = 45.0
-        playPauseButton.layer.borderWidth = 4.0
-        
-        guard let iconPlay = FAType.FAPlay.text else { return }
-        guard let iconPause = FAType.FAPause.text else { return }
-        let attrPlay = fontAwesomeAttributedString(forString: iconPlay, withColor: colorTwo, andFontSize: 60.0)
-        let attrPause = fontAwesomeAttributedString(forString: iconPause, withColor: colorTwo, andFontSize: 55.0)
-
-        if (player.rate != 0) {
-            //print("Track is Playing - Show pause icon")
-            playPauseButton.contentEdgeInsets.left = 0
-            playPauseButton.setAttributedTitle(attrPause, for: .normal)
-            playPauseButton.layer.borderColor = colorThree.cgColor
-            
-        } else {
-            //print("Track is Paused - Show play icon")
-            
-            playPauseButton.contentEdgeInsets.left = 12
-            playPauseButton.setAttributedTitle(attrPlay, for: .normal)
-            playPauseButton.layer.borderColor = colorTwo.cgColor
         }
     }
     
@@ -362,9 +284,7 @@ class MixtapePlayerViewController: UIViewController {
         let currentSeconds = Int64(CMTimeGetSeconds(currentTime))
         let fiveMinutes: Int64 = 300
         let zeroTime = Int64(0.0)
-        
-        
-        
+
         if (isForward) {
             let seekedTime = (currentSeconds + fiveMinutes >= length) ? length : (currentSeconds + fiveMinutes)
             let targetTime = CMTimeMake(seekedTime, 1)
@@ -375,7 +295,6 @@ class MixtapePlayerViewController: UIViewController {
             let targetTime = CMTimeMake(seekedTime, 1)
             player.seek(to: targetTime)
         }
-   
     }
     
 

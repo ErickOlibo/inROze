@@ -119,6 +119,11 @@ extension DeejayGigsTableViewController {
         
         let popupContentController = storyboard?.instantiateViewController(withIdentifier: "MixtapePlayerViewController") as! MixtapePlayerViewController
         guard let mixtape = mixtapesOfDJ?[indexPath.row] else { return }
+        
+        // Update sharePlayer  (AVPlayer)
+        let tabBarVC = tabBarController as! TabBarViewController
+        //print("TAB BAR PLAYER: \(tabBarVC.sharedPlayer.description)")
+        popupContentController.player = tabBarVC.sharedPlayer
         popupContentController.mixtape = mixtape
         tabBarController?.presentPopupBar(withContentViewController: popupContentController, animated: true, completion: nil)
         tabBarController?.popupBar.tintColor = UIColor(white: 38.0 / 255.0, alpha: 1.0)
@@ -127,6 +132,7 @@ extension DeejayGigsTableViewController {
         tabBarController?.popupBar.imageView.layer.borderColor = UIColor.black.cgColor
         tabBarController?.popupBar.progressViewStyle = .top
         tabBarController?.popupBar.tintColor = Colors.logoRed
+        
         
         //tableView.deselectRow(at: indexPath, animated: true)
         
