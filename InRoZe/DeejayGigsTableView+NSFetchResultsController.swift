@@ -120,25 +120,17 @@ extension DeejayGigsTableViewController {
         let popupContentController = storyboard?.instantiateViewController(withIdentifier: "MixtapePlayerViewController") as! MixtapePlayerViewController
         guard let mixtape = mixtapesOfDJ?[indexPath.row] else { return }
         
-        // Update sharePlayer  (AVPlayer)
         let tabBarVC = tabBarController as! TabBarViewController
         //print("TAB BAR PLAYER: \(tabBarVC.sharedPlayer.description)")
         popupContentController.player = tabBarVC.sharedPlayer
         popupContentController.mixtape = mixtape
-        print("BEFORE -> TABLEVIEW OFFSET -> \(tableView.contentOffset)")
         tabBarController?.presentPopupBar(withContentViewController: popupContentController, animated: true, completion: nil)
-        print("AFTER -> TABLEVIEW OFFSET -> \(tableView.contentOffset)")
-        //isShowingMiniPlayer = tabBarController?.popupBar.frame.height != 0
         tabBarController?.popupBar.imageView.layer.cornerRadius = 5
         tabBarController?.popupBar.imageView.layer.borderWidth = 0.333
         tabBarController?.popupBar.imageView.layer.borderColor = UIColor.black.cgColor
         tabBarController?.popupBar.progressViewStyle = .top
         tabBarController?.popupBar.tintColor = Colors.logoRed
-        print("PpoupBar Frame: \(String(describing: tabBarController?.popupBar.frame))")
-        
-        
-        //tableView.deselectRow(at: indexPath, animated: true)
-        
+        //print("PpoupBar Frame: \(String(describing: tabBarController?.popupBar.frame))")
     }
     
     

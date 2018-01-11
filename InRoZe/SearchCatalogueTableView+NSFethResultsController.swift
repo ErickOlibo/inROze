@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import LNPopupController
 
 extension SearchCatalogueViewController
 {
@@ -35,6 +36,30 @@ extension SearchCatalogueViewController
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(isForCatalogue) {
+            print("SearchFOR Catalogue")
+        } else {
+            print("Search For List")
+        }
+        let popupContentController = storyboard?.instantiateViewController(withIdentifier: "MixtapePlayerViewController") as! MixtapePlayerViewController
+        let mixtape = fetchResultsController.object(at: indexPath)
+        let tabBarVC = tabBarController as! TabBarViewController
+        //print("TAB BAR PLAYER: \(tabBarVC.sharedPlayer.description)")
+        popupContentController.player = tabBarVC.sharedPlayer
+        popupContentController.mixtape = mixtape
+        tabBarController?.presentPopupBar(withContentViewController: popupContentController, animated: true, completion: nil)
+        tabBarController?.popupBar.imageView.layer.cornerRadius = 5
+        tabBarController?.popupBar.imageView.layer.borderWidth = 0.333
+        tabBarController?.popupBar.imageView.layer.borderColor = UIColor.black.cgColor
+        tabBarController?.popupBar.progressViewStyle = .top
+        tabBarController?.popupBar.tintColor = Colors.logoRed
+        
+        
+        
+    }
+    
     
     
 }

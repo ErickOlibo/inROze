@@ -71,8 +71,8 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
         //let guide = view.safeAreaLayoutGuide
         //let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, bottomLayoutGuide.length, 0)
         //print("[DemoAlbumTableViewController] -> viewDidLayoutSubviews \(insets)")
-        print("inset SafeArea: \(view.safeAreaInsets)")
-        print("Inset AdditionalSafeAreaInsets: \(additionalSafeAreaInsets)")
+        //print("inset SafeArea: \(view.safeAreaInsets)")
+        //print("Inset AdditionalSafeAreaInsets: \(additionalSafeAreaInsets)")
 
         //additionalSafeAreaInsets.bottom = isShowingMiniPlayer ? 17.0 : 0.0
         //let viewInsets = view.safeAreaInsets

@@ -17,11 +17,11 @@ class MixtapePlayerViewController: UIViewController {
 
     // properties
     override var prefersStatusBarHidden: Bool { return true }
-    var player: AVPlayer! //{ didSet { print("Player in MusicVC SET: \(player.description)") } }
-    
+    public var player: AVPlayer! //{ didSet { print("Player in MusicVC SET: \(player.description)") } }
+    public var mixtape: Mixtape?
+
     private var duration: CMTime!
-    var mixtape: Mixtape?
-    var colors: UIImageColors? { didSet { updateUI() }}
+    private var colors: UIImageColors? { didSet { updateUI() }}
     private var colorOne: UIColor = .black // Defines the view background color
     private var colorTwo: UIColor = .black // Defines the text labels, play/pause button color
     private var colorThree: UIColor = .black // Defines the skip back and front button color
@@ -76,8 +76,8 @@ class MixtapePlayerViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let mixID = mixtape?.id else { return }
-        print("*** [\(mixID)] - [\(player.description)] - WILL APPEAR")
+//        guard let mixID = mixtape?.id else { return }
+//        print("*** [\(mixID)] - [\(player.description)] - WILL APPEAR")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -85,7 +85,7 @@ class MixtapePlayerViewController: UIViewController {
         
         guard let colorsDB = colors else { return }
         guard let mixID = mixtape?.id else { return }
-        print("*** [\(mixID)] - [\(player.description)] - WILL DISAPPEAR")
+        //print("*** [\(mixID)] - [\(player.description)] - WILL DISAPPEAR")
         container?.performBackgroundTask { context in
             let colorsInHex = colorsToHexString(with: colorsDB)
             _ = Mixtape.updateMixtapeImageColors(with: mixID, and: colorsInHex, in: context)

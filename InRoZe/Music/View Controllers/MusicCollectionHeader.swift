@@ -23,6 +23,7 @@ class MusicCollectionHeader: UICollectionReusableView {
     var yourListMix: [Mixtape]?
     var numberOfCell: Int = 0
     var cellsTitleList = [String]()
+    var musicDelegate: SetMusicPlayerDelegate!
     
     // Outlets
     @IBOutlet weak var catalogueLbl: UILabel!
@@ -97,6 +98,7 @@ extension MusicCollectionHeader: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: OtherMusicListCell.identifier, for: indexPath) as! OtherMusicListCell
+        cell.musicPlayerDelegate = musicDelegate
         let name = cellsTitleList[indexPath.row]
         //print("Name: [\(name)] - Row: [\(indexPath.row)]")
         cell.selectionStyle = .none
@@ -128,6 +130,24 @@ extension MusicCollectionHeader: UITableViewDataSource, UITableViewDelegate
         return 260.0
     }
 
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("MusicCollectionHeader - > DidSelect Item: \(indexPath)")
+        
+    }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

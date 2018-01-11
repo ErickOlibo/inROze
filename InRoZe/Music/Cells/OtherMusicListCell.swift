@@ -8,6 +8,12 @@
 
 import UIKit
 import CoreData
+import LNPopupController
+
+protocol SetMusicPlayerDelegate {
+    func didTapCellForMixtape(mixtape: Mixtape)
+}
+
 
 class OtherMusicListCell: UITableViewCell {
     
@@ -17,6 +23,8 @@ class OtherMusicListCell: UITableViewCell {
     
     
     // Properties
+    var musicPlayerDelegate: SetMusicPlayerDelegate!
+    
     static var identifier: String { return String(describing: self) }
     var mixtapes: [Mixtape]?
     
@@ -31,8 +39,6 @@ class OtherMusicListCell: UITableViewCell {
     @IBAction func viewAllTouched(_ sender: UIButton) {
         print("VIEW ALL TOUCHED")
     }
-    
-    
     
 
     override func awakeFromNib() {
@@ -72,12 +78,35 @@ extension OtherMusicListCell: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MusicListCollectionCell.identifier, for: indexPath) as! MusicListCollectionCell
+        //print("OtherMusicList -> Cell Path: [\(indexPath)]")
         guard let mix = mixtapes?[indexPath.row] else { return cell }
         cell.mixtape = mix
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //print("OtherMusicList - > DidSelect Cell: \(indexPath.row)")
+        guard let mixtape = mixtapes?[indexPath.row] else { return }
+        musicPlayerDelegate.didTapCellForMixtape(mixtape: mixtape)
+
+        
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

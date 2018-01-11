@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import LNPopupController
 
 //private let reuseIdentifier = "Cell"
 
@@ -15,7 +16,6 @@ class MusicViewController: UICollectionViewController {
     
     
     // Core Data model container and context
-    //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     let mainContext = AppDelegate.viewContext
     
@@ -29,7 +29,6 @@ class MusicViewController: UICollectionViewController {
     }
     
 
-    
     // properties
     var mixtapes: [Mixtape]? //{ didSet { print("Total Mixtapes: \(mixtapes?.count ?? 0)") } }
     
@@ -38,20 +37,12 @@ class MusicViewController: UICollectionViewController {
     var yourListMix: [Mixtape]?
     var numberOfCells: Int = 0
     
-    //private let sectionNames = ["New Releases", "Your List", "Recently Played"]
-    //private let sectionNames = ["Your List"]
-    
     
     // VIEW life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         searchCatalogueButton.tintColor = Colors.logoRed
-
-        
         collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//        let sizeH = collectionView?.frame.height
-//        let sizeW = collectionView?.frame.width
-//        print("CollectionView Size: WxH [\(sizeW ?? 0) x \(sizeH ?? 0)]")
         setupNavBar()
         otherMixtapes()
         getAllMixtapes()
@@ -122,6 +113,22 @@ class MusicViewController: UICollectionViewController {
         navigationItem.title = "Mixtapes"
     }
     
+    
+    private func loadAndPlayMixtape(mixtape: Mixtape) {
+        let popupContentController = storyboard?.instantiateViewController(withIdentifier: "MixtapePlayerViewController") as! MixtapePlayerViewController
+        let tabBarVC = tabBarController as! TabBarViewController
+        popupContentController.player = tabBarVC.sharedPlayer
+        popupContentController.mixtape = mixtape
+        tabBarController?.presentPopupBar(withContentViewController: popupContentController, animated: true, completion: nil)
+        tabBarController?.popupBar.imageView.layer.cornerRadius = 5
+        tabBarController?.popupBar.imageView.layer.borderWidth = 0.333
+        tabBarController?.popupBar.imageView.layer.borderColor = UIColor.black.cgColor
+        tabBarController?.popupBar.progressViewStyle = .top
+        tabBarController?.popupBar.tintColor = Colors.logoRed
+    }
+    
+    
+    
 }
 
 // PREPARE FOR SEQUE
@@ -133,21 +140,23 @@ extension MusicViewController
             destination.isForCatalogue = true
             destination.navigationItem.title = "Catalogue"
         }
-        
         if (segue.identifier == "Music To View Your List") {
             guard let destination = segue.destination as? SearchCatalogueViewController else { return }
             destination.isForCatalogue = false
             destination.navigationItem.title = "Your List"
         }
-        
-        
-        
     }
-    
-    
 }
 
 
+extension MusicViewController: SetMusicPlayerDelegate
+{
+    func didTapCellForMixtape(mixtape: Mixtape) {
+        print("DidTapCellFor Mixtape From Release, Recent, Your list")
+        loadAndPlayMixtape(mixtape: mixtape)
+    }
+    
+}
 
 
 
@@ -168,26 +177,24 @@ extension MusicViewController: UICollectionViewDelegateFlowLayout
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MusicCatalogueCell.identifier, for: indexPath) as! MusicCatalogueCell
         cell.tag = indexPath.row
         cell.mixtape = mixtapes?[indexPath.row]
-        
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Cell: \(indexPath.row)")
+        print("Catalogue Section -> Cell [\(indexPath.row)]")
+        guard let mixtape = mixtapes?[indexPath.row] else { return }
+        loadAndPlayMixtape(mixtape: mixtape)
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: MusicCollectionHeader.identifier, for: indexPath) as! MusicCollectionHeader
-        //header.sectionNames = sectionNames
-        //print("IN HEADER: Count: ", yourListMix?.count ?? 0)
-        
-        // Send all 3 array of mixtapes (New Releases, Recently Played, Your list)
+        header.musicDelegate = self
+
         header.newReleasesMix = newReleasesMix
         header.recentlyPlayedMix = recentlyPlayedMix
         header.yourListMix = yourListMix
         
-        // Here we must realod all the Header Lists and Cell
         header.reloadAllData()
         return header
     }
@@ -195,7 +202,6 @@ extension MusicViewController: UICollectionViewDelegateFlowLayout
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 20)) / 2
         let itemSize2 = (collectionView.frame.width) / 2
         return CGSize(width: itemSize2, height: itemSize2 + 50)
     }
