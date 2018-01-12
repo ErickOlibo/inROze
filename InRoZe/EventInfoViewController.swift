@@ -36,7 +36,7 @@ class EventInfoViewController: UIViewController {
     @IBOutlet weak var startEndTime: UILabel!
     @IBOutlet weak var eventLocation: UILabel!
     @IBOutlet weak var eventAddress: UILabel!
-    @IBOutlet weak var directionIcon: UILabel!
+    @IBOutlet weak var addressOnMapIcon: UIImageView!
     
 
     // ViewController Life-Cycle
@@ -55,8 +55,11 @@ class EventInfoViewController: UIViewController {
         
         // Tap recognizer
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapMapDirection))
-        directionIcon.isUserInteractionEnabled = true
-        directionIcon.addGestureRecognizer(tap)
+        //directionIcon.isUserInteractionEnabled = true
+        addressOnMapIcon.isUserInteractionEnabled = true
+        addressOnMapIcon.addGestureRecognizer(tap)
+        addressOnMapIcon.image = addressOnMapIcon.image?.withRenderingMode(.alwaysTemplate)
+        addressOnMapIcon.tintColor = Colors.logoRed
 
     }
 
@@ -188,10 +191,8 @@ class EventInfoViewController: UIViewController {
         // The icons from FontAwesome
         guard let iconForTime = FAType.FAClockO.text else { return }
         guard let iconForPlace = FAType.FAMapMarker.text else { return }
-        guard let iconForDirection = FAType.FAMapSigns.text else { return }
         timeIcon.attributedText = fontAwesomeAttributedString(forString: iconForTime, withColor: .black, andFontSize: 30.0)
         placeIcon.attributedText = fontAwesomeAttributedString(forString: iconForPlace, withColor: .black, andFontSize: 30.0)
-        directionIcon.attributedText = fontAwesomeAttributedString(forString: iconForDirection, withColor: Colors.logoRed, andFontSize: 30.0)
         
     }
 

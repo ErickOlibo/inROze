@@ -18,7 +18,7 @@
         <array key="Bungee-Regular.ttf">
             <string>Bungee-Regular</string>
         </array>
-        <array key="FontAwesome.otf">
+        <array key="FontAwesome.ttf">
             <string>FontAwesome</string>
         </array>
         <array key="HelveticaNeue.ttc">
@@ -707,7 +707,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="onQ-AG-C6Y">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H4f-lw-L8s" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="686.33333333333337"/>
@@ -867,16 +867,13 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TtP-9u-gQO">
-                                                        <rect key="frame" x="364" y="45" width="40" height="40"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AddressOnMap" translatesAutoresizingMaskIntoConstraints="NO" id="QSG-Sw-1I2">
+                                                        <rect key="frame" x="364" y="49" width="32" height="32"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="Odk-EH-cHb"/>
-                                                            <constraint firstAttribute="width" secondItem="TtP-9u-gQO" secondAttribute="height" multiplier="1:1" id="ftU-g4-6i5"/>
+                                                            <constraint firstAttribute="height" constant="32" id="K9j-vw-s2v"/>
+                                                            <constraint firstAttribute="width" secondItem="QSG-Sw-1I2" secondAttribute="height" multiplier="1:1" id="iCj-Hn-j7u"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <constraints>
@@ -884,18 +881,18 @@
                                                     <constraint firstAttribute="trailing" secondItem="vo6-h7-Ril" secondAttribute="trailing" constant="60" id="KGd-Ae-YZW"/>
                                                     <constraint firstItem="Zhy-TS-ZeP" firstAttribute="leading" secondItem="LRf-WG-O3C" secondAttribute="trailing" constant="10" id="LOU-c9-Lv8"/>
                                                     <constraint firstItem="UQe-3S-7C0" firstAttribute="leading" secondItem="VOH-FB-hZ7" secondAttribute="leading" constant="10" id="QeI-0E-YRm"/>
+                                                    <constraint firstAttribute="bottom" secondItem="QSG-Sw-1I2" secondAttribute="bottom" constant="9" id="U0b-cV-rbc"/>
                                                     <constraint firstItem="Zhy-TS-ZeP" firstAttribute="top" secondItem="VOH-FB-hZ7" secondAttribute="top" constant="46" id="U5p-hb-k4m"/>
+                                                    <constraint firstItem="QSG-Sw-1I2" firstAttribute="leading" secondItem="Zhy-TS-ZeP" secondAttribute="trailing" constant="10" id="ZF2-0u-sMf"/>
                                                     <constraint firstItem="LRf-WG-O3C" firstAttribute="leading" secondItem="VOH-FB-hZ7" secondAttribute="leading" constant="10" id="ZKE-nr-Wn2"/>
                                                     <constraint firstItem="Bs2-b6-QBQ" firstAttribute="leading" secondItem="LRf-WG-O3C" secondAttribute="trailing" constant="10" id="c7u-cj-KWU"/>
-                                                    <constraint firstAttribute="bottom" secondItem="TtP-9u-gQO" secondAttribute="bottom" constant="5" id="cre-rp-Exk"/>
                                                     <constraint firstItem="vo6-h7-Ril" firstAttribute="top" secondItem="VOH-FB-hZ7" secondAttribute="top" constant="15" id="d3a-au-wtC"/>
                                                     <constraint firstAttribute="height" constant="90" id="e2o-yF-U90"/>
-                                                    <constraint firstItem="TtP-9u-gQO" firstAttribute="leading" secondItem="Bs2-b6-QBQ" secondAttribute="trailing" constant="10" id="enL-4a-14c"/>
                                                     <constraint firstItem="UQe-3S-7C0" firstAttribute="top" secondItem="VOH-FB-hZ7" secondAttribute="top" constant="10" id="ihw-BE-w19"/>
                                                     <constraint firstAttribute="bottom" secondItem="Bs2-b6-QBQ" secondAttribute="bottom" constant="9" id="j49-yX-URZ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="QSG-Sw-1I2" secondAttribute="trailing" constant="18" id="kcp-Bt-jV4"/>
                                                     <constraint firstAttribute="bottom" secondItem="LRf-WG-O3C" secondAttribute="bottom" constant="10" id="koW-bM-uH9"/>
-                                                    <constraint firstAttribute="trailing" secondItem="TtP-9u-gQO" secondAttribute="trailing" constant="10" id="ri1-ln-VBO"/>
-                                                    <constraint firstItem="TtP-9u-gQO" firstAttribute="leading" secondItem="Zhy-TS-ZeP" secondAttribute="trailing" constant="10" id="uW2-m1-Igs"/>
+                                                    <constraint firstItem="QSG-Sw-1I2" firstAttribute="leading" secondItem="Bs2-b6-QBQ" secondAttribute="trailing" constant="10" id="xIo-M5-7bl"/>
                                                 </constraints>
                                             </view>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5M0-Ai-miN">
@@ -946,8 +943,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addressOnMapIcon" destination="QSG-Sw-1I2" id="Nd1-yG-MW4"/>
                         <outlet property="collectionView" destination="PVq-r1-YaI" id="1dH-c1-6x8"/>
-                        <outlet property="directionIcon" destination="TtP-9u-gQO" id="Tjb-Sj-qtd"/>
                         <outlet property="eventAddress" destination="Bs2-b6-QBQ" id="Rip-qf-BCQ"/>
                         <outlet property="eventCover" destination="feL-mq-3en" id="nMb-12-Uvs"/>
                         <outlet property="eventDate" destination="Rq3-xS-i4s" id="wqP-e2-lVB"/>
@@ -2177,6 +2174,7 @@ Mixtapes</string>
         <image name="4_DJsFilled" width="25" height="25"/>
         <image name="5_Settings" width="25" height="25"/>
         <image name="5_SettingsFilled" width="25" height="25"/>
+        <image name="AddressOnMap" width="32" height="32"/>
         <image name="Logo_Inroze_2017" width="990" height="330"/>
         <image name="SearchCatalogue" width="25" height="25"/>
     </resources>
@@ -2184,6 +2182,6 @@ Mixtapes</string>
         <segue reference="U8r-Et-0uN"/>
         <segue reference="6Jg-Gd-7Hi"/>
         <segue reference="ekP-bR-cTf"/>
-        <segue reference="fqI-E3-pH5"/>
+        <segue reference="CCz-K1-KF9"/>
     </inferredMetricsTieBreakers>
 </document>
