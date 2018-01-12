@@ -27,6 +27,7 @@ class MixtapePlayerViewController: UIViewController {
     private var colorThree: UIColor = .black // Defines the skip back and front button color
 
     // Outlets
+    @IBOutlet weak var mixcloudIcon: UIImageView!
     @IBOutlet weak var mixtapeCover: UIImageView!
     @IBOutlet weak var mixProgressView: UIProgressView!
     @IBOutlet weak var elapsedTime: UILabel!
@@ -241,6 +242,7 @@ class MixtapePlayerViewController: UIViewController {
         updatePlayerNavButtonUI()
         updatePlayerColorsUI()
         updatePlayPauseIcons()
+        updateMixcloudIconColor()
     }
     
     private func updatesTheThreeColors() {
@@ -277,6 +279,10 @@ class MixtapePlayerViewController: UIViewController {
         mixtapeName.textColor = colorTwo
     }
     
+    private func updateMixcloudIconColor() {
+        let imageName = colorOne.isDarkColor ? "MixcloudWhite" : "MixcloudBlack"
+        mixcloudIcon.image = UIImage(named: imageName)?.withRenderingMode(.alwaysOriginal)
+    }
 
     private func seekNewCurrentTime(byLookForward isForward: Bool) {
         let length = Int64(CMTimeGetSeconds(duration))
@@ -301,14 +307,25 @@ class MixtapePlayerViewController: UIViewController {
  
     
 
-    /*
+    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "MusicPlayer To Mixcloud Profile") {
+            guard let destination = segue.destination as? AboutViewController else { return }
+            guard let mcURL = mixtape?.deejay?.mcPageURL else { return }
+            destination.aboutURL = URL(string: mcURL)
+            destination.navigationItem.title = "Mixcloud Page"
+            
+            
+        }
     }
-    */
+ 
 
 }
+
+
+
+
+
