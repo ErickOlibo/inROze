@@ -15,11 +15,17 @@ class ChangeCityViewController: UITableViewController {
     //let listCities = availableCities()
     var listOfCities = listCitiesInfo()
     
+    // Outlets
+    @IBOutlet weak var chageCityHeaderView: UIView!
+    @IBOutlet weak var randomCity: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         navigationController?.navigationBar.tintColor = Colors.logoRed
+        navigationItem.title = "Select City"
+        tableView.separatorStyle = .none
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,23 +37,26 @@ class ChangeCityViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Change City Cell", for: indexPath)
         cell.selectionStyle = .none
+        let isSelected = listOfCities[indexPath.row].current
+        let fontName = isSelected ? "HelveticaNeue-Bold" : "HelveticaNeue"
+        let textFont = UIFont(name: fontName, size: 22)
+        cell.textLabel?.font = textFont
+        cell.textLabel?.textColor = isSelected ? Colors.logoRed : .black
         cell.textLabel?.text = listOfCities[indexPath.row].name
-        cell.accessoryType = listOfCities[indexPath.row].current ? .checkmark : .none
+        cell.textLabel?.textAlignment = .center
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.none {
-            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
-            
-            let newCityCode = listOfCities[indexPath.row].code
-            UserDefaults().currentCityCode = newCityCode
-            for index in 0..<listOfCities.count {
-                listOfCities[index].current = false
-            }
-            listOfCities[indexPath.row].current = true
-            tableView.reloadData()
+        let newCityCode = listOfCities[indexPath.row].code
+        UserDefaults().currentCityCode = newCityCode
+        for index in 0..<listOfCities.count {
+            listOfCities[index].current = false
         }
+        listOfCities[indexPath.row].current = true
+        tableView.reloadData()
+
     }
 
     /*
