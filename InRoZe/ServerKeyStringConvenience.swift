@@ -23,16 +23,15 @@ public struct UrlFor {
     static let facebook = "https://www.facebook.com/"
     static let mixcloud = "https://www.mixcloud.com/"
     
+    // Default link to website folder for settings information
+    static let webLink = "https://inroze.com/webROze/"
+    
     // URL for About in the Setting section
-    static let aboutInroze = "https://www.pipedrive.com/en/about"
-    static let aboutTerms = "https://www.meetagainapp.com/terms_and_conditions.html"
-    static let aboutPrivacy = "https://www.mixcloud.com/hurmet/makmorr-januar-2010-mix/"
-    
-    //"https://www.mixcloud.com/ivonaries7/midsummer-bling-2017-landing-mix/"
-    static let aboutSources = "https://api.mixcloud.com/hurmet/makmorr-januar-2010-mix/embed-html/?height=600&color=D23900"
-    
-    
-    //"https://soundcloud.com/defkut/ice-cream-remix-defkut-feat-wu"
+    static let aboutInroze = UrlFor.webLink + "about-inroze.html"
+    static let aboutTerms =  UrlFor.webLink + "terms.html"
+    static let aboutPrivacy = UrlFor.webLink + "privacy.html"
+    static let aboutSources = UrlFor.webLink + "open-source.html"
+
 }
 
 // Fields name from the Server Database Columns
