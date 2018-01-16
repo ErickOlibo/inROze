@@ -16,8 +16,8 @@ class ChangeCityViewController: UITableViewController {
     var listOfCities = listCitiesInfo()
     
     // Outlets
-    @IBOutlet weak var chageCityHeaderView: UIView!
-    @IBOutlet weak var randomCity: UIImageView!
+    @IBOutlet weak var changeCityHeaderView: UIView!
+    @IBOutlet weak var selectedCity: UIImageView!
     
     
     override func viewDidLoad() {
@@ -26,6 +26,13 @@ class ChangeCityViewController: UITableViewController {
         navigationController?.navigationBar.tintColor = Colors.logoRed
         navigationItem.title = "Select City"
         tableView.separatorStyle = .none
+        updateCityImage()
+    }
+    
+    
+    private func updateCityImage() {
+        let city = currentCity.name.rawValue
+        selectedCity.image = UIImage(named: city)?.withRenderingMode(.alwaysOriginal)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,6 +63,7 @@ class ChangeCityViewController: UITableViewController {
         }
         listOfCities[indexPath.row].current = true
         tableView.reloadData()
+        updateCityImage()
 
     }
 

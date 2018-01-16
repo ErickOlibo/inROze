@@ -2103,18 +2103,17 @@ Mixtapes</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="9kI-C4-wki">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="230"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="247"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewCity1" translatesAutoresizingMaskIntoConstraints="NO" id="bOt-mU-Sgd">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="190"/>
+                                    <rect key="frame" x="0.33333333333334281" y="0.0" width="414" height="207"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="190" id="RIS-VY-50L"/>
-                                        <constraint firstAttribute="width" secondItem="bOt-mU-Sgd" secondAttribute="height" multiplier="414:190" id="pYY-NN-Yr6"/>
+                                        <constraint firstAttribute="width" secondItem="bOt-mU-Sgd" secondAttribute="height" multiplier="2:1" id="pYY-NN-Yr6"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select One of these Cities:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.90000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="Ubb-Df-9WF">
-                                    <rect key="frame" x="20" y="200" width="374" height="20"/>
+                                    <rect key="frame" x="20" y="217" width="374" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="3GR-f7-ggX"/>
                                     </constraints>
@@ -2128,11 +2127,12 @@ Mixtapes</string>
                                 <constraint firstItem="bOt-mU-Sgd" firstAttribute="centerX" secondItem="9kI-C4-wki" secondAttribute="centerX" id="TKD-rA-Zfu"/>
                                 <constraint firstItem="Ubb-Df-9WF" firstAttribute="leading" secondItem="9kI-C4-wki" secondAttribute="leading" constant="20" id="nY2-mo-kPW"/>
                                 <constraint firstItem="bOt-mU-Sgd" firstAttribute="top" secondItem="9kI-C4-wki" secondAttribute="top" id="sCE-Dg-S0j"/>
+                                <constraint firstItem="bOt-mU-Sgd" firstAttribute="width" secondItem="9kI-C4-wki" secondAttribute="width" id="sZJ-Fk-1Dd"/>
                             </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Change City Cell" id="xy4-ha-5st">
-                                <rect key="frame" x="0.0" y="258" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="275" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xy4-ha-5st" id="aa6-Xr-nfq">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
@@ -2146,8 +2146,8 @@ Mixtapes</string>
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="chageCityHeaderView" destination="9kI-C4-wki" id="s6q-RW-Ugl"/>
-                        <outlet property="randomCity" destination="bOt-mU-Sgd" id="56p-gM-iIX"/>
+                        <outlet property="changeCityHeaderView" destination="9kI-C4-wki" id="qvH-jY-9rx"/>
+                        <outlet property="selectedCity" destination="bOt-mU-Sgd" id="r6W-NI-Wzy"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S91-c6-KD2" userLabel="First Responder" sceneMemberID="firstResponder"/>
