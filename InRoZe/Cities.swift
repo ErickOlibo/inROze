@@ -15,7 +15,7 @@ import Foundation
 
 
 //********************************
-// Protocal to render enum hasable and allow a allCases to Array
+// Protocol to render enum hasable and allow a allCases to Array
 // Sample code written by Tibor Bödecs.
 // Extract from the site link https://theswiftdev.com/2017/10/12/swift-enum-all-values/
 // *******************************
@@ -137,7 +137,7 @@ public func availableCitiesCode() -> [String] {
     return cities.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
 }
 
-public func deLetelistCitiesAndCurrent() -> [(String, Bool)] {
+public func deletelistCitiesAndCurrent() -> [(String, Bool)] {
     let cities = availableCities()
     let currentCityCodeType = cityCodeType(fromString: UserDefaults().currentCityCode)
     let currentCity = cityInfo(forCode: currentCityCodeType)

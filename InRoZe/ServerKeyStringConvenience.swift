@@ -26,7 +26,10 @@ public struct UrlFor {
     // Default link to website folder for settings information
     static let webLink = "https://inroze.com/webROze/"
     
-    // URL for About in the Setting section
+    // URL for Location/Support/About/ in the Setting section
+    static let locationMissing = UrlFor.webLink + "missing.html"
+    static let supportFAQ = UrlFor.webLink + "frequently.html"
+    static let supportFeedback = UrlFor.webLink + "feedback.html"
     static let aboutInroze = UrlFor.webLink + "about-inroze.html"
     static let aboutTerms =  UrlFor.webLink + "terms.html"
     static let aboutPrivacy = UrlFor.webLink + "privacy.html"

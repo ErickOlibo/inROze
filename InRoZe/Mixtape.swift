@@ -201,7 +201,7 @@ public class Mixtape: NSManagedObject
         
         let request: NSFetchRequest<Mixtape> = Mixtape.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "createdTime", ascending: false, selector: nil)]
-        request.fetchLimit = 20
+        request.fetchLimit = 50
         request.predicate = NSPredicate(format: "createdTime > %@", afterThisDate)
         do {
             newMixes = try context.fetch(request)
@@ -216,12 +216,14 @@ public class Mixtape: NSManagedObject
     // Recently Played for Mixtape View
     class func recentlyPlayed(in context: NSManagedObjectContext) -> [Mixtape] {
         var recentlyPlayedMixes = [Mixtape]()
-        let request: NSFetchRequest<Mixtape> = Mixtape.fetchRequest()
+        let nowTime = NSDate()
+        let oneMonthAgo: Double = -30 * 24 * 60 * 60
+        let afterThisDate = nowTime.addingTimeInterval(oneMonthAgo)
         
-        // check how the order is
+        let request: NSFetchRequest<Mixtape> = Mixtape.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "playedTime", ascending: false, selector: nil)]
-        request.fetchLimit = 20
-        request.predicate = NSPredicate(format: "playedTime != nil")
+        request.fetchLimit = 50
+        request.predicate = NSPredicate(format: "playedTime != nil AND playedTime > %@", afterThisDate)
         do {
             recentlyPlayedMixes = try context.fetch(request)
             return recentlyPlayedMixes

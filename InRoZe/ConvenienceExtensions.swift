@@ -128,8 +128,10 @@ extension String {
     
 }
 
+//*********************************************
 // Extracted from website: https://gist.github.com/minorbug/468790060810e0d29545
 // Commentor: jinthagerman commented on Feb 26, 2017
+//*********************************************
 
 struct DateComponentUnitFormatter {
     
@@ -231,8 +233,10 @@ struct DateComponentUnitFormatter {
     }
 }
 
+
 extension Date {
     
+    // Allows the social type of display for time (just now, yesterday, etc.
     func timeAgoSinceNow(useNumericDates: Bool = false) -> String {
         
         let calendar = Calendar.current

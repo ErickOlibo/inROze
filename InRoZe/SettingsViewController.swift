@@ -179,86 +179,30 @@ class SettingsViewController: UITableViewController {
     }
     
     
-    // Trying the delegate from a statci cell
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        // Cell pressed is Where is my city
-        let whereCityPath = IndexPath(row: 1, section: 0)
-        let missingDJPath = IndexPath(row: 2, section: 1)
-        if whereCityPath == indexPath { openMyCityAlert() }
-        if missingDJPath == indexPath { openMissingDJAlert()}
-        
-    }
-    
-    
-    // Covenience Methods
-    private func openMyCityAlert() {
-        let alert = UIAlertController(title: "Your City?",
-                                      message: "We are adding new Capital cities and large cities on a regular basis.\n\nVOTE for your city!",
-                                      preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action: UIAlertAction) -> Void in
-            alert.dismiss(animated: true, completion: nil)
-            print("Cancel pressed")
-        }
-        let ok = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction) -> Void in
-            alert.dismiss(animated: true, completion: nil)
-//            let textCityName = alert.textFields?[0]
-//            print("OK pressed - \(textCityName?.text!)")
-        }
-        
-        // add text field
-        alert.addTextField { (textField: UITextField) in
-            textField.placeholder = "City Name"
-            textField.textColor = Colors.logoRed
-        }
-        alert.addAction(cancel)
-        alert.addAction(ok)
-        self.present(alert, animated: true, completion: nil)
-        
-    }
-    
-    
-    private func openMissingDJAlert() {
-        let alert = UIAlertController(title: "Your Local DJ?",
-                                      message: "If you are or know a DJ that should appear in our app, let us know.\n\nSuggest a local DJ!",
-                                      preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action: UIAlertAction) -> Void in
-            alert.dismiss(animated: true, completion: nil)
-            print("Cancel pressed")
-        }
-        let ok = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction) -> Void in
-            alert.dismiss(animated: true, completion: nil)
-            //            let textCityName = alert.textFields?[0]
-            //            print("OK pressed - \(textCityName?.text!)")
-        }
-        
-        // add text field
-        alert.addTextField { (textField: UITextField) in
-            textField.placeholder = "Deejay's name"
-            textField.textColor = Colors.logoRed
-        }
-        alert.addTextField { (textField: UITextField) in
-            textField.placeholder = "His city"
-            textField.textColor = Colors.logoRed
-        }
-        
-        alert.addAction(cancel)
-        alert.addAction(ok)
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    
     
     
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "About Inroze") {
-            guard let destination = segue.destination as? AboutViewController else { return }
-            destination.aboutURL = URL(string: UrlFor.aboutInroze)
-            destination.navigationItem.title = "InRoze"
-        }
 
+        if (segue.identifier == "Location Missing") {
+            guard let destination = segue.destination as? AboutViewController else { return }
+            destination.aboutURL = URL(string: UrlFor.locationMissing)
+            destination.navigationItem.title = "Missing"
+        }
+        
+        if (segue.identifier == "Support FAQ") {
+            guard let destination = segue.destination as? AboutViewController else { return }
+            destination.aboutURL = URL(string: UrlFor.supportFAQ)
+            destination.navigationItem.title = "F.A.Q"
+        }
+        
+        if (segue.identifier == "Support Feedback") {
+            guard let destination = segue.destination as? AboutViewController else { return }
+            destination.aboutURL = URL(string: UrlFor.supportFeedback)
+            destination.navigationItem.title = "Feedback"
+        }
+        
         if (segue.identifier == "About Terms") {
             guard let destination = segue.destination as? AboutViewController else { return }
             destination.aboutURL = URL(string: UrlFor.aboutTerms)
@@ -282,7 +226,6 @@ class SettingsViewController: UITableViewController {
             print("Here From Settings To Login")
             self.dismiss(animated: true, completion: nil)
             self.navigationController?.popToRootViewController(animated: true)
-            
         }
         
         if (segue.identifier == "Settings To View Your List") {
