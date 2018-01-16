@@ -14,7 +14,7 @@ import Foundation
  */
 
 
-//********************************
+// ********************************
 // Protocol to render enum hasable and allow a allCases to Array
 // Sample code written by Tibor Bödecs.
 // Extract from the site link https://theswiftdev.com/2017/10/12/swift-enum-all-values/
@@ -44,9 +44,10 @@ public extension EnumCollection {
 }
 // ************************
 
+
 // Enumeration of code and name for the City switch from the app
 public enum CityCode: String, EnumCollection {
-    case HKI, STO, TLN, BRU, PAR
+    case HKI, TLN, BRU
 }
 
 // This is the function that needs constant Syncing with
@@ -55,41 +56,35 @@ public func cityCodeType(fromString code: String) -> CityCode {
     switch code {
     case CityCode.HKI.rawValue:
         return .HKI
-    case CityCode.STO.rawValue:
-        return .STO
     case CityCode.TLN.rawValue:
         return .TLN
     case CityCode.BRU.rawValue:
         return .BRU
-    case CityCode.PAR.rawValue:
-        return .PAR
     default:
         return .TLN
     }
 }
 
 public enum CityName: String, EnumCollection {
-    case Helsinki, Stockholm, Tallinn, Brussels, Paris
+    case Helsinki, Tallinn, Brussels
 }
 
 public enum CountryName: String, EnumCollection {
-    case Finland, Sweden, Estonia, Belgium, France
+    case Finland, Estonia, Belgium
 }
 
 public enum CountryCode: String, EnumCollection {
-    case FI, SE, EE, BE, FR
+    case FI, EE, BE
 }
 
 public enum Nationality: String, EnumCollection {
-    case Finnish, Swedish, Estonian, Belgian, French
+    case Finnish, Estonian, Belgian
 }
 
 public enum LocalTimeZone: String, EnumCollection {
     case Helsinki = "Europe/Helsinki"
-    case Stockholm = "Europe/Stockholm"
     case Tallinn = "Europe/Tallinn"
     case Brussels = "Europe/Brussels"
-    case Paris = "Europe/Paris"
 }
 
 
@@ -115,14 +110,10 @@ public func cityInfo (forCode: CityCode) -> City {
     switch forCode {
     case .HKI:
         return City(name: .Helsinki, code: .HKI, countryName: .Finland, countryCode: .FI, nationality: .Finnish, timeZone: .Helsinki)
-    case .STO:
-        return City(name: .Stockholm, code: .STO, countryName: .Sweden, countryCode: .SE, nationality: .Swedish, timeZone: .Stockholm)
     case .TLN:
         return City(name: .Tallinn, code: .TLN, countryName: .Estonia, countryCode: .EE, nationality: .Estonian, timeZone: .Tallinn)
     case .BRU:
         return City(name: .Brussels, code: .BRU, countryName: .Belgium, countryCode: .BE, nationality: .Belgian, timeZone: .Brussels)
-    case .PAR:
-        return City(name: .Paris, code: .PAR, countryName: .France, countryCode: .FR, nationality: .French, timeZone: .Paris)
     }
 }
 

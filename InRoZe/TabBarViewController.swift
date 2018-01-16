@@ -14,19 +14,18 @@ class TabBarViewController: UITabBarController {
     
     public var sharedPlayer = AVPlayer()
     public var isShowingMiniPlayer: Bool = false
-    
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         //view.backgroundColor = .black
         print("[TabBarViewController] -- View DID Load")
-
         self.tabBar.isTranslucent = true
         self.tabBar.tintColor = Colors.logoRed
         //listFonts()
 
 
     }
+    
 
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(animated)
@@ -60,5 +59,8 @@ class TabBarViewController: UITabBarController {
             print("Font Names = [\(names)]")
         }
     }
+    
+    
+    
 
 }

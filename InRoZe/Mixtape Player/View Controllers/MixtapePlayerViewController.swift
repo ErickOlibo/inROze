@@ -66,6 +66,7 @@ class MixtapePlayerViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
         mixProgressView.transform = mixProgressView.transform.scaledBy(x: 1.0, y: 4.0)
+        addHeadphoneObserver()
         setAudioStreamFromMixCloud()
         player.play()
         setPlayedTime()
@@ -83,7 +84,7 @@ class MixtapePlayerViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+        removeHeadphoneObserver()
         guard let colorsDB = colors else { return }
         guard let mixID = mixtape?.id else { return }
         //print("*** [\(mixID)] - [\(player.description)] - WILL DISAPPEAR")
@@ -102,6 +103,39 @@ class MixtapePlayerViewController: UIViewController {
   
     
     // METHODS
+    private func addHeadphoneObserver() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(audioRouteChangeListener),
+            name: NSNotification.Name.AVAudioSessionRouteChange,
+            object: nil)
+    }
+    
+    private func removeHeadphoneObserver() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVAudioSessionRouteChange, object: nil)
+    }
+
+    
+    @objc private func audioRouteChangeListener(notification: NSNotification) {
+        guard let reasonValue = notification.userInfo![AVAudioSessionRouteChangeReasonKey] as? UInt else { return }
+        switch reasonValue {
+        case AVAudioSessionRouteChangeReason.newDeviceAvailable.rawValue:
+            DispatchQueue.main.async {
+                self.updatePlayPauseIcons()
+            }
+        case AVAudioSessionRouteChangeReason.oldDeviceUnavailable.rawValue:
+            player.pause()
+            //print("OUT - player Rate: ", player.rate)
+            DispatchQueue.main.async {
+                self.updatePlayPauseIcons()
+            }
+            //print("Headphone JUST plugged OUT -> ", Thread.current)
+        default:
+            break
+        }
+    }
+    
+ 
     private func updatePlayPauseIcons() {
         updateIconForMiniPlayer()
         updateIconForPlayerView()
