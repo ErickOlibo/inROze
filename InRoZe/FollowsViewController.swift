@@ -14,6 +14,9 @@ class FollowsViewController: FetchedResultsTableViewController {
     //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     let mainContext = AppDelegate.viewContext
+    
+
+    
 
     // Initialize a dictionary of Colors to save in the Core Data
     var colorsOfEventCovers = [String : UIImageColors]()
@@ -33,6 +36,9 @@ class FollowsViewController: FetchedResultsTableViewController {
         fetchedRC.delegate = self
         return fetchedRC
     }()
+    
+    
+
     
     // Set up Navigation Bar UI style
     private func setupNavBar() {
@@ -67,6 +73,14 @@ class FollowsViewController: FetchedResultsTableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
+        // remove all view from footerView
+        if let subviewsArray = tableView.tableFooterView?.subviews {
+            for view in subviewsArray {
+                view.removeFromSuperview()
+            }
+        }
+
+        
         // Save the dictionary colorsOfEventCovers to core data
         print("Save Colors Covers on WillDisappear")
         container?.performBackgroundTask { context in
@@ -87,19 +101,58 @@ class FollowsViewController: FetchedResultsTableViewController {
     
     
     // Convenience Functions
+    private func setupFooterView() -> UIView {
+        let missingFollowsView = UIView(frame: CGRect(x: 0, y: 0, width: CellSize.phoneSizeWidth, height: 280))
+        guard let image = UIImage(named: "MissingFollows") else { return missingFollowsView }
+        let locationX: CGFloat = (CellSize.phoneSizeWidth / 2) - 100
+        let imageView = UIImageView(frame: CGRect(x: locationX, y: 20, width: 200, height: 200))
+        imageView.image = image
+        missingFollowsView.addSubview(imageView)
+        return missingFollowsView
+    }
+    
+    
+    private func setupMissingFollowsLabel() -> UIView {
+        let numberOfFollows = Artist.listOfFollows(in: mainContext).count
+        let messageLabel = UILabel(frame: CGRect(x: 40.0, y: 230.0, width: CellSize.phoneSizeWidth - 80.0, height: 40.0))
+        let fontName = "HelveticaNeue-Bold"
+        let textFont = UIFont(name: fontName, size: 17)
+        messageLabel.font = textFont
+        messageLabel.textColor = .black
+        messageLabel.lineBreakMode = .byTruncatingTail
+        messageLabel.numberOfLines = 2
+        messageLabel.adjustsFontSizeToFitWidth = true
+        messageLabel.minimumScaleFactor = 0.8
+        if numberOfFollows > 0 {
+            messageLabel.text = "No Upcoming Gigs From Your Follows"
+        } else {
+            messageLabel.text = "You Do Not Follow Any Deejay!"
+        }
+        messageLabel.textAlignment = .center
+        return messageLabel
+    }
+    
+    private func followsFooterViewIsHidden(forFollowsCount count: Int) {
+        if count > 0 {
+            tableView.tableFooterView = UIView(frame: CGRect.zero)
+        } else {
+            let messageView = setupMissingFollowsLabel()
+            let thisFooterView = setupFooterView()
+            thisFooterView.addSubview(messageView)
+            tableView.tableFooterView = thisFooterView
+        }
+    }
+    
     private func updateUI() {
-        
         do {
             try self.fetchResultsController.performFetch()
             if let count = fetchResultsController.fetchedObjects?.count {
                 print("Total Event from IsFollowed Deejays: \(count)")
+                self.followsFooterViewIsHidden(forFollowsCount: count)
             }
-            //tableView.reloadData()
-            
         } catch {
             print("UpdateUI in FolowVC -> Error while fetching: \(error)")
         }
-        
         tableView.reloadData()
     }
 

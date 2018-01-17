@@ -26,7 +26,7 @@ class MixtapePlayerViewController: UIViewController {
     private var colorOne: UIColor = .black // Defines the view background color
     private var colorTwo: UIColor = .black // Defines the text labels, play/pause button color
     private var colorThree: UIColor = .black // Defines the skip back and front button color
-    private let timeBeforeDismissPopupBar: Int = 5 // for the number of seconds
+    private let timeBeforeDismissPopupBar: Int = 60 // for the number of seconds
 
 
     // Outlets
