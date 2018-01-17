@@ -14,7 +14,8 @@ class TabBarViewController: UITabBarController {
     
     public var sharedPlayer = AVPlayer()
     public var isShowingMiniPlayer: Bool = false
- 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //view.backgroundColor = .black
@@ -27,6 +28,7 @@ class TabBarViewController: UITabBarController {
     }
     
 
+    
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(animated)
 //        print("[TabBarViewController] -- View WILL Appear")

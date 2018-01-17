@@ -19,12 +19,15 @@ class MixtapePlayerViewController: UIViewController {
     override var prefersStatusBarHidden: Bool { return true }
     public var player: AVPlayer! //{ didSet { print("Player in MusicVC SET: \(player.description)") } }
     public var mixtape: Mixtape?
+    public var tabBarVC: Any?
 
     private var duration: CMTime!
     private var colors: UIImageColors? { didSet { updateUI() }}
     private var colorOne: UIColor = .black // Defines the view background color
     private var colorTwo: UIColor = .black // Defines the text labels, play/pause button color
     private var colorThree: UIColor = .black // Defines the skip back and front button color
+    private let timeBeforeDismissPopupBar: Int = 5 // for the number of seconds
+
 
     // Outlets
     @IBOutlet weak var mixcloudIcon: UIImageView!
@@ -64,9 +67,10 @@ class MixtapePlayerViewController: UIViewController {
     // VIEW CONTROLLER LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
+        instantiateAudioSession()
         navigationItem.largeTitleDisplayMode = .never
         mixProgressView.transform = mixProgressView.transform.scaledBy(x: 1.0, y: 4.0)
-        addHeadphoneObserver()
+        registerForNotifications()
         setAudioStreamFromMixCloud()
         player.play()
         setPlayedTime()
@@ -78,13 +82,12 @@ class MixtapePlayerViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        guard let mixID = mixtape?.id else { return }
-//        print("*** [\(mixID)] - [\(player.description)] - WILL APPEAR")
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        removeHeadphoneObserver()
+        removeRegisterForNotifications()
         guard let colorsDB = colors else { return }
         guard let mixID = mixtape?.id else { return }
         //print("*** [\(mixID)] - [\(player.description)] - WILL DISAPPEAR")
@@ -103,33 +106,90 @@ class MixtapePlayerViewController: UIViewController {
   
     
     // METHODS
-    private func addHeadphoneObserver() {
-        NotificationCenter.default.addObserver(
-            self,
+    private func instantiateAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: AVAudioSessionCategoryOptions.mixWithOthers)
+        } catch {
+            print("Error with AudioSession Instance:", error)
+        }
+    }
+    
+    
+    private func registerForNotifications() {
+        NotificationCenter.default.addObserver(self,
             selector: #selector(audioRouteChangeListener),
             name: NSNotification.Name.AVAudioSessionRouteChange,
             object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleInterruption),
+            name: .AVAudioSessionInterruption,
+            object: AVAudioSession.sharedInstance())
     }
     
-    private func removeHeadphoneObserver() {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVAudioSessionRouteChange, object: nil)
+    
+    private func removeRegisterForNotifications() {
+        NotificationCenter.default.removeObserver(self, name: .AVAudioSessionRouteChange, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .AVAudioSessionInterruption, object: nil)
     }
+    
+    
+    @objc private func handleInterruption(_ notification: Notification) {
+        guard let info = notification.userInfo,
+            let typeValue = info[AVAudioSessionInterruptionTypeKey] as? UInt,
+            let type = AVAudioSessionInterruptionType(rawValue: typeValue) else { return }
+        if type == .began {
+            print("Interuption BEGAN")
+        } else if type == .ended {
+            print("Interuption ENDED")
+            
+            guard let optionsValue = info[AVAudioSessionInterruptionOptionKey] as? UInt else { return }
+            
+            let options = AVAudioSessionInterruptionOptions(rawValue: optionsValue)
+            if options.contains(.shouldResume) {
+                player.play()
+                print("Audio now Should Resume -> ", Thread.current)
+            }
+            
+        }
+        
+    }
+    
+    
+    private func dismissPlayerAfterPause(inSeconds delay: Int) {
+        print("dismissPlayerAfterPause -> Are We HERE")
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(delay)) {
+            print("BEFORE Are We HERE")
+            if self.player.rate == 0 {
+                print("INSIDE Are We HERE")
+                if let thisTabBarVC = self.tabBarVC as? TabBarViewController {
+                    thisTabBarVC.dismissPopupBar(animated: true, completion: nil)
+                }
+            }
+        }
+    }
+    
+
 
     
-    @objc private func audioRouteChangeListener(notification: NSNotification) {
-        guard let reasonValue = notification.userInfo![AVAudioSessionRouteChangeReasonKey] as? UInt else { return }
-        switch reasonValue {
-        case AVAudioSessionRouteChangeReason.newDeviceAvailable.rawValue:
+    @objc private func audioRouteChangeListener(_ notification: NSNotification) {
+        guard let info = notification.userInfo,
+            let reasonVal = info[AVAudioSessionRouteChangeReasonKey] as? UInt,
+            let type = AVAudioSessionRouteChangeReason(rawValue: reasonVal) else { return }
+        switch type {
+        case .newDeviceAvailable:
             DispatchQueue.main.async {
                 self.updatePlayPauseIcons()
             }
-        case AVAudioSessionRouteChangeReason.oldDeviceUnavailable.rawValue:
+            print("info -> Headphone JUST plugged IN -> ", Thread.current)
+        case .oldDeviceUnavailable:
             player.pause()
-            //print("OUT - player Rate: ", player.rate)
+            dismissPlayerAfterPause(inSeconds: timeBeforeDismissPopupBar)
+            print("OUT - player Rate: ", player.rate)
             DispatchQueue.main.async {
                 self.updatePlayPauseIcons()
             }
-            //print("Headphone JUST plugged OUT -> ", Thread.current)
+            print("info -> Headphone JUST plugged OUT -> ", Thread.current)
         default:
             break
         }
@@ -179,6 +239,7 @@ class MixtapePlayerViewController: UIViewController {
 
     private func toggleBetweenPlayPause() {
         player.rate != 0 ? player.pause() : player.play()
+        if player.rate == 0 { dismissPlayerAfterPause(inSeconds: timeBeforeDismissPopupBar) }
         setPlayedTime()
         updatePlayPauseIcons()
     }
@@ -196,6 +257,7 @@ class MixtapePlayerViewController: UIViewController {
         let interval = CMTime(value: 1, timescale: 1)
         player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main) { (progressTime) in
             let progress = CMTimeGetSeconds(progressTime)
+            //print("PROGRESS: ", progress)
             let totalLength = CMTimeGetSeconds(self.duration)
             let ratio = Float(progress / totalLength)
             self.mixProgressView.setProgress(ratio, animated: true)
@@ -211,12 +273,15 @@ class MixtapePlayerViewController: UIViewController {
             
             if (progress >= totalLength) {
                 self.player.pause()
+                self.dismissPlayerAfterPause(inSeconds: self.timeBeforeDismissPopupBar)
                 self.mixProgressView.setProgress(0.0, animated: true)
                 self.popupItem.progress = 0.0
                 self.updatePlayPauseIcons()
             }
         }
     }
+    
+
     
     private func setMixtapeCoverUI() {
         mixtapeCover.layer.masksToBounds = true

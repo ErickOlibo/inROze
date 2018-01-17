@@ -124,6 +124,7 @@ extension DeejayGigsTableViewController {
         //print("TAB BAR PLAYER: \(tabBarVC.sharedPlayer.description)")
         popupContentController.player = tabBarVC.sharedPlayer
         popupContentController.mixtape = mixtape
+        popupContentController.tabBarVC = tabBarVC
         tabBarController?.presentPopupBar(withContentViewController: popupContentController, animated: true, completion: nil)
         tabBarController?.popupBar.imageView.layer.cornerRadius = 5
         tabBarController?.popupBar.imageView.layer.borderWidth = 0.333
