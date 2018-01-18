@@ -77,16 +77,22 @@ class SettingsViewController: UITableViewController {
     
     private func setFollowsMix() {
         // From Core data later
-        let numFollows = String(numbersFollowsAndMixtapes().0)
-        let numMix = String(numbersFollowsAndMixtapes().1)
+        let numFollowsInt = numbersFollowsAndMixtapes().0
+        let numMixInt = numbersFollowsAndMixtapes().1
+        
+        let numFollows = String(numFollowsInt)
+        let numMix = String(numMixInt)
         
         let followStr = (numFollows, "follows")
         let mixtapesStr = (numMix, "mixtapes")
         let fonts: (CGFloat, CGFloat) = (18.0, 13.0)
         let names: (String, String) = ("HelveticaNeue-Bold", "HelveticaNeue")
-        let colors = (UIColor.black, UIColor.gray)
-        let attrFollow = twoLinesFormatter(withTwoString: (followStr), fontNames: names, fontSizes: fonts, fontColors: colors)
-        let attrMix = twoLinesFormatter(withTwoString: (mixtapesStr), fontNames: names, fontSizes: fonts, fontColors: colors)
+        var colorsFollow = (UIColor.black, UIColor.gray)
+        var colorsMix = (UIColor.black, UIColor.gray)
+        if (numFollowsInt == 0) { colorsFollow = (UIColor.gray, UIColor.gray) }
+        if (numMixInt == 0) { colorsMix = (UIColor.gray, UIColor.gray) }
+        let attrFollow = twoLinesFormatter(withTwoString: (followStr), fontNames: names, fontSizes: fonts, fontColors: colorsFollow)
+        let attrMix = twoLinesFormatter(withTwoString: (mixtapesStr), fontNames: names, fontSizes: fonts, fontColors: colorsMix)
         numberMixtapesButton.titleLabel?.textAlignment = .center
         numberFollowsButton.titleLabel?.textAlignment = .center
         numberFollowsButton.titleLabel?.numberOfLines = 2
@@ -182,7 +188,26 @@ class SettingsViewController: UITableViewController {
     
     
     // MARK: - Navigation
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if (identifier == "Settings To View Your List") {
+            let count = Mixtape.listOfFollows(in: container!.viewContext).count
+            print("Count of Mixtape follow: ", count)
+            if (count == 0) { return false }
+        }
+        
+        // For when segue to follows list - Mind name of the identifier
+        if (identifier == "Settings To View Your Follows") {
+            let count = Artist.listOfFollows(in: container!.viewContext).count
+            print("Count of Deejays Follow: ", count)
+            if (count == 0) { return false }
+        }
+        
+        
+        return true
+    }
 
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if (segue.identifier == "Location Missing") {
