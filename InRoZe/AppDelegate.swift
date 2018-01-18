@@ -15,6 +15,7 @@ import AVFoundation
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+
     
     
     // create a static
@@ -28,16 +29,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        /// AUDIO REMOTE COMMAND SECTION
         
         // Audio Seesion throughout App life Cycle
         let audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+            try audioSession.setCategory(AVAudioSessionCategoryPlayback, mode: AVAudioSessionModeDefault)
         } catch {
             print("Setting category to AVAudioSessionCategoryPlayback failed in [didFinishLaunchingWithOptions]")
         }
         
+        // Set the AVAudioSession as active.  This is required so that your application becomes the "Now Playing" app.
+        do {
+            try audioSession.setActive(true, with: [])
+        }
+        catch {
+            print("An Error occured activating the audio session: \(error)")
+        }
         
+
         // to print out for simulator only where the app sandbox is
 //        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
 //        print(urls[urls.count-1] as URL)
@@ -45,6 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Change the whole app default tint color
         //window?.tintColor = Colors.logoRed
         
+        /// DEPENDENCY NEEDED BY THE APP
         //Added FACEBOOK Stuff
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
@@ -57,9 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return true
     }
-    
-    
-    
+
     
     // MARK: -  FACEBOOK added Func
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {

@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import AVFoundation
+import MediaPlayer
 
 class MixtapePlayerViewController: UIViewController {
     
@@ -27,6 +28,7 @@ class MixtapePlayerViewController: UIViewController {
     private var colorTwo: UIColor = .black // Defines the text labels, play/pause button color
     private var colorThree: UIColor = .black // Defines the skip back and front button color
     private let timeBeforeDismissPopupBar: Int = 60 // for the number of seconds
+    private let seekingTime: Int64 = 60 // Seek time backward and forward
 
 
     // Outlets
@@ -50,12 +52,12 @@ class MixtapePlayerViewController: UIViewController {
     
     @IBAction func touchedSkipForward(_ sender: UIButton) {
         print("touchedSkipForward")
-        seekNewCurrentTime(byLookForward: true)
+        seekNewCurrentTime(byLookForward: true, isCommandCenter: false)
     }
     
     @IBAction func touchedSkipBackward(_ sender: UIButton) {
         print("touchedSkipBackward")
-        seekNewCurrentTime(byLookForward: false)
+        seekNewCurrentTime(byLookForward: false, isCommandCenter: false)
     }
     
     @objc private func miniPlayPauseTapped() {
@@ -67,17 +69,22 @@ class MixtapePlayerViewController: UIViewController {
     // VIEW CONTROLLER LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        instantiateAudioSession()
+        setupCommandCenterControllers()
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+        //instantiateAudioSession()
         navigationItem.largeTitleDisplayMode = .never
         mixProgressView.transform = mixProgressView.transform.scaledBy(x: 1.0, y: 4.0)
         registerForNotifications()
         setAudioStreamFromMixCloud()
-        player.play()
+        setMixtapeCoverUI()
+        //player.play()
+        pressedPlayerPlay()
         setPlayedTime()
         updatePlayPauseIcons()
-        setMixtapeCoverUI()
+        
         setMixtapeInfoUI()
         setMixtapeCoverAndColors()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,13 +113,93 @@ class MixtapePlayerViewController: UIViewController {
   
     
     // METHODS
-    private func instantiateAudioSession() {
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: AVAudioSessionCategoryOptions.mixWithOthers)
-        } catch {
-            print("Error with AudioSession Instance:", error)
-        }
+    
+    
+    private func pressedPlayerPlay() {
+        player.play()
+        updateNowPlayingCenter()
     }
+    
+    private func setupCommandCenterControllers() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+        
+        // target Need all to be implemented
+        commandCenter.togglePlayPauseCommand.addTarget(self, action: #selector(toggleBetweenPlayPause))
+        commandCenter.nextTrackCommand.addTarget(self, action: #selector(toggleThis))
+        commandCenter.previousTrackCommand.addTarget(self, action: #selector(toggleThis))
+        commandCenter.skipForwardCommand.addTarget(self, action: #selector(seekForward))
+        commandCenter.skipBackwardCommand.addTarget(self, action: #selector(seekBackward))
+        
+        // enable ALL option to see seeking icon and number
+        commandCenter.togglePlayPauseCommand.isEnabled = true
+        commandCenter.nextTrackCommand.isEnabled = true
+        commandCenter.previousTrackCommand.isEnabled = true
+        
+        commandCenter.skipForwardCommand.isEnabled = true
+        commandCenter.skipBackwardCommand.isEnabled = true
+        commandCenter.skipBackwardCommand.preferredIntervals = [60]
+        commandCenter.skipForwardCommand.preferredIntervals = [60]
+
+    }
+    
+    @objc private func seekForward() {
+        seekNewCurrentTime(byLookForward: true, isCommandCenter: true)
+    }
+    
+    @objc private func seekBackward() {
+        seekNewCurrentTime(byLookForward: false, isCommandCenter: true)
+    }
+    
+    @objc private func toggleThis() {
+        print("Here This")
+    }
+    
+    private func newCurrentTimeForCenter(for newTime: CMTime) {
+        var currentSongInfo = MPNowPlayingInfoCenter.default().nowPlayingInfo
+        //print("SongInfo -> PREVIOUS: ", currentSongInfo ?? "nil")
+        let current = Double(CMTimeGetSeconds(newTime))
+        currentSongInfo![MPNowPlayingInfoPropertyElapsedPlaybackTime] = current
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = currentSongInfo
+        //print("SongInfo -> NEW INFO: ", currentSongInfo ?? "nil")
+    }
+    
+    private func updateNowPlayingCenter() {
+        let playRate: Float = 1.0
+        guard let mixtape = mixtape else { return }
+        guard let dj = mixtape.deejay?.name else { return }
+        guard let mixTitle = mixtape.name else { return }
+        guard let imageURL = mixtape.cover768URL else { return }
+        guard let mixLength = mixtape.length, let lengthInt = Double(mixLength)  else { return }
+        var songDuration = lengthInt
+        if let length = player.currentItem?.asset.duration {
+            songDuration = Double(CMTimeGetSeconds(length))
+        }
+        let current = Double(CMTimeGetSeconds(player.currentTime()))
+        
+        let tempImageView = UIImageView()
+        tempImageView.kf.setImage(with: URL(string: imageURL), options: [.backgroundDecode]) {
+            (image, error, cachetype, imageUrl) in
+            tempImageView.image = nil
+            if (image != nil) {
+                let artWork = MPMediaItemArtwork.init(boundsSize: image!.size) { (size) -> UIImage in
+                    return image!
+                }
+                let songInfo: Dictionary <String, Any> = [
+                    MPMediaItemPropertyTitle: mixTitle,
+                    MPMediaItemPropertyArtist: dj,
+                    MPMediaItemPropertyArtwork: artWork,
+                    MPNowPlayingInfoPropertyElapsedPlaybackTime: current,
+                    MPMediaItemPropertyPlaybackDuration: songDuration,
+                    MPNowPlayingInfoPropertyPlaybackRate: playRate
+                ]
+                //print("SongInfo: ", songInfo)
+                MPNowPlayingInfoCenter.default().nowPlayingInfo = songInfo
+            }
+        }
+
+    }
+    
+
     
     
     private func registerForNotifications() {
@@ -147,7 +234,8 @@ class MixtapePlayerViewController: UIViewController {
             
             let options = AVAudioSessionInterruptionOptions(rawValue: optionsValue)
             if options.contains(.shouldResume) {
-                player.play()
+                //player.play()
+                pressedPlayerPlay()
                 print("Audio now Should Resume -> ", Thread.current)
             }
             
@@ -168,10 +256,7 @@ class MixtapePlayerViewController: UIViewController {
             }
         }
     }
-    
 
-
-    
     @objc private func audioRouteChangeListener(_ notification: NSNotification) {
         guard let info = notification.userInfo,
             let reasonVal = info[AVAudioSessionRouteChangeReasonKey] as? UInt,
@@ -237,8 +322,8 @@ class MixtapePlayerViewController: UIViewController {
         }
     }
 
-    private func toggleBetweenPlayPause() {
-        player.rate != 0 ? player.pause() : player.play()
+    @objc private func toggleBetweenPlayPause() {
+        player.rate != 0 ? player.pause() : pressedPlayerPlay()  // player.play()
         if player.rate == 0 { dismissPlayerAfterPause(inSeconds: timeBeforeDismissPopupBar) }
         setPlayedTime()
         updatePlayPauseIcons()
@@ -383,27 +468,30 @@ class MixtapePlayerViewController: UIViewController {
         mixcloudIcon.image = UIImage(named: imageName)?.withRenderingMode(.alwaysOriginal)
     }
 
-    private func seekNewCurrentTime(byLookForward isForward: Bool) {
+    private func seekNewCurrentTime(byLookForward isForward: Bool, isCommandCenter: Bool) {
         let length = Int64(CMTimeGetSeconds(duration))
         let currentTime = player.currentTime()
         let currentSeconds = Int64(CMTimeGetSeconds(currentTime))
-        let fiveMinutes: Int64 = 300
         let zeroTime = Int64(0.0)
-
+        var newPlayPosition = CMTime()
         if (isForward) {
-            let seekedTime = (currentSeconds + fiveMinutes >= length) ? length : (currentSeconds + fiveMinutes)
+            let seekedTime = (currentSeconds + seekingTime >= length) ? length : (currentSeconds + seekingTime)
             let targetTime = CMTimeMake(seekedTime, 1)
             player.seek(to: targetTime)
+            newPlayPosition = targetTime
             
         } else {
-            let seekedTime = (currentSeconds - fiveMinutes <= zeroTime) ? zeroTime : (currentSeconds - fiveMinutes)
+            let seekedTime = (currentSeconds - seekingTime <= zeroTime) ? zeroTime : (currentSeconds - seekingTime)
             let targetTime = CMTimeMake(seekedTime, 1)
             player.seek(to: targetTime)
+            newPlayPosition = targetTime
         }
+        
+        if (isCommandCenter) {
+            newCurrentTimeForCenter(for: newPlayPosition)
+        }
+        
     }
-    
-
- 
     
 
     
