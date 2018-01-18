@@ -54,8 +54,8 @@ extension SearchCatalogueViewController
         tabBarController?.popupBar.imageView.layer.cornerRadius = 5
         tabBarController?.popupBar.imageView.layer.borderWidth = 0.333
         tabBarController?.popupBar.imageView.layer.borderColor = UIColor.black.cgColor
-        tabBarController?.popupBar.progressViewStyle = .top
-        tabBarController?.popupBar.tintColor = Colors.logoRed
+        //tabBarController?.popupBar.progressViewStyle = .top
+        //tabBarController?.popupBar.tintColor = Colors.logoRed
         
         
         

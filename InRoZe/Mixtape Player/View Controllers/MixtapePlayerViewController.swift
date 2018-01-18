@@ -27,7 +27,6 @@ class MixtapePlayerViewController: UIViewController {
     private var colorOne: UIColor = .black // Defines the view background color
     private var colorTwo: UIColor = .black // Defines the text labels, play/pause button color
     private var colorThree: UIColor = .black // Defines the skip back and front button color
-    private let timeBeforeDismissPopupBar: Int = 60 // for the number of seconds
     private let seekingTime: Int64 = 60 // Seek time backward and forward
 
 
@@ -71,21 +70,19 @@ class MixtapePlayerViewController: UIViewController {
         super.viewDidLoad()
         setupCommandCenterControllers()
         UIApplication.shared.beginReceivingRemoteControlEvents()
-        //instantiateAudioSession()
         navigationItem.largeTitleDisplayMode = .never
         mixProgressView.transform = mixProgressView.transform.scaledBy(x: 1.0, y: 4.0)
         registerForNotifications()
         setAudioStreamFromMixCloud()
         setMixtapeCoverUI()
-        //player.play()
         pressedPlayerPlay()
         setPlayedTime()
         updatePlayPauseIcons()
-        
         setMixtapeInfoUI()
         setMixtapeCoverAndColors()
-        
+        popBarExtraSetup()
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -113,7 +110,10 @@ class MixtapePlayerViewController: UIViewController {
   
     
     // METHODS
-    
+    private func popBarExtraSetup() {
+        popupPresentationContainer?.popupBar.progressViewStyle = .bottom
+        popupPresentationContainer?.popupBar.tintColor = Colors.logoRed
+    }
     
     private func pressedPlayerPlay() {
         player.play()
@@ -156,11 +156,9 @@ class MixtapePlayerViewController: UIViewController {
     
     private func newCurrentTimeForCenter(for newTime: CMTime) {
         var currentSongInfo = MPNowPlayingInfoCenter.default().nowPlayingInfo
-        //print("SongInfo -> PREVIOUS: ", currentSongInfo ?? "nil")
         let current = Double(CMTimeGetSeconds(newTime))
         currentSongInfo![MPNowPlayingInfoPropertyElapsedPlaybackTime] = current
         MPNowPlayingInfoCenter.default().nowPlayingInfo = currentSongInfo
-        //print("SongInfo -> NEW INFO: ", currentSongInfo ?? "nil")
     }
     
     private func updateNowPlayingCenter() {
@@ -192,7 +190,6 @@ class MixtapePlayerViewController: UIViewController {
                     MPMediaItemPropertyPlaybackDuration: songDuration,
                     MPNowPlayingInfoPropertyPlaybackRate: playRate
                 ]
-                //print("SongInfo: ", songInfo)
                 MPNowPlayingInfoCenter.default().nowPlayingInfo = songInfo
             }
         }
@@ -200,8 +197,6 @@ class MixtapePlayerViewController: UIViewController {
     }
     
 
-    
-    
     private func registerForNotifications() {
         NotificationCenter.default.addObserver(self,
             selector: #selector(audioRouteChangeListener),
@@ -229,33 +224,15 @@ class MixtapePlayerViewController: UIViewController {
             print("Interuption BEGAN")
         } else if type == .ended {
             print("Interuption ENDED")
-            
             guard let optionsValue = info[AVAudioSessionInterruptionOptionKey] as? UInt else { return }
-            
             let options = AVAudioSessionInterruptionOptions(rawValue: optionsValue)
             if options.contains(.shouldResume) {
-                //player.play()
                 pressedPlayerPlay()
                 print("Audio now Should Resume -> ", Thread.current)
             }
-            
-        }
-        
-    }
-    
-    
-    private func dismissPlayerAfterPause(inSeconds delay: Int) {
-        print("dismissPlayerAfterPause -> Are We HERE")
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(delay)) {
-            print("BEFORE Are We HERE")
-            if self.player.rate == 0 {
-                print("INSIDE Are We HERE")
-                if let thisTabBarVC = self.tabBarVC as? TabBarViewController {
-                    thisTabBarVC.dismissPopupBar(animated: true, completion: nil)
-                }
-            }
         }
     }
+    
 
     @objc private func audioRouteChangeListener(_ notification: NSNotification) {
         guard let info = notification.userInfo,
@@ -266,15 +243,11 @@ class MixtapePlayerViewController: UIViewController {
             DispatchQueue.main.async {
                 self.updatePlayPauseIcons()
             }
-            print("info -> Headphone JUST plugged IN -> ", Thread.current)
         case .oldDeviceUnavailable:
             player.pause()
-            dismissPlayerAfterPause(inSeconds: timeBeforeDismissPopupBar)
-            print("OUT - player Rate: ", player.rate)
             DispatchQueue.main.async {
                 self.updatePlayPauseIcons()
             }
-            print("info -> Headphone JUST plugged OUT -> ", Thread.current)
         default:
             break
         }
@@ -324,7 +297,7 @@ class MixtapePlayerViewController: UIViewController {
 
     @objc private func toggleBetweenPlayPause() {
         player.rate != 0 ? player.pause() : pressedPlayerPlay()  // player.play()
-        if player.rate == 0 { dismissPlayerAfterPause(inSeconds: timeBeforeDismissPopupBar) }
+        //if player.rate == 0 { dismissPlayerAfterPause(inSeconds: timeBeforeDismissPopupBar) }
         setPlayedTime()
         updatePlayPauseIcons()
     }
@@ -358,7 +331,7 @@ class MixtapePlayerViewController: UIViewController {
             
             if (progress >= totalLength) {
                 self.player.pause()
-                self.dismissPlayerAfterPause(inSeconds: self.timeBeforeDismissPopupBar)
+                self.popupPresentationContainer?.dismissPopupBar(animated: true, completion: nil)
                 self.mixProgressView.setProgress(0.0, animated: true)
                 self.popupItem.progress = 0.0
                 self.updatePlayPauseIcons()
@@ -400,8 +373,7 @@ class MixtapePlayerViewController: UIViewController {
     private func setMixtapeCoverAndColors () {
         guard let mix = mixtape else { return }
         guard let coverURL = mixtape?.cover768URL else { return }
-        
-        mixtapeCover.kf.setImage(with: URL(string: coverURL), options: [.backgroundDecode, .transition(.fade(0.2))], completionHandler: {
+        mixtapeCover.kf.setImage(with: URL(string: coverURL), options: [.backgroundDecode, .transition(.fade(0.2))]) {
             (image, error, cacheType, imageUrl) in
             if (image != nil) {
                 self.updateMiniPlayerUI(image: image!)
@@ -409,7 +381,6 @@ class MixtapePlayerViewController: UIViewController {
                     let colorsDBInHex = ColorsInHexString(background: mix.colorBackground!, primary: mix.colorPrimary!, secondary: mix.colorSecondary!, detail: mix.colorDetail!)
                     self.colors = colorsFromHexString(with: colorsDBInHex)
                 } else {
-                    //print(" NOT COLORS in core data - Create them")
                     image?.getColors(scaleDownSize: CGSize(width: 100, height: 100)){ [weak self] colors in
                         self?.colors = colors
                     }
@@ -418,7 +389,7 @@ class MixtapePlayerViewController: UIViewController {
                 // IMAGE = NIL -> Something went wrong with the cover image
                 // dismiss the Modal View after displaying message error to user
             }
-        })
+        }
     }
 
     private func updateUI () {
