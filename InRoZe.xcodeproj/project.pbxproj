@@ -26,6 +26,7 @@
 		A73E1FA01FBA3935001E31D3 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = A73E1F9F1FBA38DB001E31D3 /* FontAwesome.otf */; };
 		A73E1FA21FBA3BAF001E31D3 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E1FA11FBA3BAF001E31D3 /* FontAwesome.swift */; };
 		A748668A1FCA7D2400674677 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74866891FCA7D2400674677 /* SettingsCell.swift */; };
+		A74D4AF12011BD0800678B10 /* SingleEventFacebookRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74D4AF02011BD0800678B10 /* SingleEventFacebookRequest.swift */; };
 		A75E30D02001A9470020E580 /* FollowsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E30CF2001A9470020E580 /* FollowsItem.swift */; };
 		A76E72C51F7517FB0023D47F /* FollowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72C41F7517FB0023D47F /* FollowsViewController.swift */; };
 		A76E72C91F7518CB0023D47F /* DJsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72C81F7518CB0023D47F /* DJsSearchViewController.swift */; };
@@ -112,6 +113,7 @@
 		A73E1F9F1FBA38DB001E31D3 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		A73E1FA11FBA3BAF001E31D3 /* FontAwesome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAwesome.swift; sourceTree = "<group>"; };
 		A74866891FCA7D2400674677 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		A74D4AF02011BD0800678B10 /* SingleEventFacebookRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEventFacebookRequest.swift; sourceTree = "<group>"; };
 		A75E30CF2001A9470020E580 /* FollowsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowsItem.swift; sourceTree = "<group>"; };
 		A76E72C41F7517FB0023D47F /* FollowsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowsViewController.swift; sourceTree = "<group>"; };
 		A76E72C81F7518CB0023D47F /* DJsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJsSearchViewController.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 		A7A24D511F3C405C00EFB82E /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				A74D4AF02011BD0800678B10 /* SingleEventFacebookRequest.swift */,
 				A7F527211F4496E50008080B /* RequestHandler.swift */,
 				A775C3B51F3CC0CC00A3449F /* FacebookRequest.swift */,
 				A7A24D4B1F3A4F0000EFB82E /* ServerRequest.swift */,
@@ -762,6 +765,7 @@
 				A76E72D01F7576580023D47F /* EventsTableView+NSFetchResultsController.swift in Sources */,
 				A733850C1FBB94AD00E0C4C2 /* EventInfoViewController.swift in Sources */,
 				A7E644901FCB7F4D00816FCF /* AboutViewController.swift in Sources */,
+				A74D4AF12011BD0800678B10 /* SingleEventFacebookRequest.swift in Sources */,
 				A7C556711FFF26B100B277EB /* MusicListCollectionCell.swift in Sources */,
 				A73E1FA21FBA3BAF001E31D3 /* FontAwesome.swift in Sources */,
 				A7E644941FCECD8B00816FCF /* Cities.swift in Sources */,
