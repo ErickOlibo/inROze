@@ -46,14 +46,14 @@ public struct DBLabels {
     static let placeID = "place_id"
     static let eventStartTime = "start_time"
     static let eventEndTime = "end_time"
-    static let eventName = "name"
+    static let eventName = "event_name"
     static let eventCoverURL = "cover_url"
     static let eventCreatedTime = "created_time"
     static let eventUpdatedTime = "updated_time"
     static let eventIsActive = "is_active"
     
     // for the PLACE info fields from the server
-    static let placeName = "name"
+    static let placeName = "place_name"
     static let placeCity = "city"
     static let placeCityCode = "city_code"
     static let placeCountry = "country"
@@ -135,7 +135,7 @@ public struct RequestDate {
 
 public struct IntervalBetweenRequest {
     static let toFacebook = TimeInterval(333 * 60 * 60 ) // 5 mins before new update from Facebook Graph API
-    static let toServer = TimeInterval(1 * 10) // 1 min before collecting new eventIDS / Artist from server
+    static let toServer = TimeInterval(1 * 60) // 1 min before collecting new eventIDS / Artist from server
     //static let toServerArtist = TimeInterval(2 * 60 * 60) // (1 min for test) 8 hours
 }
 

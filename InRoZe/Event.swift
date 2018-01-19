@@ -12,50 +12,50 @@ import CoreData
 public class Event: NSManagedObject
 {
     
-    // Find or insert eventID to the Database
-    // update placeID if eventID already present
-    class func insertOrUpdateEvent(with eventDict: [String : String], in context: NSManagedObjectContext) throws -> Event
-    {
-        // Formatting DateTime
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        let request: NSFetchRequest<Event> = Event.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %@", eventDict[DBLabels.eventID]!)
-        do {
-            let match = try context.fetch(request)
-            if match.count > 0 {
-                assert(match.count == 1, "findOrInsertEventID -- database inconsistency")
-                let thisEvent = match[0]
-                
-                let createdTime = eventDict[DBLabels.eventCreatedTime]
-                thisEvent.createdTime = formatter.date(from: createdTime!)
-                thisEvent.isActive = eventDict[DBLabels.eventIsActive] != nil ? true : false
-                do {
-                    thisEvent.location = try Place.insertOrUpdatePlace(with: eventDict, in: context)
-                } catch {
-                    print("[Event] - Error UPDATING findOrInsertEventID TO Location")
-                }
-                return thisEvent
-            }
-        } catch {
-            throw error
-        }
-
-        let event = Event(context: context)
-        event.id = eventDict[DBLabels.eventID]
-        
-        // Formatting DateTime
-        let createdTime = eventDict[DBLabels.eventCreatedTime]
-        event.createdTime = formatter.date(from: createdTime!)
-        event.isActive = eventDict[DBLabels.eventIsActive] != nil ? true : false
-        do {
-        event.location = try Place.insertOrUpdatePlace(with: eventDict, in: context)
-        } catch {
-            print("[Event] - Error CREATING findOrInsertEventID TO Location")
-        }
-        return event
-    }
+//    // Find or insert eventID to the Database
+//    // update placeID if eventID already present
+//    class func insertOrUpdateEvent(with eventDict: [String : String], in context: NSManagedObjectContext) throws -> Event
+//    {
+//        // Formatting DateTime
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//
+//        let request: NSFetchRequest<Event> = Event.fetchRequest()
+//        request.predicate = NSPredicate(format: "id = %@", eventDict[DBLabels.eventID]!)
+//        do {
+//            let match = try context.fetch(request)
+//            if match.count > 0 {
+//                assert(match.count == 1, "findOrInsertEventID -- database inconsistency")
+//                let thisEvent = match[0]
+//
+//                let createdTime = eventDict[DBLabels.eventCreatedTime]
+//                thisEvent.createdTime = formatter.date(from: createdTime!)
+//                thisEvent.isActive = eventDict[DBLabels.eventIsActive] != nil ? true : false
+//                do {
+//                    thisEvent.location = try Place.insertOrUpdatePlace(with: eventDict, in: context)
+//                } catch {
+//                    print("[Event] - Error UPDATING findOrInsertEventID TO Location")
+//                }
+//                return thisEvent
+//            }
+//        } catch {
+//            throw error
+//        }
+//
+//        let event = Event(context: context)
+//        event.id = eventDict[DBLabels.eventID]
+//
+//        // Formatting DateTime
+//        let createdTime = eventDict[DBLabels.eventCreatedTime]
+//        event.createdTime = formatter.date(from: createdTime!)
+//        event.isActive = eventDict[DBLabels.eventIsActive] != nil ? true : false
+//        do {
+//        event.location = try Place.insertOrUpdatePlace(with: eventDict, in: context)
+//        } catch {
+//            print("[Event] - Error CREATING findOrInsertEventID TO Location")
+//        }
+//        return event
+//    }
     
     
     class func insertOrUpdateServerInfoForEvent(with eventDict: [String : String], in context: NSManagedObjectContext) throws -> Bool
@@ -202,33 +202,33 @@ public class Event: NSManagedObject
         return false
     }
     
-    
-    // Update Description coming from Facebook
-    class func updateDescriptionFromFacebookForEvent(with eventDict: [String : String], in context: NSManagedObjectContext) throws -> Bool
-    {
-        let request: NSFetchRequest<Event> = Event.fetchRequest()
-        guard let id = eventDict[FBEvent.id] else { return false }
-        guard let name = eventDict[FBEvent.name] else { return false }
-        guard let text = eventDict[FBEvent.description] else { return false }
-        print("Event Name - ", name)
-        request.predicate = NSPredicate(format: "id = %@", id)
-        do {
-            let match = try context.fetch(request)
-            if match.count > 0 {
-                assert(match.count == 1, "updateDescriptionFromFacebookForEvent -- database inconsistency")
-                let event = match[0]
-                event.text = text
-//                let notice = NotificationFor.eventDescriptionRecieved + id
-//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: notice), object: nil)
-                
-            } else { return false }
-        } catch {
-            print("[updateDescriptionFromFacebookForEvent] - ERROR updating description to core data")
-        }
-        
-        return true
-    }
-    
+//
+//    // Update Description coming from Facebook
+//    class func updateDescriptionFromFacebookForEvent(with eventDict: [String : String], in context: NSManagedObjectContext) throws -> Bool
+//    {
+//        let request: NSFetchRequest<Event> = Event.fetchRequest()
+//        guard let id = eventDict[FBEvent.id] else { return false }
+//        guard let name = eventDict[FBEvent.name] else { return false }
+//        guard let text = eventDict[FBEvent.description] else { return false }
+//        print("Event Name - ", name)
+//        request.predicate = NSPredicate(format: "id = %@", id)
+//        do {
+//            let match = try context.fetch(request)
+//            if match.count > 0 {
+//                assert(match.count == 1, "updateDescriptionFromFacebookForEvent -- database inconsistency")
+//                let event = match[0]
+//                event.text = text
+////                let notice = NotificationFor.eventDescriptionRecieved + id
+////                NotificationCenter.default.post(name: NSNotification.Name(rawValue: notice), object: nil)
+//
+//            } else { return false }
+//        } catch {
+//            print("[updateDescriptionFromFacebookForEvent] - ERROR updating description to core data")
+//        }
+//
+//        return true
+//    }
+//
     
     
     

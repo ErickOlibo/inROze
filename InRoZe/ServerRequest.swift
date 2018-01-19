@@ -33,7 +33,6 @@ public class ServerRequest
     
     // request to Server for latest updated list of EventIDs
     public func getEventsIDsCurrentList(parameter: String, urlToServer: String) {
-        
         let _ = taskForURLSession(postParams: parameter, url: urlToServer, isEventFetch: true)
     }
     
@@ -41,12 +40,9 @@ public class ServerRequest
     // when call to the server, conditional call must be depending on the Country/ City
     // ADD the city selector
     private func taskForURLSession(postParams: String, url: String, isEventFetch: Bool) {
-        //print("[ServerRequest] - taskForURLSession FUNC | conditional call to server")
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
         request.httpBody = postParams.data(using: .utf8)
-        
-        
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard error == nil else {
                 return
@@ -61,13 +57,10 @@ public class ServerRequest
                         // check if there is no error
                         if let errorType = json[DBLabels.errorType] as! Bool?, !errorType {
                             print("[ServerRequest] - Server Response ErrorType: \(errorType)")
-                            
                             if (json[DBLabels.rows]! as! Int > 0) {
                                 self.result = json
-                                //print(json)
                                 UserDefaults().setDateNow(for: RequestDate.toServer)
                             }
-                            
                         }
                     } else {
                         //print(json)
@@ -80,28 +73,21 @@ public class ServerRequest
         task.resume()
     }
     
-    
-    private func printString(str: String) {
-        print(str)
-    }
+
     
     // print artist list
     private func updateArtistsDatabase(with jsonDict: [String : Any], in context: NSManagedObjectContext) {
         for (key, value) in jsonDict {
             if (key == DBLabels.upToDateArtistsList),
                 let  artistsArray = value as? [Any] {
-                print("[FROM SERVER]the size of DJ array: ", artistsArray.count)
-                //var loopCount = 1
+                //print("[FROM SERVER]the size of DJ array: ", artistsArray.count)
                 for artistInfoArray in artistsArray {
-                    
                     if let artistInfo = artistInfoArray as? [String : Any]{
-                        //print("Artist: ", loopCount)
                         do {
                             _ = try Artist.createOrUpdateArtist(with: artistInfo, in: context)
                         } catch {
                             print("[ServerRequest] - Error trying to createOrUpdateArtist")
                         }
-                        //loopCount += 1
                     }
                 }
             }
@@ -112,10 +98,8 @@ public class ServerRequest
         for (key, value) in jsonDict {
             if (key == DBLabels.mixtapesList),
                 let  mixtapesArray = value as? [Any] {
-                print("[FROM SERVER] the size of MIXTAPES array: ", mixtapesArray.count)
-                //var loopCount = 1
+                //print("[FROM SERVER] the size of MIXTAPES array: ", mixtapesArray.count)
                 for mixtapeInfoArray in mixtapesArray {
-                    
                     if let mixtapeInfo = mixtapeInfoArray as? [String : Any]{
                         
                         do {
@@ -131,16 +115,14 @@ public class ServerRequest
     
     
     private func updateDatabase(with eventIDs: [String : Any]) {
-        //print("[ServerRequest] - Starting updateDatabase from Server")
         container?.performBackgroundTask { context in
-            //print("[ServerRequest - updateDatabase] - Which Thread is Context at: \(Thread.current)")
+            
             for (key, value) in eventIDs {
                 if (key == DBLabels.eventsToPlaces),
                     let events = value as? [Any],
                     let _ = events.first as? [String : String] {
                     for event in events {
                         if let eventDict = event as? [String : String] {
-                            //print("Json Event", eventDict)
                             do {
                                 _ = try Event.insertOrUpdateServerInfoForEvent(with: eventDict, in: context)
                             } catch {
@@ -153,32 +135,24 @@ public class ServerRequest
                     self.updateMixtapesDatabase(with: eventIDs, in: context)
                     self.insertOrUpdateArtistsOfEvents(with: eventIDs, in: context)
                     
-                    // Delete Outdated entries from Core Data (events and mixtapes)
-                    print("[updateDatabase] - deleteNotActiveEvents")
                     _ = Event.deleteNotActiveEvents(in: context)
-                    print("[updateDatabase] - deleteNotActiveMixtapes")
                     _ = Mixtape.deleteNotActiveMixtapes(in: context)
                     
-                    // Save in CoreDatabase
                     do {
-                        //print("[ServerRequest] -  Which thread is this Context at: \(Thread.current)")
-
                         try context.save()
                         UserDefaults().setDateNow(for: RequestDate.toServer)
-                        
-                        RequestHandler().isDoneUpdatingServerRequest = true
-                        
                     } catch {
                         print("[ServerRequest] - Error trying to save in CoreData")
                     }
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
                     //self.printDatabaseStatistics()
                 }
             }
         }
     }
     
+    
     private func insertOrUpdateArtistsOfEvents(with eventDict: [String : Any], in context: NSManagedObjectContext) {
-        
         if let artsOfEventsArr = eventDict[DBLabels.artistsOfEvents] as? [Any],
             let _ = artsOfEventsArr.first as? [String : String] {
             for event in artsOfEventsArr {
@@ -198,7 +172,6 @@ public class ServerRequest
     
     
     private func printDatabaseStatistics() {
-        
         if let context = container?.viewContext {
             // THREAD SAFETY
             // context.perform makes sure the block is executed on the right thread for the context

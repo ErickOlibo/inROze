@@ -32,7 +32,9 @@ class EventsViewController: FetchedResultsTableViewController {
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Event> in
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         let nowTime = NSDate()
-        request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
+        let nameSort = NSSortDescriptor(key: "name", ascending: true, selector: nil)
+        let dateSort = NSSortDescriptor(key: "startTime", ascending: true, selector: nil)
+        request.sortDescriptors = [dateSort, nameSort]
         request.predicate = NSPredicate(format: "endTime > %@ AND imageURL != nil AND name != nil AND performers.@count > 0", nowTime)
         request.fetchBatchSize = 20
         let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
