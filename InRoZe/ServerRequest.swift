@@ -144,7 +144,8 @@ public class ServerRequest
                     } catch {
                         print("[ServerRequest] - Error trying to save in CoreData")
                     }
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
+                    //NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.initialLoginRequestIsDone), object: nil)
                     //self.printDatabaseStatistics()
                 }
             }
