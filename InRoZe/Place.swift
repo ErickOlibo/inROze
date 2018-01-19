@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Foundation
 
 public class Place: NSManagedObject
 {
@@ -29,10 +30,8 @@ public class Place: NSManagedObject
                 place.street = eventDict[DBLabels.placeStreet]
                 guard let latitude = eventDict[DBLabels.placeLatitude] else { return place }
                 guard let longitude = eventDict[DBLabels.placeLongitude] else { return place }
-                print("STRING Coordinate: Lat[\(latitude)] - Lon[\(longitude)]")
                 place.latitude = Float(latitude) ?? 0.0
-                place.longitude = Float(Double(longitude)!)
-                print("FLOAT Coordinate: Lat[\(place.latitude)] - Lon[\(place.longitude)]")
+                place.longitude = Float(longitude) ?? 0.0
                 return place
             }
         } catch {
@@ -47,6 +46,10 @@ public class Place: NSManagedObject
         place.name = eventDict[DBLabels.placeName]
         place.profileURL = eventDict[DBLabels.placeProfileURL]
         place.street = eventDict[DBLabels.placeStreet]
+        guard let latitude = eventDict[DBLabels.placeLatitude] else { return place }
+        guard let longitude = eventDict[DBLabels.placeLongitude] else { return place }
+        place.latitude = Float(latitude) ?? 0.0
+        place.longitude = Float(longitude) ?? 0.0
         return place
     }
     
