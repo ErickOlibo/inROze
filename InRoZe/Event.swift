@@ -32,7 +32,7 @@ public class Event: NSManagedObject
                 thisEvent.createdTime = formatter.date(from: createdTime!)
                 thisEvent.isActive = eventDict[DBLabels.eventIsActive] != nil ? true : false
                 do {
-                    thisEvent.location = try Place.findOrInsertPlaceID(matching: eventDict, in: context)
+                    thisEvent.location = try Place.insertOrUpdatePlace(with: eventDict, in: context)
                 } catch {
                     print("[Event] - Error UPDATING findOrInsertEventID TO Location")
                 }
@@ -50,7 +50,7 @@ public class Event: NSManagedObject
         event.createdTime = formatter.date(from: createdTime!)
         event.isActive = eventDict[DBLabels.eventIsActive] != nil ? true : false
         do {
-        event.location = try Place.findOrInsertPlaceID(matching: eventDict, in: context)
+        event.location = try Place.insertOrUpdatePlace(with: eventDict, in: context)
         } catch {
             print("[Event] - Error CREATING findOrInsertEventID TO Location")
         }

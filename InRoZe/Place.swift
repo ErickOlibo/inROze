@@ -13,7 +13,7 @@ public class Place: NSManagedObject
 {
     // Find or insert eventID to the Database
     // update placeID if eventID already present
-    class func findOrInsertPlaceID(matching eventDict: [String : String], in context: NSManagedObjectContext) throws -> Place
+    class func insertOrUpdatePlace(with eventDict: [String : String], in context: NSManagedObjectContext) throws -> Place
     {
         let request: NSFetchRequest<Place> = Place.fetchRequest()
         request.predicate = NSPredicate(format: "id = %@", eventDict[DBLabels.placeID]!)
@@ -21,9 +21,14 @@ public class Place: NSManagedObject
             let match = try context.fetch(request)
             if match.count > 0 {
                 assert(match.count == 1, "findOrInsertPlaceID -- database inconsistency")
-                match[0].countryCode = eventDict[DBLabels.placeCountryCode]
-                match[0].profileURL = eventDict[DBLabels.placeProfileURL]
-                return match[0]
+                let place = match[0]
+                place.city = eventDict[DBLabels.placeCity]
+                place.country = eventDict[DBLabels.placeCountry]
+                place.countryCode = eventDict[DBLabels.placeCountryCode]
+                place.name = eventDict[DBLabels.placeName]
+                place.profileURL = eventDict[DBLabels.placeProfileURL]
+                place.street = eventDict[DBLabels.placeStreet]
+                return place
             }
         } catch {
             throw error
@@ -31,8 +36,12 @@ public class Place: NSManagedObject
         
         let place = Place(context: context)
         place.id = eventDict[DBLabels.placeID]
+        place.city = eventDict[DBLabels.placeCity]
+        place.country = eventDict[DBLabels.placeCountry]
         place.countryCode = eventDict[DBLabels.placeCountryCode]
+        place.name = eventDict[DBLabels.placeName]
         place.profileURL = eventDict[DBLabels.placeProfileURL]
+        place.street = eventDict[DBLabels.placeStreet]
         return place
     }
     
