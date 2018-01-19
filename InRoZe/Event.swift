@@ -14,7 +14,7 @@ public class Event: NSManagedObject
     
     // Find or insert eventID to the Database
     // update placeID if eventID already present
-    class func findOrInsertEventID(matching eventDict: [String : String], in context: NSManagedObjectContext) throws -> Event
+    class func insertOrUpdateEvent(with eventDict: [String : String], in context: NSManagedObjectContext) throws -> Event
     {
         // Formatting DateTime
         let formatter = DateFormatter()

@@ -20,7 +20,7 @@ public class Place: NSManagedObject
         do {
             let match = try context.fetch(request)
             if match.count > 0 {
-                assert(match.count == 1, "findOrInsertEventID -- database inconsistency")
+                assert(match.count == 1, "findOrInsertPlaceID -- database inconsistency")
                 match[0].countryCode = eventDict[DBLabels.placeCountryCode]
                 match[0].profileURL = eventDict[DBLabels.placeProfileURL]
                 return match[0]

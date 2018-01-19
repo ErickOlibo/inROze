@@ -142,7 +142,7 @@ public class ServerRequest
                         if let eventDict = event as? [String : String] {
                             //print("Json Event", eventDict)
                             do {
-                                _ = try Event.findOrInsertEventID(matching: eventDict, in: context)
+                                _ = try Event.insertOrUpdateEvent(with: eventDict, in: context)
                             } catch {
                                 print(error)
                             }
