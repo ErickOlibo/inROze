@@ -58,6 +58,87 @@ public class Event: NSManagedObject
     }
     
     
+    class func insertOrUpdateServerInfoForEvent(with eventDict: [String : String], in context: NSManagedObjectContext) throws -> Bool
+    {
+        let request: NSFetchRequest<Event> = Event.fetchRequest()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        guard let eventID = eventDict[DBLabels.eventID] else { return false }
+        guard let eventName = eventDict[DBLabels.eventName] else { return false }
+        guard let eventCoverURL = eventDict[DBLabels.eventCoverURL] else { return false }
+        guard let eStartTime = eventDict[DBLabels.eventStartTime] else { return false }
+        guard let eEndTime = eventDict[DBLabels.eventEndTime] else { return false }
+        guard let eUpdatedTime = eventDict[DBLabels.eventUpdatedTime] else { return false }
+        guard let eventStartTime = formatter.date(from: eStartTime) else { return false }
+        guard let eventEndTime = formatter.date(from: eEndTime) else { return false }
+        guard let eventUpdatedTime = formatter.date(from: eUpdatedTime) else { return false }
+        //print("Name[\(eventName)] ID[\(eventID)] - After Guard all Times ST[\(eventStartTime)] - EN[\(eventEndTime)] - UP[\(eventUpdatedTime)]")
+        
+        request.predicate = NSPredicate(format: "id = %@", eventID)
+        do {
+            let match = try context.fetch(request)
+            if match.count > 0 {
+                assert(match.count == 1, "insertOrUpdateServerInfoForEvent -- database inconsistency")
+                let matchEvent = match[0]
+                //print("[insertOrUpdateServerInfoForEvent] - UPDATING eventID :", eventID)
+                // IF EVENT IS NOT ACTIVE -> Delete entry
+                if eventDict[DBLabels.eventIsActive] != nil {
+                    matchEvent.isActive = true
+                } else {
+                    print("Event isActive = NIL - DELETE [\(eventID)]")
+                    context.delete(matchEvent)
+                    return false
+                }
+                matchEvent.name = eventName
+                matchEvent.imageURL = eventCoverURL
+                matchEvent.startTime = eventStartTime
+                matchEvent.endTime = eventEndTime
+                matchEvent.updatedTime = eventUpdatedTime
+                
+                // Set startDate as a time in string "YYYYMMdd" eample: 20171120 (2017 11 20 -> 2017 Nov 20)
+                let dayFormatter = DateFormatter()
+                dayFormatter.dateFormat = "YYYYMMdd"
+                matchEvent.startDay = dayFormatter.string(from: eventStartTime)
+                
+                // here is the associated Location
+                do {
+                    matchEvent.location = try Place.insertOrUpdatePlace(with: eventDict, in: context)
+                } catch {
+                    print("[insertOrUpdateServerInfoForEvent] - Error UpdatingOrCreating Location for the Event")
+                }
+                return true
+            }
+  
+        } catch {
+            print("[insertOrUpdateServerInfoForEvent] - Error Updating Server Info to Event")
+        }
+        
+        // INSERT NEW
+        guard let _ = eventDict[DBLabels.eventIsActive] else { return false }
+        let event = Event(context: context)
+        //print("[insertOrUpdateServerInfoForEvent] - INSERTING eventID :", eventID)
+        event.id = eventID
+        event.isActive = true
+        event.name = eventName
+        event.imageURL = eventCoverURL
+        event.startTime = eventStartTime
+        event.endTime = eventEndTime
+        event.updatedTime = eventUpdatedTime
+        let dayFormatter = DateFormatter()
+        dayFormatter.dateFormat = "YYYYMMdd"
+        event.startDay = dayFormatter.string(from: eventStartTime)
+        do {
+            event.location = try Place.insertOrUpdatePlace(with: eventDict, in: context)
+        } catch {
+            print("[insertOrUpdateServerInfoForEvent] - Error UpdatingOrCreating Location for the Event")
+        }
+
+        return true
+    }
+    
+    
+    
     class func addArtistsListToEvent(with eventDict: [String : String], in context: NSManagedObjectContext) throws -> Bool {
         let id = eventDict[DBLabels.eventID]!
         let artistsListArr = eventDict[DBLabels.artistsList]!.components(separatedBy: ", ")
@@ -123,7 +204,7 @@ public class Event: NSManagedObject
     
     
     // Update eventID missing attributes
-    class func updateInfoForEvent(matching eventID: (key: String, value: Any), in context: NSManagedObjectContext, with request: NSFetchRequest<Event>) throws -> Bool
+    class func updateInfoFromFacebookForEvent(matching eventID: (key: String, value: Any), in context: NSManagedObjectContext, with request: NSFetchRequest<Event>) throws -> Bool
     {
         request.predicate = NSPredicate(format: "id = %@", eventID.key)
         
@@ -189,7 +270,7 @@ public class Event: NSManagedObject
                         // updating Location ralationship for eventID
                         if let eventPlace = eventInfo[FBEvent.place] as? [String : Any] {
                             do {
-                                if let location = try Place.updatePlaceInfoForEvent(with: eventPlace, in: context){
+                                if let location = try Place.updatePlaceInfoForFaceBookEvent(with: eventPlace, in: context){
                                    event.location = location
                                 }
                             } catch {
@@ -213,6 +294,8 @@ public class Event: NSManagedObject
         return true
     }
 
+    
+    
     
     // Select events where StartTime is after Now
     // ADD the LOCATION (city or country) selector as a parameter

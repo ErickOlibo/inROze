@@ -30,7 +30,7 @@ class FollowsViewController: FetchedResultsTableViewController {
         let startDaySort = NSSortDescriptor(key: "startDay", ascending: true, selector: nil)
         let startTimeSort = NSSortDescriptor(key: "startTime", ascending: true, selector: nil)
         request.sortDescriptors = [startDaySort, startTimeSort]
-        request.predicate = NSPredicate(format: "ANY performers.isFollowed == YES AND endTime > %@ AND imageURL != nil AND name != nil AND text != nil AND performers.@count > 0", nowTime)
+        request.predicate = NSPredicate(format: "ANY performers.isFollowed == YES AND endTime > %@ AND imageURL != nil AND name != nil AND performers.@count > 0", nowTime)
         request.fetchBatchSize = 20
         let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: "startDay", cacheName: nil)
         fetchedRC.delegate = self

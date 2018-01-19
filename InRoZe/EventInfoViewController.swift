@@ -116,6 +116,7 @@ class EventInfoViewController: UIViewController {
         
         let latitude: CLLocationDegrees = Double(lat)
         let longitude: CLLocationDegrees = Double(lon)
+        print("Lat[\(lat) | \(latitude)] - Lon[\(lon) | \(longitude)]")
         
         let regionDistance:CLLocationDistance = 1000
         let coordinates = CLLocationCoordinate2DMake(latitude, longitude)

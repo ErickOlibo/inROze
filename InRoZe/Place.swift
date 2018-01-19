@@ -11,8 +11,7 @@ import CoreData
 
 public class Place: NSManagedObject
 {
-    // Find or insert eventID to the Database
-    // update placeID if eventID already present
+
     class func insertOrUpdatePlace(with eventDict: [String : String], in context: NSManagedObjectContext) throws -> Place
     {
         let request: NSFetchRequest<Place> = Place.fetchRequest()
@@ -28,6 +27,12 @@ public class Place: NSManagedObject
                 place.name = eventDict[DBLabels.placeName]
                 place.profileURL = eventDict[DBLabels.placeProfileURL]
                 place.street = eventDict[DBLabels.placeStreet]
+                guard let latitude = eventDict[DBLabels.placeLatitude] else { return place }
+                guard let longitude = eventDict[DBLabels.placeLongitude] else { return place }
+                print("STRING Coordinate: Lat[\(latitude)] - Lon[\(longitude)]")
+                place.latitude = Float(latitude) ?? 0.0
+                place.longitude = Float(Double(longitude)!)
+                print("FLOAT Coordinate: Lat[\(place.latitude)] - Lon[\(place.longitude)]")
                 return place
             }
         } catch {
@@ -46,8 +51,8 @@ public class Place: NSManagedObject
     }
     
     
-    // Update PlaceID missing attributes
-    class func updatePlaceInfoForEvent(with eventPlace: [String : Any], in context: NSManagedObjectContext) throws -> Place?
+    // Updates of Places from Facebook query
+    class func updatePlaceInfoForFaceBookEvent(with eventPlace: [String : Any], in context: NSManagedObjectContext) throws -> Place?
     {
         let request: NSFetchRequest<Place> = Place.fetchRequest()
         if let pID = eventPlace[FBPlace.id] as? String {
@@ -81,20 +86,6 @@ public class Place: NSManagedObject
         
         return nil
     }
-    
-    // Create New Event sent by FBook
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+   
 }
 

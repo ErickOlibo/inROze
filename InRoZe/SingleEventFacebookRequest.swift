@@ -50,7 +50,7 @@ public class SingleEventFacebookRequest
             print(result)
             for resID in result {
                 do {
-                    _ = try Event.updateInfoForEvent(matching: resID, in: context, with: request)
+                    _ = try Event.updateInfoFromFacebookForEvent(matching: resID, in: context, with: request)
                 } catch {
                     print("[updateEventDatabase] - Error with Event.UpdateInfoForEvent")
                 }

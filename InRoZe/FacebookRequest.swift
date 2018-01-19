@@ -95,7 +95,7 @@ public class FacebookRequest
             //print("[updateEventDatabase] - Which Thread is Context at: \(Thread.current)")
             for resID in result {
                 do {
-                    _ = try Event.updateInfoForEvent(matching: resID, in: context, with: request)
+                    _ = try Event.updateInfoFromFacebookForEvent(matching: resID, in: context, with: request)
                 } catch {
                     print("[updateEventDatabase] - Error with Event.UpdateInfoForEvent")
                 }
@@ -138,7 +138,10 @@ public class FacebookRequest
                     var eventIDsArr = [String]()
                     for event in events as [Event] {
                         if let eventStr = event.id {
-                            eventIDsArr.append(eventStr)
+                            if (eventIDsArr.count < 3) {
+                                eventIDsArr.append(eventStr)
+                            }
+                            
                         }
                     }
                     //print(eventIDsArr)

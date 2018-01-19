@@ -171,7 +171,7 @@ public class Artist: NSManagedObject
         // Add sort Descriptors and Predicate
         let nowTime = NSDate()
         request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
-        request.predicate = NSPredicate(format: "ANY performers.id == %@ AND endTime > %@ AND imageURL != nil AND name != nil AND text != nil", artist.id!, nowTime)
+        request.predicate = NSPredicate(format: "ANY performers.id == %@ AND endTime > %@ AND imageURL != nil AND name != nil", artist.id!, nowTime)
         do {
             let match = try context.fetch(request)
             //print("match for [findPerformingEvents]: \(match.count)")

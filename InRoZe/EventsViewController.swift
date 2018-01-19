@@ -33,7 +33,7 @@ class EventsViewController: FetchedResultsTableViewController {
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         let nowTime = NSDate()
         request.sortDescriptors = [NSSortDescriptor(key: "startTime", ascending: true, selector: nil)]
-        request.predicate = NSPredicate(format: "endTime > %@ AND imageURL != nil AND name != nil AND text != nil AND performers.@count > 0", nowTime)
+        request.predicate = NSPredicate(format: "endTime > %@ AND imageURL != nil AND name != nil AND performers.@count > 0", nowTime)
         request.fetchBatchSize = 20
         let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedRC.delegate = self
