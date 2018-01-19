@@ -63,7 +63,7 @@ public class Event: NSManagedObject
         let request: NSFetchRequest<Event> = Event.fetchRequest()
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
+        let eventDesc = "No Description!"
         guard let eventID = eventDict[DBLabels.eventID] else { return false }
         guard let eventName = eventDict[DBLabels.eventName] else { return false }
         guard let eventCoverURL = eventDict[DBLabels.eventCoverURL] else { return false }
@@ -95,6 +95,7 @@ public class Event: NSManagedObject
                 matchEvent.startTime = eventStartTime
                 matchEvent.endTime = eventEndTime
                 matchEvent.updatedTime = eventUpdatedTime
+                if matchEvent.text == nil { matchEvent.text = eventDesc }
                 
                 // Set startDate as a time in string "YYYYMMdd" eample: 20171120 (2017 11 20 -> 2017 Nov 20)
                 let dayFormatter = DateFormatter()
@@ -125,6 +126,7 @@ public class Event: NSManagedObject
         event.startTime = eventStartTime
         event.endTime = eventEndTime
         event.updatedTime = eventUpdatedTime
+        event.text = eventDesc
         let dayFormatter = DateFormatter()
         dayFormatter.dateFormat = "YYYYMMdd"
         event.startDay = dayFormatter.string(from: eventStartTime)

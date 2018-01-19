@@ -32,6 +32,7 @@ public class Place: NSManagedObject
                 guard let longitude = eventDict[DBLabels.placeLongitude] else { return place }
                 place.latitude = Float(latitude) ?? 0.0
                 place.longitude = Float(longitude) ?? 0.0
+                //print("UPDATE PLACE -> INFO [\(place.city!)] -  [\(place.country!)] - [\(place.countryCode!)] - [\(place.name!)] - [\(place.street!)] - [\(place.latitude)] - [\(place.longitude)] ")
                 return place
             }
         } catch {
@@ -50,6 +51,7 @@ public class Place: NSManagedObject
         guard let longitude = eventDict[DBLabels.placeLongitude] else { return place }
         place.latitude = Float(latitude) ?? 0.0
         place.longitude = Float(longitude) ?? 0.0
+        //print("INSERT PLACE -> INFO [\(place.city!)] -  [\(place.country!)] - [\(place.countryCode!)] - [\(place.name!)] - [\(place.street!)] - [\(place.latitude)] - [\(place.longitude)] ")
         return place
     }
     
@@ -65,10 +67,10 @@ public class Place: NSManagedObject
         }
         
         do {
-            let places = try context.fetch(request)
-            if places.count > 0 {
-                assert(places.count == 1, "inconsistency: unique place identifier is duplicate")
-                let place = places[0]
+            let match = try context.fetch(request)
+            if match.count > 0 {
+                assert(match.count == 1, "inconsistency: unique place identifier is duplicate")
+                let place = match[0]
                 let placeName = eventPlace[FBPlace.name] as? String ?? ""
                 if (place.name != placeName) {
                     place.name = placeName

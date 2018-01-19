@@ -17,7 +17,7 @@ class EventInfoViewController: UIViewController {
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     
     // properties
-    var event: Event?
+    var event: Event? { didSet { fetchInfoFromFacebook() } }
     var orderedDJs = [Artist]()
     let color = UIColor.lightGray.cgColor
     let thick: CGFloat = 0.333
@@ -132,8 +132,15 @@ class EventInfoViewController: UIViewController {
     }
     
     
+    private func fetchInfoFromFacebook() {
+        guard let event = event else { return }
+        print(event.description)
+    }
+    
+    
     // Convenience Methods
     private func updateUI() {
+        print("******* updateUI *******")
         orderDJs()
         collectionView.reloadData()
         
@@ -179,6 +186,7 @@ class EventInfoViewController: UIViewController {
                 }
             }
         }
+        
         
         guard let eventDesc = thisEvent.text else { return }
         eventText.attributedText = addTitleToText(forText: eventDesc, withTitle: "DETAILS:")

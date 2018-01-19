@@ -138,7 +138,9 @@ public class FacebookRequest
                     var eventIDsArr = [String]()
                     for event in events as [Event] {
                         if let eventStr = event.id {
-                            if (eventIDsArr.count < 3) {
+                            print("BEFORE collect something")
+                            if (eventIDsArr.count == 0) {
+                                print("collect something")
                                 eventIDsArr.append(eventStr)
                             }
                             

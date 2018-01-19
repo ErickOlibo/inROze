@@ -171,7 +171,7 @@ public class ServerRequest
                     } catch {
                         print("[ServerRequest] - Error trying to save in CoreData")
                     }
-                    self.printDatabaseStatistics()
+                    //self.printDatabaseStatistics()
                 }
             }
         }
