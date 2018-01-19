@@ -60,7 +60,7 @@ public class ServerRequest
                     if (isEventFetch) {
                         // check if there is no error
                         if let errorType = json[DBLabels.errorType] as! Bool?, !errorType {
-                            print("[ServerRequest] - There is an error from server response: \(errorType)")
+                            print("[ServerRequest] - Server Response ErrorType: \(errorType)")
                             
                             if (json[DBLabels.rows]! as! Int > 0) {
                                 self.result = json

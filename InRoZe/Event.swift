@@ -203,13 +203,45 @@ public class Event: NSManagedObject
     }
     
     
+    // Update Description coming from Facebook
+    class func updateDescriptionFromFacebookForEvent(with eventDict: [String : String], in context: NSManagedObjectContext) throws -> Bool
+    {
+        let request: NSFetchRequest<Event> = Event.fetchRequest()
+        guard let id = eventDict[FBEvent.id] else { return false }
+        guard let name = eventDict[FBEvent.name] else { return false }
+        guard let text = eventDict[FBEvent.description] else { return false }
+        print("Event Name - ", name)
+        request.predicate = NSPredicate(format: "id = %@", id)
+        do {
+            let match = try context.fetch(request)
+            if match.count > 0 {
+                assert(match.count == 1, "updateDescriptionFromFacebookForEvent -- database inconsistency")
+                let event = match[0]
+                event.text = text
+//                let notice = NotificationFor.eventDescriptionRecieved + id
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: notice), object: nil)
+                
+            } else { return false }
+        } catch {
+            print("[updateDescriptionFromFacebookForEvent] - ERROR updating description to core data")
+        }
+        
+        return true
+    }
+    
+    
     
     
     // Update eventID missing attributes
     class func updateInfoFromFacebookForEvent(matching eventID: (key: String, value: Any), in context: NSManagedObjectContext, with request: NSFetchRequest<Event>) throws -> Bool
     {
+//        guard let eventInfoB = eventID.value as? [String : Any] else { return false }
+//        let theName = eventInfoB[FBEvent.name] as? String ?? "NO NAME"
+//        let theID = eventInfoB[FBEvent.id] as? String ?? "NO ID"
+//        print("THE NAME [\(theName)], THE ID [\(theID)]")
         request.predicate = NSPredicate(format: "id = %@", eventID.key)
-        
+        //print("EventDict.key ", eventID.key)
+        print("WHERE IS THE LOOP")
         do {
             let events = try context.fetch(request)
             if events.count > 0 {

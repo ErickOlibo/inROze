@@ -65,8 +65,21 @@ class EventInfoViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        guard let event = event else { return }
+        guard let id = event.id else { return }
+        let notice = NotificationFor.eventDescriptionRecieved + id
+        NotificationCenter.default.addObserver(self, selector: #selector(updateDescription(_:)), name: NSNotification.Name(rawValue: notice), object: nil)
         updateUI()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let id = event?.id else { return }
+        let notice = NotificationFor.eventDescriptionRecieved + id
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: notice), object: nil)
+    }
+    
+    
     
     // For the tap on the label
     @objc func tapMapDirection(sender: UITapGestureRecognizer) {
@@ -85,6 +98,8 @@ class EventInfoViewController: UIViewController {
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
     }
+    
+    //
     
     // Convenience functions
     private func configureColorsToUI() {
@@ -134,12 +149,16 @@ class EventInfoViewController: UIViewController {
     
     private func fetchInfoFromFacebook() {
         guard let event = event else { return }
-        print(event.description)
+        guard let id = event.id else { return }
+        let _ = SingleEventFacebookRequest().queryFacebookGraphAPI(for: id)
     }
     
-    private func updateDescription() {
-        let eventDesc = "Text from Facebook"
-        eventText.attributedText = addTitleToText(forText: eventDesc, withTitle: "DETAILS:")
+    
+    @objc private func updateDescription(_ notification: NSNotification) {
+        guard let text = notification.userInfo?["text"] as? String else { return }
+        DispatchQueue.main.async {
+            self.eventText.attributedText = self.addTitleToText(forText: text, withTitle: "DETAILS:")
+        }
     }
     
     

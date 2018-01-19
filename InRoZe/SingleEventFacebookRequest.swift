@@ -24,30 +24,58 @@ public class SingleEventFacebookRequest
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     
     
-    public func queryFacebookGraphAPI(for eventID: String) {
+    public func queryFacebookGraphAPI(for eventID: String) -> Bool{
         
         // Facebook Query fields parameters
-        let param: [String] = [FBEvent.id, FBEvent.name, FBEvent.startTime, FBEvent.endTime, FBEvent.updatedTime,
-                               FBEvent.cover, FBEvent.place]
-        
-        FBSDKGraphRequest(graphPath: "/?ids=\(eventID)", parameters: ["fields" : param])
+        let param: [String] = [FBEvent.description, FBEvent.name]
+        let params = param.joined(separator: ",")
+        FBSDKGraphRequest(graphPath: "\(eventID)", parameters: ["fields" : params])
             .start(completionHandler:  { (connection, result, error) in
-                if error == nil,  let result = result as? [String : Any]{
-                    self.updateEventDatabase(with: result)
-                    
+                if error == nil,  let result = result as? [String : String]{
+                    print("IS QUERY FOR FACEBOOK DONE WITH SUCCESS")
+                    if let descr = result[FBEvent.description] {
+                        self.sendDescriptionThroughNotificationCenter(text: descr, id: eventID)
+                    }
                 } else {
-                    print("[recursiveGraphRequest] - there an error -> FACEBOOK Request: \(String(describing: error))")
+                    print("[queryFacebookGraphAPI] - there an error -> FACEBOOK Request: \(String(describing: error))")
                 }
             })
+        return true
     }
     
     
+    // send the description with the noification center
+    private func sendDescriptionThroughNotificationCenter( text: String, id: String) {
+        let textDataDict:[String: String] = ["text" : text]
+        let notice = NotificationFor.eventDescriptionRecieved + id
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: notice), object: nil, userInfo: textDataDict)
+    }
+    
+    
+    // insert response from FaceBook events into CoreData Simplify
+    private func updateEventInfoToDatabase(with result: [String : String], id: String) {
+        container?.performBackgroundTask { context in
+            do {
+                _ = try Event.updateDescriptionFromFacebookForEvent(with: result, in: context)
+            } catch {
+                print("[updateEventInfoToDatabase] - Error with Updating Description for event")
+            }
+            do {
+                try context.save()
+            } catch {
+                print("[updateEventInfoToDatabase] - Error during saving: \(error)")
+            }
+            let notice = NotificationFor.eventDescriptionRecieved + id
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: notice), object: nil)
+        }
+    }
+    
     // insert response from FaceBook events into CoreData
-    private func updateEventDatabase(with result: [String : Any]) {
+    private func updateEDatabase(with result: [String : Any]) {
         container?.performBackgroundTask { context in
             let request: NSFetchRequest<Event> = Event.fetchRequest()
             //print("[updateEventDatabase] - Which Thread is Context at: \(Thread.current)")
-            print(result)
+            //print(result)
             for resID in result {
                 do {
                     _ = try Event.updateInfoFromFacebookForEvent(matching: resID, in: context, with: request)
