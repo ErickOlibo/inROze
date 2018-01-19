@@ -137,10 +137,15 @@ class EventInfoViewController: UIViewController {
         print(event.description)
     }
     
+    private func updateDescription() {
+        let eventDesc = "Text from Facebook"
+        eventText.attributedText = addTitleToText(forText: eventDesc, withTitle: "DETAILS:")
+    }
+    
+    
     
     // Convenience Methods
     private func updateUI() {
-        print("******* updateUI *******")
         orderDJs()
         collectionView.reloadData()
         
