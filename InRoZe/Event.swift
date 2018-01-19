@@ -28,7 +28,7 @@ public class Event: NSManagedObject
                 assert(match.count == 1, "findOrInsertEventID -- database inconsistency")
                 let thisEvent = match[0]
                 
-                let createdTime = eventDict[DBLabels.createdTime]
+                let createdTime = eventDict[DBLabels.eventCreatedTime]
                 thisEvent.createdTime = formatter.date(from: createdTime!)
                 thisEvent.isActive = eventDict[DBLabels.eventIsActive] != nil ? true : false
                 do {
@@ -46,7 +46,7 @@ public class Event: NSManagedObject
         event.id = eventDict[DBLabels.eventID]
         
         // Formatting DateTime
-        let createdTime = eventDict[DBLabels.createdTime]
+        let createdTime = eventDict[DBLabels.eventCreatedTime]
         event.createdTime = formatter.date(from: createdTime!)
         event.isActive = eventDict[DBLabels.eventIsActive] != nil ? true : false
         do {

@@ -37,25 +37,46 @@ public struct UrlFor {
 
 }
 
-// Fields name from the Server Database Columns
+// SERVER response fields name
 public struct DBLabels {
+    
+    // For the EVENT info fields from the Server
+    static let artistsList = "artists_list"
     static let eventID = "event_id"
     static let placeID = "place_id"
-    static let createdTime = "created_time"
-    static let placeCountryCode = "country_code"
-    static let artistsList = "artists_list"
-    static let cityCode =  "cityCode"
-    static let errorType = "error"
+    static let eventStartTime = "start_time"
+    static let eventEndTime = "end_time"
+    static let eventName = "name"
+    static let eventCoverURL = "cover_url"
+    static let eventCreatedTime = "created_time"
+    static let eventUpdatedTime = "updated_time"
     static let eventIsActive = "is_active"
-    static let rows = "rows"
-    static let profileURL = "profile_url"
     
+    // for the PLACE info fields from the server
+    static let placeName = "name"
+    static let placeCity = "city"
+    static let placeCityCode = "city_code"
+    static let placeCountry = "country"
+    static let placeCountryCode = "country_code"
+    static let placeLatitude = "latitude"
+    static let placeLongitude = "longitude"
+    static let placeProfileURL = "profile_url"
+    static let placeStreet = "street"
+    
+    
+    
+    
+    // JSON Dictionary names from Server
+    static let errorType = "error"
+    static let message = "message"
+    static let cityCode =  "cityCode"
+    static let rows = "rows"
     static let eventsToPlaces = "eventsToPlaces"
     static let artistsOfEvents = "artistsOfEvents"
     static let upToDateArtistsList = "upToDateArtistsList"
     static let mixtapesList = "mixtapesList"
     
-    // for the Artist info fields
+    // for the ARTIST info fields from Server
     static let artistID = "artist_id"
     static let artistName = "name"
     static let artistType = "type"
@@ -70,9 +91,10 @@ public struct DBLabels {
     static let artistNameMC = "name_mc"
     static let artistFbPageID = "fbpage_id"
     
-    // for the Mixtape fields from Server
+    // for the MIXTAPE info fields from Server
     static let mixID = "mix_id"
-    static let mixCoverURL = "cover_url"
+    static let mixCountryCode = "country_code"
+    static let mixArtistID = "artist_id"
     static let mixC320URL = "cover320_url"
     static let mixC640URL = "cover640_url"
     static let mixC768URL = "cover768_url"
@@ -81,15 +103,17 @@ public struct DBLabels {
     static let mixLength = "length"
     static let mixCreatedTime = "created_time"
     static let mixURL = "mix_url"
+    static let mixStreamURL = "stream_url"
     static let mixTag1 = "tag_1"
     static let mixTag2 = "tag_2"
     static let mixTag3 = "tag_3"
     static let mixTag4 = "tag_4"
     static let mixTag5 = "tag_5"
     static let mixIsActive = "is_active"
-    static let mixStreamURL = "stream_url"
+    
     
 }
+
 
 
 // Session Type for taskForURLSeesion to Server
@@ -110,7 +134,7 @@ public struct RequestDate {
 
 
 public struct IntervalBetweenRequest {
-    static let toFacebook = TimeInterval(10 * 60 ) // 5 mins before new update from Facebook Graph API
+    static let toFacebook = TimeInterval(12 * 60 * 60 ) // 5 mins before new update from Facebook Graph API
     static let toServer = TimeInterval(1 * 10) // 1 min before collecting new eventIDS / Artist from server
     //static let toServerArtist = TimeInterval(2 * 60 * 60) // (1 min for test) 8 hours
 }
