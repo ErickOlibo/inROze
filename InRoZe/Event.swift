@@ -377,7 +377,7 @@ public class Event: NSManagedObject
     }
     
     
-    // Deletes older (where endTime < NOW) from the database
+    // Deletes older (where endTime < NOW) from the database and timeInterval to Start is more thant defaultInterval
     class func deleteEventsEndedBeforeNow(in context: NSManagedObjectContext, with request: NSFetchRequest<Event>) -> Bool
     {
         let nowTime = NSDate()
@@ -398,6 +398,7 @@ public class Event: NSManagedObject
         
         return true
     }
+    
     
     // Delete Events with NO performers meaning Events.Performers.count = 0
     class func deleteEventsWithoutPerformers(in context: NSManagedObjectContext, with request: NSFetchRequest<Event>) -> Bool
