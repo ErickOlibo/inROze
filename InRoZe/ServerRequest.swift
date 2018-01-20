@@ -50,6 +50,13 @@ public class ServerRequest
             guard let data = data else {
                 return
             }
+            // count data size
+            let byteCount = data.count
+            let bcf = ByteCountFormatter()
+            bcf.allowedUnits = [.useMB]
+            bcf.countStyle = .file
+            let sizeString = bcf.string(fromByteCount: Int64(byteCount))
+            print("********** DATA SIZE Recieved from SERVER is: \(sizeString)")
 
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any] {
