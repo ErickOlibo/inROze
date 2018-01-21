@@ -186,6 +186,8 @@ class EventInfoViewController: UIViewController {
             (image, error, cachetype, imageUrl) in
             
             if (image != nil) {
+                //if let imageSize = image?.size { print("IMAGE Size: [\(imageSize)]") }
+                
                 // conditional Settings for Colors
                 if (thisEvent.colorPrimary != nil && thisEvent.colorSecondary != nil && thisEvent.colorDetail != nil && thisEvent.colorBackground != nil) {
                     // In Database
