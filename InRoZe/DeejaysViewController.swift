@@ -16,6 +16,8 @@ class DeejaysViewController: FetchedResultsTableViewController {
     let mainContext = AppDelegate.viewContext
     let searchController = UISearchController(searchResultsController: nil)
     var searchText: String?
+    var currentCode: String?
+
 
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Artist> in
         let request: NSFetchRequest<Artist> = Artist.fetchRequest()
@@ -26,8 +28,8 @@ class DeejaysViewController: FetchedResultsTableViewController {
         
         //request.sortDescriptors = [NSSortDescriptor(key: "isFollowed", ascending: false, selector: nil)]
         request.sortDescriptors = [isFollowSort, nameSort]
-
-        request.predicate = NSPredicate(format: "name != nil")
+        let currentCountryCode = currentCity.countryCode.rawValue
+        request.predicate = NSPredicate(format: "name != nil AND countryCode = %@", currentCountryCode)
         request.fetchBatchSize = 20
         let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedRC.delegate = self
@@ -59,6 +61,7 @@ class DeejaysViewController: FetchedResultsTableViewController {
     // ViewController Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        currentCode = currentCity.code.rawValue
         setupNavBar()
         updateUI()
 
@@ -66,6 +69,12 @@ class DeejaysViewController: FetchedResultsTableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let newCode = currentCity.code.rawValue
+        if (newCode != currentCode) {
+            updatePredicate()
+            print("CityCode was Channged")
+            currentCode = newCode
+        }
         updateUI()
         navigationItem.title = "DJs in \(currentCity.countryName.rawValue)"
     }
@@ -80,27 +89,35 @@ class DeejaysViewController: FetchedResultsTableViewController {
         }
         tableView.reloadData()
     }
+    
+    private func updatePredicate() {
+        let currentCountryCode = currentCity.countryCode.rawValue
+        fetchResultsController.fetchRequest.predicate = NSPredicate(format: "name != nil AND countryCode = %@", currentCountryCode)
+    }
 
 }
+
 
 
 extension DeejaysViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         //print("Here IN: updateSearchResults - ")
+        let currentCountryCode = currentCity.countryCode.rawValue
         guard searchController.searchBar.text!.count > 0 else {
             searchText = searchController.searchBar.text
             //print("is search bar text nil: [\(searchController.searchBar.text ?? "NIL")]")
 //            let descript = fetchResultsController.fetchRequest.sortDescriptors
 //            let predic = fetchResultsController.fetchRequest.predicate
 //            print("Description: \(String(describing: descript)) - Predicate: \(String(describing: predic))")
-            fetchResultsController.fetchRequest.predicate = NSPredicate(format: "name != nil ")
+            
+            fetchResultsController.fetchRequest.predicate = NSPredicate(format: "name != nil AND countryCode = %@", currentCountryCode)
             updateUI()
             return
         }
         
         print("Passed the Guard: updateSearchResults")
         searchText = searchController.searchBar.text!
-        fetchResultsController.fetchRequest.predicate = NSPredicate(format: "name != nil AND name contains[c] %@",  searchText!)
+        fetchResultsController.fetchRequest.predicate = NSPredicate(format: "name != nil AND name contains[c] %@ AND countryCode = %@",  searchText!, currentCountryCode)
         updateUI()
     }
     

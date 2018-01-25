@@ -28,6 +28,9 @@ class EventDeejayCell: UITableViewCell
     private func configureCell() {
         guard let event = event else { return }
         guard let name = event.name else { return }
+//        if let cityCode = event.cityCode {
+//            print("Event City Code [\(cityCode)] - Event Name [\(name)]")
+//        }
         eventCover.layoutIfNeeded()
         selectionStyle = .none
         eventTimeLocation.attributedText = dateTimeLocationFormatter(with: event)

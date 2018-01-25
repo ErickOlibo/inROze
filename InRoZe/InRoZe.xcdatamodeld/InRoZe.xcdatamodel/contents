@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="16G1114" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="16G1212" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Artist" representedClassName=".Artist" syncable="YES" codeGenerationType="category">
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="countryCode" optional="YES" attributeType="String" syncable="YES"/>
@@ -19,6 +19,7 @@
         <relationship name="mixes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Mixtape" inverseName="deejay" inverseEntity="Mixtape" syncable="YES"/>
     </entity>
     <entity name="Event" representedClassName=".Event" syncable="YES" codeGenerationType="category">
+        <attribute name="cityCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="colorBackground" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="colorDetail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="colorPrimary" optional="YES" attributeType="String" syncable="YES"/>
@@ -81,7 +82,7 @@
     </entity>
     <elements>
         <element name="Artist" positionX="414" positionY="449" width="128" height="283"/>
-        <element name="Event" positionX="630" positionY="72" width="128" height="345"/>
+        <element name="Event" positionX="630" positionY="72" width="128" height="358"/>
         <element name="Mixtape" positionX="216" positionY="324" width="128" height="405"/>
         <element name="Place" positionX="259" positionY="9" width="128" height="210"/>
     </elements>

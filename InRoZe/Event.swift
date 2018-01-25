@@ -66,6 +66,7 @@ public class Event: NSManagedObject
         let eventDesc = "No Description!"
         guard let eventID = eventDict[DBLabels.eventID] else { return false }
         guard let eventName = eventDict[DBLabels.eventName] else { return false }
+        guard let eventCityCode = eventDict[DBLabels.eventCityCode] else { return false }
         guard let eventCoverURL = eventDict[DBLabels.eventCoverURL] else { return false }
         guard let eStartTime = eventDict[DBLabels.eventStartTime] else { return false }
         guard let eEndTime = eventDict[DBLabels.eventEndTime] else { return false }
@@ -74,7 +75,7 @@ public class Event: NSManagedObject
         guard let eventEndTime = formatter.date(from: eEndTime) else { return false }
         guard let eventUpdatedTime = formatter.date(from: eUpdatedTime) else { return false }
         //print("Name[\(eventName)] ID[\(eventID)] - After Guard all Times ST[\(eventStartTime)] - EN[\(eventEndTime)] - UP[\(eventUpdatedTime)]")
-        
+        //print("this Event city code [\(eventCityCode)] - Name [\(eventName)]")
         request.predicate = NSPredicate(format: "id = %@", eventID)
         do {
             let match = try context.fetch(request)
@@ -91,6 +92,7 @@ public class Event: NSManagedObject
                     return false
                 }
                 matchEvent.name = eventName
+                matchEvent.cityCode = eventCityCode
                 matchEvent.imageURL = eventCoverURL
                 matchEvent.startTime = eventStartTime
                 matchEvent.endTime = eventEndTime
@@ -122,6 +124,7 @@ public class Event: NSManagedObject
         event.id = eventID
         event.isActive = true
         event.name = eventName
+        event.cityCode = eventCityCode
         event.imageURL = eventCoverURL
         event.startTime = eventStartTime
         event.endTime = eventEndTime

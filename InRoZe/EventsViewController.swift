@@ -34,8 +34,9 @@ class EventsViewController: FetchedResultsTableViewController {
         let nowTime = NSDate()
         let nameSort = NSSortDescriptor(key: "name", ascending: true, selector: nil)
         let dateSort = NSSortDescriptor(key: "startTime", ascending: true, selector: nil)
+        let currentCityCode = currentCity.code.rawValue
         request.sortDescriptors = [dateSort, nameSort]
-        request.predicate = NSPredicate(format: "endTime > %@ AND imageURL != nil AND name != nil AND performers.@count > 0", nowTime)
+        request.predicate = NSPredicate(format: "endTime > %@ AND cityCode = %@ AND imageURL != nil AND name != nil AND performers.@count > 0", nowTime, currentCityCode)
         request.fetchBatchSize = 20
         let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedRC.delegate = self
@@ -125,6 +126,12 @@ class EventsViewController: FetchedResultsTableViewController {
     }
     
     
+    private func updatePredicate() {
+        let nowTime = NSDate()
+        let currentCityCode = currentCity.code.rawValue
+        fetchResultsController.fetchRequest.predicate = NSPredicate(format: "endTime > %@ AND cityCode = %@ AND imageURL != nil AND name != nil AND performers.@count > 0", nowTime, currentCityCode)
+    }
+    
     private func updateUI() {
         // clear data of old events and events without performers
         cleanStoreFromOldData()
@@ -135,7 +142,8 @@ class EventsViewController: FetchedResultsTableViewController {
             print("[printDatabaseStatistics] in EventsVC - \(eventCount) Events ")
         }
         
-        // Delete obsolete events
+        // update predicate in case of cityCode change
+        updatePredicate()
         
         // get number of Follows
         followsList = Artist.listOfFollows(in: mainContext)

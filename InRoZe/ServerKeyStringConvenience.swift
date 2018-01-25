@@ -47,6 +47,7 @@ public struct DBLabels {
     static let eventStartTime = "start_time"
     static let eventEndTime = "end_time"
     static let eventName = "event_name"
+    static let eventCityCode = "event_city_code"
     static let eventCoverURL = "cover_url"
     static let eventCreatedTime = "created_time"
     static let eventUpdatedTime = "updated_time"
