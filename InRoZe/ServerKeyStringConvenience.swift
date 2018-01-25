@@ -20,6 +20,7 @@ import Foundation
 public struct UrlFor {
     static let logInOut = "https://www.inroze.com/ServerRoze/users.php"
     static let currentEventsID = "https://www.inroze.com/ServerRoze/currentEvents.php"
+    static let updateSuccess = "https://www.inroze.com/ServerRoze/UpdateSuccess.php"
     static let facebook = "https://www.facebook.com/"
     static let mixcloud = "https://www.mixcloud.com/"
     

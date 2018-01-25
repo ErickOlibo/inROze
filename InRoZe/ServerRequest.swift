@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import CoreData
+import FacebookCore
+import FBSDKCoreKit
 
 /* This class sync the log in status (true/false) of the user
  * and fetch the latest list of (EventIDs - PlaceIds)
@@ -37,6 +39,21 @@ public class ServerRequest
     }
     
     
+    // Send back to the server a handshake for successful update
+    private func successForLastUpdate() {
+        guard let userID = AccessToken.current?.userId else { return }
+        let params = "id=\(userID)&cityCode=\(currentCity.code.rawValue)&countryCode=\(currentCity.countryCode.rawValue)"
+        let url = UrlFor.updateSuccess
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = "POST"
+        request.httpBody = params.data(using: .utf8)
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard error == nil else { return }
+        }
+        task.resume()
+    }
+    
+    
     // when call to the server, conditional call must be depending on the Country/ City
     // ADD the city selector
     private func taskForURLSession(postParams: String, url: String, isEventFetch: Bool) {
@@ -44,12 +61,9 @@ public class ServerRequest
         request.httpMethod = "POST"
         request.httpBody = postParams.data(using: .utf8)
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard error == nil else {
-                return
-            }
-            guard let data = data else {
-                return
-            }
+            guard error == nil else { return }
+            guard let data = data else { return }
+            
             // count data size
             let byteCount = data.count
             let bcf = ByteCountFormatter()
@@ -155,10 +169,14 @@ public class ServerRequest
                     if (UserDefaults().isFromLoginView) {
                         print("NotificationFor.initialLoginRequestIsDone")
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.initialLoginRequestIsDone), object: nil)
+                        // Update success here
+                        self.successForLastUpdate()
                         UserDefaults().isFromLoginView = false
                     } else {
                         print("NotificationFor.serverRequestDoneUpdating")
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.serverRequestDoneUpdating), object: nil)
+                        // update success here
+                        self.successForLastUpdate()
                     }
                     
                     //self.printDatabaseStatistics()

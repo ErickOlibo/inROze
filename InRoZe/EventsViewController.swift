@@ -179,6 +179,7 @@ class EventsViewController: FetchedResultsTableViewController {
             let newCode = currentCity.code.rawValue
             if (newCode != currentCode) {
                 self.tableView.setContentOffset(.zero, animated: true)
+                self.collectionView.setContentOffset(.zero, animated: true)
                 currentCode = newCode
             }
             
