@@ -155,6 +155,7 @@ public class ServerRequest
                     if (UserDefaults().isFromLoginView) {
                         print("NotificationFor.initialLoginRequestIsDone")
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.initialLoginRequestIsDone), object: nil)
+                        UserDefaults().isFromLoginView = false
                     } else {
                         print("NotificationFor.serverRequestDoneUpdating")
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.serverRequestDoneUpdating), object: nil)
