@@ -152,7 +152,14 @@ public class ServerRequest
                         print("[ServerRequest] - Error trying to save in CoreData")
                     }
                     //NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.initialLoginRequestIsDone), object: nil)
+                    if (UserDefaults().isFromLoginView) {
+                        print("NotificationFor.initialLoginRequestIsDone")
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.initialLoginRequestIsDone), object: nil)
+                    } else {
+                        print("NotificationFor.serverRequestDoneUpdating")
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.serverRequestDoneUpdating), object: nil)
+                    }
+                    
                     //self.printDatabaseStatistics()
                 }
             }

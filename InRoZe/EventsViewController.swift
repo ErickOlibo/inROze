@@ -21,6 +21,7 @@ class EventsViewController: FetchedResultsTableViewController {
     
     var deejaysName = Set<String>()
     var followsList = [Artist]()
+    var currentCode: String?
 
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -54,6 +55,7 @@ class EventsViewController: FetchedResultsTableViewController {
     // View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        currentCode = currentCity.code.rawValue
         setupNavBar()
         container = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
         mainContext = AppDelegate.viewContext
@@ -69,6 +71,7 @@ class EventsViewController: FetchedResultsTableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(doneFetchingFromServer), name: NSNotification.Name(rawValue: NotificationFor.serverRequestDoneUpdating), object: nil)
         updateUI()
         if (!UserDefaults().isLoggedIn) {
             RequestHandler().fetchEventIDsFromServer()
@@ -81,8 +84,24 @@ class EventsViewController: FetchedResultsTableViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // remove Notification Observer
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationFor.serverRequestDoneUpdating), object: nil)
+    }
+    
+    
     
     // Convenience Functions
+    @objc private func doneFetchingFromServer() {
+        print("SERVER REQUESt DONE UPDATING in EventsViewController")
+        DispatchQueue.main.async { [unowned self] in
+            self.updateUI()
+        }        
+    }
+    
+    
     private func setOriginLabel() {
         let eventsInCity = "Events in \(currentCity.name.rawValue)"
         let myNationalityFollows = "Your \(currentCity.nationality.rawValue) Follows"
@@ -156,6 +175,14 @@ class EventsViewController: FetchedResultsTableViewController {
             }
             
             self.tableView.reloadData()
+            // go to top
+            let newCode = currentCity.code.rawValue
+            if (newCode != currentCode) {
+                self.tableView.setContentOffset(.zero, animated: true)
+                currentCode = newCode
+            }
+            
+            
             guard let allEvent = fetchResultsController.fetchedObjects else { return }
             for event in allEvent {
                 let artists = event.performers?.allObjects as! [Artist]

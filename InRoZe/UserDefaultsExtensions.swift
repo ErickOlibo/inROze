@@ -56,6 +56,18 @@ extension UserDefaults {
         }
         set {
             set(newValue, forKey: UserKeys.isLoggedIn)
+            synchronize()
+        }
+        
+    }
+    
+    public var isFromLoginView: Bool {
+        get {
+            return bool(forKey: UserKeys.fromLoginView)
+        }
+        set {
+            set(newValue, forKey: UserKeys.fromLoginView)
+            synchronize()
         }
     }
     
@@ -82,6 +94,7 @@ public struct UserKeys {
     static let countryCode = "countryCode"
     static let isLoginNow = "isLoginNow"
     static let isLoggedIn = "isLoggedIn"
+    static let fromLoginView = "fromLoginView"
     
 }
 

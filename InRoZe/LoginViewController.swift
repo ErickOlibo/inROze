@@ -116,6 +116,7 @@ class LoginViewController: UIViewController {
         print("login DID APPEAR. Drop frame: \(dropList.frame)")
         dropList.tableDidAppear { self.isdroppedDown = true }
         dropList.tableDidDisappear  { self.isdroppedDown = false }
+        UserDefaults().isFromLoginView = true
         
         
     }
