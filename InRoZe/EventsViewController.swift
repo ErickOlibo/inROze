@@ -146,7 +146,7 @@ class EventsViewController: FetchedResultsTableViewController {
         updatePredicate()
         
         // get number of Follows
-        followsList = Artist.listOfFollows(in: mainContext)
+        followsList = Artist.listOfFollows(in: mainContext, for: currentCity.countryCode.rawValue)
         orderArtists()
         
         do {

@@ -145,6 +145,20 @@ public class Artist: NSManagedObject
         return follows
     }
     
+    class func listOfFollows(in context: NSManagedObjectContext, for countryCode: String) -> [Artist] {
+        var follows = [Artist]()
+        let request: NSFetchRequest<Artist> = Artist.fetchRequest()
+        request.predicate = NSPredicate(format: "isFollowed = true AND countryCode = %@", countryCode)
+        do {
+            follows = try context.fetch(request)
+            
+            return follows
+        } catch {
+            print("[printListOfFollows Artists] - Error while getting Follows list: \(error)")
+        }
+        return follows
+    }
+    
     
     class func printListOfFollows(in context: NSManagedObjectContext) {
         var text = "List of DJS: "

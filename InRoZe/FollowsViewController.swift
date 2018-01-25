@@ -30,7 +30,7 @@ class FollowsViewController: FetchedResultsTableViewController {
         let startDaySort = NSSortDescriptor(key: "startDay", ascending: true, selector: nil)
         let startTimeSort = NSSortDescriptor(key: "startTime", ascending: true, selector: nil)
         request.sortDescriptors = [startDaySort, startTimeSort]
-        request.predicate = NSPredicate(format: "ANY performers.isFollowed == YES AND endTime > %@ AND imageURL != nil AND name != nil AND performers.@count > 0", nowTime)
+        request.predicate = NSPredicate(format: "ANY performers.isFollowed == YES AND endTime > %@ AND cityCode == %@ AND imageURL != nil AND name != nil AND performers.@count > 0", nowTime, currentCity.code.rawValue)
         request.fetchBatchSize = 20
         let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: "startDay", cacheName: nil)
         fetchedRC.delegate = self
@@ -101,6 +101,12 @@ class FollowsViewController: FetchedResultsTableViewController {
     
     
     // Convenience Functions
+    private func updatePredicate() {
+        let nowTime = NSDate()
+        fetchResultsController.fetchRequest.predicate = NSPredicate(format: "ANY performers.isFollowed == YES AND endTime > %@ AND cityCode == %@ AND imageURL != nil AND name != nil AND performers.@count > 0", nowTime, currentCity.code.rawValue)
+    }
+    
+    
     private func setupFooterView() -> UIView {
         let missingFollowsView = UIView(frame: CGRect(x: 0, y: 0, width: CellSize.phoneSizeWidth, height: 280))
         guard let image = UIImage(named: "MissingFollows") else { return missingFollowsView }
@@ -113,7 +119,7 @@ class FollowsViewController: FetchedResultsTableViewController {
     
     
     private func setupMissingFollowsLabel() -> UIView {
-        let numberOfFollows = Artist.listOfFollows(in: mainContext).count
+        let numberOfFollows = Artist.listOfFollows(in: mainContext, for: currentCity.countryCode.rawValue).count
         let messageLabel = UILabel(frame: CGRect(x: 40.0, y: 230.0, width: CellSize.phoneSizeWidth - 80.0, height: 40.0))
         let fontName = "HelveticaNeue-Bold"
         let textFont = UIFont(name: fontName, size: 17)
@@ -144,6 +150,7 @@ class FollowsViewController: FetchedResultsTableViewController {
     }
     
     private func updateUI() {
+        updatePredicate()
         do {
             try self.fetchResultsController.performFetch()
             if let count = fetchResultsController.fetchedObjects?.count {
