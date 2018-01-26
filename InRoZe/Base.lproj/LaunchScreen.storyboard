@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,18 +22,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchIcon" translatesAutoresizingMaskIntoConstraints="NO" id="b6w-1y-xMx">
-                                <rect key="frame" x="147.5" y="293.5" width="80" height="80"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="InrozeLogoLaunch" translatesAutoresizingMaskIntoConstraints="NO" id="b6w-1y-xMx">
+                                <rect key="frame" x="107.5" y="167" width="160" height="160"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="TvI-sZ-YcJ"/>
-                                    <constraint firstAttribute="width" constant="80" id="jSW-BK-765"/>
+                                    <constraint firstAttribute="height" constant="160" id="8Pj-zf-4OS"/>
+                                    <constraint firstAttribute="width" secondItem="b6w-1y-xMx" secondAttribute="height" multiplier="1:1" id="fsh-pd-7YB"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefkutLL" translatesAutoresizingMaskIntoConstraints="NO" id="zaV-Yk-a9K">
+                                <rect key="frame" x="116.5" y="500.5" width="142" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="zaV-Yk-a9K" secondAttribute="height" multiplier="71:25" id="Yy2-xa-CQ8"/>
+                                    <constraint firstAttribute="height" constant="50" id="dbE-oz-dyt"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="b6w-1y-xMx" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="84T-S7-DX6"/>
-                            <constraint firstItem="b6w-1y-xMx" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="a1x-Bc-jei"/>
+                            <constraint firstItem="b6w-1y-xMx" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="2:4" id="Mvu-vG-sog"/>
+                            <constraint firstItem="b6w-1y-xMx" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="N9W-Kn-lIV"/>
+                            <constraint firstItem="zaV-Yk-a9K" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Zgz-N3-T96"/>
+                            <constraint firstItem="zaV-Yk-a9K" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="6:4" id="wgJ-GL-DF7"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -42,6 +52,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchIcon" width="80" height="80"/>
+        <image name="DefkutLL" width="142" height="50"/>
+        <image name="InrozeLogoLaunch" width="160" height="160"/>
     </resources>
 </document>
