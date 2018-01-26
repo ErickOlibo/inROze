@@ -18,9 +18,9 @@ import UIKit
 
 public func preferedProfilePictureURL(for artist: Artist) -> String? {
 
-    if let mixURL = artist.mcPicURL { return mixURL }
+    if let mcURL = artist.mcPicURL { return mcURL }
     if let fbURL = artist.fbPicURL { return fbURL }
-    if let defaultURL = artist.dfPicURL { return defaultURL }
+    if let dfURL = artist.dfPicURL { return dfURL }
     return nil
 }
 
