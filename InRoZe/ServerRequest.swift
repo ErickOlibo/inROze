@@ -71,6 +71,8 @@ public class ServerRequest
             bcf.countStyle = .file
             let sizeString = bcf.string(fromByteCount: Int64(byteCount))
             print("********** DATA SIZE Recieved from SERVER is: \(sizeString)")
+            self.successForLastUpdate()
+            print("*** --> Success for last update TRUE")
 
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any] {
@@ -170,13 +172,13 @@ public class ServerRequest
                         print("NotificationFor.initialLoginRequestIsDone")
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.initialLoginRequestIsDone), object: nil)
                         // Update success here
-                        self.successForLastUpdate()
+                        //self.successForLastUpdate()
                         UserDefaults().isFromLoginView = false
                     } else {
                         print("NotificationFor.serverRequestDoneUpdating")
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.serverRequestDoneUpdating), object: nil)
                         // update success here
-                        self.successForLastUpdate()
+                        //self.successForLastUpdate()
                     }
                     
                     //self.printDatabaseStatistics()
