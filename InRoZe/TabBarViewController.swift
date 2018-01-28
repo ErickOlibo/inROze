@@ -64,6 +64,7 @@ extension TabBarViewController
             print("Clicked on the same Tab")
             if let root = tempNavC.viewControllers[0] as? EventsViewController {
                 root.tableView.setContentOffset(.zero, animated: true)
+                root.collectionView.setContentOffset(.zero, animated: true)
             }
             if let root = tempNavC.viewControllers[0] as? FollowsViewController {
                 root.tableView.setContentOffset(.zero, animated: true)
