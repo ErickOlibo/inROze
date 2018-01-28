@@ -124,7 +124,16 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     private func setCoverProfileImage() {
         guard let dj = artist else { return }
         guard let coverURL = preferedProfileCoverURL(for: dj) else { return }
-        profileCoverImage.kf.setImage(with: URL(string: coverURL), options: [.backgroundDecode, .transition(.fade(0.2))])
+        profileCoverImage.kf.setImage(with: URL(string: coverURL), options: [.backgroundDecode, .transition(.fade(0.2))]) {
+            (img, error, cache, url) in
+            if (error != nil) {
+                print("There was an Error while fetching prefered picture: ", error!.description)
+                guard let dfURL = dj.dfCoverURL else { return }
+                guard let defURL = URL(string: dfURL) else { return }
+                guard defURL != url else { return }
+                self.profileCoverImage.kf.setImage(with: URL(string: dfURL), options: [.backgroundDecode, .transition(.fade(0.2))])
+            }
+        }
     }
     
     
