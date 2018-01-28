@@ -86,7 +86,6 @@ public class Mixtape: NSManagedObject
         newMix.isActive = mixInfo[DBLabels.mixIsActive] as? String != nil ? true : false
         //print("ID: [\(newMix.id!)] - MIX ACTIVE: [\(newMix.isActive)]")
         newMix.isFollowed = false
-        
         if let cTime = mixInfo[DBLabels.mixCreatedTime] as? String,
             let createdTime = dateFormatter.date(from: cTime) {
             newMix.createdTime = createdTime

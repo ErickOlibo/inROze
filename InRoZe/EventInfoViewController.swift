@@ -42,6 +42,7 @@ class EventInfoViewController: UIViewController {
     // ViewController Life-Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewDidLoad -> EventInfoViewController")
         collectionView.delegate = self
         collectionView.dataSource = self
         self.navigationController?.navigationBar.tintColor = Colors.logoRed
@@ -65,6 +66,7 @@ class EventInfoViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("viewWillAppear -> EventInfoViewController")
         guard let event = event else { return }
         guard let id = event.id else { return }
         let notice = NotificationFor.eventDescriptionRecieved + id
@@ -156,7 +158,9 @@ class EventInfoViewController: UIViewController {
     
     @objc private func updateDescription(_ notification: NSNotification) {
         guard let text = notification.userInfo?["text"] as? String else { return }
+        //guard let id = notification.userInfo?["id"] as? String else { return }
         DispatchQueue.main.async {
+            self.event?.text = text
             self.eventText.attributedText = self.addTitleToText(forText: text, withTitle: "DETAILS:")
         }
     }

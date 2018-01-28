@@ -42,7 +42,8 @@ public class SingleEventFacebookRequest
     
     // send the description text with the notification center
     private func sendDescriptionThroughNotificationCenter( text: String, id: String) {
-        let textDataDict:[String: String] = ["text" : text]
+        let textDataDict:[String: String] = ["text" : text, "id" : id]
+        //textDataDict["id"] = id
         let notice = NotificationFor.eventDescriptionRecieved + id
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: notice), object: nil, userInfo: textDataDict)
     }
