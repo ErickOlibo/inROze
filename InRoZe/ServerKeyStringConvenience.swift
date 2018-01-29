@@ -25,7 +25,7 @@ public struct UrlFor {
     static let mixcloud = "https://www.mixcloud.com/"
     
     // Default link to website folder for settings information
-    static let webLink = "https://inroze.com/webROze/"
+    static let webLink = "https://www.inroze.com/webROze/"
     
     // URL for Location/Support/About/ in the Setting section
     static let locationMissing = UrlFor.webLink + "missing.html"

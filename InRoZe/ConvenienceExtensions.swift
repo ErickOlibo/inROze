@@ -28,7 +28,7 @@ extension Date {
 
         let newFormatter = DateFormatter()
         // To make this one in relation to the City chosen
-        newFormatter.timeZone = TimeZone(identifier: currentCity.timeZone.rawValue)!
+        //newFormatter.timeZone = TimeZone(identifier: currentCity.timeZone.rawValue)!
         
         newFormatter.dateFormat = "d"
         let splitNum = newFormatter.string(from: date)
