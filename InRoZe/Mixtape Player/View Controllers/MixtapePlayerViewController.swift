@@ -31,7 +31,9 @@ class MixtapePlayerViewController: UIViewController {
 
 
     // Outlets
-    @IBOutlet weak var mixcloudIcon: UIImageView!
+    
+    @IBOutlet weak var mixcloudButton: UIButton!
+    //@IBOutlet weak var mixcloudIcon: UIImageView!
     @IBOutlet weak var mixtapeCover: UIImageView!
     @IBOutlet weak var mixProgressView: UIProgressView!
     @IBOutlet weak var elapsedTime: UILabel!
@@ -397,7 +399,8 @@ class MixtapePlayerViewController: UIViewController {
         updatePlayerNavButtonUI()
         updatePlayerColorsUI()
         updatePlayPauseIcons()
-        updateMixcloudIconColor()
+        //updateMixcloudIconColor()
+        updateMixcloudButtonColor()
     }
     
     private func updatesTheThreeColors() {
@@ -434,9 +437,15 @@ class MixtapePlayerViewController: UIViewController {
         mixtapeName.textColor = colorTwo
     }
     
-    private func updateMixcloudIconColor() {
+//    private func updateMixcloudIconColor() {
+//        let imageName = colorOne.isDarkColor ? "MixcloudWhite" : "MixcloudBlack"
+//        mixcloudIcon.image = UIImage(named: imageName)?.withRenderingMode(.alwaysOriginal)
+//    }
+    
+    private func updateMixcloudButtonColor() {
         let imageName = colorOne.isDarkColor ? "MixcloudWhite" : "MixcloudBlack"
-        mixcloudIcon.image = UIImage(named: imageName)?.withRenderingMode(.alwaysOriginal)
+        mixcloudButton.setImage((UIImage(named: imageName)?.withRenderingMode(.alwaysOriginal))!, for: .normal)
+        
     }
 
     private func seekNewCurrentTime(byLookForward isForward: Bool, isCommandCenter: Bool) {
@@ -470,10 +479,10 @@ class MixtapePlayerViewController: UIViewController {
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "MusicPlayer To Mixcloud Profile") {
-            guard let destination = segue.destination as? AboutViewController else { return }
+        if (segue.identifier == "From PlayerView To MixCloudProfile") {
+            guard let destination = segue.destination as? MixCloudProfileViewController else { return }
             guard let mcURL = mixtape?.deejay?.mcPageURL else { return }
-            destination.aboutURL = URL(string: mcURL)
+            destination.profileURL = URL(string: mcURL)
             destination.navigationItem.title = "Mixcloud Page"
             
             
