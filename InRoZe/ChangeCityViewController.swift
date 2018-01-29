@@ -24,7 +24,7 @@ class ChangeCityViewController: UITableViewController {
         super.viewDidLoad()
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         navigationController?.navigationBar.tintColor = Colors.logoRed
-        navigationItem.title = "Select City"
+        //navigationItem.title = currentCity.name.rawValue
         tableView.separatorStyle = .none
         updateCityImage()
     }
@@ -32,6 +32,7 @@ class ChangeCityViewController: UITableViewController {
     
     private func updateCityImage() {
         let city = currentCity.name.rawValue
+        navigationItem.title = city
         selectedCity.image = UIImage(named: city)?.withRenderingMode(.alwaysOriginal)
     }
 
