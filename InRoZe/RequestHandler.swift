@@ -17,16 +17,28 @@ public class RequestHandler
     
     // MARK: - Handler to SERVER
     public func fetchEventIDsFromServer() {
-        let userDefault = UserDefaults()
-        if (!userDefault.isDateSet(for: RequestDate.toServer)) ||
-            userDefault.hasEnoughTimeElapsed(since: RequestDate.toServer) || userDefault.isLoggedIn {
-            if let userID = AccessToken.current?.userId {
-                let params = "id=\(userID)&cityCode=\(currentCity.code.rawValue)&countryCode=\(currentCity.countryCode.rawValue)"
-                let request = ServerRequest()
-                request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
-            }
+        if let userID = AccessToken.current?.userId {
+            let params = "id=\(userID)&cityCode=\(currentCity.code.rawValue)&countryCode=\(currentCity.countryCode.rawValue)"
+            let request = ServerRequest()
+            request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
         }
     }
+    
+    
+    
+//    public func OldfetchEventIDsFromServer() {
+//        let userDefault = UserDefaults()
+//        if (!userDefault.isDateSet(for: RequestDate.toServer)) ||
+//            userDefault.hasEnoughTimeElapsed(since: RequestDate.toServer) || userDefault.isLoggedIn {
+//            if let userID = AccessToken.current?.userId {
+//                let params = "id=\(userID)&cityCode=\(currentCity.code.rawValue)&countryCode=\(currentCity.countryCode.rawValue)"
+//                let request = ServerRequest()
+//                request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
+//            }
+//        }
+//    }
+    
+    
 
 
 
