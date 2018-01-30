@@ -657,6 +657,16 @@
                                     <segue destination="S7k-F8-PNO" kind="show" identifier="From PlayerView To MixCloudProfile" id="GAb-lD-Deg"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Fs-G1-1sD">
+                                <rect key="frame" x="20" y="87" width="78" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="N8Z-Jk-7ot"/>
+                                </constraints>
+                                <state key="normal" title="Icon Added"/>
+                                <connections>
+                                    <action selector="pressedFollowMixtape:" destination="vXz-br-gFn" eventType="touchUpInside" id="yOJ-IR-GhN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -671,11 +681,13 @@
                             <constraint firstItem="u6S-Y0-PxN" firstAttribute="top" secondItem="W9m-BB-u9M" secondAttribute="bottom" constant="8" id="OYy-M5-ucG"/>
                             <constraint firstItem="w3C-Uc-71f" firstAttribute="leading" secondItem="u6S-Y0-PxN" secondAttribute="leading" id="P4A-WQ-nDp"/>
                             <constraint firstItem="234-Hy-Ja5" firstAttribute="leading" relation="lessThanOrEqual" secondItem="rug-4L-0Ot" secondAttribute="leading" constant="50" id="Qym-uL-BiK"/>
+                            <constraint firstItem="4Fs-G1-1sD" firstAttribute="top" secondItem="B8z-jo-DCU" secondAttribute="bottom" constant="23" id="RNo-S0-Q4F"/>
                             <constraint firstItem="Kcn-cI-AsN" firstAttribute="width" secondItem="rug-4L-0Ot" secondAttribute="width" constant="-40" id="TJ1-bv-EXa"/>
                             <constraint firstItem="w3C-Uc-71f" firstAttribute="top" secondItem="u6S-Y0-PxN" secondAttribute="bottom" constant="15" id="WIJ-fc-yI3"/>
                             <constraint firstItem="Kcn-cI-AsN" firstAttribute="top" secondItem="B8z-jo-DCU" secondAttribute="bottom" constant="50" id="Wm3-Q8-pK6"/>
                             <constraint firstItem="EUQ-c3-IAh" firstAttribute="centerX" secondItem="rug-4L-0Ot" secondAttribute="centerX" id="XWj-Sf-Da7"/>
                             <constraint firstItem="3m1-kr-fcN" firstAttribute="leading" secondItem="W9m-BB-u9M" secondAttribute="leading" id="ZIZ-Io-iOa"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4Fs-G1-1sD" secondAttribute="trailing" id="cDg-r5-PlI"/>
                             <constraint firstItem="Nl9-OM-D0t" firstAttribute="trailing" secondItem="3m1-kr-fcN" secondAttribute="trailing" id="cRy-Bu-0D4"/>
                             <constraint firstAttribute="trailing" secondItem="w3C-Uc-71f" secondAttribute="trailing" constant="20" id="d9H-5M-OVR"/>
                             <constraint firstAttribute="trailing" secondItem="6c7-aF-bYS" secondAttribute="trailing" constant="20" id="fjh-ZV-f8O"/>
@@ -685,6 +697,7 @@
                             <constraint firstItem="Kcn-cI-AsN" firstAttribute="centerX" secondItem="rug-4L-0Ot" secondAttribute="centerX" id="m4Z-G9-xsK"/>
                             <constraint firstItem="234-Hy-Ja5" firstAttribute="top" secondItem="EUQ-c3-IAh" secondAttribute="bottom" constant="20" id="mbg-iw-XUj"/>
                             <constraint firstItem="W9m-BB-u9M" firstAttribute="width" secondItem="Kcn-cI-AsN" secondAttribute="width" id="rV8-zd-T7r"/>
+                            <constraint firstItem="4Fs-G1-1sD" firstAttribute="leading" secondItem="rug-4L-0Ot" secondAttribute="leading" constant="20" id="rZD-LC-itG"/>
                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="234-Hy-Ja5" secondAttribute="trailing" constant="50" id="rgV-fF-b5a"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3m1-kr-fcN" secondAttribute="trailing" constant="20" symbolic="YES" id="te2-Cm-dUn"/>
                             <constraint firstItem="u6S-Y0-PxN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rug-4L-0Ot" secondAttribute="leading" constant="20" symbolic="YES" id="vRc-2v-Paa"/>
@@ -695,6 +708,7 @@
                     <connections>
                         <outlet property="deejayName" destination="234-Hy-Ja5" id="mfQ-24-FBi"/>
                         <outlet property="elapsedTime" destination="3m1-kr-fcN" id="Y9V-8T-8h5"/>
+                        <outlet property="isFollowButton" destination="4Fs-G1-1sD" id="xf2-1p-0lY"/>
                         <outlet property="mixProgressView" destination="W9m-BB-u9M" id="78X-Gt-tjl"/>
                         <outlet property="mixcloudButton" destination="y5I-aF-fc3" id="d6n-gV-4Uv"/>
                         <outlet property="mixtapeCover" destination="Kcn-cI-AsN" id="JlV-zA-xub"/>
@@ -707,7 +721,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pMd-KK-pkq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3170" y="-2047"/>
+            <point key="canvasLocation" x="3169.5652173913045" y="-2047.0108695652175"/>
         </scene>
         <!--Event Info View Controller-->
         <scene sceneID="ifn-sa-AFn">

@@ -84,6 +84,9 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("[DeejayGigsTableViewController] ->  view Will APPEAR")
+        // Add listener for MixtapePlayerVC
+        NotificationCenter.default.addObserver(self, selector: #selector(updateEventsMixtapes), name: NSNotification.Name(rawValue: NotificationFor.playerDidChangeFollowStatus), object: nil)
         updateFollowedButton()
         updateDJInfo()
         updateSocialPageIcon()
@@ -95,13 +98,14 @@ class DeejayGigsTableViewController: FetchedResultsTableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        //print("[DeejayGigsTableViewController] ->  viewWillDisappear")
+        print("[DeejayGigsTableViewController] ->  view Will DISAPPEAR")
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationFor.playerDidChangeFollowStatus), object: nil)
     }
     
     
     // ** Methods
     
-    private func updateEventsMixtapes() {
+    @objc private func updateEventsMixtapes() {
         // set or updates data source for Table
         guard let deejay = artist else { return }
         

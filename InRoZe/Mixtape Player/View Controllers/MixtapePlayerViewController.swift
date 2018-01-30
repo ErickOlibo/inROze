@@ -28,10 +28,12 @@ class MixtapePlayerViewController: UIViewController {
     private var colorTwo: UIColor = .black // Defines the text labels, play/pause button color
     private var colorThree: UIColor = .black // Defines the skip back and front button color
     private let seekingTime: Int64 = 60 // Seek time backward and forward
+    
 
 
     // Outlets
     
+    @IBOutlet weak var isFollowButton: UIButton!
     @IBOutlet weak var mixcloudButton: UIButton!
     //@IBOutlet weak var mixcloudIcon: UIImageView!
     @IBOutlet weak var mixtapeCover: UIImageView!
@@ -46,6 +48,10 @@ class MixtapePlayerViewController: UIViewController {
     
 
     // Actions
+    @IBAction func pressedFollowMixtape(_ sender: UIButton) {
+        pressedFollowedMix()
+    }
+    
     @IBAction func touchedPlayPause(_ sender: UIButton) {
         print("PLAYER VIEW -> touchedPlayPause")
         toggleBetweenPlayPause()
@@ -83,11 +89,13 @@ class MixtapePlayerViewController: UIViewController {
         setMixtapeInfoUI()
         setMixtapeCoverAndColors()
         popBarExtraSetup()
+        //updatedIsFollowedMix()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        updatedIsFollowedMix()
 
     }
     
@@ -96,7 +104,6 @@ class MixtapePlayerViewController: UIViewController {
         removeRegisterForNotifications()
         guard let colorsDB = colors else { return }
         guard let mixID = mixtape?.id else { return }
-        //print("*** [\(mixID)] - [\(player.description)] - WILL DISAPPEAR")
         container?.performBackgroundTask { context in
             let colorsInHex = colorsToHexString(with: colorsDB)
             _ = Mixtape.updateMixtapeImageColors(with: mixID, and: colorsInHex, in: context)
@@ -112,6 +119,55 @@ class MixtapePlayerViewController: UIViewController {
   
     
     // METHODS
+    @objc private func pressedFollowedMix() {
+        print("Pressed FollowedMix")
+        guard let id = mixtape?.id else { return }
+        if let context = container?.viewContext {
+            context.perform {
+                if let state = Mixtape.currentIsFollowedState(for: id, in: context) {
+                    self.mixtape!.isFollowed = !state
+                    self.updatedIsFollowedMix()
+                    self.changeState()
+                }
+            }
+        }
+    }
+    
+    private func updatedIsFollowedMix() {
+        print("updatedIsFollowedMix")
+        let followColor = colorOne.isDarkColor ? UIColor.white : UIColor.black
+        
+        guard let following = mixtape?.isFollowed else { return }
+        guard let iconAdded = FAType.FACheck.text else { return }
+        guard let iconAdd = FAType.FAPlus.text else { return }
+        let attrAdd = fontAwesomeAttributedString(forString: iconAdd, withColor: followColor, andFontSize: 20)
+        let attrAdded = fontAwesomeAttributedString(forString: iconAdded, withColor: followColor, andFontSize: 20)
+        let attributeOne = [ NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Bold", size: 20.0)! ]
+        let add = NSAttributedString(string: " Add", attributes: attributeOne)
+        let added = NSAttributedString(string: " Added", attributes: attributeOne)
+        let combiAdd  = NSMutableAttributedString()
+        let combiAdded  = NSMutableAttributedString()
+        combiAdd.append(attrAdd)
+        combiAdd.append(color(attributedString: add, color: followColor))
+        combiAdded.append(attrAdded)
+        combiAdded.append(color(attributedString: added, color: followColor))
+        let titleIsFollow = following ? combiAdded : combiAdd
+        isFollowButton.setAttributedTitle(titleIsFollow, for: .normal)
+    }
+    
+    
+    private func changeState() {
+        guard let id = mixtape?.id else { return }
+        container?.performBackgroundTask{ context in
+            _ = Mixtape.changeIsFollowed(for: id, in: context)
+            
+            // reload DJ profile and Music your list on isFollowed status change
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.playerDidChangeFollowStatus), object: nil)
+        }
+    }
+    
+    
+    
     private func popBarExtraSetup() {
         popupPresentationContainer?.popupBar.progressViewStyle = .bottom
         popupPresentationContainer?.popupBar.tintColor = Colors.logoRed
@@ -401,6 +457,7 @@ class MixtapePlayerViewController: UIViewController {
         updatePlayPauseIcons()
         //updateMixcloudIconColor()
         updateMixcloudButtonColor()
+        updatedIsFollowedMix()
     }
     
     private func updatesTheThreeColors() {

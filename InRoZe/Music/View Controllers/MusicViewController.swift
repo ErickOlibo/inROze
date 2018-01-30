@@ -50,9 +50,16 @@ class MusicViewController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // Add listener for MixtapePlayerVC
+        NotificationCenter.default.addObserver(self, selector: #selector(noticeFromMusicPlayer), name: NSNotification.Name(rawValue: NotificationFor.playerDidChangeFollowStatus), object: nil)
         otherMixtapes()
         print("yourList [\(yourListMix?.count ?? 0)] - New [\(newReleasesMix?.count ?? 0)] - Recent [\(recentlyPlayedMix?.count ?? 0)]")
         getAllMixtapes()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationFor.playerDidChangeFollowStatus), object: nil)
     }
     
     
@@ -61,9 +68,16 @@ class MusicViewController: UICollectionViewController {
         print("searchCatalogueTouched")
     }
     
+    @objc private func noticeFromMusicPlayer() {
+        print("NoticeFromMusicPlayer")
+        otherMixtapes()
+        getAllMixtapes()
+    }
+    
     
     // Get info for Recently Played, Your List and New Releases
     private func otherMixtapes() {
+        print("Here in other mixtapes")
         yourListMix = Mixtape.listOfFollows(in: mainContext)
         newReleasesMix = Mixtape.newReleases(in: mainContext)
         recentlyPlayedMix = Mixtape.recentlyPlayed(in: mainContext)
@@ -88,6 +102,7 @@ class MusicViewController: UICollectionViewController {
     
     
     private func getAllMixtapes() {
+        //print("Get ALL Mixtapes - from notification TOO")
         if let context = container?.viewContext {
             context.perform {
                 let request: NSFetchRequest<Mixtape> = Mixtape.fetchRequest()
