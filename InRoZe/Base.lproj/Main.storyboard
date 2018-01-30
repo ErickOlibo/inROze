@@ -2270,6 +2270,81 @@ Mixtapes</string>
             </objects>
             <point key="canvasLocation" x="2265" y="-2047"/>
         </scene>
+        <!--DJs-->
+        <scene sceneID="nIQ-4K-ikU">
+            <objects>
+                <tableViewController id="3Kr-yb-i6F" customClass="DeejaysViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sXw-kb-FWk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DJsSearchCell" rowHeight="60" id="jg9-7o-G5v" customClass="DJsSearchCell" customModule="InRoZe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jg9-7o-G5v" id="K55-Z0-78Z">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DJ BLABLA IS MY NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000001192092896" translatesAutoresizingMaskIntoConstraints="NO" id="52X-0X-HTM">
+                                            <rect key="frame" x="20" y="10" width="314" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="nls-gn-OOp"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="21"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 gigs - 2 mixtapes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oq3-Ru-SR1">
+                                            <rect key="frame" x="20" y="35" width="314" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="bmo-xi-RAB"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IAi-2X-rDp" userLabel="Follow Button">
+                                            <rect key="frame" x="354" y="10" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="IAi-2X-rDp" secondAttribute="height" multiplier="1:1" id="TSY-rG-DNk"/>
+                                                <constraint firstAttribute="height" constant="40" id="wji-aG-d41"/>
+                                            </constraints>
+                                            <state key="normal" image="2_Follows"/>
+                                            <connections>
+                                                <action selector="followTouched:" destination="jg9-7o-G5v" eventType="touchUpInside" id="af6-YT-Qzt"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="IAi-2X-rDp" firstAttribute="leading" secondItem="52X-0X-HTM" secondAttribute="trailing" constant="20" id="2er-w3-Y7f"/>
+                                        <constraint firstAttribute="bottom" secondItem="oq3-Ru-SR1" secondAttribute="bottom" constant="5" id="D7k-m6-An1"/>
+                                        <constraint firstItem="IAi-2X-rDp" firstAttribute="leading" secondItem="oq3-Ru-SR1" secondAttribute="trailing" constant="20" id="F3e-zz-JXN"/>
+                                        <constraint firstItem="52X-0X-HTM" firstAttribute="top" secondItem="K55-Z0-78Z" secondAttribute="top" constant="10" id="HIg-p7-LcR"/>
+                                        <constraint firstItem="52X-0X-HTM" firstAttribute="leading" secondItem="K55-Z0-78Z" secondAttribute="leading" constant="20" id="MVn-ay-qLs"/>
+                                        <constraint firstItem="oq3-Ru-SR1" firstAttribute="leading" secondItem="K55-Z0-78Z" secondAttribute="leading" constant="20" id="e1T-4M-oer"/>
+                                        <constraint firstAttribute="trailing" secondItem="IAi-2X-rDp" secondAttribute="trailing" constant="20" id="f8G-W5-u0v"/>
+                                        <constraint firstItem="IAi-2X-rDp" firstAttribute="top" secondItem="K55-Z0-78Z" secondAttribute="top" constant="10" id="xnL-7j-iG2"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="deejayName" destination="52X-0X-HTM" id="N33-IF-t8J"/>
+                                    <outlet property="followButton" destination="IAi-2X-rDp" id="cvU-Vc-RyG"/>
+                                    <outlet property="gigsMixesList" destination="oq3-Ru-SR1" id="zhv-X3-3lh"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="3Kr-yb-i6F" id="2jf-le-Ayn"/>
+                            <outlet property="delegate" destination="3Kr-yb-i6F" id="AJT-O8-z53"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="DJs" id="wB8-OA-rsf"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hiy-mC-6M6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1981" y="1092"/>
+        </scene>
     </scenes>
     <resources>
         <image name="1_Events" width="25" height="25"/>
@@ -2292,6 +2367,6 @@ Mixtapes</string>
         <segue reference="2XV-oB-faW"/>
         <segue reference="3qc-uF-jcK"/>
         <segue reference="ekP-bR-cTf"/>
-        <segue reference="Bwf-dD-zDu"/>
+        <segue reference="fqI-E3-pH5"/>
     </inferredMetricsTieBreakers>
 </document>

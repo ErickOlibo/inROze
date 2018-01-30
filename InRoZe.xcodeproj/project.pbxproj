@@ -63,6 +63,9 @@
 		A7D4D2A61F51913C00546341 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4D2A51F51913C00546341 /* Artist.swift */; };
 		A7E03D9B1F71D820000095BD /* UIDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E03D9A1F71D820000095BD /* UIDropDown.swift */; };
 		A7E562A8201F83C000EF6C40 /* MixCloudProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E562A7201F83C000EF6C40 /* MixCloudProfileViewController.swift */; };
+		A7E562AA202002B100EF6C40 /* UserDeejaysFollowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E562A9202002B100EF6C40 /* UserDeejaysFollowsViewController.swift */; };
+		A7E562AE2020040400EF6C40 /* UserDeejays+NSFetchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E562AD2020040400EF6C40 /* UserDeejays+NSFetchResultsController.swift */; };
+		A7E562B0202004C500EF6C40 /* UserDeejayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E562AF202004C500EF6C40 /* UserDeejayCell.swift */; };
 		A7E644901FCB7F4D00816FCF /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E6448F1FCB7F4D00816FCF /* AboutViewController.swift */; };
 		A7E644921FCC76A300816FCF /* ChangeCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E644911FCC76A300816FCF /* ChangeCityViewController.swift */; };
 		A7E644941FCECD8B00816FCF /* Cities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E644931FCECD8B00816FCF /* Cities.swift */; };
@@ -151,6 +154,9 @@
 		A7D4D2A51F51913C00546341 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		A7E03D9A1F71D820000095BD /* UIDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDropDown.swift; sourceTree = "<group>"; };
 		A7E562A7201F83C000EF6C40 /* MixCloudProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixCloudProfileViewController.swift; sourceTree = "<group>"; };
+		A7E562A9202002B100EF6C40 /* UserDeejaysFollowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeejaysFollowsViewController.swift; sourceTree = "<group>"; };
+		A7E562AD2020040400EF6C40 /* UserDeejays+NSFetchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDeejays+NSFetchResultsController.swift"; sourceTree = "<group>"; };
+		A7E562AF202004C500EF6C40 /* UserDeejayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDeejayCell.swift; sourceTree = "<group>"; };
 		A7E6448F1FCB7F4D00816FCF /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		A7E644911FCC76A300816FCF /* ChangeCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCityViewController.swift; sourceTree = "<group>"; };
 		A7E644931FCECD8B00816FCF /* Cities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cities.swift; sourceTree = "<group>"; };
@@ -237,6 +243,7 @@
 				A76E72D11F75776C0023D47F /* FetchedResultsTableViewController.swift */,
 				A7ACD4481FE7FD4000DEFDC5 /* Music */,
 				A7C5567420005DF100B277EB /* Search Catalogue */,
+				A7E562AB202002D000EF6C40 /* User Deejays Follows */,
 				A7B3E76B1FC6343300170C95 /* DJs */,
 				A7ACD44C1FE8092200DEFDC5 /* Other MVC */,
 				A733850D1FBB954C00E0C4C2 /* Events */,
@@ -563,6 +570,32 @@
 			name = UIDropDown;
 			sourceTree = "<group>";
 		};
+		A7E562AB202002D000EF6C40 /* User Deejays Follows */ = {
+			isa = PBXGroup;
+			children = (
+				A7E562AC202002EB00EF6C40 /* View Controllers */,
+				A7E562B1202004D200EF6C40 /* Cells */,
+			);
+			name = "User Deejays Follows";
+			sourceTree = "<group>";
+		};
+		A7E562AC202002EB00EF6C40 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A7E562A9202002B100EF6C40 /* UserDeejaysFollowsViewController.swift */,
+				A7E562AD2020040400EF6C40 /* UserDeejays+NSFetchResultsController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		A7E562B1202004D200EF6C40 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A7E562AF202004C500EF6C40 /* UserDeejayCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		A7F4BAD91F839006001279F3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -758,6 +791,7 @@
 				A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */,
 				A73385131FBE4FF700E0C4C2 /* FollowsTableView+NSFetchResultsController.swift in Sources */,
 				A7C556782000602100B277EB /* SearchCatalogueTableView+NSFethResultsController.swift in Sources */,
+				A7E562B0202004C500EF6C40 /* UserDeejayCell.swift in Sources */,
 				A7D1CDC81F81D0CF003513F8 /* EventDeejayCell.swift in Sources */,
 				A7E562A8201F83C000EF6C40 /* MixCloudProfileViewController.swift in Sources */,
 				A76E72D21F75776C0023D47F /* FetchedResultsTableViewController.swift in Sources */,
@@ -768,10 +802,12 @@
 				A76E72C91F7518CB0023D47F /* DJsSearchViewController.swift in Sources */,
 				A76E72D01F7576580023D47F /* EventsTableView+NSFetchResultsController.swift in Sources */,
 				A733850C1FBB94AD00E0C4C2 /* EventInfoViewController.swift in Sources */,
+				A7E562AA202002B100EF6C40 /* UserDeejaysFollowsViewController.swift in Sources */,
 				A7E644901FCB7F4D00816FCF /* AboutViewController.swift in Sources */,
 				A74D4AF12011BD0800678B10 /* SingleEventFacebookRequest.swift in Sources */,
 				A7C556711FFF26B100B277EB /* MusicListCollectionCell.swift in Sources */,
 				A73E1FA21FBA3BAF001E31D3 /* FontAwesome.swift in Sources */,
+				A7E562AE2020040400EF6C40 /* UserDeejays+NSFetchResultsController.swift in Sources */,
 				A7E644941FCECD8B00816FCF /* Cities.swift in Sources */,
 				A7EC36871F365AA900548C11 /* TabBarViewController.swift in Sources */,
 				A775C3B41F3C7FA100A3449F /* NotificationKeyStringConvenience.swift in Sources */,
