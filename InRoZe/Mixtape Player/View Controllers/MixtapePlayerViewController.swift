@@ -28,7 +28,7 @@ class MixtapePlayerViewController: UIViewController {
     private var colorTwo: UIColor = .black // Defines the text labels, play/pause button color
     private var colorThree: UIColor = .black // Defines the skip back and front button color
     private let seekingTime: Int64 = 60 // Seek time backward and forward
-    
+
 
 
     // Outlets
@@ -89,7 +89,6 @@ class MixtapePlayerViewController: UIViewController {
         setMixtapeInfoUI()
         setMixtapeCoverAndColors()
         popBarExtraSetup()
-        //updatedIsFollowedMix()
     }
     
     
@@ -120,7 +119,7 @@ class MixtapePlayerViewController: UIViewController {
     
     // METHODS
     @objc private func pressedFollowedMix() {
-        print("Pressed FollowedMix")
+        //print("Pressed FollowedMix")
         guard let id = mixtape?.id else { return }
         if let context = container?.viewContext {
             context.perform {
@@ -134,7 +133,7 @@ class MixtapePlayerViewController: UIViewController {
     }
     
     private func updatedIsFollowedMix() {
-        print("updatedIsFollowedMix")
+        //print("updatedIsFollowedMix")
         let followColor = colorOne.isDarkColor ? UIColor.white : UIColor.black
         
         guard let following = mixtape?.isFollowed else { return }
@@ -176,6 +175,7 @@ class MixtapePlayerViewController: UIViewController {
     private func pressedPlayerPlay() {
         player.play()
         updateNowPlayingCenter()
+        
     }
     
     private func setupCommandCenterControllers() {
@@ -354,7 +354,7 @@ class MixtapePlayerViewController: UIViewController {
     }
 
     @objc private func toggleBetweenPlayPause() {
-        player.rate != 0 ? player.pause() : pressedPlayerPlay()  // player.play()
+        player.rate != 0 ? player.pause() : pressedPlayerPlay()
         //if player.rate == 0 { dismissPlayerAfterPause(inSeconds: timeBeforeDismissPopupBar) }
         setPlayedTime()
         updatePlayPauseIcons()
@@ -362,8 +362,12 @@ class MixtapePlayerViewController: UIViewController {
     
 
     private func setAudioStreamFromMixCloud() {
-        guard let strURL = mixtape?.streamURL else { return }
+        guard var strURL = mixtape?.streamURL else { return }
+        strURL = strURL.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
         guard let streamURL = URL(string: strURL) else { return }
+        
+        
+        
         let playerItem = AVPlayerItem(url: streamURL)
         player.replaceCurrentItem(with: playerItem)
         duration = playerItem.asset.duration

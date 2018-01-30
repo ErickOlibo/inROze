@@ -249,6 +249,8 @@ public class Mixtape: NSManagedObject
                 } catch {
                     print("[setPlayedTime] - Error while Saving Context: \(error)")
                 }
+                // reload MusicViewController ThreeCells and the CollectionCells inside for the RecnetlyPlayed list
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.userDidChangeRecentlyPlayedList), object: nil)
                 return true
             }
         } catch {

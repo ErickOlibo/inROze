@@ -157,9 +157,9 @@ class EventsViewController: FetchedResultsTableViewController {
         
         // number of events in the database
         // Better way to count number of element in entity (CoreData)
-        if let eventCount = try? mainContext.count(for: Event.fetchRequest()) {
-            print("[printDatabaseStatistics] in EventsVC - \(eventCount) Events ")
-        }
+//        if let eventCount = try? mainContext.count(for: Event.fetchRequest()) {
+//            print("[printDatabaseStatistics] in EventsVC - \(eventCount) Events ")
+//        }
         
         // update predicate in case of cityCode change
         updatePredicate()
@@ -170,9 +170,9 @@ class EventsViewController: FetchedResultsTableViewController {
         
         do {
             try self.fetchResultsController.performFetch()
-            if let count = fetchResultsController.fetchedObjects?.count {
-                print("Total Event Fetched: \(count)")
-            }
+//            if let count = fetchResultsController.fetchedObjects?.count {
+//                print("Total Event Fetched: \(count)")
+//            }
             
             self.tableView.reloadData()
             // go to top
@@ -192,7 +192,7 @@ class EventsViewController: FetchedResultsTableViewController {
                     deejaysName.insert(name)
                 }
             }
-            print("Size of unique DJS : \(deejaysName.count)")
+            //print("Size of unique DJS : \(deejaysName.count)")
             
         } catch {
             print("Error in performFetch - EventVC - updateUI()")

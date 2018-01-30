@@ -44,22 +44,23 @@ class MusicViewController: UICollectionViewController {
         searchCatalogueButton.tintColor = Colors.logoRed
         collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         setupNavBar()
-        otherMixtapes()
-        getAllMixtapes()
+        updateThreeMixCellsAndCollections()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Add listener for MixtapePlayerVC
         NotificationCenter.default.addObserver(self, selector: #selector(noticeFromMusicPlayer), name: NSNotification.Name(rawValue: NotificationFor.playerDidChangeFollowStatus), object: nil)
-        otherMixtapes()
+        NotificationCenter.default.addObserver(self, selector: #selector(noticeFromPlayedList), name: NSNotification.Name(rawValue: NotificationFor.userDidChangeRecentlyPlayedList), object: nil)
+        updateThreeMixCellsAndCollections()
         print("yourList [\(yourListMix?.count ?? 0)] - New [\(newReleasesMix?.count ?? 0)] - Recent [\(recentlyPlayedMix?.count ?? 0)]")
-        getAllMixtapes()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationFor.playerDidChangeFollowStatus), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationFor.userDidChangeRecentlyPlayedList), object: nil)
     }
     
     
@@ -70,14 +71,23 @@ class MusicViewController: UICollectionViewController {
     
     @objc private func noticeFromMusicPlayer() {
         print("NoticeFromMusicPlayer")
-        otherMixtapes()
-        getAllMixtapes()
+        updateThreeMixCellsAndCollections()
+    }
+    
+    @objc private func noticeFromPlayedList() {
+        updateThreeMixCellsAndCollections()
     }
     
     
+    // UPdate all 3 mixCells and the collections inside
+    private func updateThreeMixCellsAndCollections() {
+        otherMixtapes()
+        getAllMixtapes()
+        
+    }
+    
     // Get info for Recently Played, Your List and New Releases
     private func otherMixtapes() {
-        print("Here in other mixtapes")
         yourListMix = Mixtape.listOfFollows(in: mainContext)
         newReleasesMix = Mixtape.newReleases(in: mainContext)
         recentlyPlayedMix = Mixtape.recentlyPlayed(in: mainContext)
@@ -169,7 +179,6 @@ extension MusicViewController
 extension MusicViewController: SetMusicPlayerDelegate
 {
     func didTapCellForMixtape(mixtape: Mixtape) {
-        print("DidTapCellFor Mixtape From Release, Recent, Your list")
         loadAndPlayMixtape(mixtape: mixtape)
     }
     
@@ -198,7 +207,6 @@ extension MusicViewController: UICollectionViewDelegateFlowLayout
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Catalogue Section -> Cell [\(indexPath.row)]")
         guard let mixtape = mixtapes?[indexPath.row] else { return }
         loadAndPlayMixtape(mixtape: mixtape)
     }

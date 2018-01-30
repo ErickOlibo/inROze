@@ -20,4 +20,5 @@ public struct NotificationFor {
     static let initialLoginRequestIsDone = "initialLoginRequestIsDone"
     static let eventDescriptionRecieved = "eventDescriptionRecieved"
     static let playerDidChangeFollowStatus = "playerDidChangeFollowStatus"
+    static let userDidChangeRecentlyPlayedList = "userDidChangeRecentlyPlayedList"
 }
