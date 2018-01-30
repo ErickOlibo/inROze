@@ -32,7 +32,7 @@ extension UserDeejaysFollowsViewController
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: DJsSearchCell.identifier, for: indexPath) as! DJsSearchCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: UserDeejayCell.identifier, for: indexPath) as! UserDeejayCell
         cell.tag = indexPath.row
         //print("SearcText: [\(searchText ?? "nil")]")
         cell.searchText = searchText
@@ -45,8 +45,8 @@ extension UserDeejaysFollowsViewController
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if (segue.identifier == "DJs to Deejay Gigs List") {
-            guard let djCell = sender as? DJsSearchCell else { return }
+        if (segue.identifier == "UserDeejayCell to Deejay Gigs List") {
+            guard let djCell = sender as? UserDeejayCell else { return }
             guard let destination = segue.destination as? DeejayGigsTableViewController else { return }
             let thisDJ = djCell.deejay!
             destination.artist = thisDJ

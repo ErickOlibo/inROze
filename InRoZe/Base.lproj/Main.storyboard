@@ -18,7 +18,7 @@
         <array key="Bungee-Regular.ttf">
             <string>Bungee-Regular</string>
         </array>
-        <array key="FontAwesome.otf">
+        <array key="FontAwesome.ttf">
             <string>FontAwesome</string>
         </array>
         <array key="HelveticaNeue.ttc">
@@ -1797,6 +1797,7 @@ Follows</string>
                                             </state>
                                             <connections>
                                                 <action selector="followsButton:" destination="WEo-Uf-ZET" eventType="touchUpInside" id="Gqz-iI-onO"/>
+                                                <segue destination="3Kr-yb-i6F" kind="show" identifier="Settings To User Follows List" id="ffi-jY-gO0"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -2270,16 +2271,16 @@ Mixtapes</string>
             </objects>
             <point key="canvasLocation" x="2265" y="-2047"/>
         </scene>
-        <!--DJs-->
+        <!--Your Follows-->
         <scene sceneID="nIQ-4K-ikU">
             <objects>
-                <tableViewController id="3Kr-yb-i6F" customClass="DeejaysViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Your Follows" id="3Kr-yb-i6F" customClass="UserDeejaysFollowsViewController" customModule="InRoZe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sXw-kb-FWk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DJsSearchCell" rowHeight="60" id="jg9-7o-G5v" customClass="DJsSearchCell" customModule="InRoZe" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserDeejayCell" rowHeight="60" id="jg9-7o-G5v" customClass="UserDeejayCell" customModule="InRoZe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jg9-7o-G5v" id="K55-Z0-78Z">
@@ -2312,7 +2313,7 @@ Mixtapes</string>
                                             </constraints>
                                             <state key="normal" image="2_Follows"/>
                                             <connections>
-                                                <action selector="followTouched:" destination="jg9-7o-G5v" eventType="touchUpInside" id="af6-YT-Qzt"/>
+                                                <action selector="followTouched:" destination="jg9-7o-G5v" eventType="touchUpInside" id="ywn-Ts-5Xj"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -2328,9 +2329,10 @@ Mixtapes</string>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="deejayName" destination="52X-0X-HTM" id="N33-IF-t8J"/>
-                                    <outlet property="followButton" destination="IAi-2X-rDp" id="cvU-Vc-RyG"/>
-                                    <outlet property="gigsMixesList" destination="oq3-Ru-SR1" id="zhv-X3-3lh"/>
+                                    <outlet property="deejayName" destination="52X-0X-HTM" id="6mp-OS-a24"/>
+                                    <outlet property="followButton" destination="IAi-2X-rDp" id="rWv-XV-War"/>
+                                    <outlet property="gigsMixesList" destination="oq3-Ru-SR1" id="lRp-8u-KaE"/>
+                                    <segue destination="8yR-qp-x1Q" kind="show" identifier="UserDeejayCell to Deejay Gigs List" id="klz-3a-1bo"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -2339,11 +2341,11 @@ Mixtapes</string>
                             <outlet property="delegate" destination="3Kr-yb-i6F" id="AJT-O8-z53"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="DJs" id="wB8-OA-rsf"/>
+                    <navigationItem key="navigationItem" title="Your Follows" id="wB8-OA-rsf"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hiy-mC-6M6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1981" y="1092"/>
+            <point key="canvasLocation" x="943" y="1359"/>
         </scene>
     </scenes>
     <resources>
@@ -2364,9 +2366,9 @@ Mixtapes</string>
         <image name="SearchCatalogue" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2XV-oB-faW"/>
-        <segue reference="3qc-uF-jcK"/>
+        <segue reference="U8r-Et-0uN"/>
+        <segue reference="6Jg-Gd-7Hi"/>
         <segue reference="ekP-bR-cTf"/>
-        <segue reference="fqI-E3-pH5"/>
+        <segue reference="klz-3a-1bo"/>
     </inferredMetricsTieBreakers>
 </document>

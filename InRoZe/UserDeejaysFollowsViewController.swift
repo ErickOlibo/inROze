@@ -12,25 +12,18 @@ import CoreData
 class UserDeejaysFollowsViewController: FetchedResultsTableViewController {
     
     
-    //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     let mainContext = AppDelegate.viewContext
     let searchController = UISearchController(searchResultsController: nil)
     var searchText: String?
-    var currentCode: String?
     
     
     lazy var fetchResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<Artist> in
         let request: NSFetchRequest<Artist> = Artist.fetchRequest()
-        let isFollowSort = NSSortDescriptor(key: "isFollowed", ascending: false, selector: nil)
-        let nameSort = NSSortDescriptor(key: "name", ascending: true, selector: nil)
-        let nameSort2 = NSSortDescriptor(key: "name", ascending: true,
-                                         selector: #selector(NSString.localizedStandardCompare(_:)))
-        
-        //request.sortDescriptors = [NSSortDescriptor(key: "isFollowed", ascending: false, selector: nil)]
-        request.sortDescriptors = [isFollowSort, nameSort]
-        let currentCountryCode = currentCity.countryCode.rawValue
-        request.predicate = NSPredicate(format: "name != nil AND countryCode = %@", currentCountryCode)
+        let sortCountry = NSSortDescriptor(key: "country", ascending: true, selector: nil)
+        let sortName = NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))
+        request.sortDescriptors = [sortName, sortCountry]
+        request.predicate = NSPredicate(format: "name != nil AND isFollowed == YES")
         request.fetchBatchSize = 20
         let fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedRC.delegate = self
@@ -43,6 +36,7 @@ class UserDeejaysFollowsViewController: FetchedResultsTableViewController {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.view.backgroundColor = .white
+        navigationController?.navigationBar.tintColor = Colors.logoRed
         
         // Stuff for search bar
         searchController.searchResultsUpdater = self
@@ -51,7 +45,7 @@ class UserDeejaysFollowsViewController: FetchedResultsTableViewController {
         definesPresentationContext = true
         
         navigationItem.searchController = searchController
-        searchController.searchBar.placeholder = "Search Deejays"
+        searchController.searchBar.placeholder = "Search Your Follows"
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchBar.tintColor = Colors.logoRed
         searchController.searchBar.returnKeyType = .done
@@ -62,7 +56,6 @@ class UserDeejaysFollowsViewController: FetchedResultsTableViewController {
     // ViewController Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentCode = currentCity.code.rawValue
         setupNavBar()
         updateUI()
         
@@ -70,14 +63,8 @@ class UserDeejaysFollowsViewController: FetchedResultsTableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let newCode = currentCity.code.rawValue
-        if (newCode != currentCode) {
-            updatePredicate()
-            print("CityCode was Channged")
-            currentCode = newCode
-        }
         updateUI()
-        navigationItem.title = "DJs in \(currentCity.countryName.rawValue)"
+        navigationItem.title = "Your Follows List"
     }
     
     
@@ -86,37 +73,26 @@ class UserDeejaysFollowsViewController: FetchedResultsTableViewController {
         do {
             try self.fetchResultsController.performFetch()
         } catch {
-            print("UpdateUI in DeejaysViewController -> Error while fetching: \(error)")
+            print("UpdateUI in UserDeejaysFollowsViewController -> Error while fetching: \(error)")
         }
         tableView.reloadData()
     }
     
-    private func updatePredicate() {
-        let currentCountryCode = currentCity.countryCode.rawValue
-        fetchResultsController.fetchRequest.predicate = NSPredicate(format: "name != nil AND countryCode = %@", currentCountryCode)
-    }
 }
 
 
 extension UserDeejaysFollowsViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        //print("Here IN: updateSearchResults - ")
-        let currentCountryCode = currentCity.countryCode.rawValue
         guard searchController.searchBar.text!.count > 0 else {
             searchText = searchController.searchBar.text
-            //print("is search bar text nil: [\(searchController.searchBar.text ?? "NIL")]")
-            //            let descript = fetchResultsController.fetchRequest.sortDescriptors
-            //            let predic = fetchResultsController.fetchRequest.predicate
-            //            print("Description: \(String(describing: descript)) - Predicate: \(String(describing: predic))")
-            
-            fetchResultsController.fetchRequest.predicate = NSPredicate(format: "name != nil AND countryCode = %@", currentCountryCode)
+            fetchResultsController.fetchRequest.predicate = NSPredicate(format: "name != nil AND isFollowed == YES")
             updateUI()
             return
         }
         
         print("Passed the Guard: updateSearchResults")
         searchText = searchController.searchBar.text!
-        fetchResultsController.fetchRequest.predicate = NSPredicate(format: "name != nil AND name contains[c] %@ AND countryCode = %@",  searchText!, currentCountryCode)
+        fetchResultsController.fetchRequest.predicate = NSPredicate(format: "name != nil AND (name contains[c] %@ OR country contains[c] %@) AND isFollowed == YES ",  searchText!, searchText! )
         updateUI()
     }
     
