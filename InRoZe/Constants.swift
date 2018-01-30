@@ -66,6 +66,7 @@ public struct MixSection {
 public struct CellSize {
     static let topAreaHeight: CGFloat = 63 // from 70
     static let phoneSizeWidth = UIScreen.main.bounds.width
+    static let phoneSizeHeight = UIScreen.main.bounds.height
     static let coverRatio = CGFloat(16) / 9
     static let marginWidth: CGFloat = 20 * 2
     static let djAreaHeight: CGFloat = 100

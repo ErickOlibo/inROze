@@ -67,7 +67,7 @@ public class ServerRequest
             // count data size
             let byteCount = data.count
             let bcf = ByteCountFormatter()
-            bcf.allowedUnits = [.useMB]
+            bcf.allowedUnits = [.useKB]
             bcf.countStyle = .file
             let sizeString = bcf.string(fromByteCount: Int64(byteCount))
             print("********** DATA SIZE Recieved from SERVER is: \(sizeString)")
@@ -82,7 +82,11 @@ public class ServerRequest
                             print("[ServerRequest] - Server Response ErrorType: \(errorType)")
                             if (json[DBLabels.rows]! as! Int > 0) {
                                 self.result = json
+                                print("JSON result has something to show")
                                 UserDefaults().setDateNow(for: RequestDate.toServer)
+                            } else {
+                                print("There was nothing to download")
+                                self.notifyCenter()
                             }
                         }
                     } else {
@@ -167,23 +171,30 @@ public class ServerRequest
                     } catch {
                         print("[ServerRequest] - Error trying to save in CoreData")
                     }
-                    //NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.coreDataDidUpdate), object: nil)
-                    if (UserDefaults().isFromLoginView) {
-                        print("NotificationFor.initialLoginRequestIsDone")
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.initialLoginRequestIsDone), object: nil)
-                        // Update success here
-                        //self.successForLastUpdate()
-                        UserDefaults().isFromLoginView = false
-                    } else {
-                        print("NotificationFor.serverRequestDoneUpdating")
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.serverRequestDoneUpdating), object: nil)
-                        // update success here
-                        //self.successForLastUpdate()
-                    }
+                    self.notifyCenter()
+//                    if (UserDefaults().isFromLoginView) {
+//                        print("NotificationFor.initialLoginRequestIsDone")
+//                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.initialLoginRequestIsDone), object: nil)
+//                        UserDefaults().isFromLoginView = false
+//                    } else {
+//                        print("NotificationFor.serverRequestDoneUpdating")
+//                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.serverRequestDoneUpdating), object: nil)
+//                    }
                     
                     //self.printDatabaseStatistics()
                 }
             }
+        }
+    }
+    
+    private func notifyCenter() {
+        if (UserDefaults().isFromLoginView) {
+            print("NotificationFor.initialLoginRequestIsDone")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.initialLoginRequestIsDone), object: nil)
+            UserDefaults().isFromLoginView = false
+        } else {
+            print("NotificationFor.serverRequestDoneUpdating")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.serverRequestDoneUpdating), object: nil)
         }
     }
     
