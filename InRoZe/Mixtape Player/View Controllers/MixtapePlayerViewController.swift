@@ -224,7 +224,7 @@ class MixtapePlayerViewController: UIViewController {
         guard let mixtape = mixtape else { return }
         guard let dj = mixtape.deejay?.name else { return }
         guard let mixTitle = mixtape.name else { return }
-        guard let imageURL = mixtape.cover768URL else { return }
+        guard let imageURL = mixtape.cover320URL else { return }
         guard let mixLength = mixtape.length, let lengthInt = Double(mixLength)  else { return }
         var songDuration = lengthInt
         if let length = player.currentItem?.asset.duration {

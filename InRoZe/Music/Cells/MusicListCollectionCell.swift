@@ -31,7 +31,7 @@ class MusicListCollectionCell: UICollectionViewCell {
         mixtapeTitle.text = title
         guard let djName = mix.deejay?.name else { return }
         mixtapeMaker.text = djName
-        guard let coverURL = mix.cover768URL else { return }
+        guard let coverURL = mix.cover320URL else { return }
         mixtapeCover.kf.setImage(with: URL(string: coverURL), options: [.backgroundDecode, .transition(.fade(0.2))])
         
     }

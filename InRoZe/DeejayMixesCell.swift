@@ -77,7 +77,7 @@ class DeejayMixesCell: UITableViewCell {
         mixtapeTags.text = tagsToString()
         mixDayLengthUI()
         updateFollowedButton()
-        guard let url = mixtape?.cover768URL else { return }
+        guard let url = mixtape?.cover320URL else { return }
         guard let mixCoverURL = URL(string: url) else { return }
         mixtapeCover.kf.setImage(with: mixCoverURL, options: [.backgroundDecode, .transition(.fade(0.2))], completionHandler: {
             (img, err, cache, url) in
