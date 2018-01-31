@@ -52,6 +52,7 @@ class MusicViewController: UICollectionViewController {
         // Add listener for MixtapePlayerVC
         NotificationCenter.default.addObserver(self, selector: #selector(noticeFromMusicPlayer), name: NSNotification.Name(rawValue: NotificationFor.playerDidChangeFollowStatus), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(noticeFromPlayedList), name: NSNotification.Name(rawValue: NotificationFor.userDidChangeRecentlyPlayedList), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(noticeFromPlayedList), name: NSNotification.Name(rawValue: NotificationFor.serverRequestDoneUpdating), object: nil)
         updateThreeMixCellsAndCollections()
         print("yourList [\(yourListMix?.count ?? 0)] - New [\(newReleasesMix?.count ?? 0)] - Recent [\(recentlyPlayedMix?.count ?? 0)]")
         

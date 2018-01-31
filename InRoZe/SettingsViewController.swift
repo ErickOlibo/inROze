@@ -196,7 +196,7 @@ class SettingsViewController: UITableViewController {
         }
         
         // For when segue to follows list - Mind name of the identifier
-        if (identifier == "Settings To View Your Follows") {
+        if (identifier == "Settings To User Follows List") {
             let count = Artist.listOfFollows(in: container!.viewContext).count
             print("Count of Deejays Follow: ", count)
             if (count == 0) { return false }

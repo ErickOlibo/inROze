@@ -69,6 +69,7 @@ class DeejaysViewController: FetchedResultsTableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: NSNotification.Name(rawValue: NotificationFor.serverRequestDoneUpdating), object: nil)
         let newCode = currentCity.code.rawValue
         if (newCode != currentCode) {
             updatePredicate()
@@ -79,9 +80,17 @@ class DeejaysViewController: FetchedResultsTableViewController {
         navigationItem.title = "DJs in \(currentCity.countryName.rawValue)"
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // remove Notification Observer
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationFor.serverRequestDoneUpdating), object: nil)
+    }
     
-    // Convenience Functions
-    private func updateUI() {
+    
+    
+    // MEthods
+    @objc private func updateUI() {
         do {
             try self.fetchResultsController.performFetch()
         } catch {

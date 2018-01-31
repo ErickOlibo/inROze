@@ -159,27 +159,32 @@ public class ServerRequest
                     }
                     // Core Data updates for Artist, Mixtapes, Artists of Events
                     self.updateArtistsDatabase(with: eventIDs, in: context)
-                    self.updateMixtapesDatabase(with: eventIDs, in: context)
                     self.insertOrUpdateArtistsOfEvents(with: eventIDs, in: context)
+                    
+                    // Notify center for Events and Artist Done
+                    do {
+                        try context.save()
+                        //UserDefaults().setDateNow(for: RequestDate.toServer)
+                    } catch {
+                        print("[ServerRequest] - Error trying to save in CoreData")
+                    }
+                    self.notifyCenter()
+                    
+                    // Second batch of Core Data and After again notification
+                    self.updateMixtapesDatabase(with: eventIDs, in: context)
                     
                     _ = Event.deleteNotActiveEvents(in: context)
                     _ = Mixtape.deleteNotActiveMixtapes(in: context)
                     
                     do {
                         try context.save()
-                        UserDefaults().setDateNow(for: RequestDate.toServer)
+                        //UserDefaults().setDateNow(for: RequestDate.toServer)
                     } catch {
                         print("[ServerRequest] - Error trying to save in CoreData")
                     }
+                    // notify center for Mixtape done
                     self.notifyCenter()
-//                    if (UserDefaults().isFromLoginView) {
-//                        print("NotificationFor.initialLoginRequestIsDone")
-//                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.initialLoginRequestIsDone), object: nil)
-//                        UserDefaults().isFromLoginView = false
-//                    } else {
-//                        print("NotificationFor.serverRequestDoneUpdating")
-//                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.serverRequestDoneUpdating), object: nil)
-//                    }
+
                     
                     //self.printDatabaseStatistics()
                 }

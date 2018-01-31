@@ -18,7 +18,7 @@
         <array key="Bungee-Regular.ttf">
             <string>Bungee-Regular</string>
         </array>
-        <array key="FontAwesome.ttf">
+        <array key="FontAwesome.otf">
             <string>FontAwesome</string>
         </array>
         <array key="HelveticaNeue.ttc">
@@ -2367,7 +2367,7 @@ Mixtapes</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="U8r-Et-0uN"/>
-        <segue reference="6Jg-Gd-7Hi"/>
+        <segue reference="Dmb-S9-efK"/>
         <segue reference="ekP-bR-cTf"/>
         <segue reference="klz-3a-1bo"/>
     </inferredMetricsTieBreakers>
