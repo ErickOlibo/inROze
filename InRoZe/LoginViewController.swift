@@ -62,6 +62,10 @@ class LoginViewController: UIViewController {
                 UserDefaults().isLoggedIn = true
                 
                 UserProfile.loadCurrent{ profile in
+                    let userID = UserProfile.current?.userId ?? "123456"
+                    let parameters = "id=\(userID)"
+                    let serverRequest = ServerRequest()
+                    serverRequest.setUserLoggedIn(to: true, parameters: parameters, urlToServer: UrlFor.logInOut)
                     RequestHandler().fetchEventIDsFromServer()
 
                 }

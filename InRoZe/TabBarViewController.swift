@@ -16,6 +16,9 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     public var isShowingMiniPlayer: Bool = false
     private var isSameTab: Bool = false
     
+    // token to keep for the MixtapePlayerViewController
+    public var playerObserverToken: Any!
+    
     
     // View Life Cycle
     override func viewDidLoad() {

@@ -20,7 +20,7 @@ class MixtapePlayerViewController: UIViewController {
     override var prefersStatusBarHidden: Bool { return true }
     public var player: AVPlayer! //{ didSet { print("Player in MusicVC SET: \(player.description)") } }
     public var mixtape: Mixtape?
-    public var tabBarVC: Any?
+    public var tabBarVC: TabBarViewController!
 
     private var duration: CMTime!
     private var colors: UIImageColors? { didSet { updateUI() }}
@@ -76,6 +76,7 @@ class MixtapePlayerViewController: UIViewController {
     // VIEW CONTROLLER LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("MIXTAPE PLAYER VIEW DID LOAD")
         setupCommandCenterControllers()
         UIApplication.shared.beginReceivingRemoteControlEvents()
         navigationItem.largeTitleDisplayMode = .never
@@ -100,7 +101,7 @@ class MixtapePlayerViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        removeRegisterForNotifications()
+        //removeRegisterForNotifications()
         guard let colorsDB = colors else { return }
         guard let mixID = mixtape?.id else { return }
         container?.performBackgroundTask { context in
@@ -199,6 +200,29 @@ class MixtapePlayerViewController: UIViewController {
         commandCenter.skipForwardCommand.preferredIntervals = [60]
 
     }
+    private func removeCommandCenterControllers() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+        
+        // target Need all to be implemented
+        commandCenter.togglePlayPauseCommand.removeTarget(self, action: #selector(toggleBetweenPlayPause))
+        commandCenter.nextTrackCommand.removeTarget(self, action: #selector(toggleThis))
+        commandCenter.previousTrackCommand.removeTarget(self, action: #selector(toggleThis))
+        commandCenter.skipForwardCommand.removeTarget(self, action: #selector(seekForward))
+        commandCenter.skipBackwardCommand.removeTarget(self, action: #selector(seekBackward))
+        
+        // enable ALL option to see seeking icon and number
+        commandCenter.togglePlayPauseCommand.isEnabled = false
+        commandCenter.nextTrackCommand.isEnabled = false
+        commandCenter.previousTrackCommand.isEnabled = false
+        
+        commandCenter.skipForwardCommand.isEnabled = false
+        commandCenter.skipBackwardCommand.isEnabled = false
+        commandCenter.skipBackwardCommand.preferredIntervals = [60]
+        commandCenter.skipForwardCommand.preferredIntervals = [60]
+        
+    }
+    
+    
     
     @objc private func seekForward() {
         seekNewCurrentTime(byLookForward: true, isCommandCenter: true)
@@ -265,12 +289,23 @@ class MixtapePlayerViewController: UIViewController {
             selector: #selector(handleInterruption),
             name: .AVAudioSessionInterruption,
             object: AVAudioSession.sharedInstance())
+        NotificationCenter.default.addObserver(self, selector: #selector(noticeToDismiss), name: NSNotification.Name(rawValue: NotificationFor.dismissCurrentMixtapeVC), object: nil)
     }
     
     
     private func removeRegisterForNotifications() {
         NotificationCenter.default.removeObserver(self, name: .AVAudioSessionRouteChange, object: nil)
         NotificationCenter.default.removeObserver(self, name: .AVAudioSessionInterruption, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationFor.dismissCurrentMixtapeVC), object: nil)
+    }
+    
+    
+    @objc private func noticeToDismiss() {
+        removeRegisterForNotifications()
+        removeCommandCenterControllers()
+        player.pause()
+        player.removeTimeObserver(tabBarVC.playerObserverToken)
+        //self.dismissPopupBar(animated: true, completion: nil)
     }
     
     
@@ -375,7 +410,7 @@ class MixtapePlayerViewController: UIViewController {
         
         // TRACK PLAYER PROGRESS -> Not sure it should not be here
         let interval = CMTime(value: 1, timescale: 1)
-        player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main) { (progressTime) in
+        tabBarVC.playerObserverToken = player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main) { (progressTime) in
             let progress = CMTimeGetSeconds(progressTime)
             //print("PROGRESS: ", progress)
             let totalLength = CMTimeGetSeconds(self.duration)

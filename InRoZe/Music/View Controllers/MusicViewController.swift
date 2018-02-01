@@ -141,6 +141,7 @@ class MusicViewController: UICollectionViewController {
     
     
     private func loadAndPlayMixtape(mixtape: Mixtape) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.dismissCurrentMixtapeVC), object: nil)
         let popupContentController = storyboard?.instantiateViewController(withIdentifier: "MixtapePlayerViewController") as! MixtapePlayerViewController
         let tabBarVC = tabBarController as! TabBarViewController
         

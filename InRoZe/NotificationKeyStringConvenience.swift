@@ -21,4 +21,5 @@ public struct NotificationFor {
     static let eventDescriptionRecieved = "eventDescriptionRecieved"
     static let playerDidChangeFollowStatus = "playerDidChangeFollowStatus"
     static let userDidChangeRecentlyPlayedList = "userDidChangeRecentlyPlayedList"
+    static let dismissCurrentMixtapeVC = "dismissCurrentMixtapeVC"
 }
