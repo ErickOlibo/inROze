@@ -8,7 +8,7 @@
 
 import Foundation
 import CoreData
-import FacebookCore
+//import FacebookCore
 import FBSDKCoreKit
 
 /* This class queries Facebook Graph API

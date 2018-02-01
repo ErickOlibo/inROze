@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import FacebookCore
+//import FacebookCore
 import FBSDKCoreKit
 
 
@@ -17,7 +17,8 @@ public class RequestHandler
     
     // MARK: - Handler to SERVER
     public func fetchEventIDsFromServer() {
-        if let userID = AccessToken.current?.userId {
+        //let id = FBSDKAccessToken.current().userID
+        if let userID = FBSDKAccessToken.current().userID {
             let params = "id=\(userID)&cityCode=\(currentCity.code.rawValue)&countryCode=\(currentCity.countryCode.rawValue)"
             let request = ServerRequest()
             request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
@@ -57,7 +58,7 @@ public class RequestHandler
         if let id = result[FBUser.id]  as? String,
             let name = result[FBUser.name] as? String {
             
-            if let _ = AccessToken.current {
+            if let _ = FBSDKAccessToken.current() {
                 // Get some info about User
                 let email = result[FBUser.email] as? String? ?? ""
                 let gender = result[FBUser.gender] as? String? ?? "Neutral"

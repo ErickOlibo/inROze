@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import CoreData
-import FacebookCore
+//import FacebookCore
 import FBSDKCoreKit
 
 /* This class sync the log in status (true/false) of the user
@@ -41,7 +41,7 @@ public class ServerRequest
     
     // Send back to the server a handshake for successful update
     private func successForLastUpdate() {
-        guard let userID = AccessToken.current?.userId else { return }
+        guard let userID = FBSDKAccessToken.current().userID else { return }
         let params = "id=\(userID)&cityCode=\(currentCity.code.rawValue)&countryCode=\(currentCity.countryCode.rawValue)"
         let url = UrlFor.updateSuccess
         var request = URLRequest(url: URL(string: url)!)

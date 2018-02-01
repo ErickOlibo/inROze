@@ -7,9 +7,10 @@
 //
 
 import UIKit
-import FacebookLogin
-import FacebookCore
-//import FBSDKCoreKit
+//import FacebookLogin
+//import FacebookCore
+import FBSDKLoginKit
+import FBSDKCoreKit
 import Font_Awesome_Swift
 
 class LoginViewController: UIViewController {
@@ -27,49 +28,7 @@ class LoginViewController: UIViewController {
     let paddingToFacebookButtonTop: CGFloat = 10 // calculated number
     var isdroppedDown = false
     
-    @IBAction func loginTapped(_ sender: UIButton) {
-        //hideUI(state: true)
-        if isdroppedDown { dropList.willHideTable() }
-        self.view.bringSubview(toFront: foreGroundView)
-        self.view.bringSubview(toFront: spinner)
-        foreGroundView.isHidden = false
-        
-        // Facebook login
-        let loginManager = LoginManager()
-        
-        loginManager.logIn(readPermissions: [ReadPermission.publicProfile, ReadPermission.email], viewController: self) { [weak self] loginResult in
-            self?.spinner.startAnimating()
-            
-            switch loginResult {
-            case .failed(let error):
-                print("LOGIN FAILED")
-                self?.spinner.stopAnimating()
-                //self?.hideUI(state: false)
-                self?.foreGroundView.isHidden = true
-                print(error.localizedDescription)
-            case .cancelled:
-                print("LOGIN CANCELLED")
-                self?.spinner.stopAnimating()
-                //self?.hideUI(state: false)
-                self?.foreGroundView.isHidden = true
-                print("cancelled")
-            case .success( _,  _, _):
-                print("LOGIN SUCCESS")
-                // Get info about logged user and saved to Server as loggedIn
-                RequestHandler().requestUserInfo()
-                UserDefaults().isLoggedIn = true
-                
-                UserProfile.loadCurrent{ profile in
-                    let userID = UserProfile.current?.userId ?? "123456"
-                    let parameters = "id=\(userID)"
-                    let serverRequest = ServerRequest()
-                    serverRequest.setUserLoggedIn(to: true, parameters: parameters, urlToServer: UrlFor.logInOut)
-                    RequestHandler().fetchEventIDsFromServer()
-
-                }
-            }
-        }
-    }
+    @IBAction func loginTapped(_ sender: UIButton) { handleSignIn() }
 
     
     // change status bar color
@@ -79,6 +38,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        FBSDKProfile.enableUpdates(onAccessTokenChange: true)
         foreGroundView.isHidden = true
         foreGroundView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         print("viewDidLoad -> currentCity: ", currentCity.name.rawValue)
@@ -122,6 +82,52 @@ class LoginViewController: UIViewController {
         
         
     }
+    
+    // Methods
+    private func handleSignIn() {
+        //hideUI(state: true)
+        if isdroppedDown { dropList.willHideTable() }
+        self.view.bringSubview(toFront: foreGroundView)
+        self.view.bringSubview(toFront: spinner)
+        foreGroundView.isHidden = false
+        
+        // Facebook login
+        let loginManager = FBSDKLoginManager()
+        let permissions = ["public_profile","email"]
+        loginManager.logIn(withReadPermissions: permissions, from: self) { [weak self] (loginResult, error) in
+            self?.spinner.startAnimating()
+            if (error != nil) {
+                print("LOGIN FAILED")
+                self?.spinner.stopAnimating()
+                self?.foreGroundView.isHidden = true
+                guard let err = error else { return }
+                print(err.localizedDescription)
+                loginManager.logOut()
+                
+            } else if loginResult!.isCancelled {
+                print("LOGIN CANCELLED")
+                self?.spinner.stopAnimating()
+                self?.foreGroundView.isHidden = true
+                loginManager.logOut()
+                
+            } else {
+                if (loginResult?.grantedPermissions != nil) {
+                    print("LOGIN SUCCESS")
+                    // Get info about logged user and saved to Server as loggedIn
+                    RequestHandler().requestUserInfo()
+                    UserDefaults().isLoggedIn = true
+                    FBSDKProfile.loadCurrentProfile { (profile, error) in
+                        let userID = profile?.userID ?? "123456"
+                        let param = "id=\(userID)"
+                        ServerRequest().setUserLoggedIn(to: true, parameters: param, urlToServer: UrlFor.logInOut)
+                        RequestHandler().fetchEventIDsFromServer()
+                    }
+                }
+            }
+        }
+    }
+    
+    
     
     private func displayDropList () {
         // Drop down list
@@ -167,7 +173,8 @@ class LoginViewController: UIViewController {
             facebookButton.backgroundColor = .clear
             facebookButton.layer.borderWidth = 3
             facebookButton.layer.borderColor = Colors.facebook.cgColor
-            facebookButton.setFAText(prefixText: "", icon: .FAFacebook, postfixText: "  Log in with Facebook", size: 25, forState: .normal)
+            facebookButton.setFAText(prefixText: "", icon: .FAFacebook, postfixText: "  Log in with Facebook", size: 14, forState: .normal, iconSize: 25)
+            //facebookButton.setFAText(prefixText: "", icon: .FAFacebook, postfixText: "  Log in with Facebook", size: 14, forState: .normal)
             facebookButton.setFATitleColor(color: Colors.facebook, forState: .normal)
             facebookButton.setTitleColor(.white, for: .highlighted)
 
@@ -176,7 +183,8 @@ class LoginViewController: UIViewController {
             facebookButton.backgroundColor = .clear
             facebookButton.layer.borderWidth = 3
             facebookButton.layer.borderColor = UIColor.lightGray.cgColor
-            facebookButton.setFAText(prefixText: "", icon: .FAFacebook, postfixText: "  Log in with Facebook", size: 25, forState: .normal)
+            facebookButton.setFAText(prefixText: "", icon: .FAFacebook, postfixText: "  Log in with Facebook", size: 14, forState: .normal, iconSize: 25)
+            //facebookButton.setFAText(prefixText: "", icon: .FAFacebook, postfixText: "  Log in with Facebook", size: 14, forState: .normal)
             facebookButton.setFATitleColor(color: UIColor.lightGray, forState: .normal)
             
         }

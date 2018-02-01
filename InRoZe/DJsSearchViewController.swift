@@ -8,8 +8,7 @@
 // FILE TO DELETE AT SOME POINT
 
 import UIKit
-import FacebookLogin
-import FacebookCore
+
 
 class DJsSearchViewController: UIViewController
 {

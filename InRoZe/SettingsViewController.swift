@@ -7,8 +7,10 @@
 //
 
 import UIKit
-import FacebookLogin
-import FacebookCore
+//import FacebookLogin
+//import FacebookCore
+import FBSDKLoginKit
+import FBSDKCoreKit
 import CoreData
 
 class SettingsViewController: UITableViewController {
@@ -18,7 +20,7 @@ class SettingsViewController: UITableViewController {
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     
     // Properties
-    var profile: UserProfile?
+    var profile: FBSDKProfile?
     
     // Actions
     @IBAction func signOutButton(_ sender: UIButton) { handleSignOut() }
@@ -41,7 +43,7 @@ class SettingsViewController: UITableViewController {
     // View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        FBSDKProfile.enableUpdates(onAccessTokenChange: true)
         let headerBorderColor = UIColor.lightGray.cgColor
         headerView.addBorder(toSide: .Bottom, withColor: headerBorderColor, andThickness: 0.333)
         
@@ -55,7 +57,7 @@ class SettingsViewController: UITableViewController {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.view.backgroundColor = .white
-        navigationItem.title = profile?.fullName ?? "Settings"
+        navigationItem.title = profile?.name ?? "Settings"
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
     }
@@ -138,13 +140,14 @@ class SettingsViewController: UITableViewController {
     }
     
     private func assignProfile() {
-        guard let user = UserProfile.current else { return }
+        guard let user = FBSDKProfile.current() else { return }
         profile = user
         let screenScale = UIScreen.main.scale
         let pictureDimension = 80.0 * screenScale
-        guard let userImageURL = profile?.imageURLWith(.square, size: CGSize(width: pictureDimension, height: pictureDimension)) else { return }
+        guard let userImageURL = profile?.imageURL(for: .square, size: CGSize(width: pictureDimension, height: pictureDimension)) else { return }
+        //guard let userImageURL = profile?.imageURLWith(.square, size: CGSize(width: pictureDimension, height: pictureDimension)) else { return }
         profileImage.kf.setImage(with: userImageURL, options: [.backgroundDecode, .transition(.fade(0.2))])
-        profileName.text = user.fullName
+        profileName.text = user.name
     }
     
     
@@ -154,12 +157,12 @@ class SettingsViewController: UITableViewController {
         
         // Sign the user out
         if (profile != nil) {
-            let id = profile?.userId
+            let id = profile?.userID
             let parameter = "id=\(id!)"
             let requestServer = ServerRequest()
             requestServer.setUserLoggedIn(to: false, parameters: parameter, urlToServer: UrlFor.logInOut)
         }
-        let loginManager = LoginManager()
+        let loginManager = FBSDKLoginManager()
         loginManager.logOut()
         setRootViewControllerToLoginVC()
         performSegue(withIdentifier: "unwindToLoginVC", sender: self)
@@ -169,7 +172,7 @@ class SettingsViewController: UITableViewController {
     
     private func setRootViewControllerToLoginVC () {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if (AccessToken.current == nil) {
+        if (FBSDKAccessToken.current() == nil) {
             if let initViewController = storyboard.instantiateViewController(withIdentifier: "LoginIdentifier") as? LoginViewController {
                 UIApplication.shared.keyWindow?.rootViewController = initViewController
             }

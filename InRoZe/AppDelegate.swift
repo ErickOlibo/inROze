@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-import FacebookCore
+import FBSDKCoreKit
 import AVFoundation
 
 @UIApplicationMain
@@ -57,11 +57,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         /// DEPENDENCY NEEDED BY THE APP
         //Added FACEBOOK Stuff
-        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        //FBSDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         // Change RootViewController depending on the current Login status
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if (AccessToken.current != nil) {
+        if (FBSDKAccessToken.current() != nil) {
             if let initViewController = storyboard.instantiateViewController(withIdentifier: "TabBarIdentifier") as? TabBarViewController {
                 window?.rootViewController = initViewController
             }
@@ -72,7 +73,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: -  FACEBOOK added Func
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        return SDKApplicationDelegate.shared.application(app, open:url, options:options)
+        
+        return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+        //return FBSDKApplicationDelegate.shared.application(app, open:url, options:options)
         
         
     }
