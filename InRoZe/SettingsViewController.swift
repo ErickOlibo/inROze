@@ -140,12 +140,13 @@ class SettingsViewController: UITableViewController {
     }
     
     private func assignProfile() {
+        print("Should Assign Profile")
         guard let user = FBSDKProfile.current() else { return }
+        print("Did Assign Profile")
         profile = user
         let screenScale = UIScreen.main.scale
         let pictureDimension = 80.0 * screenScale
         guard let userImageURL = profile?.imageURL(for: .square, size: CGSize(width: pictureDimension, height: pictureDimension)) else { return }
-        //guard let userImageURL = profile?.imageURLWith(.square, size: CGSize(width: pictureDimension, height: pictureDimension)) else { return }
         profileImage.kf.setImage(with: userImageURL, options: [.backgroundDecode, .transition(.fade(0.2))])
         profileName.text = user.name
     }
@@ -153,14 +154,15 @@ class SettingsViewController: UITableViewController {
     
     // Button touch inside handler
     private func handleSignOut() {
-        //print("SIGN OUT TOUCH")
+        print("SIGN OUT TOUCH")
         
         // Sign the user out
         if (profile != nil) {
-            let id = profile?.userID
-            let parameter = "id=\(id!)"
+            print("PROFILE IS NOT NIL")
+            guard let id = profile?.userID else { return }
+            //let parameter = "id=\(id!)"
             let requestServer = ServerRequest()
-            requestServer.setUserLoggedIn(to: false, parameters: parameter, urlToServer: UrlFor.logInOut)
+            requestServer.taskLogInOutURLSession(to: false, userID: id, urlToServer: UrlFor.logInOut)
         }
         let loginManager = FBSDKLoginManager()
         loginManager.logOut()

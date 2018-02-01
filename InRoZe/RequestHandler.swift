@@ -17,7 +17,6 @@ public class RequestHandler
     
     // MARK: - Handler to SERVER
     public func fetchEventIDsFromServer() {
-        //let id = FBSDKAccessToken.current().userID
         if let userID = FBSDKAccessToken.current().userID {
             let params = "id=\(userID)&cityCode=\(currentCity.code.rawValue)&countryCode=\(currentCity.countryCode.rawValue)"
             let request = ServerRequest()
@@ -25,22 +24,6 @@ public class RequestHandler
         }
     }
     
-    
-    
-//    public func OldfetchEventIDsFromServer() {
-//        let userDefault = UserDefaults()
-//        if (!userDefault.isDateSet(for: RequestDate.toServer)) ||
-//            userDefault.hasEnoughTimeElapsed(since: RequestDate.toServer) || userDefault.isLoggedIn {
-//            if let userID = AccessToken.current?.userId {
-//                let params = "id=\(userID)&cityCode=\(currentCity.code.rawValue)&countryCode=\(currentCity.countryCode.rawValue)"
-//                let request = ServerRequest()
-//                request.getEventsIDsCurrentList(parameter: params, urlToServer: UrlFor.currentEventsID)
-//            }
-//        }
-//    }
-    
-    
-
 
 
     public func requestUserInfo() {
@@ -60,9 +43,9 @@ public class RequestHandler
             
             if let _ = FBSDKAccessToken.current() {
                 // Get some info about User
-                let email = result[FBUser.email] as? String? ?? ""
-                let gender = result[FBUser.gender] as? String? ?? "Neutral"
-                let parameters = "id=\(id)&name=\(name)&email=\(email!)&gender=\(gender!)"
+                let email = result[FBUser.email] as? String ?? "NO EMAIL"
+                let gender = result[FBUser.gender] as? String ?? "Neutral"
+                let parameters = "id=\(id)&name=\(name)&email=\(email)&gender=\(gender)"
                 let serverRequest = ServerRequest()
                 serverRequest.setUserLoggedIn(to: true, parameters: parameters, urlToServer: UrlFor.logInOut)
             }

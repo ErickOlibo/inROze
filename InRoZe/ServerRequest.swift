@@ -54,6 +54,38 @@ public class ServerRequest
     }
     
     
+    // URLSeesion for Log in and Log out
+    public func taskLogInOutURLSession(to isLogged: Bool, userID: String, urlToServer: String) {
+        let postParams = "id=\(userID)&isLogged=\(isLogged)"
+        guard let url = URL(string: urlToServer) else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = postParams.data(using: .utf8)
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard error == nil else { return }
+            //guard let data = data else { return }
+            self.successForLastUpdate(for: userID)
+            
+        }
+        task.resume()
+        
+    }
+    
+    private func successForLastUpdate(for userID: String) {
+        let params = "id=\(userID)&cityCode=\(currentCity.code.rawValue)&countryCode=\(currentCity.countryCode.rawValue)"
+        let url = UrlFor.updateSuccess
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = "POST"
+        request.httpBody = params.data(using: .utf8)
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard error == nil else { return }
+        }
+        task.resume()
+    }
+    
+    
+    
+    
     // when call to the server, conditional call must be depending on the Country/ City
     // ADD the city selector
     private func taskForURLSession(postParams: String, url: String, isEventFetch: Bool) {

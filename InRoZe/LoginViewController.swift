@@ -50,8 +50,6 @@ class LoginViewController: UIViewController {
         dropList.tableHeight = 196
         self.view.addSubview(dropList)
         
-        //print("login DID LOAD. Drop frame: \(dropList.frame)")
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,8 +116,10 @@ class LoginViewController: UIViewController {
                     UserDefaults().isLoggedIn = true
                     FBSDKProfile.loadCurrentProfile { (profile, error) in
                         let userID = profile?.userID ?? "123456"
-                        let param = "id=\(userID)"
-                        ServerRequest().setUserLoggedIn(to: true, parameters: param, urlToServer: UrlFor.logInOut)
+                        //let param = "id=\(userID)"
+                        let requestServer = ServerRequest()
+                        requestServer.taskLogInOutURLSession(to: true, userID: userID, urlToServer: UrlFor.logInOut)
+                        //ServerRequest().setUserLoggedIn(to: true, parameters: param, urlToServer: UrlFor.logInOut)
                         RequestHandler().fetchEventIDsFromServer()
                     }
                 }
