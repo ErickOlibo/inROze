@@ -43,6 +43,7 @@ extension SearchCatalogueViewController
         } else {
             print("Search For List")
         }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.dismissCurrentMixtapeVC), object: nil)
         let popupContentController = storyboard?.instantiateViewController(withIdentifier: "MixtapePlayerViewController") as! MixtapePlayerViewController
         let mixtape = fetchResultsController.object(at: indexPath)
         let tabBarVC = tabBarController as! TabBarViewController

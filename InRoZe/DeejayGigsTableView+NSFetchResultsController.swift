@@ -116,7 +116,7 @@ extension DeejayGigsTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.section == 1 else { return }
 
-        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationFor.dismissCurrentMixtapeVC), object: nil)
         let popupContentController = storyboard?.instantiateViewController(withIdentifier: "MixtapePlayerViewController") as! MixtapePlayerViewController
         guard let mixtape = mixtapesOfDJ?[indexPath.row] else { return }
         
