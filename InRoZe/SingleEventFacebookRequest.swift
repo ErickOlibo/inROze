@@ -29,7 +29,7 @@ public class SingleEventFacebookRequest
         FBSDKGraphRequest(graphPath: "\(eventID)", parameters: ["fields" : params])
             .start(completionHandler:  { (connection, result, error) in
                 if error == nil,  let result = result as? [String : String]{
-                    print("IS QUERY FOR FACEBOOK DONE WITH SUCCESS")
+                    //print("IS QUERY FOR FACEBOOK DONE WITH SUCCESS")
                     if let descr = result[FBEvent.description] {
                         self.sendDescriptionThroughNotificationCenter(text: descr, id: eventID)
                     }

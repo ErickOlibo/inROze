@@ -67,7 +67,7 @@ class FollowsViewController: FetchedResultsTableViewController {
         super.viewWillAppear(animated)
         updateUI()
         navigationItem.title = "Follows in \(currentCity.name.rawValue)"
-        print("Follows")
+        //print("Follows")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -82,7 +82,7 @@ class FollowsViewController: FetchedResultsTableViewController {
 
         
         // Save the dictionary colorsOfEventCovers to core data
-        print("Save Colors Covers on WillDisappear")
+        //print("Save Colors Covers on WillDisappear")
         container?.performBackgroundTask { context in
             for event in self.colorsOfEventCovers {
                 let eventID = event.key
@@ -154,7 +154,7 @@ class FollowsViewController: FetchedResultsTableViewController {
         do {
             try self.fetchResultsController.performFetch()
             if let count = fetchResultsController.fetchedObjects?.count {
-                print("Total Event from IsFollowed Deejays: \(count)")
+                //print("Total Event from IsFollowed Deejays: \(count)")
                 self.followsFooterViewIsHidden(forFollowsCount: count)
             }
         } catch {

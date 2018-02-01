@@ -95,7 +95,7 @@ class EventsViewController: FetchedResultsTableViewController {
     
     // Convenience Functions
     @objc private func doneFetchingFromServer() {
-        print("SERVER REQUESt DONE UPDATING in EventsViewController")
+        //print("SERVER REQUESt DONE UPDATING in EventsViewController")
         DispatchQueue.main.async { [unowned self] in
             self.updateUI()
         }        

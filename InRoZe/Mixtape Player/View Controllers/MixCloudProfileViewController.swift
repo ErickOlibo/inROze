@@ -44,7 +44,7 @@ class MixCloudProfileViewController: UIViewController {
     }
     
     private func pressedDismissView() {
-        print("Pressed Dismiss view")
+        //print("Pressed Dismiss view")
         self.dismiss(animated: true, completion: nil)
     }
     

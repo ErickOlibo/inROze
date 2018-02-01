@@ -39,7 +39,7 @@ class SearchCatalogueCell: UITableViewCell {
     
     // Methods
     @objc private func pressedFollowed() {
-        print("Followed Pressed")
+        //print("Followed Pressed")
         guard let mixtapeID = mixtape?.id else { return }
         if let context = container?.viewContext {
             context.perform {

@@ -12,7 +12,6 @@ import CoreData
 class MusicCollectionHeader: UICollectionReusableView {
     
     // Core Data model container and context
-    //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     
     // Properties
@@ -37,7 +36,6 @@ class MusicCollectionHeader: UICollectionReusableView {
         
         tableView.delegate = self
         tableView.dataSource = self
-        // Fetch all the sections and mixtapes for each section
         tableView.separatorColor = .clear
         tableView.reloadData()
         
@@ -116,10 +114,7 @@ extension MusicCollectionHeader: UITableViewDataSource, UITableViewDelegate
         default:
             print("name of the cell is not conform")
         }
-//        if (name == MixSection.yourList) {
-//            print("YOUR LIST Mix: [\(yourListMix?.count ?? 0)]")
-//            cell.mixtapes = yourListMix
-//        }
+
         
         cell.collectionView.reloadData()
         cell.collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)

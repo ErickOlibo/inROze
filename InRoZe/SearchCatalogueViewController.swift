@@ -92,7 +92,7 @@ class SearchCatalogueViewController: FetchedResultsTableViewController {
         } catch {
             print("UpdateUI in SearchCatalogueVC -> Error while Lazy fetching: \(error)")
         }
-        print("ALL mixtapes", self.fetchResultsController.fetchedObjects?.count ?? 0)
+        //print("ALL mixtapes", self.fetchResultsController.fetchedObjects?.count ?? 0)
         tableView.reloadData()
     }
 

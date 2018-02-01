@@ -62,7 +62,7 @@ class SettingsViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("Settings")
+        //print("Settings")
         setFollowsMix()
         setCurrentCity()
 
@@ -110,7 +110,7 @@ class SettingsViewController: UITableViewController {
 
         // from Core Data numberOfFollowedMixtapes
         let mixtapesNumb = Mixtape.listOfFollows(in: container!.viewContext).count
-        print("Mixtapes followed: \(mixtapesNumb)")
+        //print("Mixtapes followed: \(mixtapesNumb)")
         return (followsNumb, mixtapesNumb)
     }
     
@@ -150,7 +150,7 @@ class SettingsViewController: UITableViewController {
     
     // Button touch inside handler
     private func handleSignOut() {
-        print("SIGN OUT TOUCH")
+        //print("SIGN OUT TOUCH")
         
         // Sign the user out
         if (profile != nil) {
@@ -177,11 +177,11 @@ class SettingsViewController: UITableViewController {
     }
     
     private func handleMixtapes() {
-        print("PRESSED -> handleMixtapes")
+        //print("PRESSED -> handleMixtapes")
     }
 
     private func handleFollows() {
-        print("PRESSED -> handleFollows")
+        //print("PRESSED -> handleFollows")
     }
     
     
@@ -191,14 +191,14 @@ class SettingsViewController: UITableViewController {
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if (identifier == "Settings To View Your List") {
             let count = Mixtape.listOfFollows(in: container!.viewContext).count
-            print("Count of Mixtape follow: ", count)
+            //print("Count of Mixtape follow: ", count)
             if (count == 0) { return false }
         }
         
         // For when segue to follows list - Mind name of the identifier
         if (identifier == "Settings To User Follows List") {
             let count = Artist.listOfFollows(in: container!.viewContext).count
-            print("Count of Deejays Follow: ", count)
+            //print("Count of Deejays Follow: ", count)
             if (count == 0) { return false }
         }
         
@@ -248,7 +248,7 @@ class SettingsViewController: UITableViewController {
         
         if (segue.identifier == "Settings To Login") {
             guard let _ = segue.destination as? LoginViewController else { return }
-            print("Here From Settings To Login")
+            //print("Here From Settings To Login")
             self.dismiss(animated: true, completion: nil)
             self.navigationController?.popToRootViewController(animated: true)
         }

@@ -18,13 +18,11 @@ protocol SetMusicPlayerDelegate {
 class OtherMusicListCell: UITableViewCell {
     
     // Core Data model container and context
-    //var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     var container: NSPersistentContainer? = AppDelegate.appDelegate.persistentContainer
     
     
     // Properties
     var musicPlayerDelegate: SetMusicPlayerDelegate!
-    
     static var identifier: String { return String(describing: self) }
     var mixtapes: [Mixtape]?
     
@@ -37,7 +35,7 @@ class OtherMusicListCell: UITableViewCell {
     
     // Actions
     @IBAction func viewAllTouched(_ sender: UIButton) {
-        print("VIEW ALL TOUCHED")
+        //print("VIEW ALL TOUCHED")
     }
     
 

@@ -25,7 +25,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
         self.delegate = self
         //view.backgroundColor = .black
-        print("[TabBarViewController] -- View DID Load")
+        //print("[TabBarViewController] -- View DID Load")
         self.tabBar.isTranslucent = true
         self.tabBar.tintColor = Colors.logoRed
         //listFonts()
@@ -64,7 +64,7 @@ extension TabBarViewController
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         guard let tempNavC = viewController as? UINavigationController else { return }
         if (isSameTab) {
-            print("Clicked on the same Tab")
+            //print("Clicked on the same Tab")
             if let root = tempNavC.viewControllers[0] as? EventsViewController {
                 root.tableView.setContentOffset(.zero, animated: true)
                 root.collectionView.setContentOffset(.zero, animated: true)

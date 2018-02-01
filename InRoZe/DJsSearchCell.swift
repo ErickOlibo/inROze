@@ -45,7 +45,7 @@ class DJsSearchCell: UITableViewCell
     
     @objc private func pressedFollowed() {
         guard let djID = deejay?.id else { return }
-        print("Cell [\(tag)] - pressed: [\(deejay?.name ?? "NOT HERE")]")
+       // print("Cell [\(tag)] - pressed: [\(deejay?.name ?? "NOT HERE")]")
         if let context = container?.viewContext {
             context.perform {
                 if let artistState = Artist.currentIsFollowedState(for: djID, in: context) {

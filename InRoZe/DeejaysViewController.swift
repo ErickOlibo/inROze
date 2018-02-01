@@ -124,7 +124,7 @@ extension DeejaysViewController: UISearchResultsUpdating {
             return
         }
         
-        print("Passed the Guard: updateSearchResults")
+        //print("Passed the Guard: updateSearchResults")
         searchText = searchController.searchBar.text!
         fetchResultsController.fetchRequest.predicate = NSPredicate(format: "name != nil AND name contains[c] %@ AND countryCode = %@",  searchText!, currentCountryCode)
         updateUI()

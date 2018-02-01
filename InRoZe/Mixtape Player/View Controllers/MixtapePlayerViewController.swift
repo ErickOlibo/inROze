@@ -53,22 +53,22 @@ class MixtapePlayerViewController: UIViewController {
     }
     
     @IBAction func touchedPlayPause(_ sender: UIButton) {
-        print("PLAYER VIEW -> touchedPlayPause")
+        //print("PLAYER VIEW -> touchedPlayPause")
         toggleBetweenPlayPause()
     }
     
     @IBAction func touchedSkipForward(_ sender: UIButton) {
-        print("touchedSkipForward")
+        //print("touchedSkipForward")
         seekNewCurrentTime(byLookForward: true, isCommandCenter: false)
     }
     
     @IBAction func touchedSkipBackward(_ sender: UIButton) {
-        print("touchedSkipBackward")
+        //print("touchedSkipBackward")
         seekNewCurrentTime(byLookForward: false, isCommandCenter: false)
     }
     
     @objc private func miniPlayPauseTapped() {
-        print("MINI Player --> PLAY / PAUSE Button tapped")
+        //print("MINI Player --> PLAY / PAUSE Button tapped")
         toggleBetweenPlayPause()
     }
     
@@ -76,7 +76,7 @@ class MixtapePlayerViewController: UIViewController {
     // VIEW CONTROLLER LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("MIXTAPE PLAYER VIEW DID LOAD")
+        //print("MIXTAPE PLAYER VIEW DID LOAD")
         setupCommandCenterControllers()
         UIApplication.shared.beginReceivingRemoteControlEvents()
         navigationItem.largeTitleDisplayMode = .never
@@ -233,7 +233,7 @@ class MixtapePlayerViewController: UIViewController {
     }
     
     @objc private func toggleThis() {
-        print("Here This")
+        //print("Here This")
     }
     
     private func newCurrentTimeForCenter(for newTime: CMTime) {
@@ -314,14 +314,14 @@ class MixtapePlayerViewController: UIViewController {
             let typeValue = info[AVAudioSessionInterruptionTypeKey] as? UInt,
             let type = AVAudioSessionInterruptionType(rawValue: typeValue) else { return }
         if type == .began {
-            print("Interuption BEGAN")
+            //print("Interuption BEGAN")
         } else if type == .ended {
-            print("Interuption ENDED")
+            //print("Interuption ENDED")
             guard let optionsValue = info[AVAudioSessionInterruptionOptionKey] as? UInt else { return }
             let options = AVAudioSessionInterruptionOptions(rawValue: optionsValue)
             if options.contains(.shouldResume) {
                 pressedPlayerPlay()
-                print("Audio now Should Resume -> ", Thread.current)
+                //print("Audio now Should Resume -> ", Thread.current)
             }
         }
     }

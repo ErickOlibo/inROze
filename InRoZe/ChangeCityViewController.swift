@@ -54,7 +54,7 @@ class ChangeCityViewController: UITableViewController {
     
     // Methods
     @objc private func updateUI() {
-        print("Done Updating From Server")
+        //print("Done Updating From Server")
         DispatchQueue.main.async { [unowned self] in
             self.spinner.stopAnimating()
             for subView in self.foreGroundView.subviews {
@@ -70,7 +70,7 @@ class ChangeCityViewController: UITableViewController {
     
     private func fetchNewCityFromServer() {
         if (!UserDefaults().isLoggedIn) {
-            print("USER IS LOG IN AND IM FETCHING SERVER")
+            //print("USER IS LOG IN AND IM FETCHING SERVER")
             RequestHandler().fetchEventIDsFromServer()
         } else {
             UserDefaults().isLoggedIn = false
@@ -142,13 +142,13 @@ class ChangeCityViewController: UITableViewController {
         let curCityCode = UserDefaults().currentCityCode
         let newCityCode = listOfCities[indexPath.row].code
         if (curCityCode == newCityCode) {
-            print("SAME City")
+            //print("SAME City")
         } else {
-            print("DIFFERENT City")
+            //print("DIFFERENT City")
             UserDefaults().currentCityCode = newCityCode
             activateForeGroundAndSpinner()
             fetchNewCityFromServer()
-            print("After FetchRequestFromServer")
+            //print("After FetchRequestFromServer")
             
             
             for index in 0..<listOfCities.count {

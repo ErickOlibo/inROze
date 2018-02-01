@@ -42,7 +42,7 @@ class EventInfoViewController: UIViewController {
     // ViewController Life-Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidLoad -> EventInfoViewController")
+        //print("viewDidLoad -> EventInfoViewController")
         collectionView.delegate = self
         collectionView.dataSource = self
         self.navigationController?.navigationBar.tintColor = Colors.logoRed
@@ -66,7 +66,7 @@ class EventInfoViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("viewWillAppear -> EventInfoViewController")
+        //print("viewWillAppear -> EventInfoViewController")
         guard let event = event else { return }
         guard let id = event.id else { return }
         let notice = NotificationFor.eventDescriptionRecieved + id

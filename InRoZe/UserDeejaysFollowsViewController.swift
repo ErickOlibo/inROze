@@ -90,7 +90,7 @@ extension UserDeejaysFollowsViewController: UISearchResultsUpdating {
             return
         }
         
-        print("Passed the Guard: updateSearchResults")
+        //print("Passed the Guard: updateSearchResults")
         searchText = searchController.searchBar.text!
         fetchResultsController.fetchRequest.predicate = NSPredicate(format: "name != nil AND (name contains[c] %@ OR country contains[c] %@) AND isFollowed == YES ",  searchText!, searchText! )
         updateUI()

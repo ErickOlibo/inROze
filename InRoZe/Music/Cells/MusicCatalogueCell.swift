@@ -29,10 +29,7 @@ class MusicCatalogueCell: UICollectionViewCell
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //print("[\(tag)] - MusicMixCell woke from Nib")
         self.backgroundColor = .white
-        //self.layer.borderWidth = 0.333
-        //self.layer.borderColor = UIColor.lightGray.cgColor
         self.layer.cornerRadius = 6
         self.layer.masksToBounds = true
         

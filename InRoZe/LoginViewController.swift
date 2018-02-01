@@ -30,8 +30,6 @@ class LoginViewController: UIViewController {
     @IBAction func loginTapped(_ sender: UIButton) {
         //hideUI(state: true)
         if isdroppedDown { dropList.willHideTable() }
-        //dropList.willHideTable() // <--- ISSUE of nil
-        //spinner.color = Colors.logoRed
         self.view.bringSubview(toFront: foreGroundView)
         self.view.bringSubview(toFront: spinner)
         foreGroundView.isHidden = false
@@ -92,13 +90,13 @@ class LoginViewController: UIViewController {
         dropList.tableHeight = 196
         self.view.addSubview(dropList)
         
-        print("login DID LOAD. Drop frame: \(dropList.frame)")
+        //print("login DID LOAD. Drop frame: \(dropList.frame)")
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("Login view WILL appear")
+        //print("Login view WILL appear")
         updateFacebookButtonState()
         
         // add a City background random
@@ -117,7 +115,7 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         displayDropList()
-        print("login DID APPEAR. Drop frame: \(dropList.frame)")
+        //print("login DID APPEAR. Drop frame: \(dropList.frame)")
         dropList.tableDidAppear { self.isdroppedDown = true }
         dropList.tableDidDisappear  { self.isdroppedDown = false }
         UserDefaults().isFromLoginView = true
@@ -191,11 +189,11 @@ class LoginViewController: UIViewController {
         DispatchQueue.main.async { [unowned self] in
             
             // Perform Segue programmatically
-            print("I SHOULD THEN PERFORM SEGUE: \(Thread.current)")
+            //print("I SHOULD THEN PERFORM SEGUE: \(Thread.current)")
             self.performSegue(withIdentifier: "login view", sender: self)
             self.spinner.stopAnimating()
             self.foreGroundView.isHidden = true
-            print("After SEGUE: \(Thread.current)")
+            //print("After SEGUE: \(Thread.current)")
         }
         
         

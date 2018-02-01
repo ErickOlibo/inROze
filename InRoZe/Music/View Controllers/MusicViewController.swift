@@ -25,7 +25,7 @@ class MusicViewController: UICollectionViewController {
     
     // Actions
     @IBAction func searchCatalogueTouched(_ sender: UIBarButtonItem) {
-        searchIconPressed()
+        //searchIconPressed()
     }
     
 
@@ -66,12 +66,9 @@ class MusicViewController: UICollectionViewController {
     
     
     // Methods
-    @objc private func searchIconPressed() {
-        print("searchCatalogueTouched")
-    }
     
     @objc private func noticeFromMusicPlayer() {
-        print("NoticeFromMusicPlayer")
+        //print("NoticeFromMusicPlayer")
         updateThreeMixCellsAndCollections()
     }
     
