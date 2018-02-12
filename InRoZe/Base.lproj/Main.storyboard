@@ -18,7 +18,7 @@
         <array key="Bungee-Regular.ttf">
             <string>Bungee-Regular</string>
         </array>
-        <array key="FontAwesome.ttf">
+        <array key="FontAwesome.otf">
             <string>FontAwesome</string>
         </array>
         <array key="HelveticaNeue.ttc">
@@ -1570,10 +1570,10 @@
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
-                        <segue destination="nhS-2i-wgI" kind="relationship" relationship="viewControllers" id="czr-Qo-XFF"/>
                         <segue destination="Vyu-cK-2pi" kind="relationship" relationship="viewControllers" id="I6j-GU-CW7"/>
-                        <segue destination="3XL-Ym-5ol" kind="relationship" relationship="viewControllers" id="bOq-h9-8lf"/>
                         <segue destination="rbl-sh-73M" kind="relationship" relationship="viewControllers" id="4C3-M5-pQn"/>
+                        <segue destination="3XL-Ym-5ol" kind="relationship" relationship="viewControllers" id="bOq-h9-8lf"/>
+                        <segue destination="nhS-2i-wgI" kind="relationship" relationship="viewControllers" id="czr-Qo-XFF"/>
                         <segue destination="zcn-5T-nlH" kind="relationship" relationship="viewControllers" id="69g-eK-CRx"/>
                     </connections>
                 </tabBarController>

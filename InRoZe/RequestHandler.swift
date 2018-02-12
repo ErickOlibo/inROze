@@ -25,7 +25,6 @@ public class RequestHandler
     }
     
 
-
     public func requestUserInfo() {
         let params = [FBUser.email, FBUser.name, FBUser.id, FBUser.gender, FBUser.cover].joined(separator: ", ")
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields" : params])
@@ -36,7 +35,6 @@ public class RequestHandler
             })
     }
     
-    
     private func saveCurrentUserProfile(_ result: NSDictionary) {
         if let id = result[FBUser.id]  as? String,
             let name = result[FBUser.name] as? String {
@@ -46,19 +44,12 @@ public class RequestHandler
                 let email = result[FBUser.email] as? String ?? "NO EMAIL"
                 let gender = result[FBUser.gender] as? String ?? "Neutral"
                 let parameters = "id=\(id)&name=\(name)&email=\(email)&gender=\(gender)"
+                print("PARAMETER USER: ", parameters)
                 let serverRequest = ServerRequest()
                 serverRequest.setUserLoggedIn(to: true, parameters: parameters, urlToServer: UrlFor.logInOut)
             }
         }
     }
-    
-    
-    
-
-    
-    
-    
-
 }
 
 
