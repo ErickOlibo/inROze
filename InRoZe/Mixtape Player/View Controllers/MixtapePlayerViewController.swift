@@ -31,6 +31,7 @@ class MixtapePlayerViewController: UIViewController {
 
 
 
+
     // Outlets
     
     @IBOutlet weak var isFollowButton: UIButton!
@@ -45,6 +46,9 @@ class MixtapePlayerViewController: UIViewController {
     @IBOutlet weak var skipBackwardButton: UIButton!
     @IBOutlet weak var deejayName: UILabel!
     @IBOutlet weak var mixtapeName: UILabel!
+    @IBOutlet weak var sixtyLess: UILabel!
+    @IBOutlet weak var sixtyMore: UILabel!
+    
     
 
     // Actions
@@ -90,12 +94,14 @@ class MixtapePlayerViewController: UIViewController {
         setMixtapeInfoUI()
         setMixtapeCoverAndColors()
         popBarExtraSetup()
+        //getSeekButtonFrameSize()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updatedIsFollowedMix()
+        
 
     }
     
@@ -119,6 +125,7 @@ class MixtapePlayerViewController: UIViewController {
   
     
     // METHODS
+
     @objc private func pressedFollowedMix() {
         //print("Pressed FollowedMix")
         guard let id = mixtape?.id else { return }
@@ -497,6 +504,7 @@ class MixtapePlayerViewController: UIViewController {
         //updateMixcloudIconColor()
         updateMixcloudButtonColor()
         updatedIsFollowedMix()
+        updateSixtyTextColor()
     }
     
     private func updatesTheThreeColors() {
@@ -512,8 +520,13 @@ class MixtapePlayerViewController: UIViewController {
         }
     }
     
+    private func updateSixtyTextColor() {
+        sixtyMore.textColor = colorThree
+        sixtyLess.textColor = colorThree
+    }
+    
     private func updatePlayerNavButtonUI() {
-        let fontSize = CGFloat(45.0)
+        let fontSize = CGFloat(50.0)
         guard let iconSkipBack = FAType.FARotateLeft.text else { return }
         guard let iconSkipFront = FAType.FARotateRight.text else { return }
         let attrSkipBack = fontAwesomeAttributedString(forString: iconSkipBack, withColor: colorThree, andFontSize: fontSize)

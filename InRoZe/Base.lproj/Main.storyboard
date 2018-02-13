@@ -628,6 +628,26 @@
                                     <action selector="touchedSkipBackward:" destination="vXz-br-gFn" eventType="touchUpInside" id="bQy-Wt-uaf"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ACf-HP-4qq" userLabel="sixtyLess">
+                                <rect key="frame" x="40" y="565" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="20" id="euv-8g-Lfs"/>
+                                    <constraint firstAttribute="height" constant="20" id="jff-LP-uNl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="6ad-fb-c1U" userLabel="sixtyMore">
+                                <rect key="frame" x="354" y="565" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="DEq-VP-t3l"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="20" id="Ewa-Lf-J1a"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.94999999999999996" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="234-Hy-Ja5">
                                 <rect key="frame" x="50" y="640" width="314" height="25"/>
                                 <constraints>
@@ -671,11 +691,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="ACf-HP-4qq" firstAttribute="leading" secondItem="rug-4L-0Ot" secondAttribute="leading" constant="40" id="2Pa-Za-xME"/>
+                            <constraint firstItem="ACf-HP-4qq" firstAttribute="trailing" secondItem="3m1-kr-fcN" secondAttribute="trailing" constant="-20" id="4PT-M7-5jo"/>
                             <constraint firstItem="W9m-BB-u9M" firstAttribute="centerX" secondItem="rug-4L-0Ot" secondAttribute="centerX" id="5Ki-bO-nRj"/>
                             <constraint firstItem="y5I-aF-fc3" firstAttribute="top" secondItem="B8z-jo-DCU" secondAttribute="bottom" constant="25" id="5YK-bK-KsQ"/>
+                            <constraint firstAttribute="trailing" secondItem="6ad-fb-c1U" secondAttribute="trailing" constant="40" id="EKJ-av-b72"/>
                             <constraint firstAttribute="trailing" secondItem="u6S-Y0-PxN" secondAttribute="trailing" constant="20" id="GaS-1P-oEB"/>
                             <constraint firstItem="EUQ-c3-IAh" firstAttribute="top" secondItem="3m1-kr-fcN" secondAttribute="bottom" id="HAO-yc-SfN"/>
                             <constraint firstItem="W9m-BB-u9M" firstAttribute="top" secondItem="Kcn-cI-AsN" secondAttribute="bottom" constant="12" id="Jep-5r-leb"/>
+                            <constraint firstItem="6ad-fb-c1U" firstAttribute="leading" secondItem="u6S-Y0-PxN" secondAttribute="leading" constant="20" id="LhU-1A-VF6"/>
                             <constraint firstItem="6c7-aF-bYS" firstAttribute="leading" secondItem="rug-4L-0Ot" secondAttribute="leading" constant="20" id="ME0-2F-WXG"/>
                             <constraint firstItem="Nl9-OM-D0t" firstAttribute="top" secondItem="3m1-kr-fcN" secondAttribute="bottom" constant="15" id="O3g-OB-qTk"/>
                             <constraint firstItem="u6S-Y0-PxN" firstAttribute="top" secondItem="W9m-BB-u9M" secondAttribute="bottom" constant="8" id="OYy-M5-ucG"/>
@@ -683,6 +707,7 @@
                             <constraint firstItem="234-Hy-Ja5" firstAttribute="leading" relation="lessThanOrEqual" secondItem="rug-4L-0Ot" secondAttribute="leading" constant="50" id="Qym-uL-BiK"/>
                             <constraint firstItem="4Fs-G1-1sD" firstAttribute="top" secondItem="B8z-jo-DCU" secondAttribute="bottom" constant="23" id="RNo-S0-Q4F"/>
                             <constraint firstItem="Kcn-cI-AsN" firstAttribute="width" secondItem="rug-4L-0Ot" secondAttribute="width" constant="-40" id="TJ1-bv-EXa"/>
+                            <constraint firstItem="ACf-HP-4qq" firstAttribute="top" secondItem="3m1-kr-fcN" secondAttribute="bottom" constant="35" id="U0q-6c-fl9"/>
                             <constraint firstItem="w3C-Uc-71f" firstAttribute="top" secondItem="u6S-Y0-PxN" secondAttribute="bottom" constant="15" id="WIJ-fc-yI3"/>
                             <constraint firstItem="Kcn-cI-AsN" firstAttribute="top" secondItem="B8z-jo-DCU" secondAttribute="bottom" constant="50" id="Wm3-Q8-pK6"/>
                             <constraint firstItem="EUQ-c3-IAh" firstAttribute="centerX" secondItem="rug-4L-0Ot" secondAttribute="centerX" id="XWj-Sf-Da7"/>
@@ -699,6 +724,7 @@
                             <constraint firstItem="W9m-BB-u9M" firstAttribute="width" secondItem="Kcn-cI-AsN" secondAttribute="width" id="rV8-zd-T7r"/>
                             <constraint firstItem="4Fs-G1-1sD" firstAttribute="leading" secondItem="rug-4L-0Ot" secondAttribute="leading" constant="20" id="rZD-LC-itG"/>
                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="234-Hy-Ja5" secondAttribute="trailing" constant="50" id="rgV-fF-b5a"/>
+                            <constraint firstItem="6ad-fb-c1U" firstAttribute="top" secondItem="u6S-Y0-PxN" secondAttribute="bottom" constant="35" id="s2K-Oy-VsH"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3m1-kr-fcN" secondAttribute="trailing" constant="20" symbolic="YES" id="te2-Cm-dUn"/>
                             <constraint firstItem="u6S-Y0-PxN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rug-4L-0Ot" secondAttribute="leading" constant="20" symbolic="YES" id="vRc-2v-Paa"/>
                             <constraint firstAttribute="trailing" secondItem="y5I-aF-fc3" secondAttribute="trailing" constant="20" id="y1v-87-957"/>
@@ -715,6 +741,8 @@
                         <outlet property="mixtapeName" destination="6c7-aF-bYS" id="K9R-BJ-HxK"/>
                         <outlet property="playPauseButton" destination="EUQ-c3-IAh" id="xQp-St-zgG"/>
                         <outlet property="remainingTime" destination="u6S-Y0-PxN" id="qLd-SX-Ytw"/>
+                        <outlet property="sixtyLess" destination="ACf-HP-4qq" id="ny2-9b-mY4"/>
+                        <outlet property="sixtyMore" destination="6ad-fb-c1U" id="Wi8-NR-26H"/>
                         <outlet property="skipBackwardButton" destination="Nl9-OM-D0t" id="xSa-3x-DB4"/>
                         <outlet property="skipForwardButton" destination="w3C-Uc-71f" id="A8A-u1-8iK"/>
                     </connections>
