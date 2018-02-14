@@ -54,7 +54,31 @@ class MixtapePlayerViewController: UIViewController {
 
     // Actions
     @IBAction func changedMusicSliderPosition(_ sender: UISlider) {
-        
+        print("Sender Value: ", sender.value)
+        if let duration = player.currentItem?.duration {
+            player.pause()
+            let songLength = CMTimeGetSeconds(duration)
+            let newValue = Float64(musicSlider.value) * songLength
+            // Set the eleapsedTime and remainingTime
+            let progressSecs = Int(newValue)
+            let remainSecs = Int(songLength) - progressSecs
+            
+            print("Prog / Remain: [\(progressSecs) / \(remainSecs)]")
+            guard let remaining = timeDuration(from: String(remainSecs)) else { return }
+            guard let elapsed = timeDuration(from: String(progressSecs)) else { return }
+            elapsedTime.text = elapsed
+            remainingTime.text = "-" + remaining
+            
+            
+            let seekTime = CMTime(value: Int64(newValue), timescale: 1)
+            player.seek(to: seekTime, completionHandler: { [weak self] (completedSeek) in
+                //do somthing on completion
+                self?.player.play()
+                self?.updateNowPlayingCenter()
+            })
+        }
+
+    
     }
     
     
@@ -137,8 +161,14 @@ class MixtapePlayerViewController: UIViewController {
         let thumbNorm = UIImage(named: "sliderThumbNorm")
         musicSlider.setThumbImage(thumbNorm, for: .normal)
         musicSlider.setThumbImage(thumbHigh, for: .highlighted)
+        //musicSlider.addTarget(self, action: #selector(handleSliderChange), for: .valueChanged)
     }
 
+//    @objc private func handleSliderChange() {
+//        print("Handle Change: ", musicSlider.value)
+//    }
+    
+    
     @objc private func pressedFollowedMix() {
         //print("Pressed FollowedMix")
         guard let id = mixtape?.id else { return }
@@ -437,6 +467,7 @@ class MixtapePlayerViewController: UIViewController {
             let ratio = Float(progress / totalLength)
             self.mixProgressView.setProgress(ratio, animated: true)
             self.popupItem.progress = ratio
+            self.musicSlider.value = ratio
             
             let progressSecs = Int(CMTimeGetSeconds(progressTime))
             guard let elapsed = timeDuration(from: String(progressSecs)) else { return }
@@ -518,6 +549,14 @@ class MixtapePlayerViewController: UIViewController {
         updateMixcloudButtonColor()
         updatedIsFollowedMix()
         updateSixtyTextColor()
+        updateMusicSliderColors()
+    }
+    
+    private func updateMusicSliderColors() {
+        musicSlider.maximumTrackTintColor = colorThree
+        musicSlider.minimumTrackTintColor = colorTwo
+        let imageName = colorOne.isDarkColor ? "sliderThumbHighWhite" : "sliderThumbHighBlack"
+        musicSlider.setThumbImage(UIImage(named: imageName), for: .highlighted)
     }
     
     private func updatesTheThreeColors() {
