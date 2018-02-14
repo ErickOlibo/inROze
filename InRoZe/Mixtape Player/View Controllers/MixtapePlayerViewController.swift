@@ -34,6 +34,7 @@ class MixtapePlayerViewController: UIViewController {
 
     // Outlets
     
+    @IBOutlet weak var musicSlider: UISlider!
     @IBOutlet weak var isFollowButton: UIButton!
     @IBOutlet weak var mixcloudButton: UIButton!
     //@IBOutlet weak var mixcloudIcon: UIImageView!
@@ -52,6 +53,11 @@ class MixtapePlayerViewController: UIViewController {
     
 
     // Actions
+    @IBAction func changedMusicSliderPosition(_ sender: UISlider) {
+        
+    }
+    
+    
     @IBAction func pressedFollowMixtape(_ sender: UIButton) {
         pressedFollowedMix()
     }
@@ -94,6 +100,7 @@ class MixtapePlayerViewController: UIViewController {
         setMixtapeInfoUI()
         setMixtapeCoverAndColors()
         popBarExtraSetup()
+        setMusicSlider()
         //getSeekButtonFrameSize()
     }
     
@@ -125,6 +132,12 @@ class MixtapePlayerViewController: UIViewController {
   
     
     // METHODS
+    private func setMusicSlider() {
+        let thumbHigh = UIImage(named: "sliderThumbHigh")
+        let thumbNorm = UIImage(named: "sliderThumbNorm")
+        musicSlider.setThumbImage(thumbNorm, for: .normal)
+        musicSlider.setThumbImage(thumbHigh, for: .highlighted)
+    }
 
     @objc private func pressedFollowedMix() {
         //print("Pressed FollowedMix")
