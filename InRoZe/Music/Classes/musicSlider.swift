@@ -1,5 +1,5 @@
 //
-//  musicSlider.swift
+//  MusicSlider.swift
 //  InRoZe
 //
 //  Created by Erick Olibo on 14/02/2018.
@@ -17,14 +17,17 @@
 
 import UIKit
 
-class musicSlider: UISlider {
+class MusicSlider: UISlider {
 
+    
     /// Big position image view
     var bigImage = UIImageView()
     
     /// Thumb Image color
-    var thumBColor = UIColor.black
+    var thumbColor = Colors.logoRed
     
+
+
     /// TrackRect Height
     var trackHeight: CGFloat = 8
     
@@ -51,11 +54,10 @@ class musicSlider: UISlider {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        let positionImage = UIImage.circle(diameter: 10, color: thumBColor)
+        let positionImage = UIImage.circle(diameter: 14, color: thumbColor)
         self.setThumbImage(positionImage, for: .normal)
         
-        let positionImageBig = UIImage.circle(diameter: 60, color: thumBColor)
+        let positionImageBig = UIImage.circle(diameter: 60, color: thumbColor)
         self.bigImage.contentMode = .scaleAspectFit
         self.bigImage.clipsToBounds = false
         self.bigImage.image = positionImageBig
@@ -75,7 +77,6 @@ class musicSlider: UISlider {
     
     override func thumbRect(forBounds bounds: CGRect, trackRect rect: CGRect, value: Float) -> CGRect {
         let unadjustedThumbrect = super.thumbRect(forBounds: bounds, trackRect: rect, value: value)
-        
         let origin = unadjustedThumbrect.origin
         let size = unadjustedThumbrect.size
         
