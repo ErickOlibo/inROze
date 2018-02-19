@@ -126,6 +126,7 @@ class MixtapePlayerViewController: UIViewController {
         popBarExtraSetup()
         setMusicSlider()
         //getSeekButtonFrameSize()
+        
     }
     
     
