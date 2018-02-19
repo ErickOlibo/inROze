@@ -53,8 +53,19 @@ class MixtapePlayerViewController: UIViewController {
     
 
     // Actions
+    @IBAction func touchInsideSlider(_ sender: UISlider) {
+        print("Touch inside Slider")
+    }
+    
+    @IBAction func touchOutsideSlider(_ sender: UISlider) {
+        print("Touch Outside Slider")
+    }
+    
+    
+    
     @IBAction func changedMusicSliderPosition(_ sender: UISlider) {
-        print("Sender Value: ", sender.value)
+        //print("Sender Value: ", sender.value)
+        
         if let duration = player.currentItem?.duration {
             player.pause()
             let songLength = CMTimeGetSeconds(duration)
@@ -63,7 +74,7 @@ class MixtapePlayerViewController: UIViewController {
             let progressSecs = Int(newValue)
             let remainSecs = Int(songLength) - progressSecs
             
-            print("Prog / Remain: [\(progressSecs) / \(remainSecs)]")
+            //print("Prog / Remain: [\(progressSecs) / \(remainSecs)]")
             guard let remaining = timeDuration(from: String(remainSecs)) else { return }
             guard let elapsed = timeDuration(from: String(progressSecs)) else { return }
             elapsedTime.text = elapsed
@@ -77,9 +88,9 @@ class MixtapePlayerViewController: UIViewController {
                 self?.updateNowPlayingCenter()
             })
         }
-
-    
     }
+    
+    
     
     
     @IBAction func pressedFollowMixtape(_ sender: UIButton) {
@@ -114,7 +125,7 @@ class MixtapePlayerViewController: UIViewController {
         setupCommandCenterControllers()
         UIApplication.shared.beginReceivingRemoteControlEvents()
         navigationItem.largeTitleDisplayMode = .never
-        mixProgressView.transform = mixProgressView.transform.scaledBy(x: 1.0, y: 4.0)
+        //mixProgressView.transform = mixProgressView.transform.scaledBy(x: 1.0, y: 4.0)
         registerForNotifications()
         setAudioStreamFromMixCloud()
         setMixtapeCoverUI()
@@ -124,8 +135,9 @@ class MixtapePlayerViewController: UIViewController {
         setMixtapeInfoUI()
         setMixtapeCoverAndColors()
         popBarExtraSetup()
-        setMusicSlider()
+        //setMusicSlider()
         //getSeekButtonFrameSize()
+        setGestureSlider()
         
     }
     
@@ -157,17 +169,64 @@ class MixtapePlayerViewController: UIViewController {
   
     
     // METHODS
-    private func setMusicSlider() {
-        let thumbHigh = UIImage(named: "sliderThumbHigh")
-        let thumbNorm = UIImage(named: "sliderThumbNorm")
-        musicSlider.setThumbImage(thumbNorm, for: .normal)
-        musicSlider.setThumbImage(thumbHigh, for: .highlighted)
-        //musicSlider.addTarget(self, action: #selector(handleSliderChange), for: .valueChanged)
+
+    private func setGestureSlider() {
+        musicSlider.addTarget(self, action: #selector(onSliderValChanged(slider:event:)), for: .valueChanged)
+
     }
+    
+    @objc private func onSliderValChanged(slider: UISlider, event: UIEvent) {
+        if let touchEvent = event.allTouches?.first {
+            switch touchEvent.phase {
+            case .began:
+                print("Slider Began sliding - Drag")
+                
+            case .moved:
+                print("Slider is Moving - Dragging")
+                
+            case .ended:
+                print("Slider Ended sliding - End Drag")
+                
+            default:
+                break
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    @objc private func handleLong(recognizer: UILongPressGestureRecognizer) {
+        if recognizer.state == .began {
+            print("LONG BACKWARD BEGAN -> Time [\(Date().timeIntervalSince1970)]")
+
+        }
+        if recognizer.state == .changed {
+            print("LONG BACKWARD CHANGED")
+            
+        }
+        if recognizer.state == .ended {
+            print("LONG BACKWARD ENDED -> Time [\(Date().timeIntervalSince1970)]")
+
+        }
+    }
+    
+    
+    
+//    private func setMusicSlider() {
+//        let thumbHigh = UIImage(named: "sliderThumbHigh")
+//        let thumbNorm = UIImage(named: "sliderThumbNorm")
+//        musicSlider.setThumbImage(thumbNorm, for: .normal)
+//        musicSlider.setThumbImage(thumbHigh, for: .highlighted)
+//        //musicSlider.addTarget(self, action: #selector(handleSliderChange), for: .valueChanged)
+//    }
 
 //    @objc private func handleSliderChange() {
 //        print("Handle Change: ", musicSlider.value)
 //    }
+    
+    
     
     
     @objc private func pressedFollowedMix() {
@@ -466,7 +525,7 @@ class MixtapePlayerViewController: UIViewController {
             //print("PROGRESS: ", progress)
             let totalLength = CMTimeGetSeconds(self.duration)
             let ratio = Float(progress / totalLength)
-            self.mixProgressView.setProgress(ratio, animated: true)
+            //self.mixProgressView.setProgress(ratio, animated: true)
             self.popupItem.progress = ratio
             self.musicSlider.value = ratio
             
@@ -481,7 +540,8 @@ class MixtapePlayerViewController: UIViewController {
             if (progress >= totalLength) {
                 self.player.pause()
                 self.popupPresentationContainer?.dismissPopupBar(animated: true, completion: nil)
-                self.mixProgressView.setProgress(0.0, animated: true)
+                //self.mixProgressView.setProgress(0.0, animated: true)
+                self.musicSlider.value = 0.0
                 self.popupItem.progress = 0.0
                 self.updatePlayPauseIcons()
             }
@@ -546,7 +606,6 @@ class MixtapePlayerViewController: UIViewController {
         updatePlayerNavButtonUI()
         updatePlayerColorsUI()
         updatePlayPauseIcons()
-        //updateMixcloudIconColor()
         updateMixcloudButtonColor()
         updatedIsFollowedMix()
         updateSixtyTextColor()
@@ -556,9 +615,15 @@ class MixtapePlayerViewController: UIViewController {
     private func updateMusicSliderColors() {
         musicSlider.maximumTrackTintColor = colorThree
         musicSlider.minimumTrackTintColor = colorTwo
-        let imageName = colorOne.isDarkColor ? "sliderThumbHighWhite" : "sliderThumbHighBlack"
-        musicSlider.setThumbImage(UIImage(named: imageName), for: .highlighted)
     }
+    
+//    private func updateSliderThumb(color: UIColor) {
+//        let positionImage = UIImage.circle(diameter: 24, color: color)
+//        musicSlider.setThumbImage(positionImage, for: .normal)
+//
+//    }
+    
+    
     
     private func updatesTheThreeColors() {
         guard let setColors = colors else { return }
@@ -593,8 +658,8 @@ class MixtapePlayerViewController: UIViewController {
         mixtapeCover.layer.borderColor = colorThree.cgColor
         elapsedTime.textColor = colorTwo
         remainingTime.textColor = colorTwo
-        mixProgressView.progressTintColor = colorTwo
-        mixProgressView.trackTintColor = colorThree
+        //mixProgressView.progressTintColor = colorTwo
+        //mixProgressView.trackTintColor = colorThree
         deejayName.textColor = colorTwo
         mixtapeName.textColor = colorTwo
     }

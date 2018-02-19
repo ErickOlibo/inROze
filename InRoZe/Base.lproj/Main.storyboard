@@ -18,7 +18,7 @@
         <array key="Bungee-Regular.ttf">
             <string>Bungee-Regular</string>
         </array>
-        <array key="FontAwesome.otf">
+        <array key="FontAwesome.ttf">
             <string>FontAwesome</string>
         </array>
         <array key="HelveticaNeue.ttc">
@@ -569,8 +569,12 @@
                                     <constraint firstAttribute="width" secondItem="Kcn-cI-AsN" secondAttribute="height" multiplier="1:1" id="CzF-25-2Pf"/>
                                 </constraints>
                             </imageView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W9m-BB-u9M">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W9m-BB-u9M" userLabel="Mix Progress View">
                                 <rect key="frame" x="20" y="500" width="374" height="2"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="progressTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="trackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123:45" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3m1-kr-fcN">
                                 <rect key="frame" x="20" y="510" width="60" height="20"/>
@@ -687,8 +691,8 @@
                                     <action selector="pressedFollowMixtape:" destination="vXz-br-gFn" eventType="touchUpInside" id="yOJ-IR-GhN"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ykp-CG-mbh" customClass="musicSlider" customModule="InRoZe" customModuleProvider="target">
-                                <rect key="frame" x="18" y="706" width="378" height="31"/>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ykp-CG-mbh" customClass="MusicSlider" customModule="InRoZe" customModuleProvider="target">
+                                <rect key="frame" x="18" y="490" width="378" height="31"/>
                                 <connections>
                                     <action selector="changedMusicSliderPosition:" destination="vXz-br-gFn" eventType="valueChanged" id="EzP-P5-Lbd"/>
                                 </connections>
@@ -719,7 +723,7 @@
                             <constraint firstItem="Kcn-cI-AsN" firstAttribute="top" secondItem="B8z-jo-DCU" secondAttribute="bottom" constant="50" id="Wm3-Q8-pK6"/>
                             <constraint firstItem="EUQ-c3-IAh" firstAttribute="centerX" secondItem="rug-4L-0Ot" secondAttribute="centerX" id="XWj-Sf-Da7"/>
                             <constraint firstItem="3m1-kr-fcN" firstAttribute="leading" secondItem="W9m-BB-u9M" secondAttribute="leading" id="ZIZ-Io-iOa"/>
-                            <constraint firstItem="ykp-CG-mbh" firstAttribute="top" secondItem="Kcn-cI-AsN" secondAttribute="bottom" constant="218" id="aNt-wh-M41"/>
+                            <constraint firstItem="ykp-CG-mbh" firstAttribute="top" secondItem="Kcn-cI-AsN" secondAttribute="bottom" constant="2" id="aNt-wh-M41"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4Fs-G1-1sD" secondAttribute="trailing" id="cDg-r5-PlI"/>
                             <constraint firstItem="Nl9-OM-D0t" firstAttribute="trailing" secondItem="3m1-kr-fcN" secondAttribute="trailing" id="cRy-Bu-0D4"/>
                             <constraint firstAttribute="trailing" secondItem="w3C-Uc-71f" secondAttribute="trailing" constant="20" id="d9H-5M-OVR"/>
@@ -744,7 +748,6 @@
                         <outlet property="deejayName" destination="234-Hy-Ja5" id="mfQ-24-FBi"/>
                         <outlet property="elapsedTime" destination="3m1-kr-fcN" id="Y9V-8T-8h5"/>
                         <outlet property="isFollowButton" destination="4Fs-G1-1sD" id="xf2-1p-0lY"/>
-                        <outlet property="mixProgressView" destination="W9m-BB-u9M" id="78X-Gt-tjl"/>
                         <outlet property="mixcloudButton" destination="y5I-aF-fc3" id="d6n-gV-4Uv"/>
                         <outlet property="mixtapeCover" destination="Kcn-cI-AsN" id="JlV-zA-xub"/>
                         <outlet property="mixtapeName" destination="6c7-aF-bYS" id="K9R-BJ-HxK"/>
