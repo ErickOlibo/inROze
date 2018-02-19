@@ -25,6 +25,9 @@ class musicSlider: UISlider {
     /// Thumb Image color
     var thumBColor = UIColor.black
     
+    /// TrackRect Height
+    var trackHeight: CGFloat = 8
+    
     /// Small indicator counted size
     var indicatorSize: CGSize? = nil
     
@@ -36,10 +39,13 @@ class musicSlider: UISlider {
             UIView.animate(withDuration: 0.3) {
                 if self.isHighlighted == true {
                     self.bigImage.transform = CGAffineTransform(scaleX: 3, y: 3)
+                    
                 } else {
                     self.bigImage.transform = CGAffineTransform(scaleX: 1, y: 1)
                 }
             }
+            
+            
         }
     }
     
@@ -55,7 +61,6 @@ class musicSlider: UISlider {
         self.bigImage.image = positionImageBig
         
         self.addSubview(bigImage)
-        
         self.bringSubview(toFront: bigImage)
     }
     
@@ -87,15 +92,20 @@ class musicSlider: UISlider {
         )
         
         self.bringSubview(toFront: bigImage)
-        
         return unadjustedThumbrect
     }
     
     
     override func trackRect(forBounds bounds: CGRect) -> CGRect {
         var newBounds = super.trackRect(forBounds: bounds)
-        newBounds.size.height = 8
+        newBounds.size.height = trackHeight
         return newBounds
     }
     
 }
+
+
+
+
+
+
