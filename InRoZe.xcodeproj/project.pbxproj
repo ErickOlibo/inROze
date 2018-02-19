@@ -28,6 +28,7 @@
 		A748668A1FCA7D2400674677 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74866891FCA7D2400674677 /* SettingsCell.swift */; };
 		A74AC5E920347D91004B50F9 /* musicSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74AC5E820347D91004B50F9 /* musicSlider.swift */; };
 		A74D4AF12011BD0800678B10 /* SingleEventFacebookRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74D4AF02011BD0800678B10 /* SingleEventFacebookRequest.swift */; };
+		A7559BD3203B05B4001EBB42 /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7559BD2203B05B4001EBB42 /* Slider.swift */; };
 		A75E30D02001A9470020E580 /* FollowsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E30CF2001A9470020E580 /* FollowsItem.swift */; };
 		A76E72C51F7517FB0023D47F /* FollowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72C41F7517FB0023D47F /* FollowsViewController.swift */; };
 		A76E72C91F7518CB0023D47F /* DJsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72C81F7518CB0023D47F /* DJsSearchViewController.swift */; };
@@ -120,6 +121,7 @@
 		A74866891FCA7D2400674677 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		A74AC5E820347D91004B50F9 /* musicSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = musicSlider.swift; sourceTree = "<group>"; };
 		A74D4AF02011BD0800678B10 /* SingleEventFacebookRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEventFacebookRequest.swift; sourceTree = "<group>"; };
+		A7559BD2203B05B4001EBB42 /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
 		A75E30CF2001A9470020E580 /* FollowsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowsItem.swift; sourceTree = "<group>"; };
 		A76E72C41F7517FB0023D47F /* FollowsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowsViewController.swift; sourceTree = "<group>"; };
 		A76E72C81F7518CB0023D47F /* DJsSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJsSearchViewController.swift; sourceTree = "<group>"; };
@@ -347,6 +349,14 @@
 			isa = PBXGroup;
 			children = (
 				A74AC5E820347D91004B50F9 /* musicSlider.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		A7559BD1203B0588001EBB42 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A7559BD2203B05B4001EBB42 /* Slider.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -619,6 +629,7 @@
 		A7F635DA1FF148FD0036D720 /* Mixtape Player */ = {
 			isa = PBXGroup;
 			children = (
+				A7559BD1203B0588001EBB42 /* Classes */,
 				A7F635DB1FF149190036D720 /* View Controllers */,
 			);
 			path = "Mixtape Player";
@@ -844,6 +855,7 @@
 				A76E72DA1F7C08650023D47F /* DeejayGigsCell.swift in Sources */,
 				A7A24D4C1F3A4F0000EFB82E /* ServerRequest.swift in Sources */,
 				A776760B1F26B9F600F1FA52 /* SettingsViewController.swift in Sources */,
+				A7559BD3203B05B4001EBB42 /* Slider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,24 +1,24 @@
 //
-//  musicSlider.swift
+//  Slider.swift
 //  InRoZe
 //
-//  Created by Erick Olibo on 14/02/2018.
+//  Created by Erick Olibo on 19/02/2018.
 //  Copyright © 2018 Erick Olibo. All rights reserved.
 //  Heavely copied and Inspired by CustomUISlider (Sergei Armodin)
 
-//*********************************************************
+//  *********************************************************
 //  CustomUISlider
 //
 //  Created by mak on 24.11.2017.
 //  Copyright © 2017 Sergei Armodin. All rights reserved.
 //
 
-//*********************************************************
+//  ******** DELETE THIS CLASS *************************************************
 
 import UIKit
 
-class musicSlider: UISlider {
-
+class Slider: UISlider {
+    
     /// Big position image view
     var bigImage = UIImageView()
     
@@ -67,7 +67,6 @@ class musicSlider: UISlider {
      }
      */
     
-    
     override func thumbRect(forBounds bounds: CGRect, trackRect rect: CGRect, value: Float) -> CGRect {
         let unadjustedThumbrect = super.thumbRect(forBounds: bounds, trackRect: rect, value: value)
         
@@ -90,12 +89,4 @@ class musicSlider: UISlider {
         
         return unadjustedThumbrect
     }
-    
-    
-    override func trackRect(forBounds bounds: CGRect) -> CGRect {
-        var newBounds = super.trackRect(forBounds: bounds)
-        newBounds.size.height = 8
-        return newBounds
-    }
-    
 }
