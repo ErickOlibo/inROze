@@ -21,6 +21,9 @@ class MixtapePlayerViewController: UIViewController {
     public var player: AVPlayer! //{ didSet { print("Player in MusicVC SET: \(player.description)") } }
     public var mixtape: Mixtape?
     public var tabBarVC: TabBarViewController!
+    
+    // Keep a bool track of the Play.rate before Dragging
+    private var wasPlaying: Bool = false
 
     private var duration: CMTime!
     private var colors: UIImageColors? { didSet { updateUI() }}
@@ -64,30 +67,7 @@ class MixtapePlayerViewController: UIViewController {
     
     
     @IBAction func changedMusicSliderPosition(_ sender: UISlider) {
-        //print("Sender Value: ", sender.value)
-        
-        if let duration = player.currentItem?.duration {
-            player.pause()
-            let songLength = CMTimeGetSeconds(duration)
-            let newValue = Float64(musicSlider.value) * songLength
-            // Set the eleapsedTime and remainingTime
-            let progressSecs = Int(newValue)
-            let remainSecs = Int(songLength) - progressSecs
-            
-            //print("Prog / Remain: [\(progressSecs) / \(remainSecs)]")
-            guard let remaining = timeDuration(from: String(remainSecs)) else { return }
-            guard let elapsed = timeDuration(from: String(progressSecs)) else { return }
-            elapsedTime.text = elapsed
-            remainingTime.text = "-" + remaining
-            
-            
-            let seekTime = CMTime(value: Int64(newValue), timescale: 1)
-            player.seek(to: seekTime, completionHandler: { [weak self] (completedSeek) in
-                //do somthing on completion
-                self?.player.play()
-                self?.updateNowPlayingCenter()
-            })
-        }
+
     }
     
     
@@ -176,26 +156,48 @@ class MixtapePlayerViewController: UIViewController {
     }
     
     @objc private func onSliderValChanged(slider: UISlider, event: UIEvent) {
+        //print("SliderChange at Value:", slider.value)
+        guard let duration = player.currentItem?.duration else { return }
+        let songLength = CMTimeGetSeconds(duration)
+        let newValue = Float64(musicSlider.value) * songLength
+        let progressSecs = Int(newValue)
+        let remainSecs = Int(songLength) - progressSecs
+        
+        guard let remaining = timeDuration(from: String(remainSecs)) else { return }
+        guard let elapsed = timeDuration(from: String(progressSecs)) else { return }
+        
         if let touchEvent = event.allTouches?.first {
             switch touchEvent.phase {
             case .began:
-                print("Slider Began sliding - Drag")
+                wasPlaying = (player.rate == 1)
+                player.pause()
+                print("Slider Began -> Value:", slider.value)
                 
             case .moved:
-                print("Slider is Moving - Dragging")
+                elapsedTime.text = elapsed
+                remainingTime.text = "-" + remaining
                 
             case .ended:
-                print("Slider Ended sliding - End Drag")
+                print("Slider Ended -> Value:", slider.value)
+                let seekTime = CMTime(value: Int64(newValue), timescale: 1)
+                player.seek(to: seekTime, completionHandler: { [weak self] (completedSeek) in
+                    if (self!.wasPlaying) {
+                        self?.player.play()
+                    }
+                    self?.updateNowPlayingCenter()
+                })
                 
-            default:
-                break
+            case .stationary:
+                print("Stationary")
+                
+            case .cancelled:
+                print("Was cancelled")
+                
             }
         }
     }
     
-    
-    
-    
+
     
     @objc private func handleLong(recognizer: UILongPressGestureRecognizer) {
         if recognizer.state == .began {
