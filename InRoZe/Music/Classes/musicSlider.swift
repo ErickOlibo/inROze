@@ -6,14 +6,13 @@
 //  Copyright © 2018 Erick Olibo. All rights reserved.
 //  Heavely copied and Inspired by CustomUISlider (Sergei Armodin)
 
-//*********************************************************
+//  *********************************************************
 //  CustomUISlider
 //
 //  Created by mak on 24.11.2017.
 //  Copyright © 2017 Sergei Armodin. All rights reserved.
 //
-
-//*********************************************************
+//  *********************************************************
 
 import UIKit
 

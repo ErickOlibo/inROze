@@ -54,13 +54,13 @@ class ChangeCityViewController: UITableViewController {
     
     // Methods
     @objc private func updateUI() {
-        //print("Done Updating From Server")
+        print("Done Updating From Server - updateUI")
         DispatchQueue.main.async { [unowned self] in
-            self.spinner.stopAnimating()
-            for subView in self.foreGroundView.subviews {
-                subView.removeFromSuperview()
-            }
-            self.foreGroundView.removeFromSuperview()
+//            self.spinner.stopAnimating()
+//            for subView in self.foreGroundView.subviews {
+//                subView.removeFromSuperview()
+//            }
+//            self.foreGroundView.removeFromSuperview()
             self.tableView.reloadData()
             self.updateCityImage()
         }
@@ -70,7 +70,7 @@ class ChangeCityViewController: UITableViewController {
     
     private func fetchNewCityFromServer() {
         if (!UserDefaults().isLoggedIn) {
-            //print("USER IS LOG IN AND IM FETCHING SERVER")
+            print("USER IS LOG IN AND IM FETCHING SERVER")
             RequestHandler().fetchEventIDsFromServer()
         } else {
             UserDefaults().isLoggedIn = false
@@ -146,7 +146,7 @@ class ChangeCityViewController: UITableViewController {
         } else {
             //print("DIFFERENT City")
             UserDefaults().currentCityCode = newCityCode
-            activateForeGroundAndSpinner()
+            //activateForeGroundAndSpinner()
             fetchNewCityFromServer()
             //print("After FetchRequestFromServer")
             

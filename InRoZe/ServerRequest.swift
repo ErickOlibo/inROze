@@ -115,6 +115,7 @@ public class ServerRequest
                             if (json[DBLabels.rows]! as! Int > 0) {
                                 self.result = json
                                 print("JSON result has something to show")
+                                //print(json)
                                 UserDefaults().setDateNow(for: RequestDate.toServer)
                             } else {
                                 print("There was nothing to download")
@@ -136,10 +137,11 @@ public class ServerRequest
     
     // print artist list
     private func updateArtistsDatabase(with jsonDict: [String : Any], in context: NSManagedObjectContext) {
+        print("[ServerRequest] FUNC -> updateArtistsDatabase")
         for (key, value) in jsonDict {
             if (key == DBLabels.upToDateArtistsList),
                 let  artistsArray = value as? [Any] {
-                //print("[FROM SERVER]the size of DJ array: ", artistsArray.count)
+                print("[FROM SERVER]the size of DJ array: ", artistsArray.count)
                 for artistInfoArray in artistsArray {
                     if let artistInfo = artistInfoArray as? [String : Any]{
                         do {
@@ -154,10 +156,11 @@ public class ServerRequest
     }
     
     private func updateMixtapesDatabase(with jsonDict: [String : Any], in context: NSManagedObjectContext) {
+        print("[ServerRequest] FUNC -> updateMixtapesDatabase")
         for (key, value) in jsonDict {
             if (key == DBLabels.mixtapesList),
                 let  mixtapesArray = value as? [Any] {
-                //print("[FROM SERVER] the size of MIXTAPES array: ", mixtapesArray.count)
+                print("[FROM SERVER] the size of MIXTAPES array: ", mixtapesArray.count)
                 for mixtapeInfoArray in mixtapesArray {
                     if let mixtapeInfo = mixtapeInfoArray as? [String : Any]{
                         
@@ -174,9 +177,17 @@ public class ServerRequest
     
     
     private func updateDatabase(with eventIDs: [String : Any]) {
+        print("updateDatabase when JSON has something")
         container?.performBackgroundTask { context in
-            
+            print("Container PerformBackgroundTask for updateDatabase")
             for (key, value) in eventIDs {
+                print("Key Values in updateDatabase [\(key)]")
+                
+//                if (key == DBLabels.eventsToPlaces), let events = value as? [Any] {
+//                    print(events.first as? [String : String] ?? ["Null" : "Null"])
+//                    print(value)
+//                }
+                
                 if (key == DBLabels.eventsToPlaces),
                     let events = value as? [Any],
                     let _ = events.first as? [String : String] {
@@ -200,6 +211,7 @@ public class ServerRequest
                     } catch {
                         print("[ServerRequest] - Error trying to save in CoreData")
                     }
+                    print("Notify Center for Events and Artist Done")
                     self.notifyCenter()
                     
                     // Second batch of Core Data and After again notification
@@ -215,10 +227,11 @@ public class ServerRequest
                         print("[ServerRequest] - Error trying to save in CoreData")
                     }
                     // notify center for Mixtape done
+                    print("Notify Center for Mixtape Done")
                     self.notifyCenter()
 
                     
-                    //self.printDatabaseStatistics()
+                    self.printDatabaseStatistics()
                 }
             }
         }
@@ -237,6 +250,7 @@ public class ServerRequest
     
     
     private func insertOrUpdateArtistsOfEvents(with eventDict: [String : Any], in context: NSManagedObjectContext) {
+        print("[ServerRequest] FUNC -> insertOrUpdateArtistsOfEvents")
         if let artsOfEventsArr = eventDict[DBLabels.artistsOfEvents] as? [Any],
             let _ = artsOfEventsArr.first as? [String : String] {
             for event in artsOfEventsArr {

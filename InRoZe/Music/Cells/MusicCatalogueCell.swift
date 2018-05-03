@@ -56,6 +56,7 @@ class MusicCatalogueCell: UICollectionViewCell
         guard let djName = mix.deejay?.name else { return }
         mixMaker.text = djName
         guard let coverURL = mix.cover320URL else { return }
+        print("CATA ==> DJ [\(djName)] - URL [\(coverURL)]")
         mixCover.kf.setImage(with: URL(string: coverURL), options: [.backgroundDecode, .transition(.fade(0.2))])
         
         

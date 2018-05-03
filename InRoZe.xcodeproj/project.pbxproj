@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		297B48270458BA2567535BBB /* Pods_InRoZe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 025DA5AD4652E67328D77902 /* Pods_InRoZe.framework */; };
-		A704947D2003A09100D9ADC3 /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A704947C2003A09100D9ADC3 /* LNPopupController.framework */; };
-		A704947E2003A09100D9ADC3 /* LNPopupController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A704947C2003A09100D9ADC3 /* LNPopupController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A71C7C821F2A55C400A0D5A8 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71C7C811F2A55C400A0D5A8 /* UIImageColors.swift */; };
 		A726CCCE1FE4786D004DF51D /* Mixtape.swift in Sources */ = {isa = PBXBuildFile; fileRef = A726CCCD1FE4786D004DF51D /* Mixtape.swift */; };
 		A72B792E1F2231AF009FB389 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72B792D1F2231AF009FB389 /* AppDelegate.swift */; };
@@ -28,6 +26,8 @@
 		A748668A1FCA7D2400674677 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74866891FCA7D2400674677 /* SettingsCell.swift */; };
 		A74AC5E920347D91004B50F9 /* MusicSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74AC5E820347D91004B50F9 /* MusicSlider.swift */; };
 		A74D4AF12011BD0800678B10 /* SingleEventFacebookRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74D4AF02011BD0800678B10 /* SingleEventFacebookRequest.swift */; };
+		A753EB7920841D3C00BFC528 /* LNPopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A753EB7820841D3C00BFC528 /* LNPopupController.framework */; };
+		A753EB7A20841D3C00BFC528 /* LNPopupController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A753EB7820841D3C00BFC528 /* LNPopupController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A7559BD3203B05B4001EBB42 /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7559BD2203B05B4001EBB42 /* Slider.swift */; };
 		A75E30D02001A9470020E580 /* FollowsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E30CF2001A9470020E580 /* FollowsItem.swift */; };
 		A76E72C51F7517FB0023D47F /* FollowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E72C41F7517FB0023D47F /* FollowsViewController.swift */; };
@@ -84,13 +84,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A704947F2003A09200D9ADC3 /* Embed Frameworks */ = {
+		A753EB7B20841D3C00BFC528 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A704947E2003A09100D9ADC3 /* LNPopupController.framework in Embed Frameworks */,
+				A753EB7A20841D3C00BFC528 /* LNPopupController.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,7 +100,6 @@
 /* Begin PBXFileReference section */
 		025DA5AD4652E67328D77902 /* Pods_InRoZe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InRoZe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		434049AE2BF497F26E4FEE54 /* Pods-InRoZe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InRoZe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InRoZe/Pods-InRoZe.debug.xcconfig"; sourceTree = "<group>"; };
-		A704947C2003A09100D9ADC3 /* LNPopupController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LNPopupController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71C7C811F2A55C400A0D5A8 /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
 		A726CCCD1FE4786D004DF51D /* Mixtape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mixtape.swift; sourceTree = "<group>"; };
 		A72B792A1F2231AF009FB389 /* InRoZe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InRoZe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +120,7 @@
 		A74866891FCA7D2400674677 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		A74AC5E820347D91004B50F9 /* MusicSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSlider.swift; sourceTree = "<group>"; };
 		A74D4AF02011BD0800678B10 /* SingleEventFacebookRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEventFacebookRequest.swift; sourceTree = "<group>"; };
+		A753EB7820841D3C00BFC528 /* LNPopupController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LNPopupController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7559BD2203B05B4001EBB42 /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
 		A75E30CF2001A9470020E580 /* FollowsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowsItem.swift; sourceTree = "<group>"; };
 		A76E72C41F7517FB0023D47F /* FollowsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowsViewController.swift; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 			files = (
 				A7F493C91FF4541100BA5E9A /* AVFoundation.framework in Frameworks */,
 				297B48270458BA2567535BBB /* Pods_InRoZe.framework in Frameworks */,
-				A704947D2003A09100D9ADC3 /* LNPopupController.framework in Frameworks */,
+				A753EB7920841D3C00BFC528 /* LNPopupController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +221,7 @@
 		A72B79211F2231AF009FB389 = {
 			isa = PBXGroup;
 			children = (
-				A704947C2003A09100D9ADC3 /* LNPopupController.framework */,
+				A753EB7820841D3C00BFC528 /* LNPopupController.framework */,
 				A72B792C1F2231AF009FB389 /* InRoZe */,
 				A72B792B1F2231AF009FB389 /* Products */,
 				4E73017E964B5423D0EC3497 /* Pods */,
@@ -656,8 +656,7 @@
 				A72B79271F2231AF009FB389 /* Frameworks */,
 				A72B79281F2231AF009FB389 /* Resources */,
 				4A98FD31EE395221222B8AC1 /* [CP] Embed Pods Frameworks */,
-				71CEE18FDE0F823AF9413D66 /* [CP] Copy Pods Resources */,
-				A704947F2003A09200D9ADC3 /* Embed Frameworks */,
+				A753EB7B20841D3C00BFC528 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -675,7 +674,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Erick Olibo";
 				TargetAttributes = {
 					A72B79291F2231AF009FB389 = {
@@ -767,21 +766,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InRoZe/Pods-InRoZe-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		71CEE18FDE0F823AF9413D66 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InRoZe/Pods-InRoZe-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -895,6 +879,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -902,6 +887,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -951,6 +937,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -958,6 +945,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
