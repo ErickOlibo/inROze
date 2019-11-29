@@ -1,34 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bAg-N4-UsF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bAg-N4-UsF">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="AvenirNext.ttc">
-            <string>AvenirNext-Bold</string>
-            <string>AvenirNext-DemiBold</string>
-        </array>
         <array key="Bungee-Regular.ttf">
             <string>Bungee-Regular</string>
         </array>
         <array key="FontAwesome.ttf">
             <string>FontAwesome</string>
-        </array>
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
-            <string>HelveticaNeue-Bold</string>
-            <string>HelveticaNeue-Medium</string>
-        </array>
-        <array key="HelveticaNeueExtras.ttc">
-            <string>HelveticaNeue-CondensedBlack</string>
-            <string>HelveticaNeue-CondensedBold</string>
         </array>
     </customFonts>
     <scenes>
@@ -777,7 +764,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="onQ-AG-C6Y">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H4f-lw-L8s" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="686.33333333333337"/>
@@ -1042,7 +1029,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FollowsCell" rowHeight="133" id="mvE-Uh-gfj" customClass="FollowsCell" customModule="InRoZe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.333333333333336" width="414" height="133"/>
+                                <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="133"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mvE-Uh-gfj" id="ZJt-q6-6bc">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="132.66666666666666"/>
@@ -1956,7 +1943,7 @@ Mixtapes</string>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Hhh-Vt-ukk" rowHeight="50" style="IBUITableViewCellStyleDefault" id="Na1-XC-VJy" userLabel="Something's Missing?">
-                                        <rect key="frame" x="0.0" y="255.33333333333334" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="255.33333333333337" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Na1-XC-VJy" id="ZbU-D5-d1z">
                                             <rect key="frame" x="0.0" y="0.0" width="376" height="49.666666666666664"/>
@@ -2409,6 +2396,6 @@ Mixtapes</string>
         <segue reference="U8r-Et-0uN"/>
         <segue reference="Dmb-S9-efK"/>
         <segue reference="ekP-bR-cTf"/>
-        <segue reference="klz-3a-1bo"/>
+        <segue reference="CCz-K1-KF9"/>
     </inferredMetricsTieBreakers>
 </document>

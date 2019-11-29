@@ -60,4 +60,5 @@ public struct FBUser {
     static let name = "name"                // (Type: string)
     static let gender = "gender"            // (Type: string)
     static let cover = "cover"              // (Type: CoverPhoto)
+    static let picture = "picture"          // (Type: URL link to public profile picture)
 }
