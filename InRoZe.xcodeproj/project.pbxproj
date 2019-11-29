@@ -61,6 +61,7 @@
 		A7C5567320005DE400B277EB /* SearchCatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5567220005DE400B277EB /* SearchCatalogueViewController.swift */; };
 		A7C556782000602100B277EB /* SearchCatalogueTableView+NSFethResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C556772000602100B277EB /* SearchCatalogueTableView+NSFethResultsController.swift */; };
 		A7C5567A2000608C00B277EB /* SearchCatalogueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C556792000608C00B277EB /* SearchCatalogueCell.swift */; };
+		A7C8A5342391ABBE00BD247D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A7C8A5332391ABBE00BD247D /* README.md */; };
 		A7D1CDC81F81D0CF003513F8 /* EventDeejayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */; };
 		A7D4D2A61F51913C00546341 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D4D2A51F51913C00546341 /* Artist.swift */; };
 		A7E03D9B1F71D820000095BD /* UIDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E03D9A1F71D820000095BD /* UIDropDown.swift */; };
@@ -154,6 +155,7 @@
 		A7C5567220005DE400B277EB /* SearchCatalogueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCatalogueViewController.swift; sourceTree = "<group>"; };
 		A7C556772000602100B277EB /* SearchCatalogueTableView+NSFethResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchCatalogueTableView+NSFethResultsController.swift"; sourceTree = "<group>"; };
 		A7C556792000608C00B277EB /* SearchCatalogueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCatalogueCell.swift; sourceTree = "<group>"; };
+		A7C8A5332391ABBE00BD247D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A7D1CDC71F81D0CF003513F8 /* EventDeejayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDeejayCell.swift; sourceTree = "<group>"; };
 		A7D4D2A51F51913C00546341 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		A7E03D9A1F71D820000095BD /* UIDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDropDown.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 		A72B79211F2231AF009FB389 = {
 			isa = PBXGroup;
 			children = (
+				A7C8A5332391ABBE00BD247D /* README.md */,
 				A753EB7820841D3C00BFC528 /* LNPopupController.framework */,
 				A72B792C1F2231AF009FB389 /* InRoZe */,
 				A72B792B1F2231AF009FB389 /* Products */,
@@ -695,6 +698,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -713,6 +717,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7C8A5342391ABBE00BD247D /* README.md in Resources */,
 				A72B793B1F2231AF009FB389 /* LaunchScreen.storyboard in Resources */,
 				A73E1FA01FBA3935001E31D3 /* FontAwesome.otf in Resources */,
 				A72B79381F2231AF009FB389 /* Assets.xcassets in Resources */,
